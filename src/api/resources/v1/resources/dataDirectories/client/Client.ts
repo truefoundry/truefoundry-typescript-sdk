@@ -64,8 +64,8 @@ export class DataDirectories {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -153,8 +153,8 @@ export class DataDirectories {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -255,8 +255,8 @@ export class DataDirectories {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "truefoundry-sdk/0.0.1",
+                    "X-Fern-SDK-Version": "0.0.2",
+                    "User-Agent": "truefoundry-sdk/0.0.2",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -319,7 +319,7 @@ export class DataDirectories {
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.v1.dataDirectories.apply({
+     *     await client.v1.dataDirectories.createOrUpdate({
      *         manifest: {
      *             metadata: {
      *                 "key": "value"
@@ -331,7 +331,7 @@ export class DataDirectories {
      *         }
      *     })
      */
-    public async apply(
+    public async createOrUpdate(
         request: TrueFoundry.ApplyRequest,
         requestOptions?: DataDirectories.RequestOptions,
     ): Promise<TrueFoundry.GetDataDirectoryResponse> {
@@ -346,8 +346,8 @@ export class DataDirectories {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -431,8 +431,8 @@ export class DataDirectories {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -515,8 +515,8 @@ export class DataDirectories {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "truefoundry-sdk/0.0.1",
+                    "X-Fern-SDK-Version": "0.0.2",
+                    "User-Agent": "truefoundry-sdk/0.0.2",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -606,8 +606,8 @@ export class DataDirectories {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -691,8 +691,8 @@ export class DataDirectories {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

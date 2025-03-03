@@ -52,8 +52,8 @@ export class Agents {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -118,8 +118,8 @@ export class Agents {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -204,8 +204,8 @@ export class Agents {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "truefoundry-sdk/0.0.1",
+                    "X-Fern-SDK-Version": "0.0.2",
+                    "User-Agent": "truefoundry-sdk/0.0.2",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -266,7 +266,7 @@ export class Agents {
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.v1.agents.apply({
+     *     await client.v1.agents.createOrUpdate({
      *         manifest: {
      *             metadata: {
      *                 "key": "value"
@@ -278,7 +278,7 @@ export class Agents {
      *         }
      *     })
      */
-    public async apply(
+    public async createOrUpdate(
         request: TrueFoundry.ApplyRequest,
         requestOptions?: Agents.RequestOptions,
     ): Promise<TrueFoundry.GetAgentVersionResponse> {
@@ -293,8 +293,8 @@ export class Agents {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
