@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=URL
- * +usage=Image URL linking to the image
+ * Image URL linking to the image
  */
 export type Url = string | TrueFoundry.BlobStorageReference;

@@ -3,10 +3,7 @@
  */
 
 /**
- * +sort=50
- * +uiType=Hidden
- * +label=API HTTP Method
- * +usage=HTTP Method for the tool call HTTP request
+ * HTTP Method for the tool call HTTP request
  */
 export type Method = "get" | "post" | "put" | "delete" | "patch";
 export const Method = {

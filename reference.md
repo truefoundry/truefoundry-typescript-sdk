@@ -240,7 +240,7 @@ await client.v1.artifacts.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Artifact></code></summary>
+<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactEntity></code></summary>
 <dl>
 <dd>
 
@@ -453,7 +453,7 @@ await client.v1.agents.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Agent></code></summary>
+<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentEntity></code></summary>
 <dl>
 <dd>
 
@@ -666,7 +666,7 @@ await client.v1.prompts.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Prompt></code></summary>
+<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptEntity></code></summary>
 <dl>
 <dd>
 
@@ -879,7 +879,7 @@ await client.v1.tools.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Tool></code></summary>
+<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolEntity></code></summary>
 <dl>
 <dd>
 
@@ -1092,7 +1092,7 @@ await client.v1.models.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Model></code></summary>
+<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelEntity></code></summary>
 <dl>
 <dd>
 
@@ -1335,7 +1335,7 @@ await client.v1.artifactVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactVersion></code></summary>
+<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactVersionEntity></code></summary>
 <dl>
 <dd>
 
@@ -1758,7 +1758,7 @@ await client.v1.modelVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelVersion></code></summary>
+<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelVersionEntity></code></summary>
 <dl>
 <dd>
 
@@ -1958,7 +1958,7 @@ await client.v1.promptVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptVersion></code></summary>
+<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptVersionEntity></code></summary>
 <dl>
 <dd>
 
@@ -2158,7 +2158,7 @@ await client.v1.toolVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolVersion></code></summary>
+<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolVersionEntity></code></summary>
 <dl>
 <dd>
 
@@ -2358,7 +2358,7 @@ await client.v1.agentVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentVersion></code></summary>
+<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentVersionEntity></code></summary>
 <dl>
 <dd>
 
@@ -2631,7 +2631,7 @@ await client.v1.dataDirectories.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.DataDirectory></code></summary>
+<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.DataDirectoryEntity></code></summary>
 <dl>
 <dd>
 
@@ -3212,7 +3212,7 @@ await client.v1.mlRepos.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.MlRepo></code></summary>
+<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.MlRepoEntity></code></summary>
 <dl>
 <dd>
 

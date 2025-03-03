@@ -52,8 +52,8 @@ export class Artifacts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -120,8 +120,8 @@ export class Artifacts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -179,7 +179,7 @@ export class Artifacts {
     public async list(
         request: TrueFoundry.v1.ArtifactsListRequest = {},
         requestOptions?: Artifacts.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.Artifact>> {
+    ): Promise<core.Page<TrueFoundry.ArtifactEntity>> {
         const list = async (
             request: TrueFoundry.v1.ArtifactsListRequest,
         ): Promise<TrueFoundry.ListArtifactsResponse> => {
@@ -211,8 +211,8 @@ export class Artifacts {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.2",
-                    "User-Agent": "truefoundry-sdk/0.0.2",
+                    "X-Fern-SDK-Version": "0.0.3",
+                    "User-Agent": "truefoundry-sdk/0.0.3",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -255,7 +255,7 @@ export class Artifacts {
             }
         };
         let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListArtifactsResponse, TrueFoundry.Artifact>({
+        return new core.Pageable<TrueFoundry.ListArtifactsResponse, TrueFoundry.ArtifactEntity>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
@@ -300,8 +300,8 @@ export class Artifacts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

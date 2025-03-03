@@ -4,4 +4,4 @@
 
 import * as TrueFoundry from "../../../../../index";
 
-export type Manifest = TrueFoundry.ModelVersionManifest | TrueFoundry.ArtifactVersionManifest;
+export type Manifest = TrueFoundry.Model | TrueFoundry.Artifact;

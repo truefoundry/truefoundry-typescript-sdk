@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Library Name
- * +usage=Name of the library for the framework
+ * Name of the library for the framework
  */
 export type LibraryName = "transformers" | "sentence-transformers" | "diffusers";
 export const LibraryName = {

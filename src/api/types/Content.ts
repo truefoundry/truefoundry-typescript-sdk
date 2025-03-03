@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Content
- * +usage=Content of the user message. can be a mix of text and images
- * +uiType=TextArea
+ * Content of the user message. can be a mix of text and images
  */
 export type Content = string | TrueFoundry.BlobStorageReference | TrueFoundry.UserMessageContentItem[];

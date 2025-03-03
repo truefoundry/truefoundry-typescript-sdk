@@ -5,18 +5,11 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Text Content
- * +usage=Text content for the message
+ * Text content for the message
  */
 export interface TextContentPart {
-    /**
-     * +value=text
-     * +usage=Type of the content part
-     */
+    /** Type of the content part */
     type: "text";
-    /**
-     * +label=Text
-     * +usage=Text content for the message
-     */
+    /** Text content for the message */
     text: TrueFoundry.Text;
 }

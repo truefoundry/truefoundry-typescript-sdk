@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetMlRepoResponse {
-    data: TrueFoundry.MlRepo;
+    data: TrueFoundry.MlRepoEntity;
 }

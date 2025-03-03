@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Inference Method Name
- * +usage=Name of the method used for inference
+ * Name of the method used for inference
  */
 export type InferMethodName = "predict" | "predict_proba";
 export const InferMethodName = {

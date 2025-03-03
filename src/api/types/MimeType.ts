@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=MIME Type
- * +usage=MIME type of the content
+ * MIME type of the content
  */
 export type MimeType = "text/plain" | "application/json" | "image/png" | "image/jpeg" | "application/x-directory";
 export const MimeType = {

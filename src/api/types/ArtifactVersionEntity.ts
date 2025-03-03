@@ -4,15 +4,13 @@
 
 import * as TrueFoundry from "../index";
 
-export interface Tool {
+export interface ArtifactVersionEntity {
     id: string;
-    ml_repo_id: string;
-    type?: "openapi-tool";
-    name: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
     created_at?: string;
     updated_at?: string;
-    latest_version?: TrueFoundry.ToolVersion;
-    run_steps?: number[];
+    manifest: TrueFoundry.Artifact;
+    usage_code_snippet?: string;
+    artifact_id: string;
 }

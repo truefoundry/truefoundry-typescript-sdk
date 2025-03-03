@@ -5,26 +5,13 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Assistant Message
- * +usage=Assistant message turn
+ * Assistant message turn
  */
 export interface AssistantMessage {
-    /**
-     * +value=assistant
-     * +label=Role
-     * +usage=Role of the message
-     * +uiType=Ignore
-     */
+    /** Role of the message */
     role: "assistant";
-    /**
-     * +label=Content
-     * +usage=Text content for the assistant message
-     * +uiType=TextArea
-     */
+    /** Text content for the assistant message */
     content: TrueFoundry.Content;
-    /**
-     * +label=Name
-     * +usage=Name of the assistant this message is from
-     */
+    /** Name of the assistant this message is from */
     name?: string;
 }

@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetPromptResponse {
-    data: TrueFoundry.Prompt;
+    data: TrueFoundry.PromptEntity;
 }

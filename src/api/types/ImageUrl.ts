@@ -5,13 +5,9 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Image URL
- * +usage=Image URL linking to the image
+ * Image URL linking to the image
  */
 export interface ImageUrl {
-    /**
-     * +label=URL
-     * +usage=Image URL linking to the image
-     */
+    /** Image URL linking to the image */
     url: TrueFoundry.Url;
 }

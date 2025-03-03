@@ -4,15 +4,13 @@
 
 import * as TrueFoundry from "../index";
 
-export interface Prompt {
+export interface ModelVersionEntity {
     id: string;
-    ml_repo_id: string;
-    type?: "chat_prompt";
-    name: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
     created_at?: string;
     updated_at?: string;
-    latest_version?: TrueFoundry.PromptVersion;
-    run_steps?: number[];
+    manifest: TrueFoundry.Model;
+    usage_code_snippet?: string;
+    model_id: string;
 }

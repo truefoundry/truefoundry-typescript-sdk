@@ -3,86 +3,29 @@
  */
 
 export interface AgentWithFqn {
-    /**
-     * +sort=1
-     * +label=Name
-     * +message=The name should start with lowercase alphabets  and can contain alphanumeric and can include '-' in between
-     * +usage=Name of the entity
-     */
+    /** Name of the entity */
     name?: string;
-    /**
-     * +sort=2
-     * +label=Description
-     */
     description?: string;
-    /**
-     * +label=Metadata
-     * +usage=Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}`
-     * +uiType=JsonInput
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
-    /**
-     * +label=Version Alias
-     * +usage=Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc)
-     * +message=The version alias should start with `v` followed by alphanumeric and can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc)
-     * +uiProps={"descriptionInline":true}
-     * +placeholder=v1.0.0
-     */
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     version_alias?: string;
-    /**
-     * +label=ML Repo
-     * +usage=Name of the ML Repo
-     * +uiType=Hidden
-     */
+    /** Name of the ML Repo */
     ml_repo?: string;
-    /**
-     * +label=Version of the entity
-     * +usage=Version of the entity
-     * +uiType=Hidden
-     */
+    /** Version of the entity */
     version?: number;
-    /**
-     * +value=agent
-     * +usage=Type of the entity
-     */
+    /** Type of the entity */
     type: "agent";
-    /**
-     * +sort=30
-     * +uiType=Hidden
-     * +label=Tools
-     * +usage=Tools available to the agent
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Tools available to the agent */
     available_tools: string[];
-    /**
-     * +sort=10
-     * +uiType=TextArea
-     * +label=Goal
-     * +usage=Short form description. Will be used as `description` when this agent is used as a tool.
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Short form description. Will be used as `description` when this agent is used as a tool. */
     goal: string;
-    /**
-     * `instruction` is the system prompt for now. (2.5 * 1024)
-     * +sort=20
-     * +uiType=AgentInstructions
-     * +uiProps={"helpText":"Use the syntax ${Tool FQN} to reference a tool, and ${AGENT FQN} to reference another agent"}
-     * +label=Instructions
-     * +usage=Instructions for the agent to follow to achieve the goal
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Instructions for the agent to follow to achieve the goal */
     instruction: string;
-    /**
-     * +sort=40
-     * +uiType=EnabledModelSelector
-     * +uiProps={"searchable":true,"modelType":"chat","providerType":"openai"}
-     * +label=Model
-     * +usage=Model to use when running the agent
-     */
+    /** Model to use when running the agent */
     model_id: string;
-    /** +usage=ID of the agent */
+    /** ID of the agent */
     id: string;
-    /** +usage=FQN of the agent */
+    /** FQN of the agent */
     fqn: string;
 }

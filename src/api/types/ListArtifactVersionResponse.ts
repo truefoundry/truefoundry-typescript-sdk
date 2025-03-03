@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListArtifactVersionResponse {
-    data: TrueFoundry.ArtifactVersion[];
+    data: TrueFoundry.ArtifactVersionEntity[];
     pagination: TrueFoundry.Pagination;
 }

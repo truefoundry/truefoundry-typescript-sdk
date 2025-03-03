@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Framework
- * +usage=Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration
- * +uiProps={"descriptionInline":true}
+ * Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration
  */
 export type Framework =
     | TrueFoundry.TransformersFramework

@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListPromptVersionsResponse {
-    data: TrueFoundry.PromptVersion[];
+    data: TrueFoundry.PromptVersionEntity[];
     pagination: TrueFoundry.Pagination;
 }

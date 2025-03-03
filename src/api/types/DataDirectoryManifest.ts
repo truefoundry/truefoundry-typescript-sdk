@@ -9,34 +9,13 @@ import * as TrueFoundry from "../index";
  */
 export interface DataDirectoryManifest {
     type: "data-dir";
-    /**
-     * +sort=1
-     * +label=Name
-     * +usage=Name of the data directory
-     * +message=The data directory name should start with lowercase alphabets and can contain alphanumeric and can include '-' in between
-     */
+    /** Name of the data directory */
     name: string;
-    /**
-     * +label=MLRepo
-     * +usage=Name of the ML Repo to create the data directory under
-     * +uiType=Hidden
-     */
+    /** Name of the ML Repo to create the data directory under */
     ml_repo: string;
-    /**
-     * +sort=2
-     * +label=Description
-     * +usage=Description for the data directory
-     */
+    /** Description for the data directory */
     description?: string;
-    /**
-     * +label=Metadata
-     * +usage=Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}`
-     * +uiType=JsonInput
-     */
+    /** Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
-    /**
-     * +label=Data Directory Source
-     * +uiType=Group
-     */
     source: TrueFoundry.Source;
 }

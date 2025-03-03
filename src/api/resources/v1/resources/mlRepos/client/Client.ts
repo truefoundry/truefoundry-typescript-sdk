@@ -60,8 +60,8 @@ export class MlRepos {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -134,8 +134,8 @@ export class MlRepos {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -201,7 +201,7 @@ export class MlRepos {
     public async list(
         request: TrueFoundry.v1.MlReposListRequest = {},
         requestOptions?: MlRepos.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.MlRepo>> {
+    ): Promise<core.Page<TrueFoundry.MlRepoEntity>> {
         const list = async (request: TrueFoundry.v1.MlReposListRequest): Promise<TrueFoundry.ListMlReposResponse> => {
             const { name, limit, offset } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -225,8 +225,8 @@ export class MlRepos {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.2",
-                    "User-Agent": "truefoundry-sdk/0.0.2",
+                    "X-Fern-SDK-Version": "0.0.3",
+                    "User-Agent": "truefoundry-sdk/0.0.3",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -269,7 +269,7 @@ export class MlRepos {
             }
         };
         let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListMlReposResponse, TrueFoundry.MlRepo>({
+        return new core.Pageable<TrueFoundry.ListMlReposResponse, TrueFoundry.MlRepoEntity>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],

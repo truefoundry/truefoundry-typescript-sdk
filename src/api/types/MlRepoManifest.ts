@@ -9,38 +9,12 @@ import * as TrueFoundry from "../index";
  */
 export interface MlRepoManifest {
     type?: "ml-repo";
-    /**
-     * +label=Name
-     * +icon=fa-desktop:#black
-     * +usage=Name of the ML Repo.
-     * +message=Alphanumeric word, may contain '-' with a maximum length of 100 characters
-     * +sort=1
-     */
+    /** Name of the ML Repo. */
     name: string;
-    /**
-     * +label=Description
-     * +icon=fa-desktop:#black
-     * +usage=Description for the ML Repo.
-     * +message=Description can be maximum 500 characters
-     * +sort=2
-     * +placeholder=MLRepo to track text-classification experiments and models
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Description for the ML Repo. */
     description?: string;
-    /**
-     * +label=Storage Integration
-     * +icon=hard-drive
-     * +usage=Storage Integration to store artifacts and models. A storage integration represents a connected blob storage like AWS S3 / Azure Blob Storage / Google Cloud Storage.
-     * +message=Select the storage-integration where you want to save your artifacts and models
-     * [View Docs](https://docs.truefoundry.com/docs/integrations)
-     * +sort=4
-     */
+    /** Storage Integration to store artifacts and models. A storage integration represents a connected blob storage like AWS S3 / Azure Blob Storage / Google Cloud Storage. */
     storage_integration_fqn: string;
-    /**
-     * +label=Collaborators
-     * +sort=5
-     * +usage=Users and Teams that have access to MLRepo
-     * +uiType=Collaborators
-     */
+    /** Users and Teams that have access to MLRepo */
     collaborators: TrueFoundry.Collaborator[];
 }

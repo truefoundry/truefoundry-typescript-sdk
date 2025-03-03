@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetAgentVersionResponse {
-    data: TrueFoundry.AgentVersion;
+    data: TrueFoundry.AgentVersionEntity;
 }

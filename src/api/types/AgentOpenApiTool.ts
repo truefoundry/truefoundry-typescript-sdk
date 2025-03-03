@@ -4,7 +4,10 @@
 
 import * as TrueFoundry from "../index";
 
-export interface AgentOpenApiToolWithFqn {
+/**
+ * Agent OpenAPI Tool manifest.
+ */
+export interface AgentOpenApiTool {
     /** Name of the entity */
     name?: string;
     description?: string;
@@ -16,10 +19,9 @@ export interface AgentOpenApiToolWithFqn {
     ml_repo?: string;
     /** Version of the entity */
     version?: number;
-    /** Type of the agent */
     type: "openapi-tool";
     /** OpenAPI Spec for the tool describing the API, endpoints and parameters. [Sample OpenAPI Spec Link](https://assets.production.truefoundry.com/sample-openapi.json) */
-    openapi_spec: TrueFoundry.AgentOpenApiToolWithFqnOpenapiSpec;
+    openapi_spec: TrueFoundry.AgentOpenApiToolOpenapiSpec;
     /** HTTP endpoint where the API is hosted for the tools. E.g. `https://api.example.com/v1` */
     base_url: string;
     /** API Route Path for the tool call HTTP request. E.g. `GET /weather` */
@@ -28,8 +30,4 @@ export interface AgentOpenApiToolWithFqn {
     method: TrueFoundry.Method;
     /** HTTP Headers for the tool call HTTP request. E.g. `Authorization: Bearer <token>` */
     headers?: Record<string, string>;
-    /** ID of the agent tool */
-    id: string;
-    /** FQN of the agent tool */
-    fqn: string;
 }
