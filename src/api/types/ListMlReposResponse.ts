@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListMlReposResponse {
-    data: TrueFoundry.MlRepo[];
+    data: TrueFoundry.MlRepoEntity[];
     pagination: TrueFoundry.Pagination;
 }

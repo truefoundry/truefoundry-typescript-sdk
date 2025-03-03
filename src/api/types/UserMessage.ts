@@ -5,25 +5,13 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=User Message
- * +usage=User message turn
+ * User message turn
  */
 export interface UserMessage {
-    /**
-     * +value=user
-     * +usage=Role of the message
-     * +uiType=Ignore
-     */
+    /** Role of the message */
     role: "user";
-    /**
-     * +label=Content
-     * +usage=Content of the user message. can be a mix of text and images
-     * +uiType=TextArea
-     */
+    /** Content of the user message. can be a mix of text and images */
     content: TrueFoundry.Content;
-    /**
-     * +label=Name
-     * +usage=Name of the user this message is from
-     */
+    /** Name of the user this message is from */
     name?: string;
 }

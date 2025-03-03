@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetModelVersionResponse {
-    data: TrueFoundry.ModelVersion;
+    data: TrueFoundry.ModelVersionEntity;
 }

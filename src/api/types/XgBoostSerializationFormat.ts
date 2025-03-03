@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Serialization format
- * +usage=Serialization format used to save the xgboost model
+ * Serialization format used to save the xgboost model
  */
 export type XgBoostSerializationFormat = "cloudpickle" | "joblib" | "pickle" | "json";
 export const XgBoostSerializationFormat = {

@@ -4,7 +4,4 @@
 
 import * as TrueFoundry from "../index";
 
-export type Manifest =
-    | TrueFoundry.ModelVersionManifest
-    | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.ArtifactVersionManifest;
+export type Manifest = TrueFoundry.Model | TrueFoundry.ChatPrompt | TrueFoundry.Artifact;

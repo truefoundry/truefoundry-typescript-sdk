@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListAgentsResponse {
-    data: TrueFoundry.Agent[];
+    data: TrueFoundry.AgentEntity[];
     pagination: TrueFoundry.Pagination;
 }

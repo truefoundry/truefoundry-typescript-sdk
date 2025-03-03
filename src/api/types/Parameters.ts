@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Parameters
- * +usage=Parameters to pass to the model when generating
+ * Parameters to pass to the model when generating
  */
 export interface Parameters {
     max_tokens?: number;

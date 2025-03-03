@@ -4,22 +4,10 @@
 
 import * as TrueFoundry from "../index";
 
-/**
- * +label=Sklearn
- * +icon=sklearn
- */
 export interface SklearnFramework {
-    /**
-     * +label=Type
-     * +usage=Type of the framework
-     * +value=sklearn
-     */
+    /** Type of the framework */
     type: "sklearn";
-    /**
-     * +label=Model file path
-     * +usage=Relative path to the model file in the model version contents
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Relative path to the model file in the model version contents */
     model_filepath?: string;
     serialization_format?: TrueFoundry.SklearnSerializationFormat;
     model_schema?: TrueFoundry.SklearnModelSchema;

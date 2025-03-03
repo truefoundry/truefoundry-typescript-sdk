@@ -4,13 +4,12 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ToolVersion {
+export interface BaseArtifactVersionEntity {
     id: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
     created_at?: string;
     updated_at?: string;
-    manifest: TrueFoundry.AgentOpenApiToolManifest;
+    manifest?: TrueFoundry.Manifest;
     usage_code_snippet?: string;
-    tool_id: string;
 }

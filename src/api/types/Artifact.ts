@@ -4,15 +4,25 @@
 
 import * as TrueFoundry from "../index";
 
+/**
+ * Artifact Version manifest.
+ */
 export interface Artifact {
-    id: string;
-    ml_repo_id: string;
-    type: TrueFoundry.ArtifactType;
-    name: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    latest_version?: TrueFoundry.BaseArtifactVersion;
-    run_steps?: number[];
+    /** Name of the entity */
+    name?: string;
+    description?: string;
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
+    metadata: Record<string, unknown>;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string;
+    /** Name of the ML Repo */
+    ml_repo?: string;
+    /** Version of the entity */
+    version?: number;
+    type: "artifact-version";
+    source: TrueFoundry.Source;
+    /** Step/Epoch number in an iterative training loop the artifact version was created. Generally useful when logging a model version from a MLRepo Run */
+    step?: number;
+    /** ID of the MLRepo Run that generated the artifact version */
+    run_id?: string;
 }

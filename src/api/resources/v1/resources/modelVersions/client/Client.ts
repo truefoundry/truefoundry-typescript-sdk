@@ -57,8 +57,8 @@ export class ModelVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -127,8 +127,8 @@ export class ModelVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -188,7 +188,7 @@ export class ModelVersions {
     public async list(
         request: TrueFoundry.v1.ModelVersionsListRequest = {},
         requestOptions?: ModelVersions.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.ModelVersion>> {
+    ): Promise<core.Page<TrueFoundry.ModelVersionEntity>> {
         const list = async (
             request: TrueFoundry.v1.ModelVersionsListRequest,
         ): Promise<TrueFoundry.ListModelVersionsResponse> => {
@@ -246,8 +246,8 @@ export class ModelVersions {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.2",
-                    "User-Agent": "truefoundry-sdk/0.0.2",
+                    "X-Fern-SDK-Version": "0.0.3",
+                    "User-Agent": "truefoundry-sdk/0.0.3",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -292,7 +292,7 @@ export class ModelVersions {
             }
         };
         let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListModelVersionsResponse, TrueFoundry.ModelVersion>({
+        return new core.Pageable<TrueFoundry.ListModelVersionsResponse, TrueFoundry.ModelVersionEntity>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],

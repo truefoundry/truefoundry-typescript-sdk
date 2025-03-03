@@ -52,8 +52,8 @@ export class Models {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -118,8 +118,8 @@ export class Models {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -177,7 +177,7 @@ export class Models {
     public async list(
         request: TrueFoundry.v1.ModelsListRequest = {},
         requestOptions?: Models.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.Model>> {
+    ): Promise<core.Page<TrueFoundry.ModelEntity>> {
         const list = async (request: TrueFoundry.v1.ModelsListRequest): Promise<TrueFoundry.ListModelsResponse> => {
             const { ml_repo_id: mlRepoId, name, offset, limit, run_id: runId } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -207,8 +207,8 @@ export class Models {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.2",
-                    "User-Agent": "truefoundry-sdk/0.0.2",
+                    "X-Fern-SDK-Version": "0.0.3",
+                    "User-Agent": "truefoundry-sdk/0.0.3",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -251,7 +251,7 @@ export class Models {
             }
         };
         let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListModelsResponse, TrueFoundry.Model>({
+        return new core.Pageable<TrueFoundry.ListModelsResponse, TrueFoundry.ModelEntity>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
@@ -296,8 +296,8 @@ export class Models {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.2",
-                "User-Agent": "truefoundry-sdk/0.0.2",
+                "X-Fern-SDK-Version": "0.0.3",
+                "User-Agent": "truefoundry-sdk/0.0.3",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
