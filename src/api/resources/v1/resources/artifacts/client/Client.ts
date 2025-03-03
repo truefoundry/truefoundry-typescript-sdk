@@ -52,8 +52,8 @@ export class Artifacts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -120,8 +120,8 @@ export class Artifacts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -211,8 +211,8 @@ export class Artifacts {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "truefoundry-sdk/0.0.1",
+                    "X-Fern-SDK-Version": "0.0.2",
+                    "User-Agent": "truefoundry-sdk/0.0.2",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -273,7 +273,7 @@ export class Artifacts {
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.v1.artifacts.apply({
+     *     await client.v1.artifacts.createOrUpdate({
      *         manifest: {
      *             metadata: {
      *                 "key": "value"
@@ -285,7 +285,7 @@ export class Artifacts {
      *         }
      *     })
      */
-    public async apply(
+    public async createOrUpdate(
         request: TrueFoundry.ApplyRequest,
         requestOptions?: Artifacts.RequestOptions,
     ): Promise<TrueFoundry.GetArtifactVersionResponse> {
@@ -300,8 +300,8 @@ export class Artifacts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

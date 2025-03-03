@@ -52,8 +52,8 @@ export class Prompts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -118,8 +118,8 @@ export class Prompts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -204,8 +204,8 @@ export class Prompts {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.1",
-                    "User-Agent": "truefoundry-sdk/0.0.1",
+                    "X-Fern-SDK-Version": "0.0.2",
+                    "User-Agent": "truefoundry-sdk/0.0.2",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -266,7 +266,7 @@ export class Prompts {
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.v1.prompts.apply({
+     *     await client.v1.prompts.createOrUpdate({
      *         manifest: {
      *             metadata: {
      *                 "key": "value"
@@ -278,7 +278,7 @@ export class Prompts {
      *         }
      *     })
      */
-    public async apply(
+    public async createOrUpdate(
         request: TrueFoundry.ApplyRequest,
         requestOptions?: Prompts.RequestOptions,
     ): Promise<TrueFoundry.GetPromptVersionResponse> {
@@ -293,8 +293,8 @@ export class Prompts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.1",
-                "User-Agent": "truefoundry-sdk/0.0.1",
+                "X-Fern-SDK-Version": "0.0.2",
+                "User-Agent": "truefoundry-sdk/0.0.2",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,

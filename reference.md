@@ -60,121 +60,6 @@ await client.v1.apply({
 </dl>
 </details>
 
-## Deprecated
-
-<details><summary><code>client.deprecated.<a href="/src/api/resources/deprecated/client/Client.ts">getSearchRunsGet</a>({ ...params }) -> TrueFoundry.SearchRunsResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.deprecated.getSearchRunsGet();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.GetSearchRunsGetRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Deprecated.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.deprecated.<a href="/src/api/resources/deprecated/client/Client.ts">getRunByNameGet</a>({ ...params }) -> TrueFoundry.RunResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get Run by run name
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.deprecated.getRunByNameGet({
-    run_name: "run_name",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.GetRunByNameGetRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Deprecated.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 ## Health
 
 <details><summary><code>client.health.<a href="/src/api/resources/health/client/Client.ts">serveGet</a>() -> unknown</code></summary>
@@ -412,7 +297,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
+<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -425,7 +310,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.artifacts.apply({
+await client.v1.artifacts.createOrUpdate({
     manifest: {
         metadata: {
             key: "value",
@@ -625,7 +510,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.GetAgentVersionResponse</code></summary>
+<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetAgentVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -638,7 +523,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.agents.apply({
+await client.v1.agents.createOrUpdate({
     manifest: {
         metadata: {
             key: "value",
@@ -838,7 +723,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.GetPromptVersionResponse</code></summary>
+<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetPromptVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -851,7 +736,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.prompts.apply({
+await client.v1.prompts.createOrUpdate({
     manifest: {
         metadata: {
             key: "value",
@@ -1051,7 +936,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.GetToolVersionResponse</code></summary>
+<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetToolVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -1064,7 +949,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.tools.apply({
+await client.v1.tools.createOrUpdate({
     manifest: {
         metadata: {
             key: "value",
@@ -1264,7 +1149,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.GetModelVersionResponse</code></summary>
+<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetModelVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -1277,7 +1162,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.models.apply({
+await client.v1.models.createOrUpdate({
     manifest: {
         metadata: {
             key: "value",
@@ -2825,7 +2710,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
+<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -2838,7 +2723,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.apply({
+await client.v1.dataDirectories.createOrUpdate({
     manifest: {
         metadata: {
             key: "value",

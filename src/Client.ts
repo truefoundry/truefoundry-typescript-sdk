@@ -4,7 +4,6 @@
 
 import * as core from "./core";
 import { V1 } from "./api/resources/v1/client/Client";
-import { Deprecated } from "./api/resources/deprecated/client/Client";
 import { Health } from "./api/resources/health/client/Client";
 
 export declare namespace TrueFoundryClient {
@@ -30,17 +29,12 @@ export declare namespace TrueFoundryClient {
 
 export class TrueFoundryClient {
     protected _v1: V1 | undefined;
-    protected _deprecated: Deprecated | undefined;
     protected _health: Health | undefined;
 
     constructor(protected readonly _options: TrueFoundryClient.Options) {}
 
     public get v1(): V1 {
         return (this._v1 ??= new V1(this._options));
-    }
-
-    public get deprecated(): Deprecated {
-        return (this._deprecated ??= new Deprecated(this._options));
     }
 
     public get health(): Health {
