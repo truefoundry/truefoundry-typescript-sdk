@@ -7,4 +7,4 @@ import * as TrueFoundry from "../index";
 /**
  * OpenAPI Spec for the tool describing the API, endpoints and parameters. [Sample OpenAPI Spec Link](https://assets.production.truefoundry.com/sample-openapi.json)
  */
-export type AgentOpenApiToolOpenapiSpec = TrueFoundry.BlobStorageReference | Record<string, unknown>;
+export type AgentOpenApiToolManifestOpenapiSpec = TrueFoundry.BlobStorageReference | Record<string, unknown>;

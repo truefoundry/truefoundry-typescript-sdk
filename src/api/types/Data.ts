@@ -5,9 +5,9 @@
 import * as TrueFoundry from "../index";
 
 export type Data =
-    | TrueFoundry.ModelVersionEntity
-    | TrueFoundry.PromptVersionEntity
-    | TrueFoundry.ToolVersionEntity
-    | TrueFoundry.AgentVersionEntity
-    | TrueFoundry.ArtifactVersionEntity
-    | TrueFoundry.DataDirectoryEntity;
+    | TrueFoundry.ModelVersion
+    | TrueFoundry.PromptVersion
+    | TrueFoundry.ToolVersion
+    | TrueFoundry.AgentVersion
+    | TrueFoundry.ArtifactVersion
+    | TrueFoundry.DataDirectory;

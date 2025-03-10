@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetModelResponse {
-    data: TrueFoundry.ModelEntity;
+    data: TrueFoundry.Model;
 }

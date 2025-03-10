@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetToolVersionResponse {
-    data: TrueFoundry.ToolVersionEntity;
+    data: TrueFoundry.ToolVersion;
 }

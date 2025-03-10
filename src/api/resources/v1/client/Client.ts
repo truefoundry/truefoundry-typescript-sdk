@@ -3,9 +3,6 @@
  */
 
 import * as core from "../../../../core";
-import * as TrueFoundry from "../../../index";
-import urlJoin from "url-join";
-import * as errors from "../../../../errors/index";
 import { Artifacts } from "../resources/artifacts/client/Client";
 import { Agents } from "../resources/agents/client/Client";
 import { Prompts } from "../resources/prompts/client/Client";
@@ -102,94 +99,5 @@ export class V1 {
 
     public get mlRepos(): MlRepos {
         return (this._mlRepos ??= new MlRepos(this._options));
-    }
-
-    /**
-     * @param {TrueFoundry.ApplyRequest} request
-     * @param {V1.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.apply({
-     *         manifest: {
-     *             metadata: {
-     *                 "key": "value"
-     *             },
-     *             type: "model-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
-     *         }
-     *     })
-     */
-    public async apply(
-        request: TrueFoundry.ApplyRequest,
-        requestOptions?: V1.RequestOptions,
-    ): Promise<TrueFoundry.ApplyResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/apply",
-            ),
-            method: "PUT",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as TrueFoundry.ApplyResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as TrueFoundry.HttpValidationError,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/ml/v1/apply.");
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    protected async _getAuthorizationHeader(): Promise<string | undefined> {
-        const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer != null) {
-            return `Bearer ${bearer}`;
-        }
-
-        return undefined;
     }
 }
