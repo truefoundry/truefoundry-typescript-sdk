@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListToolVersionsResponse {
-    data: TrueFoundry.ToolVersionEntity[];
+    data: TrueFoundry.ToolVersion[];
     pagination: TrueFoundry.Pagination;
 }

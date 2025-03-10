@@ -57,8 +57,8 @@ export class ArtifactVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -130,8 +130,8 @@ export class ArtifactVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -191,7 +191,7 @@ export class ArtifactVersions {
     public async list(
         request: TrueFoundry.v1.ArtifactVersionsListRequest = {},
         requestOptions?: ArtifactVersions.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.ArtifactVersionEntity>> {
+    ): Promise<core.Page<TrueFoundry.ArtifactVersion>> {
         const list = async (
             request: TrueFoundry.v1.ArtifactVersionsListRequest,
         ): Promise<TrueFoundry.ListArtifactVersionResponse> => {
@@ -245,8 +245,8 @@ export class ArtifactVersions {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.3",
-                    "User-Agent": "truefoundry-sdk/0.0.3",
+                    "X-Fern-SDK-Version": "0.0.5",
+                    "User-Agent": "truefoundry-sdk/0.0.5",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -290,8 +290,8 @@ export class ArtifactVersions {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListArtifactVersionResponse, TrueFoundry.ArtifactVersionEntity>({
+        let _offset = request?.offset != null ? request?.offset : 0;
+        return new core.Pageable<TrueFoundry.ListArtifactVersionResponse, TrueFoundry.ArtifactVersion>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
@@ -330,8 +330,8 @@ export class ArtifactVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -406,8 +406,8 @@ export class ArtifactVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -463,9 +463,11 @@ export class ArtifactVersions {
      * @example
      *     await client.v1.artifactVersions.stage({
      *         manifest: {
+     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
+     *             ml_repo: "ml_repo",
      *             type: "model-version",
      *             source: {
      *                 type: "truefoundry"
@@ -488,8 +490,8 @@ export class ArtifactVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -563,8 +565,8 @@ export class ArtifactVersions {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.3",
-                    "User-Agent": "truefoundry-sdk/0.0.3",
+                    "X-Fern-SDK-Version": "0.0.5",
+                    "User-Agent": "truefoundry-sdk/0.0.5",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -618,12 +620,15 @@ export class ArtifactVersions {
         });
     }
 
-    protected async _getAuthorizationHeader(): Promise<string | undefined> {
+    protected async _getAuthorizationHeader(): Promise<string> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer != null) {
-            return `Bearer ${bearer}`;
+        if (bearer == null) {
+            throw new errors.TrueFoundryError({
+                message:
+                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
+            });
         }
 
-        return undefined;
+        return `Bearer ${bearer}`;
     }
 }

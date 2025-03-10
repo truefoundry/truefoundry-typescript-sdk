@@ -4,13 +4,14 @@
 
 import * as TrueFoundry from "../index";
 
-export interface AgentVersionEntity {
+export interface DataDirectory {
     id: string;
+    ml_repo_id: string;
+    name: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    manifest: TrueFoundry.Agent;
+    created_at: string;
+    updated_at: string;
+    manifest: TrueFoundry.DataDirectoryManifest;
     usage_code_snippet?: string;
-    agent_id: string;
 }

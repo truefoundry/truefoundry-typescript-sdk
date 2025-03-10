@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export interface MlRepoEntity {
+export interface MlRepo {
     id: string;
     tenant_name: string;
     manifest: TrueFoundry.MlRepoManifest;

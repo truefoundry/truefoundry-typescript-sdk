@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListPromptsResponse {
-    data: TrueFoundry.PromptEntity[];
+    data: TrueFoundry.Prompt[];
     pagination: TrueFoundry.Pagination;
 }

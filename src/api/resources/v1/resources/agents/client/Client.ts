@@ -52,8 +52,8 @@ export class Agents {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -118,8 +118,8 @@ export class Agents {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -177,7 +177,7 @@ export class Agents {
     public async list(
         request: TrueFoundry.v1.AgentsListRequest = {},
         requestOptions?: Agents.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.AgentEntity>> {
+    ): Promise<core.Page<TrueFoundry.Agent>> {
         const list = async (request: TrueFoundry.v1.AgentsListRequest): Promise<TrueFoundry.ListAgentsResponse> => {
             const { ml_repo_id: mlRepoId, name, offset, limit } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -204,8 +204,8 @@ export class Agents {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.3",
-                    "User-Agent": "truefoundry-sdk/0.0.3",
+                    "X-Fern-SDK-Version": "0.0.5",
+                    "User-Agent": "truefoundry-sdk/0.0.5",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -247,8 +247,8 @@ export class Agents {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListAgentsResponse, TrueFoundry.AgentEntity>({
+        let _offset = request?.offset != null ? request?.offset : 0;
+        return new core.Pageable<TrueFoundry.ListAgentsResponse, TrueFoundry.Agent>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
@@ -268,9 +268,11 @@ export class Agents {
      * @example
      *     await client.v1.agents.createOrUpdate({
      *         manifest: {
+     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
+     *             ml_repo: "ml_repo",
      *             type: "model-version",
      *             source: {
      *                 type: "truefoundry"
@@ -293,8 +295,8 @@ export class Agents {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -341,12 +343,15 @@ export class Agents {
         }
     }
 
-    protected async _getAuthorizationHeader(): Promise<string | undefined> {
+    protected async _getAuthorizationHeader(): Promise<string> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer != null) {
-            return `Bearer ${bearer}`;
+        if (bearer == null) {
+            throw new errors.TrueFoundryError({
+                message:
+                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
+            });
         }
 
-        return undefined;
+        return `Bearer ${bearer}`;
     }
 }

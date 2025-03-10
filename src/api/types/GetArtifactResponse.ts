@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetArtifactResponse {
-    data: TrueFoundry.ArtifactEntity;
+    data: TrueFoundry.Artifact;
 }

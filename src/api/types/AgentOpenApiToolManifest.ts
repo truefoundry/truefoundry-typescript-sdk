@@ -7,21 +7,21 @@ import * as TrueFoundry from "../index";
 /**
  * Agent OpenAPI Tool manifest.
  */
-export interface AgentOpenApiTool {
+export interface AgentOpenApiToolManifest {
     /** Name of the entity */
-    name?: string;
+    name: string;
     description?: string;
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     version_alias?: string;
     /** Name of the ML Repo */
-    ml_repo?: string;
+    ml_repo: string;
     /** Version of the entity */
     version?: number;
     type: "openapi-tool";
     /** OpenAPI Spec for the tool describing the API, endpoints and parameters. [Sample OpenAPI Spec Link](https://assets.production.truefoundry.com/sample-openapi.json) */
-    openapi_spec: TrueFoundry.AgentOpenApiToolOpenapiSpec;
+    openapi_spec: TrueFoundry.AgentOpenApiToolManifestOpenapiSpec;
     /** HTTP endpoint where the API is hosted for the tools. E.g. `https://api.example.com/v1` */
     base_url: string;
     /** API Route Path for the tool call HTTP request. E.g. `GET /weather` */

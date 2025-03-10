@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListModelsResponse {
-    data: TrueFoundry.ModelEntity[];
+    data: TrueFoundry.Model[];
     pagination: TrueFoundry.Pagination;
 }

@@ -4,7 +4,6 @@
 
 import * as core from "./core";
 import { V1 } from "./api/resources/v1/client/Client";
-import { Health } from "./api/resources/health/client/Client";
 
 export declare namespace TrueFoundryClient {
     export interface Options {
@@ -29,15 +28,10 @@ export declare namespace TrueFoundryClient {
 
 export class TrueFoundryClient {
     protected _v1: V1 | undefined;
-    protected _health: Health | undefined;
 
     constructor(protected readonly _options: TrueFoundryClient.Options) {}
 
     public get v1(): V1 {
         return (this._v1 ??= new V1(this._options));
-    }
-
-    public get health(): Health {
-        return (this._health ??= new Health(this._options));
     }
 }

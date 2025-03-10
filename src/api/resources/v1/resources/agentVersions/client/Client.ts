@@ -57,8 +57,8 @@ export class AgentVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -127,8 +127,8 @@ export class AgentVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -188,7 +188,7 @@ export class AgentVersions {
     public async list(
         request: TrueFoundry.v1.AgentVersionsListRequest = {},
         requestOptions?: AgentVersions.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.AgentVersionEntity>> {
+    ): Promise<core.Page<TrueFoundry.AgentVersion>> {
         const list = async (
             request: TrueFoundry.v1.AgentVersionsListRequest,
         ): Promise<TrueFoundry.ListAgentVersionsResponse> => {
@@ -217,8 +217,8 @@ export class AgentVersions {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.3",
-                    "User-Agent": "truefoundry-sdk/0.0.3",
+                    "X-Fern-SDK-Version": "0.0.5",
+                    "User-Agent": "truefoundry-sdk/0.0.5",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -262,8 +262,8 @@ export class AgentVersions {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.ListAgentVersionsResponse, TrueFoundry.AgentVersionEntity>({
+        let _offset = request?.offset != null ? request?.offset : 0;
+        return new core.Pageable<TrueFoundry.ListAgentVersionsResponse, TrueFoundry.AgentVersion>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
@@ -303,8 +303,8 @@ export class AgentVersions {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.3",
-                "User-Agent": "truefoundry-sdk/0.0.3",
+                "X-Fern-SDK-Version": "0.0.5",
+                "User-Agent": "truefoundry-sdk/0.0.5",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -351,12 +351,15 @@ export class AgentVersions {
         }
     }
 
-    protected async _getAuthorizationHeader(): Promise<string | undefined> {
+    protected async _getAuthorizationHeader(): Promise<string> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer != null) {
-            return `Bearer ${bearer}`;
+        if (bearer == null) {
+            throw new errors.TrueFoundryError({
+                message:
+                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
+            });
         }
 
-        return undefined;
+        return `Bearer ${bearer}`;
     }
 }

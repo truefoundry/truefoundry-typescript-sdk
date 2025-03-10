@@ -4,15 +4,14 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ArtifactEntity {
+export interface ModelVersion {
     id: string;
-    ml_repo_id: string;
-    type: TrueFoundry.ArtifactType;
-    name: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
     created_at?: string;
     updated_at?: string;
-    latest_version?: TrueFoundry.BaseArtifactVersionEntity;
-    run_steps?: number[];
+    manifest: TrueFoundry.ModelManifest;
+    usage_code_snippet?: string;
+    ml_repo_id: string;
+    model_id: string;
 }

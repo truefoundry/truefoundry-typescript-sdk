@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetPromptVersionResponse {
-    data: TrueFoundry.PromptVersionEntity;
+    data: TrueFoundry.PromptVersion;
 }

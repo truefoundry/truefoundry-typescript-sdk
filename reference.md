@@ -1,147 +1,5 @@
 # Reference
 
-## V1
-
-<details><summary><code>client.v1.<a href="/src/api/resources/v1/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.ApplyResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.apply({
-    manifest: {
-        metadata: {
-            key: "value",
-        },
-        type: "model-version",
-        source: {
-            type: "truefoundry",
-        },
-    },
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.ApplyRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `V1.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Health
-
-<details><summary><code>client.health.<a href="/src/api/resources/health/client/Client.ts">serveGet</a>() -> unknown</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.health.serveGet();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Health.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.health.<a href="/src/api/resources/health/client/Client.ts">get</a>() -> unknown</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.health.get();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `Health.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 ## V1 Artifacts
 
 <details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">get</a>(id) -> TrueFoundry.GetArtifactResponse</code></summary>
@@ -240,7 +98,7 @@ await client.v1.artifacts.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactEntity></code></summary>
+<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Artifact></code></summary>
 <dl>
 <dd>
 
@@ -312,9 +170,11 @@ while (page.hasNextPage()) {
 ```typescript
 await client.v1.artifacts.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -453,7 +313,7 @@ await client.v1.agents.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentEntity></code></summary>
+<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Agent></code></summary>
 <dl>
 <dd>
 
@@ -525,9 +385,11 @@ while (page.hasNextPage()) {
 ```typescript
 await client.v1.agents.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -666,7 +528,7 @@ await client.v1.prompts.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptEntity></code></summary>
+<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Prompt></code></summary>
 <dl>
 <dd>
 
@@ -738,9 +600,11 @@ while (page.hasNextPage()) {
 ```typescript
 await client.v1.prompts.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -879,7 +743,7 @@ await client.v1.tools.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolEntity></code></summary>
+<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Tool></code></summary>
 <dl>
 <dd>
 
@@ -951,9 +815,11 @@ while (page.hasNextPage()) {
 ```typescript
 await client.v1.tools.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -1092,7 +958,7 @@ await client.v1.models.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelEntity></code></summary>
+<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Model></code></summary>
 <dl>
 <dd>
 
@@ -1164,9 +1030,11 @@ while (page.hasNextPage()) {
 ```typescript
 await client.v1.models.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -1335,7 +1203,7 @@ await client.v1.artifactVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactVersionEntity></code></summary>
+<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactVersion></code></summary>
 <dl>
 <dd>
 
@@ -1526,9 +1394,11 @@ await client.v1.artifactVersions.createMultiPartUpload({
 ```typescript
 await client.v1.artifactVersions.stage({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -1758,7 +1628,7 @@ await client.v1.modelVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelVersionEntity></code></summary>
+<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelVersion></code></summary>
 <dl>
 <dd>
 
@@ -1958,7 +1828,7 @@ await client.v1.promptVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptVersionEntity></code></summary>
+<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptVersion></code></summary>
 <dl>
 <dd>
 
@@ -2158,7 +2028,7 @@ await client.v1.toolVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolVersionEntity></code></summary>
+<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolVersion></code></summary>
 <dl>
 <dd>
 
@@ -2358,7 +2228,7 @@ await client.v1.agentVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentVersionEntity></code></summary>
+<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentVersion></code></summary>
 <dl>
 <dd>
 
@@ -2631,7 +2501,7 @@ await client.v1.dataDirectories.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.DataDirectoryEntity></code></summary>
+<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.DataDirectory></code></summary>
 <dl>
 <dd>
 
@@ -2725,9 +2595,11 @@ while (page.hasNextPage()) {
 ```typescript
 await client.v1.dataDirectories.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -3212,7 +3084,7 @@ await client.v1.mlRepos.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.MlRepoEntity></code></summary>
+<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.MlRepo></code></summary>
 <dl>
 <dd>
 

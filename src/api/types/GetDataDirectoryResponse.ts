@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface GetDataDirectoryResponse {
-    data: TrueFoundry.DataDirectoryEntity;
+    data: TrueFoundry.DataDirectory;
 }
