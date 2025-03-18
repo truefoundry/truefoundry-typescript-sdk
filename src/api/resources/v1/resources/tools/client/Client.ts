@@ -52,8 +52,8 @@ export class Tools {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.5",
-                "User-Agent": "truefoundry-sdk/0.0.5",
+                "X-Fern-SDK-Version": "0.0.6",
+                "User-Agent": "truefoundry-sdk/0.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -118,8 +118,8 @@ export class Tools {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.5",
-                "User-Agent": "truefoundry-sdk/0.0.5",
+                "X-Fern-SDK-Version": "0.0.6",
+                "User-Agent": "truefoundry-sdk/0.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
@@ -195,15 +195,15 @@ export class Tools {
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    "api/ml/v1/tools/",
+                    "api/ml/v1/tools",
                 ),
                 method: "GET",
                 headers: {
                     Authorization: await this._getAuthorizationHeader(),
                     "X-Fern-Language": "JavaScript",
                     "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.5",
-                    "User-Agent": "truefoundry-sdk/0.0.5",
+                    "X-Fern-SDK-Version": "0.0.6",
+                    "User-Agent": "truefoundry-sdk/0.0.6",
                     "X-Fern-Runtime": core.RUNTIME.type,
                     "X-Fern-Runtime-Version": core.RUNTIME.version,
                     ...requestOptions?.headers,
@@ -238,7 +238,7 @@ export class Tools {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/ml/v1/tools/.");
+                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/ml/v1/tools.");
                 case "unknown":
                     throw new errors.TrueFoundryError({
                         message: _response.error.errorMessage,
@@ -293,8 +293,8 @@ export class Tools {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.5",
-                "User-Agent": "truefoundry-sdk/0.0.5",
+                "X-Fern-SDK-Version": "0.0.6",
+                "User-Agent": "truefoundry-sdk/0.0.6",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
                 ...requestOptions?.headers,
