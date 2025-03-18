@@ -12,7 +12,7 @@ export interface ArtifactManifest {
     name: string;
     description?: string;
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
+    metadata?: Record<string, unknown>;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     version_alias?: string;
     /** Name of the ML Repo */

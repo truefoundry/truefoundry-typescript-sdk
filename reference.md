@@ -171,9 +171,6 @@ while (page.hasNextPage()) {
 await client.v1.artifacts.createOrUpdate({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {
@@ -386,9 +383,6 @@ while (page.hasNextPage()) {
 await client.v1.agents.createOrUpdate({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {
@@ -601,9 +595,6 @@ while (page.hasNextPage()) {
 await client.v1.prompts.createOrUpdate({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {
@@ -816,9 +807,6 @@ while (page.hasNextPage()) {
 await client.v1.tools.createOrUpdate({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {
@@ -1031,9 +1019,6 @@ while (page.hasNextPage()) {
 await client.v1.models.createOrUpdate({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {
@@ -1395,9 +1380,6 @@ await client.v1.artifactVersions.createMultiPartUpload({
 await client.v1.artifactVersions.stage({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {
@@ -2596,9 +2578,6 @@ while (page.hasNextPage()) {
 await client.v1.dataDirectories.createOrUpdate({
     manifest: {
         name: "name",
-        metadata: {
-            key: "value",
-        },
         ml_repo: "ml_repo",
         type: "model-version",
         source: {

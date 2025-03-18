@@ -9,9 +9,6 @@ import * as TrueFoundry from "../../../../../../index";
  *     {
  *         manifest: {
  *             name: "name",
- *             metadata: {
- *                 "key": "value"
- *             },
  *             ml_repo: "ml_repo",
  *             type: "model-version",
  *             source: {
