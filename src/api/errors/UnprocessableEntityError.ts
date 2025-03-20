@@ -3,10 +3,9 @@
  */
 
 import * as errors from "../../errors/index";
-import * as TrueFoundry from "../index";
 
 export class UnprocessableEntityError extends errors.TrueFoundryError {
-    constructor(body: TrueFoundry.HttpValidationError) {
+    constructor(body?: unknown) {
         super({
             message: "UnprocessableEntityError",
             statusCode: 422,

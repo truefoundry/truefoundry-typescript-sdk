@@ -76,9 +76,7 @@ export class PromptVersions {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as TrueFoundry.HttpValidationError,
-                    );
+                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -149,9 +147,7 @@ export class PromptVersions {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as TrueFoundry.HttpValidationError,
-                    );
+                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -239,9 +235,7 @@ export class PromptVersions {
             if (_response.error.reason === "status-code") {
                 switch (_response.error.statusCode) {
                     case 422:
-                        throw new TrueFoundry.UnprocessableEntityError(
-                            _response.error.body as TrueFoundry.HttpValidationError,
-                        );
+                        throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
                     default:
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,

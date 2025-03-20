@@ -3,10 +3,11 @@
  */
 
 /**
- * An enumeration.
+ * Subject type
  */
-export type SubjectType = "user" | "serviceaccount";
+export type SubjectType = "user" | "team" | "serviceaccount";
 export const SubjectType = {
     User: "user",
+    Team: "team",
     Serviceaccount: "serviceaccount",
 } as const;

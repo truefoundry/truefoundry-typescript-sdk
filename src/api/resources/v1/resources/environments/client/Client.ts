@@ -7,7 +7,7 @@ import * as TrueFoundry from "../../../../../index";
 import urlJoin from "url-join";
 import * as errors from "../../../../../../errors/index";
 
-export declare namespace Tools {
+export declare namespace Environments {
     export interface Options {
         environment: core.Supplier<string>;
         /** Specify a custom URL to connect the client to. */
@@ -28,24 +28,40 @@ export declare namespace Tools {
     }
 }
 
-export class Tools {
-    constructor(protected readonly _options: Tools.Options) {}
+export class Environments {
+    constructor(protected readonly _options: Environments.Options) {}
 
     /**
-     * @param {string} id
-     * @param {Tools.RequestOptions} requestOptions - Request-specific configuration.
+     * List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @param {TrueFoundry.v1.EnvironmentsListRequest} request
+     * @param {Environments.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.v1.tools.get("id")
+     *     await client.v1.environments.list({
+     *         limit: 10,
+     *         offset: 0
+     *     })
      */
-    public async get(id: string, requestOptions?: Tools.RequestOptions): Promise<TrueFoundry.GetToolResponse> {
+    public async list(
+        request: TrueFoundry.v1.EnvironmentsListRequest = {},
+        requestOptions?: Environments.RequestOptions,
+    ): Promise<TrueFoundry.ListEnvironmentsResponse> {
+        const { limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
+        }
+
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/tools/${encodeURIComponent(id)}`,
+                "api/svc/v1/environments",
             ),
             method: "GET",
             headers: {
@@ -59,228 +75,66 @@ export class Tools {
                 ...requestOptions?.headers,
             },
             contentType: "application/json",
+            queryParameters: _queryParams,
             requestType: "json",
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetToolResponse;
+            return _response.body as TrueFoundry.ListEnvironmentsResponse;
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/ml/v1/tools/{id}.");
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {string} id
-     * @param {Tools.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.tools.delete("id")
-     */
-    public async delete(id: string, requestOptions?: Tools.RequestOptions): Promise<TrueFoundry.EmptyResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/tools/${encodeURIComponent(id)}`,
-            ),
-            method: "DELETE",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as TrueFoundry.EmptyResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling DELETE /api/ml/v1/tools/{id}.");
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {TrueFoundry.v1.ToolsListRequest} request
-     * @param {Tools.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.tools.list()
-     */
-    public async list(
-        request: TrueFoundry.v1.ToolsListRequest = {},
-        requestOptions?: Tools.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.Tool>> {
-        const list = async (request: TrueFoundry.v1.ToolsListRequest): Promise<TrueFoundry.ListToolsResponse> => {
-            const { ml_repo_id: mlRepoId, name, offset, limit } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (mlRepoId != null) {
-                _queryParams["ml_repo_id"] = mlRepoId;
-            }
-            if (name != null) {
-                _queryParams["name"] = name;
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    "api/ml/v1/tools",
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
             });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListToolsResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 422:
-                        throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                    default:
-                        throw new errors.TrueFoundryError({
-                            statusCode: _response.error.statusCode,
-                            body: _response.error.body,
-                        });
-                }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/ml/v1/tools.");
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
-        let _offset = request?.offset != null ? request?.offset : 0;
-        return new core.Pageable<TrueFoundry.ListToolsResponse, TrueFoundry.Tool>({
-            response: await list(request),
-            hasNextPage: (response) => (response?.data ?? []).length > 0,
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
-        });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/environments.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
     }
 
     /**
-     * @param {TrueFoundry.ApplyRequest} request
-     * @param {Tools.RequestOptions} requestOptions - Request-specific configuration.
+     * Creates a new Environment or updates an existing Environment.
+     *
+     * @param {TrueFoundry.v1.CreateOrUpdateEnvironmentRequest} request
+     * @param {Environments.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.v1.tools.createOrUpdate({
+     *     await client.v1.environments.createOrUpdate({
      *         manifest: {
+     *             type: "environment",
      *             name: "name",
-     *             metadata: {
-     *                 "key": "value"
-     *             },
-     *             ml_repo: "ml_repo",
-     *             type: "model-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
+     *             color: {},
+     *             isProduction: true,
+     *             optimizeFor: "COST"
      *         }
      *     })
      */
     public async createOrUpdate(
-        request: TrueFoundry.ApplyRequest,
-        requestOptions?: Tools.RequestOptions,
-    ): Promise<TrueFoundry.GetToolVersionResponse> {
+        request: TrueFoundry.v1.CreateOrUpdateEnvironmentRequest,
+        requestOptions?: Environments.RequestOptions,
+    ): Promise<TrueFoundry.GetEnvironmentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/tool-versions",
+                "api/svc/v1/environments",
             ),
             method: "PUT",
             headers: {
@@ -301,7 +155,7 @@ export class Tools {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetToolVersionResponse;
+            return _response.body as TrueFoundry.GetEnvironmentResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -323,7 +177,142 @@ export class Tools {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/ml/v1/tool-versions.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/environments.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Get Environment associated with the provided id.
+     *
+     * @param {string} id - Environment id
+     * @param {Environments.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.v1.environments.get("id")
+     */
+    public async get(
+        id: string,
+        requestOptions?: Environments.RequestOptions,
+    ): Promise<TrueFoundry.GetEnvironmentResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/environments/${encodeURIComponent(id)}`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as TrueFoundry.GetEnvironmentResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/environments/{id}.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Delete Environment associated with the provided id.
+     *
+     * @param {string} id - Environment id
+     * @param {Environments.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.ConflictError}
+     *
+     * @example
+     *     await client.v1.environments.delete("id")
+     */
+    public async delete(id: string, requestOptions?: Environments.RequestOptions): Promise<boolean> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/environments/${encodeURIComponent(id)}`,
+            ),
+            method: "DELETE",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as boolean;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                case 409:
+                    throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling DELETE /api/svc/v1/environments/{id}.",
+                );
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,

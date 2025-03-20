@@ -38,7 +38,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.ArtifactsListRequest = {
+const request: TrueFoundry.EnvironmentsListRequest = {
     ...
 };
 ```

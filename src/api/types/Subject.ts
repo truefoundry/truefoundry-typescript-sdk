@@ -5,8 +5,11 @@
 import * as TrueFoundry from "../index";
 
 export interface Subject {
+    /** Subject ID */
     subjectId: string;
-    subjectType?: TrueFoundry.SubjectType;
-    subjectSlug: string;
+    subjectType: TrueFoundry.SubjectType;
+    /** Subject slug */
+    subjectSlug?: string;
+    /** Subject display name */
     subjectDisplayName?: string;
 }
