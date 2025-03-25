@@ -1,3 +1,5 @@
+export * as workspaces from "./workspaces";
+export * from "./workspaces/types";
 export * as artifactVersions from "./artifactVersions";
 export * from "./artifactVersions/types";
 export * as environments from "./environments";
@@ -13,6 +15,7 @@ export * as agentVersions from "./agentVersions";
 export * as dataDirectories from "./dataDirectories";
 export * as mlRepos from "./mlRepos";
 export * from "./environments/client/requests";
+export * from "./workspaces/client/requests";
 export * from "./artifacts/client/requests";
 export * from "./agents/client/requests";
 export * from "./prompts/client/requests";

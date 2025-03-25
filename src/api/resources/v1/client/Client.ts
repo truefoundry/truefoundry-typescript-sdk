@@ -4,6 +4,7 @@
 
 import * as core from "../../../../core";
 import { Environments } from "../resources/environments/client/Client";
+import { Workspaces } from "../resources/workspaces/client/Client";
 import { Artifacts } from "../resources/artifacts/client/Client";
 import { Agents } from "../resources/agents/client/Client";
 import { Prompts } from "../resources/prompts/client/Client";
@@ -40,6 +41,7 @@ export declare namespace V1 {
 
 export class V1 {
     protected _environments: Environments | undefined;
+    protected _workspaces: Workspaces | undefined;
     protected _artifacts: Artifacts | undefined;
     protected _agents: Agents | undefined;
     protected _prompts: Prompts | undefined;
@@ -57,6 +59,10 @@ export class V1 {
 
     public get environments(): Environments {
         return (this._environments ??= new Environments(this._options));
+    }
+
+    public get workspaces(): Workspaces {
+        return (this._workspaces ??= new Workspaces(this._options));
     }
 
     public get artifacts(): Artifacts {
