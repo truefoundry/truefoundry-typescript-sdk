@@ -1,3 +1,5 @@
+export * as clusters from "./clusters";
+export * from "./clusters/types";
 export * as workspaces from "./workspaces";
 export * from "./workspaces/types";
 export * as artifactVersions from "./artifactVersions";
@@ -14,6 +16,7 @@ export * as toolVersions from "./toolVersions";
 export * as agentVersions from "./agentVersions";
 export * as dataDirectories from "./dataDirectories";
 export * as mlRepos from "./mlRepos";
+export * from "./clusters/client/requests";
 export * from "./environments/client/requests";
 export * from "./workspaces/client/requests";
 export * from "./artifacts/client/requests";

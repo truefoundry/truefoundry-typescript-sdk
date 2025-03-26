@@ -3,6 +3,7 @@
  */
 
 import * as core from "../../../../core";
+import { Clusters } from "../resources/clusters/client/Client";
 import { Environments } from "../resources/environments/client/Client";
 import { Workspaces } from "../resources/workspaces/client/Client";
 import { Artifacts } from "../resources/artifacts/client/Client";
@@ -40,6 +41,7 @@ export declare namespace V1 {
 }
 
 export class V1 {
+    protected _clusters: Clusters | undefined;
     protected _environments: Environments | undefined;
     protected _workspaces: Workspaces | undefined;
     protected _artifacts: Artifacts | undefined;
@@ -56,6 +58,10 @@ export class V1 {
     protected _mlRepos: MlRepos | undefined;
 
     constructor(protected readonly _options: V1.Options) {}
+
+    public get clusters(): Clusters {
+        return (this._clusters ??= new Clusters(this._options));
+    }
 
     public get environments(): Environments {
         return (this._environments ??= new Environments(this._options));

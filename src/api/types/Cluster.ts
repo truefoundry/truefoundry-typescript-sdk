@@ -10,7 +10,7 @@ export interface Cluster {
     name: string;
     metadata: TrueFoundry.ClusterMetadata;
     manifest: TrueFoundry.ClusterManifest;
-    infraConfig: Record<string, unknown>;
+    infraConfig?: Record<string, unknown>;
     provisioned: boolean;
     cloudProvider: TrueFoundry.ClusterCloudProvider;
     tenantName: string;
