@@ -16,6 +16,7 @@ export * as toolVersions from "./toolVersions";
 export * as agentVersions from "./agentVersions";
 export * as dataDirectories from "./dataDirectories";
 export * as mlRepos from "./mlRepos";
+export * as internal from "./internal";
 export * from "./clusters/client/requests";
 export * from "./environments/client/requests";
 export * from "./workspaces/client/requests";

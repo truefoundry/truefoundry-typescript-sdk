@@ -6,12 +6,13 @@
  * @example
  *     {}
  */
-export interface ModelVersionsListRequest {
-    model_id?: string;
+export interface ArtifactVersionsListRequest {
+    artifact_id?: string;
     fqn?: string;
     offset?: number;
     limit?: number;
     run_ids?: string | string[];
     run_steps?: number | number[];
     include_internal_metadata?: boolean;
+    include_model_versions?: boolean;
 }

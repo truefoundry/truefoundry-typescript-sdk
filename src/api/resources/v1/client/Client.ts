@@ -18,6 +18,7 @@ import { ToolVersions } from "../resources/toolVersions/client/Client";
 import { AgentVersions } from "../resources/agentVersions/client/Client";
 import { DataDirectories } from "../resources/dataDirectories/client/Client";
 import { MlRepos } from "../resources/mlRepos/client/Client";
+import { Internal } from "../resources/internal/client/Client";
 
 export declare namespace V1 {
     export interface Options {
@@ -56,6 +57,7 @@ export class V1 {
     protected _agentVersions: AgentVersions | undefined;
     protected _dataDirectories: DataDirectories | undefined;
     protected _mlRepos: MlRepos | undefined;
+    protected _internal: Internal | undefined;
 
     constructor(protected readonly _options: V1.Options) {}
 
@@ -117,5 +119,9 @@ export class V1 {
 
     public get mlRepos(): MlRepos {
         return (this._mlRepos ??= new MlRepos(this._options));
+    }
+
+    public get internal(): Internal {
+        return (this._internal ??= new Internal(this._options));
     }
 }

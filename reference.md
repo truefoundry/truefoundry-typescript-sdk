@@ -3956,3 +3956,77 @@ while (page.hasNextPage()) {
 </dd>
 </dl>
 </details>
+
+## V1 Internal ArtifactVersions
+
+<details><summary><code>client.v1.internal.artifactVersions.<a href="/src/api/resources/v1/resources/internal/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.InternalListArtifactVersionResponseDataItem></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List artifact version API
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.v1.internal.artifactVersions.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.v1.internal.artifactVersions.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.internal.ArtifactVersionsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ArtifactVersions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>

@@ -196,7 +196,6 @@ export class ModelVersions {
                 run_ids: runIds,
                 run_steps: runSteps,
                 include_internal_metadata: includeInternalMetadata,
-                include_model_versions: includeModelVersions,
             } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (modelId != null) {
@@ -227,9 +226,6 @@ export class ModelVersions {
             }
             if (includeInternalMetadata != null) {
                 _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
-            }
-            if (includeModelVersions != null) {
-                _queryParams["include_model_versions"] = includeModelVersions.toString();
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
