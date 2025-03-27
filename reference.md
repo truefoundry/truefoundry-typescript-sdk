@@ -2,7 +2,7 @@
 
 ## V1 Clusters
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.ListClustersResponse</code></summary>
+<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Cluster></code></summary>
 <dl>
 <dd>
 
@@ -30,7 +30,16 @@ Retrieves a list of all latest Clusters. Pagination is available based on query 
 <dd>
 
 ```typescript
-await client.v1.clusters.list();
+const response = await client.v1.clusters.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.v1.clusters.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -269,7 +278,7 @@ await client.v1.clusters.delete("id");
 
 ## V1 Environments
 
-<details><summary><code>client.v1.environments.<a href="/src/api/resources/v1/resources/environments/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.ListEnvironmentsResponse</code></summary>
+<details><summary><code>client.v1.environments.<a href="/src/api/resources/v1/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Environment></code></summary>
 <dl>
 <dd>
 
@@ -297,10 +306,22 @@ List environments, if no environments are found, default environments are create
 <dd>
 
 ```typescript
-await client.v1.environments.list({
+const response = await client.v1.environments.list({
     limit: 10,
     offset: 0,
 });
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.v1.environments.list({
+    limit: 10,
+    offset: 0,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
@@ -534,7 +555,7 @@ await client.v1.environments.delete("id");
 
 ## V1 Workspaces
 
-<details><summary><code>client.v1.workspaces.<a href="/src/api/resources/v1/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.ListWorkspacesResponse</code></summary>
+<details><summary><code>client.v1.workspaces.<a href="/src/api/resources/v1/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Workspace></code></summary>
 <dl>
 <dd>
 
@@ -562,10 +583,22 @@ List workspaces associated with the user. Optional filters include clusterId, fq
 <dd>
 
 ```typescript
-await client.v1.workspaces.list({
+const response = await client.v1.workspaces.list({
     limit: 10,
     offset: 0,
 });
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.v1.workspaces.list({
+    limit: 10,
+    offset: 0,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>

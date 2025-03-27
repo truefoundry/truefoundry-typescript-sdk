@@ -46,77 +46,86 @@ export class Workspaces {
     public async list(
         request: TrueFoundry.v1.WorkspacesListRequest = {},
         requestOptions?: Workspaces.RequestOptions,
-    ): Promise<TrueFoundry.ListWorkspacesResponse> {
-        const { limit, offset, clusterId, name, fqn } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (offset != null) {
-            _queryParams["offset"] = offset.toString();
-        }
-
-        if (clusterId != null) {
-            _queryParams["clusterId"] = clusterId;
-        }
-
-        if (name != null) {
-            _queryParams["name"] = name;
-        }
-
-        if (fqn != null) {
-            _queryParams["fqn"] = fqn;
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/workspaces",
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as TrueFoundry.ListWorkspacesResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.TrueFoundryError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
+    ): Promise<core.Page<TrueFoundry.Workspace>> {
+        const list = async (
+            request: TrueFoundry.v1.WorkspacesListRequest,
+        ): Promise<TrueFoundry.ListWorkspacesResponse> => {
+            const { limit, offset, clusterId, name, fqn } = request;
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+            if (limit != null) {
+                _queryParams["limit"] = limit.toString();
+            }
+            if (offset != null) {
+                _queryParams["offset"] = offset.toString();
+            }
+            if (clusterId != null) {
+                _queryParams["clusterId"] = clusterId;
+            }
+            if (name != null) {
+                _queryParams["name"] = name;
+            }
+            if (fqn != null) {
+                _queryParams["fqn"] = fqn;
+            }
+            const _response = await (this._options.fetcher ?? core.fetcher)({
+                url: urlJoin(
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)),
+                    "api/svc/v1/workspaces",
+                ),
+                method: "GET",
+                headers: {
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Fern-Language": "JavaScript",
+                    "X-Fern-SDK-Name": "truefoundry-sdk",
+                    "X-Fern-SDK-Version": "0.0.0",
+                    "User-Agent": "truefoundry-sdk/0.0.0",
+                    "X-Fern-Runtime": core.RUNTIME.type,
+                    "X-Fern-Runtime-Version": core.RUNTIME.version,
+                    ...requestOptions?.headers,
+                },
+                contentType: "application/json",
+                queryParameters: _queryParams,
+                requestType: "json",
+                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                maxRetries: requestOptions?.maxRetries,
+                abortSignal: requestOptions?.abortSignal,
             });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
+            if (_response.ok) {
+                return _response.body as TrueFoundry.ListWorkspacesResponse;
+            }
+            if (_response.error.reason === "status-code") {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
+                    body: _response.error.body,
                 });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/workspaces.");
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                });
-        }
+            }
+            switch (_response.error.reason) {
+                case "non-json":
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.rawBody,
+                    });
+                case "timeout":
+                    throw new errors.TrueFoundryTimeoutError(
+                        "Timeout exceeded when calling GET /api/svc/v1/workspaces.",
+                    );
+                case "unknown":
+                    throw new errors.TrueFoundryError({
+                        message: _response.error.errorMessage,
+                    });
+            }
+        };
+        let _offset = request?.offset != null ? request?.offset : 1;
+        return new core.Pageable<TrueFoundry.ListWorkspacesResponse, TrueFoundry.Workspace>({
+            response: await list(request),
+            hasNextPage: (response) => (response?.data ?? []).length > 0,
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
     }
 
     /**
