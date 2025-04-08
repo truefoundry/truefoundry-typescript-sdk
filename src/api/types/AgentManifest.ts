@@ -18,12 +18,12 @@ export interface AgentManifest {
     /** Version of the entity */
     version?: number;
     type: "agent";
-    /** Tools available to the agent */
-    available_tools: string[];
     /** Short form description. Will be used as `description` when this agent is used as a tool. */
     goal: string;
     /** Instructions for the agent to follow to achieve the goal */
     instruction: string;
+    /** Tools available to the agent */
+    available_tools: string[];
     /** Model to use when running the agent */
     model_id: string;
 }

@@ -2930,6 +2930,56 @@ while (page.hasNextPage()) {
 
 ## V1 AgentVersions
 
+<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">resolve</a>({ ...params }) -> TrueFoundry.ResolveAgentAppResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.agentVersions.resolve({
+    fqn: "fqn",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.AgentVersionsResolveRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentVersions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentVersionResponse</code></summary>
 <dl>
 <dd>
@@ -3110,56 +3160,6 @@ while (page.hasNextPage()) {
 <dd>
 
 **request:** `TrueFoundry.v1.AgentVersionsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AgentVersions.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">resolve</a>({ ...params }) -> TrueFoundry.ResolveAgentAppResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.agentVersions.resolve({
-    fqn: "fqn",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.v1.AgentVersionsResolveRequest`
 
 </dd>
 </dl>
@@ -3468,80 +3468,6 @@ await client.v1.dataDirectories.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">getSignedUrls</a>({ ...params }) -> TrueFoundry.GetSignedUrLsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get signed URLs for a dataset.
-
-Args:
-request_dto: Request containing dataset ID, paths and operation
-user_info: Authenticated user information
-
-Returns:
-GetSignedURLsResponse: Response containing signed URLs
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.dataDirectories.getSignedUrls({
-    id: "id",
-    paths: ["paths"],
-    operation: "READ",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.GetSignedUrLsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `DataDirectories.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">listFiles</a>({ ...params }) -> core.Page<TrueFoundry.FileInfo></code></summary>
 <dl>
 <dd>
@@ -3680,6 +3606,80 @@ await client.v1.dataDirectories.deleteFiles({
 <dd>
 
 **request:** `TrueFoundry.v1.DeleteFilesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DataDirectories.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">getSignedUrls</a>({ ...params }) -> TrueFoundry.GetSignedUrLsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get signed URLs for a dataset.
+
+Args:
+request_dto: Request containing dataset ID, paths and operation
+user_info: Authenticated user information
+
+Returns:
+GetSignedURLsResponse: Response containing signed URLs
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.dataDirectories.getSignedUrls({
+    id: "id",
+    paths: ["paths"],
+    operation: "READ",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.GetSignedUrLsRequest`
 
 </dd>
 </dl>

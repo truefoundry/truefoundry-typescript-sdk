@@ -14,5 +14,6 @@ export interface InternalModelVersion {
     usage_code_snippet?: string;
     ml_repo_id: string;
     model_id: string;
+    artifact_fqn: string;
     artifact_size?: number;
 }

@@ -10,4 +10,5 @@ import * as TrueFoundry from "../index";
 export interface ImageUrl {
     /** Image URL linking to the image */
     url: TrueFoundry.Url;
+    detail?: string;
 }

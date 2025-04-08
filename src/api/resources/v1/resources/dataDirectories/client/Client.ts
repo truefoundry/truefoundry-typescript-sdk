@@ -389,89 +389,6 @@ export class DataDirectories {
     }
 
     /**
-     * Get signed URLs for a dataset.
-     *
-     * Args:
-     *     request_dto: Request containing dataset ID, paths and operation
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     GetSignedURLsResponse: Response containing signed URLs
-     *
-     * @param {TrueFoundry.GetSignedUrLsRequest} request
-     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.dataDirectories.getSignedUrls({
-     *         id: "id",
-     *         paths: ["paths"],
-     *         operation: "READ"
-     *     })
-     */
-    public async getSignedUrls(
-        request: TrueFoundry.GetSignedUrLsRequest,
-        requestOptions?: DataDirectories.RequestOptions,
-    ): Promise<TrueFoundry.GetSignedUrLsResponse> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/data-directories/signed-urls",
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as TrueFoundry.GetSignedUrLsResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/ml/v1/data-directories/signed-urls.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
      * List files in a dataset.
      *
      * Args:
@@ -634,6 +551,89 @@ export class DataDirectories {
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
                     "Timeout exceeded when calling DELETE /api/ml/v1/data-directories/files.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Get signed URLs for a dataset.
+     *
+     * Args:
+     *     request_dto: Request containing dataset ID, paths and operation
+     *     user_info: Authenticated user information
+     *
+     * Returns:
+     *     GetSignedURLsResponse: Response containing signed URLs
+     *
+     * @param {TrueFoundry.GetSignedUrLsRequest} request
+     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.dataDirectories.getSignedUrls({
+     *         id: "id",
+     *         paths: ["paths"],
+     *         operation: "READ"
+     *     })
+     */
+    public async getSignedUrls(
+        request: TrueFoundry.GetSignedUrLsRequest,
+        requestOptions?: DataDirectories.RequestOptions,
+    ): Promise<TrueFoundry.GetSignedUrLsResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/ml/v1/data-directories/signed-urls",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as TrueFoundry.GetSignedUrLsResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/ml/v1/data-directories/signed-urls.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

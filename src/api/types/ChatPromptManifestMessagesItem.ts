@@ -7,4 +7,6 @@ import * as TrueFoundry from "../index";
 export type ChatPromptManifestMessagesItem =
     | TrueFoundry.SystemMessage
     | TrueFoundry.AssistantMessage
-    | TrueFoundry.UserMessage;
+    | TrueFoundry.UserMessage
+    | TrueFoundry.ToolMessage
+    | TrueFoundry.DeveloperMessage;
