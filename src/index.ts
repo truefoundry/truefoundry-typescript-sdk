@@ -1,3 +1,3 @@
 export * as TrueFoundry from "./api";
-export { TrueFoundryClient } from "./Client";
 export { TrueFoundryError, TrueFoundryTimeoutError } from "./errors";
+export { TrueFoundryClient } from "./CustomClient";
