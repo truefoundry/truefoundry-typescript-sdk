@@ -5,3 +5,5 @@ export * from "./NotFoundError";
 export * from "./BadRequestError";
 export * from "./ForbiddenError";
 export * from "./ExpectationFailedError";
+export * from "./MethodNotAllowedError";
+export * from "./NotImplementedError";

@@ -10,14 +10,10 @@ export interface Workspace {
     name: string;
     tenantName: string;
     clusterId: string;
-    cluster: TrueFoundry.Cluster;
     createdBySubject: TrueFoundry.Subject;
-    metadata: TrueFoundry.WorkspaceMetadata;
     createdAt: string;
     updatedAt: string;
-    k8sUid?: string;
     environmentId?: string;
-    serviceAccountId?: string;
     manifest: TrueFoundry.WorkspaceManifest;
     isSystemWs?: boolean;
     createdBy?: string;

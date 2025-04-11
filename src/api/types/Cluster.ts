@@ -8,14 +8,10 @@ export interface Cluster {
     id: string;
     fqn: string;
     name: string;
-    metadata?: TrueFoundry.ClusterMetadata;
     manifest: TrueFoundry.ClusterManifest;
-    infraConfig?: Record<string, unknown>;
-    provisioned: boolean;
-    cloudProvider: TrueFoundry.ClusterCloudProvider;
     tenantName: string;
-    workspaces: TrueFoundry.Workspace[];
     createdBySubject?: TrueFoundry.Subject;
-    recommendationSummary: TrueFoundry.ClusterRecommendationSummary;
+    createdAt: string;
+    updatedAt: string;
     createdBy?: string;
 }

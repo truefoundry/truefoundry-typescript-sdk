@@ -4,4 +4,6 @@
 
 export interface StageArtifactResponse {
     id: string;
+    storage_root: string;
+    artifact_id: string;
 }

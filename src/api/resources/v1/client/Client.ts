@@ -6,6 +6,8 @@ import * as core from "../../../../core";
 import { Clusters } from "../resources/clusters/client/Client";
 import { Environments } from "../resources/environments/client/Client";
 import { Workspaces } from "../resources/workspaces/client/Client";
+import { Applications } from "../resources/applications/client/Client";
+import { ApplicationVersions } from "../resources/applicationVersions/client/Client";
 import { Artifacts } from "../resources/artifacts/client/Client";
 import { Agents } from "../resources/agents/client/Client";
 import { Prompts } from "../resources/prompts/client/Client";
@@ -45,6 +47,8 @@ export class V1 {
     protected _clusters: Clusters | undefined;
     protected _environments: Environments | undefined;
     protected _workspaces: Workspaces | undefined;
+    protected _applications: Applications | undefined;
+    protected _applicationVersions: ApplicationVersions | undefined;
     protected _artifacts: Artifacts | undefined;
     protected _agents: Agents | undefined;
     protected _prompts: Prompts | undefined;
@@ -71,6 +75,14 @@ export class V1 {
 
     public get workspaces(): Workspaces {
         return (this._workspaces ??= new Workspaces(this._options));
+    }
+
+    public get applications(): Applications {
+        return (this._applications ??= new Applications(this._options));
+    }
+
+    public get applicationVersions(): ApplicationVersions {
+        return (this._applicationVersions ??= new ApplicationVersions(this._options));
     }
 
     public get artifacts(): Artifacts {
