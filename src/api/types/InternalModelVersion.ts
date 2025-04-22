@@ -15,6 +15,7 @@ export interface InternalModelVersion {
     ml_repo_id: string;
     model_id: string;
     metrics?: TrueFoundry.Metric[];
+    deployable?: boolean;
     artifact_fqn: string;
     artifact_size?: number;
 }

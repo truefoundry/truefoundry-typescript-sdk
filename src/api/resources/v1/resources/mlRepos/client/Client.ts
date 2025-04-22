@@ -32,6 +32,89 @@ export class MlRepos {
     constructor(protected readonly _options: MlRepos.Options) {}
 
     /**
+     * Creates or updates an MLRepo entity based on the provided manifest.
+     *
+     * @param {TrueFoundry.v1.ApplyMlRepoRequest} request
+     * @param {MlRepos.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.ConflictError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.mlRepos.createOrUpdate({
+     *         manifest: {
+     *             "key": "value"
+     *         }
+     *     })
+     */
+    public async createOrUpdate(
+        request: TrueFoundry.v1.ApplyMlRepoRequest,
+        requestOptions?: MlRepos.RequestOptions,
+    ): Promise<TrueFoundry.GetMlRepoResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/ml-repos",
+            ),
+            method: "PUT",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as TrueFoundry.GetMlRepoResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                case 409:
+                    throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/ml-repos.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
      * Get a ml repo by id
      * Args:
      *     id: Unique identifier of the ml repo to get

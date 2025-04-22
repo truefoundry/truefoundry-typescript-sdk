@@ -15,4 +15,5 @@ export interface ModelVersion {
     ml_repo_id: string;
     model_id: string;
     metrics?: TrueFoundry.Metric[];
+    deployable?: boolean;
 }

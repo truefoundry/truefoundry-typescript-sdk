@@ -14,6 +14,7 @@ import { Workspaces } from "../resources/workspaces/client/Client";
 import { Events } from "../resources/events/client/Client";
 import { Alerts } from "../resources/alerts/client/Client";
 import { Logs } from "../resources/logs/client/Client";
+import { MlRepos } from "../resources/mlRepos/client/Client";
 import { Artifacts } from "../resources/artifacts/client/Client";
 import { Agents } from "../resources/agents/client/Client";
 import { Prompts } from "../resources/prompts/client/Client";
@@ -25,7 +26,6 @@ import { PromptVersions } from "../resources/promptVersions/client/Client";
 import { ToolVersions } from "../resources/toolVersions/client/Client";
 import { AgentVersions } from "../resources/agentVersions/client/Client";
 import { DataDirectories } from "../resources/dataDirectories/client/Client";
-import { MlRepos } from "../resources/mlRepos/client/Client";
 import { TracingProjects } from "../resources/tracingProjects/client/Client";
 import { Internal } from "../resources/internal/client/Client";
 
@@ -62,6 +62,7 @@ export class V1 {
     protected _events: Events | undefined;
     protected _alerts: Alerts | undefined;
     protected _logs: Logs | undefined;
+    protected _mlRepos: MlRepos | undefined;
     protected _artifacts: Artifacts | undefined;
     protected _agents: Agents | undefined;
     protected _prompts: Prompts | undefined;
@@ -73,7 +74,6 @@ export class V1 {
     protected _toolVersions: ToolVersions | undefined;
     protected _agentVersions: AgentVersions | undefined;
     protected _dataDirectories: DataDirectories | undefined;
-    protected _mlRepos: MlRepos | undefined;
     protected _tracingProjects: TracingProjects | undefined;
     protected _internal: Internal | undefined;
 
@@ -123,6 +123,10 @@ export class V1 {
         return (this._logs ??= new Logs(this._options));
     }
 
+    public get mlRepos(): MlRepos {
+        return (this._mlRepos ??= new MlRepos(this._options));
+    }
+
     public get artifacts(): Artifacts {
         return (this._artifacts ??= new Artifacts(this._options));
     }
@@ -165,10 +169,6 @@ export class V1 {
 
     public get dataDirectories(): DataDirectories {
         return (this._dataDirectories ??= new DataDirectories(this._options));
-    }
-
-    public get mlRepos(): MlRepos {
-        return (this._mlRepos ??= new MlRepos(this._options));
     }
 
     public get tracingProjects(): TracingProjects {

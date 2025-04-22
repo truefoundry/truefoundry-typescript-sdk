@@ -5,5 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface GetMlRepoResponse {
+    /** ML Repo */
     data: TrueFoundry.MlRepo;
 }

@@ -43,7 +43,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.ApplyMlRepoRequest = {
+const request: TrueFoundry.ListSecretsRequest = {
     ...
 };
 ```
