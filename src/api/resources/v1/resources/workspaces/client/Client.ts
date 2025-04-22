@@ -183,11 +183,11 @@ export class Workspaces {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
                 default:
@@ -258,7 +258,7 @@ export class Workspaces {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -332,7 +332,7 @@ export class Workspaces {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 case 417:
                     throw new TrueFoundry.ExpectationFailedError(_response.error.body as TrueFoundry.HttpError);
                 default:
@@ -360,15 +360,12 @@ export class Workspaces {
         }
     }
 
-    protected async _getAuthorizationHeader(): Promise<string> {
+    protected async _getAuthorizationHeader(): Promise<string | undefined> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer == null) {
-            throw new errors.TrueFoundryError({
-                message:
-                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
-            });
+        if (bearer != null) {
+            return `Bearer ${bearer}`;
         }
 
-        return `Bearer ${bearer}`;
+        return undefined;
     }
 }

@@ -19,7 +19,7 @@ export interface Application {
     createdAt?: string;
     updatedAt?: string;
     /** Recommendations for this application */
-    recommendations?: TrueFoundry.Recommendation[];
+    recommendations?: unknown[][];
     /** Alerts for this application */
     alerts?: TrueFoundry.Alert[];
     /** Summary of alerts for this application */

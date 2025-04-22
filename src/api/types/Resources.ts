@@ -56,12 +56,6 @@ export interface Resources {
      */
     ephemeral_storage_limit: number;
     /**
-     * +label=GPU Count
-     * +usage=Count of GPUs to provide to the application
-     * Note the exact count and max count available for a given GPU type depends on cloud provider and cluster type.
-     */
-    gpu_count?: number;
-    /**
      * +label=Shared Memory Size (MB)
      * +usage=Define the shared memory requirements for your workload. Machine learning libraries like Pytorch can use Shared Memory
      * for inter-process communication. If you use this, we will mount a `tmpfs` backed volume at the `/dev/shm` directory.

@@ -3,6 +3,12 @@
  */
 
 import * as core from "../../../../../../core";
+import { Users } from "../resources/users/client/Client";
+import { Clusters } from "../resources/clusters/client/Client";
+import { Deployments } from "../resources/deployments/client/Client";
+import { Applications } from "../resources/applications/client/Client";
+import { Vcs } from "../resources/vcs/client/Client";
+import { Metrics } from "../resources/metrics/client/Client";
 import { ArtifactVersions } from "../resources/artifactVersions/client/Client";
 
 export declare namespace Internal {
@@ -27,9 +33,39 @@ export declare namespace Internal {
 }
 
 export class Internal {
+    protected _users: Users | undefined;
+    protected _clusters: Clusters | undefined;
+    protected _deployments: Deployments | undefined;
+    protected _applications: Applications | undefined;
+    protected _vcs: Vcs | undefined;
+    protected _metrics: Metrics | undefined;
     protected _artifactVersions: ArtifactVersions | undefined;
 
     constructor(protected readonly _options: Internal.Options) {}
+
+    public get users(): Users {
+        return (this._users ??= new Users(this._options));
+    }
+
+    public get clusters(): Clusters {
+        return (this._clusters ??= new Clusters(this._options));
+    }
+
+    public get deployments(): Deployments {
+        return (this._deployments ??= new Deployments(this._options));
+    }
+
+    public get applications(): Applications {
+        return (this._applications ??= new Applications(this._options));
+    }
+
+    public get vcs(): Vcs {
+        return (this._vcs ??= new Vcs(this._options));
+    }
+
+    public get metrics(): Metrics {
+        return (this._metrics ??= new Metrics(this._options));
+    }
 
     public get artifactVersions(): ArtifactVersions {
         return (this._artifactVersions ??= new ArtifactVersions(this._options));

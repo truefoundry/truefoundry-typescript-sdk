@@ -10,7 +10,7 @@
  *         }
  *     }
  */
-export interface CreateDeploymentDto {
+export interface CreateDeploymentRequest {
     /** Manifest of application */
     manifest: Record<string, unknown>;
     /** Dry run */

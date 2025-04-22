@@ -145,7 +145,7 @@ export class Applications {
             if (_response.error.reason === "status-code") {
                 switch (_response.error.statusCode) {
                     case 400:
-                        throw new TrueFoundry.BadRequestError(_response.error.body as TrueFoundry.HttpError);
+                        throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
                     default:
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
@@ -182,7 +182,7 @@ export class Applications {
     /**
      * Create a new Application Deployment based on the provided manifest.
      *
-     * @param {TrueFoundry.v1.CreateDeploymentDto} request
+     * @param {TrueFoundry.v1.CreateDeploymentRequest} request
      * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -198,9 +198,9 @@ export class Applications {
      *     })
      */
     public async createOrUpdate(
-        request: TrueFoundry.v1.CreateDeploymentDto,
+        request: TrueFoundry.v1.CreateDeploymentRequest,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<TrueFoundry.GetApplicationDeploymentResponseDto> {
+    ): Promise<TrueFoundry.GetApplicationDeploymentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -226,17 +226,17 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetApplicationDeploymentResponseDto;
+            return _response.body as TrueFoundry.GetApplicationDeploymentResponse;
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 case 409:
                     throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
                 default:
@@ -310,7 +310,7 @@ export class Applications {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -382,7 +382,7 @@ export class Applications {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -453,9 +453,9 @@ export class Applications {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 case 405:
-                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown);
                 case 501:
                     throw new TrueFoundry.NotImplementedError(_response.error.body as TrueFoundry.HttpError);
                 default:
@@ -532,7 +532,7 @@ export class Applications {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 case 501:
                     throw new TrueFoundry.NotImplementedError(_response.error.body as TrueFoundry.HttpError);
                 default:
@@ -611,7 +611,7 @@ export class Applications {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 case 409:
                     throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
                 default:
@@ -639,15 +639,12 @@ export class Applications {
         }
     }
 
-    protected async _getAuthorizationHeader(): Promise<string> {
+    protected async _getAuthorizationHeader(): Promise<string | undefined> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer == null) {
-            throw new errors.TrueFoundryError({
-                message:
-                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
-            });
+        if (bearer != null) {
+            return `Bearer ${bearer}`;
         }
 
-        return `Bearer ${bearer}`;
+        return undefined;
     }
 }

@@ -13,6 +13,7 @@ export interface SparkJobScalaEntrypoint {
      * +usage=The main application file to be executed by the spark job.
      * +message=Filename should have .jar extension
      * +sort=5
+     * +placeholder=For example: local:///path/to/file.jar, s3:///bucket/path/to/file.jar, etc.
      */
     main_application_file: string;
     /**

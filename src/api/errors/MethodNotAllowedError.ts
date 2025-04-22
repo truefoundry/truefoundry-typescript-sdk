@@ -3,10 +3,9 @@
  */
 
 import * as errors from "../../errors/index";
-import * as TrueFoundry from "../index";
 
 export class MethodNotAllowedError extends errors.TrueFoundryError {
-    constructor(body: TrueFoundry.HttpError) {
+    constructor(body?: unknown) {
         super({
             message: "MethodNotAllowedError",
             statusCode: 405,

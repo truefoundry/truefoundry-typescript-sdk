@@ -40,20 +40,23 @@ export class Clusters {
      * @throws {@link TrueFoundry.UnauthorizedError}
      *
      * @example
-     *     await client.v1.clusters.list()
+     *     await client.v1.clusters.list({
+     *         limit: 10,
+     *         offset: 0
+     *     })
      */
     public async list(
         request: TrueFoundry.v1.ClustersListRequest = {},
         requestOptions?: Clusters.RequestOptions,
     ): Promise<core.Page<TrueFoundry.Cluster>> {
         const list = async (request: TrueFoundry.v1.ClustersListRequest): Promise<TrueFoundry.ListClustersResponse> => {
-            const { offset, limit } = request;
+            const { limit, offset } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
             if (limit != null) {
                 _queryParams["limit"] = limit.toString();
+            }
+            if (offset != null) {
+                _queryParams["offset"] = offset.toString();
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
@@ -85,7 +88,7 @@ export class Clusters {
             if (_response.error.reason === "status-code") {
                 switch (_response.error.statusCode) {
                     case 401:
-                        throw new TrueFoundry.UnauthorizedError(_response.error.body as unknown);
+                        throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
                     default:
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
@@ -178,7 +181,7 @@ export class Clusters {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
                 case 409:
                     throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
                 case 422:
@@ -249,9 +252,9 @@ export class Clusters {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -323,9 +326,9 @@ export class Clusters {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -351,15 +354,173 @@ export class Clusters {
         }
     }
 
-    protected async _getAuthorizationHeader(): Promise<string> {
-        const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer == null) {
-            throw new errors.TrueFoundryError({
-                message:
-                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
-            });
+    /**
+     * List addons for the provided cluster.Pagination is available based on query parameters.
+     *
+     * @param {string} id - Cluster id of the cluster
+     * @param {TrueFoundry.v1.ClustersGetAddonsRequest} request
+     * @param {Clusters.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.v1.clusters.getAddons("id", {
+     *         limit: 10,
+     *         offset: 0
+     *     })
+     */
+    public async getAddons(
+        id: string,
+        request: TrueFoundry.v1.ClustersGetAddonsRequest = {},
+        requestOptions?: Clusters.RequestOptions,
+    ): Promise<TrueFoundry.ListClusterAddonsResponse> {
+        const { limit, offset } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (limit != null) {
+            _queryParams["limit"] = limit.toString();
         }
 
-        return `Bearer ${bearer}`;
+        if (offset != null) {
+            _queryParams["offset"] = offset.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/clusters/${encodeURIComponent(id)}/get-addons`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as TrueFoundry.ListClusterAddonsResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/clusters/{id}/get-addons.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    /**
+     * Get the status of provided cluster
+     *
+     * @param {string} id - Cluster id of the cluster
+     * @param {Clusters.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     *
+     * @example
+     *     await client.v1.clusters.isConnected("id")
+     */
+    public async isConnected(
+        id: string,
+        requestOptions?: Clusters.RequestOptions,
+    ): Promise<TrueFoundry.IsClusterConnectedResponse> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/clusters/${encodeURIComponent(id)}/is-connected`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return _response.body as TrueFoundry.IsClusterConnectedResponse;
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/clusters/{id}/is-connected.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                });
+        }
+    }
+
+    protected async _getAuthorizationHeader(): Promise<string | undefined> {
+        const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
+        if (bearer != null) {
+            return `Bearer ${bearer}`;
+        }
+
+        return undefined;
     }
 }

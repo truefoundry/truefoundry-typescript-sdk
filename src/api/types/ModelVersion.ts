@@ -14,4 +14,5 @@ export interface ModelVersion {
     usage_code_snippet?: string;
     ml_repo_id: string;
     model_id: string;
+    metrics?: TrueFoundry.Metric[];
 }

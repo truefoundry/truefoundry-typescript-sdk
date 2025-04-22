@@ -3,6 +3,7 @@
  */
 
 import * as core from "./core";
+import { MlRepos } from "./api/resources/mlRepos/client/Client";
 import { V1 } from "./api/resources/v1/client/Client";
 
 export declare namespace TrueFoundryClient {
@@ -27,9 +28,14 @@ export declare namespace TrueFoundryClient {
 }
 
 export class TrueFoundryClient {
+    protected _mlRepos: MlRepos | undefined;
     protected _v1: V1 | undefined;
 
     constructor(protected readonly _options: TrueFoundryClient.Options) {}
+
+    public get mlRepos(): MlRepos {
+        return (this._mlRepos ??= new MlRepos(this._options));
+    }
 
     public get v1(): V1 {
         return (this._v1 ??= new V1(this._options));

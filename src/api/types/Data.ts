@@ -10,4 +10,5 @@ export type Data =
     | TrueFoundry.ToolVersion
     | TrueFoundry.AgentVersion
     | TrueFoundry.ArtifactVersion
-    | TrueFoundry.DataDirectory;
+    | TrueFoundry.DataDirectory
+    | TrueFoundry.TracingProject;

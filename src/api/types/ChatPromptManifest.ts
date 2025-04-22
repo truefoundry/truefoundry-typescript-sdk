@@ -24,7 +24,7 @@ export interface ChatPromptManifest {
     messages: TrueFoundry.ChatPromptManifestMessagesItem[];
     /** Variables referenced in messages and that can be replaced when running generation */
     variables?: Record<string, string>;
-    model_configuration: TrueFoundry.ModelConfiguration;
+    model_configuration?: TrueFoundry.ModelConfiguration;
     /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];
 }

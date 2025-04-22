@@ -3,7 +3,7 @@
  */
 
 export interface Recommendation {
-    id: string;
+    id?: string;
     clusterId?: string;
     applicationId?: string;
     deploymentId: string;

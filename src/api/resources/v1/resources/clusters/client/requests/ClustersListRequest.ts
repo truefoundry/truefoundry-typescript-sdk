@@ -4,15 +4,18 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         limit: 10,
+ *         offset: 0
+ *     }
  */
 export interface ClustersListRequest {
     /**
-     * Number of Items Skipped. Defaults to 0 if not provided.
-     */
-    offset?: number;
-    /**
-     * The maximum number of items to return per page. Defaults to a pre-defined value if not provided.
+     * Number of items per page
      */
     limit?: number;
+    /**
+     * Number of items to skip
+     */
+    offset?: number;
 }

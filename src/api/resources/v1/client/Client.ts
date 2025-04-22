@@ -3,11 +3,17 @@
  */
 
 import * as core from "../../../../core";
+import { Secrets } from "../resources/secrets/client/Client";
+import { SecretGroups } from "../resources/secretGroups/client/Client";
 import { Clusters } from "../resources/clusters/client/Client";
 import { Environments } from "../resources/environments/client/Client";
-import { Workspaces } from "../resources/workspaces/client/Client";
 import { Applications } from "../resources/applications/client/Client";
 import { ApplicationVersions } from "../resources/applicationVersions/client/Client";
+import { Jobs } from "../resources/jobs/client/Client";
+import { Workspaces } from "../resources/workspaces/client/Client";
+import { Events } from "../resources/events/client/Client";
+import { Alerts } from "../resources/alerts/client/Client";
+import { Logs } from "../resources/logs/client/Client";
 import { Artifacts } from "../resources/artifacts/client/Client";
 import { Agents } from "../resources/agents/client/Client";
 import { Prompts } from "../resources/prompts/client/Client";
@@ -20,6 +26,7 @@ import { ToolVersions } from "../resources/toolVersions/client/Client";
 import { AgentVersions } from "../resources/agentVersions/client/Client";
 import { DataDirectories } from "../resources/dataDirectories/client/Client";
 import { MlRepos } from "../resources/mlRepos/client/Client";
+import { TracingProjects } from "../resources/tracingProjects/client/Client";
 import { Internal } from "../resources/internal/client/Client";
 
 export declare namespace V1 {
@@ -44,11 +51,17 @@ export declare namespace V1 {
 }
 
 export class V1 {
+    protected _secrets: Secrets | undefined;
+    protected _secretGroups: SecretGroups | undefined;
     protected _clusters: Clusters | undefined;
     protected _environments: Environments | undefined;
-    protected _workspaces: Workspaces | undefined;
     protected _applications: Applications | undefined;
     protected _applicationVersions: ApplicationVersions | undefined;
+    protected _jobs: Jobs | undefined;
+    protected _workspaces: Workspaces | undefined;
+    protected _events: Events | undefined;
+    protected _alerts: Alerts | undefined;
+    protected _logs: Logs | undefined;
     protected _artifacts: Artifacts | undefined;
     protected _agents: Agents | undefined;
     protected _prompts: Prompts | undefined;
@@ -61,9 +74,18 @@ export class V1 {
     protected _agentVersions: AgentVersions | undefined;
     protected _dataDirectories: DataDirectories | undefined;
     protected _mlRepos: MlRepos | undefined;
+    protected _tracingProjects: TracingProjects | undefined;
     protected _internal: Internal | undefined;
 
     constructor(protected readonly _options: V1.Options) {}
+
+    public get secrets(): Secrets {
+        return (this._secrets ??= new Secrets(this._options));
+    }
+
+    public get secretGroups(): SecretGroups {
+        return (this._secretGroups ??= new SecretGroups(this._options));
+    }
 
     public get clusters(): Clusters {
         return (this._clusters ??= new Clusters(this._options));
@@ -73,16 +95,32 @@ export class V1 {
         return (this._environments ??= new Environments(this._options));
     }
 
-    public get workspaces(): Workspaces {
-        return (this._workspaces ??= new Workspaces(this._options));
-    }
-
     public get applications(): Applications {
         return (this._applications ??= new Applications(this._options));
     }
 
     public get applicationVersions(): ApplicationVersions {
         return (this._applicationVersions ??= new ApplicationVersions(this._options));
+    }
+
+    public get jobs(): Jobs {
+        return (this._jobs ??= new Jobs(this._options));
+    }
+
+    public get workspaces(): Workspaces {
+        return (this._workspaces ??= new Workspaces(this._options));
+    }
+
+    public get events(): Events {
+        return (this._events ??= new Events(this._options));
+    }
+
+    public get alerts(): Alerts {
+        return (this._alerts ??= new Alerts(this._options));
+    }
+
+    public get logs(): Logs {
+        return (this._logs ??= new Logs(this._options));
     }
 
     public get artifacts(): Artifacts {
@@ -131,6 +169,10 @@ export class V1 {
 
     public get mlRepos(): MlRepos {
         return (this._mlRepos ??= new MlRepos(this._options));
+    }
+
+    public get tracingProjects(): TracingProjects {
+        return (this._tracingProjects ??= new TracingProjects(this._options));
     }
 
     public get internal(): Internal {

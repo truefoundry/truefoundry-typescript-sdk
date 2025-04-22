@@ -56,7 +56,7 @@ export class ApplicationVersions {
     ): Promise<core.Page<TrueFoundry.Deployment>> {
         const list = async (
             request: TrueFoundry.v1.ApplicationVersionsListRequest,
-        ): Promise<TrueFoundry.GetApplicationDeploymentsResponseDto> => {
+        ): Promise<TrueFoundry.ListApplicationDeploymentsResponse> => {
             const { limit, offset, version, id: id_ } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (limit != null) {
@@ -96,14 +96,14 @@ export class ApplicationVersions {
                 abortSignal: requestOptions?.abortSignal,
             });
             if (_response.ok) {
-                return _response.body as TrueFoundry.GetApplicationDeploymentsResponseDto;
+                return _response.body as TrueFoundry.ListApplicationDeploymentsResponse;
             }
             if (_response.error.reason === "status-code") {
                 switch (_response.error.statusCode) {
                     case 403:
                         throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                     case 404:
-                        throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                        throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                     default:
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
@@ -128,7 +128,7 @@ export class ApplicationVersions {
             }
         };
         let _offset = request?.offset != null ? request?.offset : 1;
-        return new core.Pageable<TrueFoundry.GetApplicationDeploymentsResponseDto, TrueFoundry.Deployment>({
+        return new core.Pageable<TrueFoundry.ListApplicationDeploymentsResponse, TrueFoundry.Deployment>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
@@ -156,7 +156,7 @@ export class ApplicationVersions {
         id: string,
         deploymentId: string,
         requestOptions?: ApplicationVersions.RequestOptions,
-    ): Promise<TrueFoundry.GetApplicationDeploymentResponseDto> {
+    ): Promise<TrueFoundry.GetApplicationDeploymentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -181,7 +181,7 @@ export class ApplicationVersions {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetApplicationDeploymentResponseDto;
+            return _response.body as TrueFoundry.GetApplicationDeploymentResponse;
         }
 
         if (_response.error.reason === "status-code") {
@@ -189,7 +189,7 @@ export class ApplicationVersions {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -215,15 +215,12 @@ export class ApplicationVersions {
         }
     }
 
-    protected async _getAuthorizationHeader(): Promise<string> {
+    protected async _getAuthorizationHeader(): Promise<string | undefined> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
-        if (bearer == null) {
-            throw new errors.TrueFoundryError({
-                message:
-                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
-            });
+        if (bearer != null) {
+            return `Bearer ${bearer}`;
         }
 
-        return `Bearer ${bearer}`;
+        return undefined;
     }
 }

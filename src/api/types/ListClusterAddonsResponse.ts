@@ -4,9 +4,9 @@
 
 import * as TrueFoundry from "../index";
 
-export interface GetApplicationDeploymentsResponseDto {
-    /** Array of Deployments */
-    data: TrueFoundry.Deployment[];
+export interface ListClusterAddonsResponse {
+    /** Array of Cluster Addons */
+    data: TrueFoundry.AddonComponent[];
     /** Pagination information */
     pagination: TrueFoundry.Pagination;
 }

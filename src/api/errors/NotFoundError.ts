@@ -3,10 +3,9 @@
  */
 
 import * as errors from "../../errors/index";
-import * as TrueFoundry from "../index";
 
 export class NotFoundError extends errors.TrueFoundryError {
-    constructor(body: TrueFoundry.HttpError) {
+    constructor(body?: unknown) {
         super({
             message: "NotFoundError",
             statusCode: 404,

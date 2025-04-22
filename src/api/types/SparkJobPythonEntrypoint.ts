@@ -13,6 +13,7 @@ export interface SparkJobPythonEntrypoint {
      * +usage=The main application file to be executed by the spark job.
      * +message=Filename should have .py extension
      * +sort=5
+     * +placeholder=For example: local:///path/to/file.py, s3:///bucket/path/to/file.py, etc.
      */
     main_application_file: string;
     /**

@@ -3,9 +3,10 @@
  */
 
 import * as errors from "../../errors/index";
+import * as TrueFoundry from "../index";
 
 export class UnauthorizedError extends errors.TrueFoundryError {
-    constructor(body?: unknown) {
+    constructor(body: TrueFoundry.HttpError) {
         super({
             message: "UnauthorizedError",
             statusCode: 401,

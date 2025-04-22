@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export interface GetApplicationDeploymentResponseDto {
+export interface GetApplicationDeploymentResponse {
     /** Deployment */
     data: TrueFoundry.Deployment;
 }

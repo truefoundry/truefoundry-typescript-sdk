@@ -5,12 +5,17 @@
 import * as TrueFoundry from "../index";
 
 export interface MlRepo {
-    id: string;
+    /** Tenant Name */
     tenant_name: string;
     manifest: TrueFoundry.MlRepoManifest;
     created_by_subject: TrueFoundry.Subject;
+    /** Created At */
     created_at: string;
+    /** Experiment Id */
+    id: string;
+    /** Number of runs */
     num_runs?: number;
     artifact_type_counts?: Record<string, number>;
+    /** Number of datasets */
     datasets_count?: number;
 }
