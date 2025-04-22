@@ -43,10 +43,10 @@ export class ApplicationVersions {
      *
      * @example
      *     await client.v1.applicationVersions.list("id", {
-     *         limit: 50,
+     *         limit: 10,
      *         offset: 0,
      *         version: "1",
-     *         id: "deployment123"
+     *         deploymentId: "deployment123"
      *     })
      */
     public async list(
@@ -57,7 +57,7 @@ export class ApplicationVersions {
         const list = async (
             request: TrueFoundry.v1.ApplicationVersionsListRequest,
         ): Promise<TrueFoundry.ListApplicationDeploymentsResponse> => {
-            const { limit, offset, version, id: id_ } = request;
+            const { limit, offset, version, deploymentId } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
             if (limit != null) {
                 _queryParams["limit"] = limit.toString();
@@ -68,8 +68,8 @@ export class ApplicationVersions {
             if (version != null) {
                 _queryParams["version"] = version;
             }
-            if (id_ != null) {
-                _queryParams["id"] = id_;
+            if (deploymentId != null) {
+                _queryParams["deploymentId"] = deploymentId;
             }
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(

@@ -43,84 +43,91 @@ export class TracingProjects {
     public async list(
         request: TrueFoundry.v1.TracingProjectsListRequest = {},
         requestOptions?: TracingProjects.RequestOptions,
-    ): Promise<TrueFoundry.ListTracingProjectsResponse> {
-        const { ml_repo_id: mlRepoId, fqn, name, offset, limit } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (mlRepoId != null) {
-            _queryParams["ml_repo_id"] = mlRepoId.toString();
-        }
-
-        if (fqn != null) {
-            _queryParams["fqn"] = fqn;
-        }
-
-        if (name != null) {
-            _queryParams["name"] = name;
-        }
-
-        if (offset != null) {
-            _queryParams["offset"] = offset.toString();
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/tracing-projects",
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as TrueFoundry.ListTracingProjectsResponse;
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                default:
+    ): Promise<core.Page<TrueFoundry.TracingProject>> {
+        const list = async (
+            request: TrueFoundry.v1.TracingProjectsListRequest,
+        ): Promise<TrueFoundry.ListTracingProjectsResponse> => {
+            const { ml_repo_id: mlRepoId, fqn, name, offset, limit } = request;
+            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+            if (mlRepoId != null) {
+                _queryParams["ml_repo_id"] = mlRepoId.toString();
+            }
+            if (fqn != null) {
+                _queryParams["fqn"] = fqn;
+            }
+            if (name != null) {
+                _queryParams["name"] = name;
+            }
+            if (offset != null) {
+                _queryParams["offset"] = offset.toString();
+            }
+            if (limit != null) {
+                _queryParams["limit"] = limit.toString();
+            }
+            const _response = await (this._options.fetcher ?? core.fetcher)({
+                url: urlJoin(
+                    (await core.Supplier.get(this._options.baseUrl)) ??
+                        (await core.Supplier.get(this._options.environment)),
+                    "api/ml/v1/tracing-projects",
+                ),
+                method: "GET",
+                headers: {
+                    Authorization: await this._getAuthorizationHeader(),
+                    "X-Fern-Language": "JavaScript",
+                    "X-Fern-SDK-Name": "truefoundry-sdk",
+                    "X-Fern-SDK-Version": "0.0.0",
+                    "User-Agent": "truefoundry-sdk/0.0.0",
+                    "X-Fern-Runtime": core.RUNTIME.type,
+                    "X-Fern-Runtime-Version": core.RUNTIME.version,
+                    ...requestOptions?.headers,
+                },
+                contentType: "application/json",
+                queryParameters: _queryParams,
+                requestType: "json",
+                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                maxRetries: requestOptions?.maxRetries,
+                abortSignal: requestOptions?.abortSignal,
+            });
+            if (_response.ok) {
+                return _response.body as TrueFoundry.ListTracingProjectsResponse;
+            }
+            if (_response.error.reason === "status-code") {
+                switch (_response.error.statusCode) {
+                    case 422:
+                        throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    default:
+                        throw new errors.TrueFoundryError({
+                            statusCode: _response.error.statusCode,
+                            body: _response.error.body,
+                        });
+                }
+            }
+            switch (_response.error.reason) {
+                case "non-json":
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
-                        body: _response.error.body,
+                        body: _response.error.rawBody,
+                    });
+                case "timeout":
+                    throw new errors.TrueFoundryTimeoutError(
+                        "Timeout exceeded when calling GET /api/ml/v1/tracing-projects.",
+                    );
+                case "unknown":
+                    throw new errors.TrueFoundryError({
+                        message: _response.error.errorMessage,
                     });
             }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/ml/v1/tracing-projects.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                });
-        }
+        };
+        let _offset = request?.offset != null ? request?.offset : 0;
+        return new core.Pageable<TrueFoundry.ListTracingProjectsResponse, TrueFoundry.TracingProject>({
+            response: await list(request),
+            hasNextPage: (response) => (response?.data ?? []).length > 0,
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
     }
 
     /**

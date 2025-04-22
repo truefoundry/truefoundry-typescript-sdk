@@ -5,19 +5,19 @@
 /**
  * @example
  *     {
- *         limit: 50,
+ *         limit: 10,
  *         offset: 0,
  *         version: "1",
- *         id: "deployment123"
+ *         deploymentId: "deployment123"
  *     }
  */
 export interface ApplicationVersionsListRequest {
     /**
-     * Number of items per page. Defaults to 50 if not provided.
+     * Number of items per page
      */
     limit?: number;
     /**
-     * Number of items to skip.
+     * Number of items to skip
      */
     offset?: number;
     /**
@@ -27,5 +27,5 @@ export interface ApplicationVersionsListRequest {
     /**
      * Deployment ID. Filter deployments by a specific ID.
      */
-    id?: string;
+    deploymentId?: string;
 }

@@ -1816,10 +1816,10 @@ Fetch all deployments for a given application ID with optional filters such as d
 
 ```typescript
 const response = await client.v1.applicationVersions.list("id", {
-    limit: 50,
+    limit: 10,
     offset: 0,
     version: "1",
-    id: "deployment123",
+    deploymentId: "deployment123",
 });
 for await (const item of response) {
     console.log(item);
@@ -1827,10 +1827,10 @@ for await (const item of response) {
 
 // Or you can manually iterate page-by-page
 const page = await client.v1.applicationVersions.list("id", {
-    limit: 50,
+    limit: 10,
     offset: 0,
     version: "1",
-    id: "deployment123",
+    deploymentId: "deployment123",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6058,7 +6058,7 @@ await client.v1.dataDirectories.createMultipartUpload({
 
 ## V1 TracingProjects
 
-<details><summary><code>client.v1.tracingProjects.<a href="/src/api/resources/v1/resources/tracingProjects/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.ListTracingProjectsResponse</code></summary>
+<details><summary><code>client.v1.tracingProjects.<a href="/src/api/resources/v1/resources/tracingProjects/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.TracingProject></code></summary>
 <dl>
 <dd>
 
@@ -6071,7 +6071,16 @@ await client.v1.dataDirectories.createMultipartUpload({
 <dd>
 
 ```typescript
-await client.v1.tracingProjects.list();
+const response = await client.v1.tracingProjects.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.v1.tracingProjects.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
 ```
 
 </dd>
