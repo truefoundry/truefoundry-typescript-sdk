@@ -1,4 +1,4 @@
-import { WrappedAgentVersions, WrappedArtifactVersions, WrappedModelVersions, WrappedPromptVersions, WrappedToolVersions, WrappedWorkspaces } from "./api/resources/v1/_WrappedClients";
+import { WrappedAgentVersions, WrappedArtifactVersions, WrappedModelVersions, WrappedPromptVersions, WrappedToolVersions, WrappedTracingProjects, WrappedWorkspaces } from "./api/resources/v1/_WrappedClients";
 import { V1 as BaseV1 } from "./api/resources/v1/client/Client";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
 
@@ -9,6 +9,7 @@ class V1 extends BaseV1 {
     protected _modelVersions: WrappedModelVersions | undefined;
     protected _promptVersions: WrappedPromptVersions | undefined;
     protected _toolVersions: WrappedToolVersions | undefined;
+    protected _tracingProjects: WrappedTracingProjects | undefined;
     protected _workspaces: WrappedWorkspaces | undefined;
 
     public get agentVersions(): WrappedAgentVersions {
@@ -29,6 +30,10 @@ class V1 extends BaseV1 {
 
     public get toolVersions(): WrappedToolVersions {
         return (this._toolVersions ??= new WrappedToolVersions(this._options));
+    }
+
+    public get tracingProjects(): WrappedTracingProjects {
+        return (this._tracingProjects ??= new WrappedTracingProjects(this._options));
     }
 
     public get workspaces(): WrappedWorkspaces {

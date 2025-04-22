@@ -6,6 +6,7 @@ import { Workspaces } from "./resources/workspaces/client/Client";
 import { ModelVersions } from "./resources/modelVersions/client/Client";
 import { AgentVersions } from "./resources/agentVersions/client/Client";
 import { ArtifactVersions } from "./resources/artifactVersions/client/Client";
+import { TracingProjects } from "./resources/tracingProjects/client/Client";
 
 interface HasAsyncListMethod<T> {
     list(request: { fqn: string; limit?: number }, requestOptions?: object): Promise<core.Page<T>>;
@@ -124,6 +125,26 @@ export class WrappedToolVersions extends ToolVersions {
         fqn: string,
         requestOptions?: ToolVersions.RequestOptions,
     ): Promise<TrueFoundry.GetToolVersionResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
+export class WrappedTracingProjects extends TracingProjects {
+    /**
+     * Get tracing project API
+     *
+     * @param {string} fqn
+     * @param {TracingProjects.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.tracingProjects.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: TracingProjects.RequestOptions,
+    ): Promise<TrueFoundry.GetTracingProjectResponse> {
         return { data: await getByFqn(this, fqn, requestOptions) }
     }
 }
