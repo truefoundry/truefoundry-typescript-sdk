@@ -75,7 +75,7 @@ export class ApplicationVersions {
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    `api/svc/v1/apps/${encodeURIComponent(id)}/deployments`,
+                    `api/svc/v1/app/${encodeURIComponent(id)}/deployments`,
                 ),
                 method: "GET",
                 headers: {
@@ -119,7 +119,7 @@ export class ApplicationVersions {
                     });
                 case "timeout":
                     throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments.",
+                        "Timeout exceeded when calling GET /api/svc/v1/app/{id}/deployments.",
                     );
                 case "unknown":
                     throw new errors.TrueFoundryError({
@@ -161,7 +161,7 @@ export class ApplicationVersions {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}`,
+                `api/svc/v1/app/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}`,
             ),
             method: "GET",
             headers: {
@@ -206,7 +206,7 @@ export class ApplicationVersions {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments/{deploymentId}.",
+                    "Timeout exceeded when calling GET /api/svc/v1/app/{id}/deployments/{deploymentId}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

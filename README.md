@@ -20,16 +20,16 @@ A full reference for this library is available [here](./reference.md).
 Instantiate and use the client with the following:
 
 ```typescript
-import { TrueFoundryClient } from "truefoundry-sdk";
+import { TrueFoundryClient, TrueFoundry } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.v1.secrets.list();
+const response = await client.v1.secrets.list({});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.secrets.list();
+const page = await client.v1.secrets.list({});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -43,7 +43,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.ListSecretsRequest = {
+const request: TrueFoundry.SecretGroupsListRequest = {
     ...
 };
 ```
@@ -72,16 +72,16 @@ try {
 List endpoints are paginated. The SDK provides an iterator so that you can simply loop over the items:
 
 ```typescript
-import { TrueFoundryClient } from "truefoundry-sdk";
+import { TrueFoundryClient, TrueFoundry } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.v1.secrets.list();
+const response = await client.v1.secrets.list({});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.secrets.list();
+const page = await client.v1.secrets.list({});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }

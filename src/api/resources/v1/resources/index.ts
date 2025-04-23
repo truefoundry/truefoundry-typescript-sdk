@@ -28,7 +28,6 @@ export * as toolVersions from "./toolVersions";
 export * as agentVersions from "./agentVersions";
 export * as dataDirectories from "./dataDirectories";
 export * as tracingProjects from "./tracingProjects";
-export * from "./secrets/client/requests";
 export * from "./secretGroups/client/requests";
 export * from "./clusters/client/requests";
 export * from "./environments/client/requests";

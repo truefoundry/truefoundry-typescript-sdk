@@ -78,7 +78,7 @@ export class SecretGroups {
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/secret-groups",
+                    "api/svc/v1/secret-group",
                 ),
                 method: "GET",
                 headers: {
@@ -115,7 +115,7 @@ export class SecretGroups {
                     });
                 case "timeout":
                     throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/svc/v1/secret-groups.",
+                        "Timeout exceeded when calling GET /api/svc/v1/secret-group.",
                     );
                 case "unknown":
                     throw new errors.TrueFoundryError({
@@ -138,7 +138,7 @@ export class SecretGroups {
     /**
      * Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secrets in the <em>associatedSecrets</em> field. A separate API call should be made to fetch the associated secrets.
      *
-     * @param {TrueFoundry.v1.CreateSecretGroupRequest} request
+     * @param {TrueFoundry.CreateSecretGroupRequest} request
      * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnprocessableEntityError}
@@ -155,14 +155,14 @@ export class SecretGroups {
      *     })
      */
     public async create(
-        request: TrueFoundry.v1.CreateSecretGroupRequest,
+        request: TrueFoundry.CreateSecretGroupRequest,
         requestOptions?: SecretGroups.RequestOptions,
     ): Promise<TrueFoundry.GetSecretGroupResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/secret-groups",
+                "api/svc/v1/secret-group",
             ),
             method: "POST",
             headers: {
@@ -208,7 +208,7 @@ export class SecretGroups {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/secret-groups.",
+                    "Timeout exceeded when calling POST /api/svc/v1/secret-group.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -237,7 +237,7 @@ export class SecretGroups {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret-groups/${encodeURIComponent(id)}`,
+                `api/svc/v1/secret-group/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -282,7 +282,7 @@ export class SecretGroups {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/secret-groups/{id}.",
+                    "Timeout exceeded when calling GET /api/svc/v1/secret-group/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -295,7 +295,7 @@ export class SecretGroups {
      * Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value. Returns the updated secret group. The returned secret group does not have any secrets in the <em>associatedSecrets</em> field. A separate API call should be made to fetch the associated secrets.
      *
      * @param {string} id - Secret Id of the secret group.
-     * @param {TrueFoundry.v1.UpdateSecretGroupRequest} request
+     * @param {TrueFoundry.UpdateSecretGroupRequest} request
      * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -313,14 +313,14 @@ export class SecretGroups {
      */
     public async update(
         id: string,
-        request: TrueFoundry.v1.UpdateSecretGroupRequest,
+        request: TrueFoundry.UpdateSecretGroupRequest,
         requestOptions?: SecretGroups.RequestOptions,
     ): Promise<TrueFoundry.GetSecretGroupResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret-groups/${encodeURIComponent(id)}`,
+                `api/svc/v1/secret-group/${encodeURIComponent(id)}`,
             ),
             method: "PUT",
             headers: {
@@ -370,7 +370,7 @@ export class SecretGroups {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling PUT /api/svc/v1/secret-groups/{id}.",
+                    "Timeout exceeded when calling PUT /api/svc/v1/secret-group/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -399,7 +399,7 @@ export class SecretGroups {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret-groups/${encodeURIComponent(id)}`,
+                `api/svc/v1/secret-group/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -444,7 +444,7 @@ export class SecretGroups {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling DELETE /api/svc/v1/secret-groups/{id}.",
+                    "Timeout exceeded when calling DELETE /api/svc/v1/secret-group/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -470,7 +470,7 @@ export class SecretGroups {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret-groups/${encodeURIComponent(id)}/secrets`,
+                `api/svc/v1/secret-group/${encodeURIComponent(id)}/secrets`,
             ),
             method: "GET",
             headers: {
@@ -515,7 +515,7 @@ export class SecretGroups {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/secret-groups/{id}/secrets.",
+                    "Timeout exceeded when calling GET /api/svc/v1/secret-group/{id}/secrets.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

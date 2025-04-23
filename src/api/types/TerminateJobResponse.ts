@@ -7,5 +7,6 @@ import * as TrueFoundry from "../index";
 export interface TerminateJobResponse {
     /** Terminate Job Message */
     message: string;
+    /** Job run status */
     jobRunStatus: TrueFoundry.JobRunStatus;
 }

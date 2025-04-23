@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export interface JobRunDto {
+export interface JobRun {
     /** JobRun Name */
     name: string;
     /** Application Name */
@@ -23,6 +23,7 @@ export interface JobRunDto {
     totalRetries: number;
     /** Error */
     error?: string;
+    /** Status of JobRun */
     status: TrueFoundry.JobRunStatus;
     /** Triggered By */
     triggeredBy?: string;

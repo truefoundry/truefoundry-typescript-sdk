@@ -30,13 +30,13 @@ List secrets associated with a user filtered with optional parameters passed in 
 <dd>
 
 ```typescript
-const response = await client.v1.secrets.list();
+const response = await client.v1.secrets.list({});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.secrets.list();
+const page = await client.v1.secrets.list({});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -55,7 +55,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ListSecretsRequest`
+**request:** `TrueFoundry.ListSecretsRequest`
 
 </dd>
 </dl>
@@ -333,7 +333,7 @@ await client.v1.secretGroups.create({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateSecretGroupRequest`
+**request:** `TrueFoundry.CreateSecretGroupRequest`
 
 </dd>
 </dl>
@@ -474,7 +474,7 @@ await client.v1.secretGroups.update("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.UpdateSecretGroupRequest`
+**request:** `TrueFoundry.UpdateSecretGroupRequest`
 
 </dd>
 </dl>
@@ -756,7 +756,7 @@ await client.v1.clusters.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateOrUpdateClusterRequest`
+**request:** `TrueFoundry.CreateOrUpdateClusterRequest`
 
 </dd>
 </dl>
@@ -1170,7 +1170,7 @@ await client.v1.environments.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateOrUpdateEnvironmentRequest`
+**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest`
 
 </dd>
 </dl>
@@ -1443,7 +1443,7 @@ await client.v1.applications.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateDeploymentRequest`
+**request:** `TrueFoundry.CreateDeploymentRequest`
 
 </dd>
 </dl>
@@ -1950,7 +1950,7 @@ await client.v1.applicationVersions.get("id", "deploymentId");
 
 ## V1 Jobs
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">listRuns</a>(jobId, { ...params }) -> core.Page<TrueFoundry.JobRunDto></code></summary>
+<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">listRuns</a>(jobId, { ...params }) -> core.Page<TrueFoundry.JobRun></code></summary>
 <dl>
 <dd>
 
@@ -2827,7 +2827,7 @@ await client.v1.mlRepos.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ApplyMlRepoRequest`
+**request:** `TrueFoundry.ApplyMlRepoRequest`
 
 </dd>
 </dl>

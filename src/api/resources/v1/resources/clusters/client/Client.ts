@@ -62,7 +62,7 @@ export class Clusters {
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/clusters",
+                    "api/svc/v1/cluster",
                 ),
                 method: "GET",
                 headers: {
@@ -103,7 +103,7 @@ export class Clusters {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/clusters.");
+                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/cluster.");
                 case "unknown":
                     throw new errors.TrueFoundryError({
                         message: _response.error.errorMessage,
@@ -125,7 +125,7 @@ export class Clusters {
     /**
      * Create or Update cluster with provided manifest
      *
-     * @param {TrueFoundry.v1.CreateOrUpdateClusterRequest} request
+     * @param {TrueFoundry.CreateOrUpdateClusterRequest} request
      * @param {Clusters.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}
@@ -147,14 +147,14 @@ export class Clusters {
      *     })
      */
     public async createOrUpdate(
-        request: TrueFoundry.v1.CreateOrUpdateClusterRequest,
+        request: TrueFoundry.CreateOrUpdateClusterRequest,
         requestOptions?: Clusters.RequestOptions,
     ): Promise<TrueFoundry.GetClusterResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/clusters",
+                "api/svc/v1/cluster",
             ),
             method: "PUT",
             headers: {
@@ -201,7 +201,7 @@ export class Clusters {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/clusters.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/cluster.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -226,7 +226,7 @@ export class Clusters {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/clusters/${encodeURIComponent(id)}`,
+                `api/svc/v1/cluster/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -270,9 +270,7 @@ export class Clusters {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/clusters/{id}.",
-                );
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/cluster/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -300,7 +298,7 @@ export class Clusters {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/clusters/${encodeURIComponent(id)}`,
+                `api/svc/v1/cluster/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -345,7 +343,7 @@ export class Clusters {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling DELETE /api/svc/v1/clusters/{id}.",
+                    "Timeout exceeded when calling DELETE /api/svc/v1/cluster/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -389,7 +387,7 @@ export class Clusters {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/clusters/${encodeURIComponent(id)}/get-addons`,
+                `api/svc/v1/cluster/${encodeURIComponent(id)}/get-addons`,
             ),
             method: "GET",
             headers: {
@@ -435,7 +433,7 @@ export class Clusters {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/clusters/{id}/get-addons.",
+                    "Timeout exceeded when calling GET /api/svc/v1/cluster/{id}/get-addons.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -463,7 +461,7 @@ export class Clusters {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/clusters/${encodeURIComponent(id)}/is-connected`,
+                `api/svc/v1/cluster/${encodeURIComponent(id)}/is-connected`,
             ),
             method: "GET",
             headers: {
@@ -506,7 +504,7 @@ export class Clusters {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/clusters/{id}/is-connected.",
+                    "Timeout exceeded when calling GET /api/svc/v1/cluster/{id}/is-connected.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

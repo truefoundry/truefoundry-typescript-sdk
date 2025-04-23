@@ -19,6 +19,6 @@ export interface Deployment {
     currentStatusId?: string;
     currentStatus?: TrueFoundry.DeploymentStatus;
     /** Applied recommendations for this deployment */
-    appliedRecommendations?: unknown[][];
+    appliedRecommendations?: TrueFoundry.Recommendation[];
     createdBy?: string;
 }

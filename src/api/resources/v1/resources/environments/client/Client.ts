@@ -62,7 +62,7 @@ export class Environments {
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/environments",
+                    "api/svc/v1/environment",
                 ),
                 method: "GET",
                 headers: {
@@ -99,7 +99,7 @@ export class Environments {
                     });
                 case "timeout":
                     throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/svc/v1/environments.",
+                        "Timeout exceeded when calling GET /api/svc/v1/environment.",
                     );
                 case "unknown":
                     throw new errors.TrueFoundryError({
@@ -122,7 +122,7 @@ export class Environments {
     /**
      * Creates a new Environment or updates an existing Environment.
      *
-     * @param {TrueFoundry.v1.CreateOrUpdateEnvironmentRequest} request
+     * @param {TrueFoundry.CreateOrUpdateEnvironmentRequest} request
      * @param {Environments.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnprocessableEntityError}
@@ -139,14 +139,14 @@ export class Environments {
      *     })
      */
     public async createOrUpdate(
-        request: TrueFoundry.v1.CreateOrUpdateEnvironmentRequest,
+        request: TrueFoundry.CreateOrUpdateEnvironmentRequest,
         requestOptions?: Environments.RequestOptions,
     ): Promise<TrueFoundry.GetEnvironmentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/environments",
+                "api/svc/v1/environment",
             ),
             method: "PUT",
             headers: {
@@ -189,7 +189,7 @@ export class Environments {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/environments.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/environment.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -214,7 +214,7 @@ export class Environments {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/environments/${encodeURIComponent(id)}`,
+                `api/svc/v1/environment/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -252,7 +252,7 @@ export class Environments {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/environments/{id}.",
+                    "Timeout exceeded when calling GET /api/svc/v1/environment/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -278,7 +278,7 @@ export class Environments {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/environments/${encodeURIComponent(id)}`,
+                `api/svc/v1/environment/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -323,7 +323,7 @@ export class Environments {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling DELETE /api/svc/v1/environments/{id}.",
+                    "Timeout exceeded when calling DELETE /api/svc/v1/environment/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

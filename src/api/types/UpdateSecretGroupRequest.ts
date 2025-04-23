@@ -4,7 +4,6 @@
 
 import * as TrueFoundry from "../index";
 
-export interface GetJobRunResponse {
-    /** JobRun */
-    data: TrueFoundry.JobRun;
+export interface UpdateSecretGroupRequest {
+    secrets: TrueFoundry.UpdateSecretInput[];
 }

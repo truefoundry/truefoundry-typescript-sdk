@@ -7,6 +7,7 @@ import * as TrueFoundry from "../index";
 export interface Subject {
     /** Subject ID */
     subjectId: string;
+    /** Subject type */
     subjectType: TrueFoundry.SubjectType;
     /** Subject slug */
     subjectSlug?: string;
