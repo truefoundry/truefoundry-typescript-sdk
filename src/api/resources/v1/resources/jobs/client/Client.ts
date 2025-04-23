@@ -44,24 +44,20 @@ export class Jobs {
      *
      * @example
      *     await client.v1.jobs.listRuns("jobId", {
-     *         limit: 10,
-     *         offset: 0
+     *         limit: 1,
+     *         offset: 1
      *     })
      */
     public async listRuns(
         jobId: string,
-        request: TrueFoundry.v1.JobsListRunsRequest = {},
+        request: TrueFoundry.v1.JobsListRunsRequest,
         requestOptions?: Jobs.RequestOptions,
     ): Promise<core.Page<TrueFoundry.JobRunDto>> {
         const list = async (request: TrueFoundry.v1.JobsListRunsRequest): Promise<TrueFoundry.ListJobRunResponse> => {
             const { limit, offset, searchPrefix, sortBy, order, triggeredBy, status } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
+            _queryParams["limit"] = limit.toString();
+            _queryParams["offset"] = offset.toString();
             if (searchPrefix != null) {
                 _queryParams["searchPrefix"] = searchPrefix;
             }
@@ -143,7 +139,7 @@ export class Jobs {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 0;
+        let _offset = request?.offset != null ? request?.offset : 1;
         return new core.Pageable<TrueFoundry.ListJobRunResponse, TrueFoundry.JobRunDto>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,

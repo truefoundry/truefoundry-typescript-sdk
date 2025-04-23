@@ -66,7 +66,6 @@ export * from "./GetJobRunResponse";
 export * from "./DeleteJobRunResponse";
 export * from "./JobTriggerInputCommand";
 export * from "./JobTriggerInput";
-export * from "./SparkJobTriggerInput";
 export * from "./TriggerJobRunResponse";
 export * from "./TerminateJobResponse";
 export * from "./Workspace";

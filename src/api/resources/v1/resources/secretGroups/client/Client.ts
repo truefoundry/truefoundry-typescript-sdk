@@ -123,7 +123,7 @@ export class SecretGroups {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 0;
+        let _offset = request?.offset != null ? request?.offset : 1;
         return new core.Pageable<TrueFoundry.ListSecretGroupResponse, TrueFoundry.SecretGroup>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,

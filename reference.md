@@ -1979,8 +1979,8 @@ List Job Runs for provided Job Id. Filter the data based on parameters passed in
 
 ```typescript
 const response = await client.v1.jobs.listRuns("jobId", {
-    limit: 10,
-    offset: 0,
+    limit: 1,
+    offset: 1,
 });
 for await (const item of response) {
     console.log(item);
@@ -1988,8 +1988,8 @@ for await (const item of response) {
 
 // Or you can manually iterate page-by-page
 const page = await client.v1.jobs.listRuns("jobId", {
-    limit: 10,
-    offset: 0,
+    limit: 1,
+    offset: 1,
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
