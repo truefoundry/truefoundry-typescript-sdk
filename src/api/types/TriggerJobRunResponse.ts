@@ -10,5 +10,5 @@ export interface TriggerJobRunResponse {
     /** Name of the job run */
     jobRunName: string;
     /** Details of the triggered job run */
-    data: TrueFoundry.JobRunDto;
+    data: TrueFoundry.JobRun;
 }

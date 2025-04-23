@@ -6,5 +6,5 @@ import * as TrueFoundry from "../index";
 
 export interface GetJobRunResponse {
     /** JobRun */
-    data: TrueFoundry.JobRunDto;
+    data: TrueFoundry.JobRun;
 }

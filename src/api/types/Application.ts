@@ -19,7 +19,7 @@ export interface Application {
     createdAt?: string;
     updatedAt?: string;
     /** Recommendations for this application */
-    recommendations?: unknown[][];
+    recommendations?: TrueFoundry.Recommendation[];
     /** Alerts for this application */
     alerts?: TrueFoundry.Alert[];
     /** Summary of alerts for this application */
@@ -30,7 +30,7 @@ export interface Application {
     potentialProblems?: TrueFoundry.ApplicationProblem[];
     autopilot: Record<string, unknown>;
     createdBy?: string;
-    deployment: TrueFoundry.Deployment;
-    activeDeploymentId: string;
-    lastDeploymentId: string;
+    deployment?: TrueFoundry.Deployment;
+    activeDeploymentId?: string;
+    lastDeploymentId?: string;
 }

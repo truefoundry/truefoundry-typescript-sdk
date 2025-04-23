@@ -4,4 +4,9 @@
 
 import * as TrueFoundry from "../index";
 
-export type Manifest = TrueFoundry.ModelManifest | TrueFoundry.ChatPromptManifest | TrueFoundry.ArtifactManifest;
+export type Manifest =
+    | TrueFoundry.ModelManifest
+    | TrueFoundry.ChatPromptManifest
+    | TrueFoundry.AgentOpenApiToolManifest
+    | TrueFoundry.ArtifactManifest
+    | TrueFoundry.AgentManifest;

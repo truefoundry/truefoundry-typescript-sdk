@@ -52,7 +52,7 @@ export class Jobs {
         jobId: string,
         request: TrueFoundry.v1.JobsListRunsRequest = {},
         requestOptions?: Jobs.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.JobRunDto>> {
+    ): Promise<core.Page<TrueFoundry.JobRun>> {
         const list = async (request: TrueFoundry.v1.JobsListRunsRequest): Promise<TrueFoundry.ListJobRunResponse> => {
             const { limit, offset, searchPrefix, sortBy, order, triggeredBy, status } = request;
             const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
@@ -144,7 +144,7 @@ export class Jobs {
             }
         };
         let _offset = request?.offset != null ? request?.offset : 0;
-        return new core.Pageable<TrueFoundry.ListJobRunResponse, TrueFoundry.JobRunDto>({
+        return new core.Pageable<TrueFoundry.ListJobRunResponse, TrueFoundry.JobRun>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],

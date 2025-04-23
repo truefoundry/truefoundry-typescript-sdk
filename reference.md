@@ -1950,7 +1950,7 @@ await client.v1.applicationVersions.get("id", "deploymentId");
 
 ## V1 Jobs
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">listRuns</a>(jobId, { ...params }) -> core.Page<TrueFoundry.JobRunDto></code></summary>
+<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">listRuns</a>(jobId, { ...params }) -> core.Page<TrueFoundry.JobRun></code></summary>
 <dl>
 <dd>
 

@@ -6,5 +6,12 @@ import * as TrueFoundry from "../index";
 
 export interface BuildInfo {
     name: string;
+    /**
+     *       Status of the build:
+     *         STARTED = 20,
+     *         SUCCEEDED = 30,
+     *         FAILED = 40
+     *
+     */
     status: TrueFoundry.BuildStatus;
 }

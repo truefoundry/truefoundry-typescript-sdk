@@ -6,7 +6,7 @@ import * as TrueFoundry from "../index";
 
 export interface ListJobRunResponse {
     /** JobRun History */
-    data: TrueFoundry.JobRunDto[];
+    data: TrueFoundry.JobRun[];
     /** Pagination Information */
     pagination: TrueFoundry.Pagination;
 }

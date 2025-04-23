@@ -14,5 +14,5 @@ import * as TrueFoundry from "../../../../../../index";
  *     }
  */
 export interface UpdateSecretGroupRequest {
-    secrets: TrueFoundry.UpdateSecretDto[];
+    secrets: TrueFoundry.UpdateSecretInput[];
 }
