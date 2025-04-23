@@ -30,13 +30,13 @@ List secrets associated with a user filtered with optional parameters passed in 
 <dd>
 
 ```typescript
-const response = await client.v1.secrets.list({});
+const response = await client.v1.secrets.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.secrets.list({});
+const page = await client.v1.secrets.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -55,7 +55,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ListSecretsRequest`
+**request:** `TrueFoundry.v1.ListSecretsRequest`
 
 </dd>
 </dl>
@@ -333,7 +333,7 @@ await client.v1.secretGroups.create({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CreateSecretGroupRequest`
+**request:** `TrueFoundry.v1.CreateSecretGroupRequest`
 
 </dd>
 </dl>
@@ -474,7 +474,7 @@ await client.v1.secretGroups.update("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.UpdateSecretGroupRequest`
+**request:** `TrueFoundry.v1.UpdateSecretGroupRequest`
 
 </dd>
 </dl>
@@ -756,7 +756,7 @@ await client.v1.clusters.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CreateOrUpdateClusterRequest`
+**request:** `TrueFoundry.v1.CreateOrUpdateClusterRequest`
 
 </dd>
 </dl>
@@ -1170,7 +1170,7 @@ await client.v1.environments.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest`
+**request:** `TrueFoundry.v1.CreateOrUpdateEnvironmentRequest`
 
 </dd>
 </dl>
@@ -1443,7 +1443,7 @@ await client.v1.applications.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CreateDeploymentRequest`
+**request:** `TrueFoundry.v1.CreateDeploymentRequest`
 
 </dd>
 </dl>
@@ -2827,7 +2827,7 @@ await client.v1.mlRepos.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplyMlRepoRequest`
+**request:** `TrueFoundry.v1.ApplyMlRepoRequest`
 
 </dd>
 </dl>

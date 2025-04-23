@@ -34,24 +34,24 @@ export class Secrets {
     /**
      * List secrets associated with a user filtered with optional parameters passed in the body.
      *
-     * @param {TrueFoundry.ListSecretsRequest} request
+     * @param {TrueFoundry.v1.ListSecretsRequest} request
      * @param {Secrets.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.v1.secrets.list({})
+     *     await client.v1.secrets.list()
      */
     public async list(
-        request: TrueFoundry.ListSecretsRequest,
+        request: TrueFoundry.v1.ListSecretsRequest = {},
         requestOptions?: Secrets.RequestOptions,
     ): Promise<core.Page<TrueFoundry.Secret>> {
-        const list = async (request: TrueFoundry.ListSecretsRequest): Promise<TrueFoundry.ListSecretsResponse> => {
+        const list = async (request: TrueFoundry.v1.ListSecretsRequest): Promise<TrueFoundry.ListSecretsResponse> => {
             const _response = await (this._options.fetcher ?? core.fetcher)({
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/secret",
+                    "api/svc/v1/secrets",
                 ),
                 method: "POST",
                 headers: {
@@ -92,7 +92,7 @@ export class Secrets {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling POST /api/svc/v1/secret.");
+                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling POST /api/svc/v1/secrets.");
                 case "unknown":
                     throw new errors.TrueFoundryError({
                         message: _response.error.errorMessage,
@@ -128,7 +128,7 @@ export class Secrets {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret/${encodeURIComponent(id)}`,
+                `api/svc/v1/secrets/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -172,7 +172,7 @@ export class Secrets {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/secret/{id}.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/secrets/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -198,7 +198,7 @@ export class Secrets {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret/${encodeURIComponent(id)}`,
+                `api/svc/v1/secrets/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -245,7 +245,7 @@ export class Secrets {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling DELETE /api/svc/v1/secret/{id}.",
+                    "Timeout exceeded when calling DELETE /api/svc/v1/secrets/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

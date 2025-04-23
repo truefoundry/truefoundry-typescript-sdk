@@ -52,7 +52,7 @@ export class Deployments {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/builds`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/builds`,
             ),
             method: "GET",
             headers: {
@@ -95,7 +95,7 @@ export class Deployments {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/app/{id}/deployments/{deploymentId}/builds.",
+                    "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments/{deploymentId}/builds.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

@@ -50,7 +50,7 @@ export class Clusters {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/cluster/${encodeURIComponent(id)}/autoprovisioning-state`,
+                `api/svc/v1/clusters/${encodeURIComponent(id)}/autoprovisioning-state`,
             ),
             method: "GET",
             headers: {
@@ -93,7 +93,7 @@ export class Clusters {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/cluster/{id}/autoprovisioning-state.",
+                    "Timeout exceeded when calling GET /api/svc/v1/clusters/{id}/autoprovisioning-state.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

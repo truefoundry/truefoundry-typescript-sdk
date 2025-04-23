@@ -57,7 +57,7 @@ export class Applications {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}/pod-template-hash-deployment-version-map`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/pod-template-hash-deployment-version-map`,
             ),
             method: "GET",
             headers: {
@@ -101,7 +101,7 @@ export class Applications {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/app/{id}/pod-template-hash-deployment-version-map.",
+                    "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/pod-template-hash-deployment-version-map.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

@@ -119,7 +119,7 @@ export class Applications {
                 url: urlJoin(
                     (await core.Supplier.get(this._options.baseUrl)) ??
                         (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/app",
+                    "api/svc/v1/apps",
                 ),
                 method: "GET",
                 headers: {
@@ -160,7 +160,7 @@ export class Applications {
                         body: _response.error.rawBody,
                     });
                 case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/app.");
+                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/apps.");
                 case "unknown":
                     throw new errors.TrueFoundryError({
                         message: _response.error.errorMessage,
@@ -182,7 +182,7 @@ export class Applications {
     /**
      * Create a new Application Deployment based on the provided manifest.
      *
-     * @param {TrueFoundry.CreateDeploymentRequest} request
+     * @param {TrueFoundry.v1.CreateDeploymentRequest} request
      * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -198,14 +198,14 @@ export class Applications {
      *     })
      */
     public async createOrUpdate(
-        request: TrueFoundry.CreateDeploymentRequest,
+        request: TrueFoundry.v1.CreateDeploymentRequest,
         requestOptions?: Applications.RequestOptions,
     ): Promise<TrueFoundry.GetApplicationDeploymentResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/app",
+                "api/svc/v1/apps",
             ),
             method: "PUT",
             headers: {
@@ -254,7 +254,7 @@ export class Applications {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/app.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/apps.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -282,7 +282,7 @@ export class Applications {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}`,
             ),
             method: "GET",
             headers: {
@@ -326,7 +326,7 @@ export class Applications {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/app/{id}.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/apps/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -354,7 +354,7 @@ export class Applications {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
             headers: {
@@ -398,7 +398,7 @@ export class Applications {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling DELETE /api/svc/v1/app/{id}.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling DELETE /api/svc/v1/apps/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -425,7 +425,7 @@ export class Applications {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}/scale-to-zero`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/scale-to-zero`,
             ),
             method: "PATCH",
             headers: {
@@ -474,7 +474,7 @@ export class Applications {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling PATCH /api/svc/v1/app/{id}/scale-to-zero.",
+                    "Timeout exceeded when calling PATCH /api/svc/v1/apps/{id}/scale-to-zero.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -504,7 +504,7 @@ export class Applications {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}/scale-to-original`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/scale-to-original`,
             ),
             method: "PATCH",
             headers: {
@@ -551,7 +551,7 @@ export class Applications {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling PATCH /api/svc/v1/app/{id}/scale-to-original.",
+                    "Timeout exceeded when calling PATCH /api/svc/v1/apps/{id}/scale-to-original.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -583,7 +583,7 @@ export class Applications {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/app/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/cancel`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/cancel`,
             ),
             method: "POST",
             headers: {
@@ -630,7 +630,7 @@ export class Applications {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/app/{id}/deployments/{deploymentId}/cancel.",
+                    "Timeout exceeded when calling POST /api/svc/v1/apps/{id}/deployments/{deploymentId}/cancel.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

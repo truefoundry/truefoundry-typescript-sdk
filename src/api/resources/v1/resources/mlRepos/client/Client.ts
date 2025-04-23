@@ -34,7 +34,7 @@ export class MlRepos {
     /**
      * Creates or updates an MLRepo entity based on the provided manifest.
      *
-     * @param {TrueFoundry.ApplyMlRepoRequest} request
+     * @param {TrueFoundry.v1.ApplyMlRepoRequest} request
      * @param {MlRepos.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -50,14 +50,14 @@ export class MlRepos {
      *     })
      */
     public async createOrUpdate(
-        request: TrueFoundry.ApplyMlRepoRequest,
+        request: TrueFoundry.v1.ApplyMlRepoRequest,
         requestOptions?: MlRepos.RequestOptions,
     ): Promise<TrueFoundry.GetMlRepoResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/ml-repo",
+                "api/svc/v1/ml-repos",
             ),
             method: "PUT",
             headers: {
@@ -106,7 +106,7 @@ export class MlRepos {
                     body: _response.error.rawBody,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/ml-repo.");
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/ml-repos.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
