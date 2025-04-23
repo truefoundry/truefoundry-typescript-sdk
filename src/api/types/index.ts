@@ -7,7 +7,7 @@ export * from "./ApplicationLifecycleStage";
 export * from "./Alert";
 export * from "./ApplicationProblem";
 export * from "./BuildInfo";
-export * from "./NewDeploymentStatusEnum";
+export * from "./DeploymentStatusValue";
 export * from "./DeploymentTransition";
 export * from "./DeploymentStatus";
 export * from "./DeploymentManifest";
