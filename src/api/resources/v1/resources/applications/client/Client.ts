@@ -167,7 +167,7 @@ export class Applications {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 1;
+        let _offset = request?.offset != null ? request?.offset : 0;
         return new core.Pageable<TrueFoundry.ListApplicationsResponse, TrueFoundry.Application>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,

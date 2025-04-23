@@ -7,19 +7,19 @@ import * as TrueFoundry from "../../../../../../index";
 /**
  * @example
  *     {
- *         limit: 1,
- *         offset: 1
+ *         limit: 10,
+ *         offset: 0
  *     }
  */
 export interface JobsListRunsRequest {
     /**
      * Number of items per page
      */
-    limit: number;
+    limit?: number;
     /**
      * Number of items to skip
      */
-    offset: number;
+    offset?: number;
     /**
      * Prefix used to search for job runs by name or identifier
      */

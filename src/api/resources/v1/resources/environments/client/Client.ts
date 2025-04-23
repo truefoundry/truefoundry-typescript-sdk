@@ -107,7 +107,7 @@ export class Environments {
                     });
             }
         };
-        let _offset = request?.offset != null ? request?.offset : 1;
+        let _offset = request?.offset != null ? request?.offset : 0;
         return new core.Pageable<TrueFoundry.ListEnvironmentsResponse, TrueFoundry.Environment>({
             response: await list(request),
             hasNextPage: (response) => (response?.data ?? []).length > 0,

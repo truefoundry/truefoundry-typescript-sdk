@@ -7,9 +7,9 @@ import * as TrueFoundry from "../index";
 export interface DeploymentStatus {
     id?: string;
     deploymentId?: string;
-    status?: TrueFoundry.DeploymentStatusStatus;
+    status?: TrueFoundry.NewDeploymentStatusEnum;
     state?: Record<string, unknown>;
-    transition?: TrueFoundry.DeploymentStatusTransition;
+    transition?: TrueFoundry.DeploymentTransition;
     message?: string;
     retryCount?: number;
     createdAt?: string;

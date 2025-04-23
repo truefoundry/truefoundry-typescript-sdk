@@ -14,5 +14,5 @@ export interface TriggerJobRequest {
     /** Application Id of the job */
     applicationId?: string;
     /** Job trigger input */
-    input?: TrueFoundry.JobTriggerInput;
+    input?: TrueFoundry.v1.TriggerJobRequestInput;
 }
