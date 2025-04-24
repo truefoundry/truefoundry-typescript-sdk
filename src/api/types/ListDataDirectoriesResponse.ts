@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ListDataDirectoriesResponse {
-    data?: TrueFoundry.DataDirectory[];
+    data: TrueFoundry.DataDirectory[];
     pagination: TrueFoundry.Pagination;
 }
