@@ -4,6 +4,9 @@
 
 import * as core from "../../../../core";
 import { Users } from "../resources/users/client/Client";
+import { Teams } from "../resources/teams/client/Client";
+import { PersonalAccessTokens } from "../resources/personalAccessTokens/client/Client";
+import { VirtualAccounts } from "../resources/virtualAccounts/client/Client";
 import { Secrets } from "../resources/secrets/client/Client";
 import { SecretGroups } from "../resources/secretGroups/client/Client";
 import { Clusters } from "../resources/clusters/client/Client";
@@ -53,6 +56,9 @@ export declare namespace V1 {
 
 export class V1 {
     protected _users: Users | undefined;
+    protected _teams: Teams | undefined;
+    protected _personalAccessTokens: PersonalAccessTokens | undefined;
+    protected _virtualAccounts: VirtualAccounts | undefined;
     protected _secrets: Secrets | undefined;
     protected _secretGroups: SecretGroups | undefined;
     protected _clusters: Clusters | undefined;
@@ -83,6 +89,18 @@ export class V1 {
 
     public get users(): Users {
         return (this._users ??= new Users(this._options));
+    }
+
+    public get teams(): Teams {
+        return (this._teams ??= new Teams(this._options));
+    }
+
+    public get personalAccessTokens(): PersonalAccessTokens {
+        return (this._personalAccessTokens ??= new PersonalAccessTokens(this._options));
+    }
+
+    public get virtualAccounts(): VirtualAccounts {
+        return (this._virtualAccounts ??= new VirtualAccounts(this._options));
     }
 
     public get secrets(): Secrets {
