@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index";
 
 export interface ApplicationDebugInfo {
-    id: string;
+    id?: string;
     applicationId: string;
     application?: TrueFoundry.Application;
     debugInfo: Record<string, unknown>;

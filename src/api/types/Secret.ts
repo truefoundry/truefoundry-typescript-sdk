@@ -10,10 +10,10 @@ export interface Secret {
     name: string;
     secretGroupId: string;
     value: string;
-    createdBySubject: TrueFoundry.Subject;
+    createdBySubject?: TrueFoundry.Subject;
     createdAt?: string;
     updatedAt?: string;
-    secretVersions: TrueFoundry.SecretVersion[];
+    secretVersions?: TrueFoundry.SecretVersion[];
     activeDeploymentsCount?: number;
     createdBy?: string;
 }

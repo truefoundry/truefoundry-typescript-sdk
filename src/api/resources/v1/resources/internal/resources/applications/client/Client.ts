@@ -41,18 +41,19 @@ export class Applications {
      * @throws {@link TrueFoundry.BadRequestError}
      *
      * @example
-     *     await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
-     *         podTemplateHashes: "podTemplateHashes"
-     *     })
+     *     await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id")
      */
     public async getPodTemplateHashToDeploymentVersion(
         id: string,
-        request: TrueFoundry.v1.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest,
+        request: TrueFoundry.v1.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest = {},
         requestOptions?: Applications.RequestOptions,
     ): Promise<Record<string, number>> {
         const { podTemplateHashes } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams["podTemplateHashes"] = podTemplateHashes;
+        if (podTemplateHashes != null) {
+            _queryParams["podTemplateHashes"] = podTemplateHashes;
+        }
+
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
