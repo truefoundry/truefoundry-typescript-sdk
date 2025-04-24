@@ -11,7 +11,7 @@ export interface Session {
     subjectControllerName?: string;
     subjectPatName?: string;
     email?: string;
-    subjectType: TrueFoundry.SessionSubjectType;
+    subjectType: TrueFoundry.SubjectType;
     tenantName?: string;
     roles: string[];
     teams: string[];

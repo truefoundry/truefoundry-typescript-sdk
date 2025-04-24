@@ -1,5 +1,410 @@
 # Reference
 
+## V1 Users
+
+<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.User></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all users of tenant filtered by query and showInvalidUsers. Pagination is available based on query parameters.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.v1.users.list({
+    limit: 10,
+    offset: 0,
+});
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.v1.users.list({
+    limit: 10,
+    offset: 0,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.UsersListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">updateRoles</a>({ ...params }) -> TrueFoundry.UpdateUserRolesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint allows tenant administrators to update the roles of a user within their tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.users.updateRoles({
+    email: "email",
+    roles: ["roles"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.UpdateUserRolesRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">get</a>(id) -> TrueFoundry.GetUserResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get User associated with provided User id
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.users.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — User Id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">inviteUser</a>({ ...params }) -> TrueFoundry.InviteUserResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Invite a user to the tenant
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.users.inviteUser({
+    acceptInviteClientUrl: "<control plane url>/invite-accept",
+    email: "email",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.InviteUserRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">deactivate</a>({ ...params }) -> TrueFoundry.DeactivateUserResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deactivate user associated with the provided email within the tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.users.deactivate({
+    email: "email",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.DeactivateUserRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">activate</a>({ ...params }) -> TrueFoundry.ActivateUserResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Activate user associated with the provided email within the tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.v1.users.activate({
+    email: "email",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.v1.ActivateUserRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## V1 Secrets
 
 <details><summary><code>client.v1.secrets.<a href="/src/api/resources/v1/resources/secrets/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Secret></code></summary>

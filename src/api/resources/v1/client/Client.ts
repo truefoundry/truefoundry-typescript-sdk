@@ -3,6 +3,7 @@
  */
 
 import * as core from "../../../../core";
+import { Users } from "../resources/users/client/Client";
 import { Secrets } from "../resources/secrets/client/Client";
 import { SecretGroups } from "../resources/secretGroups/client/Client";
 import { Clusters } from "../resources/clusters/client/Client";
@@ -51,6 +52,7 @@ export declare namespace V1 {
 }
 
 export class V1 {
+    protected _users: Users | undefined;
     protected _secrets: Secrets | undefined;
     protected _secretGroups: SecretGroups | undefined;
     protected _clusters: Clusters | undefined;
@@ -78,6 +80,10 @@ export class V1 {
     protected _internal: Internal | undefined;
 
     constructor(protected readonly _options: V1.Options) {}
+
+    public get users(): Users {
+        return (this._users ??= new Users(this._options));
+    }
 
     public get secrets(): Secrets {
         return (this._secrets ??= new Secrets(this._options));
