@@ -12,7 +12,7 @@ export interface Session {
     subjectPatName?: string;
     email?: string;
     subjectType: TrueFoundry.SessionSubjectType;
-    tenantName: string;
+    tenantName?: string;
     roles: string[];
     teams: string[];
     metadata?: TrueFoundry.UserMetadata;

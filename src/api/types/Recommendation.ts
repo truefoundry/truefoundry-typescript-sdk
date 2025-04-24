@@ -6,8 +6,8 @@ export interface Recommendation {
     id?: string;
     clusterId?: string;
     applicationId?: string;
-    deploymentId: string;
-    applicationVersion: number;
+    deploymentId?: string;
+    applicationVersion?: number;
     recommendationData: Record<string, unknown>;
     recommendationType: string;
     appliedDeploymentId?: string;

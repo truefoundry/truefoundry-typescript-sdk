@@ -6629,9 +6629,7 @@ This endpoint fetches the pod template hash to deployment version map for a spec
 <dd>
 
 ```typescript
-await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
-    podTemplateHashes: "podTemplateHashes",
-});
+await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id");
 ```
 
 </dd>
