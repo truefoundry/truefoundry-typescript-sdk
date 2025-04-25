@@ -7,13 +7,11 @@ export type DeploymentTransition =
     | "DEPLOYING"
     | "REUSING_EXISTING_BUILD"
     | "COMPONENTS_DEPLOYING"
-    | "WAITING"
-    | "";
+    | "WAITING";
 export const DeploymentTransition = {
     Building: "BUILDING",
     Deploying: "DEPLOYING",
     ReusingExistingBuild: "REUSING_EXISTING_BUILD",
     ComponentsDeploying: "COMPONENTS_DEPLOYING",
     Waiting: "WAITING",
-    Empty: "",
 } as const;

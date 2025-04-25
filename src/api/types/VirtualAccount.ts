@@ -7,7 +7,7 @@ import * as TrueFoundry from "../index";
 export interface VirtualAccount {
     id: string;
     name: string;
-    type: string;
+    type: TrueFoundry.ServiceAccountType;
     tenantName: string;
     manifest?: TrueFoundry.VirtualAccountManifest;
     createdBySubject: TrueFoundry.Subject;

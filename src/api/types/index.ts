@@ -34,6 +34,7 @@ export * from "./Team";
 export * from "./ListTeamsResponse";
 export * from "./GetTeamResponse";
 export * from "./DeleteTeamResponse";
+export * from "./ServiceAccountType";
 export * from "./VirtualAccount";
 export * from "./ListPersonalAccessTokenResponse";
 export * from "./CreatePersonalAccessTokenResponse";
