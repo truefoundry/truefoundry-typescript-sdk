@@ -4,7 +4,9 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ListDataDirectoriesResponse {
-    data: TrueFoundry.DataDirectory[];
+export interface ListUsersResponse {
+    /** Array of Users */
+    data: TrueFoundry.User[];
+    /** Pagination information */
     pagination: TrueFoundry.Pagination;
 }

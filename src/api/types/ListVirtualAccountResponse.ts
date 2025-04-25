@@ -4,7 +4,9 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ListDataDirectoriesResponse {
-    data: TrueFoundry.DataDirectory[];
+export interface ListVirtualAccountResponse {
+    /** Array of Virtual Accounts */
+    data: TrueFoundry.VirtualAccount[];
+    /** Pagination Information */
     pagination: TrueFoundry.Pagination;
 }

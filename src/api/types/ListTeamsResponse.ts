@@ -4,7 +4,9 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ListDataDirectoriesResponse {
-    data: TrueFoundry.DataDirectory[];
+export interface ListTeamsResponse {
+    /** Teams */
+    data: TrueFoundry.Team[];
+    /** Pagination Information */
     pagination: TrueFoundry.Pagination;
 }
