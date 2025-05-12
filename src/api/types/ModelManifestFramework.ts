@@ -7,7 +7,7 @@ import * as TrueFoundry from "../index";
 /**
  * Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration
  */
-export type Framework =
+export type ModelManifestFramework =
     | TrueFoundry.TransformersFramework
     | TrueFoundry.TensorFlowFramework
     | TrueFoundry.SklearnFramework

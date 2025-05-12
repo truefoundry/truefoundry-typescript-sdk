@@ -11,7 +11,7 @@ export interface SystemMessage {
     /** Role of the message */
     role: "system";
     /** Text content for the system message */
-    content: TrueFoundry.Content;
+    content: TrueFoundry.SystemMessageContent;
     /** Name of the system */
     name?: string;
 }

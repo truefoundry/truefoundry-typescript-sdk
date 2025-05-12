@@ -11,7 +11,7 @@ export interface AssistantMessage {
     /** Role of the message */
     role: "assistant";
     /** Text content for the assistant message */
-    content?: TrueFoundry.Content;
+    content?: TrueFoundry.AssistantMessageContent;
     /** List of tool calls made by the assistant */
     tool_calls?: TrueFoundry.ToolCall[];
     /** Name of the assistant this message is from */

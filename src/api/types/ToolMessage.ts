@@ -11,7 +11,7 @@ export interface ToolMessage {
     /** Role of the message */
     role: "tool";
     /** Content of the tool call result */
-    content: TrueFoundry.Content;
+    content: TrueFoundry.ToolMessageContent;
     /** Unique identifier for the tool call */
     tool_call_id: string;
 }

@@ -7,4 +7,4 @@ import * as TrueFoundry from "../index";
 /**
  * Content of the user message. can be a mix of text and images
  */
-export type Content = string | TrueFoundry.UserMessageContentItem[] | TrueFoundry.BlobStorageReference;
+export type UserMessageContent = string | TrueFoundry.UserMessageContentItem[] | TrueFoundry.BlobStorageReference;

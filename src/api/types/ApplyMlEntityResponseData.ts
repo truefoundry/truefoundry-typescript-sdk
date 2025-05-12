@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export type Data =
+export type ApplyMlEntityResponseData =
     | TrueFoundry.ModelVersion
     | TrueFoundry.PromptVersion
     | TrueFoundry.ToolVersion

@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export type Source =
+export type ModelManifestSource =
     | TrueFoundry.TrueFoundryManagedSource
     | TrueFoundry.ExternalBlobStorageSource
     | TrueFoundry.LocalModelSource;
