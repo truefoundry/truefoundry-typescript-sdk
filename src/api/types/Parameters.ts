@@ -12,5 +12,5 @@ export interface Parameters {
     temperature?: number;
     top_k?: number;
     top_p?: number;
-    stop?: TrueFoundry.Stop;
+    stop?: TrueFoundry.ParametersStop;
 }

@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Text content for the message
+ * Text content for the system message
  */
-export type Text = string | TrueFoundry.BlobStorageReference;
+export type SystemMessageContent = string | TrueFoundry.BlobStorageReference;

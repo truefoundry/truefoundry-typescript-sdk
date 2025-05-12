@@ -11,5 +11,5 @@ export interface TextContentPart {
     /** Type of the content part */
     type: "text";
     /** Text content for the message */
-    text: TrueFoundry.Text;
+    text: TrueFoundry.TextContentPartText;
 }

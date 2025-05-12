@@ -20,9 +20,9 @@ export interface ModelManifest {
     /** Version of the entity */
     version?: number;
     type: "model-version";
-    source: TrueFoundry.Source;
+    source: TrueFoundry.ModelManifestSource;
     /** Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration */
-    framework?: TrueFoundry.Framework;
+    framework?: TrueFoundry.ModelManifestFramework;
     environment?: TrueFoundry.ModelVersionEnvironment;
     /** Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run */
     step?: number;

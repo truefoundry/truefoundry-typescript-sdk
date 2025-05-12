@@ -5,5 +5,5 @@
 import * as TrueFoundry from "../index";
 
 export interface ApplyMlEntityResponse {
-    data: TrueFoundry.Data;
+    data: TrueFoundry.ApplyMlEntityResponseData;
 }
