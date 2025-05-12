@@ -1,10 +1,19 @@
-import { WrappedAgentVersions, WrappedArtifactVersions, WrappedModelVersions, WrappedPromptVersions, WrappedToolVersions, WrappedTracingProjects, WrappedWorkspaces } from "./api/resources/v1/_WrappedClients";
-import { V1 as BaseV1 } from "./api/resources/v1/client/Client";
+import {
+    WrappedAgentVersions,
+    WrappedArtifactVersions,
+    WrappedModelVersions,
+    WrappedPromptVersions,
+    WrappedToolVersions,
+    WrappedTracingProjects,
+    WrappedWorkspaces,
+    WrappedApplications
+} from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
 
 
-class V1 extends BaseV1 {
+export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected _agentVersions: WrappedAgentVersions | undefined;
+    protected _applications: WrappedApplications | undefined;
     protected _artifactVersions: WrappedArtifactVersions | undefined;
     protected _modelVersions: WrappedModelVersions | undefined;
     protected _promptVersions: WrappedPromptVersions | undefined;
@@ -14,6 +23,10 @@ class V1 extends BaseV1 {
 
     public get agentVersions(): WrappedAgentVersions {
         return (this._agentVersions ??= new WrappedAgentVersions(this._options));
+    }
+
+    public get applications(): WrappedApplications {
+        return (this._applications ??= new WrappedApplications(this._options));
     }
 
     public get artifactVersions(): WrappedArtifactVersions {
@@ -41,13 +54,5 @@ class V1 extends BaseV1 {
     }
 }
 
-export class TrueFoundryClient extends BaseTrueFoundryClient {
-    protected _v1: V1 | undefined;
 
-    public get v1(): V1 {
-        if (!this._v1) {
-            this._v1 = new V1(this._options);
-        }
-        return this._v1;
-    }
-}
+

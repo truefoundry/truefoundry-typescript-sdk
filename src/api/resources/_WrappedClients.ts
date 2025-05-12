@@ -1,12 +1,13 @@
-import * as core from "../../../core"
-import * as TrueFoundry from "../../index";
-import { PromptVersions } from "./resources/promptVersions/client/Client";
-import { ToolVersions } from "./resources/toolVersions/client/Client";
-import { Workspaces } from "./resources/workspaces/client/Client";
-import { ModelVersions } from "./resources/modelVersions/client/Client";
-import { AgentVersions } from "./resources/agentVersions/client/Client";
-import { ArtifactVersions } from "./resources/artifactVersions/client/Client";
-import { TracingProjects } from "./resources/tracingProjects/client/Client";
+import { AgentVersions } from "./agentVersions/client/Client";
+import { Applications } from "./applications/client/Client";
+import { ArtifactVersions } from "./artifactVersions/client/Client";
+import { ModelVersions } from "./modelVersions/client/Client";
+import { PromptVersions } from "./promptVersions/client/Client";
+import { ToolVersions } from "./toolVersions/client/Client";
+import { TracingProjects } from "./tracingProjects/client/Client";
+import { Workspaces } from "./workspaces/client/Client";
+import * as core from "../../core"
+import * as TrueFoundry from "../index";
 
 interface HasAsyncListMethod<T> {
     list(request: { fqn: string; limit?: number }, requestOptions?: object): Promise<core.Page<T>>;
@@ -45,6 +46,26 @@ export class WrappedAgentVersions extends AgentVersions {
         fqn: string,
         requestOptions?: AgentVersions.RequestOptions,
     ): Promise<TrueFoundry.GetAgentVersionResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
+export class WrappedApplications extends Applications {
+    /**
+     * Get application API
+     *
+     * @param {string} fqn
+     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.applications.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<TrueFoundry.GetApplicationResponse> {
         return { data: await getByFqn(this, fqn, requestOptions) }
     }
 }
