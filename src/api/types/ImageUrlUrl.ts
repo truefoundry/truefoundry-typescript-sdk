@@ -7,4 +7,4 @@ import * as TrueFoundry from "../index";
 /**
  * Image URL linking to the image
  */
-export type Url = string | TrueFoundry.BlobStorageReference;
+export type ImageUrlUrl = string | TrueFoundry.BlobStorageReference;

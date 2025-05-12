@@ -11,7 +11,7 @@ export interface DeveloperMessage {
     /** The role of the messages author, in this case developer. */
     role: "developer";
     /** The contents of the developer message. */
-    content: TrueFoundry.Content;
+    content: TrueFoundry.DeveloperMessageContent;
     /** An optional name for the participant. */
     name?: string;
 }

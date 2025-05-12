@@ -11,7 +11,7 @@ export interface UserMessage {
     /** Role of the message */
     role: "user";
     /** Content of the user message. can be a mix of text and images */
-    content: TrueFoundry.Content;
+    content: TrueFoundry.UserMessageContent;
     /** Name of the user this message is from */
     name?: string;
 }
