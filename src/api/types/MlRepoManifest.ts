@@ -9,7 +9,6 @@ import * as TrueFoundry from "../index";
  * +usage=MLRepo is a repository ML training runs that log params, metrics, plots, images and versioned entities like artifacts, models, prompts, tools, agents
  */
 export interface MlRepoManifest {
-    /** +value=ml-repo */
     type: "ml-repo";
     /**
      * +label=Name
