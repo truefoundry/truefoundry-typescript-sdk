@@ -3,7 +3,35 @@
  */
 
 import * as core from "./core";
-import { V1 } from "./api/resources/v1/client/Client";
+import { Users } from "./api/resources/users/client/Client";
+import { Teams } from "./api/resources/teams/client/Client";
+import { PersonalAccessTokens } from "./api/resources/personalAccessTokens/client/Client";
+import { VirtualAccounts } from "./api/resources/virtualAccounts/client/Client";
+import { Secrets } from "./api/resources/secrets/client/Client";
+import { SecretGroups } from "./api/resources/secretGroups/client/Client";
+import { Clusters } from "./api/resources/clusters/client/Client";
+import { Environments } from "./api/resources/environments/client/Client";
+import { Applications } from "./api/resources/applications/client/Client";
+import { ApplicationVersions } from "./api/resources/applicationVersions/client/Client";
+import { Jobs } from "./api/resources/jobs/client/Client";
+import { Workspaces } from "./api/resources/workspaces/client/Client";
+import { Events } from "./api/resources/events/client/Client";
+import { Alerts } from "./api/resources/alerts/client/Client";
+import { Logs } from "./api/resources/logs/client/Client";
+import { MlRepos } from "./api/resources/mlRepos/client/Client";
+import { Artifacts } from "./api/resources/artifacts/client/Client";
+import { Agents } from "./api/resources/agents/client/Client";
+import { Prompts } from "./api/resources/prompts/client/Client";
+import { Tools } from "./api/resources/tools/client/Client";
+import { Models } from "./api/resources/models/client/Client";
+import { ArtifactVersions } from "./api/resources/artifactVersions/client/Client";
+import { ModelVersions } from "./api/resources/modelVersions/client/Client";
+import { PromptVersions } from "./api/resources/promptVersions/client/Client";
+import { ToolVersions } from "./api/resources/toolVersions/client/Client";
+import { AgentVersions } from "./api/resources/agentVersions/client/Client";
+import { DataDirectories } from "./api/resources/dataDirectories/client/Client";
+import { TracingProjects } from "./api/resources/tracingProjects/client/Client";
+import { Internal } from "./api/resources/internal/client/Client";
 
 export declare namespace TrueFoundryClient {
     export interface Options {
@@ -27,11 +55,151 @@ export declare namespace TrueFoundryClient {
 }
 
 export class TrueFoundryClient {
-    protected _v1: V1 | undefined;
+    protected _users: Users | undefined;
+    protected _teams: Teams | undefined;
+    protected _personalAccessTokens: PersonalAccessTokens | undefined;
+    protected _virtualAccounts: VirtualAccounts | undefined;
+    protected _secrets: Secrets | undefined;
+    protected _secretGroups: SecretGroups | undefined;
+    protected _clusters: Clusters | undefined;
+    protected _environments: Environments | undefined;
+    protected _applications: Applications | undefined;
+    protected _applicationVersions: ApplicationVersions | undefined;
+    protected _jobs: Jobs | undefined;
+    protected _workspaces: Workspaces | undefined;
+    protected _events: Events | undefined;
+    protected _alerts: Alerts | undefined;
+    protected _logs: Logs | undefined;
+    protected _mlRepos: MlRepos | undefined;
+    protected _artifacts: Artifacts | undefined;
+    protected _agents: Agents | undefined;
+    protected _prompts: Prompts | undefined;
+    protected _tools: Tools | undefined;
+    protected _models: Models | undefined;
+    protected _artifactVersions: ArtifactVersions | undefined;
+    protected _modelVersions: ModelVersions | undefined;
+    protected _promptVersions: PromptVersions | undefined;
+    protected _toolVersions: ToolVersions | undefined;
+    protected _agentVersions: AgentVersions | undefined;
+    protected _dataDirectories: DataDirectories | undefined;
+    protected _tracingProjects: TracingProjects | undefined;
+    protected _internal: Internal | undefined;
 
     constructor(protected readonly _options: TrueFoundryClient.Options) {}
 
-    public get v1(): V1 {
-        return (this._v1 ??= new V1(this._options));
+    public get users(): Users {
+        return (this._users ??= new Users(this._options));
+    }
+
+    public get teams(): Teams {
+        return (this._teams ??= new Teams(this._options));
+    }
+
+    public get personalAccessTokens(): PersonalAccessTokens {
+        return (this._personalAccessTokens ??= new PersonalAccessTokens(this._options));
+    }
+
+    public get virtualAccounts(): VirtualAccounts {
+        return (this._virtualAccounts ??= new VirtualAccounts(this._options));
+    }
+
+    public get secrets(): Secrets {
+        return (this._secrets ??= new Secrets(this._options));
+    }
+
+    public get secretGroups(): SecretGroups {
+        return (this._secretGroups ??= new SecretGroups(this._options));
+    }
+
+    public get clusters(): Clusters {
+        return (this._clusters ??= new Clusters(this._options));
+    }
+
+    public get environments(): Environments {
+        return (this._environments ??= new Environments(this._options));
+    }
+
+    public get applications(): Applications {
+        return (this._applications ??= new Applications(this._options));
+    }
+
+    public get applicationVersions(): ApplicationVersions {
+        return (this._applicationVersions ??= new ApplicationVersions(this._options));
+    }
+
+    public get jobs(): Jobs {
+        return (this._jobs ??= new Jobs(this._options));
+    }
+
+    public get workspaces(): Workspaces {
+        return (this._workspaces ??= new Workspaces(this._options));
+    }
+
+    public get events(): Events {
+        return (this._events ??= new Events(this._options));
+    }
+
+    public get alerts(): Alerts {
+        return (this._alerts ??= new Alerts(this._options));
+    }
+
+    public get logs(): Logs {
+        return (this._logs ??= new Logs(this._options));
+    }
+
+    public get mlRepos(): MlRepos {
+        return (this._mlRepos ??= new MlRepos(this._options));
+    }
+
+    public get artifacts(): Artifacts {
+        return (this._artifacts ??= new Artifacts(this._options));
+    }
+
+    public get agents(): Agents {
+        return (this._agents ??= new Agents(this._options));
+    }
+
+    public get prompts(): Prompts {
+        return (this._prompts ??= new Prompts(this._options));
+    }
+
+    public get tools(): Tools {
+        return (this._tools ??= new Tools(this._options));
+    }
+
+    public get models(): Models {
+        return (this._models ??= new Models(this._options));
+    }
+
+    public get artifactVersions(): ArtifactVersions {
+        return (this._artifactVersions ??= new ArtifactVersions(this._options));
+    }
+
+    public get modelVersions(): ModelVersions {
+        return (this._modelVersions ??= new ModelVersions(this._options));
+    }
+
+    public get promptVersions(): PromptVersions {
+        return (this._promptVersions ??= new PromptVersions(this._options));
+    }
+
+    public get toolVersions(): ToolVersions {
+        return (this._toolVersions ??= new ToolVersions(this._options));
+    }
+
+    public get agentVersions(): AgentVersions {
+        return (this._agentVersions ??= new AgentVersions(this._options));
+    }
+
+    public get dataDirectories(): DataDirectories {
+        return (this._dataDirectories ??= new DataDirectories(this._options));
+    }
+
+    public get tracingProjects(): TracingProjects {
+        return (this._tracingProjects ??= new TracingProjects(this._options));
+    }
+
+    public get internal(): Internal {
+        return (this._internal ??= new Internal(this._options));
     }
 }

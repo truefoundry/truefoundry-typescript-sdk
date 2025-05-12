@@ -23,7 +23,7 @@ Instantiate and use the client with the following:
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-await client.v1.users.inviteUser({
+await client.users.inviteUser({
     acceptInviteClientUrl: "<control plane url>/invite-accept",
     email: "email",
 });
@@ -51,7 +51,7 @@ will be thrown.
 import { TrueFoundryError } from "truefoundry-sdk";
 
 try {
-    await client.v1.users.inviteUser(...);
+    await client.users.inviteUser(...);
 } catch (err) {
     if (err instanceof TrueFoundryError) {
         console.log(err.statusCode);
@@ -69,7 +69,7 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.v1.users.list({
+const response = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -78,7 +78,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.users.list({
+const page = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -94,7 +94,7 @@ while (page.hasNextPage()) {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.users.inviteUser(..., {
     headers: {
         'X-Custom-Header': 'custom value'
     }
@@ -116,7 +116,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.users.inviteUser(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -126,7 +126,7 @@ const response = await client.v1.users.inviteUser(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.users.inviteUser(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -137,7 +137,7 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.users.inviteUser(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request

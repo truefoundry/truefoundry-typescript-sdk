@@ -7,6 +7,7 @@ export interface SshServerConfig {
      * +label=SSH Base Domain
      * +usage=The base domain for the cluster with which you can access your SSH containers
      * +sort=1000
+     * +message=Must not contain any spaces.
      */
     base_domain: string;
     /**

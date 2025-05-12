@@ -14,6 +14,7 @@ export interface ClusterManifestWorkbenchConfig {
     /**
      * +label=Default Storage Class
      * +usage=The default storage class for the home directory of workbench
+     * +message=Must not contain any spaces.
      */
     default_storage_class?: string;
 }

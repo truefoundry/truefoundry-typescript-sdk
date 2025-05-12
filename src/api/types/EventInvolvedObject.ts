@@ -7,4 +7,5 @@ export interface EventInvolvedObject {
     name: string;
     apiVersion?: string;
     namespace?: string;
+    containerName?: string;
 }

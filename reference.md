@@ -1,8 +1,8 @@
 # Reference
 
-## V1 Users
+## Users
 
-<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.User></code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.User></code></summary>
 <dl>
 <dd>
 
@@ -30,7 +30,7 @@ List all users of tenant filtered by query and showInvalidUsers. Pagination is a
 <dd>
 
 ```typescript
-const response = await client.v1.users.list({
+const response = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -39,7 +39,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.users.list({
+const page = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -61,7 +61,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.UsersListRequest`
+**request:** `TrueFoundry.UsersListRequest`
 
 </dd>
 </dl>
@@ -80,7 +80,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">updateRoles</a>({ ...params }) -> TrueFoundry.UpdateUserRolesResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">updateRoles</a>({ ...params }) -> TrueFoundry.UpdateUserRolesResponse</code></summary>
 <dl>
 <dd>
 
@@ -108,7 +108,7 @@ This endpoint allows tenant administrators to update the roles of a user within 
 <dd>
 
 ```typescript
-await client.v1.users.updateRoles({
+await client.users.updateRoles({
     email: "email",
     roles: ["roles"],
 });
@@ -127,7 +127,7 @@ await client.v1.users.updateRoles({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.UpdateUserRolesRequest`
+**request:** `TrueFoundry.UpdateUserRolesRequest`
 
 </dd>
 </dl>
@@ -146,7 +146,7 @@ await client.v1.users.updateRoles({
 </dl>
 </details>
 
-<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">get</a>(id) -> TrueFoundry.GetUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">get</a>(id) -> TrueFoundry.GetUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -174,7 +174,7 @@ Get User associated with provided User id
 <dd>
 
 ```typescript
-await client.v1.users.get("id");
+await client.users.get("id");
 ```
 
 </dd>
@@ -209,7 +209,7 @@ await client.v1.users.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">inviteUser</a>({ ...params }) -> TrueFoundry.InviteUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">inviteUser</a>({ ...params }) -> TrueFoundry.InviteUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -237,7 +237,7 @@ Invite a user to the tenant
 <dd>
 
 ```typescript
-await client.v1.users.inviteUser({
+await client.users.inviteUser({
     acceptInviteClientUrl: "<control plane url>/invite-accept",
     email: "email",
 });
@@ -256,7 +256,7 @@ await client.v1.users.inviteUser({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.InviteUserRequest`
+**request:** `TrueFoundry.InviteUserRequest`
 
 </dd>
 </dl>
@@ -275,7 +275,7 @@ await client.v1.users.inviteUser({
 </dl>
 </details>
 
-<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">deactivate</a>({ ...params }) -> TrueFoundry.DeactivateUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">deactivate</a>({ ...params }) -> TrueFoundry.DeactivateUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -303,7 +303,7 @@ Deactivate user associated with the provided email within the tenant.
 <dd>
 
 ```typescript
-await client.v1.users.deactivate({
+await client.users.deactivate({
     email: "email",
 });
 ```
@@ -321,7 +321,7 @@ await client.v1.users.deactivate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.DeactivateUserRequest`
+**request:** `TrueFoundry.DeactivateUserRequest`
 
 </dd>
 </dl>
@@ -340,7 +340,7 @@ await client.v1.users.deactivate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.users.<a href="/src/api/resources/v1/resources/users/client/Client.ts">activate</a>({ ...params }) -> TrueFoundry.ActivateUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">activate</a>({ ...params }) -> TrueFoundry.ActivateUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -368,7 +368,7 @@ Activate user associated with the provided email within the tenant.
 <dd>
 
 ```typescript
-await client.v1.users.activate({
+await client.users.activate({
     email: "email",
 });
 ```
@@ -386,7 +386,7 @@ await client.v1.users.activate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ActivateUserRequest`
+**request:** `TrueFoundry.ActivateUserRequest`
 
 </dd>
 </dl>
@@ -405,9 +405,9 @@ await client.v1.users.activate({
 </dl>
 </details>
 
-## V1 Teams
+## Teams
 
-<details><summary><code>client.v1.teams.<a href="/src/api/resources/v1/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Team></code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Team></code></summary>
 <dl>
 <dd>
 
@@ -435,7 +435,7 @@ Retrieve all teams associated with the authenticated user. If the user is a tena
 <dd>
 
 ```typescript
-const response = await client.v1.teams.list({
+const response = await client.teams.list({
     limit: 10,
     offset: 0,
 });
@@ -444,7 +444,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.teams.list({
+const page = await client.teams.list({
     limit: 10,
     offset: 0,
 });
@@ -466,7 +466,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.TeamsListRequest`
+**request:** `TrueFoundry.TeamsListRequest`
 
 </dd>
 </dl>
@@ -485,7 +485,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.teams.<a href="/src/api/resources/v1/resources/teams/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetTeamResponse</code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetTeamResponse</code></summary>
 <dl>
 <dd>
 
@@ -513,7 +513,7 @@ Creates a new team or updates an existing team. It ensures that the team name is
 <dd>
 
 ```typescript
-await client.v1.teams.createOrUpdate({
+await client.teams.createOrUpdate({
     manifest: {
         type: "team",
         name: "name",
@@ -535,7 +535,7 @@ await client.v1.teams.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ApplyTeamRequest`
+**request:** `TrueFoundry.ApplyTeamRequest`
 
 </dd>
 </dl>
@@ -554,7 +554,7 @@ await client.v1.teams.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.teams.<a href="/src/api/resources/v1/resources/teams/client/Client.ts">get</a>(id) -> TrueFoundry.GetTeamResponse</code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">get</a>(id) -> TrueFoundry.GetTeamResponse</code></summary>
 <dl>
 <dd>
 
@@ -582,7 +582,7 @@ Get Team associated with provided team id
 <dd>
 
 ```typescript
-await client.v1.teams.get("id");
+await client.teams.get("id");
 ```
 
 </dd>
@@ -617,7 +617,7 @@ await client.v1.teams.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.teams.<a href="/src/api/resources/v1/resources/teams/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteTeamResponse</code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteTeamResponse</code></summary>
 <dl>
 <dd>
 
@@ -645,7 +645,7 @@ Deletes the Team associated with the provided Id.
 <dd>
 
 ```typescript
-await client.v1.teams.delete("id");
+await client.teams.delete("id");
 ```
 
 </dd>
@@ -680,9 +680,9 @@ await client.v1.teams.delete("id");
 </dl>
 </details>
 
-## V1 PersonalAccessTokens
+## PersonalAccessTokens
 
-<details><summary><code>client.v1.personalAccessTokens.<a href="/src/api/resources/v1/resources/personalAccessTokens/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.VirtualAccount></code></summary>
+<details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.VirtualAccount></code></summary>
 <dl>
 <dd>
 
@@ -710,7 +710,7 @@ List Personal Access Tokens created by the user in the current tenant.
 <dd>
 
 ```typescript
-const response = await client.v1.personalAccessTokens.list({
+const response = await client.personalAccessTokens.list({
     limit: 10,
     offset: 0,
 });
@@ -719,7 +719,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.personalAccessTokens.list({
+const page = await client.personalAccessTokens.list({
     limit: 10,
     offset: 0,
 });
@@ -741,7 +741,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.PersonalAccessTokensListRequest`
+**request:** `TrueFoundry.PersonalAccessTokensListRequest`
 
 </dd>
 </dl>
@@ -760,7 +760,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.personalAccessTokens.<a href="/src/api/resources/v1/resources/personalAccessTokens/client/Client.ts">create</a>({ ...params }) -> TrueFoundry.CreatePersonalAccessTokenResponse</code></summary>
+<details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">create</a>({ ...params }) -> TrueFoundry.CreatePersonalAccessTokenResponse</code></summary>
 <dl>
 <dd>
 
@@ -788,7 +788,7 @@ Create Personal Access Token
 <dd>
 
 ```typescript
-await client.v1.personalAccessTokens.create({
+await client.personalAccessTokens.create({
     name: "name",
 });
 ```
@@ -806,7 +806,7 @@ await client.v1.personalAccessTokens.create({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreatePersonalAccessTokenRequest`
+**request:** `TrueFoundry.CreatePersonalAccessTokenRequest`
 
 </dd>
 </dl>
@@ -825,7 +825,7 @@ await client.v1.personalAccessTokens.create({
 </dl>
 </details>
 
-<details><summary><code>client.v1.personalAccessTokens.<a href="/src/api/resources/v1/resources/personalAccessTokens/client/Client.ts">delete</a>(id) -> TrueFoundry.DeletePersonalAccessTokenResponse</code></summary>
+<details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">delete</a>(id) -> TrueFoundry.DeletePersonalAccessTokenResponse</code></summary>
 <dl>
 <dd>
 
@@ -853,7 +853,7 @@ Delete Personal Access Token associated with the provided serviceAccountId
 <dd>
 
 ```typescript
-await client.v1.personalAccessTokens.delete("id");
+await client.personalAccessTokens.delete("id");
 ```
 
 </dd>
@@ -888,9 +888,9 @@ await client.v1.personalAccessTokens.delete("id");
 </dl>
 </details>
 
-## V1 VirtualAccounts
+## VirtualAccounts
 
-<details><summary><code>client.v1.virtualAccounts.<a href="/src/api/resources/v1/resources/virtualAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.VirtualAccount></code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.VirtualAccount></code></summary>
 <dl>
 <dd>
 
@@ -918,7 +918,7 @@ List virtual accounts for the tenant.
 <dd>
 
 ```typescript
-const response = await client.v1.virtualAccounts.list({
+const response = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
 });
@@ -927,7 +927,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.virtualAccounts.list({
+const page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
 });
@@ -949,7 +949,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.VirtualAccountsListRequest`
+**request:** `TrueFoundry.VirtualAccountsListRequest`
 
 </dd>
 </dl>
@@ -968,7 +968,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.virtualAccounts.<a href="/src/api/resources/v1/resources/virtualAccounts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetVirtualAccountResponse</code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetVirtualAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -996,7 +996,7 @@ Creates a new virtual account or updates an existing one based on the provided m
 <dd>
 
 ```typescript
-await client.v1.virtualAccounts.createOrUpdate({
+await client.virtualAccounts.createOrUpdate({
     manifest: {
         name: "name",
         type: "virtual-account",
@@ -1024,7 +1024,7 @@ await client.v1.virtualAccounts.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ApplyVirtualAccountRequest`
+**request:** `TrueFoundry.ApplyVirtualAccountRequest`
 
 </dd>
 </dl>
@@ -1043,7 +1043,7 @@ await client.v1.virtualAccounts.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.virtualAccounts.<a href="/src/api/resources/v1/resources/virtualAccounts/client/Client.ts">get</a>(id) -> TrueFoundry.GetVirtualAccountResponse</code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">get</a>(id) -> TrueFoundry.GetVirtualAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -1071,7 +1071,7 @@ Get virtual account by id
 <dd>
 
 ```typescript
-await client.v1.virtualAccounts.get("id");
+await client.virtualAccounts.get("id");
 ```
 
 </dd>
@@ -1106,7 +1106,7 @@ await client.v1.virtualAccounts.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.virtualAccounts.<a href="/src/api/resources/v1/resources/virtualAccounts/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteVirtualAccountResponse</code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteVirtualAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -1134,7 +1134,7 @@ Delete a virtual account associated with the provided virtual account id.
 <dd>
 
 ```typescript
-await client.v1.virtualAccounts.delete("id");
+await client.virtualAccounts.delete("id");
 ```
 
 </dd>
@@ -1169,9 +1169,9 @@ await client.v1.virtualAccounts.delete("id");
 </dl>
 </details>
 
-## V1 Secrets
+## Secrets
 
-<details><summary><code>client.v1.secrets.<a href="/src/api/resources/v1/resources/secrets/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Secret></code></summary>
+<details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Secret></code></summary>
 <dl>
 <dd>
 
@@ -1199,13 +1199,13 @@ List secrets associated with a user filtered with optional parameters passed in 
 <dd>
 
 ```typescript
-const response = await client.v1.secrets.list();
+const response = await client.secrets.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.secrets.list();
+const page = await client.secrets.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1224,7 +1224,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ListSecretsRequest`
+**request:** `TrueFoundry.ListSecretsRequest`
 
 </dd>
 </dl>
@@ -1243,7 +1243,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.secrets.<a href="/src/api/resources/v1/resources/secrets/client/Client.ts">get</a>(id) -> TrueFoundry.GetSecretResponse</code></summary>
+<details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">get</a>(id) -> TrueFoundry.GetSecretResponse</code></summary>
 <dl>
 <dd>
 
@@ -1271,7 +1271,7 @@ Get Secret associated with provided id
 <dd>
 
 ```typescript
-await client.v1.secrets.get("id");
+await client.secrets.get("id");
 ```
 
 </dd>
@@ -1306,7 +1306,7 @@ await client.v1.secrets.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.secrets.<a href="/src/api/resources/v1/resources/secrets/client/Client.ts">delete</a>(id) -> number</code></summary>
+<details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">delete</a>(id) -> number</code></summary>
 <dl>
 <dd>
 
@@ -1334,7 +1334,7 @@ Deletes a secret and its versions along with its values.
 <dd>
 
 ```typescript
-await client.v1.secrets.delete("id");
+await client.secrets.delete("id");
 ```
 
 </dd>
@@ -1369,9 +1369,9 @@ await client.v1.secrets.delete("id");
 </dl>
 </details>
 
-## V1 SecretGroups
+## SecretGroups
 
-<details><summary><code>client.v1.secretGroups.<a href="/src/api/resources/v1/resources/secretGroups/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.SecretGroup></code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.SecretGroup></code></summary>
 <dl>
 <dd>
 
@@ -1399,7 +1399,7 @@ List the secret groups associated with a user along with the associated secrets 
 <dd>
 
 ```typescript
-const response = await client.v1.secretGroups.list({
+const response = await client.secretGroups.list({
     limit: 10,
     offset: 0,
 });
@@ -1408,7 +1408,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.secretGroups.list({
+const page = await client.secretGroups.list({
     limit: 10,
     offset: 0,
 });
@@ -1430,7 +1430,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.SecretGroupsListRequest`
+**request:** `TrueFoundry.SecretGroupsListRequest`
 
 </dd>
 </dl>
@@ -1449,7 +1449,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.secretGroups.<a href="/src/api/resources/v1/resources/secretGroups/client/Client.ts">create</a>({ ...params }) -> TrueFoundry.GetSecretGroupResponse</code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">create</a>({ ...params }) -> TrueFoundry.GetSecretGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -1477,7 +1477,7 @@ Creates a secret group with secrets in it. A secret version for each of the crea
 <dd>
 
 ```typescript
-await client.v1.secretGroups.create({
+await client.secretGroups.create({
     name: "name",
     integrationId: "integrationId",
     secrets: [
@@ -1502,7 +1502,7 @@ await client.v1.secretGroups.create({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateSecretGroupRequest`
+**request:** `TrueFoundry.CreateSecretGroupRequest`
 
 </dd>
 </dl>
@@ -1521,7 +1521,7 @@ await client.v1.secretGroups.create({
 </dl>
 </details>
 
-<details><summary><code>client.v1.secretGroups.<a href="/src/api/resources/v1/resources/secretGroups/client/Client.ts">get</a>(id) -> TrueFoundry.GetSecretGroupResponse</code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">get</a>(id) -> TrueFoundry.GetSecretGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -1549,7 +1549,7 @@ Get Secret Group associated with provided secretGroup id
 <dd>
 
 ```typescript
-await client.v1.secretGroups.get("id");
+await client.secretGroups.get("id");
 ```
 
 </dd>
@@ -1584,7 +1584,7 @@ await client.v1.secretGroups.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.secretGroups.<a href="/src/api/resources/v1/resources/secretGroups/client/Client.ts">update</a>(id, { ...params }) -> TrueFoundry.GetSecretGroupResponse</code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">update</a>(id, { ...params }) -> TrueFoundry.GetSecretGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -1612,7 +1612,7 @@ Updates the secrets in a secret group with new values. A new secret version is c
 <dd>
 
 ```typescript
-await client.v1.secretGroups.update("id", {
+await client.secretGroups.update("id", {
     secrets: [
         {
             key: "key",
@@ -1643,7 +1643,7 @@ await client.v1.secretGroups.update("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.UpdateSecretGroupRequest`
+**request:** `TrueFoundry.UpdateSecretGroupRequest`
 
 </dd>
 </dl>
@@ -1662,7 +1662,7 @@ await client.v1.secretGroups.update("id", {
 </dl>
 </details>
 
-<details><summary><code>client.v1.secretGroups.<a href="/src/api/resources/v1/resources/secretGroups/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteSecretGroupResponse</code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteSecretGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -1690,7 +1690,7 @@ Deletes the secret group, its associated secrets and secret versions of those se
 <dd>
 
 ```typescript
-await client.v1.secretGroups.delete("id");
+await client.secretGroups.delete("id");
 ```
 
 </dd>
@@ -1725,7 +1725,7 @@ await client.v1.secretGroups.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.secretGroups.<a href="/src/api/resources/v1/resources/secretGroups/client/Client.ts">listSecrets</a>(id) -> TrueFoundry.Secret[]</code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">listSecrets</a>(id) -> TrueFoundry.Secret[]</code></summary>
 <dl>
 <dd>
 
@@ -1753,7 +1753,7 @@ List Secrets associated with a Secret Group.
 <dd>
 
 ```typescript
-await client.v1.secretGroups.listSecrets("id");
+await client.secretGroups.listSecrets("id");
 ```
 
 </dd>
@@ -1788,9 +1788,9 @@ await client.v1.secretGroups.listSecrets("id");
 </dl>
 </details>
 
-## V1 Clusters
+## Clusters
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Cluster></code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Cluster></code></summary>
 <dl>
 <dd>
 
@@ -1818,7 +1818,7 @@ Retrieves a list of all latest Clusters. Pagination is available based on query 
 <dd>
 
 ```typescript
-const response = await client.v1.clusters.list({
+const response = await client.clusters.list({
     limit: 10,
     offset: 0,
 });
@@ -1827,7 +1827,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.clusters.list({
+const page = await client.clusters.list({
     limit: 10,
     offset: 0,
 });
@@ -1849,7 +1849,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ClustersListRequest`
+**request:** `TrueFoundry.ClustersListRequest`
 
 </dd>
 </dl>
@@ -1868,7 +1868,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetClusterResponse</code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetClusterResponse</code></summary>
 <dl>
 <dd>
 
@@ -1896,7 +1896,7 @@ Create or Update cluster with provided manifest
 <dd>
 
 ```typescript
-await client.v1.clusters.createOrUpdate({
+await client.clusters.createOrUpdate({
     manifest: {
         type: "cluster",
         name: "name",
@@ -1925,7 +1925,7 @@ await client.v1.clusters.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateOrUpdateClusterRequest`
+**request:** `TrueFoundry.CreateOrUpdateClusterRequest`
 
 </dd>
 </dl>
@@ -1944,7 +1944,7 @@ await client.v1.clusters.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">get</a>(id) -> TrueFoundry.GetClusterResponse</code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">get</a>(id) -> TrueFoundry.GetClusterResponse</code></summary>
 <dl>
 <dd>
 
@@ -1972,7 +1972,7 @@ Get cluster associated with provided id
 <dd>
 
 ```typescript
-await client.v1.clusters.get("id");
+await client.clusters.get("id");
 ```
 
 </dd>
@@ -2007,7 +2007,7 @@ await client.v1.clusters.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">delete</a>(id) -> TrueFoundry.ClustersDeleteResponse</code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">delete</a>(id) -> TrueFoundry.ClustersDeleteResponse</code></summary>
 <dl>
 <dd>
 
@@ -2035,7 +2035,7 @@ Delete cluster associated with provided cluster id
 <dd>
 
 ```typescript
-await client.v1.clusters.delete("id");
+await client.clusters.delete("id");
 ```
 
 </dd>
@@ -2070,7 +2070,7 @@ await client.v1.clusters.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">getAddons</a>(id, { ...params }) -> TrueFoundry.ListClusterAddonsResponse</code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">getAddons</a>(id, { ...params }) -> TrueFoundry.ListClusterAddonsResponse</code></summary>
 <dl>
 <dd>
 
@@ -2098,7 +2098,7 @@ List addons for the provided cluster.Pagination is available based on query para
 <dd>
 
 ```typescript
-await client.v1.clusters.getAddons("id", {
+await client.clusters.getAddons("id", {
     limit: 10,
     offset: 0,
 });
@@ -2125,7 +2125,7 @@ await client.v1.clusters.getAddons("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ClustersGetAddonsRequest`
+**request:** `TrueFoundry.ClustersGetAddonsRequest`
 
 </dd>
 </dl>
@@ -2144,7 +2144,7 @@ await client.v1.clusters.getAddons("id", {
 </dl>
 </details>
 
-<details><summary><code>client.v1.clusters.<a href="/src/api/resources/v1/resources/clusters/client/Client.ts">isConnected</a>(id) -> TrueFoundry.IsClusterConnectedResponse</code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">isConnected</a>(id) -> TrueFoundry.IsClusterConnectedResponse</code></summary>
 <dl>
 <dd>
 
@@ -2172,7 +2172,7 @@ Get the status of provided cluster
 <dd>
 
 ```typescript
-await client.v1.clusters.isConnected("id");
+await client.clusters.isConnected("id");
 ```
 
 </dd>
@@ -2207,9 +2207,9 @@ await client.v1.clusters.isConnected("id");
 </dl>
 </details>
 
-## V1 Environments
+## Environments
 
-<details><summary><code>client.v1.environments.<a href="/src/api/resources/v1/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Environment></code></summary>
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Environment></code></summary>
 <dl>
 <dd>
 
@@ -2237,7 +2237,7 @@ List environments, if no environments are found, default environments are create
 <dd>
 
 ```typescript
-const response = await client.v1.environments.list({
+const response = await client.environments.list({
     limit: 10,
     offset: 0,
 });
@@ -2246,7 +2246,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.environments.list({
+const page = await client.environments.list({
     limit: 10,
     offset: 0,
 });
@@ -2268,7 +2268,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.EnvironmentsListRequest`
+**request:** `TrueFoundry.EnvironmentsListRequest`
 
 </dd>
 </dl>
@@ -2287,7 +2287,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.environments.<a href="/src/api/resources/v1/resources/environments/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetEnvironmentResponse</code></summary>
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetEnvironmentResponse</code></summary>
 <dl>
 <dd>
 
@@ -2315,7 +2315,7 @@ Creates a new Environment or updates an existing Environment.
 <dd>
 
 ```typescript
-await client.v1.environments.createOrUpdate({
+await client.environments.createOrUpdate({
     manifest: {
         type: "environment",
         name: "name",
@@ -2339,7 +2339,7 @@ await client.v1.environments.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateOrUpdateEnvironmentRequest`
+**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest`
 
 </dd>
 </dl>
@@ -2358,7 +2358,7 @@ await client.v1.environments.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.environments.<a href="/src/api/resources/v1/resources/environments/client/Client.ts">get</a>(id) -> TrueFoundry.GetEnvironmentResponse</code></summary>
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">get</a>(id) -> TrueFoundry.GetEnvironmentResponse</code></summary>
 <dl>
 <dd>
 
@@ -2386,7 +2386,7 @@ Get Environment associated with the provided id.
 <dd>
 
 ```typescript
-await client.v1.environments.get("id");
+await client.environments.get("id");
 ```
 
 </dd>
@@ -2421,7 +2421,7 @@ await client.v1.environments.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.environments.<a href="/src/api/resources/v1/resources/environments/client/Client.ts">delete</a>(id) -> boolean</code></summary>
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">delete</a>(id) -> boolean</code></summary>
 <dl>
 <dd>
 
@@ -2449,7 +2449,7 @@ Delete Environment associated with the provided id.
 <dd>
 
 ```typescript
-await client.v1.environments.delete("id");
+await client.environments.delete("id");
 ```
 
 </dd>
@@ -2484,9 +2484,9 @@ await client.v1.environments.delete("id");
 </dl>
 </details>
 
-## V1 Applications
+## Applications
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Application></code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Application></code></summary>
 <dl>
 <dd>
 
@@ -2514,7 +2514,7 @@ Retrieves a list of all latest applications. Supports filtering by application I
 <dd>
 
 ```typescript
-const response = await client.v1.applications.list({
+const response = await client.applications.list({
     limit: 10,
     offset: 0,
 });
@@ -2523,7 +2523,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.applications.list({
+const page = await client.applications.list({
     limit: 10,
     offset: 0,
 });
@@ -2545,7 +2545,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ApplicationsListRequest`
+**request:** `TrueFoundry.ApplicationsListRequest`
 
 </dd>
 </dl>
@@ -2564,7 +2564,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetApplicationDeploymentResponse</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetApplicationDeploymentResponse</code></summary>
 <dl>
 <dd>
 
@@ -2592,7 +2592,7 @@ Create a new Application Deployment based on the provided manifest.
 <dd>
 
 ```typescript
-await client.v1.applications.createOrUpdate({
+await client.applications.createOrUpdate({
     manifest: {
         key: "value",
     },
@@ -2612,7 +2612,7 @@ await client.v1.applications.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.CreateDeploymentRequest`
+**request:** `TrueFoundry.CreateDeploymentRequest`
 
 </dd>
 </dl>
@@ -2631,7 +2631,7 @@ await client.v1.applications.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">get</a>(id) -> TrueFoundry.GetApplicationResponse</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">get</a>(id) -> TrueFoundry.GetApplicationResponse</code></summary>
 <dl>
 <dd>
 
@@ -2659,7 +2659,7 @@ Get Application associated with the provided application ID.
 <dd>
 
 ```typescript
-await client.v1.applications.get("id");
+await client.applications.get("id");
 ```
 
 </dd>
@@ -2694,7 +2694,7 @@ await client.v1.applications.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteApplicationResponse</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteApplicationResponse</code></summary>
 <dl>
 <dd>
 
@@ -2722,7 +2722,7 @@ Delete Application associated with the provided application ID.
 <dd>
 
 ```typescript
-await client.v1.applications.delete("id");
+await client.applications.delete("id");
 ```
 
 </dd>
@@ -2757,7 +2757,7 @@ await client.v1.applications.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">scaleToZero</a>(id) -> void</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">scaleToZero</a>(id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -2785,7 +2785,7 @@ Pause a running application by scaling to 0 replicas
 <dd>
 
 ```typescript
-await client.v1.applications.scaleToZero("id");
+await client.applications.scaleToZero("id");
 ```
 
 </dd>
@@ -2820,7 +2820,7 @@ await client.v1.applications.scaleToZero("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">scaleToOriginal</a>(id) -> TrueFoundry.Deployment</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">scaleToOriginal</a>(id) -> TrueFoundry.Deployment</code></summary>
 <dl>
 <dd>
 
@@ -2848,7 +2848,7 @@ Resume a paused application by scaling back to the original number of replicas
 <dd>
 
 ```typescript
-await client.v1.applications.scaleToOriginal("id");
+await client.applications.scaleToOriginal("id");
 ```
 
 </dd>
@@ -2883,7 +2883,7 @@ await client.v1.applications.scaleToOriginal("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.applications.<a href="/src/api/resources/v1/resources/applications/client/Client.ts">cancelDeployment</a>(id, deploymentId) -> TrueFoundry.ApplicationsCancelDeploymentResponse</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">cancelDeployment</a>(id, deploymentId) -> TrueFoundry.ApplicationsCancelDeploymentResponse</code></summary>
 <dl>
 <dd>
 
@@ -2911,7 +2911,7 @@ Cancel an ongoing deployment associated with the provided application ID and dep
 <dd>
 
 ```typescript
-await client.v1.applications.cancelDeployment("id", "deploymentId");
+await client.applications.cancelDeployment("id", "deploymentId");
 ```
 
 </dd>
@@ -2954,9 +2954,9 @@ await client.v1.applications.cancelDeployment("id", "deploymentId");
 </dl>
 </details>
 
-## V1 ApplicationVersions
+## ApplicationVersions
 
-<details><summary><code>client.v1.applicationVersions.<a href="/src/api/resources/v1/resources/applicationVersions/client/Client.ts">list</a>(id, { ...params }) -> core.Page<TrueFoundry.Deployment></code></summary>
+<details><summary><code>client.applicationVersions.<a href="/src/api/resources/applicationVersions/client/Client.ts">list</a>(id, { ...params }) -> core.Page<TrueFoundry.Deployment></code></summary>
 <dl>
 <dd>
 
@@ -2984,7 +2984,7 @@ Fetch all deployments for a given application ID with optional filters such as d
 <dd>
 
 ```typescript
-const response = await client.v1.applicationVersions.list("id", {
+const response = await client.applicationVersions.list("id", {
     limit: 10,
     offset: 0,
     version: "1",
@@ -2995,7 +2995,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.applicationVersions.list("id", {
+const page = await client.applicationVersions.list("id", {
     limit: 10,
     offset: 0,
     version: "1",
@@ -3027,7 +3027,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ApplicationVersionsListRequest`
+**request:** `TrueFoundry.ApplicationVersionsListRequest`
 
 </dd>
 </dl>
@@ -3046,7 +3046,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.applicationVersions.<a href="/src/api/resources/v1/resources/applicationVersions/client/Client.ts">get</a>(id, deploymentId) -> TrueFoundry.GetApplicationDeploymentResponse</code></summary>
+<details><summary><code>client.applicationVersions.<a href="/src/api/resources/applicationVersions/client/Client.ts">get</a>(id, deploymentId) -> TrueFoundry.GetApplicationDeploymentResponse</code></summary>
 <dl>
 <dd>
 
@@ -3074,7 +3074,7 @@ Get Deployment associated with the provided application ID and deployment ID.
 <dd>
 
 ```typescript
-await client.v1.applicationVersions.get("id", "deploymentId");
+await client.applicationVersions.get("id", "deploymentId");
 ```
 
 </dd>
@@ -3117,9 +3117,9 @@ await client.v1.applicationVersions.get("id", "deploymentId");
 </dl>
 </details>
 
-## V1 Jobs
+## Jobs
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">listRuns</a>(jobId, { ...params }) -> core.Page<TrueFoundry.JobRun></code></summary>
+<details><summary><code>client.jobs.<a href="/src/api/resources/jobs/client/Client.ts">listRuns</a>(jobId, { ...params }) -> core.Page<TrueFoundry.JobRun></code></summary>
 <dl>
 <dd>
 
@@ -3147,7 +3147,7 @@ List Job Runs for provided Job Id. Filter the data based on parameters passed in
 <dd>
 
 ```typescript
-const response = await client.v1.jobs.listRuns("jobId", {
+const response = await client.jobs.listRuns("jobId", {
     limit: 10,
     offset: 0,
 });
@@ -3156,7 +3156,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.jobs.listRuns("jobId", {
+const page = await client.jobs.listRuns("jobId", {
     limit: 10,
     offset: 0,
 });
@@ -3186,7 +3186,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.JobsListRunsRequest`
+**request:** `TrueFoundry.JobsListRunsRequest`
 
 </dd>
 </dl>
@@ -3205,7 +3205,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">getRun</a>(jobId, jobRunName) -> TrueFoundry.GetJobRunResponse</code></summary>
+<details><summary><code>client.jobs.<a href="/src/api/resources/jobs/client/Client.ts">getRun</a>(jobId, jobRunName) -> TrueFoundry.GetJobRunResponse</code></summary>
 <dl>
 <dd>
 
@@ -3233,7 +3233,7 @@ Get Job Run for provided jobRunName and jobId
 <dd>
 
 ```typescript
-await client.v1.jobs.getRun("jobId", "jobRunName");
+await client.jobs.getRun("jobId", "jobRunName");
 ```
 
 </dd>
@@ -3276,7 +3276,7 @@ await client.v1.jobs.getRun("jobId", "jobRunName");
 </dl>
 </details>
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">deleteRun</a>(jobId, jobRunName) -> TrueFoundry.DeleteJobRunResponse</code></summary>
+<details><summary><code>client.jobs.<a href="/src/api/resources/jobs/client/Client.ts">deleteRun</a>(jobId, jobRunName) -> TrueFoundry.DeleteJobRunResponse</code></summary>
 <dl>
 <dd>
 
@@ -3304,7 +3304,7 @@ Delete Job Run for provided jobRunName and jobId
 <dd>
 
 ```typescript
-await client.v1.jobs.deleteRun("jobId", "jobRunName");
+await client.jobs.deleteRun("jobId", "jobRunName");
 ```
 
 </dd>
@@ -3347,7 +3347,7 @@ await client.v1.jobs.deleteRun("jobId", "jobRunName");
 </dl>
 </details>
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">trigger</a>({ ...params }) -> TrueFoundry.TriggerJobRunResponse</code></summary>
+<details><summary><code>client.jobs.<a href="/src/api/resources/jobs/client/Client.ts">trigger</a>({ ...params }) -> TrueFoundry.TriggerJobRunResponse</code></summary>
 <dl>
 <dd>
 
@@ -3375,7 +3375,7 @@ Trigger Job for provided deploymentId or applicationId
 <dd>
 
 ```typescript
-await client.v1.jobs.trigger();
+await client.jobs.trigger();
 ```
 
 </dd>
@@ -3391,7 +3391,7 @@ await client.v1.jobs.trigger();
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.TriggerJobRequest`
+**request:** `TrueFoundry.TriggerJobRequest`
 
 </dd>
 </dl>
@@ -3410,7 +3410,7 @@ await client.v1.jobs.trigger();
 </dl>
 </details>
 
-<details><summary><code>client.v1.jobs.<a href="/src/api/resources/v1/resources/jobs/client/Client.ts">terminate</a>({ ...params }) -> TrueFoundry.TerminateJobResponse</code></summary>
+<details><summary><code>client.jobs.<a href="/src/api/resources/jobs/client/Client.ts">terminate</a>({ ...params }) -> TrueFoundry.TerminateJobResponse</code></summary>
 <dl>
 <dd>
 
@@ -3438,7 +3438,7 @@ Terminate Job for provided deploymentId and jobRunName
 <dd>
 
 ```typescript
-await client.v1.jobs.terminate({
+await client.jobs.terminate({
     deploymentId: "deploymentId",
     jobRunName: "jobRunName",
 });
@@ -3457,7 +3457,7 @@ await client.v1.jobs.terminate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.JobsTerminateRequest`
+**request:** `TrueFoundry.JobsTerminateRequest`
 
 </dd>
 </dl>
@@ -3476,9 +3476,9 @@ await client.v1.jobs.terminate({
 </dl>
 </details>
 
-## V1 Workspaces
+## Workspaces
 
-<details><summary><code>client.v1.workspaces.<a href="/src/api/resources/v1/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Workspace></code></summary>
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Workspace></code></summary>
 <dl>
 <dd>
 
@@ -3506,7 +3506,7 @@ List workspaces associated with the user. Optional filters include clusterId, fq
 <dd>
 
 ```typescript
-const response = await client.v1.workspaces.list({
+const response = await client.workspaces.list({
     limit: 10,
     offset: 0,
 });
@@ -3515,7 +3515,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.workspaces.list({
+const page = await client.workspaces.list({
     limit: 10,
     offset: 0,
 });
@@ -3537,7 +3537,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.WorkspacesListRequest`
+**request:** `TrueFoundry.WorkspacesListRequest`
 
 </dd>
 </dl>
@@ -3556,7 +3556,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.workspaces.<a href="/src/api/resources/v1/resources/workspaces/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetWorkspaceResponse</code></summary>
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetWorkspaceResponse</code></summary>
 <dl>
 <dd>
 
@@ -3584,7 +3584,7 @@ Creates a new workspace or updates an existing one based on the provided manifes
 <dd>
 
 ```typescript
-await client.v1.workspaces.createOrUpdate({
+await client.workspaces.createOrUpdate({
     manifest: {
         type: "workspace",
         cluster_fqn: "cluster_fqn",
@@ -3606,7 +3606,7 @@ await client.v1.workspaces.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.WorkspaceRequest`
+**request:** `TrueFoundry.WorkspaceRequest`
 
 </dd>
 </dl>
@@ -3625,7 +3625,7 @@ await client.v1.workspaces.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.workspaces.<a href="/src/api/resources/v1/resources/workspaces/client/Client.ts">get</a>(id) -> TrueFoundry.GetWorkspaceResponse</code></summary>
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">get</a>(id) -> TrueFoundry.GetWorkspaceResponse</code></summary>
 <dl>
 <dd>
 
@@ -3653,7 +3653,7 @@ Get workspace associated with provided workspace id
 <dd>
 
 ```typescript
-await client.v1.workspaces.get("id");
+await client.workspaces.get("id");
 ```
 
 </dd>
@@ -3688,7 +3688,7 @@ await client.v1.workspaces.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.workspaces.<a href="/src/api/resources/v1/resources/workspaces/client/Client.ts">delete</a>(id) -> TrueFoundry.WorkspacesDeleteResponse</code></summary>
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">delete</a>(id) -> TrueFoundry.WorkspacesDeleteResponse</code></summary>
 <dl>
 <dd>
 
@@ -3716,7 +3716,7 @@ Deletes the workspace with the given workspace ID. - Removes the associated name
 <dd>
 
 ```typescript
-await client.v1.workspaces.delete("id");
+await client.workspaces.delete("id");
 ```
 
 </dd>
@@ -3751,9 +3751,9 @@ await client.v1.workspaces.delete("id");
 </dl>
 </details>
 
-## V1 Events
+## Events
 
-<details><summary><code>client.v1.events.<a href="/src/api/resources/v1/resources/events/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetEventsResponse</code></summary>
+<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetEventsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3781,7 +3781,7 @@ Get Events for Pod, Job Run, Application. The events are sourced from Kubernetes
 <dd>
 
 ```typescript
-await client.v1.events.get();
+await client.events.get();
 ```
 
 </dd>
@@ -3797,7 +3797,7 @@ await client.v1.events.get();
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.EventsGetRequest`
+**request:** `TrueFoundry.EventsGetRequest`
 
 </dd>
 </dl>
@@ -3816,9 +3816,9 @@ await client.v1.events.get();
 </dl>
 </details>
 
-## V1 Alerts
+## Alerts
 
-<details><summary><code>client.v1.alerts.<a href="/src/api/resources/v1/resources/alerts/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.GetAlertsResponse</code></summary>
+<details><summary><code>client.alerts.<a href="/src/api/resources/alerts/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.GetAlertsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3846,7 +3846,7 @@ Get alerts for a given application or cluster filtered by start and end timestam
 <dd>
 
 ```typescript
-await client.v1.alerts.list();
+await client.alerts.list();
 ```
 
 </dd>
@@ -3862,7 +3862,7 @@ await client.v1.alerts.list();
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.AlertsListRequest`
+**request:** `TrueFoundry.AlertsListRequest`
 
 </dd>
 </dl>
@@ -3881,9 +3881,9 @@ await client.v1.alerts.list();
 </dl>
 </details>
 
-## V1 Logs
+## Logs
 
-<details><summary><code>client.v1.logs.<a href="/src/api/resources/v1/resources/logs/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetLogsResponse</code></summary>
+<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetLogsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3911,7 +3911,7 @@ Fetch logs for various workload components, including Services, Jobs, Workflows,
 <dd>
 
 ```typescript
-await client.v1.logs.get();
+await client.logs.get();
 ```
 
 </dd>
@@ -3927,7 +3927,7 @@ await client.v1.logs.get();
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.LogsGetRequest`
+**request:** `TrueFoundry.LogsGetRequest`
 
 </dd>
 </dl>
@@ -3946,9 +3946,9 @@ await client.v1.logs.get();
 </dl>
 </details>
 
-## V1 MlRepos
+## MlRepos
 
-<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetMlRepoResponse</code></summary>
+<details><summary><code>client.mlRepos.<a href="/src/api/resources/mlRepos/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetMlRepoResponse</code></summary>
 <dl>
 <dd>
 
@@ -3976,7 +3976,7 @@ Creates or updates an MLRepo entity based on the provided manifest.
 <dd>
 
 ```typescript
-await client.v1.mlRepos.createOrUpdate({
+await client.mlRepos.createOrUpdate({
     manifest: {
         key: "value",
     },
@@ -3996,7 +3996,7 @@ await client.v1.mlRepos.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ApplyMlRepoRequest`
+**request:** `TrueFoundry.ApplyMlRepoRequest`
 
 </dd>
 </dl>
@@ -4015,7 +4015,7 @@ await client.v1.mlRepos.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">get</a>(id) -> TrueFoundry.GetMlRepoResponse</code></summary>
+<details><summary><code>client.mlRepos.<a href="/src/api/resources/mlRepos/client/Client.ts">get</a>(id) -> TrueFoundry.GetMlRepoResponse</code></summary>
 <dl>
 <dd>
 
@@ -4049,7 +4049,7 @@ GetMLRepoResponse: The ml repo
 <dd>
 
 ```typescript
-await client.v1.mlRepos.get("id");
+await client.mlRepos.get("id");
 ```
 
 </dd>
@@ -4084,7 +4084,7 @@ await client.v1.mlRepos.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.mlRepos.<a href="/src/api/resources/mlRepos/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -4118,7 +4118,7 @@ EmptyResponse: Empty response indicating successful deletion
 <dd>
 
 ```typescript
-await client.v1.mlRepos.delete("id");
+await client.mlRepos.delete("id");
 ```
 
 </dd>
@@ -4153,7 +4153,7 @@ await client.v1.mlRepos.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.mlRepos.<a href="/src/api/resources/v1/resources/mlRepos/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.MlRepo></code></summary>
+<details><summary><code>client.mlRepos.<a href="/src/api/resources/mlRepos/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.MlRepo></code></summary>
 <dl>
 <dd>
 
@@ -4187,13 +4187,13 @@ ListMLReposResponse: List of ml repos
 <dd>
 
 ```typescript
-const response = await client.v1.mlRepos.list();
+const response = await client.mlRepos.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.mlRepos.list();
+const page = await client.mlRepos.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4212,7 +4212,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.MlReposListRequest`
+**request:** `TrueFoundry.MlReposListRequest`
 
 </dd>
 </dl>
@@ -4231,9 +4231,9 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-## V1 Artifacts
+## Artifacts
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">get</a>(id) -> TrueFoundry.GetArtifactResponse</code></summary>
+<details><summary><code>client.artifacts.<a href="/src/api/resources/artifacts/client/Client.ts">get</a>(id) -> TrueFoundry.GetArtifactResponse</code></summary>
 <dl>
 <dd>
 
@@ -4246,7 +4246,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.artifacts.get("id");
+await client.artifacts.get("id");
 ```
 
 </dd>
@@ -4281,7 +4281,7 @@ await client.v1.artifacts.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.artifacts.<a href="/src/api/resources/artifacts/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -4294,7 +4294,7 @@ await client.v1.artifacts.get("id");
 <dd>
 
 ```typescript
-await client.v1.artifacts.delete("id");
+await client.artifacts.delete("id");
 ```
 
 </dd>
@@ -4329,7 +4329,7 @@ await client.v1.artifacts.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Artifact></code></summary>
+<details><summary><code>client.artifacts.<a href="/src/api/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Artifact></code></summary>
 <dl>
 <dd>
 
@@ -4342,13 +4342,13 @@ await client.v1.artifacts.delete("id");
 <dd>
 
 ```typescript
-const response = await client.v1.artifacts.list();
+const response = await client.artifacts.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.artifacts.list();
+const page = await client.artifacts.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4367,7 +4367,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ArtifactsListRequest`
+**request:** `TrueFoundry.ArtifactsListRequest`
 
 </dd>
 </dl>
@@ -4386,7 +4386,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifacts.<a href="/src/api/resources/v1/resources/artifacts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
+<details><summary><code>client.artifacts.<a href="/src/api/resources/artifacts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -4399,14 +4399,14 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.artifacts.createOrUpdate({
+await client.artifacts.createOrUpdate({
     manifest: {
         name: "name",
         metadata: {
             key: "value",
         },
         ml_repo: "ml_repo",
-        type: "model-version",
+        type: "artifact-version",
         source: {
             type: "truefoundry",
         },
@@ -4427,7 +4427,7 @@ await client.v1.artifacts.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplyRequest`
+**request:** `TrueFoundry.ApplyArtifactRequest`
 
 </dd>
 </dl>
@@ -4446,9 +4446,9 @@ await client.v1.artifacts.createOrUpdate({
 </dl>
 </details>
 
-## V1 Agents
+## Agents
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentResponse</code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentResponse</code></summary>
 <dl>
 <dd>
 
@@ -4461,7 +4461,7 @@ await client.v1.artifacts.createOrUpdate({
 <dd>
 
 ```typescript
-await client.v1.agents.get("id");
+await client.agents.get("id");
 ```
 
 </dd>
@@ -4496,7 +4496,7 @@ await client.v1.agents.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -4509,7 +4509,7 @@ await client.v1.agents.get("id");
 <dd>
 
 ```typescript
-await client.v1.agents.delete("id");
+await client.agents.delete("id");
 ```
 
 </dd>
@@ -4544,7 +4544,7 @@ await client.v1.agents.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Agent></code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Agent></code></summary>
 <dl>
 <dd>
 
@@ -4557,13 +4557,13 @@ await client.v1.agents.delete("id");
 <dd>
 
 ```typescript
-const response = await client.v1.agents.list();
+const response = await client.agents.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.agents.list();
+const page = await client.agents.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4582,7 +4582,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.AgentsListRequest`
+**request:** `TrueFoundry.AgentsListRequest`
 
 </dd>
 </dl>
@@ -4601,7 +4601,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.agents.<a href="/src/api/resources/v1/resources/agents/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetAgentVersionResponse</code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetAgentVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -4614,17 +4614,18 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.agents.createOrUpdate({
+await client.agents.createOrUpdate({
     manifest: {
         name: "name",
         metadata: {
             key: "value",
         },
         ml_repo: "ml_repo",
-        type: "model-version",
-        source: {
-            type: "truefoundry",
-        },
+        type: "agent",
+        goal: "goal",
+        instruction: "instruction",
+        available_tools: ["available_tools"],
+        model_id: "model_id",
     },
 });
 ```
@@ -4642,7 +4643,7 @@ await client.v1.agents.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplyRequest`
+**request:** `TrueFoundry.ApplyAgentRequest`
 
 </dd>
 </dl>
@@ -4661,9 +4662,9 @@ await client.v1.agents.createOrUpdate({
 </dl>
 </details>
 
-## V1 Prompts
+## Prompts
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">get</a>(id) -> TrueFoundry.GetPromptResponse</code></summary>
+<details><summary><code>client.prompts.<a href="/src/api/resources/prompts/client/Client.ts">get</a>(id) -> TrueFoundry.GetPromptResponse</code></summary>
 <dl>
 <dd>
 
@@ -4676,7 +4677,7 @@ await client.v1.agents.createOrUpdate({
 <dd>
 
 ```typescript
-await client.v1.prompts.get("id");
+await client.prompts.get("id");
 ```
 
 </dd>
@@ -4711,7 +4712,7 @@ await client.v1.prompts.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.prompts.<a href="/src/api/resources/prompts/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -4724,7 +4725,7 @@ await client.v1.prompts.get("id");
 <dd>
 
 ```typescript
-await client.v1.prompts.delete("id");
+await client.prompts.delete("id");
 ```
 
 </dd>
@@ -4759,7 +4760,7 @@ await client.v1.prompts.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Prompt></code></summary>
+<details><summary><code>client.prompts.<a href="/src/api/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Prompt></code></summary>
 <dl>
 <dd>
 
@@ -4772,13 +4773,13 @@ await client.v1.prompts.delete("id");
 <dd>
 
 ```typescript
-const response = await client.v1.prompts.list();
+const response = await client.prompts.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.prompts.list();
+const page = await client.prompts.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4797,7 +4798,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.PromptsListRequest`
+**request:** `TrueFoundry.PromptsListRequest`
 
 </dd>
 </dl>
@@ -4816,7 +4817,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.prompts.<a href="/src/api/resources/v1/resources/prompts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetPromptVersionResponse</code></summary>
+<details><summary><code>client.prompts.<a href="/src/api/resources/prompts/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetPromptVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -4829,7 +4830,445 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.prompts.createOrUpdate({
+await client.prompts.createOrUpdate({
+    manifest: {
+        name: "name",
+        metadata: {
+            key: "value",
+        },
+        ml_repo: "ml_repo",
+        type: "chat_prompt",
+        messages: [
+            {
+                role: "system",
+                content: "content",
+            },
+        ],
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ApplyPromptRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Prompts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Tools
+
+<details><summary><code>client.tools.<a href="/src/api/resources/tools/client/Client.ts">get</a>(id) -> TrueFoundry.GetToolResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tools.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tools.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tools.<a href="/src/api/resources/tools/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tools.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tools.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tools.<a href="/src/api/resources/tools/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Tool></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.tools.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.tools.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ToolsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tools.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tools.<a href="/src/api/resources/tools/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetToolVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tools.createOrUpdate({
+    manifest: {
+        name: "name",
+        metadata: {
+            key: "value",
+        },
+        ml_repo: "ml_repo",
+        type: "openapi-tool",
+        openapi_spec: {
+            type: "blob-storage",
+            path: "path",
+            mime_type: "text/plain",
+        },
+        base_url: "base_url",
+        path: "path",
+        method: "get",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ApplyToolRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tools.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Models
+
+<details><summary><code>client.models.<a href="/src/api/resources/models/client/Client.ts">get</a>(id) -> TrueFoundry.GetModelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.models.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Models.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.models.<a href="/src/api/resources/models/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.models.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Models.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.models.<a href="/src/api/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Model></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.models.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+const page = await client.models.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ModelsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Models.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.models.<a href="/src/api/resources/models/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetModelVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.models.createOrUpdate({
     manifest: {
         name: "name",
         metadata: {
@@ -4857,272 +5296,7 @@ await client.v1.prompts.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplyRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Prompts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## V1 Tools
-
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">get</a>(id) -> TrueFoundry.GetToolResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.tools.get("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tools.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.tools.delete("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tools.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Tool></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const response = await client.v1.tools.list();
-for await (const item of response) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-const page = await client.v1.tools.list();
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.v1.ToolsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tools.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.v1.tools.<a href="/src/api/resources/v1/resources/tools/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetToolVersionResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.tools.createOrUpdate({
-    manifest: {
-        name: "name",
-        metadata: {
-            key: "value",
-        },
-        ml_repo: "ml_repo",
-        type: "model-version",
-        source: {
-            type: "truefoundry",
-        },
-    },
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.ApplyRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Tools.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## V1 Models
-
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">get</a>(id) -> TrueFoundry.GetModelResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.models.get("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
+**request:** `TrueFoundry.ApplyModelRequest`
 
 </dd>
 </dl>
@@ -5141,174 +5315,9 @@ await client.v1.models.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
-<dl>
-<dd>
+## ArtifactVersions
 
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.models.delete("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Models.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Model></code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const response = await client.v1.models.list();
-for await (const item of response) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-const page = await client.v1.models.list();
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.v1.ModelsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Models.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.v1.models.<a href="/src/api/resources/v1/resources/models/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetModelVersionResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.v1.models.createOrUpdate({
-    manifest: {
-        name: "name",
-        metadata: {
-            key: "value",
-        },
-        ml_repo: "ml_repo",
-        type: "model-version",
-        source: {
-            type: "truefoundry",
-        },
-    },
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.ApplyRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Models.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## V1 ArtifactVersions
-
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -5336,7 +5345,7 @@ Get artifact version API
 <dd>
 
 ```typescript
-await client.v1.artifactVersions.get("id");
+await client.artifactVersions.get("id");
 ```
 
 </dd>
@@ -5371,7 +5380,7 @@ await client.v1.artifactVersions.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -5399,7 +5408,7 @@ Delete artifact versions API
 <dd>
 
 ```typescript
-await client.v1.artifactVersions.delete("id");
+await client.artifactVersions.delete("id");
 ```
 
 </dd>
@@ -5434,7 +5443,7 @@ await client.v1.artifactVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactVersion></code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ArtifactVersion></code></summary>
 <dl>
 <dd>
 
@@ -5462,13 +5471,13 @@ List artifact version API
 <dd>
 
 ```typescript
-const response = await client.v1.artifactVersions.list();
+const response = await client.artifactVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.artifactVersions.list();
+const page = await client.artifactVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5487,7 +5496,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ArtifactVersionsListRequest`
+**request:** `TrueFoundry.ArtifactVersionsListRequest`
 
 </dd>
 </dl>
@@ -5506,7 +5515,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">getSignedUrls</a>({ ...params }) -> TrueFoundry.GetSignedUrLsResponse</code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">getSignedUrls</a>({ ...params }) -> TrueFoundry.GetSignedUrLsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5519,7 +5528,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.artifactVersions.getSignedUrls({
+await client.artifactVersions.getSignedUrls({
     id: "id",
     paths: ["paths"],
     operation: "READ",
@@ -5558,7 +5567,7 @@ await client.v1.artifactVersions.getSignedUrls({
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">createMultiPartUpload</a>({ ...params }) -> TrueFoundry.MultiPartUploadResponse</code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">createMultiPartUpload</a>({ ...params }) -> TrueFoundry.MultiPartUploadResponse</code></summary>
 <dl>
 <dd>
 
@@ -5571,7 +5580,7 @@ await client.v1.artifactVersions.getSignedUrls({
 <dd>
 
 ```typescript
-await client.v1.artifactVersions.createMultiPartUpload({
+await client.artifactVersions.createMultiPartUpload({
     id: "id",
     path: "path",
     num_parts: 1,
@@ -5610,7 +5619,7 @@ await client.v1.artifactVersions.createMultiPartUpload({
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">stage</a>({ ...params }) -> TrueFoundry.StageArtifactResponse</code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">stage</a>({ ...params }) -> TrueFoundry.StageArtifactResponse</code></summary>
 <dl>
 <dd>
 
@@ -5623,7 +5632,7 @@ await client.v1.artifactVersions.createMultiPartUpload({
 <dd>
 
 ```typescript
-await client.v1.artifactVersions.stage({
+await client.artifactVersions.stage({
     manifest: {
         name: "name",
         metadata: {
@@ -5651,7 +5660,7 @@ await client.v1.artifactVersions.stage({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.StageArtifactRequest`
+**request:** `TrueFoundry.StageArtifactRequest`
 
 </dd>
 </dl>
@@ -5670,7 +5679,7 @@ await client.v1.artifactVersions.stage({
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">listFiles</a>({ ...params }) -> core.Page<TrueFoundry.FileInfo></code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">listFiles</a>({ ...params }) -> core.Page<TrueFoundry.FileInfo></code></summary>
 <dl>
 <dd>
 
@@ -5683,7 +5692,7 @@ await client.v1.artifactVersions.stage({
 <dd>
 
 ```typescript
-const response = await client.v1.artifactVersions.listFiles({
+const response = await client.artifactVersions.listFiles({
     id: "id",
 });
 for await (const item of response) {
@@ -5691,7 +5700,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.artifactVersions.listFiles({
+const page = await client.artifactVersions.listFiles({
     id: "id",
 });
 while (page.hasNextPage()) {
@@ -5731,7 +5740,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.artifactVersions.<a href="/src/api/resources/v1/resources/artifactVersions/client/Client.ts">markStageFailure</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">markStageFailure</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -5744,7 +5753,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.artifactVersions.markStageFailure({
+await client.artifactVersions.markStageFailure({
     id: "id",
 });
 ```
@@ -5762,7 +5771,7 @@ await client.v1.artifactVersions.markStageFailure({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.MarkStageArtifactFailureRequest`
+**request:** `TrueFoundry.MarkStageArtifactFailureRequest`
 
 </dd>
 </dl>
@@ -5781,9 +5790,9 @@ await client.v1.artifactVersions.markStageFailure({
 </dl>
 </details>
 
-## V1 ModelVersions
+## ModelVersions
 
-<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetModelVersionResponse</code></summary>
+<details><summary><code>client.modelVersions.<a href="/src/api/resources/modelVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetModelVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -5811,7 +5820,7 @@ Get model version API
 <dd>
 
 ```typescript
-await client.v1.modelVersions.get("id");
+await client.modelVersions.get("id");
 ```
 
 </dd>
@@ -5846,7 +5855,7 @@ await client.v1.modelVersions.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.modelVersions.<a href="/src/api/resources/modelVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -5874,7 +5883,7 @@ Delete model versions API
 <dd>
 
 ```typescript
-await client.v1.modelVersions.delete("id");
+await client.modelVersions.delete("id");
 ```
 
 </dd>
@@ -5909,7 +5918,7 @@ await client.v1.modelVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.modelVersions.<a href="/src/api/resources/v1/resources/modelVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelVersion></code></summary>
+<details><summary><code>client.modelVersions.<a href="/src/api/resources/modelVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ModelVersion></code></summary>
 <dl>
 <dd>
 
@@ -5937,13 +5946,13 @@ List model version API
 <dd>
 
 ```typescript
-const response = await client.v1.modelVersions.list();
+const response = await client.modelVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.modelVersions.list();
+const page = await client.modelVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5962,7 +5971,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ModelVersionsListRequest`
+**request:** `TrueFoundry.ModelVersionsListRequest`
 
 </dd>
 </dl>
@@ -5981,9 +5990,9 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-## V1 PromptVersions
+## PromptVersions
 
-<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetPromptVersionResponse</code></summary>
+<details><summary><code>client.promptVersions.<a href="/src/api/resources/promptVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetPromptVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -6011,7 +6020,7 @@ Get prompt version API
 <dd>
 
 ```typescript
-await client.v1.promptVersions.get("id");
+await client.promptVersions.get("id");
 ```
 
 </dd>
@@ -6046,7 +6055,7 @@ await client.v1.promptVersions.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.promptVersions.<a href="/src/api/resources/promptVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -6074,7 +6083,7 @@ Delete prompt versions API
 <dd>
 
 ```typescript
-await client.v1.promptVersions.delete("id");
+await client.promptVersions.delete("id");
 ```
 
 </dd>
@@ -6109,7 +6118,7 @@ await client.v1.promptVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.promptVersions.<a href="/src/api/resources/v1/resources/promptVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptVersion></code></summary>
+<details><summary><code>client.promptVersions.<a href="/src/api/resources/promptVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.PromptVersion></code></summary>
 <dl>
 <dd>
 
@@ -6137,13 +6146,13 @@ List prompt version API
 <dd>
 
 ```typescript
-const response = await client.v1.promptVersions.list();
+const response = await client.promptVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.promptVersions.list();
+const page = await client.promptVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6162,7 +6171,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.PromptVersionsListRequest`
+**request:** `TrueFoundry.PromptVersionsListRequest`
 
 </dd>
 </dl>
@@ -6181,9 +6190,9 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-## V1 ToolVersions
+## ToolVersions
 
-<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetToolVersionResponse</code></summary>
+<details><summary><code>client.toolVersions.<a href="/src/api/resources/toolVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetToolVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -6211,7 +6220,7 @@ Get tool version API
 <dd>
 
 ```typescript
-await client.v1.toolVersions.get("id");
+await client.toolVersions.get("id");
 ```
 
 </dd>
@@ -6246,7 +6255,7 @@ await client.v1.toolVersions.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.toolVersions.<a href="/src/api/resources/toolVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -6274,7 +6283,7 @@ Delete tool versions API
 <dd>
 
 ```typescript
-await client.v1.toolVersions.delete("id");
+await client.toolVersions.delete("id");
 ```
 
 </dd>
@@ -6309,7 +6318,7 @@ await client.v1.toolVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.toolVersions.<a href="/src/api/resources/v1/resources/toolVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolVersion></code></summary>
+<details><summary><code>client.toolVersions.<a href="/src/api/resources/toolVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.ToolVersion></code></summary>
 <dl>
 <dd>
 
@@ -6337,13 +6346,13 @@ List tool versions API
 <dd>
 
 ```typescript
-const response = await client.v1.toolVersions.list();
+const response = await client.toolVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.toolVersions.list();
+const page = await client.toolVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6362,7 +6371,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.ToolVersionsListRequest`
+**request:** `TrueFoundry.ToolVersionsListRequest`
 
 </dd>
 </dl>
@@ -6381,9 +6390,9 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-## V1 AgentVersions
+## AgentVersions
 
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">resolve</a>({ ...params }) -> TrueFoundry.ResolveAgentAppResponse</code></summary>
+<details><summary><code>client.agentVersions.<a href="/src/api/resources/agentVersions/client/Client.ts">resolve</a>({ ...params }) -> TrueFoundry.ResolveAgentAppResponse</code></summary>
 <dl>
 <dd>
 
@@ -6396,7 +6405,7 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.agentVersions.resolve({
+await client.agentVersions.resolve({
     fqn: "fqn",
 });
 ```
@@ -6414,7 +6423,7 @@ await client.v1.agentVersions.resolve({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.AgentVersionsResolveRequest`
+**request:** `TrueFoundry.AgentVersionsResolveRequest`
 
 </dd>
 </dl>
@@ -6433,7 +6442,7 @@ await client.v1.agentVersions.resolve({
 </dl>
 </details>
 
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentVersionResponse</code></summary>
+<details><summary><code>client.agentVersions.<a href="/src/api/resources/agentVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -6461,7 +6470,7 @@ Get agent version API
 <dd>
 
 ```typescript
-await client.v1.agentVersions.get("id");
+await client.agentVersions.get("id");
 ```
 
 </dd>
@@ -6496,7 +6505,7 @@ await client.v1.agentVersions.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.agentVersions.<a href="/src/api/resources/agentVersions/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -6524,7 +6533,7 @@ Delete agent versions API
 <dd>
 
 ```typescript
-await client.v1.agentVersions.delete("id");
+await client.agentVersions.delete("id");
 ```
 
 </dd>
@@ -6559,7 +6568,7 @@ await client.v1.agentVersions.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.agentVersions.<a href="/src/api/resources/v1/resources/agentVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentVersion></code></summary>
+<details><summary><code>client.agentVersions.<a href="/src/api/resources/agentVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.AgentVersion></code></summary>
 <dl>
 <dd>
 
@@ -6587,13 +6596,13 @@ List agent versions API
 <dd>
 
 ```typescript
-const response = await client.v1.agentVersions.list();
+const response = await client.agentVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.agentVersions.list();
+const page = await client.agentVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6612,7 +6621,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.AgentVersionsListRequest`
+**request:** `TrueFoundry.AgentVersionsListRequest`
 
 </dd>
 </dl>
@@ -6631,9 +6640,9 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-## V1 DataDirectories
+## DataDirectories
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">get</a>(id) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">get</a>(id) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -6668,7 +6677,7 @@ DataDirectoryResponse: Response containing the retrieved data directory
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.get("id");
+await client.dataDirectories.get("id");
 ```
 
 </dd>
@@ -6703,7 +6712,7 @@ await client.v1.dataDirectories.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">delete</a>(id, { ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">delete</a>(id, { ...params }) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -6739,7 +6748,7 @@ EmptyResponse: Empty response indicating successful deletion
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.delete("id");
+await client.dataDirectories.delete("id");
 ```
 
 </dd>
@@ -6763,7 +6772,7 @@ await client.v1.dataDirectories.delete("id");
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.DataDirectoriesDeleteRequest`
+**request:** `TrueFoundry.DataDirectoriesDeleteRequest`
 
 </dd>
 </dl>
@@ -6782,7 +6791,7 @@ await client.v1.dataDirectories.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.DataDirectory></code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.DataDirectory></code></summary>
 <dl>
 <dd>
 
@@ -6817,13 +6826,13 @@ ListDataDirectoriesResponse: List of data directories and pagination info
 <dd>
 
 ```typescript
-const response = await client.v1.dataDirectories.list();
+const response = await client.dataDirectories.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.dataDirectories.list();
+const page = await client.dataDirectories.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6842,7 +6851,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.DataDirectoriesListRequest`
+**request:** `TrueFoundry.DataDirectoriesListRequest`
 
 </dd>
 </dl>
@@ -6861,7 +6870,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -6874,14 +6883,14 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.createOrUpdate({
+await client.dataDirectories.createOrUpdate({
     manifest: {
+        type: "data-dir",
         name: "name",
+        ml_repo: "ml_repo",
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
-        type: "model-version",
         source: {
             type: "truefoundry",
         },
@@ -6902,7 +6911,7 @@ await client.v1.dataDirectories.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplyRequest`
+**request:** `TrueFoundry.ApplyDataDirectoryRequest`
 
 </dd>
 </dl>
@@ -6921,7 +6930,7 @@ await client.v1.dataDirectories.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">listFiles</a>({ ...params }) -> core.Page<TrueFoundry.FileInfo></code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">listFiles</a>({ ...params }) -> core.Page<TrueFoundry.FileInfo></code></summary>
 <dl>
 <dd>
 
@@ -6956,7 +6965,7 @@ ListFilesResponse: Response containing files and pagination info
 <dd>
 
 ```typescript
-const response = await client.v1.dataDirectories.listFiles({
+const response = await client.dataDirectories.listFiles({
     id: "id",
 });
 for await (const item of response) {
@@ -6964,7 +6973,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.dataDirectories.listFiles({
+const page = await client.dataDirectories.listFiles({
     id: "id",
 });
 while (page.hasNextPage()) {
@@ -7004,7 +7013,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">deleteFiles</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">deleteFiles</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -7039,7 +7048,7 @@ EmptyResponse: Empty response indicating successful deletion
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.deleteFiles({
+await client.dataDirectories.deleteFiles({
     id: "id",
     paths: ["paths"],
 });
@@ -7058,7 +7067,7 @@ await client.v1.dataDirectories.deleteFiles({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.DeleteFilesRequest`
+**request:** `TrueFoundry.DeleteFilesRequest`
 
 </dd>
 </dl>
@@ -7077,7 +7086,7 @@ await client.v1.dataDirectories.deleteFiles({
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">getSignedUrls</a>({ ...params }) -> TrueFoundry.GetSignedUrLsResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">getSignedUrls</a>({ ...params }) -> TrueFoundry.GetSignedUrLsResponse</code></summary>
 <dl>
 <dd>
 
@@ -7112,7 +7121,7 @@ GetSignedURLsResponse: Response containing signed URLs
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.getSignedUrls({
+await client.dataDirectories.getSignedUrls({
     id: "id",
     paths: ["paths"],
     operation: "READ",
@@ -7151,7 +7160,7 @@ await client.v1.dataDirectories.getSignedUrls({
 </dl>
 </details>
 
-<details><summary><code>client.v1.dataDirectories.<a href="/src/api/resources/v1/resources/dataDirectories/client/Client.ts">createMultipartUpload</a>({ ...params }) -> TrueFoundry.MultiPartUploadResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">createMultipartUpload</a>({ ...params }) -> TrueFoundry.MultiPartUploadResponse</code></summary>
 <dl>
 <dd>
 
@@ -7186,7 +7195,7 @@ MultiPartUploadResponse: Response containing multipart upload info
 <dd>
 
 ```typescript
-await client.v1.dataDirectories.createMultipartUpload({
+await client.dataDirectories.createMultipartUpload({
     id: "id",
     path: "path",
     num_parts: 1,
@@ -7225,9 +7234,9 @@ await client.v1.dataDirectories.createMultipartUpload({
 </dl>
 </details>
 
-## V1 TracingProjects
+## TracingProjects
 
-<details><summary><code>client.v1.tracingProjects.<a href="/src/api/resources/v1/resources/tracingProjects/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.TracingProject></code></summary>
+<details><summary><code>client.tracingProjects.<a href="/src/api/resources/tracingProjects/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.TracingProject></code></summary>
 <dl>
 <dd>
 
@@ -7240,13 +7249,13 @@ await client.v1.dataDirectories.createMultipartUpload({
 <dd>
 
 ```typescript
-const response = await client.v1.tracingProjects.list();
+const response = await client.tracingProjects.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.tracingProjects.list();
+const page = await client.tracingProjects.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -7265,7 +7274,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.TracingProjectsListRequest`
+**request:** `TrueFoundry.TracingProjectsListRequest`
 
 </dd>
 </dl>
@@ -7284,7 +7293,7 @@ while (page.hasNextPage()) {
 </dl>
 </details>
 
-<details><summary><code>client.v1.tracingProjects.<a href="/src/api/resources/v1/resources/tracingProjects/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetTracingProjectResponse</code></summary>
+<details><summary><code>client.tracingProjects.<a href="/src/api/resources/tracingProjects/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetTracingProjectResponse</code></summary>
 <dl>
 <dd>
 
@@ -7297,17 +7306,10 @@ while (page.hasNextPage()) {
 <dd>
 
 ```typescript
-await client.v1.tracingProjects.createOrUpdate({
+await client.tracingProjects.createOrUpdate({
     manifest: {
+        type: "tracing-project",
         name: "name",
-        metadata: {
-            key: "value",
-        },
-        ml_repo: "ml_repo",
-        type: "model-version",
-        source: {
-            type: "truefoundry",
-        },
     },
 });
 ```
@@ -7325,7 +7327,7 @@ await client.v1.tracingProjects.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplyRequest`
+**request:** `TrueFoundry.ApplyTracingProjectRequest`
 
 </dd>
 </dl>
@@ -7344,7 +7346,7 @@ await client.v1.tracingProjects.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.v1.tracingProjects.<a href="/src/api/resources/v1/resources/tracingProjects/client/Client.ts">get</a>(id) -> TrueFoundry.GetTracingProjectResponse</code></summary>
+<details><summary><code>client.tracingProjects.<a href="/src/api/resources/tracingProjects/client/Client.ts">get</a>(id) -> TrueFoundry.GetTracingProjectResponse</code></summary>
 <dl>
 <dd>
 
@@ -7357,7 +7359,7 @@ await client.v1.tracingProjects.createOrUpdate({
 <dd>
 
 ```typescript
-await client.v1.tracingProjects.get("id");
+await client.tracingProjects.get("id");
 ```
 
 </dd>
@@ -7392,7 +7394,7 @@ await client.v1.tracingProjects.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.v1.tracingProjects.<a href="/src/api/resources/v1/resources/tracingProjects/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.tracingProjects.<a href="/src/api/resources/tracingProjects/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -7405,7 +7407,7 @@ await client.v1.tracingProjects.get("id");
 <dd>
 
 ```typescript
-await client.v1.tracingProjects.delete("id");
+await client.tracingProjects.delete("id");
 ```
 
 </dd>
@@ -7440,9 +7442,9 @@ await client.v1.tracingProjects.delete("id");
 </dl>
 </details>
 
-## V1 Internal Users
+## Internal Users
 
-<details><summary><code>client.v1.internal.users.<a href="/src/api/resources/v1/resources/internal/resources/users/client/Client.ts">getInfo</a>() -> TrueFoundry.Session</code></summary>
+<details><summary><code>client.internal.users.<a href="/src/api/resources/internal/resources/users/client/Client.ts">getInfo</a>() -> TrueFoundry.Session</code></summary>
 <dl>
 <dd>
 
@@ -7470,7 +7472,7 @@ Get the user session details for the currently authenticated user
 <dd>
 
 ```typescript
-await client.v1.internal.users.getInfo();
+await client.internal.users.getInfo();
 ```
 
 </dd>
@@ -7497,9 +7499,9 @@ await client.v1.internal.users.getInfo();
 </dl>
 </details>
 
-## V1 Internal Clusters
+## Internal Clusters
 
-<details><summary><code>client.v1.internal.clusters.<a href="/src/api/resources/v1/resources/internal/resources/clusters/client/Client.ts">getAutoprovisioningState</a>(id) -> TrueFoundry.GetAutoProvisioningStateResponse</code></summary>
+<details><summary><code>client.internal.clusters.<a href="/src/api/resources/internal/resources/clusters/client/Client.ts">getAutoprovisioningState</a>(id) -> TrueFoundry.GetAutoProvisioningStateResponse</code></summary>
 <dl>
 <dd>
 
@@ -7527,7 +7529,7 @@ Get the auto provisioning status for the provided cluster
 <dd>
 
 ```typescript
-await client.v1.internal.clusters.getAutoprovisioningState("id");
+await client.internal.clusters.getAutoprovisioningState("id");
 ```
 
 </dd>
@@ -7562,9 +7564,9 @@ await client.v1.internal.clusters.getAutoprovisioningState("id");
 </dl>
 </details>
 
-## V1 Internal Deployments
+## Internal Deployments
 
-<details><summary><code>client.v1.internal.deployments.<a href="/src/api/resources/v1/resources/internal/resources/deployments/client/Client.ts">getBuilds</a>(id, deploymentId) -> TrueFoundry.DeploymentBuild[]</code></summary>
+<details><summary><code>client.internal.deployments.<a href="/src/api/resources/internal/resources/deployments/client/Client.ts">getBuilds</a>(id, deploymentId) -> TrueFoundry.DeploymentBuild[]</code></summary>
 <dl>
 <dd>
 
@@ -7592,7 +7594,7 @@ This endpoint returns all build details associated with a specific deployment in
 <dd>
 
 ```typescript
-await client.v1.internal.deployments.getBuilds("id", "deploymentId");
+await client.internal.deployments.getBuilds("id", "deploymentId");
 ```
 
 </dd>
@@ -7635,7 +7637,7 @@ await client.v1.internal.deployments.getBuilds("id", "deploymentId");
 </dl>
 </details>
 
-<details><summary><code>client.v1.internal.deployments.<a href="/src/api/resources/v1/resources/internal/resources/deployments/client/Client.ts">getCodeUploadUrl</a>({ ...params }) -> TrueFoundry.PresignedUrlObject</code></summary>
+<details><summary><code>client.internal.deployments.<a href="/src/api/resources/internal/resources/deployments/client/Client.ts">getCodeUploadUrl</a>({ ...params }) -> TrueFoundry.PresignedUrlObject</code></summary>
 <dl>
 <dd>
 
@@ -7663,7 +7665,7 @@ Generate presigned URL to upload code for given serviceName and workspaceFqn
 <dd>
 
 ```typescript
-await client.v1.internal.deployments.getCodeUploadUrl({
+await client.internal.deployments.getCodeUploadUrl({
     serviceName: "serviceName",
     workspaceFqn: "workspaceFqn",
 });
@@ -7682,7 +7684,7 @@ await client.v1.internal.deployments.getCodeUploadUrl({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.GenerateCodeUploadPresignedUrlRequestDto`
+**request:** `TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequestDto`
 
 </dd>
 </dl>
@@ -7701,7 +7703,7 @@ await client.v1.internal.deployments.getCodeUploadUrl({
 </dl>
 </details>
 
-<details><summary><code>client.v1.internal.deployments.<a href="/src/api/resources/v1/resources/internal/resources/deployments/client/Client.ts">getSuggestedEndpoint</a>({ ...params }) -> TrueFoundry.GetSuggestedDeploymentEndpointResponse</code></summary>
+<details><summary><code>client.internal.deployments.<a href="/src/api/resources/internal/resources/deployments/client/Client.ts">getSuggestedEndpoint</a>({ ...params }) -> TrueFoundry.GetSuggestedDeploymentEndpointResponse</code></summary>
 <dl>
 <dd>
 
@@ -7729,7 +7731,7 @@ Generate deployment endpoint based on the provided query parameters.
 <dd>
 
 ```typescript
-await client.v1.internal.deployments.getSuggestedEndpoint({
+await client.internal.deployments.getSuggestedEndpoint({
     applicationType: "async-service",
     applicationName: "applicationName",
     workspaceId: "workspaceId",
@@ -7749,7 +7751,7 @@ await client.v1.internal.deployments.getSuggestedEndpoint({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.DeploymentsGetSuggestedEndpointRequest`
+**request:** `TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest`
 
 </dd>
 </dl>
@@ -7768,9 +7770,9 @@ await client.v1.internal.deployments.getSuggestedEndpoint({
 </dl>
 </details>
 
-## V1 Internal Applications
+## Internal Applications
 
-<details><summary><code>client.v1.internal.applications.<a href="/src/api/resources/v1/resources/internal/resources/applications/client/Client.ts">getPodTemplateHashToDeploymentVersion</a>(id, { ...params }) -> Record<string, number></code></summary>
+<details><summary><code>client.internal.applications.<a href="/src/api/resources/internal/resources/applications/client/Client.ts">getPodTemplateHashToDeploymentVersion</a>(id, { ...params }) -> Record<string, number></code></summary>
 <dl>
 <dd>
 
@@ -7798,7 +7800,7 @@ This endpoint fetches the pod template hash to deployment version map for a spec
 <dd>
 
 ```typescript
-await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id");
+await client.internal.applications.getPodTemplateHashToDeploymentVersion("id");
 ```
 
 </dd>
@@ -7822,7 +7824,7 @@ await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id"
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest`
+**request:** `TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest`
 
 </dd>
 </dl>
@@ -7841,9 +7843,9 @@ await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id"
 </dl>
 </details>
 
-## V1 Internal Vcs
+## Internal Vcs
 
-<details><summary><code>client.v1.internal.vcs.<a href="/src/api/resources/v1/resources/internal/resources/vcs/client/Client.ts">getRepositoryDetails</a>({ ...params }) -> TrueFoundry.GitRepositoryExistsResponse</code></summary>
+<details><summary><code>client.internal.vcs.<a href="/src/api/resources/internal/resources/vcs/client/Client.ts">getRepositoryDetails</a>({ ...params }) -> TrueFoundry.GitRepositoryExistsResponse</code></summary>
 <dl>
 <dd>
 
@@ -7856,7 +7858,7 @@ await client.v1.internal.applications.getPodTemplateHashToDeploymentVersion("id"
 <dd>
 
 ```typescript
-await client.v1.internal.vcs.getRepositoryDetails({
+await client.internal.vcs.getRepositoryDetails({
     repoURL: "repoURL",
 });
 ```
@@ -7874,7 +7876,7 @@ await client.v1.internal.vcs.getRepositoryDetails({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.GitRepositoryExistsRequest`
+**request:** `TrueFoundry.internal.GitRepositoryExistsRequest`
 
 </dd>
 </dl>
@@ -7893,7 +7895,7 @@ await client.v1.internal.vcs.getRepositoryDetails({
 </dl>
 </details>
 
-<details><summary><code>client.v1.internal.vcs.<a href="/src/api/resources/v1/resources/internal/resources/vcs/client/Client.ts">getAuthenticatedUrl</a>({ ...params }) -> TrueFoundry.GetAuthenticatedVcsurlResponse</code></summary>
+<details><summary><code>client.internal.vcs.<a href="/src/api/resources/internal/resources/vcs/client/Client.ts">getAuthenticatedUrl</a>({ ...params }) -> TrueFoundry.GetAuthenticatedVcsurlResponse</code></summary>
 <dl>
 <dd>
 
@@ -7906,7 +7908,7 @@ await client.v1.internal.vcs.getRepositoryDetails({
 <dd>
 
 ```typescript
-await client.v1.internal.vcs.getAuthenticatedUrl({
+await client.internal.vcs.getAuthenticatedUrl({
     repoURL: "repoURL",
 });
 ```
@@ -7924,7 +7926,7 @@ await client.v1.internal.vcs.getAuthenticatedUrl({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.GetAuthenticatedVcsurlRequest`
+**request:** `TrueFoundry.internal.GetAuthenticatedVcsurlRequest`
 
 </dd>
 </dl>
@@ -7943,9 +7945,9 @@ await client.v1.internal.vcs.getAuthenticatedUrl({
 </dl>
 </details>
 
-## V1 Internal Metrics
+## Internal Metrics
 
-<details><summary><code>client.v1.internal.metrics.<a href="/src/api/resources/v1/resources/internal/resources/metrics/client/Client.ts">getCharts</a>(workspaceId, { ...params }) -> TrueFoundry.GetChartsResponse</code></summary>
+<details><summary><code>client.internal.metrics.<a href="/src/api/resources/internal/resources/metrics/client/Client.ts">getCharts</a>(workspaceId, { ...params }) -> TrueFoundry.GetChartsResponse</code></summary>
 <dl>
 <dd>
 
@@ -7973,7 +7975,7 @@ List charts for a given Application based on parameters passed in the query.
 <dd>
 
 ```typescript
-await client.v1.internal.metrics.getCharts("workspaceId", {
+await client.internal.metrics.getCharts("workspaceId", {
     applicationId: "applicationId",
     filterEntity: "application",
 });
@@ -8000,7 +8002,7 @@ await client.v1.internal.metrics.getCharts("workspaceId", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.MetricsGetChartsRequest`
+**request:** `TrueFoundry.internal.MetricsGetChartsRequest`
 
 </dd>
 </dl>
@@ -8019,9 +8021,9 @@ await client.v1.internal.metrics.getCharts("workspaceId", {
 </dl>
 </details>
 
-## V1 Internal ArtifactVersions
+## Internal ArtifactVersions
 
-<details><summary><code>client.v1.internal.artifactVersions.<a href="/src/api/resources/v1/resources/internal/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.InternalListArtifactVersionResponseDataItem></code></summary>
+<details><summary><code>client.internal.artifactVersions.<a href="/src/api/resources/internal/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.InternalListArtifactVersionResponseDataItem></code></summary>
 <dl>
 <dd>
 
@@ -8049,13 +8051,13 @@ List artifact version API
 <dd>
 
 ```typescript
-const response = await client.v1.internal.artifactVersions.list();
+const response = await client.internal.artifactVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.internal.artifactVersions.list();
+const page = await client.internal.artifactVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -8074,7 +8076,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.v1.internal.ArtifactVersionsListRequest`
+**request:** `TrueFoundry.internal.ArtifactVersionsListRequest`
 
 </dd>
 </dl>
@@ -8083,6 +8085,128 @@ while (page.hasNextPage()) {
 <dd>
 
 **requestOptions:** `ArtifactVersions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Internal Ml
+
+<details><summary><code>client.internal.ml.<a href="/src/api/resources/internal/resources/ml/client/Client.ts">apply</a>({ ...params }) -> TrueFoundry.ApplyMlEntityResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.ml.apply({
+    manifest: {
+        name: "name",
+        metadata: {
+            key: "value",
+        },
+        ml_repo: "ml_repo",
+        type: "model-version",
+        source: {
+            type: "truefoundry",
+        },
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.internal.ApplyMlEntityRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Ml.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.internal.ml.<a href="/src/api/resources/internal/resources/ml/client/Client.ts">delete</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.ml.delete({
+    manifest: {
+        name: "name",
+        metadata: {
+            key: "value",
+        },
+        ml_repo: "ml_repo",
+        type: "model-version",
+        source: {
+            type: "truefoundry",
+        },
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.internal.DeleteMlEntityRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Ml.RequestOptions`
 
 </dd>
 </dl>

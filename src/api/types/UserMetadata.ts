@@ -8,5 +8,6 @@ export interface UserMetadata {
     displayName?: string;
     userObject?: Record<string, unknown>;
     inviteAccepted?: boolean;
+    registeredInIdp?: boolean;
     preference?: Record<string, unknown>;
 }
