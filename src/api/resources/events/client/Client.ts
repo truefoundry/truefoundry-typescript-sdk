@@ -44,10 +44,17 @@ export class Events {
      * @example
      *     await client.events.get()
      */
-    public async get(
+    public get(
         request: TrueFoundry.EventsGetRequest = {},
         requestOptions?: Events.RequestOptions,
-    ): Promise<TrueFoundry.GetEventsResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetEventsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
+    }
+
+    private async __get(
+        request: TrueFoundry.EventsGetRequest = {},
+        requestOptions?: Events.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetEventsResponse>> {
         const { startTs, endTs, applicationId, applicationFqn, podNames, jobRunName } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (startTs != null) {
@@ -103,21 +110,25 @@ export class Events {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetEventsResponse;
+            return { data: _response.body as TrueFoundry.GetEventsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -127,12 +138,14 @@ export class Events {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/events.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

@@ -46,112 +46,126 @@ export class ArtifactVersions {
         request: TrueFoundry.internal.ArtifactVersionsListRequest = {},
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.Page<TrueFoundry.InternalListArtifactVersionResponseDataItem>> {
-        const list = async (
-            request: TrueFoundry.internal.ArtifactVersionsListRequest,
-        ): Promise<TrueFoundry.InternalListArtifactVersionResponse> => {
-            const {
-                artifact_id: artifactId,
-                fqn,
-                offset,
-                limit,
-                run_ids: runIds,
-                run_steps: runSteps,
-                include_internal_metadata: includeInternalMetadata,
-                include_model_versions: includeModelVersions,
-            } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (artifactId != null) {
-                _queryParams["artifact_id"] = artifactId;
-            }
-            if (fqn != null) {
-                _queryParams["fqn"] = fqn;
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (runIds != null) {
-                if (Array.isArray(runIds)) {
-                    _queryParams["run_ids"] = runIds.map((item) => item);
-                } else {
-                    _queryParams["run_ids"] = runIds;
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.internal.ArtifactVersionsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionResponse>> => {
+                const {
+                    artifact_id: artifactId,
+                    fqn,
+                    offset,
+                    limit,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    include_internal_metadata: includeInternalMetadata,
+                    include_model_versions: includeModelVersions,
+                } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (artifactId != null) {
+                    _queryParams["artifact_id"] = artifactId;
                 }
-            }
-            if (runSteps != null) {
-                if (Array.isArray(runSteps)) {
-                    _queryParams["run_steps"] = runSteps.map((item) => item.toString());
-                } else {
-                    _queryParams["run_steps"] = runSteps.toString();
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
                 }
-            }
-            if (includeInternalMetadata != null) {
-                _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
-            }
-            if (includeModelVersions != null) {
-                _queryParams["include_model_versions"] = includeModelVersions.toString();
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    "api/ml/v1/x/artifact-versions",
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.InternalListArtifactVersionResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 422:
-                        throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                    default:
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (runIds != null) {
+                    if (Array.isArray(runIds)) {
+                        _queryParams["run_ids"] = runIds.map((item) => item);
+                    } else {
+                        _queryParams["run_ids"] = runIds;
+                    }
+                }
+                if (runSteps != null) {
+                    if (Array.isArray(runSteps)) {
+                        _queryParams["run_steps"] = runSteps.map((item) => item.toString());
+                    } else {
+                        _queryParams["run_steps"] = runSteps.toString();
+                    }
+                }
+                if (includeInternalMetadata != null) {
+                    _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
+                }
+                if (includeModelVersions != null) {
+                    _queryParams["include_model_versions"] = includeModelVersions.toString();
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/ml/v1/x/artifact-versions",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.InternalListArtifactVersionResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 422:
+                            throw new TrueFoundry.UnprocessableEntityError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
-                            body: _response.error.body,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/ml/v1/x/artifact-versions.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
                         });
                 }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/ml/v1/x/artifact-versions.",
-                    );
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<
             TrueFoundry.InternalListArtifactVersionResponse,
             TrueFoundry.InternalListArtifactVersionResponseDataItem
         >({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {

@@ -43,10 +43,17 @@ export class Alerts {
      * @example
      *     await client.alerts.list()
      */
-    public async list(
+    public list(
         request: TrueFoundry.AlertsListRequest = {},
         requestOptions?: Alerts.RequestOptions,
-    ): Promise<TrueFoundry.GetAlertsResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetAlertsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
+    }
+
+    private async __list(
+        request: TrueFoundry.AlertsListRequest = {},
+        requestOptions?: Alerts.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAlertsResponse>> {
         const { startTs, endTs, clusterId, applicationId, alertStatus } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (startTs != null) {
@@ -94,19 +101,23 @@ export class Alerts {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetAlertsResponse;
+            return { data: _response.body as TrueFoundry.GetAlertsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -116,12 +127,14 @@ export class Alerts {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/alerts.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

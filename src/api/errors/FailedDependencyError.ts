@@ -4,13 +4,15 @@
 
 import * as errors from "../../errors/index";
 import * as TrueFoundry from "../index";
+import * as core from "../../core";
 
 export class FailedDependencyError extends errors.TrueFoundryError {
-    constructor(body: TrueFoundry.HttpError) {
+    constructor(body: TrueFoundry.HttpError, rawResponse?: core.RawResponse) {
         super({
             message: "FailedDependencyError",
             statusCode: 424,
             body: body,
+            rawResponse: rawResponse,
         });
         Object.setPrototypeOf(this, FailedDependencyError.prototype);
     }

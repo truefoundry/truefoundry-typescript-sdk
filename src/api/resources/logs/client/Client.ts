@@ -42,10 +42,17 @@ export class Logs {
      * @example
      *     await client.logs.get()
      */
-    public async get(
+    public get(
         request: TrueFoundry.LogsGetRequest = {},
         requestOptions?: Logs.RequestOptions,
-    ): Promise<TrueFoundry.GetLogsResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetLogsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
+    }
+
+    private async __get(
+        request: TrueFoundry.LogsGetRequest = {},
+        requestOptions?: Logs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetLogsResponse>> {
         const {
             startTs,
             endTs,
@@ -158,17 +165,18 @@ export class Logs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetLogsResponse;
+            return { data: _response.body as TrueFoundry.GetLogsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -178,12 +186,14 @@ export class Logs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/logs.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

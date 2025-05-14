@@ -43,11 +43,21 @@ export class Applications {
      * @example
      *     await client.internal.applications.getPodTemplateHashToDeploymentVersion("id")
      */
-    public async getPodTemplateHashToDeploymentVersion(
+    public getPodTemplateHashToDeploymentVersion(
         id: string,
         request: TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest = {},
         requestOptions?: Applications.RequestOptions,
-    ): Promise<Record<string, number>> {
+    ): core.HttpResponsePromise<Record<string, number>> {
+        return core.HttpResponsePromise.fromPromise(
+            this.__getPodTemplateHashToDeploymentVersion(id, request, requestOptions),
+        );
+    }
+
+    private async __getPodTemplateHashToDeploymentVersion(
+        id: string,
+        request: TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest = {},
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<Record<string, number>>> {
         const { podTemplateHashes } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (podTemplateHashes != null) {
@@ -79,17 +89,18 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as Record<string, number>;
+            return { data: _response.body as Record<string, number>, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -99,6 +110,7 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -107,6 +119,7 @@ export class Applications {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

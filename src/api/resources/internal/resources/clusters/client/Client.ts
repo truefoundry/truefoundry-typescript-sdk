@@ -42,10 +42,17 @@ export class Clusters {
      * @example
      *     await client.internal.clusters.getAutoprovisioningState("id")
      */
-    public async getAutoprovisioningState(
+    public getAutoprovisioningState(
         id: string,
         requestOptions?: Clusters.RequestOptions,
-    ): Promise<TrueFoundry.GetAutoProvisioningStateResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetAutoProvisioningStateResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getAutoprovisioningState(id, requestOptions));
+    }
+
+    private async __getAutoprovisioningState(
+        id: string,
+        requestOptions?: Clusters.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAutoProvisioningStateResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -70,17 +77,24 @@ export class Clusters {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetAutoProvisioningStateResponse;
+            return {
+                data: _response.body as TrueFoundry.GetAutoProvisioningStateResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -90,6 +104,7 @@ export class Clusters {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -98,6 +113,7 @@ export class Clusters {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
