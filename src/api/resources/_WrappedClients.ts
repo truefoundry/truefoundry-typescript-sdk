@@ -3,6 +3,7 @@ import { Applications } from "./applications/client/Client";
 import { ArtifactVersions } from "./artifactVersions/client/Client";
 import { ModelVersions } from "./modelVersions/client/Client";
 import { PromptVersions } from "./promptVersions/client/Client";
+import { SecretGroups } from "./secretGroups/client/Client";
 import { ToolVersions } from "./toolVersions/client/Client";
 import { TracingProjects } from "./tracingProjects/client/Client";
 import { Workspaces } from "./workspaces/client/Client";
@@ -126,6 +127,26 @@ export class WrappedPromptVersions extends PromptVersions {
         fqn: string,
         requestOptions?: PromptVersions.RequestOptions,
     ): Promise<TrueFoundry.GetPromptVersionResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
+export class WrappedSecretGroups extends SecretGroups {
+    /**
+     * Get secret group API
+     *
+     * @param {string} fqn
+     * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.secretGroups.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: SecretGroups.RequestOptions,
+    ): Promise<TrueFoundry.GetSecretGroupResponse> {
         return { data: await getByFqn(this, fqn, requestOptions) }
     }
 }

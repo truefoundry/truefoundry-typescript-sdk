@@ -1,12 +1,13 @@
 import {
     WrappedAgentVersions,
+    WrappedApplications,
     WrappedArtifactVersions,
     WrappedModelVersions,
     WrappedPromptVersions,
+    WrappedSecretGroups,
     WrappedToolVersions,
     WrappedTracingProjects,
     WrappedWorkspaces,
-    WrappedApplications
 } from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
 
@@ -17,6 +18,7 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected _artifactVersions: WrappedArtifactVersions | undefined;
     protected _modelVersions: WrappedModelVersions | undefined;
     protected _promptVersions: WrappedPromptVersions | undefined;
+    protected _secretGroups: WrappedSecretGroups | undefined;
     protected _toolVersions: WrappedToolVersions | undefined;
     protected _tracingProjects: WrappedTracingProjects | undefined;
     protected _workspaces: WrappedWorkspaces | undefined;
@@ -39,6 +41,10 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
 
     public get promptVersions(): WrappedPromptVersions {
         return (this._promptVersions ??= new WrappedPromptVersions(this._options));
+    }
+
+    public get secretGroups(): WrappedSecretGroups {
+        return (this._secretGroups ??= new WrappedSecretGroups(this._options));
     }
 
     public get toolVersions(): WrappedToolVersions {
