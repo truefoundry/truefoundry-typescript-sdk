@@ -65,12 +65,6 @@ export interface LogsGetRequest {
      * String that needs to be matched
      */
     searchString?: string;
-    /**
-     * Query filter type, `regex` or `substring`
-     */
     searchType?: TrueFoundry.LogsSearchFilterType;
-    /**
-     * Comparison operator for filter. `equal` or `not_equal`
-     */
     searchOperator?: TrueFoundry.LogsSearchOperatorType;
 }
