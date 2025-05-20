@@ -36,7 +36,6 @@ export * from "./users/client/requests";
 export * from "./teams/client/requests";
 export * from "./personalAccessTokens/client/requests";
 export * from "./virtualAccounts/client/requests";
-export * from "./secrets/client/requests";
 export * from "./secretGroups/client/requests";
 export * from "./clusters/client/requests";
 export * from "./environments/client/requests";

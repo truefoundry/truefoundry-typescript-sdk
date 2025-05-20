@@ -19,21 +19,9 @@ export interface SecretGroupsListRequest {
      */
     offset?: number;
     /**
-     * Secret Group Id of secret group.
-     */
-    secretGroupId?: string;
-    /**
      * Fqn of secret group.
      */
     secretGroupFqn?: string;
-    /**
-     * Attributes to return for secret object provided as comma separated values (`secretAttributes=id,fqn`)
-     */
-    secretAttributes?: string;
-    /**
-     * Attributes returned for secret group object provided as comma separated values (`secretGroupAttributes=id,fqn`)
-     */
-    secretGroupAttributes?: string;
     /**
      * Search query - filters by secret group names that contain the search string
      */

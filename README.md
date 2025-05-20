@@ -2,9 +2,14 @@
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Ftruefoundry%2Ftruefoundry-typescript-sdk)
 [![npm shield](https://img.shields.io/npm/v/truefoundry-sdk)](https://www.npmjs.com/package/truefoundry-sdk)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-typescript-sdk)
 
-The Truefoundry TypeScript library provides convenient access to the Truefoundry API from TypeScript.
+This library provides convenient access to the TrueFoundry API.
+
+> [!tip]
+> You can ask questions about this SDK using DeepWiki
+>
+> - Python: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-python-sdk)
+> - TypeScript: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-typescript-sdk)
 
 ## Installation
 
@@ -70,6 +75,7 @@ try {
         console.log(err.statusCode);
         console.log(err.message);
         console.log(err.body);
+        console.log(err.rawResponse);
     }
 }
 ```
@@ -156,6 +162,18 @@ const response = await client.applications.list(..., {
 controller.abort(); // aborts the request
 ```
 
+### Access Raw Response Data
+
+The SDK provides access to raw response data, including headers, through the `.withRawResponse()` method.
+The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
+
+```typescript
+const { data, rawResponse } = await client.applications.list(...).withRawResponse();
+
+console.log(data);
+console.log(rawResponse.headers['X-My-Header']);
+```
+
 ### Runtime Compatibility
 
 The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
@@ -170,7 +188,7 @@ runtimes:
 
 ### Customizing Fetch Client
 
-The SDK provides a way for your to customize the underlying HTTP client / Fetch function. If you're running in an
+The SDK provides a way for you to customize the underlying HTTP client / Fetch function. If you're running in an
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript

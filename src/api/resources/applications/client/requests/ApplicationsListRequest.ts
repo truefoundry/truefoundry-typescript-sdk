@@ -77,7 +77,7 @@ export interface ApplicationsListRequest {
      */
     lifecycleStage?: TrueFoundry.ApplicationsListRequestLifecycleStage;
     /**
-     * Filter out applications with recommendations
+     * Filter out applications with recommendations that are allowed to be shown
      */
-    isRecommendationPresent?: boolean;
+    isRecommendationPresentAndVisible?: boolean;
 }

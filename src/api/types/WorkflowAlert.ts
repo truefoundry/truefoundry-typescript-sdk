@@ -11,13 +11,6 @@ import * as TrueFoundry from "../index";
 export interface WorkflowAlert {
     notification_target?: TrueFoundry.NotificationTarget;
     /**
-     * +label=Alert Events
-     * +usage=Specify the events to send alerts for, it should be one of the following: SUCCEEDED, FAILED, ABORTED, TIMED_OUT
-     * +sort=670
-     * +uiType=Hidden
-     */
-    events?: TrueFoundry.WorkflowEvent[];
-    /**
      * +label=On Completion
      * +usage=Send an alert when the job completes
      * +sort=680

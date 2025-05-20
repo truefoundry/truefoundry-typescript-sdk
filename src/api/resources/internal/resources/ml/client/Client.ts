@@ -52,10 +52,17 @@ export class Ml {
      *         }
      *     })
      */
-    public async apply(
+    public apply(
         request: TrueFoundry.internal.ApplyMlEntityRequest,
         requestOptions?: Ml.RequestOptions,
-    ): Promise<TrueFoundry.ApplyMlEntityResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.ApplyMlEntityResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__apply(request, requestOptions));
+    }
+
+    private async __apply(
+        request: TrueFoundry.internal.ApplyMlEntityRequest,
+        requestOptions?: Ml.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.ApplyMlEntityResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -81,17 +88,21 @@ export class Ml {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.ApplyMlEntityResponse;
+            return { data: _response.body as TrueFoundry.ApplyMlEntityResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -101,12 +112,14 @@ export class Ml {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/ml/v1/apply.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -132,10 +145,17 @@ export class Ml {
      *         }
      *     })
      */
-    public async delete(
+    public delete(
         request: TrueFoundry.internal.DeleteMlEntityRequest,
         requestOptions?: Ml.RequestOptions,
-    ): Promise<TrueFoundry.EmptyResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
+    }
+
+    private async __delete(
+        request: TrueFoundry.internal.DeleteMlEntityRequest,
+        requestOptions?: Ml.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -161,17 +181,21 @@ export class Ml {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.EmptyResponse;
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -181,12 +205,14 @@ export class Ml {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling POST /api/ml/v1/delete.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

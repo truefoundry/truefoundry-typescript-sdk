@@ -40,7 +40,17 @@ export class Models {
      * @example
      *     await client.models.get("id")
      */
-    public async get(id: string, requestOptions?: Models.RequestOptions): Promise<TrueFoundry.GetModelResponse> {
+    public get(
+        id: string,
+        requestOptions?: Models.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetModelResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: Models.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetModelResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -65,17 +75,21 @@ export class Models {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetModelResponse;
+            return { data: _response.body as TrueFoundry.GetModelResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -85,12 +99,14 @@ export class Models {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/ml/v1/models/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -104,7 +120,17 @@ export class Models {
      * @example
      *     await client.models.delete("id")
      */
-    public async delete(id: string, requestOptions?: Models.RequestOptions): Promise<TrueFoundry.EmptyResponse> {
+    public delete(
+        id: string,
+        requestOptions?: Models.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: Models.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -129,17 +155,21 @@ export class Models {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.EmptyResponse;
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -149,6 +179,7 @@ export class Models {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -157,6 +188,7 @@ export class Models {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -174,79 +206,97 @@ export class Models {
         request: TrueFoundry.ModelsListRequest = {},
         requestOptions?: Models.RequestOptions,
     ): Promise<core.Page<TrueFoundry.Model>> {
-        const list = async (request: TrueFoundry.ModelsListRequest): Promise<TrueFoundry.ListModelsResponse> => {
-            const { ml_repo_id: mlRepoId, name, offset, limit, run_id: runId } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (mlRepoId != null) {
-                _queryParams["ml_repo_id"] = mlRepoId;
-            }
-            if (name != null) {
-                _queryParams["name"] = name;
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (runId != null) {
-                _queryParams["run_id"] = runId;
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    "api/ml/v1/models",
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListModelsResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 422:
-                        throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                    default:
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ModelsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListModelsResponse>> => {
+                const { ml_repo_id: mlRepoId, name, offset, limit, run_id: runId } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (mlRepoId != null) {
+                    _queryParams["ml_repo_id"] = mlRepoId;
+                }
+                if (name != null) {
+                    _queryParams["name"] = name;
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (runId != null) {
+                    _queryParams["run_id"] = runId;
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/ml/v1/models",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListModelsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 422:
+                            throw new TrueFoundry.UnprocessableEntityError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
-                            body: _response.error.body,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/ml/v1/models.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
                         });
                 }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/ml/v1/models.");
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<TrueFoundry.ListModelsResponse, TrueFoundry.Model>({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
@@ -277,10 +327,17 @@ export class Models {
      *         }
      *     })
      */
-    public async createOrUpdate(
+    public createOrUpdate(
         request: TrueFoundry.ApplyModelRequest,
         requestOptions?: Models.RequestOptions,
-    ): Promise<TrueFoundry.GetModelVersionResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetModelVersionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
+    }
+
+    private async __createOrUpdate(
+        request: TrueFoundry.ApplyModelRequest,
+        requestOptions?: Models.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetModelVersionResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -306,17 +363,21 @@ export class Models {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetModelVersionResponse;
+            return { data: _response.body as TrueFoundry.GetModelVersionResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -326,6 +387,7 @@ export class Models {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -334,6 +396,7 @@ export class Models {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

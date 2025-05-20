@@ -53,99 +53,118 @@ export class Jobs {
         request: TrueFoundry.JobsListRunsRequest = {},
         requestOptions?: Jobs.RequestOptions,
     ): Promise<core.Page<TrueFoundry.JobRun>> {
-        const list = async (request: TrueFoundry.JobsListRunsRequest): Promise<TrueFoundry.ListJobRunResponse> => {
-            const { limit, offset, searchPrefix, sortBy, order, triggeredBy, status } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (searchPrefix != null) {
-                _queryParams["searchPrefix"] = searchPrefix;
-            }
-            if (sortBy != null) {
-                _queryParams["sortBy"] = sortBy;
-            }
-            if (order != null) {
-                _queryParams["order"] = order;
-            }
-            if (triggeredBy != null) {
-                if (Array.isArray(triggeredBy)) {
-                    _queryParams["triggeredBy"] = triggeredBy.map((item) => item);
-                } else {
-                    _queryParams["triggeredBy"] = triggeredBy;
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.JobsListRunsRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListJobRunResponse>> => {
+                const { limit, offset, searchPrefix, sortBy, order, triggeredBy, status } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
                 }
-            }
-            if (status != null) {
-                if (Array.isArray(status)) {
-                    _queryParams["status"] = status.map((item) => item);
-                } else {
-                    _queryParams["status"] = status;
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
                 }
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    `api/svc/v1/jobs/${encodeURIComponent(jobId)}/runs`,
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListJobRunResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 403:
-                        throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
-                    case 404:
-                        throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
-                    case 422:
-                        throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
-                    default:
+                if (searchPrefix != null) {
+                    _queryParams["searchPrefix"] = searchPrefix;
+                }
+                if (sortBy != null) {
+                    _queryParams["sortBy"] = sortBy;
+                }
+                if (order != null) {
+                    _queryParams["order"] = order;
+                }
+                if (triggeredBy != null) {
+                    if (Array.isArray(triggeredBy)) {
+                        _queryParams["triggeredBy"] = triggeredBy.map((item) => item);
+                    } else {
+                        _queryParams["triggeredBy"] = triggeredBy;
+                    }
+                }
+                if (status != null) {
+                    if (Array.isArray(status)) {
+                        _queryParams["status"] = status.map((item) => item);
+                    } else {
+                        _queryParams["status"] = status;
+                    }
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        `api/svc/v1/jobs/${encodeURIComponent(jobId)}/runs`,
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListJobRunResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 403:
+                            throw new TrueFoundry.ForbiddenError(
+                                _response.error.body as TrueFoundry.HttpError,
+                                _response.rawResponse,
+                            );
+                        case 404:
+                            throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                        case 422:
+                            throw new TrueFoundry.UnprocessableEntityError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
-                            body: _response.error.body,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/svc/v1/jobs/{jobId}/runs.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
                         });
                 }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/svc/v1/jobs/{jobId}/runs.",
-                    );
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<TrueFoundry.ListJobRunResponse, TrueFoundry.JobRun>({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
@@ -168,11 +187,19 @@ export class Jobs {
      * @example
      *     await client.jobs.getRun("jobId", "jobRunName")
      */
-    public async getRun(
+    public getRun(
         jobId: string,
         jobRunName: string,
         requestOptions?: Jobs.RequestOptions,
-    ): Promise<TrueFoundry.GetJobRunResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetJobRunResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getRun(jobId, jobRunName, requestOptions));
+    }
+
+    private async __getRun(
+        jobId: string,
+        jobRunName: string,
+        requestOptions?: Jobs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetJobRunResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -197,19 +224,23 @@ export class Jobs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetJobRunResponse;
+            return { data: _response.body as TrueFoundry.GetJobRunResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -219,6 +250,7 @@ export class Jobs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -227,6 +259,7 @@ export class Jobs {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -245,11 +278,19 @@ export class Jobs {
      * @example
      *     await client.jobs.deleteRun("jobId", "jobRunName")
      */
-    public async deleteRun(
+    public deleteRun(
         jobId: string,
         jobRunName: string,
         requestOptions?: Jobs.RequestOptions,
-    ): Promise<TrueFoundry.DeleteJobRunResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.DeleteJobRunResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteRun(jobId, jobRunName, requestOptions));
+    }
+
+    private async __deleteRun(
+        jobId: string,
+        jobRunName: string,
+        requestOptions?: Jobs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeleteJobRunResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -274,21 +315,28 @@ export class Jobs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.DeleteJobRunResponse;
+            return { data: _response.body as TrueFoundry.DeleteJobRunResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
-                    throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -298,6 +346,7 @@ export class Jobs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -306,6 +355,7 @@ export class Jobs {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -324,10 +374,17 @@ export class Jobs {
      * @example
      *     await client.jobs.trigger()
      */
-    public async trigger(
+    public trigger(
         request: TrueFoundry.TriggerJobRequest = {},
         requestOptions?: Jobs.RequestOptions,
-    ): Promise<TrueFoundry.TriggerJobRunResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.TriggerJobRunResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__trigger(request, requestOptions));
+    }
+
+    private async __trigger(
+        request: TrueFoundry.TriggerJobRequest = {},
+        requestOptions?: Jobs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.TriggerJobRunResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -353,23 +410,30 @@ export class Jobs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.TriggerJobRunResponse;
+            return { data: _response.body as TrueFoundry.TriggerJobRunResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -379,6 +443,7 @@ export class Jobs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -387,6 +452,7 @@ export class Jobs {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -408,10 +474,17 @@ export class Jobs {
      *         jobRunName: "jobRunName"
      *     })
      */
-    public async terminate(
+    public terminate(
         request: TrueFoundry.JobsTerminateRequest,
         requestOptions?: Jobs.RequestOptions,
-    ): Promise<TrueFoundry.TerminateJobResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.TerminateJobResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__terminate(request, requestOptions));
+    }
+
+    private async __terminate(
+        request: TrueFoundry.JobsTerminateRequest,
+        requestOptions?: Jobs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.TerminateJobResponse>> {
         const { deploymentId, jobRunName } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["deploymentId"] = deploymentId;
@@ -441,23 +514,33 @@ export class Jobs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.TerminateJobResponse;
+            return { data: _response.body as TrueFoundry.TerminateJobResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 417:
-                    throw new TrueFoundry.ExpectationFailedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ExpectationFailedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -467,6 +550,7 @@ export class Jobs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -475,6 +559,7 @@ export class Jobs {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
