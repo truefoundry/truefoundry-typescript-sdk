@@ -24,7 +24,13 @@ export interface JobsListRunsRequest {
      * Prefix used to search for job runs by name or identifier
      */
     searchPrefix?: string;
+    /**
+     * Attribute to sort by
+     */
     sortBy?: TrueFoundry.JobRunsSortBy;
+    /**
+     * Sorting order
+     */
     order?: TrueFoundry.JobRunsSortDirection;
     /**
      * Array of subject slugs
