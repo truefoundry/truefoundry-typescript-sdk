@@ -9,8 +9,8 @@ export interface SecretVersion {
     fqn: string;
     value?: string;
     version?: number;
-    secret: TrueFoundry.Secret;
-    secretId: string;
+    secret?: TrueFoundry.Secret;
+    secretId?: string;
     createdAt?: string;
     updatedAt?: string;
 }
