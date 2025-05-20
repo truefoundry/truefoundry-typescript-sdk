@@ -1171,78 +1171,6 @@ await client.virtualAccounts.delete("id");
 
 ## Secrets
 
-<details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Secret></code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List secrets associated with a user filtered with optional parameters passed in the body.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const response = await client.secrets.list();
-for await (const item of response) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-const page = await client.secrets.list();
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.ListSecretsRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Secrets.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">get</a>(id) -> TrueFoundry.GetSecretResponse</code></summary>
 <dl>
 <dd>
@@ -1255,7 +1183,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-Get Secret associated with provided id
+Get Secret associated with provided id. The secret value is not returned if the control plane has `DISABLE_SECRET_VALUE_VIEW` set
 
 </dd>
 </dl>
@@ -1383,7 +1311,7 @@ await client.secrets.delete("id");
 <dl>
 <dd>
 
-List the secret groups associated with a user along with the associated secrets for each group. Filtered with the options passed in the query fields.
+List the secret groups associated with a user along with the associated secrets for each group. Filtered with the options passed in the query fields. Note: This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
 
 </dd>
 </dl>
@@ -1461,7 +1389,7 @@ while (page.hasNextPage()) {
 <dl>
 <dd>
 
-Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secrets in the <em>associatedSecrets</em> field. A separate API call should be made to fetch the associated secrets.
+Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
 
 </dd>
 </dl>
@@ -1533,7 +1461,7 @@ await client.secretGroups.create({
 <dl>
 <dd>
 
-Get Secret Group associated with provided secretGroup id
+Get Secret Group by id. This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
 
 </dd>
 </dl>
@@ -1596,7 +1524,7 @@ await client.secretGroups.get("id");
 <dl>
 <dd>
 
-Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value. Returns the updated secret group. The returned secret group does not have any secrets in the <em>associatedSecrets</em> field. A separate API call should be made to fetch the associated secrets.
+Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value and any omitted secrets are deleted. The returned updated secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
 
 </dd>
 </dl>
@@ -1691,69 +1619,6 @@ Deletes the secret group, its associated secrets and secret versions of those se
 
 ```typescript
 await client.secretGroups.delete("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Secret Id of the secret group.
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `SecretGroups.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">listSecrets</a>(id) -> TrueFoundry.Secret[]</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List Secrets associated with a Secret Group.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.secretGroups.listSecrets("id");
 ```
 
 </dd>

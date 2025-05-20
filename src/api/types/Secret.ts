@@ -9,7 +9,7 @@ export interface Secret {
     fqn: string;
     name: string;
     secretGroupId: string;
-    value: string;
+    value?: string;
     createdBySubject?: TrueFoundry.Subject;
     createdAt?: string;
     updatedAt?: string;

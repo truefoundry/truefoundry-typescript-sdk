@@ -54,82 +54,96 @@ export class ApplicationVersions {
         request: TrueFoundry.ApplicationVersionsListRequest = {},
         requestOptions?: ApplicationVersions.RequestOptions,
     ): Promise<core.Page<TrueFoundry.Deployment>> {
-        const list = async (
-            request: TrueFoundry.ApplicationVersionsListRequest,
-        ): Promise<TrueFoundry.ListApplicationDeploymentsResponse> => {
-            const { limit, offset, version, deploymentId } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (version != null) {
-                _queryParams["version"] = version;
-            }
-            if (deploymentId != null) {
-                _queryParams["deploymentId"] = deploymentId;
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    `api/svc/v1/apps/${encodeURIComponent(id)}/deployments`,
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListApplicationDeploymentsResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 403:
-                        throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
-                    case 404:
-                        throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
-                    default:
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ApplicationVersionsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListApplicationDeploymentsResponse>> => {
+                const { limit, offset, version, deploymentId } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (version != null) {
+                    _queryParams["version"] = version;
+                }
+                if (deploymentId != null) {
+                    _queryParams["deploymentId"] = deploymentId;
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        `api/svc/v1/apps/${encodeURIComponent(id)}/deployments`,
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListApplicationDeploymentsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 403:
+                            throw new TrueFoundry.ForbiddenError(
+                                _response.error.body as TrueFoundry.HttpError,
+                                _response.rawResponse,
+                            );
+                        case 404:
+                            throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
-                            body: _response.error.body,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
                         });
                 }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments.",
-                    );
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<TrueFoundry.ListApplicationDeploymentsResponse, TrueFoundry.Deployment>({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
@@ -152,11 +166,19 @@ export class ApplicationVersions {
      * @example
      *     await client.applicationVersions.get("id", "deploymentId")
      */
-    public async get(
+    public get(
         id: string,
         deploymentId: string,
         requestOptions?: ApplicationVersions.RequestOptions,
-    ): Promise<TrueFoundry.GetApplicationDeploymentResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetApplicationDeploymentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, deploymentId, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        deploymentId: string,
+        requestOptions?: ApplicationVersions.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetApplicationDeploymentResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -181,19 +203,26 @@ export class ApplicationVersions {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetApplicationDeploymentResponse;
+            return {
+                data: _response.body as TrueFoundry.GetApplicationDeploymentResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -203,6 +232,7 @@ export class ApplicationVersions {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -211,6 +241,7 @@ export class ApplicationVersions {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

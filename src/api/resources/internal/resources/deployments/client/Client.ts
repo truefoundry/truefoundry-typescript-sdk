@@ -43,11 +43,19 @@ export class Deployments {
      * @example
      *     await client.internal.deployments.getBuilds("id", "deploymentId")
      */
-    public async getBuilds(
+    public getBuilds(
         id: string,
         deploymentId: string,
         requestOptions?: Deployments.RequestOptions,
-    ): Promise<TrueFoundry.DeploymentBuild[]> {
+    ): core.HttpResponsePromise<TrueFoundry.DeploymentBuild[]> {
+        return core.HttpResponsePromise.fromPromise(this.__getBuilds(id, deploymentId, requestOptions));
+    }
+
+    private async __getBuilds(
+        id: string,
+        deploymentId: string,
+        requestOptions?: Deployments.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeploymentBuild[]>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -72,17 +80,18 @@ export class Deployments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.DeploymentBuild[];
+            return { data: _response.body as TrueFoundry.DeploymentBuild[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -92,6 +101,7 @@ export class Deployments {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -100,6 +110,7 @@ export class Deployments {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -116,10 +127,17 @@ export class Deployments {
      *         workspaceFqn: "workspaceFqn"
      *     })
      */
-    public async getCodeUploadUrl(
+    public getCodeUploadUrl(
         request: TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequestDto,
         requestOptions?: Deployments.RequestOptions,
-    ): Promise<TrueFoundry.PresignedUrlObject> {
+    ): core.HttpResponsePromise<TrueFoundry.PresignedUrlObject> {
+        return core.HttpResponsePromise.fromPromise(this.__getCodeUploadUrl(request, requestOptions));
+    }
+
+    private async __getCodeUploadUrl(
+        request: TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequestDto,
+        requestOptions?: Deployments.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.PresignedUrlObject>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -145,13 +163,14 @@ export class Deployments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.PresignedUrlObject;
+            return { data: _response.body as TrueFoundry.PresignedUrlObject, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.TrueFoundryError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -160,6 +179,7 @@ export class Deployments {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -168,6 +188,7 @@ export class Deployments {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -187,10 +208,17 @@ export class Deployments {
      *         workspaceId: "workspaceId"
      *     })
      */
-    public async getSuggestedEndpoint(
+    public getSuggestedEndpoint(
         request: TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest,
         requestOptions?: Deployments.RequestOptions,
-    ): Promise<TrueFoundry.GetSuggestedDeploymentEndpointResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetSuggestedDeploymentEndpointResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getSuggestedEndpoint(request, requestOptions));
+    }
+
+    private async __getSuggestedEndpoint(
+        request: TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest,
+        requestOptions?: Deployments.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetSuggestedDeploymentEndpointResponse>> {
         const { applicationType, applicationName, workspaceId, baseDomain, port, preferWildcard } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["applicationType"] = applicationType;
@@ -233,17 +261,21 @@ export class Deployments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetSuggestedDeploymentEndpointResponse;
+            return {
+                data: _response.body as TrueFoundry.GetSuggestedDeploymentEndpointResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -253,6 +285,7 @@ export class Deployments {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -261,6 +294,7 @@ export class Deployments {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

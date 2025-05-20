@@ -32,7 +32,7 @@ export class SecretGroups {
     constructor(protected readonly _options: SecretGroups.Options) {}
 
     /**
-     * List the secret groups associated with a user along with the associated secrets for each group. Filtered with the options passed in the query fields.
+     * List the secret groups associated with a user along with the associated secrets for each group. Filtered with the options passed in the query fields. Note: This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
      *
      * @param {TrueFoundry.SecretGroupsListRequest} request
      * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
@@ -47,85 +47,86 @@ export class SecretGroups {
         request: TrueFoundry.SecretGroupsListRequest = {},
         requestOptions?: SecretGroups.RequestOptions,
     ): Promise<core.Page<TrueFoundry.SecretGroup>> {
-        const list = async (
-            request: TrueFoundry.SecretGroupsListRequest,
-        ): Promise<TrueFoundry.ListSecretGroupResponse> => {
-            const { limit, offset, secretGroupId, secretGroupFqn, secretAttributes, secretGroupAttributes, search } =
-                request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (secretGroupId != null) {
-                _queryParams["secretGroupId"] = secretGroupId;
-            }
-            if (secretGroupFqn != null) {
-                _queryParams["secretGroupFqn"] = secretGroupFqn;
-            }
-            if (secretAttributes != null) {
-                _queryParams["secretAttributes"] = secretAttributes;
-            }
-            if (secretGroupAttributes != null) {
-                _queryParams["secretGroupAttributes"] = secretGroupAttributes;
-            }
-            if (search != null) {
-                _queryParams["search"] = search;
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/secret-groups",
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListSecretGroupResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.body,
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.SecretGroupsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListSecretGroupResponse>> => {
+                const { limit, offset, secretGroupFqn: fqn, search } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (fqn != null) {
+                    _queryParams["secretGroupFqn"] = fqn;
+                }
+                if (search != null) {
+                    _queryParams["search"] = search;
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/secret-groups",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
                 });
-            }
-            switch (_response.error.reason) {
-                case "non-json":
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListSecretGroupResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError(
-                        "Timeout exceeded when calling GET /api/svc/v1/secret-groups.",
-                    );
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
+                        throw new errors.TrueFoundryError({
+                            statusCode: _response.error.statusCode,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/svc/v1/secret-groups.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
+                        });
+                }
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<TrueFoundry.ListSecretGroupResponse, TrueFoundry.SecretGroup>({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
@@ -136,7 +137,7 @@ export class SecretGroups {
     }
 
     /**
-     * Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secrets in the <em>associatedSecrets</em> field. A separate API call should be made to fetch the associated secrets.
+     * Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
      *
      * @param {TrueFoundry.CreateSecretGroupRequest} request
      * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
@@ -154,10 +155,17 @@ export class SecretGroups {
      *             }]
      *     })
      */
-    public async create(
+    public create(
         request: TrueFoundry.CreateSecretGroupRequest,
         requestOptions?: SecretGroups.RequestOptions,
-    ): Promise<TrueFoundry.GetSecretGroupResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetSecretGroupResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
+    }
+
+    private async __create(
+        request: TrueFoundry.CreateSecretGroupRequest,
+        requestOptions?: SecretGroups.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetSecretGroupResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -183,19 +191,26 @@ export class SecretGroups {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetSecretGroupResponse;
+            return { data: _response.body as TrueFoundry.GetSecretGroupResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 case 424:
-                    throw new TrueFoundry.FailedDependencyError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.FailedDependencyError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -205,6 +220,7 @@ export class SecretGroups {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -213,12 +229,13 @@ export class SecretGroups {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
 
     /**
-     * Get Secret Group associated with provided secretGroup id
+     * Get Secret Group by id. This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
      *
      * @param {string} id - Secret Id of the secret group.
      * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
@@ -229,10 +246,17 @@ export class SecretGroups {
      * @example
      *     await client.secretGroups.get("id")
      */
-    public async get(
+    public get(
         id: string,
         requestOptions?: SecretGroups.RequestOptions,
-    ): Promise<TrueFoundry.GetSecretGroupResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetSecretGroupResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: SecretGroups.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetSecretGroupResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -257,19 +281,23 @@ export class SecretGroups {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetSecretGroupResponse;
+            return { data: _response.body as TrueFoundry.GetSecretGroupResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -279,6 +307,7 @@ export class SecretGroups {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -287,12 +316,13 @@ export class SecretGroups {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
 
     /**
-     * Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value. Returns the updated secret group. The returned secret group does not have any secrets in the <em>associatedSecrets</em> field. A separate API call should be made to fetch the associated secrets.
+     * Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value and any omitted secrets are deleted. The returned updated secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
      *
      * @param {string} id - Secret Id of the secret group.
      * @param {TrueFoundry.UpdateSecretGroupRequest} request
@@ -311,11 +341,19 @@ export class SecretGroups {
      *             }]
      *     })
      */
-    public async update(
+    public update(
         id: string,
         request: TrueFoundry.UpdateSecretGroupRequest,
         requestOptions?: SecretGroups.RequestOptions,
-    ): Promise<TrueFoundry.GetSecretGroupResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetSecretGroupResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__update(id, request, requestOptions));
+    }
+
+    private async __update(
+        id: string,
+        request: TrueFoundry.UpdateSecretGroupRequest,
+        requestOptions?: SecretGroups.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetSecretGroupResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -341,23 +379,30 @@ export class SecretGroups {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetSecretGroupResponse;
+            return { data: _response.body as TrueFoundry.GetSecretGroupResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -367,6 +412,7 @@ export class SecretGroups {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -375,6 +421,7 @@ export class SecretGroups {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -391,10 +438,17 @@ export class SecretGroups {
      * @example
      *     await client.secretGroups.delete("id")
      */
-    public async delete(
+    public delete(
         id: string,
         requestOptions?: SecretGroups.RequestOptions,
-    ): Promise<TrueFoundry.DeleteSecretGroupResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.DeleteSecretGroupResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: SecretGroups.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeleteSecretGroupResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -419,19 +473,26 @@ export class SecretGroups {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.DeleteSecretGroupResponse;
+            return {
+                data: _response.body as TrueFoundry.DeleteSecretGroupResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -441,6 +502,7 @@ export class SecretGroups {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -449,77 +511,7 @@ export class SecretGroups {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * List Secrets associated with a Secret Group.
-     *
-     * @param {string} id - Secret Id of the secret group.
-     * @param {SecretGroups.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.secretGroups.listSecrets("id")
-     */
-    public async listSecrets(id: string, requestOptions?: SecretGroups.RequestOptions): Promise<TrueFoundry.Secret[]> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/secret-groups/${encodeURIComponent(id)}/secrets`,
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return _response.body as TrueFoundry.Secret[];
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/secret-groups/{id}/secrets.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

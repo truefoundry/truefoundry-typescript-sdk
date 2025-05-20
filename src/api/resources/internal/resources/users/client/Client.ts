@@ -39,7 +39,11 @@ export class Users {
      * @example
      *     await client.internal.users.getInfo()
      */
-    public async getInfo(requestOptions?: Users.RequestOptions): Promise<TrueFoundry.Session> {
+    public getInfo(requestOptions?: Users.RequestOptions): core.HttpResponsePromise<TrueFoundry.Session> {
+        return core.HttpResponsePromise.fromPromise(this.__getInfo(requestOptions));
+    }
+
+    private async __getInfo(requestOptions?: Users.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.Session>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -64,13 +68,14 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.Session;
+            return { data: _response.body as TrueFoundry.Session, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.TrueFoundryError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -79,12 +84,14 @@ export class Users {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/users/info.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

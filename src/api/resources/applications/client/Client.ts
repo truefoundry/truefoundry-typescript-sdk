@@ -49,135 +49,149 @@ export class Applications {
         request: TrueFoundry.ApplicationsListRequest = {},
         requestOptions?: Applications.RequestOptions,
     ): Promise<core.Page<TrueFoundry.Application>> {
-        const list = async (
-            request: TrueFoundry.ApplicationsListRequest,
-        ): Promise<TrueFoundry.ListApplicationsResponse> => {
-            const {
-                limit,
-                offset,
-                applicationId,
-                workspaceId,
-                applicationName,
-                fqn,
-                workspaceFqn,
-                applicationType,
-                nameSearchQuery,
-                environmentId,
-                clusterId,
-                applicationSetId,
-                paused,
-                deviceTypeFilter,
-                lastDeployedBySubjects,
-                lifecycleStage,
-                isRecommendationPresent,
-            } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (applicationId != null) {
-                _queryParams["applicationId"] = applicationId;
-            }
-            if (workspaceId != null) {
-                _queryParams["workspaceId"] = workspaceId;
-            }
-            if (applicationName != null) {
-                _queryParams["applicationName"] = applicationName;
-            }
-            if (fqn != null) {
-                _queryParams["fqn"] = fqn;
-            }
-            if (workspaceFqn != null) {
-                _queryParams["workspaceFqn"] = workspaceFqn;
-            }
-            if (applicationType != null) {
-                _queryParams["applicationType"] = applicationType;
-            }
-            if (nameSearchQuery != null) {
-                _queryParams["nameSearchQuery"] = nameSearchQuery;
-            }
-            if (environmentId != null) {
-                _queryParams["environmentId"] = environmentId;
-            }
-            if (clusterId != null) {
-                _queryParams["clusterId"] = clusterId;
-            }
-            if (applicationSetId != null) {
-                _queryParams["applicationSetId"] = applicationSetId;
-            }
-            if (paused != null) {
-                _queryParams["paused"] = paused.toString();
-            }
-            if (deviceTypeFilter != null) {
-                _queryParams["deviceTypeFilter"] = deviceTypeFilter;
-            }
-            if (lastDeployedBySubjects != null) {
-                _queryParams["lastDeployedBySubjects"] = lastDeployedBySubjects;
-            }
-            if (lifecycleStage != null) {
-                _queryParams["lifecycleStage"] = lifecycleStage;
-            }
-            if (isRecommendationPresent != null) {
-                _queryParams["isRecommendationPresent"] = isRecommendationPresent.toString();
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/apps",
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListApplicationsResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                switch (_response.error.statusCode) {
-                    case 400:
-                        throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
-                    default:
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ApplicationsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListApplicationsResponse>> => {
+                const {
+                    limit,
+                    offset,
+                    applicationId,
+                    workspaceId,
+                    applicationName,
+                    fqn,
+                    workspaceFqn,
+                    applicationType,
+                    nameSearchQuery,
+                    environmentId,
+                    clusterId,
+                    applicationSetId,
+                    paused,
+                    deviceTypeFilter,
+                    lastDeployedBySubjects,
+                    lifecycleStage,
+                    isRecommendationPresentAndVisible,
+                } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (applicationId != null) {
+                    _queryParams["applicationId"] = applicationId;
+                }
+                if (workspaceId != null) {
+                    _queryParams["workspaceId"] = workspaceId;
+                }
+                if (applicationName != null) {
+                    _queryParams["applicationName"] = applicationName;
+                }
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
+                }
+                if (workspaceFqn != null) {
+                    _queryParams["workspaceFqn"] = workspaceFqn;
+                }
+                if (applicationType != null) {
+                    _queryParams["applicationType"] = applicationType;
+                }
+                if (nameSearchQuery != null) {
+                    _queryParams["nameSearchQuery"] = nameSearchQuery;
+                }
+                if (environmentId != null) {
+                    _queryParams["environmentId"] = environmentId;
+                }
+                if (clusterId != null) {
+                    _queryParams["clusterId"] = clusterId;
+                }
+                if (applicationSetId != null) {
+                    _queryParams["applicationSetId"] = applicationSetId;
+                }
+                if (paused != null) {
+                    _queryParams["paused"] = paused.toString();
+                }
+                if (deviceTypeFilter != null) {
+                    _queryParams["deviceTypeFilter"] = deviceTypeFilter;
+                }
+                if (lastDeployedBySubjects != null) {
+                    _queryParams["lastDeployedBySubjects"] = lastDeployedBySubjects;
+                }
+                if (lifecycleStage != null) {
+                    _queryParams["lifecycleStage"] = lifecycleStage;
+                }
+                if (isRecommendationPresentAndVisible != null) {
+                    _queryParams["isRecommendationPresentAndVisible"] = isRecommendationPresentAndVisible.toString();
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/apps",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListApplicationsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 400:
+                            throw new TrueFoundry.BadRequestError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
                         throw new errors.TrueFoundryError({
                             statusCode: _response.error.statusCode,
-                            body: _response.error.body,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/apps.");
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
                         });
                 }
-            }
-            switch (_response.error.reason) {
-                case "non-json":
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
-                    });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/apps.");
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<TrueFoundry.ListApplicationsResponse, TrueFoundry.Application>({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
@@ -205,10 +219,17 @@ export class Applications {
      *         }
      *     })
      */
-    public async createOrUpdate(
+    public createOrUpdate(
         request: TrueFoundry.CreateDeploymentRequest,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<TrueFoundry.GetApplicationDeploymentResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetApplicationDeploymentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
+    }
+
+    private async __createOrUpdate(
+        request: TrueFoundry.CreateDeploymentRequest,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetApplicationDeploymentResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -234,23 +255,33 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetApplicationDeploymentResponse;
+            return {
+                data: _response.body as TrueFoundry.GetApplicationDeploymentResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
-                    throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -260,12 +291,14 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/apps.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -282,10 +315,17 @@ export class Applications {
      * @example
      *     await client.applications.get("id")
      */
-    public async get(
+    public get(
         id: string,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<TrueFoundry.GetApplicationResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetApplicationResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetApplicationResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -310,19 +350,23 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetApplicationResponse;
+            return { data: _response.body as TrueFoundry.GetApplicationResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -332,12 +376,14 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/apps/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -354,10 +400,17 @@ export class Applications {
      * @example
      *     await client.applications.delete("id")
      */
-    public async delete(
+    public delete(
         id: string,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<TrueFoundry.DeleteApplicationResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.DeleteApplicationResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeleteApplicationResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -382,19 +435,26 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.DeleteApplicationResponse;
+            return {
+                data: _response.body as TrueFoundry.DeleteApplicationResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -404,12 +464,14 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling DELETE /api/svc/v1/apps/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -428,7 +490,14 @@ export class Applications {
      * @example
      *     await client.applications.scaleToZero("id")
      */
-    public async scaleToZero(id: string, requestOptions?: Applications.RequestOptions): Promise<void> {
+    public scaleToZero(id: string, requestOptions?: Applications.RequestOptions): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__scaleToZero(id, requestOptions));
+    }
+
+    private async __scaleToZero(
+        id: string,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -453,23 +522,30 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return;
+            return { data: undefined, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 405:
-                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown);
+                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown, _response.rawResponse);
                 case 501:
-                    throw new TrueFoundry.NotImplementedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotImplementedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -479,6 +555,7 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -487,6 +564,7 @@ export class Applications {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -504,10 +582,17 @@ export class Applications {
      * @example
      *     await client.applications.scaleToOriginal("id")
      */
-    public async scaleToOriginal(
+    public scaleToOriginal(
         id: string,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<TrueFoundry.Deployment> {
+    ): core.HttpResponsePromise<TrueFoundry.Deployment> {
+        return core.HttpResponsePromise.fromPromise(this.__scaleToOriginal(id, requestOptions));
+    }
+
+    private async __scaleToOriginal(
+        id: string,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.Deployment>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -532,21 +617,28 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.Deployment;
+            return { data: _response.body as TrueFoundry.Deployment, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 501:
-                    throw new TrueFoundry.NotImplementedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.NotImplementedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -556,6 +648,7 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -564,6 +657,7 @@ export class Applications {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -582,11 +676,19 @@ export class Applications {
      * @example
      *     await client.applications.cancelDeployment("id", "deploymentId")
      */
-    public async cancelDeployment(
+    public cancelDeployment(
         id: string,
         deploymentId: string,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<TrueFoundry.ApplicationsCancelDeploymentResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.ApplicationsCancelDeploymentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__cancelDeployment(id, deploymentId, requestOptions));
+    }
+
+    private async __cancelDeployment(
+        id: string,
+        deploymentId: string,
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.ApplicationsCancelDeploymentResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -611,21 +713,31 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.ApplicationsCancelDeploymentResponse;
+            return {
+                data: _response.body as TrueFoundry.ApplicationsCancelDeploymentResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
-                    throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -635,6 +747,7 @@ export class Applications {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -643,6 +756,7 @@ export class Applications {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

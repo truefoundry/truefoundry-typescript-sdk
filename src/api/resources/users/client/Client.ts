@@ -47,71 +47,86 @@ export class Users {
         request: TrueFoundry.UsersListRequest = {},
         requestOptions?: Users.RequestOptions,
     ): Promise<core.Page<TrueFoundry.User>> {
-        const list = async (request: TrueFoundry.UsersListRequest): Promise<TrueFoundry.ListUsersResponse> => {
-            const { limit, offset, query, showInvalidUsers } = request;
-            const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-            if (limit != null) {
-                _queryParams["limit"] = limit.toString();
-            }
-            if (offset != null) {
-                _queryParams["offset"] = offset.toString();
-            }
-            if (query != null) {
-                _queryParams["query"] = query;
-            }
-            if (showInvalidUsers != null) {
-                _queryParams["showInvalidUsers"] = showInvalidUsers.toString();
-            }
-            const _response = await (this._options.fetcher ?? core.fetcher)({
-                url: urlJoin(
-                    (await core.Supplier.get(this._options.baseUrl)) ??
-                        (await core.Supplier.get(this._options.environment)),
-                    "api/svc/v1/users",
-                ),
-                method: "GET",
-                headers: {
-                    Authorization: await this._getAuthorizationHeader(),
-                    "X-Fern-Language": "JavaScript",
-                    "X-Fern-SDK-Name": "truefoundry-sdk",
-                    "X-Fern-SDK-Version": "0.0.0",
-                    "User-Agent": "truefoundry-sdk/0.0.0",
-                    "X-Fern-Runtime": core.RUNTIME.type,
-                    "X-Fern-Runtime-Version": core.RUNTIME.version,
-                    ...requestOptions?.headers,
-                },
-                contentType: "application/json",
-                queryParameters: _queryParams,
-                requestType: "json",
-                timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                maxRetries: requestOptions?.maxRetries,
-                abortSignal: requestOptions?.abortSignal,
-            });
-            if (_response.ok) {
-                return _response.body as TrueFoundry.ListUsersResponse;
-            }
-            if (_response.error.reason === "status-code") {
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.body,
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.UsersListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => {
+                const { limit, offset, query, showInvalidUsers } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (query != null) {
+                    _queryParams["query"] = query;
+                }
+                if (showInvalidUsers != null) {
+                    _queryParams["showInvalidUsers"] = showInvalidUsers.toString();
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/users",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
                 });
-            }
-            switch (_response.error.reason) {
-                case "non-json":
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListUsersResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
-                        body: _response.error.rawBody,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
-                case "timeout":
-                    throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/users.");
-                case "unknown":
-                    throw new errors.TrueFoundryError({
-                        message: _response.error.errorMessage,
-                    });
-            }
-        };
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
+                        throw new errors.TrueFoundryError({
+                            statusCode: _response.error.statusCode,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/svc/v1/users.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
+                        });
+                }
+            },
+        );
         let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<TrueFoundry.ListUsersResponse, TrueFoundry.User>({
-            response: await list(request),
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length > 0,
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
@@ -137,10 +152,17 @@ export class Users {
      *         roles: ["roles"]
      *     })
      */
-    public async updateRoles(
+    public updateRoles(
         request: TrueFoundry.UpdateUserRolesRequest,
         requestOptions?: Users.RequestOptions,
-    ): Promise<TrueFoundry.UpdateUserRolesResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.UpdateUserRolesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__updateRoles(request, requestOptions));
+    }
+
+    private async __updateRoles(
+        request: TrueFoundry.UpdateUserRolesRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.UpdateUserRolesResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -166,21 +188,28 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.UpdateUserRolesResponse;
+            return { data: _response.body as TrueFoundry.UpdateUserRolesResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(_response.error.body as unknown);
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -190,6 +219,7 @@ export class Users {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -198,6 +228,7 @@ export class Users {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -213,7 +244,17 @@ export class Users {
      * @example
      *     await client.users.get("id")
      */
-    public async get(id: string, requestOptions?: Users.RequestOptions): Promise<TrueFoundry.GetUserResponse> {
+    public get(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -238,17 +279,18 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetUserResponse;
+            return { data: _response.body as TrueFoundry.GetUserResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -258,12 +300,14 @@ export class Users {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/users/{id}.");
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -284,10 +328,17 @@ export class Users {
      *         email: "email"
      *     })
      */
-    public async inviteUser(
+    public inviteUser(
         request: TrueFoundry.InviteUserRequest,
         requestOptions?: Users.RequestOptions,
-    ): Promise<TrueFoundry.InviteUserResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.InviteUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__inviteUser(request, requestOptions));
+    }
+
+    private async __inviteUser(
+        request: TrueFoundry.InviteUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.InviteUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -313,21 +364,31 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.InviteUserResponse;
+            return { data: _response.body as TrueFoundry.InviteUserResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 403:
-                    throw new TrueFoundry.ForbiddenError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 409:
-                    throw new TrueFoundry.ConflictError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -337,6 +398,7 @@ export class Users {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -345,6 +407,7 @@ export class Users {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -363,10 +426,17 @@ export class Users {
      *         email: "email"
      *     })
      */
-    public async deactivate(
+    public deactivate(
         request: TrueFoundry.DeactivateUserRequest,
         requestOptions?: Users.RequestOptions,
-    ): Promise<TrueFoundry.DeactivateUserResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.DeactivateUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deactivate(request, requestOptions));
+    }
+
+    private async __deactivate(
+        request: TrueFoundry.DeactivateUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeactivateUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -392,19 +462,23 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.DeactivateUserResponse;
+            return { data: _response.body as TrueFoundry.DeactivateUserResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -414,6 +488,7 @@ export class Users {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -422,6 +497,7 @@ export class Users {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -440,10 +516,17 @@ export class Users {
      *         email: "email"
      *     })
      */
-    public async activate(
+    public activate(
         request: TrueFoundry.ActivateUserRequest,
         requestOptions?: Users.RequestOptions,
-    ): Promise<TrueFoundry.ActivateUserResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.ActivateUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__activate(request, requestOptions));
+    }
+
+    private async __activate(
+        request: TrueFoundry.ActivateUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.ActivateUserResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -469,19 +552,23 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.ActivateUserResponse;
+            return { data: _response.body as TrueFoundry.ActivateUserResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 401:
-                    throw new TrueFoundry.UnauthorizedError(_response.error.body as TrueFoundry.HttpError);
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -491,6 +578,7 @@ export class Users {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -499,6 +587,7 @@ export class Users {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

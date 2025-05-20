@@ -8,6 +8,5 @@ import * as TrueFoundry from "../index";
  * +label=Driver Config
  */
 export interface SparkDriverConfig {
-    ui_endpoint: TrueFoundry.Endpoint;
     resources?: TrueFoundry.Resources;
 }

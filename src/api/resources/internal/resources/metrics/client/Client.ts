@@ -48,11 +48,19 @@ export class Metrics {
      *         filterEntity: "application"
      *     })
      */
-    public async getCharts(
+    public getCharts(
         workspaceId: string,
         request: TrueFoundry.internal.MetricsGetChartsRequest,
         requestOptions?: Metrics.RequestOptions,
-    ): Promise<TrueFoundry.GetChartsResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetChartsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getCharts(workspaceId, request, requestOptions));
+    }
+
+    private async __getCharts(
+        workspaceId: string,
+        request: TrueFoundry.internal.MetricsGetChartsRequest,
+        requestOptions?: Metrics.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetChartsResponse>> {
         const { applicationId, startTs, endTs, filterEntity, filterQuery } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         _queryParams["applicationId"] = applicationId;
@@ -94,21 +102,22 @@ export class Metrics {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetChartsResponse;
+            return { data: _response.body as TrueFoundry.GetChartsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 405:
-                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown);
+                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
                         body: _response.error.body,
+                        rawResponse: _response.rawResponse,
                     });
             }
         }
@@ -118,6 +127,7 @@ export class Metrics {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -126,6 +136,7 @@ export class Metrics {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

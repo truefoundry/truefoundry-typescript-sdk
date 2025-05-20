@@ -40,10 +40,17 @@ export class Vcs {
      *         repoURL: "repoURL"
      *     })
      */
-    public async getRepositoryDetails(
+    public getRepositoryDetails(
         request: TrueFoundry.internal.GitRepositoryExistsRequest,
         requestOptions?: Vcs.RequestOptions,
-    ): Promise<TrueFoundry.GitRepositoryExistsResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GitRepositoryExistsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getRepositoryDetails(request, requestOptions));
+    }
+
+    private async __getRepositoryDetails(
+        request: TrueFoundry.internal.GitRepositoryExistsRequest,
+        requestOptions?: Vcs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GitRepositoryExistsResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -69,13 +76,17 @@ export class Vcs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GitRepositoryExistsResponse;
+            return {
+                data: _response.body as TrueFoundry.GitRepositoryExistsResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.TrueFoundryError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -84,6 +95,7 @@ export class Vcs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -92,6 +104,7 @@ export class Vcs {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }
@@ -105,10 +118,17 @@ export class Vcs {
      *         repoURL: "repoURL"
      *     })
      */
-    public async getAuthenticatedUrl(
+    public getAuthenticatedUrl(
         request: TrueFoundry.internal.GetAuthenticatedVcsurlRequest,
         requestOptions?: Vcs.RequestOptions,
-    ): Promise<TrueFoundry.GetAuthenticatedVcsurlResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetAuthenticatedVcsurlResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getAuthenticatedUrl(request, requestOptions));
+    }
+
+    private async __getAuthenticatedUrl(
+        request: TrueFoundry.internal.GetAuthenticatedVcsurlRequest,
+        requestOptions?: Vcs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAuthenticatedVcsurlResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -134,13 +154,17 @@ export class Vcs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return _response.body as TrueFoundry.GetAuthenticatedVcsurlResponse;
+            return {
+                data: _response.body as TrueFoundry.GetAuthenticatedVcsurlResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
             throw new errors.TrueFoundryError({
                 statusCode: _response.error.statusCode,
                 body: _response.error.body,
+                rawResponse: _response.rawResponse,
             });
         }
 
@@ -149,6 +173,7 @@ export class Vcs {
                 throw new errors.TrueFoundryError({
                     statusCode: _response.error.statusCode,
                     body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
@@ -157,6 +182,7 @@ export class Vcs {
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
                 });
         }
     }

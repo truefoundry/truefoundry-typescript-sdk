@@ -17,7 +17,7 @@ export interface PythonBuild {
      * +usage=Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python)
      * +message=Please enter a valid Python version tag
      */
-    python_version: string;
+    python_version?: string;
     /**
      * +label=Path to build context
      * +usage=Build path relative to project root path.

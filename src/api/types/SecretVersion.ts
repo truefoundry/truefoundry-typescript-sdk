@@ -7,8 +7,8 @@ import * as TrueFoundry from "../index";
 export interface SecretVersion {
     id: string;
     fqn: string;
-    value: string;
-    version: number;
+    value?: string;
+    version?: number;
     secret: TrueFoundry.Secret;
     secretId: string;
     createdAt?: string;

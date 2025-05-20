@@ -26,12 +26,6 @@ export interface JobAlert {
     to_emails?: string[];
     notification_target?: TrueFoundry.NotificationTarget;
     /**
-     * +label=Events
-     * +usage=Specify the events to send alerts for, it should be one of the following: START, SUCCEEDED, FAILED, TERMINATED
-     * +uiType=Hidden
-     */
-    events?: TrueFoundry.JobEvent[];
-    /**
      * +label=On Start
      * +usage=Send an alert when the job starts
      * +sort=670

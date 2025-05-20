@@ -17,6 +17,8 @@ export interface CreateDeploymentRequest {
     dryRun?: boolean;
     /** Cancels any ongoing deployments */
     forceDeploy?: boolean;
+    /** Trigger on deploy */
+    triggerOnDeploy?: boolean;
     /** workspace id of the workspace */
     workspaceId?: string;
     /** Id of the application */

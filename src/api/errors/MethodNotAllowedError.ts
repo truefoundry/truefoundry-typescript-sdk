@@ -3,13 +3,15 @@
  */
 
 import * as errors from "../../errors/index";
+import * as core from "../../core";
 
 export class MethodNotAllowedError extends errors.TrueFoundryError {
-    constructor(body?: unknown) {
+    constructor(body?: unknown, rawResponse?: core.RawResponse) {
         super({
             message: "MethodNotAllowedError",
             statusCode: 405,
             body: body,
+            rawResponse: rawResponse,
         });
         Object.setPrototypeOf(this, MethodNotAllowedError.prototype);
     }
