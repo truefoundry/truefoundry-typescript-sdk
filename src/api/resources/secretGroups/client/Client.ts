@@ -51,7 +51,7 @@ export class SecretGroups {
             async (
                 request: TrueFoundry.SecretGroupsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListSecretGroupResponse>> => {
-                const { limit, offset, secretGroupFqn: fqn, search } = request;
+                const { limit, offset, fqn, search } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (limit != null) {
                     _queryParams["limit"] = limit.toString();
@@ -60,7 +60,7 @@ export class SecretGroups {
                     _queryParams["offset"] = offset.toString();
                 }
                 if (fqn != null) {
-                    _queryParams["secretGroupFqn"] = fqn;
+                    _queryParams["fqn"] = fqn;
                 }
                 if (search != null) {
                     _queryParams["search"] = search;
@@ -336,8 +336,7 @@ export class SecretGroups {
      * @example
      *     await client.secretGroups.update("id", {
      *         secrets: [{
-     *                 key: "key",
-     *                 value: "value"
+     *                 key: "key"
      *             }]
      *     })
      */

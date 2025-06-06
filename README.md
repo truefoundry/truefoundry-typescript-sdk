@@ -19,7 +19,7 @@ npm i -s truefoundry-sdk
 
 ## Reference
 
-A full reference for this library is available [here](./reference.md).
+A full reference for this library is available [here](https://github.com/truefoundry/truefoundry-typescript-sdk/blob/HEAD/./reference.md).
 
 ## Usage
 
@@ -55,7 +55,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.UsersListRequest = {
+const request: TrueFoundry.InternalGetIdFromFqnRequest = {
     ...
 };
 ```

@@ -8,8 +8,7 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         secrets: [{
- *                 key: "key",
- *                 value: "value"
+ *                 key: "key"
  *             }]
  *     }
  */
