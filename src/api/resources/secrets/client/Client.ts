@@ -32,6 +32,107 @@ export class Secrets {
     constructor(protected readonly _options: Secrets.Options) {}
 
     /**
+     * List secrets associated with a user filtered with optional parameters passed in the body.
+     *
+     * @param {TrueFoundry.ListSecretsRequest} request
+     * @param {Secrets.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.secrets.list()
+     */
+    public async list(
+        request: TrueFoundry.ListSecretsRequest = {},
+        requestOptions?: Secrets.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.Secret>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ListSecretsRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListSecretsResponse>> => {
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/secrets",
+                    ),
+                    method: "POST",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    requestType: "json",
+                    body: request,
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListSecretsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 403:
+                            throw new TrueFoundry.ForbiddenError(
+                                _response.error.body as TrueFoundry.HttpError,
+                                _response.rawResponse,
+                            );
+                        case 404:
+                            throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
+                        throw new errors.TrueFoundryError({
+                            statusCode: _response.error.statusCode,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling POST /api/svc/v1/secrets.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
+                        });
+                }
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Pageable<TrueFoundry.ListSecretsResponse, TrueFoundry.Secret>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length > 0,
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
      * Get Secret associated with provided id. The secret value is not returned if the control plane has `DISABLE_SECRET_VALUE_VIEW` set
      *
      * @param {string} id - Secret Id of the secret.

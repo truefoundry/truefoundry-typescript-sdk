@@ -3,6 +3,7 @@
  */
 
 import * as core from "./core";
+import { Internal } from "./api/resources/internal/client/Client";
 import { Users } from "./api/resources/users/client/Client";
 import { Teams } from "./api/resources/teams/client/Client";
 import { PersonalAccessTokens } from "./api/resources/personalAccessTokens/client/Client";
@@ -31,7 +32,6 @@ import { ToolVersions } from "./api/resources/toolVersions/client/Client";
 import { AgentVersions } from "./api/resources/agentVersions/client/Client";
 import { DataDirectories } from "./api/resources/dataDirectories/client/Client";
 import { TracingProjects } from "./api/resources/tracingProjects/client/Client";
-import { Internal } from "./api/resources/internal/client/Client";
 
 export declare namespace TrueFoundryClient {
     export interface Options {
@@ -55,6 +55,7 @@ export declare namespace TrueFoundryClient {
 }
 
 export class TrueFoundryClient {
+    protected _internal: Internal | undefined;
     protected _users: Users | undefined;
     protected _teams: Teams | undefined;
     protected _personalAccessTokens: PersonalAccessTokens | undefined;
@@ -83,9 +84,12 @@ export class TrueFoundryClient {
     protected _agentVersions: AgentVersions | undefined;
     protected _dataDirectories: DataDirectories | undefined;
     protected _tracingProjects: TracingProjects | undefined;
-    protected _internal: Internal | undefined;
 
     constructor(protected readonly _options: TrueFoundryClient.Options) {}
+
+    public get internal(): Internal {
+        return (this._internal ??= new Internal(this._options));
+    }
 
     public get users(): Users {
         return (this._users ??= new Users(this._options));
@@ -197,9 +201,5 @@ export class TrueFoundryClient {
 
     public get tracingProjects(): TracingProjects {
         return (this._tracingProjects ??= new TracingProjects(this._options));
-    }
-
-    public get internal(): Internal {
-        return (this._internal ??= new Internal(this._options));
     }
 }

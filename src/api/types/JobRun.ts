@@ -31,6 +31,6 @@ export interface JobRun {
     triggeredBySubject?: TrueFoundry.Subject;
     /** Exit Code */
     exitCode?: number;
-    /** External Id */
-    externalId?: string;
+    /** Spark UI Url */
+    sparkUi?: string;
 }

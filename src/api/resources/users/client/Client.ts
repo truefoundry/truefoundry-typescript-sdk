@@ -137,6 +137,103 @@ export class Users {
     }
 
     /**
+     * This endpoint allows tenant administrators to pre-register users within their tenant.
+     *
+     * @param {TrueFoundry.PreRegisterUsersRequest} request
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.ConflictError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.users.preRegisterUsers({
+     *         emails: ["emails"]
+     *     })
+     */
+    public preRegisterUsers(
+        request: TrueFoundry.PreRegisterUsersRequest,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.PreRegisterUsersResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__preRegisterUsers(request, requestOptions));
+    }
+
+    private async __preRegisterUsers(
+        request: TrueFoundry.PreRegisterUsersRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.PreRegisterUsersResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.PreRegisterUsersResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling POST /api/svc/v1/users.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * This endpoint allows tenant administrators to update the roles of a user within their tenant.
      *
      * @param {TrueFoundry.UpdateUserRolesRequest} request

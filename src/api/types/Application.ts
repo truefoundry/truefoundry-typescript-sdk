@@ -29,6 +29,7 @@ export interface Application {
     /** Potential problems with the application */
     potentialProblems?: TrueFoundry.ApplicationProblem[];
     autopilot: Record<string, unknown>;
+    workspaceFqn?: string;
     createdBy?: string;
     deployment?: TrueFoundry.Deployment;
     activeDeploymentId?: string;

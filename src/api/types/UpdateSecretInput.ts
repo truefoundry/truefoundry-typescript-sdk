@@ -6,5 +6,5 @@ export interface UpdateSecretInput {
     /** Key of the secret. */
     key: string;
     /** Value of the secret. */
-    value: string;
+    value?: string;
 }

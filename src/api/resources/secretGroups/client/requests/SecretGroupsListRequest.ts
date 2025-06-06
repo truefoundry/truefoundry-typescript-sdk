@@ -21,7 +21,7 @@ export interface SecretGroupsListRequest {
     /**
      * Fqn of secret group.
      */
-    secretGroupFqn?: string;
+    fqn?: string;
     /**
      * Search query - filters by secret group names that contain the search string
      */

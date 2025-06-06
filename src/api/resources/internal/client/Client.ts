@@ -3,12 +3,17 @@
  */
 
 import * as core from "../../../../core";
+import * as TrueFoundry from "../../../index";
+import urlJoin from "url-join";
+import * as errors from "../../../../errors/index";
 import { Users } from "../resources/users/client/Client";
 import { Clusters } from "../resources/clusters/client/Client";
 import { Deployments } from "../resources/deployments/client/Client";
 import { Applications } from "../resources/applications/client/Client";
 import { Vcs } from "../resources/vcs/client/Client";
+import { DockerRegistries } from "../resources/dockerRegistries/client/Client";
 import { Metrics } from "../resources/metrics/client/Client";
+import { Workflows } from "../resources/workflows/client/Client";
 import { ArtifactVersions } from "../resources/artifactVersions/client/Client";
 import { Ml } from "../resources/ml/client/Client";
 
@@ -20,6 +25,17 @@ export declare namespace Internal {
         apiKey?: core.Supplier<core.BearerToken | undefined>;
         fetcher?: core.FetchFunction;
     }
+
+    export interface RequestOptions {
+        /** The maximum time to wait for a response in seconds. */
+        timeoutInSeconds?: number;
+        /** The number of times to retry the request. Defaults to 2. */
+        maxRetries?: number;
+        /** A hook to abort the request. */
+        abortSignal?: AbortSignal;
+        /** Additional headers to include in the request. */
+        headers?: Record<string, string>;
+    }
 }
 
 export class Internal {
@@ -28,7 +44,9 @@ export class Internal {
     protected _deployments: Deployments | undefined;
     protected _applications: Applications | undefined;
     protected _vcs: Vcs | undefined;
+    protected _dockerRegistries: DockerRegistries | undefined;
     protected _metrics: Metrics | undefined;
+    protected _workflows: Workflows | undefined;
     protected _artifactVersions: ArtifactVersions | undefined;
     protected _ml: Ml | undefined;
 
@@ -54,8 +72,16 @@ export class Internal {
         return (this._vcs ??= new Vcs(this._options));
     }
 
+    public get dockerRegistries(): DockerRegistries {
+        return (this._dockerRegistries ??= new DockerRegistries(this._options));
+    }
+
     public get metrics(): Metrics {
         return (this._metrics ??= new Metrics(this._options));
+    }
+
+    public get workflows(): Workflows {
+        return (this._workflows ??= new Workflows(this._options));
     }
 
     public get artifactVersions(): ArtifactVersions {
@@ -64,5 +90,108 @@ export class Internal {
 
     public get ml(): Ml {
         return (this._ml ??= new Ml(this._options));
+    }
+
+    /**
+     * Get IDs associated with the FQN for various entity types, such as deployment, application, workspace, or cluster.
+     *
+     * @param {string} type_ - Entity Type
+     * @param {TrueFoundry.InternalGetIdFromFqnRequest} request
+     * @param {Internal.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.internal.getIdFromFqn("type", {
+     *         fqn: "fqn"
+     *     })
+     */
+    public getIdFromFqn(
+        type_: string,
+        request: TrueFoundry.InternalGetIdFromFqnRequest,
+        requestOptions?: Internal.RequestOptions,
+    ): core.HttpResponsePromise<Record<string, unknown>> {
+        return core.HttpResponsePromise.fromPromise(this.__getIdFromFqn(type_, request, requestOptions));
+    }
+
+    private async __getIdFromFqn(
+        type_: string,
+        request: TrueFoundry.InternalGetIdFromFqnRequest,
+        requestOptions?: Internal.RequestOptions,
+    ): Promise<core.WithRawResponse<Record<string, unknown>>> {
+        const { fqn } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams["fqn"] = fqn;
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/fqn/${encodeURIComponent(type_)}`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as Record<string, unknown>, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/fqn/{type}.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    protected async _getAuthorizationHeader(): Promise<string> {
+        const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
+        if (bearer == null) {
+            throw new errors.TrueFoundryError({
+                message:
+                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
+            });
+        }
+
+        return `Bearer ${bearer}`;
     }
 }

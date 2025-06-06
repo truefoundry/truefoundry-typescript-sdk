@@ -1,5 +1,9 @@
+export * as dockerRegistries from "./dockerRegistries";
+export * from "./dockerRegistries/types";
 export * as metrics from "./metrics";
 export * from "./metrics/types";
+export * as workflows from "./workflows";
+export * from "./workflows/types";
 export * as ml from "./ml";
 export * from "./ml/types";
 export * as users from "./users";
@@ -11,6 +15,8 @@ export * as artifactVersions from "./artifactVersions";
 export * from "./deployments/client/requests";
 export * from "./applications/client/requests";
 export * from "./vcs/client/requests";
+export * from "./dockerRegistries/client/requests";
 export * from "./metrics/client/requests";
+export * from "./workflows/client/requests";
 export * from "./artifactVersions/client/requests";
 export * from "./ml/client/requests";
