@@ -5,9 +5,11 @@
 /**
  * Chart type
  */
-export type GraphChartType = "line" | "stacked_bar" | "stacked_area";
+export type GraphChartType = "line" | "vertical_line" | "stacked_bar" | "stacked_area" | "bubble";
 export const GraphChartType = {
     Line: "line",
+    VerticalLine: "vertical_line",
     StackedBar: "stacked_bar",
     StackedArea: "stacked_area",
+    Bubble: "bubble",
 } as const;

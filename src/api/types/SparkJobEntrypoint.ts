@@ -11,4 +11,5 @@ import * as TrueFoundry from "../index";
 export type SparkJobEntrypoint =
     | TrueFoundry.SparkJobPythonEntrypoint
     | TrueFoundry.SparkJobScalaEntrypoint
-    | TrueFoundry.SparkJobJavaEntrypoint;
+    | TrueFoundry.SparkJobJavaEntrypoint
+    | TrueFoundry.SparkJobPythonNotebookEntrypoint;

@@ -545,6 +545,73 @@ await client.users.activate({
 </dl>
 </details>
 
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">changePassword</a>({ ...params }) -> TrueFoundry.ChangePasswordResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Change password for the authenticated user. Requires clientId and loginId in the request body.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.changePassword({
+    loginId: "loginId",
+    newPassword: "newPassword",
+    oldPassword: "oldPassword",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ChangePasswordRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Teams
 
 <details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Team></code></summary>

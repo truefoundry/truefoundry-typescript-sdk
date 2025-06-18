@@ -17,7 +17,12 @@ export interface SparkJob {
      * +sort=2
      */
     name: string;
-    image: TrueFoundry.SparkImage;
+    /**
+     * +label=Deploy a Docker image & Specify Spark Version
+     * +usage=The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image.
+     * +sort=500
+     */
+    image: TrueFoundry.SparkJobImage;
     /**
      * +label=Entrypoint
      * +sort=1000

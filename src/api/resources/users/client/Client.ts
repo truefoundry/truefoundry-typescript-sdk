@@ -689,6 +689,85 @@ export class Users {
         }
     }
 
+    /**
+     * Change password for the authenticated user. Requires clientId and loginId in the request body.
+     *
+     * @param {TrueFoundry.ChangePasswordRequest} request
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.users.changePassword({
+     *         loginId: "loginId",
+     *         newPassword: "newPassword",
+     *         oldPassword: "oldPassword"
+     *     })
+     */
+    public changePassword(
+        request: TrueFoundry.ChangePasswordRequest,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.ChangePasswordResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__changePassword(request, requestOptions));
+    }
+
+    private async __changePassword(
+        request: TrueFoundry.ChangePasswordRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.ChangePasswordResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users/change-password",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.ChangePasswordResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/users/change-password.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
     protected async _getAuthorizationHeader(): Promise<string> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
         if (bearer == null) {
