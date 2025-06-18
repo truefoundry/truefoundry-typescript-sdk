@@ -9,4 +9,6 @@ export interface UpgradeData {
     currentManifest?: TrueFoundry.Helm;
     desiredManifest?: TrueFoundry.Helm;
     upgradePossible?: boolean;
+    conflictFields?: string[];
+    hasConflict?: boolean;
 }

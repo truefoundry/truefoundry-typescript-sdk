@@ -4,12 +4,12 @@
 
 /**
  * +docs=Describes that we are using a pre-built image stored in a Docker Image registry
- * +label=Docker Image (Deploy an existing image)
+ * +label=Deploy an existing image
  * +icon=fa-brands fa-docker:#0db7ed
  */
 export interface SparkImage {
-    /** +value=image */
-    type: "image";
+    /** +value=spark-image */
+    type: "spark-image";
     /**
      * --- Spark Specific Field ---
      * +label=Spark Version
