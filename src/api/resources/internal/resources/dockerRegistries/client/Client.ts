@@ -41,8 +41,8 @@ export class DockerRegistries {
      *
      * @example
      *     await client.internal.dockerRegistries.createRepository({
-     *         fqn: "fqn",
      *         applicationName: "applicationName",
+     *         fqn: "fqn",
      *         workspaceFqn: "workspaceFqn"
      *     })
      */

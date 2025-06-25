@@ -6,8 +6,12 @@
  * +label=scala
  */
 export interface SparkJobScalaEntrypoint {
-    /** +value=scala */
-    type: "scala";
+    /**
+     * +label=Arguments
+     * +usage=Arguments to be passed to the main application file.
+     * +sort=7
+     */
+    arguments?: string;
     /**
      * +label=Main Application File
      * +usage=The main application file to be executed by the spark job.
@@ -24,10 +28,6 @@ export interface SparkJobScalaEntrypoint {
      * +message=The main class must be a valid Java class name.
      */
     main_class: string;
-    /**
-     * +label=Arguments
-     * +usage=Arguments to be passed to the main application file.
-     * +sort=7
-     */
-    arguments?: string;
+    /** +value=scala */
+    type: "scala";
 }

@@ -9,8 +9,7 @@ import * as TrueFoundry from "../index";
  * +label=SQS
  */
 export interface SqsOutputConfig {
-    /** +value=sqs */
-    type: "sqs";
+    auth: TrueFoundry.AwsAccessKeyAuth;
     /**
      * +label=Queue URL
      * +usage=AWS SQS Queue URL of Publisher
@@ -23,5 +22,6 @@ export interface SqsOutputConfig {
      * +sort=2
      */
     region_name: string;
-    auth: TrueFoundry.AwsAccessKeyAuth;
+    /** +value=sqs */
+    type: "sqs";
 }

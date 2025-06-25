@@ -8,8 +8,8 @@ import * as TrueFoundry from "../index";
  * Image content for the message
  */
 export interface ImageContentPart {
-    /** Type of the content part */
-    type: "image_url";
     /** Image URL linking to the image */
     image_url: TrueFoundry.ImageUrl;
+    /** Type of the content part */
+    type: "image_url";
 }

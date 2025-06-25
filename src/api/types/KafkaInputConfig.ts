@@ -9,20 +9,13 @@ import * as TrueFoundry from "../index";
  * +label=Kafka
  */
 export interface KafkaInputConfig {
-    /** +value=kafka */
-    type: "kafka";
+    auth?: TrueFoundry.KafkaSaslAuth;
     /**
      * +label=Bootstrap servers
      * +usage='Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap'
      * +sort=1
      */
     bootstrap_servers: string;
-    /**
-     * +label=Topic Name
-     * +usage=Kafka topic to subscribe to
-     * +sort=2
-     */
-    topic_name: string;
     /**
      * +label=Consumer Group Name
      * +usage=The name of the consumer group to join for dynamic partition assignment
@@ -35,9 +28,16 @@ export interface KafkaInputConfig {
      */
     tls: boolean;
     /**
+     * +label=Topic Name
+     * +usage=Kafka topic to subscribe to
+     * +sort=2
+     */
+    topic_name: string;
+    /** +value=kafka */
+    type: "kafka";
+    /**
      * +label=Wait Time Seconds
      * +usage=Wait timeout for long polling.
      */
     wait_time_seconds?: number;
-    auth?: TrueFoundry.KafkaSaslAuth;
 }

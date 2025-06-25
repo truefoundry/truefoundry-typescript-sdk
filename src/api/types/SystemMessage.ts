@@ -8,10 +8,10 @@ import * as TrueFoundry from "../index";
  * System message for the chat
  */
 export interface SystemMessage {
-    /** Role of the message */
-    role: "system";
     /** Text content for the system message */
     content: TrueFoundry.SystemMessageContent;
     /** Name of the system */
     name?: string;
+    /** Role of the message */
+    role: "system";
 }

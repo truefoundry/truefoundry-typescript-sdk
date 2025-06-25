@@ -5,14 +5,14 @@
 import * as TrueFoundry from "../index";
 
 export interface Tool {
-    id: string;
-    ml_repo_id: string;
-    type?: "openapi-tool";
-    name: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
     created_at?: string;
-    updated_at?: string;
+    created_by_subject: TrueFoundry.Subject;
+    fqn: string;
+    id: string;
     latest_version?: TrueFoundry.ToolVersion;
+    ml_repo_id: string;
+    name: string;
     run_steps?: number[];
+    type?: "openapi-tool";
+    updated_at?: string;
 }

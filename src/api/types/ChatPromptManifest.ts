@@ -8,23 +8,23 @@ import * as TrueFoundry from "../index";
  * Chat Prompt manifest.
  */
 export interface ChatPromptManifest {
-    /** Name of the entity */
-    name: string;
     description?: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    version_alias?: string;
-    /** Name of the ML Repo */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number;
-    type: "chat_prompt";
     /** List of messages in the chat conversation, must be non-empty */
     messages: TrueFoundry.ChatPromptManifestMessagesItem[];
-    /** Variables referenced in messages and that can be replaced when running generation */
-    variables?: Record<string, string>;
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
+    metadata: Record<string, unknown>;
+    /** Name of the ML Repo */
+    ml_repo: string;
     model_configuration?: TrueFoundry.ModelConfiguration;
+    /** Name of the entity */
+    name: string;
     /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];
+    type: "chat_prompt";
+    /** Variables referenced in messages and that can be replaced when running generation */
+    variables?: Record<string, string>;
+    /** Version of the entity */
+    version?: number;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string;
 }

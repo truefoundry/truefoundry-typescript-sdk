@@ -8,8 +8,8 @@ import * as TrueFoundry from "../index";
  * Text content for the message
  */
 export interface TextContentPart {
-    /** Type of the content part */
-    type: "text";
     /** Text content for the message */
     text: TrueFoundry.TextContentPartText;
+    /** Type of the content part */
+    type: "text";
 }

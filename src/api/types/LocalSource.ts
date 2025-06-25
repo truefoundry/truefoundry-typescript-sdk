@@ -9,10 +9,10 @@
  * +sort=100
  */
 export interface LocalSource {
-    /** +value=local */
-    type: "local";
-    /** +usage=Local project root path. */
-    project_root_path: string;
     /** run docker build locally */
     local_build: boolean;
+    /** +usage=Local project root path. */
+    project_root_path: string;
+    /** +value=local */
+    type: "local";
 }

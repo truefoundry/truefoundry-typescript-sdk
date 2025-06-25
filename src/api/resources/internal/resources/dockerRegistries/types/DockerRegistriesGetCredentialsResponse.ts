@@ -5,10 +5,10 @@
 export interface DockerRegistriesGetCredentialsResponse {
     /** Docker registry FQN */
     fqn?: string;
+    /** Password */
+    password?: string;
     /** Docker registry URL */
     registryUrl?: string;
     /** Username */
     username?: string;
-    /** Password */
-    password?: string;
 }

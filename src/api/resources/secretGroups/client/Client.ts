@@ -147,8 +147,8 @@ export class SecretGroups {
      *
      * @example
      *     await client.secretGroups.create({
-     *         name: "name",
      *         integrationId: "integrationId",
+     *         name: "name",
      *         secrets: [{
      *                 key: "key",
      *                 value: "value"

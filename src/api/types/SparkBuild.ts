@@ -8,15 +8,6 @@
  * +icon=fa-brands fa-python:#306998
  */
 export interface SparkBuild {
-    /** +value=tfy-spark-buildpack */
-    type: "tfy-spark-buildpack";
-    /**
-     * --- Spark Specific Field ---
-     * +label=Spark Version
-     * +usage=Spark version should match the spark version installed in the image.
-     * +sort=1001
-     */
-    spark_version: string;
     /**
      * +label=Path to build context
      * +usage=Build path relative to project root path.
@@ -29,4 +20,13 @@ export interface SparkBuild {
      * `Path to build context`
      */
     requirements_path?: string;
+    /**
+     * --- Spark Specific Field ---
+     * +label=Spark Version
+     * +usage=Spark version should match the spark version installed in the image.
+     * +sort=1001
+     */
+    spark_version: string;
+    /** +value=tfy-spark-buildpack */
+    type: "tfy-spark-buildpack";
 }

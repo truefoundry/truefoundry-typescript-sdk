@@ -6,24 +6,24 @@
  * Agent manifest.
  */
 export interface AgentManifest {
-    /** Name of the entity */
-    name: string;
+    /** Tools available to the agent */
+    available_tools: string[];
     description?: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    version_alias?: string;
-    /** Name of the ML Repo */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number;
-    type: "agent";
     /** Short form description. Will be used as `description` when this agent is used as a tool. */
     goal: string;
     /** Instructions for the agent to follow to achieve the goal */
     instruction: string;
-    /** Tools available to the agent */
-    available_tools: string[];
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
+    metadata: Record<string, unknown>;
+    /** Name of the ML Repo */
+    ml_repo: string;
     /** Model to use when running the agent */
     model_id: string;
+    /** Name of the entity */
+    name: string;
+    type: "agent";
+    /** Version of the entity */
+    version?: number;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string;
 }

@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../index";
 
 export interface ApplicationDebugInfo {
-    id?: string;
-    applicationId: string;
     application?: TrueFoundry.Application;
-    debugInfo: Record<string, unknown>;
+    applicationId: string;
     createdAt?: string;
+    debugInfo: Record<string, unknown>;
+    id?: string;
     updatedAt?: string;
 }

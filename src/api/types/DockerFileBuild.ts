@@ -10,13 +10,8 @@ import * as TrueFoundry from "../index";
  * +icon=fa-brands fa-docker:#0db7ed
  */
 export interface DockerFileBuild {
-    /** +value=dockerfile */
-    type: "dockerfile";
-    /**
-     * +label=Path to Dockerfile
-     * +usage=The file path of the Dockerfile relative to project root path.
-     */
-    dockerfile_path: string;
+    /** +label=Build arguments to pass to docker build */
+    build_args?: Record<string, string>;
     /**
      * +label=Path to build context
      * +usage=Build context path for the Dockerfile relative to project root path.
@@ -29,6 +24,11 @@ export interface DockerFileBuild {
      * E.g. `python main.py --learning_rate {{learning_rate}}`
      */
     command?: TrueFoundry.DockerFileBuildCommand;
-    /** +label=Build arguments to pass to docker build */
-    build_args?: Record<string, string>;
+    /**
+     * +label=Path to Dockerfile
+     * +usage=The file path of the Dockerfile relative to project root path.
+     */
+    dockerfile_path: string;
+    /** +value=dockerfile */
+    type: "dockerfile";
 }

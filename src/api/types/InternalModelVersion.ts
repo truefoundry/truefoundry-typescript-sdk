@@ -5,17 +5,17 @@
 import * as TrueFoundry from "../index";
 
 export interface InternalModelVersion {
-    id: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    manifest: TrueFoundry.ModelManifest;
-    usage_code_snippet?: string;
-    ml_repo_id: string;
-    model_id: string;
-    metrics?: TrueFoundry.Metric[];
-    deployable?: boolean;
     artifact_fqn: string;
     artifact_size?: number;
+    created_at?: string;
+    created_by_subject: TrueFoundry.Subject;
+    deployable?: boolean;
+    fqn: string;
+    id: string;
+    manifest: TrueFoundry.ModelManifest;
+    metrics?: TrueFoundry.Metric[];
+    ml_repo_id: string;
+    model_id: string;
+    updated_at?: string;
+    usage_code_snippet?: string;
 }

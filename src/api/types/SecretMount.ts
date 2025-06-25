@@ -3,8 +3,6 @@
  */
 
 export interface SecretMount {
-    /** +value=secret */
-    type: "secret";
     /**
      * +label=File path
      * +usage=Absolute file path where the file will be created.
@@ -16,4 +14,6 @@ export interface SecretMount {
      * +usage=The TrueFoundry secret whose value will be the file content.
      */
     secret_fqn: string;
+    /** +value=secret */
+    type: "secret";
 }

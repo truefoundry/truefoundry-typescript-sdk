@@ -7,14 +7,6 @@
  */
 export interface WorkbenchImage {
     /**
-     * +label=Image URI
-     * +usage=The image URI. Specify the name of the image and the tag.
-     * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
-     * You can use an image from a private registry using Advanced fields
-     * +placeholder=registry-url/account/image:version
-     */
-    image_uri: string;
-    /**
      * +label=Build Script
      * +usage=The build script to run when building the image.
      * This will be executed as the last step in the docker build process as the root user (RUN DEBIAN_FRONTEND=noninteractive bash -ex build_script.sh)
@@ -33,4 +25,12 @@ export interface WorkbenchImage {
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
     docker_registry?: string;
+    /**
+     * +label=Image URI
+     * +usage=The image URI. Specify the name of the image and the tag.
+     * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
+     * You can use an image from a private registry using Advanced fields
+     * +placeholder=registry-url/account/image:version
+     */
+    image_uri: string;
 }

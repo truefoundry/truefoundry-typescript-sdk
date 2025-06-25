@@ -5,14 +5,14 @@
 import * as TrueFoundry from "../index";
 
 export interface Environment {
-    id?: string;
-    name: string;
-    priority: number;
     color: TrueFoundry.EnvironmentColor;
-    tenantName: string;
-    createdBySubject: TrueFoundry.Subject;
-    isProduction: boolean;
-    optimizeFor?: TrueFoundry.EnvironmentOptimizeFor;
-    manifest: TrueFoundry.EnvironmentManifest;
     createdBy?: string;
+    createdBySubject: TrueFoundry.Subject;
+    id?: string;
+    isProduction: boolean;
+    manifest: TrueFoundry.EnvironmentManifest;
+    name: string;
+    optimizeFor?: TrueFoundry.EnvironmentOptimizeFor;
+    priority: number;
+    tenantName: string;
 }

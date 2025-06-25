@@ -8,12 +8,6 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the ports the service should be exposed to.
  */
 export interface Port {
-    /** +usage=Port number to expose. */
-    port: number;
-    /** +usage=Protocol for the port. */
-    protocol: TrueFoundry.PortProtocol;
-    /** +usage=Expose the port */
-    expose: boolean;
     /**
      * +label=Application Protocol
      * +usage=Application Protocol for the port.
@@ -22,6 +16,10 @@ export interface Port {
      * This is only applicable if `expose=true`.
      */
     app_protocol?: TrueFoundry.PortAppProtocol;
+    /** +usage=Authentication method for inbound traffic */
+    auth?: TrueFoundry.PortAuth;
+    /** +usage=Expose the port */
+    expose: boolean;
     /**
      * +usage=Host e.g. ai.example.com, app.truefoundry.com
      * +message=Upto 253 characters, each part of host should be at most 63 characters long, can contain alphabets, digits and hypen, must begin and end with an alphanumeric characters. Parts must be separated by periods (.)
@@ -32,6 +30,10 @@ export interface Port {
      * +message=Should begin and end with a forward slash (/). Each part can can contain alphabets, digits and hypen, must begin and end with an alphanumeric characters. Parts should be separated by forward slashes (/)
      */
     path?: string;
+    /** +usage=Port number to expose. */
+    port: number;
+    /** +usage=Protocol for the port. */
+    protocol: TrueFoundry.PortProtocol;
     /**
      * +label=Rewrite Path to
      * +usage=Rewrite the path prefix to a different path.
@@ -41,6 +43,4 @@ export interface Port {
      * +message=Should begin and end with a forward slash (/). Each part can can contain alphabets, digits and hypen, must begin and end with an alphanumeric characters. Parts should be separated by forward slashes (/)
      */
     rewrite_path_to?: string;
-    /** +usage=Authentication method for inbound traffic */
-    auth?: TrueFoundry.PortAuth;
 }

@@ -9,15 +9,13 @@ import * as TrueFoundry from "../index";
  * +usage=MLRepo is a repository ML training runs that log params, metrics, plots, images and versioned entities like artifacts, models, prompts, tools, agents
  */
 export interface MlRepoManifest {
-    type: "ml-repo";
     /**
-     * +label=Name
-     * +icon=fa-desktop:#black
-     * +usage=Name of the ML Repo.
-     * +message=Alphanumeric word, may contain '-' with a maximum length of 100 characters
-     * +sort=1
+     * +label=Collaborators
+     * +sort=5
+     * +usage=Users and Teams that have access to MLRepo
+     * +uiType=Collaborators
      */
-    name: string;
+    collaborators: TrueFoundry.Collaborator[];
     /**
      * +label=Description
      * +icon=fa-desktop:#black
@@ -29,6 +27,14 @@ export interface MlRepoManifest {
      */
     description?: string;
     /**
+     * +label=Name
+     * +icon=fa-desktop:#black
+     * +usage=Name of the ML Repo.
+     * +message=Alphanumeric word, may contain '-' with a maximum length of 100 characters
+     * +sort=1
+     */
+    name: string;
+    /**
      * +label=Storage Integration
      * +icon=hard-drive
      * +usage=Storage Integration to store artifacts and models. A storage integration represents a connected blob storage like AWS S3 / Azure Blob Storage / Google Cloud Storage.
@@ -37,11 +43,5 @@ export interface MlRepoManifest {
      * +sort=4
      */
     storage_integration_fqn: string;
-    /**
-     * +label=Collaborators
-     * +sort=5
-     * +usage=Users and Teams that have access to MLRepo
-     * +uiType=Collaborators
-     */
-    collaborators: TrueFoundry.Collaborator[];
+    type: "ml-repo";
 }

@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface Cluster {
-    id: string;
-    fqn: string;
-    name: string;
-    manifest: TrueFoundry.ClusterManifest;
-    tenantName: string;
-    createdBySubject?: TrueFoundry.Subject;
     createdAt: string;
-    updatedAt: string;
     createdBy?: string;
+    createdBySubject?: TrueFoundry.Subject;
+    fqn: string;
+    id: string;
+    manifest: TrueFoundry.ClusterManifest;
+    name: string;
+    tenantName: string;
+    updatedAt: string;
 }

@@ -3,8 +3,13 @@
  */
 
 export interface SlackBot {
-    /** +value=slack-bot */
-    type: "slack-bot";
+    /**
+     * +label=Slack Channel Names
+     * +usage=List of channels to send messages to.
+     * +message=3 to 81 lower case characters long alphanumeric word, may contain - or _ in between, must start with #
+     * +sort=665
+     */
+    channels: string[];
     /**
      * +label=Notification Channel
      * +usage=Specify the notification channel to send alerts to
@@ -13,11 +18,6 @@ export interface SlackBot {
      * +sort=660
      */
     notification_channel: string;
-    /**
-     * +label=Slack Channel Names
-     * +usage=List of channels to send messages to.
-     * +message=3 to 81 lower case characters long alphanumeric word, may contain - or _ in between, must start with #
-     * +sort=665
-     */
-    channels: string[];
+    /** +value=slack-bot */
+    type: "slack-bot";
 }

@@ -13,15 +13,6 @@
  * +label=Rolling update strategy
  */
 export interface Rolling {
-    /** +value=rolling_update */
-    type: "rolling_update";
-    /**
-     * +label=Max unavailable(%)
-     * +usage=Percentage of total replicas that can be brought down at one time.
-     * For a value of 25 when replicas are set to 12 this would mean minimum (25% of 12) = 3 pods might be unavailable during the deployment.
-     * Setting this to a higher value can help in speeding up the deployment process.
-     */
-    max_unavailable_percentage: number;
     /**
      * +label=Max Surge(%)
      * +usage=Percentage of total replicas of updated image that can be brought up over the total replicas count.
@@ -29,4 +20,13 @@ export interface Rolling {
      * Setting this to a higher value can help in speeding up the deployment process.
      */
     max_surge_percentage: number;
+    /**
+     * +label=Max unavailable(%)
+     * +usage=Percentage of total replicas that can be brought down at one time.
+     * For a value of 25 when replicas are set to 12 this would mean minimum (25% of 12) = 3 pods might be unavailable during the deployment.
+     * Setting this to a higher value can help in speeding up the deployment process.
+     */
+    max_unavailable_percentage: number;
+    /** +value=rolling_update */
+    type: "rolling_update";
 }

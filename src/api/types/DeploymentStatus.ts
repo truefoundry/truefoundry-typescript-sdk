@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface DeploymentStatus {
-    id?: string;
+    createdAt?: string;
     deploymentId?: string;
-    status?: TrueFoundry.DeploymentStatusValue;
-    state?: Record<string, unknown>;
-    transition?: TrueFoundry.DeploymentTransition;
+    id?: string;
     message?: string;
     retryCount?: number;
-    createdAt?: string;
+    state?: Record<string, unknown>;
+    status?: TrueFoundry.DeploymentStatusValue;
+    transition?: TrueFoundry.DeploymentTransition;
     updatedAt?: string;
 }

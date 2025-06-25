@@ -55,7 +55,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.InternalGetIdFromFqnRequest = {
+const request: TrueFoundry.AgentVersionsListRequest = {
     ...
 };
 ```
@@ -88,19 +88,13 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.users.list({
-    limit: 10,
-    offset: 0,
-});
+const response = await client.agentVersions.list();
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.users.list({
-    limit: 10,
-    offset: 0,
-});
+const page = await client.agentVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }

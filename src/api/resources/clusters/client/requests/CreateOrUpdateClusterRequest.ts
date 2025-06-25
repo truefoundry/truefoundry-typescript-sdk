@@ -8,20 +8,20 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             type: "cluster",
- *             name: "name",
  *             cluster_type: "aws-eks",
- *             environment_names: ["environment_names"],
  *             collaborators: [{
- *                     subject: "subject",
- *                     role_id: "role_id"
- *                 }]
+ *                     role_id: "role_id",
+ *                     subject: "subject"
+ *                 }],
+ *             environment_names: ["environment_names"],
+ *             name: "name",
+ *             type: "cluster"
  *         }
  *     }
  */
 export interface CreateOrUpdateClusterRequest {
-    /** Cluster manifest */
-    manifest: TrueFoundry.ClusterManifest;
     /** Dry run the cluster creation/update */
     dryRun?: boolean;
+    /** Cluster manifest */
+    manifest: TrueFoundry.ClusterManifest;
 }

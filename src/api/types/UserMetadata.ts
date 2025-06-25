@@ -3,11 +3,11 @@
  */
 
 export interface UserMetadata {
-    sub?: string;
-    imageURL?: string;
     displayName?: string;
-    userObject?: Record<string, unknown>;
+    imageURL?: string;
     inviteAccepted?: boolean;
-    registeredInIdp?: boolean;
     preference?: Record<string, unknown>;
+    registeredInIdp?: boolean;
+    sub?: string;
+    userObject?: Record<string, unknown>;
 }

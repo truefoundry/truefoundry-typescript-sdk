@@ -4,7 +4,7 @@
 
 export interface Metric {
     key: string;
-    value?: number;
-    timestamp?: number;
     step?: number;
+    timestamp?: number;
+    value?: number;
 }

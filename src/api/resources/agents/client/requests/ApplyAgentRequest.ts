@@ -8,16 +8,16 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             name: "name",
+ *             available_tools: ["available_tools"],
+ *             goal: "goal",
+ *             instruction: "instruction",
  *             metadata: {
  *                 "key": "value"
  *             },
  *             ml_repo: "ml_repo",
- *             type: "agent",
- *             goal: "goal",
- *             instruction: "instruction",
- *             available_tools: ["available_tools"],
- *             model_id: "model_id"
+ *             model_id: "model_id",
+ *             name: "name",
+ *             type: "agent"
  *         }
  *     }
  */

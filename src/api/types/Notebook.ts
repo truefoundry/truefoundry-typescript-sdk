@@ -8,9 +8,6 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the service
  */
 export interface Notebook extends TrueFoundry.BaseWorkbenchInput {
-    /** +value=notebook */
-    type?: "notebook";
-    image?: TrueFoundry.WorkbenchImage;
     /**
      * +label=Stop after (minutes of inactivity)
      * +usage=Stop the notebook instance after this much time in minutes of inactivity.
@@ -19,4 +16,7 @@ export interface Notebook extends TrueFoundry.BaseWorkbenchInput {
      * +uiProps={"descriptionInline":true}
      */
     cull_timeout?: number;
+    image?: TrueFoundry.WorkbenchImage;
+    /** +value=notebook */
+    type?: "notebook";
 }

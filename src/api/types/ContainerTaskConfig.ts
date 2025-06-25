@@ -5,8 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface ContainerTaskConfig {
-    /** +value=container-task-config */
-    type: "container-task-config";
+    /**
+     * +label=Environment Variables
+     * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
+     * +icon=fa-globe
+     * +sort=200
+     */
+    env?: Record<string, string | undefined>;
     /**
      * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
      * +label=Deploy a Docker image or build and deploy from source code
@@ -15,21 +20,16 @@ export interface ContainerTaskConfig {
      */
     image: TrueFoundry.ContainerTaskConfigImage;
     /**
-     * +label=Environment Variables
-     * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
-     * +icon=fa-globe
-     * +sort=200
-     */
-    env?: Record<string, string | undefined>;
-    resources?: TrueFoundry.Resources;
-    /**
      * +usage=Configure data to be mounted to Workflow pod(s) as a volume.
      * +sort=400
      */
     mounts?: TrueFoundry.ContainerTaskConfigMountsItem[];
+    resources?: TrueFoundry.Resources;
     /**
      * +label=Service Account
      * +sort=500
      */
     service_account?: string;
+    /** +value=container-task-config */
+    type: "container-task-config";
 }

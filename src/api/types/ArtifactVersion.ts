@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface ArtifactVersion {
-    id: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    manifest: TrueFoundry.ArtifactManifest;
-    usage_code_snippet?: string;
-    ml_repo_id: string;
     artifact_id: string;
+    created_at?: string;
+    created_by_subject: TrueFoundry.Subject;
+    fqn: string;
+    id: string;
+    manifest: TrueFoundry.ArtifactManifest;
+    ml_repo_id: string;
+    updated_at?: string;
+    usage_code_snippet?: string;
 }

@@ -6,16 +6,16 @@ import * as core from "../../../../core";
 import * as TrueFoundry from "../../../index";
 import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
-import { Users } from "../resources/users/client/Client";
-import { Clusters } from "../resources/clusters/client/Client";
+import { Ml } from "../resources/ml/client/Client";
+import { ArtifactVersions } from "../resources/artifactVersions/client/Client";
 import { Deployments } from "../resources/deployments/client/Client";
 import { Applications } from "../resources/applications/client/Client";
-import { Vcs } from "../resources/vcs/client/Client";
+import { Clusters } from "../resources/clusters/client/Client";
 import { DockerRegistries } from "../resources/dockerRegistries/client/Client";
 import { Metrics } from "../resources/metrics/client/Client";
+import { Users } from "../resources/users/client/Client";
+import { Vcs } from "../resources/vcs/client/Client";
 import { Workflows } from "../resources/workflows/client/Client";
-import { ArtifactVersions } from "../resources/artifactVersions/client/Client";
-import { Ml } from "../resources/ml/client/Client";
 
 export declare namespace Internal {
     export interface Options {
@@ -39,25 +39,25 @@ export declare namespace Internal {
 }
 
 export class Internal {
-    protected _users: Users | undefined;
-    protected _clusters: Clusters | undefined;
+    protected _ml: Ml | undefined;
+    protected _artifactVersions: ArtifactVersions | undefined;
     protected _deployments: Deployments | undefined;
     protected _applications: Applications | undefined;
-    protected _vcs: Vcs | undefined;
+    protected _clusters: Clusters | undefined;
     protected _dockerRegistries: DockerRegistries | undefined;
     protected _metrics: Metrics | undefined;
+    protected _users: Users | undefined;
+    protected _vcs: Vcs | undefined;
     protected _workflows: Workflows | undefined;
-    protected _artifactVersions: ArtifactVersions | undefined;
-    protected _ml: Ml | undefined;
 
     constructor(protected readonly _options: Internal.Options) {}
 
-    public get users(): Users {
-        return (this._users ??= new Users(this._options));
+    public get ml(): Ml {
+        return (this._ml ??= new Ml(this._options));
     }
 
-    public get clusters(): Clusters {
-        return (this._clusters ??= new Clusters(this._options));
+    public get artifactVersions(): ArtifactVersions {
+        return (this._artifactVersions ??= new ArtifactVersions(this._options));
     }
 
     public get deployments(): Deployments {
@@ -68,8 +68,8 @@ export class Internal {
         return (this._applications ??= new Applications(this._options));
     }
 
-    public get vcs(): Vcs {
-        return (this._vcs ??= new Vcs(this._options));
+    public get clusters(): Clusters {
+        return (this._clusters ??= new Clusters(this._options));
     }
 
     public get dockerRegistries(): DockerRegistries {
@@ -80,16 +80,16 @@ export class Internal {
         return (this._metrics ??= new Metrics(this._options));
     }
 
+    public get users(): Users {
+        return (this._users ??= new Users(this._options));
+    }
+
+    public get vcs(): Vcs {
+        return (this._vcs ??= new Vcs(this._options));
+    }
+
     public get workflows(): Workflows {
         return (this._workflows ??= new Workflows(this._options));
-    }
-
-    public get artifactVersions(): ArtifactVersions {
-        return (this._artifactVersions ??= new ArtifactVersions(this._options));
-    }
-
-    public get ml(): Ml {
-        return (this._ml ??= new Ml(this._options));
     }
 
     /**

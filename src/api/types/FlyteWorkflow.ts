@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface FlyteWorkflow {
-    template: TrueFoundry.FlyteWorkflowTemplate;
     description?: unknown;
+    template: TrueFoundry.FlyteWorkflowTemplate;
 }

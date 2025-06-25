@@ -6,20 +6,20 @@ import * as TrueFoundry from "../index";
 
 export interface Param {
     /**
-     * +usage=Name of the param
-     * +message=name can contain lower case alphabets, digits, underscore (_) and hypen (-). It can be 32 characters long, should start with an alphabet, and should end with either an alphabet or digit.
+     * +usage=Default value or placeholder
+     * +message=default value cannot be longer than 127 characters
+     * +label=Default value
      */
-    name: string;
+    default?: string;
     /**
      * +usage=Description of param
      * +message=description cannot be longer than 127 characters
      */
     description?: string;
     /**
-     * +usage=Default value or placeholder
-     * +message=default value cannot be longer than 127 characters
-     * +label=Default value
+     * +usage=Name of the param
+     * +message=name can contain lower case alphabets, digits, underscore (_) and hypen (-). It can be 32 characters long, should start with an alphabet, and should end with either an alphabet or digit.
      */
-    default?: string;
+    name: string;
     param_type?: TrueFoundry.ParamParamType;
 }

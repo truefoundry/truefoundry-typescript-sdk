@@ -7,8 +7,16 @@
  * +label=Huggingface Model Source
  */
 export interface HuggingfaceArtifactSource {
-    /** +value=huggingface-hub */
-    type: "huggingface-hub";
+    /**
+     * +label=Download Path Environment Variable
+     * +usage=Environment variable which will contain the download path of the artifact
+     */
+    download_path_env_variable: string;
+    /**
+     * +label=Ignore Patterns
+     * +usage=List of patterns to ignore while downloading the artifact
+     */
+    ignore_patterns: string[];
     /**
      * +label=Model ID
      * +usage=Model ID of the artifact to be downloaded
@@ -19,14 +27,6 @@ export interface HuggingfaceArtifactSource {
      * +usage=Revision of the artifact to be downloaded
      */
     revision: string;
-    /**
-     * +label=Ignore Patterns
-     * +usage=List of patterns to ignore while downloading the artifact
-     */
-    ignore_patterns: string[];
-    /**
-     * +label=Download Path Environment Variable
-     * +usage=Environment variable which will contain the download path of the artifact
-     */
-    download_path_env_variable: string;
+    /** +value=huggingface-hub */
+    type: "huggingface-hub";
 }

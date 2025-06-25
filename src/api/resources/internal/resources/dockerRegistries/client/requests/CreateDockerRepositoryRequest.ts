@@ -5,16 +5,16 @@
 /**
  * @example
  *     {
- *         fqn: "fqn",
  *         applicationName: "applicationName",
+ *         fqn: "fqn",
  *         workspaceFqn: "workspaceFqn"
  *     }
  */
 export interface CreateDockerRepositoryRequest {
-    /** Docker registry FQN */
-    fqn: string;
     /** Application Name for the image being built */
     applicationName: string;
+    /** Docker registry FQN */
+    fqn: string;
     /** FQN for the workspace of application */
     workspaceFqn: string;
 }

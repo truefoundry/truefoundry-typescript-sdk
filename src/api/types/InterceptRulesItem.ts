@@ -6,14 +6,14 @@ import * as TrueFoundry from "../index";
 
 export interface InterceptRulesItem {
     /**
-     * +docs=Port of service to be intercepted
-     * +label=Service port
-     */
-    port: number;
-    match?: TrueFoundry.HeaderMatch;
-    /**
      * +docs=Action to take on succesful match
      * +label=Action
      */
     action: TrueFoundry.InterceptRulesItemAction;
+    match?: TrueFoundry.HeaderMatch;
+    /**
+     * +docs=Port of service to be intercepted
+     * +label=Service port
+     */
+    port: number;
 }

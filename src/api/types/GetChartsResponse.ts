@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index";
 
 export interface GetChartsResponse {
+    graphs: TrueFoundry.Graph[];
     /** Step size */
     step: string;
-    graphs: TrueFoundry.Graph[];
 }

@@ -32,199 +32,6 @@ export class DataDirectories {
     constructor(protected readonly _options: DataDirectories.Options) {}
 
     /**
-     * Get a data directory by its ID.
-     *
-     * Args:
-     *     id (str): The ID of the data directory to retrieve
-     *     user_info: Current authenticated user info
-     *
-     * Returns:
-     *     DataDirectoryResponse: Response containing the retrieved data directory
-     *
-     * @param {string} id
-     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.dataDirectories.get("id")
-     */
-    public get(
-        id: string,
-        requestOptions?: DataDirectories.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetDataDirectoryResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
-    }
-
-    private async __get(
-        id: string,
-        requestOptions?: DataDirectories.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetDataDirectoryResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/data-directories/${encodeURIComponent(id)}`,
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetDataDirectoryResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/ml/v1/data-directories/{id}.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Delete a data directory and optionally its contents.
-     *
-     * Args:
-     *     id: Unique identifier of the data directory to delete
-     *     delete_contents: If True, also deletes the data directory's contents
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     EmptyResponse: Empty response indicating successful deletion
-     *
-     * @param {string} id
-     * @param {TrueFoundry.DataDirectoriesDeleteRequest} request
-     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.dataDirectories.delete("id")
-     */
-    public delete(
-        id: string,
-        request: TrueFoundry.DataDirectoriesDeleteRequest = {},
-        requestOptions?: DataDirectories.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
-    }
-
-    private async __delete(
-        id: string,
-        request: TrueFoundry.DataDirectoriesDeleteRequest = {},
-        requestOptions?: DataDirectories.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
-        const { delete_contents: deleteContents } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (deleteContents != null) {
-            _queryParams["delete_contents"] = deleteContents.toString();
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/data-directories/${encodeURIComponent(id)}`,
-            ),
-            method: "DELETE",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling DELETE /api/ml/v1/data-directories/{id}.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
      * List all data directories with optional filtering and pagination.
      *
      * Args:
@@ -356,15 +163,15 @@ export class DataDirectories {
      * @example
      *     await client.dataDirectories.createOrUpdate({
      *         manifest: {
-     *             type: "data-dir",
-     *             name: "name",
-     *             ml_repo: "ml_repo",
      *             metadata: {
      *                 "key": "value"
      *             },
+     *             ml_repo: "ml_repo",
+     *             name: "name",
      *             source: {
      *                 type: "truefoundry"
-     *             }
+     *             },
+     *             type: "data-dir"
      *         }
      *     })
      */
@@ -660,8 +467,8 @@ export class DataDirectories {
      * @example
      *     await client.dataDirectories.getSignedUrls({
      *         id: "id",
-     *         paths: ["paths"],
-     *         operation: "READ"
+     *         operation: "READ",
+     *         paths: ["paths"]
      *     })
      */
     public getSignedUrls(
@@ -756,8 +563,8 @@ export class DataDirectories {
      * @example
      *     await client.dataDirectories.createMultipartUpload({
      *         id: "id",
-     *         path: "path",
-     *         num_parts: 1
+     *         num_parts: 1,
+     *         path: "path"
      *     })
      */
     public createMultipartUpload(
@@ -825,6 +632,199 @@ export class DataDirectories {
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
                     "Timeout exceeded when calling POST /api/ml/v1/data-directories/signed-urls/multipart.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Get a data directory by its ID.
+     *
+     * Args:
+     *     id (str): The ID of the data directory to retrieve
+     *     user_info: Current authenticated user info
+     *
+     * Returns:
+     *     DataDirectoryResponse: Response containing the retrieved data directory
+     *
+     * @param {string} id
+     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.dataDirectories.get("id")
+     */
+    public get(
+        id: string,
+        requestOptions?: DataDirectories.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetDataDirectoryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: DataDirectories.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetDataDirectoryResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/ml/v1/data-directories/${encodeURIComponent(id)}`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.GetDataDirectoryResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/ml/v1/data-directories/{id}.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Delete a data directory and optionally its contents.
+     *
+     * Args:
+     *     id: Unique identifier of the data directory to delete
+     *     delete_contents: If True, also deletes the data directory's contents
+     *     user_info: Authenticated user information
+     *
+     * Returns:
+     *     EmptyResponse: Empty response indicating successful deletion
+     *
+     * @param {string} id
+     * @param {TrueFoundry.DataDirectoriesDeleteRequest} request
+     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.dataDirectories.delete("id")
+     */
+    public delete(
+        id: string,
+        request: TrueFoundry.DataDirectoriesDeleteRequest = {},
+        requestOptions?: DataDirectories.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        request: TrueFoundry.DataDirectoriesDeleteRequest = {},
+        requestOptions?: DataDirectories.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        const { delete_contents: deleteContents } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (deleteContents != null) {
+            _queryParams["delete_contents"] = deleteContents.toString();
+        }
+
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/ml/v1/data-directories/${encodeURIComponent(id)}`,
+            ),
+            method: "DELETE",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling DELETE /api/ml/v1/data-directories/{id}.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

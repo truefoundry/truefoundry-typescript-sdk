@@ -153,8 +153,8 @@ export class TracingProjects {
      * @example
      *     await client.tracingProjects.createOrUpdate({
      *         manifest: {
-     *             type: "tracing-project",
-     *             name: "name"
+     *             name: "name",
+     *             type: "tracing-project"
      *         }
      *     })
      */

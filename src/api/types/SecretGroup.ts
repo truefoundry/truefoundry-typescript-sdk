@@ -5,14 +5,14 @@
 import * as TrueFoundry from "../index";
 
 export interface SecretGroup {
-    id?: string;
+    associatedSecrets: TrueFoundry.Secret[];
+    createdAt: string;
+    createdBy?: string;
+    createdBySubject: TrueFoundry.Subject;
     fqn?: string;
+    id?: string;
+    integrationId?: string;
     name: string;
     tenantName: string;
-    createdBySubject: TrueFoundry.Subject;
-    associatedSecrets: TrueFoundry.Secret[];
-    integrationId?: string;
-    createdAt: string;
     updatedAt: string;
-    createdBy?: string;
 }

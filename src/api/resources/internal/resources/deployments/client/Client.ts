@@ -32,90 +32,6 @@ export class Deployments {
     constructor(protected readonly _options: Deployments.Options) {}
 
     /**
-     * This endpoint returns all statuses for a specific deployment in a given application.
-     *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
-     * @param {Deployments.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.internal.deployments.getDeploymentStatuses("id", "deploymentId")
-     */
-    public getDeploymentStatuses(
-        id: string,
-        deploymentId: string,
-        requestOptions?: Deployments.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.DeploymentStatus[]> {
-        return core.HttpResponsePromise.fromPromise(this.__getDeploymentStatuses(id, deploymentId, requestOptions));
-    }
-
-    private async __getDeploymentStatuses(
-        id: string,
-        deploymentId: string,
-        requestOptions?: Deployments.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.DeploymentStatus[]>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/statuses`,
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.DeploymentStatus[], rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments/{deploymentId}/statuses.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
      * This endpoint returns all build details associated with a specific deployment in a given application.
      *
      * @param {string} id - Application id of the application
@@ -190,6 +106,90 @@ export class Deployments {
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
                     "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments/{deploymentId}/builds.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * This endpoint returns all statuses for a specific deployment in a given application.
+     *
+     * @param {string} id - Application id of the application
+     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {Deployments.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.internal.deployments.getDeploymentStatuses("id", "deploymentId")
+     */
+    public getDeploymentStatuses(
+        id: string,
+        deploymentId: string,
+        requestOptions?: Deployments.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.DeploymentStatus[]> {
+        return core.HttpResponsePromise.fromPromise(this.__getDeploymentStatuses(id, deploymentId, requestOptions));
+    }
+
+    private async __getDeploymentStatuses(
+        id: string,
+        deploymentId: string,
+        requestOptions?: Deployments.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeploymentStatus[]>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/statuses`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.DeploymentStatus[], rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/apps/{id}/deployments/{deploymentId}/statuses.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

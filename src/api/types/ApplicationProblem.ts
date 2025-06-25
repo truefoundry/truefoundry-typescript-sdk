@@ -3,6 +3,6 @@
  */
 
 export interface ApplicationProblem {
-    name: string;
     description: string;
+    name: string;
 }

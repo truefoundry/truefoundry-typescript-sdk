@@ -32,6 +32,210 @@ export class Jobs {
     constructor(protected readonly _options: Jobs.Options) {}
 
     /**
+     * Terminate Job for provided deploymentId and jobRunName
+     *
+     * @param {TrueFoundry.JobsTerminateRequest} request
+     * @param {Jobs.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.ExpectationFailedError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.jobs.terminate({
+     *         deploymentId: "deploymentId",
+     *         jobRunName: "jobRunName"
+     *     })
+     */
+    public terminate(
+        request: TrueFoundry.JobsTerminateRequest,
+        requestOptions?: Jobs.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.TerminateJobResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__terminate(request, requestOptions));
+    }
+
+    private async __terminate(
+        request: TrueFoundry.JobsTerminateRequest,
+        requestOptions?: Jobs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.TerminateJobResponse>> {
+        const { deploymentId, jobRunName } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        _queryParams["deploymentId"] = deploymentId;
+        _queryParams["jobRunName"] = jobRunName;
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/jobs/terminate",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            queryParameters: _queryParams,
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.TerminateJobResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 417:
+                    throw new TrueFoundry.ExpectationFailedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/jobs/terminate.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Trigger Job for provided deploymentId or applicationId
+     *
+     * @param {TrueFoundry.TriggerJobRequest} request
+     * @param {Jobs.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.jobs.trigger()
+     */
+    public trigger(
+        request: TrueFoundry.TriggerJobRequest = {},
+        requestOptions?: Jobs.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.TriggerJobRunResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__trigger(request, requestOptions));
+    }
+
+    private async __trigger(
+        request: TrueFoundry.TriggerJobRequest = {},
+        requestOptions?: Jobs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.TriggerJobRunResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/jobs/trigger",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.TriggerJobRunResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/jobs/trigger.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * List Job Runs for provided Job Id. Filter the data based on parameters passed in the query
      *
      * @param {string} jobId - Job id of the application
@@ -351,210 +555,6 @@ export class Jobs {
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
                     "Timeout exceeded when calling DELETE /api/svc/v1/jobs/{jobId}/runs/{jobRunName}.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Trigger Job for provided deploymentId or applicationId
-     *
-     * @param {TrueFoundry.TriggerJobRequest} request
-     * @param {Jobs.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.BadRequestError}
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.jobs.trigger()
-     */
-    public trigger(
-        request: TrueFoundry.TriggerJobRequest = {},
-        requestOptions?: Jobs.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.TriggerJobRunResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__trigger(request, requestOptions));
-    }
-
-    private async __trigger(
-        request: TrueFoundry.TriggerJobRequest = {},
-        requestOptions?: Jobs.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.TriggerJobRunResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/jobs/trigger",
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.TriggerJobRunResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/jobs/trigger.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Terminate Job for provided deploymentId and jobRunName
-     *
-     * @param {TrueFoundry.JobsTerminateRequest} request
-     * @param {Jobs.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     * @throws {@link TrueFoundry.ExpectationFailedError}
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.jobs.terminate({
-     *         deploymentId: "deploymentId",
-     *         jobRunName: "jobRunName"
-     *     })
-     */
-    public terminate(
-        request: TrueFoundry.JobsTerminateRequest,
-        requestOptions?: Jobs.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.TerminateJobResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__terminate(request, requestOptions));
-    }
-
-    private async __terminate(
-        request: TrueFoundry.JobsTerminateRequest,
-        requestOptions?: Jobs.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.TerminateJobResponse>> {
-        const { deploymentId, jobRunName } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams["deploymentId"] = deploymentId;
-        _queryParams["jobRunName"] = jobRunName;
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/jobs/terminate",
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.TerminateJobResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                case 417:
-                    throw new TrueFoundry.ExpectationFailedError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/jobs/terminate.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

@@ -4,13 +4,13 @@
 
 export interface Collaborator {
     /**
-     * +label=Subject FQN
-     * +usage=Fully Qualified Name of the subject. eg: user:email or team:teamname
-     */
-    subject: string;
-    /**
      * +label=Role ID
      * +usage=Role ID for the resource
      */
     role_id: string;
+    /**
+     * +label=Subject FQN
+     * +usage=Fully Qualified Name of the subject. eg: user:email or team:teamname
+     */
+    subject: string;
 }

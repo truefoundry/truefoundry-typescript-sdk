@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../index";
 
 export interface GetSuggestedDeploymentEndpointResponse {
+    /** Gateway configuration */
+    gateway?: TrueFoundry.ClusterGateway;
     /** Host name */
     host: string;
     /** Path */
     path?: string;
-    /** Gateway configuration */
-    gateway?: TrueFoundry.ClusterGateway;
 }

@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../../../../../index";
 
 export type ApplyMlEntityRequestManifest =
-    | TrueFoundry.ModelManifest
-    | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.AgentOpenApiToolManifest
     | TrueFoundry.AgentManifest
     | TrueFoundry.ArtifactManifest
+    | TrueFoundry.ChatPromptManifest
     | TrueFoundry.DataDirectoryManifest
+    | TrueFoundry.ModelManifest
+    | TrueFoundry.AgentOpenApiToolManifest
     | TrueFoundry.TracingProjectManifest;

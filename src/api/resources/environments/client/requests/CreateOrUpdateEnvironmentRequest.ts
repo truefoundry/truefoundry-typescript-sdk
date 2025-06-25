@@ -8,17 +8,17 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             type: "environment",
- *             name: "name",
  *             color: {},
  *             isProduction: true,
- *             optimizeFor: "COST"
+ *             name: "name",
+ *             optimizeFor: "COST",
+ *             type: "environment"
  *         }
  *     }
  */
 export interface CreateOrUpdateEnvironmentRequest {
-    /** Environment Manifest */
-    manifest: TrueFoundry.EnvironmentManifest;
     /** Dry run */
     dryRun?: boolean;
+    /** Environment Manifest */
+    manifest: TrueFoundry.EnvironmentManifest;
 }

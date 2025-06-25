@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../index";
 
 export interface UpgradeData {
-    diff?: TrueFoundry.IChange[];
+    conflictFields?: string[];
     currentManifest?: TrueFoundry.Helm;
     desiredManifest?: TrueFoundry.Helm;
-    upgradePossible?: boolean;
-    conflictFields?: string[];
+    diff?: TrueFoundry.IChange[];
     hasConflict?: boolean;
+    upgradePossible?: boolean;
 }

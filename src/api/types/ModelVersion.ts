@@ -5,15 +5,15 @@
 import * as TrueFoundry from "../index";
 
 export interface ModelVersion {
-    id: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
     created_at?: string;
-    updated_at?: string;
+    created_by_subject: TrueFoundry.Subject;
+    deployable?: boolean;
+    fqn: string;
+    id: string;
     manifest: TrueFoundry.ModelManifest;
-    usage_code_snippet?: string;
+    metrics?: TrueFoundry.Metric[];
     ml_repo_id: string;
     model_id: string;
-    metrics?: TrueFoundry.Metric[];
-    deployable?: boolean;
+    updated_at?: string;
+    usage_code_snippet?: string;
 }

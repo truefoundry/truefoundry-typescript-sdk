@@ -9,8 +9,7 @@ import * as TrueFoundry from "../index";
  * +label=Kafka
  */
 export interface KafkaOutputConfig {
-    /** +value=kafka */
-    type: "kafka";
+    auth?: TrueFoundry.KafkaSaslAuth;
     /**
      * +label=Bootstrap servers
      * +usage='Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap'
@@ -18,15 +17,16 @@ export interface KafkaOutputConfig {
      */
     bootstrap_servers: string;
     /**
+     * +label=TLS
+     * +usage=TLS configuration for SASL authentication
+     */
+    tls: boolean;
+    /**
      * +label=Topic Name
      * +usage=Kafka topic to publish to
      * +sort=2
      */
     topic_name: string;
-    /**
-     * +label=TLS
-     * +usage=TLS configuration for SASL authentication
-     */
-    tls: boolean;
-    auth?: TrueFoundry.KafkaSaslAuth;
+    /** +value=kafka */
+    type: "kafka";
 }

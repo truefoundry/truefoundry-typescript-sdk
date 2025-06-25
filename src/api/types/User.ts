@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface User {
-    id: string;
-    email: string;
-    userName: string;
-    tenantName: string;
-    metadata: TrueFoundry.UserMetadata;
-    roles?: string[];
     active: boolean;
     createdAt: string;
+    email: string;
+    id: string;
+    metadata: TrueFoundry.UserMetadata;
+    roles?: string[];
+    tenantName: string;
     updatedAt: string;
+    userName: string;
 }

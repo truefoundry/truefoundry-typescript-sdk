@@ -4,14 +4,6 @@
 
 export interface CanaryStep {
     /**
-     * +docs=Percentage of total traffic to be shifted to the canary release.
-     * The rest will continue to go to the existing deployment
-     * +label=Canary weight percentage
-     * +unit=%
-     * +placeholder=Weight
-     */
-    weight_percentage: number;
-    /**
      * +docs=Duration for which to pause the release. The release process will wait for these seconds before proceeding to the next step.
      * If this is not set, the step will pause indefinitely on this step
      * +label=Pause duration
@@ -19,4 +11,12 @@ export interface CanaryStep {
      * +placeholder=Duration
      */
     pause_duration?: number;
+    /**
+     * +docs=Percentage of total traffic to be shifted to the canary release.
+     * The rest will continue to go to the existing deployment
+     * +label=Canary weight percentage
+     * +unit=%
+     * +placeholder=Weight
+     */
+    weight_percentage: number;
 }

@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface Team {
-    id: string;
-    teamName: string;
-    description: string;
-    tenantName: string;
-    createdBySubject: TrueFoundry.Subject;
-    members?: string[];
     createdAt: string;
-    updatedAt: string;
+    createdBySubject: TrueFoundry.Subject;
+    description: string;
+    id: string;
     manifest: TrueFoundry.TeamManifest;
+    members?: string[];
+    teamName: string;
+    tenantName: string;
+    updatedAt: string;
 }

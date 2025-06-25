@@ -477,34 +477,39 @@ export class Applications {
     }
 
     /**
-     * Pause a running application by scaling to 0 replicas
+     * Cancel an ongoing deployment associated with the provided application ID and deployment ID.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Application id of the application
+     * @param {string} deploymentId - Deployment id of the deployment
      * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
      * @throws {@link TrueFoundry.NotFoundError}
-     * @throws {@link TrueFoundry.MethodNotAllowedError}
-     * @throws {@link TrueFoundry.NotImplementedError}
+     * @throws {@link TrueFoundry.ConflictError}
      *
      * @example
-     *     await client.applications.scaleToZero("id")
+     *     await client.applications.cancelDeployment("id", "deploymentId")
      */
-    public scaleToZero(id: string, requestOptions?: Applications.RequestOptions): core.HttpResponsePromise<void> {
-        return core.HttpResponsePromise.fromPromise(this.__scaleToZero(id, requestOptions));
+    public cancelDeployment(
+        id: string,
+        deploymentId: string,
+        requestOptions?: Applications.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.ApplicationsCancelDeploymentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__cancelDeployment(id, deploymentId, requestOptions));
     }
 
-    private async __scaleToZero(
+    private async __cancelDeployment(
         id: string,
+        deploymentId: string,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<core.WithRawResponse<void>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.ApplicationsCancelDeploymentResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${encodeURIComponent(id)}/scale-to-zero`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/cancel`,
             ),
-            method: "PATCH",
+            method: "POST",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
@@ -522,7 +527,10 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: undefined, rawResponse: _response.rawResponse };
+            return {
+                data: _response.body as TrueFoundry.ApplicationsCancelDeploymentResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {
@@ -534,10 +542,8 @@ export class Applications {
                     );
                 case 404:
                     throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                case 405:
-                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown, _response.rawResponse);
-                case 501:
-                    throw new TrueFoundry.NotImplementedError(
+                case 409:
+                    throw new TrueFoundry.ConflictError(
                         _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
@@ -559,7 +565,7 @@ export class Applications {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling PATCH /api/svc/v1/apps/{id}/scale-to-zero.",
+                    "Timeout exceeded when calling POST /api/svc/v1/apps/{id}/deployments/{deploymentId}/cancel.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({
@@ -663,39 +669,34 @@ export class Applications {
     }
 
     /**
-     * Cancel an ongoing deployment associated with the provided application ID and deployment ID.
+     * Pause a running application by scaling to 0 replicas
      *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {string} id - Id of the application
      * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
      * @throws {@link TrueFoundry.NotFoundError}
-     * @throws {@link TrueFoundry.ConflictError}
+     * @throws {@link TrueFoundry.MethodNotAllowedError}
+     * @throws {@link TrueFoundry.NotImplementedError}
      *
      * @example
-     *     await client.applications.cancelDeployment("id", "deploymentId")
+     *     await client.applications.scaleToZero("id")
      */
-    public cancelDeployment(
-        id: string,
-        deploymentId: string,
-        requestOptions?: Applications.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.ApplicationsCancelDeploymentResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__cancelDeployment(id, deploymentId, requestOptions));
+    public scaleToZero(id: string, requestOptions?: Applications.RequestOptions): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__scaleToZero(id, requestOptions));
     }
 
-    private async __cancelDeployment(
+    private async __scaleToZero(
         id: string,
-        deploymentId: string,
         requestOptions?: Applications.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.ApplicationsCancelDeploymentResponse>> {
+    ): Promise<core.WithRawResponse<void>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${encodeURIComponent(id)}/deployments/${encodeURIComponent(deploymentId)}/cancel`,
+                `api/svc/v1/apps/${encodeURIComponent(id)}/scale-to-zero`,
             ),
-            method: "POST",
+            method: "PATCH",
             headers: {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
@@ -713,10 +714,7 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: _response.body as TrueFoundry.ApplicationsCancelDeploymentResponse,
-                rawResponse: _response.rawResponse,
-            };
+            return { data: undefined, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -728,8 +726,10 @@ export class Applications {
                     );
                 case 404:
                     throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                case 409:
-                    throw new TrueFoundry.ConflictError(
+                case 405:
+                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown, _response.rawResponse);
+                case 501:
+                    throw new TrueFoundry.NotImplementedError(
                         _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
@@ -751,7 +751,7 @@ export class Applications {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/apps/{id}/deployments/{deploymentId}/cancel.",
+                    "Timeout exceeded when calling PATCH /api/svc/v1/apps/{id}/scale-to-zero.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

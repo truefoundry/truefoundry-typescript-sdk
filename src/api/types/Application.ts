@@ -5,33 +5,33 @@
 import * as TrueFoundry from "../index";
 
 export interface Application {
-    id?: string;
-    fqn?: string;
-    name?: string;
-    type?: TrueFoundry.ApplicationType;
-    createdBySubject: TrueFoundry.Subject;
-    tenantName?: string;
-    metadata?: TrueFoundry.ApplicationMetadata;
-    lifecycleStage: TrueFoundry.ApplicationLifecycleStage;
-    workspaceId?: string;
-    lastVersion?: number;
+    activeDeploymentId?: string;
     activeVersion?: number;
-    createdAt?: string;
-    updatedAt?: string;
-    /** Recommendations for this application */
-    recommendations?: TrueFoundry.Recommendation[];
     /** Alerts for this application */
     alerts?: TrueFoundry.Alert[];
     /** Summary of alerts for this application */
     alertsSummary?: Record<string, unknown>;
     /** Debug infos for this application */
     applicationDebugInfos?: TrueFoundry.ApplicationDebugInfo[];
+    autopilot: Record<string, unknown>;
+    createdAt?: string;
+    createdBy?: string;
+    createdBySubject: TrueFoundry.Subject;
+    deployment?: TrueFoundry.Deployment;
+    fqn?: string;
+    id?: string;
+    lastDeploymentId?: string;
+    lastVersion?: number;
+    lifecycleStage: TrueFoundry.ApplicationLifecycleStage;
+    metadata?: TrueFoundry.ApplicationMetadata;
+    name?: string;
     /** Potential problems with the application */
     potentialProblems?: TrueFoundry.ApplicationProblem[];
-    autopilot: Record<string, unknown>;
+    /** Recommendations for this application */
+    recommendations?: TrueFoundry.Recommendation[];
+    tenantName?: string;
+    type?: TrueFoundry.ApplicationType;
+    updatedAt?: string;
     workspaceFqn?: string;
-    createdBy?: string;
-    deployment?: TrueFoundry.Deployment;
-    activeDeploymentId?: string;
-    lastDeploymentId?: string;
+    workspaceId?: string;
 }

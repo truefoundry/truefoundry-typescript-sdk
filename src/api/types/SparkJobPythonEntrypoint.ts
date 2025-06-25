@@ -6,8 +6,12 @@
  * +label=python
  */
 export interface SparkJobPythonEntrypoint {
-    /** +value=python */
-    type: "python";
+    /**
+     * +label=Arguments
+     * +usage=Arguments to be passed to the main application file.
+     * +sort=6
+     */
+    arguments?: string;
     /**
      * +label=Main Application File
      * +usage=The main application file to be executed by the spark job. Relative path in case of git repository.
@@ -16,10 +20,6 @@ export interface SparkJobPythonEntrypoint {
      * +placeholder=For example: local:///path/to/file.py, s3:///bucket/path/to/file.py, etc.
      */
     main_application_file: string;
-    /**
-     * +label=Arguments
-     * +usage=Arguments to be passed to the main application file.
-     * +sort=6
-     */
-    arguments?: string;
+    /** +value=python */
+    type: "python";
 }

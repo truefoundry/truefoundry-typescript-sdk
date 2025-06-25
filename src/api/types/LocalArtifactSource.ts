@@ -5,8 +5,8 @@
 import * as TrueFoundry from "../index";
 
 export interface LocalArtifactSource {
-    /** Type of the source */
-    type: "local";
     /** Array of ArtifactPath objects representing the source and destination paths */
     paths: TrueFoundry.ArtifactPath[];
+    /** Type of the source */
+    type: "local";
 }

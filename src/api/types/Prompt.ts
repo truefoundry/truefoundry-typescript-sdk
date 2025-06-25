@@ -5,14 +5,14 @@
 import * as TrueFoundry from "../index";
 
 export interface Prompt {
-    id: string;
-    ml_repo_id: string;
-    type?: "chat_prompt";
-    name: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
     created_at?: string;
-    updated_at?: string;
+    created_by_subject: TrueFoundry.Subject;
+    fqn: string;
+    id: string;
     latest_version?: TrueFoundry.PromptVersion;
+    ml_repo_id: string;
+    name: string;
     run_steps?: number[];
+    type?: "chat_prompt";
+    updated_at?: string;
 }

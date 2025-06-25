@@ -6,8 +6,6 @@
  * +label=Email
  */
 export interface Email {
-    /** +value=email */
-    type: "email";
     /**
      * +label=Notification Channel
      * +usage=Specify the notification channel to send alerts to
@@ -23,4 +21,6 @@ export interface Email {
      * +sort=665
      */
     to_emails: string[];
+    /** +value=email */
+    type: "email";
 }

@@ -9,8 +9,8 @@
  *     }
  */
 export interface GitRepositoryExistsRequest {
-    /** The URL of the repository */
-    repoURL: string;
     /** The integration id of the repository */
     id?: string;
+    /** The URL of the repository */
+    repoURL: string;
 }

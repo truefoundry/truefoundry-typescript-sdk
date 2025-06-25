@@ -9,8 +9,8 @@ import * as TrueFoundry from "../index";
  */
 export interface Parameters {
     max_tokens?: number;
+    stop?: TrueFoundry.ParametersStop;
     temperature?: number;
     top_k?: number;
     top_p?: number;
-    stop?: TrueFoundry.ParametersStop;
 }

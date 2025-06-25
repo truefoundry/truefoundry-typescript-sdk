@@ -8,15 +8,15 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             type: "team",
+ *             members: ["members"],
  *             name: "name",
- *             members: ["members"]
+ *             type: "team"
  *         }
  *     }
  */
 export interface ApplyTeamRequest {
-    /** Team manifest */
-    manifest: TrueFoundry.TeamManifest;
     /** Dry run */
     dryRun?: boolean;
+    /** Team manifest */
+    manifest: TrueFoundry.TeamManifest;
 }

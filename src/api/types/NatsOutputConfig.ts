@@ -9,8 +9,7 @@ import * as TrueFoundry from "../index";
  * +label=NATS
  */
 export interface NatsOutputConfig {
-    /** +value=nats */
-    type: "nats";
+    auth?: TrueFoundry.NatsUserPasswordAuth;
     /**
      * +label=NATS URL
      * +usage=Output NATS URL
@@ -24,5 +23,6 @@ export interface NatsOutputConfig {
      * +sort=2
      */
     root_subject: string;
-    auth?: TrueFoundry.NatsUserPasswordAuth;
+    /** +value=nats */
+    type: "nats";
 }

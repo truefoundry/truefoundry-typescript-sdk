@@ -6,8 +6,8 @@
  * Runtime environment describing python version and dependencies for running the model
  */
 export interface ModelVersionEnvironment {
-    /** Python version to use when running the model */
-    python_version?: string;
     /** pip dependencies needed for running the model */
     pip_packages?: string[];
+    /** Python version to use when running the model */
+    python_version?: string;
 }

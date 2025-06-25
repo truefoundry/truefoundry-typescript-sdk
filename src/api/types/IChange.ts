@@ -5,9 +5,9 @@
 import * as TrueFoundry from "../index";
 
 export interface IChange {
-    type: TrueFoundry.IChangeOperation;
-    key: string;
-    value?: Record<string, unknown>;
-    oldValue?: Record<string, unknown>;
     changes?: TrueFoundry.IChange[];
+    key: string;
+    oldValue?: Record<string, unknown>;
+    type: TrueFoundry.IChangeOperation;
+    value?: Record<string, unknown>;
 }

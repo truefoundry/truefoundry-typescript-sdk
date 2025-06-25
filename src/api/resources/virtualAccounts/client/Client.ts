@@ -143,12 +143,12 @@ export class VirtualAccounts {
      *     await client.virtualAccounts.createOrUpdate({
      *         manifest: {
      *             name: "name",
-     *             type: "virtual-account",
      *             permissions: [{
      *                     resource_fqn: "resource_fqn",
      *                     resource_type: "resource_type",
      *                     role_id: "role_id"
-     *                 }]
+     *                 }],
+     *             type: "virtual-account"
      *         }
      *     })
      */

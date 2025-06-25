@@ -6,9 +6,9 @@
  * Tracing Project manifest.
  */
 export interface TracingProjectManifest {
-    type: "tracing-project";
-    /** Name of the tracing project */
-    name: string;
     /** Name of the ML Repo */
     ml_repo?: string;
+    /** Name of the tracing project */
+    name: string;
+    type: "tracing-project";
 }

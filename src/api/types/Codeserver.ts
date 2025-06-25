@@ -8,7 +8,7 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the code server
  */
 export interface Codeserver extends TrueFoundry.BaseWorkbenchInput {
+    image?: TrueFoundry.WorkbenchImage;
     /** +value=codeserver */
     type?: "codeserver";
-    image?: TrueFoundry.WorkbenchImage;
 }

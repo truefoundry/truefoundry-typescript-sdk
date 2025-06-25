@@ -5,12 +5,12 @@
 import * as TrueFoundry from "../index";
 
 export interface HttpError {
-    /** HTTP Status Code */
-    statusCode: number;
-    /** Error Message */
-    message: string;
     /** Error code */
     code?: TrueFoundry.HttpErrorCode;
     /** Error details */
     details?: Record<string, unknown>[];
+    /** Error Message */
+    message: string;
+    /** HTTP Status Code */
+    statusCode: number;
 }

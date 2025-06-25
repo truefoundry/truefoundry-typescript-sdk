@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../../../index";
 
 export interface WorkspacesDeleteResponse {
-    workspace?: TrueFoundry.Workspace;
     /** Destroyed the workspace */
     message?: string;
+    workspace?: TrueFoundry.Workspace;
 }

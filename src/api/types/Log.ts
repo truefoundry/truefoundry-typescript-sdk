@@ -3,6 +3,8 @@
  */
 
 export interface Log {
+    /** Container Name */
+    containerName?: string;
     /** Job Name */
     job_name?: string;
     /** Log Content */
@@ -11,6 +13,4 @@ export interface Log {
     stream: string;
     /** Log Time */
     time: string;
-    /** Container Name */
-    containerName?: string;
 }

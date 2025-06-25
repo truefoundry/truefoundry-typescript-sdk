@@ -3,10 +3,10 @@
  */
 
 export interface Pagination {
-    /** Total number of items */
-    total: number;
-    /** Number of items skipped */
-    offset?: number;
     /** Number of items per page */
     limit?: number;
+    /** Number of items skipped */
+    offset?: number;
+    /** Total number of items */
+    total: number;
 }

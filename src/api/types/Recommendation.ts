@@ -3,15 +3,15 @@
  */
 
 export interface Recommendation {
-    id?: string;
-    clusterId?: string;
     applicationId?: string;
-    deploymentId?: string;
     applicationVersion?: number;
+    appliedDeploymentId?: string;
+    clusterId?: string;
+    createdAt?: string;
+    deploymentId?: string;
+    expiryTimestamp: string;
+    id?: string;
     recommendationData: Record<string, unknown>;
     recommendationType: string;
-    appliedDeploymentId?: string;
-    expiryTimestamp: string;
-    createdAt?: string;
     updatedAt?: string;
 }

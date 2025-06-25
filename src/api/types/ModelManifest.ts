@@ -8,24 +8,24 @@ import * as TrueFoundry from "../index";
  * Model Version artifact.
  */
 export interface ModelManifest {
-    /** Name of the entity */
-    name: string;
     description?: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    version_alias?: string;
-    /** Name of the ML Repo */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number;
-    type: "model-version";
-    source: TrueFoundry.ModelManifestSource;
+    environment?: TrueFoundry.ModelVersionEnvironment;
     /** Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration */
     framework?: TrueFoundry.ModelManifestFramework;
-    environment?: TrueFoundry.ModelVersionEnvironment;
-    /** Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run */
-    step?: number;
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
+    metadata: Record<string, unknown>;
+    /** Name of the ML Repo */
+    ml_repo: string;
+    /** Name of the entity */
+    name: string;
     /** ID of the MLRepo Run that generated the model version */
     run_id?: string;
+    source: TrueFoundry.ModelManifestSource;
+    /** Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run */
+    step?: number;
+    type: "model-version";
+    /** Version of the entity */
+    version?: number;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string;
 }

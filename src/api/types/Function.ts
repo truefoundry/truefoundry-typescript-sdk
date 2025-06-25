@@ -3,8 +3,8 @@
  */
 
 export interface Function {
-    /** Name of the tool/function being called */
-    name: string;
     /** Arguments passed to the tool/function */
     arguments: string;
+    /** Name of the tool/function being called */
+    name: string;
 }

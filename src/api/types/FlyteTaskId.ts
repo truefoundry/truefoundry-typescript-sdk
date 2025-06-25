@@ -3,6 +3,6 @@
  */
 
 export interface FlyteTaskId {
-    resourceType: "TASK";
     name: string;
+    resourceType: "TASK";
 }

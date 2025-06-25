@@ -9,10 +9,10 @@ import * as TrueFoundry from "../../../../index";
  *     {}
  */
 export interface TriggerJobRequest {
-    /** Deployment Id of the job */
-    deploymentId?: string;
     /** Application Id of the job */
     applicationId?: string;
+    /** Deployment Id of the job */
+    deploymentId?: string;
     /** Job trigger input */
     input?: TrueFoundry.TriggerJobRequestInput;
 }

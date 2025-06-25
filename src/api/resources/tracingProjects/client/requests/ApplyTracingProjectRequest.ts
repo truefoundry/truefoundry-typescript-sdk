@@ -8,8 +8,8 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             type: "tracing-project",
- *             name: "name"
+ *             name: "name",
+ *             type: "tracing-project"
  *         }
  *     }
  */

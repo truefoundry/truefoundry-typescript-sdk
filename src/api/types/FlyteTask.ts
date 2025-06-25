@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface FlyteTask {
-    template: TrueFoundry.FlyteTaskTemplate;
     description?: unknown;
+    template: TrueFoundry.FlyteTaskTemplate;
 }

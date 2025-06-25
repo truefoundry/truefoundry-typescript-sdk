@@ -3,6 +3,6 @@
  */
 
 export interface FlyteLaunchPlanId {
-    resourceType: "LAUNCH_PLAN";
     name: string;
+    resourceType: "LAUNCH_PLAN";
 }

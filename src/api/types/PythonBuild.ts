@@ -10,33 +10,6 @@ import * as TrueFoundry from "../index";
  * +icon=fa-brands fa-python:#306998
  */
 export interface PythonBuild {
-    /** +value=tfy-python-buildpack */
-    type: "tfy-python-buildpack";
-    /**
-     * +label=Python version
-     * +usage=Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python)
-     * +message=Please enter a valid Python version tag
-     */
-    python_version?: string;
-    /**
-     * +label=Path to build context
-     * +usage=Build path relative to project root path.
-     */
-    build_context_path: string;
-    /**
-     * `Path to build context`
-     * +label=Path to requirements
-     * +usage=Path to `requirements.txt` relative to
-     * `Path to build context`
-     */
-    requirements_path?: string;
-    /**
-     * +label=Pip packages to install
-     * +usage=Define pip package requirements.
-     * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
-     * +placeholder=Enter a pip package name E.g. fastapi>=0.90,<1.0
-     */
-    pip_packages?: string[];
     /**
      * +label=List of Debian packages to install.
      * +usage=Debian packages to install via `apt get`.
@@ -44,6 +17,11 @@ export interface PythonBuild {
      * +placeholder=Enter a debian package name E.g. ffmpeg
      */
     apt_packages?: string[];
+    /**
+     * +label=Path to build context
+     * +usage=Build path relative to project root path.
+     */
+    build_context_path: string;
     /**
      * Command will be set as the Entrypoint of the generated
      * image.
@@ -63,4 +41,26 @@ export interface PythonBuild {
      * Note: We use deadsnakes ubuntu ppa to add Python that currently supports only Ubuntu 18.04, 20.04 and 22.04
      */
     cuda_version?: string;
+    /**
+     * +label=Pip packages to install
+     * +usage=Define pip package requirements.
+     * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
+     * +placeholder=Enter a pip package name E.g. fastapi>=0.90,<1.0
+     */
+    pip_packages?: string[];
+    /**
+     * +label=Python version
+     * +usage=Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python)
+     * +message=Please enter a valid Python version tag
+     */
+    python_version?: string;
+    /**
+     * `Path to build context`
+     * +label=Path to requirements
+     * +usage=Path to `requirements.txt` relative to
+     * `Path to build context`
+     */
+    requirements_path?: string;
+    /** +value=tfy-python-buildpack */
+    type: "tfy-python-buildpack";
 }

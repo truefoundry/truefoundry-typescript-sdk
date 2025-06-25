@@ -8,7 +8,7 @@ import * as TrueFoundry from "../index";
  * Image URL linking to the image
  */
 export interface ImageUrl {
+    detail?: string;
     /** Image URL linking to the image */
     url: TrueFoundry.ImageUrlUrl;
-    detail?: string;
 }

@@ -6,6 +6,6 @@ import * as TrueFoundry from "../index";
 
 export interface GetSignedUrLsRequest {
     id: string;
-    paths: string[];
     operation: TrueFoundry.Operation;
+    paths: string[];
 }

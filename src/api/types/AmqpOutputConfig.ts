@@ -7,6 +7,18 @@
  * +label=AMQP
  */
 export interface AmqpOutputConfig {
+    /**
+     * +label=Exchange Name
+     * +usage=AMQP Exchange Name
+     * +sort=3
+     */
+    exchange_name?: string;
+    /**
+     * +label=Routing Key
+     * +usage=AMQP Routing Key to publish to.
+     * +sort=2
+     */
+    routing_key: string;
     /** +value=amqp */
     type: "amqp";
     /**
@@ -15,16 +27,4 @@ export interface AmqpOutputConfig {
      * +sort=1
      */
     url: string;
-    /**
-     * +label=Routing Key
-     * +usage=AMQP Routing Key to publish to.
-     * +sort=2
-     */
-    routing_key: string;
-    /**
-     * +label=Exchange Name
-     * +usage=AMQP Exchange Name
-     * +sort=3
-     */
-    exchange_name?: string;
 }

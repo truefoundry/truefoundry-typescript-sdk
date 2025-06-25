@@ -5,20 +5,20 @@
 import * as TrueFoundry from "../index";
 
 export interface Deployment {
-    id?: string;
-    version?: number;
-    fqn?: string;
-    applicationId?: string;
-    manifest: TrueFoundry.DeploymentManifest;
     application?: TrueFoundry.Application;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt?: string;
-    updatedAt?: string;
-    deploymentBuilds?: TrueFoundry.BuildInfo[];
-    deploymentStatuses?: TrueFoundry.DeploymentStatus[];
-    currentStatusId?: string;
-    currentStatus?: TrueFoundry.DeploymentStatus;
+    applicationId?: string;
     /** Applied recommendations for this deployment */
     appliedRecommendations?: TrueFoundry.Recommendation[];
+    createdAt?: string;
     createdBy?: string;
+    createdBySubject: TrueFoundry.Subject;
+    currentStatus?: TrueFoundry.DeploymentStatus;
+    currentStatusId?: string;
+    deploymentBuilds?: TrueFoundry.BuildInfo[];
+    deploymentStatuses?: TrueFoundry.DeploymentStatus[];
+    fqn?: string;
+    id?: string;
+    manifest: TrueFoundry.DeploymentManifest;
+    updatedAt?: string;
+    version?: number;
 }

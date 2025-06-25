@@ -10,16 +10,13 @@ import * as TrueFoundry from "../index";
  * +icon=fa-brands fa-docker:#0db7ed
  */
 export interface Image {
-    /** +value=image */
-    type: "image";
     /**
-     * +label=Image URI
-     * +usage=The image URI. Specify the name of the image and the tag.
-     * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
-     * You can use an image from a private registry using Advanced fields
-     * +placeholder=registry-url/account/image:version (e.g. docker.io/tensorflow/tensorflow)
+     * +label=Command Override
+     * +usage=Override the command to run when container starts.
+     * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
+     * E.g. `python main.py --learning_rate {{learning_rate}}`
      */
-    image_uri: string;
+    command?: TrueFoundry.ImageCommand;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -29,10 +26,13 @@ export interface Image {
      */
     docker_registry?: string;
     /**
-     * +label=Command Override
-     * +usage=Override the command to run when container starts.
-     * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
-     * E.g. `python main.py --learning_rate {{learning_rate}}`
+     * +label=Image URI
+     * +usage=The image URI. Specify the name of the image and the tag.
+     * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
+     * You can use an image from a private registry using Advanced fields
+     * +placeholder=registry-url/account/image:version (e.g. docker.io/tensorflow/tensorflow)
      */
-    command?: TrueFoundry.ImageCommand;
+    image_uri: string;
+    /** +value=image */
+    type: "image";
 }

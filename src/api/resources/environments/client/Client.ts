@@ -141,11 +141,11 @@ export class Environments {
      * @example
      *     await client.environments.createOrUpdate({
      *         manifest: {
-     *             type: "environment",
-     *             name: "name",
      *             color: {},
      *             isProduction: true,
-     *             optimizeFor: "COST"
+     *             name: "name",
+     *             optimizeFor: "COST",
+     *             type: "environment"
      *         }
      *     })
      */

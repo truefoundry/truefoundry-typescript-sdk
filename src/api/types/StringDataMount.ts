@@ -3,17 +3,17 @@
  */
 
 export interface StringDataMount {
-    /** +value=string */
-    type: "string";
+    /**
+     * +label=Data
+     * +usage=The file content.
+     */
+    data: string;
     /**
      * +label=File Path
      * +usage=Absolute file path where the file will be created.
      * +message=Please enter a valid file path
      */
     mount_path: string;
-    /**
-     * +label=Data
-     * +usage=The file content.
-     */
-    data: string;
+    /** +value=string */
+    type: "string";
 }

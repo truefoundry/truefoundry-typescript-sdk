@@ -9,8 +9,8 @@
  *     }
  */
 export interface PreRegisterUsersRequest {
-    /** Emails of the users */
-    emails: string[];
     /** Dry run */
     dryRun?: boolean;
+    /** Emails of the users */
+    emails: string[];
 }

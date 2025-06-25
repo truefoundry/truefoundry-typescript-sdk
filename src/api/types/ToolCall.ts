@@ -5,9 +5,9 @@
 import * as TrueFoundry from "../index";
 
 export interface ToolCall {
-    /** Type of the tool call */
-    type: "function";
+    function: TrueFoundry.Function;
     /** Unique identifier for the tool call */
     id: string;
-    function: TrueFoundry.Function;
+    /** Type of the tool call */
+    type: "function";
 }

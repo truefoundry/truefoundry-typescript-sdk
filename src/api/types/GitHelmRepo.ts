@@ -3,8 +3,12 @@
  */
 
 export interface GitHelmRepo {
-    /** +value=git-helm-repo */
-    type: "git-helm-repo";
+    /**
+     * +label=Path
+     * +sort=3
+     * +usage=Path to the chart.
+     */
+    path: string;
     /**
      * TODO: Check this regex and add guidelines
      * +label=Git repository URL
@@ -18,12 +22,8 @@ export interface GitHelmRepo {
      * +usage=Branch/Commit SHA/Tag of the git repo.
      */
     revision: string;
-    /**
-     * +label=Path
-     * +sort=3
-     * +usage=Path to the chart.
-     */
-    path: string;
+    /** +value=git-helm-repo */
+    type: "git-helm-repo";
     /**
      * +label=Value files
      * +sort=3

@@ -3,14 +3,6 @@
  */
 
 export interface TeamManifest {
-    /** +value=volume */
-    type: "team";
-    /**
-     * +sort=1
-     * +message=Use of only alpha numeric character and "-" is allowed as team name and must be less than 25 characters
-     * +usage=Name of the Team
-     */
-    name: string;
     /**
      * +sort=2
      * +label=Team Members
@@ -19,4 +11,12 @@ export interface TeamManifest {
      * +uiProps={"optionTypes": ["users"]}
      */
     members: string[];
+    /**
+     * +sort=1
+     * +message=Use of only alpha numeric character and "-" is allowed as team name and must be less than 25 characters
+     * +usage=Name of the Team
+     */
+    name: string;
+    /** +value=volume */
+    type: "team";
 }

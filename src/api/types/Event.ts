@@ -5,24 +5,24 @@
 import * as TrueFoundry from "../index";
 
 export interface Event {
-    /** Name of the event */
-    name?: string;
-    /** Timestamp when the event was first observed */
-    firstTimestamp?: string;
-    /** Timestamp when the event was last observed */
-    lastTimestamp: string;
-    /** Details of the involved object */
-    involvedObject: TrueFoundry.EventInvolvedObject;
-    /** Type of the event */
-    type: string;
-    /** Number of occurrences of the event */
-    count: number;
-    /** Reason for the event */
-    reason: string;
-    /** Message describing the event */
-    message: string;
-    /** Namespace of the event */
-    namespace?: string;
     /** Chart of the event */
     chart: TrueFoundry.EventChart;
+    /** Number of occurrences of the event */
+    count: number;
+    /** Timestamp when the event was first observed */
+    firstTimestamp?: string;
+    /** Details of the involved object */
+    involvedObject: TrueFoundry.EventInvolvedObject;
+    /** Timestamp when the event was last observed */
+    lastTimestamp: string;
+    /** Message describing the event */
+    message: string;
+    /** Name of the event */
+    name?: string;
+    /** Namespace of the event */
+    namespace?: string;
+    /** Reason for the event */
+    reason: string;
+    /** Type of the event */
+    type: string;
 }

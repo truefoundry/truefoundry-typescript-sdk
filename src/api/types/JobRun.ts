@@ -5,32 +5,32 @@
 import * as TrueFoundry from "../index";
 
 export interface JobRun {
-    /** JobRun Name */
-    name: string;
     /** Application Name */
     applicationName: string;
-    /** Deployment Version */
-    deploymentVersion: string;
-    /** Created At */
-    createdAt: number;
-    /** End Time of JobRun */
-    endTime?: number;
-    /** Duration of JobRun */
-    duration?: number;
     /** Command */
     command: string;
-    /** Total Retries */
-    totalRetries: number;
+    /** Created At */
+    createdAt: number;
+    /** Deployment Version */
+    deploymentVersion: string;
+    /** Duration of JobRun */
+    duration?: number;
+    /** End Time of JobRun */
+    endTime?: number;
     /** Error */
     error?: string;
+    /** Exit Code */
+    exitCode?: number;
+    /** JobRun Name */
+    name: string;
+    /** Spark UI Url */
+    sparkUi?: string;
     /** Status of JobRun */
     status: TrueFoundry.JobRunStatus;
+    /** Total Retries */
+    totalRetries: number;
     /** Triggered By */
     triggeredBy?: string;
     /** Triggered By Subject */
     triggeredBySubject?: TrueFoundry.Subject;
-    /** Exit Code */
-    exitCode?: number;
-    /** Spark UI Url */
-    sparkUi?: string;
 }

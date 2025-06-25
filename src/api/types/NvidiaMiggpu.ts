@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface NvidiaMiggpu {
-    /** +value=nvidia_mig_gpu */
-    type: "nvidia_mig_gpu";
     /**
      * +label=GPU Name
      * +usage=Name of the Nvidia GPU. One of [P4, P100, V100, T4, A10G, A100_40GB, A100_80GB]
@@ -26,4 +24,6 @@ export interface NvidiaMiggpu {
      * H200 141 GB - [1g.18gb, 1g.35gb, 2g.35gb, 3g.71gb, 4g.71gb]
      */
     profile: TrueFoundry.NvidiaMiggpuProfile;
+    /** +value=nvidia_mig_gpu */
+    type: "nvidia_mig_gpu";
 }

@@ -13,6 +13,13 @@ import * as TrueFoundry from "../index";
  */
 export interface Resources {
     /**
+     * +label=CPU Limit
+     * +usage=CPU limit beyond which the usage cannot be exceeded. 1 CPU means 1 CPU core. Fractional CPU can be requested
+     * like `0.5`. CPU limit should be >= cpu request.
+     * +sort=2
+     */
+    cpu_limit: number;
+    /**
      * +label=CPU Request
      * +sort=1
      * +usage=Requested CPU which determines the minimum cost incurred. The CPU usage can exceed the requested
@@ -21,26 +28,17 @@ export interface Resources {
      */
     cpu_request: number;
     /**
-     * +label=CPU Limit
-     * +usage=CPU limit beyond which the usage cannot be exceeded. 1 CPU means 1 CPU core. Fractional CPU can be requested
-     * like `0.5`. CPU limit should be >= cpu request.
-     * +sort=2
+     * +label=Devices
+     * +usage=Define custom device or accelerator requirements for your workload. We currently support NVIDIA GPUs, AWS Inferentia Accelerators, Single Host TPU Slices.
      */
-    cpu_limit: number;
+    devices?: TrueFoundry.ResourcesDevicesItem[];
     /**
-     * +label=Memory Request
-     * +usage=Requested memory which determines the minimum cost incurred. The unit of memory is in megabytes(MB).
-     * So 1 means 1 MB and 2000 means 2GB.
-     * +sort=3
+     * +label=Storage Limit
+     * +usage=Disk storage limit. The unit of memory is in megabytes(MB). Exceeding this limit will result in eviction.
+     * It should be greater than the request. This is ephemeral storage and will be wiped out on pod restarts or eviction
+     * +sort=6
      */
-    memory_request: number;
-    /**
-     * +label=Memory Limit
-     * +usage=Memory limit after which the application will be killed with an OOM error. The unit of memory is
-     * in megabytes(MB). So 1 means 1 MB and 2000 means 2GB. MemoryLimit should be greater than memory request.
-     * +sort=4
-     */
-    memory_limit: number;
+    ephemeral_storage_limit: number;
     /**
      * +label=Storage Request
      * +usage=Requested disk storage. The unit of memory is in megabytes(MB).
@@ -49,12 +47,24 @@ export interface Resources {
      */
     ephemeral_storage_request: number;
     /**
-     * +label=Storage Limit
-     * +usage=Disk storage limit. The unit of memory is in megabytes(MB). Exceeding this limit will result in eviction.
-     * It should be greater than the request. This is ephemeral storage and will be wiped out on pod restarts or eviction
-     * +sort=6
+     * +label=Memory Limit
+     * +usage=Memory limit after which the application will be killed with an OOM error. The unit of memory is
+     * in megabytes(MB). So 1 means 1 MB and 2000 means 2GB. MemoryLimit should be greater than memory request.
+     * +sort=4
      */
-    ephemeral_storage_limit: number;
+    memory_limit: number;
+    /**
+     * +label=Memory Request
+     * +usage=Requested memory which determines the minimum cost incurred. The unit of memory is in megabytes(MB).
+     * So 1 means 1 MB and 2000 means 2GB.
+     * +sort=3
+     */
+    memory_request: number;
+    /**
+     * +label=Node
+     * +usage=This field determines how the underlying node resource is to be utilized
+     */
+    node?: TrueFoundry.ResourcesNode;
     /**
      * +label=Shared Memory Size (MB)
      * +usage=Define the shared memory requirements for your workload. Machine learning libraries like Pytorch can use Shared Memory
@@ -64,14 +74,4 @@ export interface Resources {
      * Shared Memory Size cannot be more than the defined Memory Limit for the workload.
      */
     shared_memory_size?: number;
-    /**
-     * +label=Node
-     * +usage=This field determines how the underlying node resource is to be utilized
-     */
-    node?: TrueFoundry.ResourcesNode;
-    /**
-     * +label=Devices
-     * +usage=Define custom device or accelerator requirements for your workload. We currently support NVIDIA GPUs, AWS Inferentia Accelerators, Single Host TPU Slices.
-     */
-    devices?: TrueFoundry.ResourcesDevicesItem[];
 }

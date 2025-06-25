@@ -5,14 +5,14 @@
 import * as TrueFoundry from "../index";
 
 export interface Graph {
-    /** Name */
-    name: string;
-    /** Description */
-    description: string;
     /** Chart name */
     chart: string;
     /** Chart type */
     chartType: TrueFoundry.GraphChartType;
+    /** Description */
+    description: string;
+    /** Name */
+    name: string;
     /** Chart params */
     params: string;
 }

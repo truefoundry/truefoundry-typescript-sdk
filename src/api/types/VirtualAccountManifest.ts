@@ -6,15 +6,6 @@ import * as TrueFoundry from "../index";
 
 export interface VirtualAccountManifest {
     /**
-     * +label=Name
-     * +sort=1
-     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Virtual Account Name
-     */
-    name: string;
-    /** +value=virtual-account */
-    type: "virtual-account";
-    /**
      * +label=Expiration Date (UTC)
      * +sort=2
      * +message=Expiration date of the virtual account
@@ -23,9 +14,18 @@ export interface VirtualAccountManifest {
      */
     expiration_date?: string;
     /**
+     * +label=Name
+     * +sort=1
+     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +usage=Virtual Account Name
+     */
+    name: string;
+    /**
      * +label=Permissions
      * +sort=3
      * +uiType=ServiceAccountPermissions
      */
     permissions: TrueFoundry.Permissions[];
+    /** +value=virtual-account */
+    type: "virtual-account";
 }

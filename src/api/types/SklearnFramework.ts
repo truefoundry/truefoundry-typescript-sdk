@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../index";
 
 export interface SklearnFramework {
-    /** Type of the framework */
-    type: "sklearn";
     /** Relative path to the model file in the model version contents */
     model_filepath?: string;
-    serialization_format?: TrueFoundry.SklearnSerializationFormat;
     model_schema?: TrueFoundry.SklearnModelSchema;
+    serialization_format?: TrueFoundry.SklearnSerializationFormat;
+    /** Type of the framework */
+    type: "sklearn";
 }

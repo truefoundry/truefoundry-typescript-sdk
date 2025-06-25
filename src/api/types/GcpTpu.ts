@@ -3,8 +3,6 @@
  */
 
 export interface GcpTpu {
-    /** +value=gcp_tpu */
-    type: "gcp_tpu";
     /**
      * +label=TPU Type name
      * +usage=Name of the TPU Type. One of
@@ -24,4 +22,6 @@ export interface GcpTpu {
      *    - `2x2x1` for `tpu-v5p-slice`
      */
     topology: string;
+    /** +value=gcp_tpu */
+    type: "gcp_tpu";
 }

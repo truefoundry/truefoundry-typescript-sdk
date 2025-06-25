@@ -4,13 +4,13 @@
 
 export interface Kustomize {
     /**
-     * +label=Patch
-     * +usage=Content of kustomization.yaml to perform kustomize operation. Please do not include the `resources` section. It is filled in automatically
-     */
-    patch?: Record<string, unknown>;
-    /**
      * +label=Additional Manifests
      * +usage=Additional kubernetes manifests to be included in the application
      */
     additions?: Record<string, unknown>[];
+    /**
+     * +label=Patch
+     * +usage=Content of kustomization.yaml to perform kustomize operation. Please do not include the `resources` section. It is filled in automatically
+     */
+    patch?: Record<string, unknown>;
 }

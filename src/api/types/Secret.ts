@@ -5,15 +5,15 @@
 import * as TrueFoundry from "../index";
 
 export interface Secret {
-    id: string;
+    activeDeploymentsCount?: number;
+    createdAt?: string;
+    createdBy?: string;
+    createdBySubject?: TrueFoundry.Subject;
     fqn: string;
+    id: string;
     name: string;
     secretGroupId: string;
-    value?: string;
-    createdBySubject?: TrueFoundry.Subject;
-    createdAt?: string;
-    updatedAt?: string;
     secretVersions?: TrueFoundry.SecretVersion[];
-    activeDeploymentsCount?: number;
-    createdBy?: string;
+    updatedAt?: string;
+    value?: string;
 }

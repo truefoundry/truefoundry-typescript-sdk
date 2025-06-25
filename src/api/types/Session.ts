@@ -5,15 +5,15 @@
 import * as TrueFoundry from "../index";
 
 export interface Session {
+    email?: string;
     id: string;
-    userName: string;
-    subjectSlug: string;
+    metadata?: TrueFoundry.UserMetadata;
+    roles: string[];
     subjectControllerName?: string;
     subjectPatName?: string;
-    email?: string;
+    subjectSlug: string;
     subjectType: TrueFoundry.SubjectType;
-    tenantName?: string;
-    roles: string[];
     teams: string[];
-    metadata?: TrueFoundry.UserMetadata;
+    tenantName?: string;
+    userName: string;
 }

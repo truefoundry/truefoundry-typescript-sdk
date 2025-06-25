@@ -9,15 +9,12 @@
  * +sort=300
  */
 export interface GitSource {
-    /** +value=git */
-    type: "git";
     /**
-     * +label=Repo URL
-     * +usage=The repository URL.
-     * +sort=1
-     * +message=Needs to be a valid Github, Bitbucket, Azure Repos or Gitlab link
+     * +label=Branch Name
+     * +usage=Selecting branch will select latest commit SHA of the branch.
+     * +sort=3
      */
-    repo_url: string;
+    branch_name?: string;
     /**
      * +label=Commit SHA
      * +usage=The commit SHA.
@@ -25,9 +22,12 @@ export interface GitSource {
      */
     ref: string;
     /**
-     * +label=Branch Name
-     * +usage=Selecting branch will select latest commit SHA of the branch.
-     * +sort=3
+     * +label=Repo URL
+     * +usage=The repository URL.
+     * +sort=1
+     * +message=Needs to be a valid Github, Bitbucket, Azure Repos or Gitlab link
      */
-    branch_name?: string;
+    repo_url: string;
+    /** +value=git */
+    type: "git";
 }

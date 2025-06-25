@@ -14,15 +14,15 @@ export interface NatsUserPasswordAuth {
      */
     account_name: string;
     /**
-     * +label=User
-     * +usage=User for NATS authentication
-     * +sort=2
-     */
-    user: string;
-    /**
      * +label=Password
      * +usage=Password for NATS authentication
      * +sort=3
      */
     password: string;
+    /**
+     * +label=User
+     * +usage=User for NATS authentication
+     * +sort=2
+     */
+    user: string;
 }

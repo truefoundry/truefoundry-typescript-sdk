@@ -3,10 +3,10 @@
  */
 
 export interface ClusterGateway {
-    uid?: string;
-    name: string;
     hosts: string[];
     /** Used when there are 2 gateways with same host */
     isTieBreaker?: boolean;
+    name: string;
     selector: Record<string, string>;
+    uid?: string;
 }

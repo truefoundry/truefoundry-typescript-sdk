@@ -7,14 +7,14 @@
  */
 export interface StaticVolumeConfig {
     /**
+     * +label=Persistent Volume
+     * +usage=Persistent Volume Name of the volume to be used.
+     */
+    persistent_volume_name: string;
+    /**
      * +label=Volume Type
      * +value=static
      * +usage=Volume Type for the volume.
      */
     type: "static";
-    /**
-     * +label=Persistent Volume
-     * +usage=Persistent Volume Name of the volume to be used.
-     */
-    persistent_volume_name: string;
 }

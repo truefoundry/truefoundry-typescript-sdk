@@ -3,7 +3,7 @@
  */
 
 export interface StageArtifactResponse {
+    artifact_id: string;
     id: string;
     storage_root: string;
-    artifact_id: string;
 }

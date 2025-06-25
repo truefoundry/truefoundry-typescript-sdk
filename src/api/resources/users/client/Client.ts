@@ -234,6 +234,365 @@ export class Users {
     }
 
     /**
+     * Activate user associated with the provided email within the tenant.
+     *
+     * @param {TrueFoundry.ActivateUserRequest} request
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.activate({
+     *         email: "email"
+     *     })
+     */
+    public activate(
+        request: TrueFoundry.ActivateUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.ActivateUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__activate(request, requestOptions));
+    }
+
+    private async __activate(
+        request: TrueFoundry.ActivateUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.ActivateUserResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users/activate",
+            ),
+            method: "PATCH",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.ActivateUserResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling PATCH /api/svc/v1/users/activate.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Change password for the authenticated user. Requires clientId and loginId in the request body.
+     *
+     * @param {TrueFoundry.ChangePasswordRequest} request
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.users.changePassword({
+     *         loginId: "loginId",
+     *         newPassword: "newPassword",
+     *         oldPassword: "oldPassword"
+     *     })
+     */
+    public changePassword(
+        request: TrueFoundry.ChangePasswordRequest,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.ChangePasswordResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__changePassword(request, requestOptions));
+    }
+
+    private async __changePassword(
+        request: TrueFoundry.ChangePasswordRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.ChangePasswordResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users/change-password",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.ChangePasswordResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/users/change-password.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Deactivate user associated with the provided email within the tenant.
+     *
+     * @param {TrueFoundry.DeactivateUserRequest} request
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.deactivate({
+     *         email: "email"
+     *     })
+     */
+    public deactivate(
+        request: TrueFoundry.DeactivateUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.DeactivateUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__deactivate(request, requestOptions));
+    }
+
+    private async __deactivate(
+        request: TrueFoundry.DeactivateUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeactivateUserResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users/deactivate",
+            ),
+            method: "PATCH",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.DeactivateUserResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling PATCH /api/svc/v1/users/deactivate.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Invite a user to the tenant
+     *
+     * @param {TrueFoundry.InviteUserRequest} request
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.ConflictError}
+     *
+     * @example
+     *     await client.users.inviteUser({
+     *         acceptInviteClientUrl: "<control plane url>/invite-accept",
+     *         email: "email"
+     *     })
+     */
+    public inviteUser(
+        request: TrueFoundry.InviteUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.InviteUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__inviteUser(request, requestOptions));
+    }
+
+    private async __inviteUser(
+        request: TrueFoundry.InviteUserRequest,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.InviteUserResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users/invite",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.InviteUserResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 409:
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/users/invite.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * This endpoint allows tenant administrators to update the roles of a user within their tenant.
      *
      * @param {TrueFoundry.UpdateUserRolesRequest} request
@@ -401,365 +760,6 @@ export class Users {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/users/{id}.");
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Invite a user to the tenant
-     *
-     * @param {TrueFoundry.InviteUserRequest} request
-     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnauthorizedError}
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.ConflictError}
-     *
-     * @example
-     *     await client.users.inviteUser({
-     *         acceptInviteClientUrl: "<control plane url>/invite-accept",
-     *         email: "email"
-     *     })
-     */
-    public inviteUser(
-        request: TrueFoundry.InviteUserRequest,
-        requestOptions?: Users.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.InviteUserResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__inviteUser(request, requestOptions));
-    }
-
-    private async __inviteUser(
-        request: TrueFoundry.InviteUserRequest,
-        requestOptions?: Users.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.InviteUserResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/users/invite",
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.InviteUserResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 401:
-                    throw new TrueFoundry.UnauthorizedError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 409:
-                    throw new TrueFoundry.ConflictError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/users/invite.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Deactivate user associated with the provided email within the tenant.
-     *
-     * @param {TrueFoundry.DeactivateUserRequest} request
-     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnauthorizedError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.users.deactivate({
-     *         email: "email"
-     *     })
-     */
-    public deactivate(
-        request: TrueFoundry.DeactivateUserRequest,
-        requestOptions?: Users.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.DeactivateUserResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__deactivate(request, requestOptions));
-    }
-
-    private async __deactivate(
-        request: TrueFoundry.DeactivateUserRequest,
-        requestOptions?: Users.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.DeactivateUserResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/users/deactivate",
-            ),
-            method: "PATCH",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.DeactivateUserResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 401:
-                    throw new TrueFoundry.UnauthorizedError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling PATCH /api/svc/v1/users/deactivate.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Activate user associated with the provided email within the tenant.
-     *
-     * @param {TrueFoundry.ActivateUserRequest} request
-     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnauthorizedError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.users.activate({
-     *         email: "email"
-     *     })
-     */
-    public activate(
-        request: TrueFoundry.ActivateUserRequest,
-        requestOptions?: Users.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.ActivateUserResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__activate(request, requestOptions));
-    }
-
-    private async __activate(
-        request: TrueFoundry.ActivateUserRequest,
-        requestOptions?: Users.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.ActivateUserResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/users/activate",
-            ),
-            method: "PATCH",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.ActivateUserResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 401:
-                    throw new TrueFoundry.UnauthorizedError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling PATCH /api/svc/v1/users/activate.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
-     * Change password for the authenticated user. Requires clientId and loginId in the request body.
-     *
-     * @param {TrueFoundry.ChangePasswordRequest} request
-     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.users.changePassword({
-     *         loginId: "loginId",
-     *         newPassword: "newPassword",
-     *         oldPassword: "oldPassword"
-     *     })
-     */
-    public changePassword(
-        request: TrueFoundry.ChangePasswordRequest,
-        requestOptions?: Users.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.ChangePasswordResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__changePassword(request, requestOptions));
-    }
-
-    private async __changePassword(
-        request: TrueFoundry.ChangePasswordRequest,
-        requestOptions?: Users.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.ChangePasswordResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/users/change-password",
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.ChangePasswordResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.TrueFoundryError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/users/change-password.",
-                );
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,

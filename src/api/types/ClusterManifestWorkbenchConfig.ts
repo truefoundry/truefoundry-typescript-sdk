@@ -9,12 +9,12 @@ import * as TrueFoundry from "../index";
  * +sort=70
  */
 export interface ClusterManifestWorkbenchConfig {
-    notebook_config?: TrueFoundry.NotebookConfig;
-    ssh_server_config?: TrueFoundry.SshServerConfig;
     /**
      * +label=Default Storage Class
      * +usage=The default storage class for the home directory of workbench
      * +message=Must not contain any spaces.
      */
     default_storage_class?: string;
+    notebook_config?: TrueFoundry.NotebookConfig;
+    ssh_server_config?: TrueFoundry.SshServerConfig;
 }

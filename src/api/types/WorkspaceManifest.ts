@@ -5,8 +5,8 @@
 import * as TrueFoundry from "../index";
 
 export interface WorkspaceManifest {
-    /** +value=workspace */
-    type: "workspace";
+    /** +sort=750 */
+    annotations?: Record<string, string>;
     /**
      * +label=Cluster FQN
      * +sort=150
@@ -15,12 +15,10 @@ export interface WorkspaceManifest {
      */
     cluster_fqn: string;
     /**
-     * +label=Name
-     * +sort=200
-     * +icon=fa-desktop:#black
-     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +label=Collaborators
+     * +sort=500
      */
-    name: string;
+    collaborators?: TrueFoundry.Collaborator[];
     /**
      * +label=Environment
      * +sort=300
@@ -30,13 +28,13 @@ export interface WorkspaceManifest {
     environment_name?: string;
     /** +sort=700 */
     labels?: Record<string, string>;
-    /** +sort=750 */
-    annotations?: Record<string, string>;
     /**
-     * +label=Collaborators
-     * +sort=500
+     * +label=Name
+     * +sort=200
+     * +icon=fa-desktop:#black
+     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
-    collaborators?: TrueFoundry.Collaborator[];
+    name: string;
     /**
      * +label=Permissions
      * +sort=500
@@ -44,4 +42,6 @@ export interface WorkspaceManifest {
      * +uiProps={"allowedResources": {"mlf-project": {"title": "ML Repo", "description": "ML Repos are used to store models and artifacts like git repos. MLRepos are backed by S3 / GCS / Azure bucket and you can have different ml repos with different set of permissions. [View Docs](https://docs.truefoundry.com/docs/introduction-to-ml-repo)"}}}
      */
     permissions?: TrueFoundry.Permissions[];
+    /** +value=workspace */
+    type: "workspace";
 }

@@ -32,102 +32,118 @@ export class MlRepos {
     constructor(protected readonly _options: MlRepos.Options) {}
 
     /**
-     * Creates or updates an MLRepo entity based on the provided manifest.
+     * List ml repos
+     * Args:
+     *     filters: Filters for the ml repos
+     *     user_info: Authenticated user information
      *
-     * @param {TrueFoundry.ApplyMlRepoRequest} request
+     * Returns:
+     *     ListMLReposResponse: List of ml repos
+     *
+     * @param {TrueFoundry.MlReposListRequest} request
      * @param {MlRepos.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.BadRequestError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     * @throws {@link TrueFoundry.ConflictError}
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.mlRepos.createOrUpdate({
-     *         manifest: {
-     *             "key": "value"
-     *         }
-     *     })
+     *     await client.mlRepos.list()
      */
-    public createOrUpdate(
-        request: TrueFoundry.ApplyMlRepoRequest,
+    public async list(
+        request: TrueFoundry.MlReposListRequest = {},
         requestOptions?: MlRepos.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetMlRepoResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
-    }
-
-    private async __createOrUpdate(
-        request: TrueFoundry.ApplyMlRepoRequest,
-        requestOptions?: MlRepos.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetMlRepoResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/ml-repos",
-            ),
-            method: "PUT",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetMlRepoResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                case 409:
-                    throw new TrueFoundry.ConflictError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
+    ): Promise<core.Page<TrueFoundry.MlRepo>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.MlReposListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => {
+                const { name, limit, offset } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (name != null) {
+                    _queryParams["name"] = name;
+                }
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/ml/v1/ml-repos",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListMlReposResponse,
                         rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/ml-repos.");
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 422:
+                            throw new TrueFoundry.UnprocessableEntityError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
+                        throw new errors.TrueFoundryError({
+                            statusCode: _response.error.statusCode,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/ml/v1/ml-repos.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
+                        });
+                }
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Pageable<TrueFoundry.ListMlReposResponse, TrueFoundry.MlRepo>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length > 0,
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
     }
 
     /**
@@ -309,118 +325,102 @@ export class MlRepos {
     }
 
     /**
-     * List ml repos
-     * Args:
-     *     filters: Filters for the ml repos
-     *     user_info: Authenticated user information
+     * Creates or updates an MLRepo entity based on the provided manifest.
      *
-     * Returns:
-     *     ListMLReposResponse: List of ml repos
-     *
-     * @param {TrueFoundry.MlReposListRequest} request
+     * @param {TrueFoundry.ApplyMlRepoRequest} request
      * @param {MlRepos.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.ConflictError}
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.mlRepos.list()
+     *     await client.mlRepos.createOrUpdate({
+     *         manifest: {
+     *             "key": "value"
+     *         }
+     *     })
      */
-    public async list(
-        request: TrueFoundry.MlReposListRequest = {},
+    public createOrUpdate(
+        request: TrueFoundry.ApplyMlRepoRequest,
         requestOptions?: MlRepos.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.MlRepo>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: TrueFoundry.MlReposListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => {
-                const { name, limit, offset } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (name != null) {
-                    _queryParams["name"] = name;
-                }
-                if (limit != null) {
-                    _queryParams["limit"] = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams["offset"] = offset.toString();
-                }
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: urlJoin(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/ml-repos",
-                    ),
-                    method: "GET",
-                    headers: {
-                        Authorization: await this._getAuthorizationHeader(),
-                        "X-Fern-Language": "JavaScript",
-                        "X-Fern-SDK-Name": "truefoundry-sdk",
-                        "X-Fern-SDK-Version": "0.0.0",
-                        "User-Agent": "truefoundry-sdk/0.0.0",
-                        "X-Fern-Runtime": core.RUNTIME.type,
-                        "X-Fern-Runtime-Version": core.RUNTIME.version,
-                        ...requestOptions?.headers,
-                    },
-                    contentType: "application/json",
-                    queryParameters: _queryParams,
-                    requestType: "json",
-                    timeoutMs:
-                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                    maxRetries: requestOptions?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                });
-                if (_response.ok) {
-                    return {
-                        data: _response.body as TrueFoundry.ListMlReposResponse,
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
-                }
-                switch (_response.error.reason) {
-                    case "non-json":
-                        throw new errors.TrueFoundryError({
-                            statusCode: _response.error.statusCode,
-                            body: _response.error.rawBody,
-                            rawResponse: _response.rawResponse,
-                        });
-                    case "timeout":
-                        throw new errors.TrueFoundryTimeoutError(
-                            "Timeout exceeded when calling GET /api/ml/v1/ml-repos.",
-                        );
-                    case "unknown":
-                        throw new errors.TrueFoundryError({
-                            message: _response.error.errorMessage,
-                            rawResponse: _response.rawResponse,
-                        });
-                }
+    ): core.HttpResponsePromise<TrueFoundry.GetMlRepoResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
+    }
+
+    private async __createOrUpdate(
+        request: TrueFoundry.ApplyMlRepoRequest,
+        requestOptions?: MlRepos.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetMlRepoResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/ml-repos",
+            ),
+            method: "PUT",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
             },
-        );
-        let _offset = request?.offset != null ? request?.offset : 0;
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Pageable<TrueFoundry.ListMlReposResponse, TrueFoundry.MlRepo>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length > 0,
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
         });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.GetMlRepoResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 409:
+                    throw new TrueFoundry.ConflictError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/ml-repos.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
     }
 
     protected async _getAuthorizationHeader(): Promise<string> {

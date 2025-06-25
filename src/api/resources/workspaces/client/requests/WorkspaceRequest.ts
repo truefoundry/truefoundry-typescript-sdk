@@ -8,15 +8,15 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             type: "workspace",
  *             cluster_fqn: "cluster_fqn",
- *             name: "name"
+ *             name: "name",
+ *             type: "workspace"
  *         }
  *     }
  */
 export interface WorkspaceRequest {
-    /** Workspace manifest */
-    manifest: TrueFoundry.WorkspaceManifest;
     /** Dry run the request */
     dryRun?: boolean;
+    /** Workspace manifest */
+    manifest: TrueFoundry.WorkspaceManifest;
 }

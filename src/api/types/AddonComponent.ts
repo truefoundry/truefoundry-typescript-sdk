@@ -5,25 +5,25 @@
 import * as TrueFoundry from "../index";
 
 export interface AddonComponent {
-    name: TrueFoundry.AddonComponentName;
+    addonFolder?: string;
     appName?: string;
-    namespace?: string;
     applicationId?: string;
     description?: string;
-    path?: string;
-    addonFolder?: string;
-    installed?: boolean;
-    status?: TrueFoundry.AddonComponentStatus;
-    version?: string;
-    manifest?: Record<string, unknown>;
     installationSource?: string;
-    unsupportedClusterTypes?: TrueFoundry.ClusterType[];
-    required?: boolean;
+    installed?: boolean;
     knownCRDs?: string[];
-    source?: TrueFoundry.AddOnComponentSource;
-    upgrades?: TrueFoundry.UpgradeData;
     labels?: string[];
+    manifest?: Record<string, unknown>;
+    name: TrueFoundry.AddonComponentName;
+    namespace?: string;
+    path?: string;
     /** Recommendations */
     recommendations?: TrueFoundry.Recommendation[];
+    required?: boolean;
+    source?: TrueFoundry.AddOnComponentSource;
+    status?: TrueFoundry.AddonComponentStatus;
+    unsupportedClusterTypes?: TrueFoundry.ClusterType[];
+    upgrades?: TrueFoundry.UpgradeData;
+    version?: string;
     workspaceId?: string;
 }

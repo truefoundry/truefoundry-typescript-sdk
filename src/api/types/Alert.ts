@@ -3,16 +3,16 @@
  */
 
 export interface Alert {
-    id?: string;
-    name: string;
-    timestamps: string[];
-    startTime: string;
-    resolvedTime?: string;
+    applicationDebugInfoId?: string;
     applicationId?: string;
     clusterId: string;
-    tenantName?: string;
-    fingerprint: string;
-    updatedAt?: string;
     createdAt?: string;
-    applicationDebugInfoId?: string;
+    fingerprint: string;
+    id?: string;
+    name: string;
+    resolvedTime?: string;
+    startTime: string;
+    tenantName?: string;
+    timestamps: string[];
+    updatedAt?: string;
 }

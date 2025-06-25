@@ -8,8 +8,10 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the worflow
  */
 export interface Workflow {
-    /** +value=workflow */
-    type: "workflow";
+    /** +label=Alerts */
+    alerts?: TrueFoundry.WorkflowAlert[];
+    /** +label=Flyte Entities */
+    flyte_entities?: TrueFoundry.WorkflowFlyteEntitiesItem[];
     /**
      * +usage=Name of the workflow
      * +sort=1
@@ -23,14 +25,12 @@ export interface Workflow {
      * +sort=200
      */
     source: TrueFoundry.WorkflowSource;
+    /** +value=workflow */
+    type: "workflow";
     /**
      * +label=Workflow File Path
      * +docs=Path to the workflow file relative to the project root path
      * +sort=550
      */
     workflow_file_path: string;
-    /** +label=Flyte Entities */
-    flyte_entities?: TrueFoundry.WorkflowFlyteEntitiesItem[];
-    /** +label=Alerts */
-    alerts?: TrueFoundry.WorkflowAlert[];
 }

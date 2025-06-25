@@ -11,8 +11,13 @@ import * as TrueFoundry from "../index";
  * TODO (gw): Fix sorting for this such that it looks similar to SparkImage
  */
 export interface SparkImageBuild {
-    /** +value=spark-image-build */
-    type: "spark-image-build";
+    /**
+     * TODO (gw): The following is a hack till the uiType GitSelect is fixed fron frontend
+     * +label=Fetch source code
+     * +sort=1003
+     */
+    build_source: TrueFoundry.SparkImageBuildBuildSource;
+    build_spec: TrueFoundry.SparkBuild;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -22,11 +27,6 @@ export interface SparkImageBuild {
      * +sort=1002
      */
     docker_registry?: string;
-    /**
-     * TODO (gw): The following is a hack till the uiType GitSelect is fixed fron frontend
-     * +label=Fetch source code
-     * +sort=1003
-     */
-    build_source: TrueFoundry.SparkImageBuildBuildSource;
-    build_spec: TrueFoundry.SparkBuild;
+    /** +value=spark-image-build */
+    type: "spark-image-build";
 }

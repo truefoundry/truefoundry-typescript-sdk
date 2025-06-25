@@ -32,84 +32,6 @@ export class Vcs {
     constructor(protected readonly _options: Vcs.Options) {}
 
     /**
-     * @param {TrueFoundry.internal.GitRepositoryExistsRequest} request
-     * @param {Vcs.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.internal.vcs.getRepositoryDetails({
-     *         repoURL: "repoURL"
-     *     })
-     */
-    public getRepositoryDetails(
-        request: TrueFoundry.internal.GitRepositoryExistsRequest,
-        requestOptions?: Vcs.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GitRepositoryExistsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getRepositoryDetails(request, requestOptions));
-    }
-
-    private async __getRepositoryDetails(
-        request: TrueFoundry.internal.GitRepositoryExistsRequest,
-        requestOptions?: Vcs.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GitRepositoryExistsResponse>> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/vcs/repository/details",
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "truefoundry-sdk",
-                "X-Fern-SDK-Version": "0.0.0",
-                "User-Agent": "truefoundry-sdk/0.0.0",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-                ...requestOptions?.headers,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            body: request,
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as TrueFoundry.GitRepositoryExistsResponse,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.TrueFoundryError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.TrueFoundryError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                    rawResponse: _response.rawResponse,
-                });
-            case "timeout":
-                throw new errors.TrueFoundryTimeoutError(
-                    "Timeout exceeded when calling POST /api/svc/v1/vcs/repository/details.",
-                );
-            case "unknown":
-                throw new errors.TrueFoundryError({
-                    message: _response.error.errorMessage,
-                    rawResponse: _response.rawResponse,
-                });
-        }
-    }
-
-    /**
      * @param {TrueFoundry.internal.GetAuthenticatedVcsurlRequest} request
      * @param {Vcs.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -178,6 +100,84 @@ export class Vcs {
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
                     "Timeout exceeded when calling POST /api/svc/v1/vcs/repository/authenticated-url.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * @param {TrueFoundry.internal.GitRepositoryExistsRequest} request
+     * @param {Vcs.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.internal.vcs.getRepositoryDetails({
+     *         repoURL: "repoURL"
+     *     })
+     */
+    public getRepositoryDetails(
+        request: TrueFoundry.internal.GitRepositoryExistsRequest,
+        requestOptions?: Vcs.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GitRepositoryExistsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getRepositoryDetails(request, requestOptions));
+    }
+
+    private async __getRepositoryDetails(
+        request: TrueFoundry.internal.GitRepositoryExistsRequest,
+        requestOptions?: Vcs.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GitRepositoryExistsResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/vcs/repository/details",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GitRepositoryExistsResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/vcs/repository/details.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

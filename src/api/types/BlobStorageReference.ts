@@ -8,9 +8,9 @@ import * as TrueFoundry from "../index";
  * A reference to content offloaded to blob storage
  */
 export interface BlobStorageReference {
-    type: "blob-storage";
-    /** Path to the content in blob storage */
-    path: string;
     /** MIME type of the content */
     mime_type: TrueFoundry.MimeType;
+    /** Path to the content in blob storage */
+    path: string;
+    type: "blob-storage";
 }

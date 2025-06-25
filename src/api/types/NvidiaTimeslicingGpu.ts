@@ -3,8 +3,11 @@
  */
 
 export interface NvidiaTimeslicingGpu {
-    /** +value=nvidia_timeslicing_gpu */
-    type: "nvidia_timeslicing_gpu";
+    /**
+     * +label=GPU Memory (MB)
+     * +usage=Amount of GPU memory (in MB) to allocate. Please note, this limit is not being enforced today but will be in future. Applications are expected to operate in co-opertative mode
+     */
+    gpu_memory: number;
     /**
      * +label=GPU Name
      * +usage=Name of the Nvidia GPU. One of [P4, P100, V100, T4, A10G, A100_40GB, A100_80GB]
@@ -13,9 +16,6 @@ export interface NvidiaTimeslicingGpu {
      * P4: 8 GB, P100: 16 GB, V100: 16 GB, T4: 16 GB, A10G: 24 GB, A100_40GB: 40GB, A100_80GB: 80 GB
      */
     name?: string;
-    /**
-     * +label=GPU Memory (MB)
-     * +usage=Amount of GPU memory (in MB) to allocate. Please note, this limit is not being enforced today but will be in future. Applications are expected to operate in co-opertative mode
-     */
-    gpu_memory: number;
+    /** +value=nvidia_timeslicing_gpu */
+    type: "nvidia_timeslicing_gpu";
 }

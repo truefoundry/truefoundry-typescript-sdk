@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface Intercept {
-    /** +value=intercept */
-    type: "intercept";
     /**
      * +sort=1
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
@@ -14,4 +12,6 @@ export interface Intercept {
      */
     name: string;
     rules: TrueFoundry.InterceptRulesItem[];
+    /** +value=intercept */
+    type: "intercept";
 }

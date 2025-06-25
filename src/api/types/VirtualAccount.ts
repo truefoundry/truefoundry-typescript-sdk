@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface VirtualAccount {
-    id: string;
-    name: string;
-    type: string;
-    tenantName: string;
-    manifest?: TrueFoundry.VirtualAccountManifest;
-    createdBySubject: TrueFoundry.Subject;
     createdAt: string;
-    updatedAt: string;
     createdBy?: string;
+    createdBySubject: TrueFoundry.Subject;
+    id: string;
+    manifest?: TrueFoundry.VirtualAccountManifest;
+    name: string;
+    tenantName: string;
+    type: string;
+    updatedAt: string;
 }

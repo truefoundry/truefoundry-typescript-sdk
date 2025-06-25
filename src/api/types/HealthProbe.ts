@@ -12,14 +12,14 @@ import * as TrueFoundry from "../index";
  */
 export interface HealthProbe {
     config: TrueFoundry.HttpProbe;
+    /** +usage=Number of consecutive failures before the container is considered down */
+    failure_threshold?: number;
     /** +usage=Time to wait after container has started before checking the endpoint */
     initial_delay_seconds?: number;
     /** +usage=How often to check the endpoint */
     period_seconds?: number;
-    /** +usage=Time to wait for a response from the endpoint before considering it down */
-    timeout_seconds?: number;
     /** +usage=Number of successful responses from the endpoint before container is considered healthy */
     success_threshold?: number;
-    /** +usage=Number of consecutive failures before the container is considered down */
-    failure_threshold?: number;
+    /** +usage=Time to wait for a response from the endpoint before considering it down */
+    timeout_seconds?: number;
 }

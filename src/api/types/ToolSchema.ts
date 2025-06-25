@@ -8,7 +8,7 @@ import * as TrueFoundry from "../index";
  * Schema defining a tool for the chat prompt
  */
 export interface ToolSchema {
+    function: TrueFoundry.FunctionSchema;
     /** Type of the tool */
     type: "function";
-    function: TrueFoundry.FunctionSchema;
 }

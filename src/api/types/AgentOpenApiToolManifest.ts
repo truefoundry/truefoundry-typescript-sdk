@@ -8,26 +8,26 @@ import * as TrueFoundry from "../index";
  * Agent OpenAPI Tool manifest.
  */
 export interface AgentOpenApiToolManifest {
-    /** Name of the entity */
-    name: string;
-    description?: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    version_alias?: string;
-    /** Name of the ML Repo */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number;
-    type: "openapi-tool";
-    /** OpenAPI Spec for the tool describing the API, endpoints and parameters. [Sample OpenAPI Spec Link](https://assets.production.truefoundry.com/sample-openapi.json) */
-    openapi_spec: TrueFoundry.AgentOpenApiToolManifestOpenapiSpec;
     /** HTTP endpoint where the API is hosted for the tools. E.g. `https://api.example.com/v1` */
     base_url: string;
-    /** API Route Path for the tool call HTTP request. E.g. `GET /weather` */
-    path: string;
-    /** HTTP Method for the tool call HTTP request */
-    method: TrueFoundry.Method;
+    description?: string;
     /** HTTP Headers for the tool call HTTP request. E.g. `Authorization: Bearer <token>` */
     headers?: Record<string, string>;
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
+    metadata: Record<string, unknown>;
+    /** HTTP Method for the tool call HTTP request */
+    method: TrueFoundry.Method;
+    /** Name of the ML Repo */
+    ml_repo: string;
+    /** Name of the entity */
+    name: string;
+    /** OpenAPI Spec for the tool describing the API, endpoints and parameters. [Sample OpenAPI Spec Link](https://assets.production.truefoundry.com/sample-openapi.json) */
+    openapi_spec: TrueFoundry.AgentOpenApiToolManifestOpenapiSpec;
+    /** API Route Path for the tool call HTTP request. E.g. `GET /weather` */
+    path: string;
+    type: "openapi-tool";
+    /** Version of the entity */
+    version?: number;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string;
 }

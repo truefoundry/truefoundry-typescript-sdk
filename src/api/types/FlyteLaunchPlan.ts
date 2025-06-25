@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index";
 
 export interface FlyteLaunchPlan {
+    closure?: unknown;
     id: TrueFoundry.FlyteLaunchPlanId;
     spec: TrueFoundry.FlyteLaunchPlanSpec;
-    closure?: unknown;
 }

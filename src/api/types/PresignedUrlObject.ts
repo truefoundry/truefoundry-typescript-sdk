@@ -3,7 +3,7 @@
  */
 
 export interface PresignedUrlObject {
+    headers?: Record<string, unknown>;
     uri: string;
     url: string;
-    headers?: Record<string, unknown>;
 }

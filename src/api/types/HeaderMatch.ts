@@ -3,16 +3,16 @@
  */
 
 export interface HeaderMatch {
-    /** +value=header */
-    type: "header";
-    /**
-     * +docs=Header name to match on
-     * +label=Name
-     */
-    name: string;
     /**
      * +docs=Header value to match on
      * +label=Value
      */
     exact_match: string;
+    /**
+     * +docs=Header name to match on
+     * +label=Name
+     */
+    name: string;
+    /** +value=header */
+    type: "header";
 }

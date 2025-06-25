@@ -3,17 +3,17 @@
  */
 
 export interface AwsInferentia {
-    /** +value=aws_inferentia */
-    type: "aws_inferentia";
+    /**
+     * +label=Count
+     * +usage=Count of Inferentia accelerator chips to provide to the application
+     */
+    count: number;
     /**
      * +label=Inferentia accelerator name
      * +usage=Name of the AWS Inferentia Accccelerator. One of [INF1, INF2].
      * This field is required for Node Selector and can be ignored in Nodepool Selector.
      */
     name?: string;
-    /**
-     * +label=Count
-     * +usage=Count of Inferentia accelerator chips to provide to the application
-     */
-    count: number;
+    /** +value=aws_inferentia */
+    type: "aws_inferentia";
 }

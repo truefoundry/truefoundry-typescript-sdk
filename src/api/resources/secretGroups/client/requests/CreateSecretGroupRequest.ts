@@ -7,8 +7,8 @@ import * as TrueFoundry from "../../../../index";
 /**
  * @example
  *     {
- *         name: "name",
  *         integrationId: "integrationId",
+ *         name: "name",
  *         secrets: [{
  *                 key: "key",
  *                 value: "value"
@@ -16,10 +16,10 @@ import * as TrueFoundry from "../../../../index";
  *     }
  */
 export interface CreateSecretGroupRequest {
-    /** Name of the secret group. */
-    name: string;
     /** Id of the provider integration. */
     integrationId: string;
+    /** Name of the secret group. */
+    name: string;
     /** The secrets to be associated with the secret group */
     secrets: TrueFoundry.SecretInput[];
 }

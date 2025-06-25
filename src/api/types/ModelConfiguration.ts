@@ -8,12 +8,12 @@ import * as TrueFoundry from "../index";
  * Add a model from Gateway along with parameters to be used for chat completion
  */
 export interface ModelConfiguration {
-    /** Name of the provider, must be one of the integration providers configured for the Gateway */
-    provider: string;
+    /** Arbitrary extra parameters to pass to the model when generating */
+    extra_parameters?: Record<string, unknown>;
     /** Name of the model to be used for generations. This model should be available in the provider */
     model: string;
     /** Parameters to pass to the model when generating */
     parameters?: TrueFoundry.Parameters;
-    /** Arbitrary extra parameters to pass to the model when generating */
-    extra_parameters?: Record<string, unknown>;
+    /** Name of the provider, must be one of the integration providers configured for the Gateway */
+    provider: string;
 }

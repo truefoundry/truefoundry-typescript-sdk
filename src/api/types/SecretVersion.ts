@@ -5,12 +5,12 @@
 import * as TrueFoundry from "../index";
 
 export interface SecretVersion {
-    id: string;
+    createdAt?: string;
     fqn: string;
-    value?: string;
-    version?: number;
+    id: string;
     secret?: TrueFoundry.Secret;
     secretId?: string;
-    createdAt?: string;
     updatedAt?: string;
+    value?: string;
+    version?: number;
 }

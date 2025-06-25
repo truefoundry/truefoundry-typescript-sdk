@@ -32,6 +32,143 @@ export class ModelVersions {
     constructor(protected readonly _options: ModelVersions.Options) {}
 
     /**
+     * List model version API
+     *
+     * @param {TrueFoundry.ModelVersionsListRequest} request
+     * @param {ModelVersions.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.modelVersions.list()
+     */
+    public async list(
+        request: TrueFoundry.ModelVersionsListRequest = {},
+        requestOptions?: ModelVersions.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.ModelVersion>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ModelVersionsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListModelVersionsResponse>> => {
+                const {
+                    model_id: modelId,
+                    fqn,
+                    offset,
+                    limit,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    include_internal_metadata: includeInternalMetadata,
+                } = request;
+                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (modelId != null) {
+                    _queryParams["model_id"] = modelId;
+                }
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
+                }
+                if (runIds != null) {
+                    if (Array.isArray(runIds)) {
+                        _queryParams["run_ids"] = runIds.map((item) => item);
+                    } else {
+                        _queryParams["run_ids"] = runIds;
+                    }
+                }
+                if (runSteps != null) {
+                    if (Array.isArray(runSteps)) {
+                        _queryParams["run_steps"] = runSteps.map((item) => item.toString());
+                    } else {
+                        _queryParams["run_steps"] = runSteps.toString();
+                    }
+                }
+                if (includeInternalMetadata != null) {
+                    _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
+                }
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: urlJoin(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/ml/v1/model-versions",
+                    ),
+                    method: "GET",
+                    headers: {
+                        Authorization: await this._getAuthorizationHeader(),
+                        "X-Fern-Language": "JavaScript",
+                        "X-Fern-SDK-Name": "truefoundry-sdk",
+                        "X-Fern-SDK-Version": "0.0.0",
+                        "User-Agent": "truefoundry-sdk/0.0.0",
+                        "X-Fern-Runtime": core.RUNTIME.type,
+                        "X-Fern-Runtime-Version": core.RUNTIME.version,
+                        ...requestOptions?.headers,
+                    },
+                    contentType: "application/json",
+                    queryParameters: _queryParams,
+                    requestType: "json",
+                    timeoutMs:
+                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+                    maxRetries: requestOptions?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListModelVersionsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 422:
+                            throw new TrueFoundry.UnprocessableEntityError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                switch (_response.error.reason) {
+                    case "non-json":
+                        throw new errors.TrueFoundryError({
+                            statusCode: _response.error.statusCode,
+                            body: _response.error.rawBody,
+                            rawResponse: _response.rawResponse,
+                        });
+                    case "timeout":
+                        throw new errors.TrueFoundryTimeoutError(
+                            "Timeout exceeded when calling GET /api/ml/v1/model-versions.",
+                        );
+                    case "unknown":
+                        throw new errors.TrueFoundryError({
+                            message: _response.error.errorMessage,
+                            rawResponse: _response.rawResponse,
+                        });
+                }
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Pageable<TrueFoundry.ListModelVersionsResponse, TrueFoundry.ModelVersion>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length > 0,
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
      * Get model version API
      *
      * @param {string} id
@@ -197,143 +334,6 @@ export class ModelVersions {
                     rawResponse: _response.rawResponse,
                 });
         }
-    }
-
-    /**
-     * List model version API
-     *
-     * @param {TrueFoundry.ModelVersionsListRequest} request
-     * @param {ModelVersions.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.modelVersions.list()
-     */
-    public async list(
-        request: TrueFoundry.ModelVersionsListRequest = {},
-        requestOptions?: ModelVersions.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.ModelVersion>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: TrueFoundry.ModelVersionsListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListModelVersionsResponse>> => {
-                const {
-                    model_id: modelId,
-                    fqn,
-                    offset,
-                    limit,
-                    run_ids: runIds,
-                    run_steps: runSteps,
-                    include_internal_metadata: includeInternalMetadata,
-                } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (modelId != null) {
-                    _queryParams["model_id"] = modelId;
-                }
-                if (fqn != null) {
-                    _queryParams["fqn"] = fqn;
-                }
-                if (offset != null) {
-                    _queryParams["offset"] = offset.toString();
-                }
-                if (limit != null) {
-                    _queryParams["limit"] = limit.toString();
-                }
-                if (runIds != null) {
-                    if (Array.isArray(runIds)) {
-                        _queryParams["run_ids"] = runIds.map((item) => item);
-                    } else {
-                        _queryParams["run_ids"] = runIds;
-                    }
-                }
-                if (runSteps != null) {
-                    if (Array.isArray(runSteps)) {
-                        _queryParams["run_steps"] = runSteps.map((item) => item.toString());
-                    } else {
-                        _queryParams["run_steps"] = runSteps.toString();
-                    }
-                }
-                if (includeInternalMetadata != null) {
-                    _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
-                }
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: urlJoin(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/model-versions",
-                    ),
-                    method: "GET",
-                    headers: {
-                        Authorization: await this._getAuthorizationHeader(),
-                        "X-Fern-Language": "JavaScript",
-                        "X-Fern-SDK-Name": "truefoundry-sdk",
-                        "X-Fern-SDK-Version": "0.0.0",
-                        "User-Agent": "truefoundry-sdk/0.0.0",
-                        "X-Fern-Runtime": core.RUNTIME.type,
-                        "X-Fern-Runtime-Version": core.RUNTIME.version,
-                        ...requestOptions?.headers,
-                    },
-                    contentType: "application/json",
-                    queryParameters: _queryParams,
-                    requestType: "json",
-                    timeoutMs:
-                        requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-                    maxRetries: requestOptions?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                });
-                if (_response.ok) {
-                    return {
-                        data: _response.body as TrueFoundry.ListModelVersionsResponse,
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
-                }
-                switch (_response.error.reason) {
-                    case "non-json":
-                        throw new errors.TrueFoundryError({
-                            statusCode: _response.error.statusCode,
-                            body: _response.error.rawBody,
-                            rawResponse: _response.rawResponse,
-                        });
-                    case "timeout":
-                        throw new errors.TrueFoundryTimeoutError(
-                            "Timeout exceeded when calling GET /api/ml/v1/model-versions.",
-                        );
-                    case "unknown":
-                        throw new errors.TrueFoundryError({
-                            message: _response.error.errorMessage,
-                            rawResponse: _response.rawResponse,
-                        });
-                }
-            },
-        );
-        let _offset = request?.offset != null ? request?.offset : 0;
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Pageable<TrueFoundry.ListModelVersionsResponse, TrueFoundry.ModelVersion>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length > 0,
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
-        });
     }
 
     protected async _getAuthorizationHeader(): Promise<string> {

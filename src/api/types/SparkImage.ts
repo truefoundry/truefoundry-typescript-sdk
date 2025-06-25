@@ -8,15 +8,15 @@
  * +icon=fa-brands fa-docker:#0db7ed
  */
 export interface SparkImage {
-    /** +value=spark-image */
-    type: "spark-image";
     /**
-     * --- Spark Specific Field ---
-     * +label=Spark Version
-     * +usage=Spark version should match the spark version installed in the image.
-     * +sort=1000
+     * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
+     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
+     * +label=Docker Registry
+     * +usage=FQN of the container registry. If you can't find your registry here,
+     * add it through the [Integrations](/integrations?tab=docker-registry) page
+     * +sort=1002
      */
-    spark_version: string;
+    docker_registry?: string;
     /**
      * +label=Image URI
      * +usage=The image URI. Specify the name of the image and the tag.
@@ -27,12 +27,12 @@ export interface SparkImage {
      */
     image_uri: string;
     /**
-     * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
-     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
-     * +label=Docker Registry
-     * +usage=FQN of the container registry. If you can't find your registry here,
-     * add it through the [Integrations](/integrations?tab=docker-registry) page
-     * +sort=1002
+     * --- Spark Specific Field ---
+     * +label=Spark Version
+     * +usage=Spark version should match the spark version installed in the image.
+     * +sort=1000
      */
-    docker_registry?: string;
+    spark_version: string;
+    /** +value=spark-image */
+    type: "spark-image";
 }

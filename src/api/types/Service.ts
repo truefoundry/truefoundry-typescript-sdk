@@ -8,8 +8,13 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the service
  */
 export interface Service extends TrueFoundry.BaseService {
-    /** +value=service */
-    type?: "service";
+    /**
+     * +label=Allow intercepts
+     * +usage=Whether to allow intercepts to be applied for this service.
+     * This would inject an additional sidecar in each pod of the service. Not recommended on production
+     */
+    allow_interception?: boolean;
+    auto_shutdown?: TrueFoundry.Autoshutdown;
     /**
      * +label=Replicas
      * +usage=Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing.
@@ -17,16 +22,11 @@ export interface Service extends TrueFoundry.BaseService {
      * +sort=4
      */
     replicas?: TrueFoundry.ServiceReplicas;
-    auto_shutdown?: TrueFoundry.Autoshutdown;
-    /**
-     * +label=Allow intercepts
-     * +usage=Whether to allow intercepts to be applied for this service.
-     * This would inject an additional sidecar in each pod of the service. Not recommended on production
-     */
-    allow_interception?: boolean;
     /**
      * +label=Rollout strategy
      * +usage=Strategy to dictate how a rollout should happen when a new release for this service is made [Docs](https://docs.truefoundry.com/docs/rollout-strategy)
      */
     rollout_strategy?: TrueFoundry.ServiceRolloutStrategy;
+    /** +value=service */
+    type?: "service";
 }

@@ -8,14 +8,6 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the application set
  */
 export interface ApplicationSet {
-    /** +value=application-set */
-    type: "application-set";
-    /**
-     * +label=Name
-     * +usage=Name of the application set.
-     * +icon=fa-font
-     */
-    name: string;
     /**
      * +label=Components
      * +usage=Array of components with their specifications.
@@ -24,12 +16,26 @@ export interface ApplicationSet {
      */
     components?: TrueFoundry.ApplicationSetComponentsItem[];
     /**
+     * +label=Convert Template Manifest
+     * +docs=Flag to indicate if the template manifest should be converted to TrueFoundry manifest
+     * +uiType=Hidden
+     */
+    convert_template_manifest?: boolean;
+    /**
+     * +label=Name
+     * +usage=Name of the application set.
+     * +icon=fa-font
+     */
+    name: string;
+    /**
      * +label=Template
      * +usage=Template to be used for the application set.
      * +icon=fa-file
      * +uiType=Hidden
      */
     template?: string;
+    /** +value=application-set */
+    type: "application-set";
     /**
      * +label=Values
      * +usage=Values to be used to render components for the application set.
@@ -44,10 +50,4 @@ export interface ApplicationSet {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-    /**
-     * +label=Convert Template Manifest
-     * +docs=Flag to indicate if the template manifest should be converted to TrueFoundry manifest
-     * +uiType=Hidden
-     */
-    convert_template_manifest?: boolean;
 }

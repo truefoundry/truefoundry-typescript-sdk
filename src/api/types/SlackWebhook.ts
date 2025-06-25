@@ -6,8 +6,6 @@
  * +label=Slack Webhook
  */
 export interface SlackWebhook {
-    /** +value=slack-webhook */
-    type: "slack-webhook";
     /**
      * +label=Notification Channel
      * +usage=Specify the notification channel to send alerts to
@@ -16,4 +14,6 @@ export interface SlackWebhook {
      * +sort=660
      */
     notification_channel: string;
+    /** +value=slack-webhook */
+    type: "slack-webhook";
 }

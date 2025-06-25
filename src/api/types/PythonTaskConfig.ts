@@ -8,8 +8,13 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the python function task
  */
 export interface PythonTaskConfig {
-    /** +value=python-task-config */
-    type: "python-task-config";
+    /**
+     * +label=Environment Variables
+     * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
+     * +icon=fa-globe
+     * +sort=200
+     */
+    env?: Record<string, string | undefined>;
     /**
      * +label=Image Spec
      * +docs=Specification for the image to be used for the task
@@ -18,21 +23,16 @@ export interface PythonTaskConfig {
      */
     image: TrueFoundry.PythonTaskConfigImage;
     /**
-     * +label=Environment Variables
-     * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
-     * +icon=fa-globe
-     * +sort=200
-     */
-    env?: Record<string, string | undefined>;
-    resources?: TrueFoundry.Resources;
-    /**
      * +usage=Configure data to be mounted to Workflow pod(s) as a volume.
      * +sort=400
      */
     mounts?: TrueFoundry.PythonTaskConfigMountsItem[];
+    resources?: TrueFoundry.Resources;
     /**
      * +label=Service Account
      * +sort=500
      */
     service_account?: string;
+    /** +value=python-task-config */
+    type: "python-task-config";
 }

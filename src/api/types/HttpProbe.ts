@@ -9,11 +9,10 @@
  */
 export interface HttpProbe {
     /**
-     * +sort=1
-     * +label=Request Type
-     * +value=http
+     * +sort=4
+     * +usage=Host name to connect to, defaults to the pod IP
      */
-    type: "http";
+    host?: string;
     /**
      * +usage=Path to the health check endpoint
      * +sort=2
@@ -25,13 +24,14 @@ export interface HttpProbe {
      */
     port: number;
     /**
-     * +sort=4
-     * +usage=Host name to connect to, defaults to the pod IP
-     */
-    host?: string;
-    /**
      * +sort=5
      * +usage=Scheme to use for connecting to the host
      */
     scheme?: string;
+    /**
+     * +sort=1
+     * +label=Request Type
+     * +value=http
+     */
+    type: "http";
 }

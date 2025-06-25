@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../../../../../index";
 
 export type DeleteMlEntityRequestManifest =
-    | TrueFoundry.ModelManifest
-    | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.AgentOpenApiToolManifest
     | TrueFoundry.AgentManifest
     | TrueFoundry.ArtifactManifest
+    | TrueFoundry.ChatPromptManifest
     | TrueFoundry.DataDirectoryManifest
-    | TrueFoundry.MlRepoManifest;
+    | TrueFoundry.MlRepoManifest
+    | TrueFoundry.ModelManifest
+    | TrueFoundry.AgentOpenApiToolManifest;

@@ -16,6 +16,20 @@ export interface JobAlert {
      * +sort=660
      */
     notification_channel?: string;
+    notification_target?: TrueFoundry.NotificationTarget;
+    on_completion?: boolean;
+    /**
+     * +label=On Failure
+     * +usage=Send an alert when the job fails
+     * +sort=690
+     */
+    on_failure?: boolean;
+    /**
+     * +label=On Start
+     * +usage=Send an alert when the job starts
+     * +sort=670
+     */
+    on_start?: boolean;
     /**
      * +label=To Emails
      * +usage=List of recipients' email addresses if the notification channel is Email.
@@ -24,18 +38,4 @@ export interface JobAlert {
      * +sort=665
      */
     to_emails?: string[];
-    notification_target?: TrueFoundry.NotificationTarget;
-    /**
-     * +label=On Start
-     * +usage=Send an alert when the job starts
-     * +sort=670
-     */
-    on_start?: boolean;
-    on_completion?: boolean;
-    /**
-     * +label=On Failure
-     * +usage=Send an alert when the job fails
-     * +sort=690
-     */
-    on_failure?: boolean;
 }

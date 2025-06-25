@@ -3,8 +3,8 @@
  */
 
 export interface EnvironmentColor {
-    colorHex?: string;
+    backgroundColor?: string;
     backgroundColorHex?: string;
     color?: string;
-    backgroundColor?: string;
+    colorHex?: string;
 }

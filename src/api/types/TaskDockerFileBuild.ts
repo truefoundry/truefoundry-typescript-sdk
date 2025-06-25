@@ -8,8 +8,8 @@
  * +icon=fa-brands fa-docker:#0db7ed
  */
 export interface TaskDockerFileBuild {
-    /** +value=dockerfile */
-    type: "task-dockerfile-build";
+    /** +label=Build arguments to pass to docker build */
+    build_args?: Record<string, string>;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -23,6 +23,6 @@ export interface TaskDockerFileBuild {
      * +usage=The file path of the Dockerfile relative to project root path.
      */
     dockerfile_path: string;
-    /** +label=Build arguments to pass to docker build */
-    build_args?: Record<string, string>;
+    /** +value=dockerfile */
+    type: "task-dockerfile-build";
 }

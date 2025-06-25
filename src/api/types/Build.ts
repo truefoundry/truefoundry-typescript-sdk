@@ -10,16 +10,6 @@ import * as TrueFoundry from "../index";
  * +icon=fa-code
  */
 export interface Build {
-    /** +value=build */
-    type: "build";
-    /**
-     * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
-     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
-     * +label=Docker Registry
-     * +usage=FQN of the container registry. If you can't find your registry here,
-     * add it through the [Integrations](/integrations?tab=docker-registry) page
-     */
-    docker_registry?: string;
     /**
      * +docs=Source code location.
      * +label=Fetch source code to build and deploy
@@ -34,4 +24,14 @@ export interface Build {
      * +sort=2
      */
     build_spec: TrueFoundry.BuildBuildSpec;
+    /**
+     * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
+     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
+     * +label=Docker Registry
+     * +usage=FQN of the container registry. If you can't find your registry here,
+     * add it through the [Integrations](/integrations?tab=docker-registry) page
+     */
+    docker_registry?: string;
+    /** +value=build */
+    type: "build";
 }

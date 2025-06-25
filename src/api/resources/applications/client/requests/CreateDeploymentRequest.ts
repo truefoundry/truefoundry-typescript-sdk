@@ -11,20 +11,20 @@
  *     }
  */
 export interface CreateDeploymentRequest {
-    /** Manifest of application */
-    manifest: Record<string, unknown>;
+    /** Id of the application */
+    applicationId?: string;
+    /** Application Set Id */
+    applicationSetId?: string;
     /** Dry run */
     dryRun?: boolean;
     /** Cancels any ongoing deployments */
     forceDeploy?: boolean;
+    /** Manifest of application */
+    manifest: Record<string, unknown>;
+    /** Name of application */
+    name?: string;
     /** Trigger on deploy */
     triggerOnDeploy?: boolean;
     /** workspace id of the workspace */
     workspaceId?: string;
-    /** Id of the application */
-    applicationId?: string;
-    /** Name of application */
-    name?: string;
-    /** Application Set Id */
-    applicationSetId?: string;
 }

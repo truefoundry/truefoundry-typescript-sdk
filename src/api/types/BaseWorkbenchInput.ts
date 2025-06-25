@@ -9,33 +9,33 @@ import * as TrueFoundry from "../index";
  */
 export interface BaseWorkbenchInput {
     /**
-     * +usage=Name of the workbench. This uniquely identifies this workbench in the workspace.
-     * > Name can only contain alphanumeric characters and '-' and can be atmost 25 characters long
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
-    name: string;
-    /**
-     * +label=Home Directory Size in GB (Persistent)
-     * +usage=Size of the home directory for the workbench (Persistent Storage)
-     * +sort=6
-     */
-    home_directory_size: number;
-    resources?: TrueFoundry.Resources;
-    /**
      * +label=Environment Variables
      * +usage=Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/environment-variables-and-secrets-jobs)
      * +sort=10110
      */
     env?: Record<string, string | undefined>;
     /**
+     * +label=Home Directory Size in GB (Persistent)
+     * +usage=Size of the home directory for the workbench (Persistent Storage)
+     * +sort=6
+     */
+    home_directory_size: number;
+    kustomize?: TrueFoundry.Kustomize;
+    /**
      * +usage=Configure data to be mounted to workbench pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job)
      * +sort=10111
      */
     mounts?: TrueFoundry.BaseWorkbenchInputMountsItem[];
+    /**
+     * +usage=Name of the workbench. This uniquely identifies this workbench in the workspace.
+     * > Name can only contain alphanumeric characters and '-' and can be atmost 25 characters long
+     * +sort=1
+     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     */
+    name: string;
+    resources?: TrueFoundry.Resources;
     /** +sort=10113 */
     service_account?: string;
-    kustomize?: TrueFoundry.Kustomize;
     /**
      * +label=Workspace FQN
      * +docs=Fully qualified name of the workspace

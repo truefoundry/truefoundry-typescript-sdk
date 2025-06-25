@@ -9,18 +9,18 @@ import * as TrueFoundry from "../../../../index";
  *     {
  *         manifest: {
  *             name: "name",
- *             type: "virtual-account",
  *             permissions: [{
  *                     resource_fqn: "resource_fqn",
  *                     resource_type: "resource_type",
  *                     role_id: "role_id"
- *                 }]
+ *                 }],
+ *             type: "virtual-account"
  *         }
  *     }
  */
 export interface ApplyVirtualAccountRequest {
-    /** Virtual account manifest */
-    manifest: TrueFoundry.VirtualAccountManifest;
     /** Dry run */
     dryRun?: boolean;
+    /** Virtual account manifest */
+    manifest: TrueFoundry.VirtualAccountManifest;
 }

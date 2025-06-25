@@ -12,15 +12,15 @@ export interface WorkerConfig {
      */
     input_config: TrueFoundry.WorkerConfigInputConfig;
     /**
-     * +label=Output Config
-     * +usage=Output Config
-     * +sort=2
-     */
-    output_config?: TrueFoundry.WorkerConfigOutputConfig;
-    /**
      * +label=Number of Concurrent Workers
      * +usage=Number of concurrent workers to spawn for the processor
      * +sort=3
      */
     num_concurrent_workers: number;
+    /**
+     * +label=Output Config
+     * +usage=Output Config
+     * +sort=2
+     */
+    output_config?: TrueFoundry.WorkerConfigOutputConfig;
 }

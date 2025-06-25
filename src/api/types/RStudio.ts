@@ -8,7 +8,7 @@ import * as TrueFoundry from "../index";
  * +docs=Describes the configuration for the Rstudio server
  */
 export interface RStudio extends TrueFoundry.BaseWorkbenchInput {
+    image?: TrueFoundry.WorkbenchImage;
     /** +value=rstudio */
     type?: "rstudio";
-    image?: TrueFoundry.WorkbenchImage;
 }

@@ -5,20 +5,20 @@
 import * as TrueFoundry from "../index";
 
 export interface Volume {
-    /** +value=volume */
-    type: "volume";
-    /**
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Name of the Volume. This will be set as the volume name.
-     */
-    name: string;
     /**
      * +sort=2
      * +label=Volume Config
      * +message=Volume Configuration, can be either Dynamically provisioned or statically provisioned.
      */
     config: TrueFoundry.VolumeConfig;
+    /**
+     * +sort=1
+     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +usage=Name of the Volume. This will be set as the volume name.
+     */
+    name: string;
+    /** +value=volume */
+    type: "volume";
     volume_browser?: TrueFoundry.VolumeBrowser;
     /**
      * +label=Workspace FQN

@@ -4,4 +4,4 @@
 
 import * as TrueFoundry from "../../../index";
 
-export type StageArtifactRequestManifest = TrueFoundry.ModelManifest | TrueFoundry.ArtifactManifest;
+export type StageArtifactRequestManifest = TrueFoundry.ArtifactManifest | TrueFoundry.ModelManifest;

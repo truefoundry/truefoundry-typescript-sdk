@@ -8,10 +8,12 @@
  * +sort=50
  */
 export interface ClusterManifestMonitoring {
+    /** +label=Cluster Kubecost URL */
+    kubecost_url?: string;
     /** +label=Cluster Loki URL */
     loki_url?: string;
     /** +label=Cluster Prometheus URL */
     prometheus_url?: string;
-    /** +label=Cluster Kubecost URL */
-    kubecost_url?: string;
+    /** +label=Cluster VictoriaLogs URL */
+    victoria_logs_url?: string;
 }

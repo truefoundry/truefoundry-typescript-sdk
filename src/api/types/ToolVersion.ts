@@ -5,13 +5,13 @@
 import * as TrueFoundry from "../index";
 
 export interface ToolVersion {
-    id: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
     created_at?: string;
-    updated_at?: string;
+    created_by_subject: TrueFoundry.Subject;
+    fqn: string;
+    id: string;
     manifest: TrueFoundry.AgentOpenApiToolManifest;
-    usage_code_snippet?: string;
     ml_repo_id: string;
     tool_id: string;
+    updated_at?: string;
+    usage_code_snippet?: string;
 }

@@ -9,11 +9,11 @@
  * +sort=200
  */
 export interface RemoteSource {
-    /** +value=remote */
-    type: "remote";
     /**
      * +docs=Remote repository URI
      * +label=Remote URI
      */
     remote_uri: string;
+    /** +value=remote */
+    type: "remote";
 }

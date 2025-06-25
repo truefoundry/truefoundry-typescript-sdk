@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../index";
 
 export interface TriggerJobRunResponse {
-    /** Job triggered */
-    message: string;
-    /** Name of the job run */
-    jobRunName: string;
     /** Details of the triggered job run */
     data: TrueFoundry.JobRun;
+    /** Name of the job run */
+    jobRunName: string;
+    /** Job triggered */
+    message: string;
 }

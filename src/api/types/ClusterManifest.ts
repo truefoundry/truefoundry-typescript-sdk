@@ -5,29 +5,6 @@
 import * as TrueFoundry from "../index";
 
 export interface ClusterManifest {
-    /** +value=cluster */
-    type: "cluster";
-    /**
-     * +label=Name
-     * +icon=fa-desktop:#black
-     * +sort=10
-     * +message=3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
-    name: string;
-    /**
-     * +label=Cluster Type
-     * +icon=fa-cloud:#7EC8E3
-     * +sort=20
-     * +usage=The cluster type of this cluster
-     */
-    cluster_type: TrueFoundry.ClusterManifestClusterType;
-    /**
-     * +label=Environments
-     * +icon=fa-tags:#black
-     * +usage=Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already.
-     * +sort=30
-     */
-    environment_names: string[];
     /**
      * +label=Base Domain URLs
      * +placeholder=Enter Base Domain URL eg. devtest.mydomain.com or *.mydomain.com
@@ -39,23 +16,6 @@ export interface ClusterManifest {
      */
     base_domains?: string[];
     /**
-     * +label=Monitoring
-     * +icon=fa-gear:#68BBE3
-     * +sort=50
-     */
-    monitoring?: TrueFoundry.ClusterManifestMonitoring;
-    /**
-     * +label=Cluster Default Registry
-     * +sort=60
-     */
-    default_registry_fqn?: string;
-    /**
-     * +label=Workbench Config
-     * +sort=70
-     */
-    workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig;
-    spark_config?: TrueFoundry.SparkConfig;
-    /**
      * +label=Cluster Integration FQN
      * +sort=75
      * +uiType=IntegrationSelect
@@ -63,19 +23,43 @@ export interface ClusterManifest {
      */
     cluster_integration_fqn?: string;
     /**
-     * +label=Workflow Storage Integration
-     * +sort=80
-     * +uiType=IntegrationSelect
-     * +uiProps={"descriptionKey": "cluster_name","integrationType": "blob-storage"}
+     * +label=Cluster Type
+     * +icon=fa-cloud:#7EC8E3
+     * +sort=20
+     * +usage=The cluster type of this cluster
      */
-    workflow_storage_integration_fqn?: string;
+    cluster_type: TrueFoundry.ClusterManifestClusterType;
     /**
-     * +label=Nodepools
-     * +usage=Add nodepools that are already created in your cluster.
-     * When deploying, applications can choose to schedule from these nodepools.
-     * +sort=90
+     * +label=Collaborators
+     * +usage=Collaborators who can access this cluster
+     * +sort=110
      */
-    supported_nodepools?: TrueFoundry.Nodepool[];
+    collaborators: TrueFoundry.Collaborator[];
+    /**
+     * +label=Cluster Default Registry
+     * +sort=60
+     */
+    default_registry_fqn?: string;
+    /**
+     * +label=Environments
+     * +icon=fa-tags:#black
+     * +usage=Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already.
+     * +sort=30
+     */
+    environment_names: string[];
+    /**
+     * +label=Monitoring
+     * +icon=fa-gear:#68BBE3
+     * +sort=50
+     */
+    monitoring?: TrueFoundry.ClusterManifestMonitoring;
+    /**
+     * +label=Name
+     * +icon=fa-desktop:#black
+     * +sort=10
+     * +message=3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     */
+    name: string;
     /**
      * +label=Node Label Keys
      * +usage=The node label keys that this cluster supports.
@@ -84,10 +68,26 @@ export interface ClusterManifest {
      * +sort=100
      */
     node_label_keys?: TrueFoundry.ClusterManifestNodeLabelKeys;
+    spark_config?: TrueFoundry.SparkConfig;
     /**
-     * +label=Collaborators
-     * +usage=Collaborators who can access this cluster
-     * +sort=110
+     * +label=Nodepools
+     * +usage=Add nodepools that are already created in your cluster.
+     * When deploying, applications can choose to schedule from these nodepools.
+     * +sort=90
      */
-    collaborators: TrueFoundry.Collaborator[];
+    supported_nodepools?: TrueFoundry.Nodepool[];
+    /** +value=cluster */
+    type: "cluster";
+    /**
+     * +label=Workbench Config
+     * +sort=70
+     */
+    workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig;
+    /**
+     * +label=Workflow Storage Integration
+     * +sort=80
+     * +uiType=IntegrationSelect
+     * +uiProps={"descriptionKey": "cluster_name","integrationType": "blob-storage"}
+     */
+    workflow_storage_integration_fqn?: string;
 }

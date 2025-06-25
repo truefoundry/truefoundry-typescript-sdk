@@ -3,6 +3,6 @@
  */
 
 export interface FlyteWorkflowId {
-    resourceType: "WORKFLOW";
     name: string;
+    resourceType: "WORKFLOW";
 }

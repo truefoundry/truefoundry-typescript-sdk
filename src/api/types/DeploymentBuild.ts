@@ -5,17 +5,17 @@
 import * as TrueFoundry from "../index";
 
 export interface DeploymentBuild {
-    id?: string;
-    deploymentId?: string;
-    componentName?: string;
     build?: TrueFoundry.BuildInfo;
     buildId?: string;
+    componentName?: string;
+    createdAt?: string;
+    deploymentId?: string;
+    getLogsUrl?: string;
+    id?: string;
     imageUri?: string;
+    logsStartTs?: string;
     name?: string;
     status?: TrueFoundry.BuildStatus;
-    getLogsUrl?: string;
     tailLogsUrl?: string;
-    logsStartTs?: string;
-    createdAt?: string;
     updatedAt?: string;
 }

@@ -10,11 +10,11 @@ import * as TrueFoundry from "../index";
  * +label=Canary strategy
  */
 export interface Canary {
-    /** +value=canary */
-    type: "canary";
     /**
      * +docs=These steps would be executed in order to enable shifting of traffic slowly from stable to canary version
      * +label=Steps
      */
     steps: TrueFoundry.CanaryStep[];
+    /** +value=canary */
+    type: "canary";
 }

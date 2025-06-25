@@ -7,6 +7,12 @@
  * +label=AMQP
  */
 export interface AmqpInputConfig {
+    /**
+     * +label=Queue Name
+     * +usage=AMQP Queue Name
+     * +sort=2
+     */
+    queue_name: string;
     /** +value=amqp */
     type: "amqp";
     /**
@@ -15,12 +21,6 @@ export interface AmqpInputConfig {
      * +sort=1
      */
     url: string;
-    /**
-     * +label=Queue Name
-     * +usage=AMQP Queue Name
-     * +sort=2
-     */
-    queue_name: string;
     /**
      * +label=Wait Time Seconds
      * +usage=Wait timeout for long polling.

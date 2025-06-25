@@ -8,14 +8,14 @@ import * as TrueFoundry from "../index";
  * Data Directory manifest.
  */
 export interface DataDirectoryManifest {
-    type: "data-dir";
-    /** Name of the data directory */
-    name: string;
-    /** Name of the ML Repo to create the data directory under */
-    ml_repo: string;
     /** Description for the data directory */
     description?: string;
     /** Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
+    /** Name of the ML Repo to create the data directory under */
+    ml_repo: string;
+    /** Name of the data directory */
+    name: string;
     source: TrueFoundry.DataDirectoryManifestSource;
+    type: "data-dir";
 }

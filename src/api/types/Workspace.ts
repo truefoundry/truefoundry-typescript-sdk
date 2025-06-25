@@ -5,16 +5,16 @@
 import * as TrueFoundry from "../index";
 
 export interface Workspace {
-    id: string;
+    clusterId: string;
+    createdAt: string;
+    createdBy?: string;
+    createdBySubject: TrueFoundry.Subject;
+    environmentId?: string;
     fqn: string;
+    id: string;
+    isSystemWs?: boolean;
+    manifest: TrueFoundry.WorkspaceManifest;
     name: string;
     tenantName: string;
-    clusterId: string;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt: string;
     updatedAt: string;
-    environmentId?: string;
-    manifest: TrueFoundry.WorkspaceManifest;
-    isSystemWs?: boolean;
-    createdBy?: string;
 }

@@ -3,9 +3,9 @@
  */
 
 export interface FileInfo {
-    path: string;
-    is_dir: boolean;
     file_size?: number;
-    signed_url?: string;
+    is_dir: boolean;
     last_modified?: string;
+    path: string;
+    signed_url?: string;
 }

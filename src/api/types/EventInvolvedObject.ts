@@ -3,9 +3,9 @@
  */
 
 export interface EventInvolvedObject {
+    apiVersion?: string;
+    containerName?: string;
     kind: string;
     name: string;
-    apiVersion?: string;
     namespace?: string;
-    containerName?: string;
 }

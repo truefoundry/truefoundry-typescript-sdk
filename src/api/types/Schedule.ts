@@ -10,8 +10,12 @@ import * as TrueFoundry from "../index";
  * +usage=Run the job on a schedule. [Docs](https://docs.truefoundry.com/docs/deploy-a-cron-job)
  */
 export interface Schedule {
-    /** +value=scheduled */
-    type: "scheduled";
+    /**
+     * +usage=Choose whether to allow this job to run while another instance of the job is running, or to replace the currently running instance. Allow
+     * will enable multiple instances of this job to run. Forbid will keep the current instance of the job running and stop a new instance from being run.
+     * Replace will terminate any currently running instance of the job and start a new one.
+     */
+    concurrency_policy: TrueFoundry.ScheduleConcurrencyPolicy;
     /**
      * +docs=Specify the schedule for this job to be run periodically in cron format. [Learn more](https://docs.truefoundry.com/docs/deploy-a-cron-job)
      * +usage=Specify the schedule for this job to be run periodically in cron format.
@@ -27,14 +31,10 @@ export interface Schedule {
      */
     schedule: string;
     /**
-     * +usage=Choose whether to allow this job to run while another instance of the job is running, or to replace the currently running instance. Allow
-     * will enable multiple instances of this job to run. Forbid will keep the current instance of the job running and stop a new instance from being run.
-     * Replace will terminate any currently running instance of the job and start a new one.
-     */
-    concurrency_policy: TrueFoundry.ScheduleConcurrencyPolicy;
-    /**
      * +usage=Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
      * https://docs.truefoundry.com/docs/list-of-supported-timezones
      */
     timezone?: string;
+    /** +value=scheduled */
+    type: "scheduled";
 }

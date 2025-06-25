@@ -5,12 +5,12 @@
 import * as TrueFoundry from "../index";
 
 export interface TracingProject {
-    id: string;
-    name: string;
-    fqn: string;
-    ml_repo_id: number;
-    manifest: TrueFoundry.TracingProjectManifest;
-    created_by_subject: TrueFoundry.Subject;
     created_at: string;
+    created_by_subject: TrueFoundry.Subject;
+    fqn: string;
+    id: string;
+    manifest: TrueFoundry.TracingProjectManifest;
+    ml_repo_id: number;
+    name: string;
     updated_at: string;
 }
