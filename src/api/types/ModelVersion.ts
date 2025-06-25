@@ -4,16 +4,39 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ModelVersion {
-    id: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    manifest: TrueFoundry.ModelManifest;
-    usage_code_snippet?: string;
-    ml_repo_id: string;
-    model_id: string;
-    metrics?: TrueFoundry.Metric[];
-    deployable?: boolean;
+/**
+ * +label=Artifact Version
+ * +usage=Log a new Model Version containing model files and folders with metadata
+ */
+export interface ModelVersion extends TrueFoundry.BaseArtifactVersion {
+    /**
+     * +label=Type
+     * +usage=Model Version
+     * +value=model-version
+     */
+    type?: "model-version";
+    /**
+     * +label=Model Source
+     * +uiType=Group
+     */
+    source?: TrueFoundry.ModelVersionSource;
+    /**
+     * +label=Framework
+     * +usage=Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration
+     * +uiProps={"descriptionInline":true}
+     */
+    framework?: TrueFoundry.ModelVersionFramework;
+    environment?: TrueFoundry.ModelVersionEnvironment;
+    /**
+     * +label=Step
+     * +usage=Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run
+     * +uiProps={"descriptionInline":true}
+     */
+    step?: number;
+    /**
+     * +label=Run ID
+     * +usage=ID of the MLRepo Run that generated the model version
+     * +uiType=Hidden
+     */
+    run_id?: string;
 }

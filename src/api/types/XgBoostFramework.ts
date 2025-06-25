@@ -4,11 +4,22 @@
 
 import * as TrueFoundry from "../index";
 
+/**
+ * +label=XGBoost
+ * +icon=xgboost
+ */
 export interface XgBoostFramework {
-    /** Type of the framework */
+    /**
+     * +label=Type
+     * +usage=Type of the framework
+     * +value=xgboost
+     */
     type: "xgboost";
     serialization_format?: TrueFoundry.XgBoostSerializationFormat;
-    /** Relative path to the model file in the model version contents */
+    /**
+     * +label=Model file path
+     * +usage=Relative path to the model file in the model version contents
+     */
     model_filepath?: string;
     model_schema?: TrueFoundry.XgBoostModelSchema;
 }

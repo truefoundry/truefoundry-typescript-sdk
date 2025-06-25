@@ -4,13 +4,32 @@
 
 import * as TrueFoundry from "../index";
 
+/**
+ * +label=Transformers
+ * +icon=transformers
+ */
 export interface TransformersFramework {
-    /** Type of the framework */
+    /**
+     * +label=Type
+     * +usage=Type of the framework
+     * +value=transformers
+     */
     type: "transformers";
-    /** Name of the library for the framework */
-    library_name?: TrueFoundry.LibraryName;
-    /** The `pipeline()` task this model can be used with e.g. `text-generation`. See [huggingface docs](https://huggingface.co/docs/transformers/main/en/main_classes/pipelines#transformers.pipeline.task) for all possible values */
+    /**
+     * +label=Library Name
+     * +usage=Name of the library for the framework
+     */
+    library_name?: TrueFoundry.TransformersFrameworkLibraryName;
+    /**
+     * +label=Pipeline Tag
+     * +usage=The `pipeline()` task this model can be used with e.g. `text-generation`. See [huggingface docs](https://huggingface.co/docs/transformers/main/en/main_classes/pipelines#transformers.pipeline.task) for all possible values
+     * +uiProps={"descriptionInline":true}
+     */
     pipeline_tag?: string;
-    /** Base model Id from HuggingFace Hub. If this is a finetuned model, this points to the base model id used for finetuning. */
+    /**
+     * +label=Base Model
+     * +usage=Base model Id from HuggingFace Hub. If this is a finetuned model, this points to the base model id used for finetuning.
+     * +uiProps={"descriptionInline":true}
+     */
     base_model?: string;
 }

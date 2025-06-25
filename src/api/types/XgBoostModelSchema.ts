@@ -3,13 +3,25 @@
  */
 
 /**
- * Schema of the XGBoost model
+ * +label=XGBoost Model Schema
+ * +usage=Schema of the XGBoost model
  */
 export interface XgBoostModelSchema {
-    /** Name of the method used for inference */
+    /**
+     * +label=Inference Method Name
+     * +usage=Name of the method used for inference
+     */
     infer_method_name: "predict";
-    /** Schema of the input */
+    /**
+     * +label= Input Schema
+     * +usage=Schema of the input
+     * +uiProps={"descriptionInline":true}
+     */
     inputs: Record<string, unknown>[];
-    /** Schema of the output */
+    /**
+     * +label= Output Schema
+     * +usage=Schema of the output
+     * +uiProps={"descriptionInline":true}
+     */
     outputs: Record<string, unknown>[];
 }
