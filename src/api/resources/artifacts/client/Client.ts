@@ -317,15 +317,10 @@ export class Artifacts {
      * @example
      *     await client.artifacts.createOrUpdate({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
-     *             type: "artifact-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
+     *             type: "artifact-version"
      *         }
      *     })
      */

@@ -5,27 +5,33 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Model Version artifact.
+ * +label=Artifact Version
+ * +usage=Log a new Model Version containing model files and folders with metadata
  */
-export interface ModelManifest {
-    /** Name of the entity */
-    name: string;
-    description?: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    version_alias?: string;
-    /** Name of the ML Repo */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number;
+export interface ModelManifest extends TrueFoundry.BaseArtifactVersion {
     type: "model-version";
-    source: TrueFoundry.ModelManifestSource;
-    /** Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration */
+    /**
+     * +label=Model Source
+     * +uiType=Group
+     */
+    source?: TrueFoundry.ModelManifestSource;
+    /**
+     * +label=Framework
+     * +usage=Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration
+     * +uiProps={"descriptionInline":true}
+     */
     framework?: TrueFoundry.ModelManifestFramework;
     environment?: TrueFoundry.ModelVersionEnvironment;
-    /** Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run */
+    /**
+     * +label=Step
+     * +usage=Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run
+     * +uiProps={"descriptionInline":true}
+     */
     step?: number;
-    /** ID of the MLRepo Run that generated the model version */
+    /**
+     * +label=Run ID
+     * +usage=ID of the MLRepo Run that generated the model version
+     * +uiType=Hidden
+     */
     run_id?: string;
 }

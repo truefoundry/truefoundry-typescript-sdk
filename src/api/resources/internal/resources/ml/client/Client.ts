@@ -40,15 +40,10 @@ export class Ml {
      * @example
      *     await client.internal.ml.apply({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
-     *             type: "model-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
+     *             type: "model-version"
      *         }
      *     })
      */
@@ -133,15 +128,10 @@ export class Ml {
      * @example
      *     await client.internal.ml.delete({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
-     *             type: "model-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
+     *             type: "model-version"
      *         }
      *     })
      */

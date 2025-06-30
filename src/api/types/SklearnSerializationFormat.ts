@@ -3,7 +3,8 @@
  */
 
 /**
- * Serialization format used to save the sklearn model
+ * +label=Scikit Learn Serialization Format
+ * +usage=Serialization format used to save the sklearn model
  */
 export type SklearnSerializationFormat = "cloudpickle" | "joblib" | "pickle";
 export const SklearnSerializationFormat = {

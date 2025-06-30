@@ -8,15 +8,10 @@ import * as TrueFoundry from "../../../../../../index";
  * @example
  *     {
  *         manifest: {
- *             name: "name",
  *             metadata: {
  *                 "key": "value"
  *             },
- *             ml_repo: "ml_repo",
- *             type: "model-version",
- *             source: {
- *                 type: "truefoundry"
- *             }
+ *             type: "model-version"
  *         }
  *     }
  */

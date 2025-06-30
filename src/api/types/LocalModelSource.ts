@@ -3,8 +3,15 @@
  */
 
 export interface LocalModelSource {
-    /** Type of the source */
+    /**
+     * +label=Type
+     * +usage=Type of the source
+     * +value=local
+     */
     type: "local";
-    /** Path to the model file or folder */
+    /**
+     * +label=Path to the model file or folder
+     * +usage=Path to the model file or folder
+     */
     file_or_folder: string;
 }

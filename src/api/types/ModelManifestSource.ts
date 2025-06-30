@@ -4,6 +4,10 @@
 
 import * as TrueFoundry from "../index";
 
+/**
+ * +label=Model Source
+ * +uiType=Group
+ */
 export type ModelManifestSource =
     | TrueFoundry.TrueFoundryManagedSource
     | TrueFoundry.ExternalBlobStorageSource

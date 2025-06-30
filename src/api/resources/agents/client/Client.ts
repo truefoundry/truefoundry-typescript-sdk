@@ -312,16 +312,10 @@ export class Agents {
      * @example
      *     await client.agents.createOrUpdate({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
-     *             type: "agent",
-     *             goal: "goal",
-     *             instruction: "instruction",
-     *             available_tools: ["available_tools"],
-     *             model_id: "model_id"
+     *             type: "agent"
      *         }
      *     })
      */

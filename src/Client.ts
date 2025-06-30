@@ -3,6 +3,9 @@
  */
 
 import * as core from "./core";
+import * as TrueFoundry from "./api/index";
+import urlJoin from "url-join";
+import * as errors from "./errors/index";
 import { Internal } from "./api/resources/internal/client/Client";
 import { Users } from "./api/resources/users/client/Client";
 import { Teams } from "./api/resources/teams/client/Client";
@@ -201,5 +204,183 @@ export class TrueFoundryClient {
 
     public get tracingProjects(): TracingProjects {
         return (this._tracingProjects ??= new TracingProjects(this._options));
+    }
+
+    /**
+     * Applies a given manifest to create or update resources of specific types, such as provider-account, cluster, workspace, or ml-repo.
+     *
+     * @param {TrueFoundry.TrueFoundryApplyRequest} request
+     * @param {TrueFoundryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.apply({
+     *         manifest: {
+     *             type: "ml-repo",
+     *             name: "name",
+     *             storage_integration_fqn: "storage_integration_fqn",
+     *             collaborators: [{
+     *                     subject: "subject",
+     *                     role_id: "role_id"
+     *                 }]
+     *         }
+     *     })
+     */
+    public apply(
+        request: TrueFoundry.TrueFoundryApplyRequest,
+        requestOptions?: TrueFoundryClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.TrueFoundryApplyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__apply(request, requestOptions));
+    }
+
+    private async __apply(
+        request: TrueFoundry.TrueFoundryApplyRequest,
+        requestOptions?: TrueFoundryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.TrueFoundryApplyResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/apply",
+            ),
+            method: "PUT",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.TrueFoundryApplyResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling PUT /api/svc/v1/apply.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Deletes resources of specific types, such as provider-account, cluster, workspace, or application.
+     *
+     * @param {TrueFoundry.TrueFoundryDeleteRequest} request
+     * @param {TrueFoundryClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.delete({
+     *         manifest: {
+     *             type: "ml-repo",
+     *             name: "name",
+     *             storage_integration_fqn: "storage_integration_fqn",
+     *             collaborators: [{
+     *                     subject: "subject",
+     *                     role_id: "role_id"
+     *                 }]
+     *         }
+     *     })
+     */
+    public delete(
+        request: TrueFoundry.TrueFoundryDeleteRequest,
+        requestOptions?: TrueFoundryClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
+    }
+
+    private async __delete(
+        request: TrueFoundry.TrueFoundryDeleteRequest,
+        requestOptions?: TrueFoundryClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/delete",
+            ),
+            method: "POST",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling POST /api/svc/v1/delete.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    protected async _getAuthorizationHeader(): Promise<string> {
+        const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
+        if (bearer == null) {
+            throw new errors.TrueFoundryError({
+                message:
+                    "Please specify a bearer by either passing it in to the constructor or initializing a TFY_API_KEY environment variable",
+            });
+        }
+
+        return `Bearer ${bearer}`;
     }
 }

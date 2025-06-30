@@ -8,20 +8,10 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
- *             name: "name",
  *             metadata: {
  *                 "key": "value"
  *             },
- *             ml_repo: "ml_repo",
- *             type: "openapi-tool",
- *             openapi_spec: {
- *                 type: "blob-storage",
- *                 path: "path",
- *                 mime_type: "text/plain"
- *             },
- *             base_url: "base_url",
- *             path: "path",
- *             method: "get"
+ *             type: "openapi-tool"
  *         }
  *     }
  */

@@ -4,6 +4,10 @@
 
 import * as TrueFoundry from "../index";
 
+/**
+ * +label=Artifact Source
+ * +uiType=Group
+ */
 export type ArtifactManifestSource =
     | TrueFoundry.TrueFoundryManagedSource
     | TrueFoundry.ExternalBlobStorageSource

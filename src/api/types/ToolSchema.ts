@@ -5,10 +5,14 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Schema defining a tool for the chat prompt
+ * +label=Tool Schema
+ * +usage=Schema defining a tool for the chat prompt
  */
 export interface ToolSchema {
-    /** Type of the tool */
+    /**
+     * +label=Type
+     * +usage=Type of the tool
+     */
     type: "function";
     function: TrueFoundry.FunctionSchema;
 }
