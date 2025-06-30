@@ -1,3 +1,4 @@
+import * as core from "./core";
 import {
     WrappedAgentVersions,
     WrappedApplications,
@@ -11,8 +12,13 @@ import {
 } from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
 
+export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Options, 'environment'> {
+    baseUrl: core.Supplier<string>;
+    environment?: core.Supplier<string>;
+}
 
 export class TrueFoundryClient extends BaseTrueFoundryClient {
+    protected readonly _options: BaseTrueFoundryClient.Options;
     protected _agentVersions: WrappedAgentVersions | undefined;
     protected _applications: WrappedApplications | undefined;
     protected _artifactVersions: WrappedArtifactVersions | undefined;
@@ -22,6 +28,12 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected _toolVersions: WrappedToolVersions | undefined;
     protected _tracingProjects: WrappedTracingProjects | undefined;
     protected _workspaces: WrappedWorkspaces | undefined;
+
+    constructor(_options: TrueFoundryClientOptions) {
+        const options = {..._options, environment: _options.environment ?? ''}
+        super(options);
+        this._options = options;
+    }
 
     public get agentVersions(): WrappedAgentVersions {
         return (this._agentVersions ??= new WrappedAgentVersions(this._options));
