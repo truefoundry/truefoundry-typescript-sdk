@@ -28,7 +28,8 @@ export type AddonComponentName =
     | "GRAFANA"
     | "TRUEFOUNDRY"
     | "TFY_PROMETHEUS_CONFIG"
-    | "SPARK_OPERATOR";
+    | "SPARK_OPERATOR"
+    | "TFY_LOGS";
 export const AddonComponentName = {
     Argocd: "ARGOCD",
     ArgoRollout: "ARGO_ROLLOUT",
@@ -56,4 +57,5 @@ export const AddonComponentName = {
     Truefoundry: "TRUEFOUNDRY",
     TfyPrometheusConfig: "TFY_PROMETHEUS_CONFIG",
     SparkOperator: "SPARK_OPERATOR",
+    TfyLogs: "TFY_LOGS",
 } as const;
