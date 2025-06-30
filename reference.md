@@ -2,7 +2,7 @@
 
 ## Internal
 
-<details><summary><code>client.internal.<a href="/src/api/resources/internal/client/Client.ts">getIdFromFqn</a>(type_, { ...params }) -> Record<string, unknown></code></summary>
+<details><summary><code>client.internal.<a href="/src/api/resources/internal/client/Client.ts">getIdFromFqn</a>(type, { ...params }) -> Record<string, unknown></code></summary>
 <dl>
 <dd>
 
@@ -48,7 +48,7 @@ await client.internal.getIdFromFqn("type", {
 <dl>
 <dd>
 
-**type\_:** `string` — Entity Type
+**type:** `string` — Entity Type
 
 </dd>
 </dl>

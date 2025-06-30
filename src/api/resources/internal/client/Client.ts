@@ -95,7 +95,7 @@ export class Internal {
     /**
      * Get IDs associated with the FQN for various entity types, such as deployment, application, workspace, or cluster.
      *
-     * @param {string} type_ - Entity Type
+     * @param {string} type - Entity Type
      * @param {TrueFoundry.InternalGetIdFromFqnRequest} request
      * @param {Internal.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -108,15 +108,15 @@ export class Internal {
      *     })
      */
     public getIdFromFqn(
-        type_: string,
+        type: string,
         request: TrueFoundry.InternalGetIdFromFqnRequest,
         requestOptions?: Internal.RequestOptions,
     ): core.HttpResponsePromise<Record<string, unknown>> {
-        return core.HttpResponsePromise.fromPromise(this.__getIdFromFqn(type_, request, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__getIdFromFqn(type, request, requestOptions));
     }
 
     private async __getIdFromFqn(
-        type_: string,
+        type: string,
         request: TrueFoundry.InternalGetIdFromFqnRequest,
         requestOptions?: Internal.RequestOptions,
     ): Promise<core.WithRawResponse<Record<string, unknown>>> {
@@ -127,7 +127,7 @@ export class Internal {
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/fqn/${encodeURIComponent(type_)}`,
+                `api/svc/v1/fqn/${encodeURIComponent(type)}`,
             ),
             method: "GET",
             headers: {
