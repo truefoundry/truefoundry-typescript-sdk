@@ -4621,10 +4621,15 @@ while (page.hasNextPage()) {
 ```typescript
 await client.artifacts.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "artifact-version",
+        source: {
+            type: "truefoundry",
+        },
     },
 });
 ```
@@ -4831,10 +4836,16 @@ while (page.hasNextPage()) {
 ```typescript
 await client.agents.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "agent",
+        goal: "goal",
+        instruction: "instruction",
+        available_tools: ["available_tools"],
+        model_id: "model_id",
     },
 });
 ```
@@ -5041,10 +5052,18 @@ while (page.hasNextPage()) {
 ```typescript
 await client.prompts.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "chat_prompt",
+        messages: [
+            {
+                role: "system",
+                content: "content",
+            },
+        ],
     },
 });
 ```
@@ -5251,10 +5270,20 @@ while (page.hasNextPage()) {
 ```typescript
 await client.tools.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "openapi-tool",
+        openapi_spec: {
+            type: "blob-storage",
+            path: "path",
+            mime_type: "text/plain",
+        },
+        base_url: "base_url",
+        path: "path",
+        method: "get",
     },
 });
 ```
@@ -5461,10 +5490,15 @@ while (page.hasNextPage()) {
 ```typescript
 await client.models.createOrUpdate({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
+        source: {
+            type: "truefoundry",
+        },
     },
 });
 ```
@@ -5820,10 +5854,15 @@ await client.artifactVersions.createMultiPartUpload({
 ```typescript
 await client.artifactVersions.stage({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
+        source: {
+            type: "truefoundry",
+        },
     },
 });
 ```
@@ -8569,10 +8608,15 @@ while (page.hasNextPage()) {
 ```typescript
 await client.internal.ml.apply({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
+        source: {
+            type: "truefoundry",
+        },
     },
 });
 ```
@@ -8624,10 +8668,15 @@ await client.internal.ml.apply({
 ```typescript
 await client.internal.ml.delete({
     manifest: {
+        name: "name",
         metadata: {
             key: "value",
         },
+        ml_repo: "ml_repo",
         type: "model-version",
+        source: {
+            type: "truefoundry",
+        },
     },
 });
 ```

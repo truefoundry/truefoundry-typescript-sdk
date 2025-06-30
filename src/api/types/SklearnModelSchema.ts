@@ -4,25 +4,11 @@
 
 import * as TrueFoundry from "../index";
 
-/**
- * +label=Scikit Learn Model Schema
- */
 export interface SklearnModelSchema {
-    /**
-     * +label=Inference Method Name
-     * +usage=Name of the method used for inference
-     */
-    infer_method_name: TrueFoundry.SklearnModelSchemaInferMethodName;
-    /**
-     * +label= Input Schema
-     * +usage=Schema of the input
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Name of the method used for inference */
+    infer_method_name: TrueFoundry.InferMethodName;
+    /** Schema of the input */
     inputs: Record<string, unknown>[];
-    /**
-     * +label= Output Schema
-     * +usage=Schema of the output
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Schema of the output */
     outputs: Record<string, unknown>[];
 }

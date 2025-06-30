@@ -315,10 +315,15 @@ export class Models {
      * @example
      *     await client.models.createOrUpdate({
      *         manifest: {
+     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             type: "model-version"
+     *             ml_repo: "ml_repo",
+     *             type: "model-version",
+     *             source: {
+     *                 type: "truefoundry"
+     *             }
      *         }
      *     })
      */

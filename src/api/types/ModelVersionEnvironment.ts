@@ -3,19 +3,11 @@
  */
 
 /**
- * +label=Environment
- * +usage=Runtime environment describing python version and dependencies for running the model
- * +uiProps={"descriptionInline":true}
+ * Runtime environment describing python version and dependencies for running the model
  */
 export interface ModelVersionEnvironment {
-    /**
-     * +label=Python Version
-     * +usage=Python version to use when running the model
-     */
+    /** Python version to use when running the model */
     python_version?: string;
-    /**
-     * +label=PIP Packages
-     * +usage=pip dependencies needed for running the model
-     */
+    /** pip dependencies needed for running the model */
     pip_packages?: string[];
 }

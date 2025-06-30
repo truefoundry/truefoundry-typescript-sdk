@@ -5,13 +5,12 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Parameters
- * +usage=Parameters to pass to the model when generating
+ * Parameters to pass to the model when generating
  */
-export interface ModelConfigurationParameters {
+export interface Parameters {
     max_tokens?: number;
     temperature?: number;
     top_k?: number;
     top_p?: number;
-    stop?: TrueFoundry.ModelConfigurationParametersStop;
+    stop?: TrueFoundry.ParametersStop;
 }

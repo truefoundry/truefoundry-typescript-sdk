@@ -8,10 +8,16 @@ import * as TrueFoundry from "../../../../index";
  * @example
  *     {
  *         manifest: {
+ *             name: "name",
  *             metadata: {
  *                 "key": "value"
  *             },
- *             type: "chat_prompt"
+ *             ml_repo: "ml_repo",
+ *             type: "chat_prompt",
+ *             messages: [{
+ *                     role: "system",
+ *                     content: "content"
+ *                 }]
  *         }
  *     }
  */

@@ -312,10 +312,16 @@ export class Prompts {
      * @example
      *     await client.prompts.createOrUpdate({
      *         manifest: {
+     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             type: "chat_prompt"
+     *             ml_repo: "ml_repo",
+     *             type: "chat_prompt",
+     *             messages: [{
+     *                     role: "system",
+     *                     content: "content"
+     *                 }]
      *         }
      *     })
      */

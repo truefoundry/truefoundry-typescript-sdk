@@ -4,11 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-/**
- * +discriminator=role
- * +usage=A single chat message turn
- */
-export type ChatMessageTurn =
+export type ChatPromptManifestMessagesItem =
     | TrueFoundry.SystemMessage
     | TrueFoundry.AssistantMessage
     | TrueFoundry.UserMessage

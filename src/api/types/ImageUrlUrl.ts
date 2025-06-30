@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Text content for the system message
+ * Image URL linking to the image
  */
-export type SystemMessageContent = string | TrueFoundry.BlobStorageReference;
+export type ImageUrlUrl = string | TrueFoundry.BlobStorageReference;

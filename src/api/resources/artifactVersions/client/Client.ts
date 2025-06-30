@@ -522,10 +522,15 @@ export class ArtifactVersions {
      * @example
      *     await client.artifactVersions.stage({
      *         manifest: {
+     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             type: "model-version"
+     *             ml_repo: "ml_repo",
+     *             type: "model-version",
+     *             source: {
+     *                 type: "truefoundry"
+     *             }
      *         }
      *     })
      */

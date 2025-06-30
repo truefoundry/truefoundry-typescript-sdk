@@ -5,28 +5,26 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Chat Prompt
- * +usage=Fill in the information for opening a new chat prompt
+ * Chat Prompt manifest.
  */
-export interface ChatPromptManifest extends TrueFoundry.BaseArtifactVersion {
+export interface ChatPromptManifest {
+    /** Name of the entity */
+    name: string;
+    description?: string;
+    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
+    metadata: Record<string, unknown>;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string;
+    /** Name of the ML Repo */
+    ml_repo: string;
+    /** Version of the entity */
+    version?: number;
     type: "chat_prompt";
-    /**
-     * +sort=4000
-     * +label=Messages in the chat conversation
-     * +usage=List of messages in the chat conversation, must be non-empty
-     */
-    messages?: TrueFoundry.ChatMessageTurn[];
-    /**
-     * +label=Variables
-     * +usage=Variables referenced in messages and that can be replaced when running generation
-     * +sort=5000
-     */
-    variables?: Record<string, string | undefined>;
+    /** List of messages in the chat conversation, must be non-empty */
+    messages: TrueFoundry.ChatPromptManifestMessagesItem[];
+    /** Variables referenced in messages and that can be replaced when running generation */
+    variables?: Record<string, string>;
     model_configuration?: TrueFoundry.ModelConfiguration;
-    /**
-     * +label=Tools
-     * +usage=List of tools to be used in the chat prompt
-     * +sort=7000
-     */
+    /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];
 }

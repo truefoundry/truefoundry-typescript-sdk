@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Content
- * +usage=The contents of the developer message.
+ * The contents of the developer message.
  */
 export type DeveloperMessageContent = string | TrueFoundry.BlobStorageReference;

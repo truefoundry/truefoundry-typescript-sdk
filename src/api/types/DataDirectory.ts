@@ -4,43 +4,14 @@
 
 import * as TrueFoundry from "../index";
 
-/**
- * +label=Data Directory
- */
 export interface DataDirectory {
-    /**
-     * +label=Type
-     * +value=data-dir
-     */
-    type: "data-dir";
-    /**
-     * +sort=1
-     * +label=Name
-     * +usage=Name of the data directory
-     * +message=The data directory name should start with lowercase alphabets and can contain alphanumeric and can include '-' in between
-     */
+    id: string;
+    ml_repo_id: string;
     name: string;
-    /**
-     * +label=MLRepo
-     * +usage=Name of the ML Repo to create the data directory under
-     * +uiType=Hidden
-     */
-    ml_repo: string;
-    /**
-     * +sort=2
-     * +label=Description
-     * +usage=Description for the data directory
-     */
-    description?: string;
-    /**
-     * +label=Metadata
-     * +usage=Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}`
-     * +uiType=JsonInput
-     */
-    metadata: Record<string, unknown>;
-    /**
-     * +label=Data Directory Source
-     * +uiType=Group
-     */
-    source: TrueFoundry.DataDirectorySource;
+    fqn: string;
+    created_by_subject: TrueFoundry.Subject;
+    created_at: string;
+    updated_at: string;
+    manifest: TrueFoundry.DataDirectoryManifest;
+    usage_code_snippet?: string;
 }

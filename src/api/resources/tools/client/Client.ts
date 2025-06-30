@@ -308,10 +308,20 @@ export class Tools {
      * @example
      *     await client.tools.createOrUpdate({
      *         manifest: {
+     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             type: "openapi-tool"
+     *             ml_repo: "ml_repo",
+     *             type: "openapi-tool",
+     *             openapi_spec: {
+     *                 type: "blob-storage",
+     *                 path: "path",
+     *                 mime_type: "text/plain"
+     *             },
+     *             base_url: "base_url",
+     *             path: "path",
+     *             method: "get"
      *         }
      *     })
      */

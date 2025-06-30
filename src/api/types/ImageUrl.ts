@@ -5,11 +5,10 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Image content for the message
+ * Image URL linking to the image
  */
-export interface ImageContentPart {
-    /** Type of the content part */
-    type: "image_url";
+export interface ImageUrl {
     /** Image URL linking to the image */
-    image_url: TrueFoundry.ImageUrl;
+    url: TrueFoundry.ImageUrlUrl;
+    detail?: string;
 }

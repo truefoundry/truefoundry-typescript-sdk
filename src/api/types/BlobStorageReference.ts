@@ -5,21 +5,12 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=Blob Storage Reference
- * +usage=A reference to content offloaded to blob storage
- * +docs=Defines the structure for blob storage content references, including type, path, and mime_type
+ * A reference to content offloaded to blob storage
  */
 export interface BlobStorageReference {
-    /** +value=blob-storage */
     type: "blob-storage";
-    /**
-     * +label=Path
-     * +usage=Path to the content in blob storage
-     */
+    /** Path to the content in blob storage */
     path: string;
-    /**
-     * +label=MIME Type
-     * +usage=MIME type of the content
-     */
-    mime_type: TrueFoundry.BlobStorageReferenceMimeType;
+    /** MIME type of the content */
+    mime_type: TrueFoundry.MimeType;
 }
