@@ -7,9 +7,9 @@ import * as TrueFoundry from "../index";
 export interface AgentApp {
     type?: "agent-app";
     /** Tools available to the Agent app */
-    tools: TrueFoundry.AgentOpenApiToolWithFqn[];
+    tools: TrueFoundry.AgentOpenApiToolManifestWithFqn[];
     /** Agents available to the Agent app */
-    agents: TrueFoundry.AgentWithFqn[];
+    agents: TrueFoundry.AgentManifestWithFqn[];
     /** Root Agent for the app. This will be the first agent invoked */
     root_agent: string;
 }

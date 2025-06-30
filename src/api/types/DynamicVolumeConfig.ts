@@ -18,7 +18,7 @@ export interface DynamicVolumeConfig {
      */
     storage_class: string;
     /**
-     * +label=Size
+     * +label=Size(Gi)
      * +unit=Gi
      * +usage=Size of volume in Gi
      */
