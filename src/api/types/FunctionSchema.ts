@@ -3,15 +3,30 @@
  */
 
 /**
- * Schema defining a function for tool calls
+ * +label=Function Schema
+ * +usage=Schema defining a function for tool calls
  */
 export interface FunctionSchema {
-    /** Name of the function */
+    /**
+     * +label=Function Name
+     * +usage=Name of the function
+     */
     name: string;
-    /** Description of the function */
+    /**
+     * +label=Description
+     * +usage=Description of the function
+     */
     description: string;
-    /** Parameters schema for the function */
+    /**
+     * +label=Parameters
+     * +usage=Parameters schema for the function
+     * +uiType=JsonInput
+     * +uiProps={"descriptionInline":true}
+     */
     parameters?: Record<string, unknown>;
-    /** Indicates if the function should be called strictly */
-    strict?: boolean;
+    /**
+     * +label=Strict
+     * +usage=Indicates if the function should be called strictly
+     */
+    strict: boolean;
 }

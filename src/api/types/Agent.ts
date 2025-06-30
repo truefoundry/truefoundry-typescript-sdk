@@ -4,15 +4,44 @@
 
 import * as TrueFoundry from "../index";
 
-export interface Agent {
-    id: string;
-    ml_repo_id: string;
+export interface Agent extends TrueFoundry.BaseArtifactVersion {
+    /**
+     * +value=agent
+     * +usage=Type of the entity
+     */
     type?: "agent";
-    name: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    latest_version?: TrueFoundry.AgentVersion;
-    run_steps?: number[];
+    /**
+     * +sort=100
+     * +uiType=TextArea
+     * +label=Goal
+     * +usage=Short form description. Will be used as `description` when this agent is used as a tool.
+     * +uiProps={"descriptionInline":true}
+     */
+    goal?: string;
+    /**
+     * `instruction` is the system prompt for now. (2.5 * 1024)
+     * +sort=150
+     * +uiType=AgentInstructions
+     * +uiProps={"helpText":"Use the syntax ${Tool FQN} to reference a tool, and ${AGENT FQN} to reference another agent"}
+     * +label=Instructions
+     * +usage=Instructions for the agent to follow to achieve the goal
+     * +uiProps={"descriptionInline":true}
+     */
+    instruction?: string;
+    /**
+     * +sort=200
+     * +uiType=Hidden
+     * +label=Tools
+     * +usage=Tools available to the agent
+     * +uiProps={"descriptionInline":true}
+     */
+    available_tools?: string[];
+    /**
+     * +sort=300
+     * +uiType=EnabledModelSelector
+     * +uiProps={"searchable":true,"modelType":"chat","providerType":"openai"}
+     * +label=Model
+     * +usage=Model to use when running the agent
+     */
+    model_id?: string;
 }

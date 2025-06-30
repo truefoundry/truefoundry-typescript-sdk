@@ -3,8 +3,14 @@
  */
 
 export interface ArtifactPath {
-    /** Local file or folder path */
+    /**
+     * +label=Source path
+     * +usage=Local file or folder path
+     */
     src: string;
-    /** Relative path where the file or folder will be uploaded to in the artifact */
+    /**
+     * +label=Destination path
+     * +usage=Relative path where the file or folder will be uploaded to in the artifact
+     */
     dest?: string;
 }

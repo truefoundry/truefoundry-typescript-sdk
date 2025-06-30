@@ -5,15 +5,35 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Add a model from Gateway along with parameters to be used for chat completion
+ * +label=Model Configuration
+ * +icon=fa-cogs:#326ce5
+ * +usage=Add a model from Gateway along with parameters to be used for chat completion
  */
 export interface ModelConfiguration {
-    /** Name of the provider, must be one of the integration providers configured for the Gateway */
+    /**
+     * +sort=1000
+     * +uiType=SelectModelAndProvider
+     * +uiProps={"isModel": false,"providerJsonKey": "model_configuration.provider","searchable": true}
+     * +label=Provider Name
+     * +usage=Name of the provider, must be one of the integration providers configured for the Gateway
+     */
     provider: string;
-    /** Name of the model to be used for generations. This model should be available in the provider */
+    /**
+     * +sort=1001
+     * +uiType=SelectModelAndProvider
+     * +uiProps={"isModel": true,"providerJsonKey": "model_configuration.provider","searchable": true}
+     * +label=Model Name
+     * +usage=Name of the model to be used for generations. This model should be available in the provider
+     */
     model: string;
-    /** Parameters to pass to the model when generating */
-    parameters?: TrueFoundry.Parameters;
-    /** Arbitrary extra parameters to pass to the model when generating */
+    /**
+     * +label=Parameters
+     * +usage=Parameters to pass to the model when generating
+     */
+    parameters?: TrueFoundry.ModelConfigurationParameters;
+    /**
+     * +label=Extra Parameters
+     * +usage=Arbitrary extra parameters to pass to the model when generating
+     */
     extra_parameters?: Record<string, unknown>;
 }

@@ -5,13 +5,27 @@
 import * as TrueFoundry from "../index";
 
 /**
- * System message for the chat
+ * +label=System Message
+ * +usage=System message for the chat
  */
 export interface SystemMessage {
-    /** Role of the message */
+    /**
+     * +value=system
+     * +label=Role
+     * +usage=Role of the message
+     * +uiType=Ignore
+     */
     role: "system";
-    /** Text content for the system message */
+    /**
+     * +label=Content
+     * +usage=Text content for the system message
+     * +uiType=CodeEditor
+     * +uiProps={"language": "text"}
+     */
     content: TrueFoundry.SystemMessageContent;
-    /** Name of the system */
+    /**
+     * +label=Name
+     * +usage=Name of the system
+     */
     name?: string;
 }

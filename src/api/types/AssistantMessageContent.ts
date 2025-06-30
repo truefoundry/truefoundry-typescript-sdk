@@ -5,7 +5,10 @@
 import * as TrueFoundry from "../index";
 
 /**
- * Text content for the assistant message
+ * +label=Content
+ * +usage=Text content for the assistant message
+ * +uiType=CodeEditor
+ * +uiProps={"language": "text"}
  */
 export type AssistantMessageContent =
     | string

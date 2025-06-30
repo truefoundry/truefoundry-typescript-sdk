@@ -4,14 +4,32 @@
 
 import * as TrueFoundry from "../index";
 
-export interface ArtifactVersion {
-    id: string;
-    fqn: string;
-    created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    manifest: TrueFoundry.ArtifactManifest;
-    usage_code_snippet?: string;
-    ml_repo_id: string;
-    artifact_id: string;
+/**
+ * +label=Artifact Version
+ * +usage=Log a new Artifact Version containing files and folders with metadata
+ */
+export interface ArtifactVersion extends TrueFoundry.BaseArtifactVersion {
+    /**
+     * +label=Type
+     * +usage=Artifact Version
+     * +value=artifact-version
+     */
+    type?: "artifact-version";
+    /**
+     * +label=Artifact Source
+     * +uiType=Group
+     */
+    source?: TrueFoundry.ArtifactVersionSource;
+    /**
+     * +label=Step
+     * +usage=Step/Epoch number in an iterative training loop the artifact version was created. Generally useful when logging a model version from a MLRepo Run
+     * +uiProps={"descriptionInline":true}
+     */
+    step?: number;
+    /**
+     * +label=Run ID
+     * +usage=ID of the MLRepo Run that generated the artifact version
+     * +uiType=Hidden
+     */
+    run_id?: string;
 }
