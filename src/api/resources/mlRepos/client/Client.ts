@@ -45,7 +45,13 @@ export class MlRepos {
      * @example
      *     await client.mlRepos.createOrUpdate({
      *         manifest: {
-     *             "key": "value"
+     *             type: "ml-repo",
+     *             name: "name",
+     *             storage_integration_fqn: "storage_integration_fqn",
+     *             collaborators: [{
+     *                     subject: "subject",
+     *                     role_id: "role_id"
+     *                 }]
      *         }
      *     })
      */
