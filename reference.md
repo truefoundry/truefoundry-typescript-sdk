@@ -4198,15 +4198,7 @@ Creates or updates an MLRepo entity based on the provided manifest.
 ```typescript
 await client.mlRepos.createOrUpdate({
     manifest: {
-        type: "ml-repo",
-        name: "name",
-        storage_integration_fqn: "storage_integration_fqn",
-        collaborators: [
-            {
-                subject: "subject",
-                role_id: "role_id",
-            },
-        ],
+        key: "value",
     },
 });
 ```
