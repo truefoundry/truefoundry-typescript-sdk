@@ -1,16 +1,22 @@
-import * as core from "./core";
 import {
+    WrappedAgents,
     WrappedAgentVersions,
     WrappedApplications,
+    WrappedArtifacts,
     WrappedArtifactVersions,
+    WrappedDataDirectories,
+    WrappedModels,
     WrappedModelVersions,
+    WrappedPrompts,
     WrappedPromptVersions,
     WrappedSecretGroups,
+    WrappedTools,
     WrappedToolVersions,
     WrappedTracingProjects,
     WrappedWorkspaces,
 } from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
+import * as core from "./core";
 
 export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Options, 'environment'> {
     baseUrl: core.Supplier<string>;
@@ -19,20 +25,30 @@ export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Opt
 
 export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected readonly _options: BaseTrueFoundryClient.Options;
+    protected _agents: WrappedAgents | undefined;
     protected _agentVersions: WrappedAgentVersions | undefined;
     protected _applications: WrappedApplications | undefined;
+    protected _artifacts: WrappedArtifacts | undefined;
     protected _artifactVersions: WrappedArtifactVersions | undefined;
+    protected _dataDirectories: WrappedDataDirectories | undefined;
+    protected _models: WrappedModels | undefined;
     protected _modelVersions: WrappedModelVersions | undefined;
+    protected _prompts: WrappedPrompts | undefined;
     protected _promptVersions: WrappedPromptVersions | undefined;
     protected _secretGroups: WrappedSecretGroups | undefined;
+    protected _tools: WrappedTools | undefined;
     protected _toolVersions: WrappedToolVersions | undefined;
     protected _tracingProjects: WrappedTracingProjects | undefined;
     protected _workspaces: WrappedWorkspaces | undefined;
 
     constructor(_options: TrueFoundryClientOptions) {
-        const options = {..._options, environment: _options.environment ?? ''}
+        const options = { ..._options, environment: _options.environment ?? '' }
         super(options);
         this._options = options;
+    }
+
+    public get agents(): WrappedAgents {
+        return (this._agents ??= new WrappedAgents(this._options));
     }
 
     public get agentVersions(): WrappedAgentVersions {
@@ -43,12 +59,28 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
         return (this._applications ??= new WrappedApplications(this._options));
     }
 
+    public get artifacts(): WrappedArtifacts {
+        return (this._artifacts ??= new WrappedArtifacts(this._options));
+    }
+
     public get artifactVersions(): WrappedArtifactVersions {
         return (this._artifactVersions ??= new WrappedArtifactVersions(this._options));
     }
 
+    public get dataDirectories(): WrappedDataDirectories {
+        return (this._dataDirectories ??= new WrappedDataDirectories(this._options));
+    }
+
+    public get models(): WrappedModels {
+        return (this._models ??= new WrappedModels(this._options));
+    }
+
     public get modelVersions(): WrappedModelVersions {
         return (this._modelVersions ??= new WrappedModelVersions(this._options));
+    }
+
+    public get prompts(): WrappedPrompts {
+        return (this._prompts ??= new WrappedPrompts(this._options));
     }
 
     public get promptVersions(): WrappedPromptVersions {
@@ -57,6 +89,10 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
 
     public get secretGroups(): WrappedSecretGroups {
         return (this._secretGroups ??= new WrappedSecretGroups(this._options));
+    }
+
+    public get tools(): WrappedTools {
+        return (this._tools ??= new WrappedTools(this._options));
     }
 
     public get toolVersions(): WrappedToolVersions {
