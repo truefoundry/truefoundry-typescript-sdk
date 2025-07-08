@@ -247,7 +247,7 @@ export class ArtifactVersions {
                     _queryParams["name"] = name;
                 }
                 if (version != null) {
-                    _queryParams["version"] = version;
+                    _queryParams["version"] = version.toString();
                 }
                 if (runIds != null) {
                     if (Array.isArray(runIds)) {
