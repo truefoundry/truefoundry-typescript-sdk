@@ -212,8 +212,11 @@ export class Artifacts {
             async (
                 request: TrueFoundry.ArtifactsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListArtifactsResponse>> => {
-                const { ml_repo_id: mlRepoId, name, offset, limit, run_id: runId } = request;
+                const { fqn, ml_repo_id: mlRepoId, name, offset, limit, run_id: runId } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
+                }
                 if (mlRepoId != null) {
                     _queryParams["ml_repo_id"] = mlRepoId;
                 }

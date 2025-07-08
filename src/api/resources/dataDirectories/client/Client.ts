@@ -254,8 +254,11 @@ export class DataDirectories {
             async (
                 request: TrueFoundry.DataDirectoriesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListDataDirectoriesResponse>> => {
-                const { ml_repo_id: mlRepoId, name, limit, offset } = request;
+                const { fqn, ml_repo_id: mlRepoId, name, limit, offset } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
+                }
                 if (mlRepoId != null) {
                     _queryParams["ml_repo_id"] = mlRepoId;
                 }

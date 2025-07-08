@@ -11,6 +11,4 @@ export interface GuardrailsConfig {
     type: "gateway-guardrails-config";
     /** +usage=List of guardrail rules */
     rules: TrueFoundry.GuardrailsRule[];
-    /** +usage=URL of the guardrails service */
-    guardrails_service_url: string;
 }

@@ -7,4 +7,5 @@ import * as TrueFoundry from "../index";
 export type ProviderAccounts =
     | TrueFoundry.InfraProviderAccount
     | TrueFoundry.ModelProviderAccount
-    | TrueFoundry.McpServerProviderAccount;
+    | TrueFoundry.McpServerProviderAccount
+    | TrueFoundry.GuardrailConfigGroup;

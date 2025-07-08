@@ -8527,7 +8527,7 @@ await client.internal.workflows.executeWorkflow("applicationId");
 
 ## Internal ArtifactVersions
 
-<details><summary><code>client.internal.artifactVersions.<a href="/src/api/resources/internal/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.InternalListArtifactVersionResponseDataItem></code></summary>
+<details><summary><code>client.internal.artifactVersions.<a href="/src/api/resources/internal/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.InternalListArtifactVersionsResponseDataItem></code></summary>
 <dl>
 <dd>
 

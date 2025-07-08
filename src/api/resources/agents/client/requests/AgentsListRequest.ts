@@ -7,6 +7,7 @@
  *     {}
  */
 export interface AgentsListRequest {
+    fqn?: string;
     ml_repo_id?: string;
     name?: string;
     offset?: number;
