@@ -1,14 +1,20 @@
+import * as core from "../../core";
+import * as TrueFoundry from "../index";
+import { Agents } from "./agents/client/Client";
 import { AgentVersions } from "./agentVersions/client/Client";
 import { Applications } from "./applications/client/Client";
+import { Artifacts } from "./artifacts/client/Client";
 import { ArtifactVersions } from "./artifactVersions/client/Client";
+import { DataDirectories } from "./dataDirectories/client/Client";
+import { Models } from "./models/client/Client";
 import { ModelVersions } from "./modelVersions/client/Client";
+import { Prompts } from "./prompts/client/Client";
 import { PromptVersions } from "./promptVersions/client/Client";
 import { SecretGroups } from "./secretGroups/client/Client";
+import { Tools } from "./tools/client/Client";
 import { ToolVersions } from "./toolVersions/client/Client";
 import { TracingProjects } from "./tracingProjects/client/Client";
 import { Workspaces } from "./workspaces/client/Client";
-import * as core from "../../core"
-import * as TrueFoundry from "../index";
 
 interface HasAsyncListMethod<T> {
     list(request: { fqn: string; limit?: number }, requestOptions?: object): Promise<core.Page<T>>;
@@ -30,6 +36,25 @@ async function getByFqn<T>(client: HasAsyncListMethod<T>, fqn: string, requestOp
     return result;
 }
 
+export class WrappedAgents extends Agents {
+    /**
+     * Get agent API
+     *
+     * @param {string} fqn
+     * @param {Agents.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.agents.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: Agents.RequestOptions,
+    ): Promise<TrueFoundry.GetAgentResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
 
 export class WrappedAgentVersions extends AgentVersions {
     /**
@@ -71,6 +96,26 @@ export class WrappedApplications extends Applications {
     }
 }
 
+export class WrappedArtifacts extends Artifacts {
+    /**
+     * Get artifact API
+     *
+     * @param {string} fqn
+     * @param {Artifacts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.artifacts.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: Artifacts.RequestOptions,
+    ): Promise<TrueFoundry.GetArtifactResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
 export class WrappedArtifactVersions extends ArtifactVersions {
     /**
      * Get artifact version API
@@ -91,6 +136,46 @@ export class WrappedArtifactVersions extends ArtifactVersions {
     }
 }
 
+export class WrappedDataDirectories extends DataDirectories {
+    /**
+     * Get data directory API
+     *
+     * @param {string} fqn
+     * @param {DataDirectories.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.dataDirectories.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: DataDirectories.RequestOptions,
+    ): Promise<TrueFoundry.GetDataDirectoryResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
+export class WrappedModels extends Models {
+    /**
+     * Get model API
+     *
+     * @param {string} fqn
+     * @param {Models.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.models.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: Models.RequestOptions,
+    ): Promise<TrueFoundry.GetModelResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
 export class WrappedModelVersions extends ModelVersions {
     /**
      * Get model version API
@@ -107,6 +192,26 @@ export class WrappedModelVersions extends ModelVersions {
         fqn: string,
         requestOptions?: ModelVersions.RequestOptions,
     ): Promise<TrueFoundry.GetModelVersionResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
+export class WrappedPrompts extends Prompts {
+    /**
+     * Get prompt API
+     *
+     * @param {string} fqn
+     * @param {Prompts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.prompts.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: Prompts.RequestOptions,
+    ): Promise<TrueFoundry.GetPromptResponse> {
         return { data: await getByFqn(this, fqn, requestOptions) }
     }
 }
@@ -147,6 +252,26 @@ export class WrappedSecretGroups extends SecretGroups {
         fqn: string,
         requestOptions?: SecretGroups.RequestOptions,
     ): Promise<TrueFoundry.GetSecretGroupResponse> {
+        return { data: await getByFqn(this, fqn, requestOptions) }
+    }
+}
+
+export class WrappedTools extends Tools {
+    /**
+     * Get tool API
+     *
+     * @param {string} fqn
+     * @param {Tools.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.v1.tools.getByFqn("fqn")
+     */
+    public async getByFqn(
+        fqn: string,
+        requestOptions?: Tools.RequestOptions,
+    ): Promise<TrueFoundry.GetToolResponse> {
         return { data: await getByFqn(this, fqn, requestOptions) }
     }
 }
