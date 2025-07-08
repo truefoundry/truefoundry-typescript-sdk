@@ -7,6 +7,7 @@
  *     {}
  */
 export interface DataDirectoriesListRequest {
+    fqn?: string;
     ml_repo_id?: string;
     name?: string;
     limit?: number;

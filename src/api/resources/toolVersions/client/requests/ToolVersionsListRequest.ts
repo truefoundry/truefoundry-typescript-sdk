@@ -7,8 +7,10 @@
  *     {}
  */
 export interface ToolVersionsListRequest {
-    tool_id?: string;
     fqn?: string;
+    tool_id?: string;
+    ml_repo_id?: string;
+    name?: string;
     offset?: number;
     limit?: number;
 }

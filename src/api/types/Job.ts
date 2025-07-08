@@ -36,7 +36,7 @@ export interface Job {
     trigger_on_deploy?: boolean;
     /**
      * +label=Params for input
-     * +uiType=ParamsInput
+     * +uiType=StructsTable
      * +usage=Configure params and pass it to create different job runs
      * +sort=400
      */

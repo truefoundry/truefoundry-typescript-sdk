@@ -7,8 +7,10 @@
  *     {}
  */
 export interface AgentVersionsListRequest {
-    agent_id?: string;
     fqn?: string;
+    agent_id?: string;
+    ml_repo_id?: string;
+    name?: string;
     offset?: number;
     limit?: number;
 }

@@ -45,33 +45,35 @@ export class ArtifactVersions {
     public async list(
         request: TrueFoundry.internal.ArtifactVersionsListRequest = {},
         requestOptions?: ArtifactVersions.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.InternalListArtifactVersionResponseDataItem>> {
+    ): Promise<core.Page<TrueFoundry.InternalListArtifactVersionsResponseDataItem>> {
         const list = core.HttpResponsePromise.interceptFunction(
             async (
                 request: TrueFoundry.internal.ArtifactVersionsListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionResponse>> => {
+            ): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionsResponse>> => {
                 const {
-                    artifact_id: artifactId,
                     fqn,
-                    offset,
-                    limit,
+                    artifact_id: artifactId,
+                    ml_repo_id: mlRepoId,
+                    name,
                     run_ids: runIds,
                     run_steps: runSteps,
+                    offset,
+                    limit,
                     include_internal_metadata: includeInternalMetadata,
                     include_model_versions: includeModelVersions,
                 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (artifactId != null) {
-                    _queryParams["artifact_id"] = artifactId;
-                }
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
                 }
-                if (offset != null) {
-                    _queryParams["offset"] = offset.toString();
+                if (artifactId != null) {
+                    _queryParams["artifact_id"] = artifactId;
                 }
-                if (limit != null) {
-                    _queryParams["limit"] = limit.toString();
+                if (mlRepoId != null) {
+                    _queryParams["ml_repo_id"] = mlRepoId;
+                }
+                if (name != null) {
+                    _queryParams["name"] = name;
                 }
                 if (runIds != null) {
                     if (Array.isArray(runIds)) {
@@ -86,6 +88,12 @@ export class ArtifactVersions {
                     } else {
                         _queryParams["run_steps"] = runSteps.toString();
                     }
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
                 }
                 if (includeInternalMetadata != null) {
                     _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
@@ -120,7 +128,7 @@ export class ArtifactVersions {
                 });
                 if (_response.ok) {
                     return {
-                        data: _response.body as TrueFoundry.InternalListArtifactVersionResponse,
+                        data: _response.body as TrueFoundry.InternalListArtifactVersionsResponse,
                         rawResponse: _response.rawResponse,
                     };
                 }
@@ -161,8 +169,8 @@ export class ArtifactVersions {
         let _offset = request?.offset != null ? request?.offset : 0;
         const dataWithRawResponse = await list(request).withRawResponse();
         return new core.Pageable<
-            TrueFoundry.InternalListArtifactVersionResponse,
-            TrueFoundry.InternalListArtifactVersionResponseDataItem
+            TrueFoundry.InternalListArtifactVersionsResponse,
+            TrueFoundry.InternalListArtifactVersionsResponseDataItem
         >({
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,

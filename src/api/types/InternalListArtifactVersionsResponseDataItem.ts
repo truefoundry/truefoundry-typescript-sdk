@@ -4,6 +4,6 @@
 
 import * as TrueFoundry from "../index";
 
-export type InternalListArtifactVersionResponseDataItem =
+export type InternalListArtifactVersionsResponseDataItem =
     | TrueFoundry.InternalArtifactVersion
     | TrueFoundry.InternalModelVersion;

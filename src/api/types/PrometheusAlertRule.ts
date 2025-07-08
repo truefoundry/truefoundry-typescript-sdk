@@ -11,6 +11,7 @@ export interface PrometheusAlertRule {
     /**
      * +label=Type
      * +value=prometheus-alert-rule
+     * +uiType=Hidden
      */
     type: "prometheus-alert-rule";
     /**

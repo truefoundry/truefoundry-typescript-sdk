@@ -7,11 +7,13 @@
  *     {}
  */
 export interface ArtifactVersionsListRequest {
-    artifact_id?: string;
     fqn?: string;
-    offset?: number;
-    limit?: number;
+    artifact_id?: string;
+    ml_repo_id?: string;
+    name?: string;
     run_ids?: string | string[];
     run_steps?: number | number[];
+    offset?: number;
+    limit?: number;
     include_internal_metadata?: boolean;
 }

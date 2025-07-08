@@ -306,13 +306,19 @@ export class AgentVersions {
             async (
                 request: TrueFoundry.AgentVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListAgentVersionsResponse>> => {
-                const { agent_id: agentId, fqn, offset, limit } = request;
+                const { fqn, agent_id: agentId, ml_repo_id: mlRepoId, name, offset, limit } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
+                }
                 if (agentId != null) {
                     _queryParams["agent_id"] = agentId;
                 }
-                if (fqn != null) {
-                    _queryParams["fqn"] = fqn;
+                if (mlRepoId != null) {
+                    _queryParams["ml_repo_id"] = mlRepoId;
+                }
+                if (name != null) {
+                    _queryParams["name"] = name;
                 }
                 if (offset != null) {
                     _queryParams["offset"] = offset.toString();

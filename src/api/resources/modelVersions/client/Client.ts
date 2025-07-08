@@ -219,26 +219,28 @@ export class ModelVersions {
                 request: TrueFoundry.ModelVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListModelVersionsResponse>> => {
                 const {
-                    model_id: modelId,
                     fqn,
-                    offset,
-                    limit,
+                    model_id: modelId,
+                    ml_repo_id: mlRepoId,
+                    name,
                     run_ids: runIds,
                     run_steps: runSteps,
+                    offset,
+                    limit,
                     include_internal_metadata: includeInternalMetadata,
                 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (modelId != null) {
-                    _queryParams["model_id"] = modelId;
-                }
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
                 }
-                if (offset != null) {
-                    _queryParams["offset"] = offset.toString();
+                if (modelId != null) {
+                    _queryParams["model_id"] = modelId;
                 }
-                if (limit != null) {
-                    _queryParams["limit"] = limit.toString();
+                if (mlRepoId != null) {
+                    _queryParams["ml_repo_id"] = mlRepoId;
+                }
+                if (name != null) {
+                    _queryParams["name"] = name;
                 }
                 if (runIds != null) {
                     if (Array.isArray(runIds)) {
@@ -253,6 +255,12 @@ export class ModelVersions {
                     } else {
                         _queryParams["run_steps"] = runSteps.toString();
                     }
+                }
+                if (offset != null) {
+                    _queryParams["offset"] = offset.toString();
+                }
+                if (limit != null) {
+                    _queryParams["limit"] = limit.toString();
                 }
                 if (includeInternalMetadata != null) {
                     _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();

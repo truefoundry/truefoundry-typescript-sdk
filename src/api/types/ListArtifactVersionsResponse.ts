@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export interface InternalListArtifactVersionResponse {
-    data: TrueFoundry.InternalListArtifactVersionResponseDataItem[];
+export interface ListArtifactVersionsResponse {
+    data: TrueFoundry.ArtifactVersion[];
     pagination: TrueFoundry.Pagination;
 }

@@ -218,13 +218,19 @@ export class PromptVersions {
             async (
                 request: TrueFoundry.PromptVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListPromptVersionsResponse>> => {
-                const { prompt_id: promptId, fqn, offset, limit } = request;
+                const { fqn, prompt_id: promptId, ml_repo_id: mlRepoId, name, offset, limit } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (fqn != null) {
+                    _queryParams["fqn"] = fqn;
+                }
                 if (promptId != null) {
                     _queryParams["prompt_id"] = promptId;
                 }
-                if (fqn != null) {
-                    _queryParams["fqn"] = fqn;
+                if (mlRepoId != null) {
+                    _queryParams["ml_repo_id"] = mlRepoId;
+                }
+                if (name != null) {
+                    _queryParams["name"] = name;
                 }
                 if (offset != null) {
                     _queryParams["offset"] = offset.toString();
