@@ -223,6 +223,7 @@ export class ModelVersions {
                     model_id: modelId,
                     ml_repo_id: mlRepoId,
                     name,
+                    version,
                     run_ids: runIds,
                     run_steps: runSteps,
                     offset,
@@ -241,6 +242,9 @@ export class ModelVersions {
                 }
                 if (name != null) {
                     _queryParams["name"] = name;
+                }
+                if (version != null) {
+                    _queryParams["version"] = version;
                 }
                 if (runIds != null) {
                     if (Array.isArray(runIds)) {

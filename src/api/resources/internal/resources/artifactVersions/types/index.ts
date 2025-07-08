@@ -1,2 +1,1 @@
 export * from "./ArtifactVersionsListRequestVersion";
-export * from "./StageArtifactRequestManifest";
