@@ -11,7 +11,7 @@ export interface ToolVersionsListRequest {
     tool_id?: string;
     ml_repo_id?: string;
     name?: string;
-    version?: number;
+    version?: string;
     offset?: number;
     limit?: number;
 }
