@@ -306,7 +306,7 @@ export class AgentVersions {
             async (
                 request: TrueFoundry.AgentVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListAgentVersionsResponse>> => {
-                const { fqn, agent_id: agentId, ml_repo_id: mlRepoId, name, offset, limit } = request;
+                const { fqn, agent_id: agentId, ml_repo_id: mlRepoId, name, version, offset, limit } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
@@ -319,6 +319,9 @@ export class AgentVersions {
                 }
                 if (name != null) {
                     _queryParams["name"] = name;
+                }
+                if (version != null) {
+                    _queryParams["version"] = version.toString();
                 }
                 if (offset != null) {
                     _queryParams["offset"] = offset.toString();

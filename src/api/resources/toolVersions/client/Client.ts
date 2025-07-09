@@ -218,7 +218,7 @@ export class ToolVersions {
             async (
                 request: TrueFoundry.ToolVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListToolVersionsResponse>> => {
-                const { fqn, tool_id: toolId, ml_repo_id: mlRepoId, name, offset, limit } = request;
+                const { fqn, tool_id: toolId, ml_repo_id: mlRepoId, name, version, offset, limit } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
@@ -231,6 +231,9 @@ export class ToolVersions {
                 }
                 if (name != null) {
                     _queryParams["name"] = name;
+                }
+                if (version != null) {
+                    _queryParams["version"] = version.toString();
                 }
                 if (offset != null) {
                     _queryParams["offset"] = offset.toString();

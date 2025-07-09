@@ -226,6 +226,7 @@ export class ArtifactVersions {
                     artifact_id: artifactId,
                     ml_repo_id: mlRepoId,
                     name,
+                    version,
                     run_ids: runIds,
                     run_steps: runSteps,
                     offset,
@@ -244,6 +245,9 @@ export class ArtifactVersions {
                 }
                 if (name != null) {
                     _queryParams["name"] = name;
+                }
+                if (version != null) {
+                    _queryParams["version"] = version.toString();
                 }
                 if (runIds != null) {
                     if (Array.isArray(runIds)) {

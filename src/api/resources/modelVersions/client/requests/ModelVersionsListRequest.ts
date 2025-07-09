@@ -11,6 +11,7 @@ export interface ModelVersionsListRequest {
     model_id?: string;
     ml_repo_id?: string;
     name?: string;
+    version?: number;
     run_ids?: string | string[];
     run_steps?: number | number[];
     offset?: number;
