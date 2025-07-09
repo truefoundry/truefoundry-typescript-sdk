@@ -11,7 +11,7 @@ export interface ArtifactVersionsListRequest {
     artifact_id?: string;
     ml_repo_id?: string;
     name?: string;
-    version?: string;
+    version?: number;
     run_ids?: string | string[];
     run_steps?: number | number[];
     offset?: number;

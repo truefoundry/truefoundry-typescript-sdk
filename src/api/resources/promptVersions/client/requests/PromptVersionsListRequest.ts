@@ -11,7 +11,7 @@ export interface PromptVersionsListRequest {
     prompt_id?: string;
     ml_repo_id?: string;
     name?: string;
-    version?: string;
+    version?: number;
     offset?: number;
     limit?: number;
 }

@@ -233,7 +233,7 @@ export class ToolVersions {
                     _queryParams["name"] = name;
                 }
                 if (version != null) {
-                    _queryParams["version"] = version;
+                    _queryParams["version"] = version.toString();
                 }
                 if (offset != null) {
                     _queryParams["offset"] = offset.toString();
