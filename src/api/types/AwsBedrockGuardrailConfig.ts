@@ -12,11 +12,18 @@ export interface AwsBedrockGuardrailConfig extends TrueFoundry.BaseGuardrailConf
     /** +value=integration/guardrail-config/aws-bedrock */
     type?: "integration/guardrail-config/aws-bedrock";
     /**
+     * +label=Operation
+     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
+     * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
+     * +uiType=Select
+     * +sort=50
+     */
+    operation?: TrueFoundry.AwsBedrockGuardrailConfigOperation;
+    /**
      * +label=AWS Account Auth Data
      * +usage=Authentication data for the AWS account
      */
     auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
-    region?: TrueFoundry.AwsRegion;
     /**
      * +label=Guardrail ID
      * +usage=The ID of the Guardrail to use.
@@ -27,9 +34,5 @@ export interface AwsBedrockGuardrailConfig extends TrueFoundry.BaseGuardrailConf
      * +usage=The version of the Guardrail to use.
      */
     guardrail_version?: string;
-    /**
-     * +label=Redact PII
-     * +usage=Whether to redact PII from the response. If this is true, your request will be transformed to redact PII from the response else a validation error will be returned.
-     */
-    redact_pii?: boolean;
+    region?: TrueFoundry.AwsRegion;
 }
