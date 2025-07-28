@@ -1,7 +1,5 @@
 import * as core from "../../core";
 import * as TrueFoundry from "../index";
-import { Agents } from "./agents/client/Client";
-import { AgentVersions } from "./agentVersions/client/Client";
 import { Applications } from "./applications/client/Client";
 import { Artifacts } from "./artifacts/client/Client";
 import { ArtifactVersions } from "./artifactVersions/client/Client";
@@ -11,9 +9,6 @@ import { ModelVersions } from "./modelVersions/client/Client";
 import { Prompts } from "./prompts/client/Client";
 import { PromptVersions } from "./promptVersions/client/Client";
 import { SecretGroups } from "./secretGroups/client/Client";
-import { Tools } from "./tools/client/Client";
-import { ToolVersions } from "./toolVersions/client/Client";
-import { TracingProjects } from "./tracingProjects/client/Client";
 import { Workspaces } from "./workspaces/client/Client";
 
 interface HasAsyncListMethod<T> {
