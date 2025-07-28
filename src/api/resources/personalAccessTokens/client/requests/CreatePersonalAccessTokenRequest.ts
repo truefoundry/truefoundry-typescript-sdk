@@ -11,4 +11,6 @@
 export interface CreatePersonalAccessTokenRequest {
     /** serviceaccount name */
     name: string;
+    /** Expiration date in ISO format (e.g. 2025-08-01T12:00) */
+    expirationDate?: string;
 }

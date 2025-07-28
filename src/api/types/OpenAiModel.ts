@@ -30,6 +30,7 @@ export interface OpenAiModel {
      * +sort=3
      * +usage=Specify the type of the OpenAI model
      * +uiType=Select
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

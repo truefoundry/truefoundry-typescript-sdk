@@ -30,6 +30,7 @@ export interface VertexModelV2 {
      * +label=Model Types
      * +sort=4
      * +usage=Specify the type of the Vertex AI model (e.g., chat, text, etc.)
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

@@ -8,8 +8,8 @@ export interface GuardrailsRule {
     /** +usage=Unique identifier for the rule */
     id: string;
     when: TrueFoundry.GuardrailsWhen;
-    /** +usage=Guardrail Integration FQNs of the guardrails to apply to the input */
+    /** +usage=Guardrail selectors of the guardrails to apply to the input (format: groupName/guardrailName) */
     input_guardrails: string[];
-    /** +usage=Guardrail Integration FQNs of the guardrails to apply to the output */
+    /** +usage=Guardrail selectors of the guardrails to apply to the output (format: groupName/guardrailName) */
     output_guardrails: string[];
 }

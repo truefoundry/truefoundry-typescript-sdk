@@ -202,7 +202,7 @@ export class Deployments {
     /**
      * Generate presigned URL to upload code for given serviceName and workspaceFqn
      *
-     * @param {TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequestDto} request
+     * @param {TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequest} request
      * @param {Deployments.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
@@ -212,14 +212,14 @@ export class Deployments {
      *     })
      */
     public getCodeUploadUrl(
-        request: TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequestDto,
+        request: TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequest,
         requestOptions?: Deployments.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.PresignedUrlObject> {
         return core.HttpResponsePromise.fromPromise(this.__getCodeUploadUrl(request, requestOptions));
     }
 
     private async __getCodeUploadUrl(
-        request: TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequestDto,
+        request: TrueFoundry.internal.GenerateCodeUploadPresignedUrlRequest,
         requestOptions?: Deployments.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.PresignedUrlObject>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({

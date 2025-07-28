@@ -7,8 +7,6 @@ import * as TrueFoundry from "../../../../../index";
 export type ApplyMlEntityRequestManifest =
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.AgentOpenApiToolManifest
-    | TrueFoundry.AgentManifest
     | TrueFoundry.ArtifactManifest
     | TrueFoundry.DataDirectoryManifest
     | TrueFoundry.TracingProjectManifest;

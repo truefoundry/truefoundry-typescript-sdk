@@ -6,6 +6,7 @@ import * as TrueFoundry from "../index";
 
 /**
  * +label=Auth Data
+ * +sort=450
  * +usage=Authentication data for the Guardrail Server.
  */
 export type CustomGuardrailConfigAuthData = TrueFoundry.CustomBasicAuth | TrueFoundry.CustomBearerAuth;

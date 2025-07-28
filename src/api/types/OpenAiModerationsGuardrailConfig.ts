@@ -5,33 +5,42 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=OpenAI Moderation Guardrail Config
+ * +label=OpenAI Moderation
  * +icon=openai
  */
-export interface OpenAiModerationsGuardrailConfig extends TrueFoundry.BaseGuardrailConfig {
+export interface OpenAiModerationsGuardrailConfig {
+    /**
+     * +label=Name
+     * +sort=50
+     * +usage=The name of the Guardrail Config.
+     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +uiProps={"disableEdit":true}
+     */
+    name: string;
     /**
      * +value=integration/guardrail-config/openai-moderations
      * +sort=50
+     * +uiType=Hidden
      */
-    type?: "integration/guardrail-config/openai-moderations";
-    auth_data?: TrueFoundry.OpenaiApiKeyAuth;
+    type: "integration/guardrail-config/openai-moderations";
     /**
      * +label=Base URL
-     * +sort=300
-     * +usage=Optional custom base URL for OpenAI API
-     * +message=Base URL must not be empty
+     * +sort=100
+     * +usage=Optional custom base URL for OpenAI API. If not provided, the default base URL will be used.
      */
     base_url?: string;
+    auth_data: TrueFoundry.OpenaiApiKeyAuth;
     /**
      * +label=OpenAI Moderation Model
-     * +sort=400
+     * +sort=300
      * +usage=The model to use for the OpenAI Moderation API.
      */
-    model?: string;
+    model: string;
     /**
      * +label=Category Thresholds
-     * +sort=500
+     * +sort=400
      * +usage=The thresholds for the OpenAI Moderation API.
+     * +uiType=KV
      */
     category_thresholds?: Record<string, TrueFoundry.OpenAiModerationsGuardrailConfigCategoryThresholdsValue>;
 }

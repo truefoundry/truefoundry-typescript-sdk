@@ -4,4 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export type McpServerAuth = TrueFoundry.McpServerHeaderAuth | TrueFoundry.McpServerOAuth2;
+export type McpServerAuth =
+    | TrueFoundry.McpServerHeaderAuth
+    | TrueFoundry.McpServerOAuth2
+    | TrueFoundry.McpServerPassthrough;

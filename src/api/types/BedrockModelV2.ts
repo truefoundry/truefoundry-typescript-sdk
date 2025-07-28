@@ -29,6 +29,7 @@ export interface BedrockModelV2 {
      * +label=Model Types
      * +sort=3
      * +usage=Specify the type of the Bedrock model
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion;

@@ -7,4 +7,7 @@ import * as TrueFoundry from "../index";
 export type GuardrailConfigIntegrations =
     | TrueFoundry.OpenAiModerationsGuardrailConfig
     | TrueFoundry.AwsBedrockGuardrailConfig
-    | TrueFoundry.CustomGuardrailConfig;
+    | TrueFoundry.CustomGuardrailConfig
+    | TrueFoundry.AzurePiiGuardrailConfig
+    | TrueFoundry.AzureContentSafetyGuardrailConfig
+    | TrueFoundry.EnkryptAiGuardrailConfig;

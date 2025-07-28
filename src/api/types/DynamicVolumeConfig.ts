@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Dynamic Volume Config
+ * +label=Create new volume
  */
 export interface DynamicVolumeConfig {
     /**

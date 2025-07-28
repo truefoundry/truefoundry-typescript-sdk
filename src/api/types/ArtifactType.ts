@@ -5,13 +5,11 @@
 /**
  * An enumeration.
  */
-export type ArtifactType = "artifact" | "model" | "plot" | "image" | "chat_prompt" | "openapi-tool" | "agent";
+export type ArtifactType = "artifact" | "model" | "plot" | "image" | "chat_prompt";
 export const ArtifactType = {
     Artifact: "artifact",
     Model: "model",
     Plot: "plot",
     Image: "image",
     ChatPrompt: "chat_prompt",
-    OpenapiTool: "openapi-tool",
-    Agent: "agent",
 } as const;

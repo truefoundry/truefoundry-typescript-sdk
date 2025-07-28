@@ -7,6 +7,4 @@ import * as TrueFoundry from "../index";
 export type BaseArtifactVersionManifest =
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.AgentOpenApiToolManifest
-    | TrueFoundry.ArtifactManifest
-    | TrueFoundry.AgentManifest;
+    | TrueFoundry.ArtifactManifest;

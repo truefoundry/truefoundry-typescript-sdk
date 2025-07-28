@@ -36,6 +36,7 @@ export interface AzureOpenAiModelV2 {
      * +label=Model Types
      * +sort=4
      * +usage=Specify the type of the Azure OpenAI model
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

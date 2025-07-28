@@ -17,11 +17,7 @@ export interface AlertConfig {
      * +uiType=Hidden
      */
     name: string;
-    /**
-     * +label=Application FQN
-     * +uiType=Hidden
-     */
-    application_fqn: string;
+    resource: TrueFoundry.AlertConfigResource;
     /**
      * +label=Notification Targets
      * +usage=Configure one or more notification targets where alerts will be sent. Each target specifies a notification channel (email or slack).

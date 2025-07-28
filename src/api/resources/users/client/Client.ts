@@ -137,9 +137,9 @@ export class Users {
     }
 
     /**
-     * This endpoint allows tenant administrators to pre-register users within their tenant.
+     * This endpoint allows tenant administrators to register users within their tenant.
      *
-     * @param {TrueFoundry.PreRegisterUsersRequest} request
+     * @param {TrueFoundry.RegisterUsersRequest} request
      * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}
@@ -148,25 +148,25 @@ export class Users {
      *
      * @example
      *     await client.users.preRegisterUsers({
-     *         emails: ["emails"]
+     *         email: "email"
      *     })
      */
     public preRegisterUsers(
-        request: TrueFoundry.PreRegisterUsersRequest,
+        request: TrueFoundry.RegisterUsersRequest,
         requestOptions?: Users.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.PreRegisterUsersResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.RegisterUsersResponse> {
         return core.HttpResponsePromise.fromPromise(this.__preRegisterUsers(request, requestOptions));
     }
 
     private async __preRegisterUsers(
-        request: TrueFoundry.PreRegisterUsersRequest,
+        request: TrueFoundry.RegisterUsersRequest,
         requestOptions?: Users.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.PreRegisterUsersResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.RegisterUsersResponse>> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: urlJoin(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/svc/v1/users",
+                "api/svc/v1/users/register",
             ),
             method: "POST",
             headers: {
@@ -187,7 +187,7 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return { data: _response.body as TrueFoundry.PreRegisterUsersResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as TrueFoundry.RegisterUsersResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -224,7 +224,9 @@ export class Users {
                     rawResponse: _response.rawResponse,
                 });
             case "timeout":
-                throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling POST /api/svc/v1/users.");
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/users/register.",
+                );
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,

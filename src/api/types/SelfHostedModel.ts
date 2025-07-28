@@ -38,6 +38,7 @@ export interface SelfHostedModel {
     /**
      * +usage=Specify the type of the model
      * +sort=4
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     /**

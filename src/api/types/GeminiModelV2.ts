@@ -29,6 +29,7 @@ export interface GeminiModelV2 {
      * +label=Model Types
      * +sort=3
      * +usage=Specify the type of the Gemini model (e.g., chat, text, etc.)
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
