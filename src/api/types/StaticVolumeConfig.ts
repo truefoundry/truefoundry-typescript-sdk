@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Static Volume Config
+ * +label=Use existing volume
  */
 export interface StaticVolumeConfig {
     /**

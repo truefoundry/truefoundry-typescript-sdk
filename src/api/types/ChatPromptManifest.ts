@@ -27,4 +27,7 @@ export interface ChatPromptManifest {
     model_configuration?: TrueFoundry.ModelConfiguration;
     /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];
+    /** A list of MCP servers FQNs or URLs and their tools */
+    mcp_servers?: TrueFoundry.ChatPromptManifestMcpServersItem[];
+    guardrails?: TrueFoundry.Guardrails;
 }

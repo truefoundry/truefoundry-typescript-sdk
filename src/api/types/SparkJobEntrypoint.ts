@@ -12,4 +12,5 @@ export type SparkJobEntrypoint =
     | TrueFoundry.SparkJobPythonEntrypoint
     | TrueFoundry.SparkJobScalaEntrypoint
     | TrueFoundry.SparkJobJavaEntrypoint
-    | TrueFoundry.SparkJobPythonNotebookEntrypoint;
+    | TrueFoundry.SparkJobPythonNotebookEntrypoint
+    | TrueFoundry.SparkJobScalaNotebookEntrypoint;

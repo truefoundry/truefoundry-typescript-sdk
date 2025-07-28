@@ -30,6 +30,7 @@ export interface DatabricksModel {
      * +sort=3
      * +usage=Specify the type of the Databricks model
      * +uiType=Select
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

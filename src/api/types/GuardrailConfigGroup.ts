@@ -9,7 +9,10 @@ import * as TrueFoundry from "../index";
  * +icon=puzzle-piece
  */
 export interface GuardrailConfigGroup {
-    /** +value=provider-account/guardrail-config-group */
+    /**
+     * +uiType=Hidden
+     * +value=provider-account/guardrail-config-group
+     */
     type: "provider-account/guardrail-config-group";
     /**
      * +label=Name

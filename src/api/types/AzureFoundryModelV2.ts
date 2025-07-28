@@ -23,6 +23,7 @@ export interface AzureFoundryModelV2 {
      * +label=Model Types
      * +sort=3
      * +usage=Types of models supported by this Azure AI Foundry deployment
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     /**

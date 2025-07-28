@@ -5,31 +5,45 @@
 import * as TrueFoundry from "../index";
 
 /**
- * +label=AWS Bedrock Guardrail Config
+ * +label=AWS Bedrock
  * +icon=aws-bedrock
  */
-export interface AwsBedrockGuardrailConfig extends TrueFoundry.BaseGuardrailConfig {
-    /** +value=integration/guardrail-config/aws-bedrock */
-    type?: "integration/guardrail-config/aws-bedrock";
+export interface AwsBedrockGuardrailConfig {
+    /**
+     * +label=Name
+     * +sort=50
+     * +usage=The name of the Guardrail Config.
+     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +uiProps={"disableEdit":true}
+     */
+    name: string;
+    /**
+     * +uiType=Hidden
+     * +value=integration/guardrail-config/aws-bedrock
+     */
+    type: "integration/guardrail-config/aws-bedrock";
+    /**
+     * +label=Operation
+     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
+     * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
+     * +uiType=Select
+     * +sort=50
+     */
+    operation: TrueFoundry.AwsBedrockGuardrailConfigOperation;
     /**
      * +label=AWS Account Auth Data
      * +usage=Authentication data for the AWS account
      */
     auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
-    region?: TrueFoundry.AwsRegion;
     /**
      * +label=Guardrail ID
      * +usage=The ID of the Guardrail to use.
      */
-    guardrail_id?: string;
+    guardrail_id: string;
     /**
      * +label=Guardrail Version
      * +usage=The version of the Guardrail to use.
      */
-    guardrail_version?: string;
-    /**
-     * +label=Redact PII
-     * +usage=Whether to redact PII from the response. If this is true, your request will be transformed to redact PII from the response else a validation error will be returned.
-     */
-    redact_pii?: boolean;
+    guardrail_version: string;
+    region: TrueFoundry.AwsRegion;
 }

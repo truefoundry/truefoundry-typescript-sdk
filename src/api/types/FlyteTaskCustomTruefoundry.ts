@@ -4,4 +4,7 @@
 
 import * as TrueFoundry from "../index";
 
-export type FlyteTaskCustomTruefoundry = TrueFoundry.PythonTaskConfig | TrueFoundry.ContainerTaskConfig;
+export type FlyteTaskCustomTruefoundry =
+    | TrueFoundry.PythonTaskConfig
+    | TrueFoundry.ContainerTaskConfig
+    | TrueFoundry.PySparkTaskConfig;

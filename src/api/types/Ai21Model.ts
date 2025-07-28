@@ -29,6 +29,7 @@ export interface Ai21Model {
      * +label=Model Types
      * +sort=3
      * +usage=Specify the type of the AI21 model
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

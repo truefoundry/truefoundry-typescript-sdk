@@ -29,6 +29,7 @@ export interface GroqModel {
      * +label=Model Types
      * +sort=3
      * +usage=Specify the type of the Groq model
+     * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

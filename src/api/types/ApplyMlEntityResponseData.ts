@@ -7,8 +7,6 @@ import * as TrueFoundry from "../index";
 export type ApplyMlEntityResponseData =
     | TrueFoundry.ModelVersion
     | TrueFoundry.PromptVersion
-    | TrueFoundry.ToolVersion
-    | TrueFoundry.AgentVersion
     | TrueFoundry.ArtifactVersion
     | TrueFoundry.DataDirectory
     | TrueFoundry.TracingProject;

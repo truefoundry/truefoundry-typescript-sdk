@@ -6,7 +6,7 @@
  * +label=Model Type
  * +uiType=Select
  */
-export type ModelType = "chat" | "completion" | "embedding" | "realtime" | "rerank" | "audio" | "moderation";
+export type ModelType = "chat" | "completion" | "embedding" | "realtime" | "rerank" | "audio" | "moderation" | "image";
 export const ModelType = {
     Chat: "chat",
     Completion: "completion",
@@ -15,4 +15,5 @@ export const ModelType = {
     Rerank: "rerank",
     Audio: "audio",
     Moderation: "moderation",
+    Image: "image",
 } as const;

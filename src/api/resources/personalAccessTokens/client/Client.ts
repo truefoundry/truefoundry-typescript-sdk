@@ -307,6 +307,90 @@ export class PersonalAccessTokens {
         }
     }
 
+    /**
+     * Get an existing Personal Access Token by name, if it doesn't exist, it will create a new one and return the PAT data along with a fresh token.
+     *
+     * @param {string} name
+     * @param {PersonalAccessTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     *
+     * @example
+     *     await client.personalAccessTokens.get("name")
+     */
+    public get(
+        name: string,
+        requestOptions?: PersonalAccessTokens.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetOrCreatePersonalAccessTokenResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(name, requestOptions));
+    }
+
+    private async __get(
+        name: string,
+        requestOptions?: PersonalAccessTokens.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetOrCreatePersonalAccessTokenResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: urlJoin(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/personal-access-tokens/${encodeURIComponent(name)}`,
+            ),
+            method: "GET",
+            headers: {
+                Authorization: await this._getAuthorizationHeader(),
+                "X-Fern-Language": "JavaScript",
+                "X-Fern-SDK-Name": "truefoundry-sdk",
+                "X-Fern-SDK-Version": "0.0.0",
+                "User-Agent": "truefoundry-sdk/0.0.0",
+                "X-Fern-Runtime": core.RUNTIME.type,
+                "X-Fern-Runtime-Version": core.RUNTIME.version,
+                ...requestOptions?.headers,
+            },
+            contentType: "application/json",
+            requestType: "json",
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GetOrCreatePersonalAccessTokenResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/personal-access-tokens/{name}.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
     protected async _getAuthorizationHeader(): Promise<string> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
         if (bearer == null) {

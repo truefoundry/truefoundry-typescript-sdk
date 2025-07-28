@@ -12,8 +12,6 @@ export type TrueFoundryApplyRequestManifest =
     | TrueFoundry.ArtifactManifest
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.AgentOpenApiToolManifest
-    | TrueFoundry.AgentManifest
     | TrueFoundry.DataDirectory
     | TrueFoundry.Service
     | TrueFoundry.ApplicationSet
@@ -33,5 +31,6 @@ export type TrueFoundryApplyRequestManifest =
     | TrueFoundry.TeamManifest
     | TrueFoundry.PolicyManifest
     | TrueFoundry.AlertConfig
-    | TrueFoundry.TracingProjectManifest
-    | TrueFoundry.VirtualAccountManifest;
+    | TrueFoundry.VirtualAccountManifest
+    | TrueFoundry.CommonToolsSettings
+    | TrueFoundry.AiFeaturesSettings;

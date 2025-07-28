@@ -10,9 +10,9 @@ import { Users } from "../resources/users/client/Client";
 import { Clusters } from "../resources/clusters/client/Client";
 import { Deployments } from "../resources/deployments/client/Client";
 import { Applications } from "../resources/applications/client/Client";
+import { Metrics } from "../resources/metrics/client/Client";
 import { Vcs } from "../resources/vcs/client/Client";
 import { DockerRegistries } from "../resources/dockerRegistries/client/Client";
-import { Metrics } from "../resources/metrics/client/Client";
 import { Workflows } from "../resources/workflows/client/Client";
 import { ArtifactVersions } from "../resources/artifactVersions/client/Client";
 import { Ml } from "../resources/ml/client/Client";
@@ -43,9 +43,9 @@ export class Internal {
     protected _clusters: Clusters | undefined;
     protected _deployments: Deployments | undefined;
     protected _applications: Applications | undefined;
+    protected _metrics: Metrics | undefined;
     protected _vcs: Vcs | undefined;
     protected _dockerRegistries: DockerRegistries | undefined;
-    protected _metrics: Metrics | undefined;
     protected _workflows: Workflows | undefined;
     protected _artifactVersions: ArtifactVersions | undefined;
     protected _ml: Ml | undefined;
@@ -68,16 +68,16 @@ export class Internal {
         return (this._applications ??= new Applications(this._options));
     }
 
+    public get metrics(): Metrics {
+        return (this._metrics ??= new Metrics(this._options));
+    }
+
     public get vcs(): Vcs {
         return (this._vcs ??= new Vcs(this._options));
     }
 
     public get dockerRegistries(): DockerRegistries {
         return (this._dockerRegistries ??= new DockerRegistries(this._options));
-    }
-
-    public get metrics(): Metrics {
-        return (this._metrics ??= new Metrics(this._options));
     }
 
     public get workflows(): Workflows {
