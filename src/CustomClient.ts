@@ -1,6 +1,4 @@
 import {
-    WrappedAgents,
-    WrappedAgentVersions,
     WrappedApplications,
     WrappedArtifacts,
     WrappedArtifactVersions,
@@ -10,9 +8,6 @@ import {
     WrappedPrompts,
     WrappedPromptVersions,
     WrappedSecretGroups,
-    WrappedTools,
-    WrappedToolVersions,
-    WrappedTracingProjects,
     WrappedWorkspaces,
 } from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
@@ -25,8 +20,6 @@ export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Opt
 
 export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected readonly _options: BaseTrueFoundryClient.Options;
-    protected _agents: WrappedAgents | undefined;
-    protected _agentVersions: WrappedAgentVersions | undefined;
     protected _applications: WrappedApplications | undefined;
     protected _artifacts: WrappedArtifacts | undefined;
     protected _artifactVersions: WrappedArtifactVersions | undefined;
@@ -36,23 +29,12 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected _prompts: WrappedPrompts | undefined;
     protected _promptVersions: WrappedPromptVersions | undefined;
     protected _secretGroups: WrappedSecretGroups | undefined;
-    protected _tools: WrappedTools | undefined;
-    protected _toolVersions: WrappedToolVersions | undefined;
-    protected _tracingProjects: WrappedTracingProjects | undefined;
     protected _workspaces: WrappedWorkspaces | undefined;
 
     constructor(_options: TrueFoundryClientOptions) {
         const options = { ..._options, environment: _options.environment ?? '' }
         super(options);
         this._options = options;
-    }
-
-    public get agents(): WrappedAgents {
-        return (this._agents ??= new WrappedAgents(this._options));
-    }
-
-    public get agentVersions(): WrappedAgentVersions {
-        return (this._agentVersions ??= new WrappedAgentVersions(this._options));
     }
 
     public get applications(): WrappedApplications {
@@ -89,18 +71,6 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
 
     public get secretGroups(): WrappedSecretGroups {
         return (this._secretGroups ??= new WrappedSecretGroups(this._options));
-    }
-
-    public get tools(): WrappedTools {
-        return (this._tools ??= new WrappedTools(this._options));
-    }
-
-    public get toolVersions(): WrappedToolVersions {
-        return (this._toolVersions ??= new WrappedToolVersions(this._options));
-    }
-
-    public get tracingProjects(): WrappedTracingProjects {
-        return (this._tracingProjects ??= new WrappedTracingProjects(this._options));
     }
 
     public get workspaces(): WrappedWorkspaces {

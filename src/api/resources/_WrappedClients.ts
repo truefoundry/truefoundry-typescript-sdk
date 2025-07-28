@@ -36,46 +36,6 @@ async function getByFqn<T>(client: HasAsyncListMethod<T>, fqn: string, requestOp
     return result;
 }
 
-export class WrappedAgents extends Agents {
-    /**
-     * Get agent API
-     *
-     * @param {string} fqn
-     * @param {Agents.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.agents.getByFqn("fqn")
-     */
-    public async getByFqn(
-        fqn: string,
-        requestOptions?: Agents.RequestOptions,
-    ): Promise<TrueFoundry.GetAgentResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
-    }
-}
-
-export class WrappedAgentVersions extends AgentVersions {
-    /**
-     * Get agent version API
-     *
-     * @param {string} fqn
-     * @param {AgentVersions.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.agentVersions.getByFqn("fqn")
-     */
-    public async getByFqn(
-        fqn: string,
-        requestOptions?: AgentVersions.RequestOptions,
-    ): Promise<TrueFoundry.GetAgentVersionResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
-    }
-}
-
 export class WrappedApplications extends Applications {
     /**
      * Get application API
@@ -252,66 +212,6 @@ export class WrappedSecretGroups extends SecretGroups {
         fqn: string,
         requestOptions?: SecretGroups.RequestOptions,
     ): Promise<TrueFoundry.GetSecretGroupResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
-    }
-}
-
-export class WrappedTools extends Tools {
-    /**
-     * Get tool API
-     *
-     * @param {string} fqn
-     * @param {Tools.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.tools.getByFqn("fqn")
-     */
-    public async getByFqn(
-        fqn: string,
-        requestOptions?: Tools.RequestOptions,
-    ): Promise<TrueFoundry.GetToolResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
-    }
-}
-
-export class WrappedToolVersions extends ToolVersions {
-    /**
-     * Get tool version API
-     *
-     * @param {string} fqn
-     * @param {ToolVersions.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.toolVersions.getByFqn("fqn")
-     */
-    public async getByFqn(
-        fqn: string,
-        requestOptions?: ToolVersions.RequestOptions,
-    ): Promise<TrueFoundry.GetToolVersionResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
-    }
-}
-
-export class WrappedTracingProjects extends TracingProjects {
-    /**
-     * Get tracing project API
-     *
-     * @param {string} fqn
-     * @param {TracingProjects.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.v1.tracingProjects.getByFqn("fqn")
-     */
-    public async getByFqn(
-        fqn: string,
-        requestOptions?: TracingProjects.RequestOptions,
-    ): Promise<TrueFoundry.GetTracingProjectResponse> {
         return { data: await getByFqn(this, fqn, requestOptions) }
     }
 }
