@@ -23,13 +23,13 @@ export interface CustomHelmRepo {
      * +usage=The URL of the Helm Repo.
      * +sort=200
      */
-    repoUrl: string;
-    authData: TrueFoundry.CustomBasicAuth;
+    repo_url: string;
+    auth_data: TrueFoundry.CustomBasicAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

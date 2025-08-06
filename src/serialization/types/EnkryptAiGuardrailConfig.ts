@@ -15,8 +15,8 @@ export const EnkryptAiGuardrailConfig: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/guardrail-config/enkrypt-ai"),
     operation: EnkryptAiGuardrailConfigOperation,
-    guardrailName: core.serialization.property("guardrail_name", core.serialization.string()),
-    authData: core.serialization.property("auth_data", EnkryptAiKeyAuth),
+    guardrail_name: core.serialization.string(),
+    auth_data: EnkryptAiKeyAuth,
 });
 
 export declare namespace EnkryptAiGuardrailConfig {

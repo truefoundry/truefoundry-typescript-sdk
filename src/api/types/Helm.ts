@@ -35,7 +35,7 @@ export interface Helm {
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
 }
 
 export namespace Helm {

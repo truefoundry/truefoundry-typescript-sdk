@@ -12,5 +12,5 @@ export interface PagerDuty {
      * +uiProps={"integrationType":"notification-channel"}
      * +sort=660
      */
-    notificationChannel: string;
+    notification_channel: string;
 }

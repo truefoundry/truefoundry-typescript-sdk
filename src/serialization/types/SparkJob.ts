@@ -17,17 +17,14 @@ export const SparkJob: core.serialization.ObjectSchema<serializers.SparkJob.Raw,
         name: core.serialization.string(),
         image: SparkJobImage,
         entrypoint: SparkJobEntrypoint,
-        driverConfig: core.serialization.property("driver_config", SparkDriverConfig),
-        executorConfig: core.serialization.property("executor_config", SparkExecutorConfig),
+        driver_config: SparkDriverConfig,
+        executor_config: SparkExecutorConfig,
         env: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        sparkConf: core.serialization.property(
-            "spark_conf",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        ),
+        spark_conf: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         mounts: core.serialization.list(VolumeMount).optional(),
         retries: core.serialization.number().optional(),
-        serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
-        workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
+        service_account: core.serialization.string().optional(),
+        workspace_fqn: core.serialization.string().optional(),
     });
 
 export declare namespace SparkJob {

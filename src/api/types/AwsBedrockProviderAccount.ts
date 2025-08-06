@@ -25,7 +25,7 @@ export interface AwsBedrockProviderAccount {
      * +sort=400
      * +usage=Authentication data for the AWS account
      */
-    authData?: AwsBedrockProviderAccount.AuthData;
+    auth_data?: AwsBedrockProviderAccount.AuthData;
     /**
      * +label=Integrations
      * +sort=500

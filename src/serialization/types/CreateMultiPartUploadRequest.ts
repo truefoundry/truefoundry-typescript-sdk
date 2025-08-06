@@ -12,7 +12,7 @@ export const CreateMultiPartUploadRequest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string(),
     path: core.serialization.string(),
-    numParts: core.serialization.property("num_parts", core.serialization.number()),
+    num_parts: core.serialization.number(),
 });
 
 export declare namespace CreateMultiPartUploadRequest {

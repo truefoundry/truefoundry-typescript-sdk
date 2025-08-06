@@ -11,7 +11,7 @@ export const DynamicVolumeConfig: core.serialization.ObjectSchema<
     TrueFoundry.DynamicVolumeConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("dynamic"),
-    storageClass: core.serialization.property("storage_class", core.serialization.string()),
+    storage_class: core.serialization.string(),
     size: core.serialization.number(),
 });
 

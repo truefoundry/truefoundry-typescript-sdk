@@ -24,14 +24,14 @@ export interface DatabricksProviderAccount {
      * +sort=300
      * +usage=Databricks authentication credentials
      */
-    authData: DatabricksProviderAccount.AuthData;
+    auth_data: DatabricksProviderAccount.AuthData;
     /**
      * +label=Base URL
      * +sort=400
      * +usage=The base URL of your Databricks workspace
      * +message=Base URL must not be empty
      */
-    baseUrl: string;
+    base_url: string;
     /**
      * +label=Integrations
      * +sort=500

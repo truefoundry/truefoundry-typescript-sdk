@@ -15,7 +15,7 @@ export const NomicProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/nomic"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", NomicKeyAuth),
+    auth_data: NomicKeyAuth,
     integrations: core.serialization.list(NomicIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

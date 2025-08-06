@@ -89,7 +89,7 @@ describe("Users", () => {
                 tenantName: "tenantName",
                 metadata: {
                     sub: "sub",
-                    imageUrl: "imageURL",
+                    imageURL: "imageURL",
                     displayName: "displayName",
                     userObject: {
                         key: "value",

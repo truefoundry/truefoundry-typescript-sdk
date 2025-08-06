@@ -13,14 +13,8 @@ export const GuardrailsRule: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string(),
     when: GuardrailsWhen,
-    inputGuardrails: core.serialization.property(
-        "input_guardrails",
-        core.serialization.list(core.serialization.string()),
-    ),
-    outputGuardrails: core.serialization.property(
-        "output_guardrails",
-        core.serialization.list(core.serialization.string()),
-    ),
+    input_guardrails: core.serialization.list(core.serialization.string()),
+    output_guardrails: core.serialization.list(core.serialization.string()),
 });
 
 export declare namespace GuardrailsRule {

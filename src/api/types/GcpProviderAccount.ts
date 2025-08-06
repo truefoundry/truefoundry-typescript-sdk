@@ -25,13 +25,13 @@ export interface GcpProviderAccount {
      * +usage=The project id of the GCP account.
      * +sort=200
      */
-    projectId?: string;
+    project_id?: string;
     /**
      * +label=GCP Account Auth Data
      * +usage=Authentication data for the GCP account.
      * +sort=400
      */
-    authData?: GcpProviderAccount.AuthData;
+    auth_data?: GcpProviderAccount.AuthData;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the GCP provider account.

@@ -8,9 +8,9 @@ export interface TracingProject {
     id: string;
     name: string;
     fqn: string;
-    mlRepoId: number;
+    ml_repo_id: number;
     manifest: TrueFoundry.TracingProjectManifest;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt: Date;
-    updatedAt: Date;
+    created_by_subject: TrueFoundry.Subject;
+    created_at: Date;
+    updated_at: Date;
 }

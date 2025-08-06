@@ -8,9 +8,9 @@ export interface TransformersFramework {
     /** Type of the framework */
     type: "transformers";
     /** Name of the library for the framework */
-    libraryName?: TrueFoundry.LibraryName;
+    library_name?: TrueFoundry.LibraryName;
     /** The `pipeline()` task this model can be used with e.g. `text-generation`. See [huggingface docs](https://huggingface.co/docs/transformers/main/en/main_classes/pipelines#transformers.pipeline.task) for all possible values */
-    pipelineTag?: string;
+    pipeline_tag?: string;
     /** Base model Id from HuggingFace Hub. If this is a finetuned model, this points to the base model id used for finetuning. */
-    baseModel?: string;
+    base_model?: string;
 }

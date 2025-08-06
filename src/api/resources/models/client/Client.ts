@@ -219,7 +219,7 @@ export class Models {
             async (
                 request: TrueFoundry.ModelsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListModelsResponse>> => {
-                const { fqn, mlRepoId, name, offset = 0, limit = 100, runId } = request;
+                const { fqn, ml_repo_id: mlRepoId, name, offset = 0, limit = 100, run_id: runId } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
@@ -327,7 +327,7 @@ export class Models {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             mlRepo: "ml_repo",
+     *             ml_repo: "ml_repo",
      *             type: "model-version",
      *             source: {
      *                 type: "truefoundry"

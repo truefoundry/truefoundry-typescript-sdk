@@ -6,16 +6,16 @@ import * as TrueFoundry from "../index.js";
 
 export interface MlRepo {
     /** Tenant Name */
-    tenantName: string;
+    tenant_name: string;
     manifest: TrueFoundry.MlRepoManifest;
-    createdBySubject: TrueFoundry.Subject;
+    created_by_subject: TrueFoundry.Subject;
     /** Created At */
-    createdAt: Date;
+    created_at: Date;
     /** Experiment Id */
     id: string;
     /** Number of runs */
-    numRuns?: number;
-    artifactTypeCounts?: Record<string, number>;
+    num_runs?: number;
+    artifact_type_counts?: Record<string, number>;
     /** Number of datasets */
-    datasetsCount?: number;
+    datasets_count?: number;
 }

@@ -10,13 +10,10 @@ import { JwtAuthConfigClaimsItem } from "./JwtAuthConfigClaimsItem";
 export const JwtAuthConfig: core.serialization.ObjectSchema<serializers.JwtAuthConfig.Raw, TrueFoundry.JwtAuthConfig> =
     core.serialization.object({
         type: core.serialization.stringLiteral("jwt_auth"),
-        integrationFqn: core.serialization.property("integration_fqn", core.serialization.string()),
-        enableLogin: core.serialization.property("enable_login", core.serialization.boolean().optional()),
+        integration_fqn: core.serialization.string(),
+        enable_login: core.serialization.boolean().optional(),
         claims: core.serialization.list(JwtAuthConfigClaimsItem).optional(),
-        bypassAuthPaths: core.serialization.property(
-            "bypass_auth_paths",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        bypass_auth_paths: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace JwtAuthConfig {

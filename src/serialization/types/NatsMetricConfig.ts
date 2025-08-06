@@ -11,7 +11,7 @@ export const NatsMetricConfig: core.serialization.ObjectSchema<
     TrueFoundry.NatsMetricConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("nats"),
-    lagThreshold: core.serialization.property("lag_threshold", core.serialization.number()),
+    lag_threshold: core.serialization.number(),
 });
 
 export declare namespace NatsMetricConfig {

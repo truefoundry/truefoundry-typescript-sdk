@@ -11,18 +11,15 @@ import { PromptVersion } from "./PromptVersion.js";
 export const Prompt: core.serialization.ObjectSchema<serializers.Prompt.Raw, TrueFoundry.Prompt> =
     core.serialization.object({
         id: core.serialization.string(),
-        mlRepoId: core.serialization.property("ml_repo_id", core.serialization.string()),
+        ml_repo_id: core.serialization.string(),
         type: core.serialization.stringLiteral("chat_prompt").optional(),
         name: core.serialization.string(),
         fqn: core.serialization.string(),
-        createdBySubject: core.serialization.property("created_by_subject", Subject),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        updatedAt: core.serialization.property("updated_at", core.serialization.date().optional()),
-        latestVersion: core.serialization.property("latest_version", PromptVersion.optional()),
-        runSteps: core.serialization.property(
-            "run_steps",
-            core.serialization.list(core.serialization.number()).optional(),
-        ),
+        created_by_subject: Subject,
+        created_at: core.serialization.date().optional(),
+        updated_at: core.serialization.date().optional(),
+        latest_version: PromptVersion.optional(),
+        run_steps: core.serialization.list(core.serialization.number()).optional(),
     });
 
 export declare namespace Prompt {

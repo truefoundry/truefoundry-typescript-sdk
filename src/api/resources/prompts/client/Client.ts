@@ -219,7 +219,7 @@ export class Prompts {
             async (
                 request: TrueFoundry.PromptsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListPromptsResponse>> => {
-                const { fqn, mlRepoId, name, offset = 0, limit = 100 } = request;
+                const { fqn, ml_repo_id: mlRepoId, name, offset = 0, limit = 100 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
@@ -324,7 +324,7 @@ export class Prompts {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             mlRepo: "ml_repo",
+     *             ml_repo: "ml_repo",
      *             type: "chat_prompt",
      *             messages: [{
      *                     role: "system",

@@ -48,7 +48,7 @@ export interface CustomGuardrailConfig {
      * +sort=450
      * +usage=Authentication data for the Guardrail Server.
      */
-    authData?: CustomGuardrailConfig.AuthData;
+    auth_data?: CustomGuardrailConfig.AuthData;
     /**
      * +label=Headers
      * +sort=500

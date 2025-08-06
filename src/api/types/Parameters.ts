@@ -6,10 +6,10 @@
  * Parameters to pass to the model when generating
  */
 export interface Parameters {
-    maxTokens?: number;
+    max_tokens?: number;
     temperature?: number;
-    topK?: number;
-    topP?: number;
+    top_k?: number;
+    top_p?: number;
     stop?: Parameters.Stop;
 }
 

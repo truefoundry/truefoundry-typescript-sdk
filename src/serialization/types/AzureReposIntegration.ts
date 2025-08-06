@@ -12,11 +12,8 @@ export const AzureReposIntegration: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/vcs/azure"),
     name: core.serialization.string(),
-    accountName: core.serialization.property("account_name", core.serialization.string()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    account_name: core.serialization.string(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureReposIntegration {

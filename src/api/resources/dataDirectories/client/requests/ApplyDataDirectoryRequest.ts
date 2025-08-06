@@ -10,7 +10,7 @@ import * as TrueFoundry from "../../../../index.js";
  *         manifest: {
  *             type: "data-dir",
  *             name: "name",
- *             mlRepo: "ml_repo",
+ *             ml_repo: "ml_repo",
  *             metadata: {
  *                 "key": "value"
  *             },

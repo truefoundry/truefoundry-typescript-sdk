@@ -12,8 +12,8 @@ export const AmqpInputConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("amqp"),
     url: core.serialization.string(),
-    queueName: core.serialization.property("queue_name", core.serialization.string()),
-    waitTimeSeconds: core.serialization.property("wait_time_seconds", core.serialization.number()),
+    queue_name: core.serialization.string(),
+    wait_time_seconds: core.serialization.number(),
 });
 
 export declare namespace AmqpInputConfig {

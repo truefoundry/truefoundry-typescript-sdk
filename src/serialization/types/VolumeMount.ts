@@ -9,9 +9,9 @@ import * as core from "../../core/index.js";
 export const VolumeMount: core.serialization.ObjectSchema<serializers.VolumeMount.Raw, TrueFoundry.VolumeMount> =
     core.serialization.object({
         type: core.serialization.stringLiteral("volume"),
-        mountPath: core.serialization.property("mount_path", core.serialization.string()),
-        subPath: core.serialization.property("sub_path", core.serialization.string().optional()),
-        volumeFqn: core.serialization.property("volume_fqn", core.serialization.string()),
+        mount_path: core.serialization.string(),
+        sub_path: core.serialization.string().optional(),
+        volume_fqn: core.serialization.string(),
     });
 
 export declare namespace VolumeMount {

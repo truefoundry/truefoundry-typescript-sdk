@@ -15,12 +15,9 @@ export const GcpGkeIntegration: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("integration/cluster/gcp/gke-standard"),
     name: core.serialization.string(),
     location: GcpRegion,
-    clusterName: core.serialization.property("cluster_name", core.serialization.string()),
-    authData: core.serialization.property("auth_data", GcpKeyFileAuth.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    cluster_name: core.serialization.string(),
+    auth_data: GcpKeyFileAuth.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace GcpGkeIntegration {

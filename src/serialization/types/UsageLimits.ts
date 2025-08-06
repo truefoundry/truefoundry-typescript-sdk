@@ -8,8 +8,8 @@ import * as core from "../../core/index.js";
 
 export const UsageLimits: core.serialization.ObjectSchema<serializers.UsageLimits.Raw, TrueFoundry.UsageLimits> =
     core.serialization.object({
-        tokensPerMinute: core.serialization.property("tokens_per_minute", core.serialization.number().optional()),
-        requestsPerMinute: core.serialization.property("requests_per_minute", core.serialization.number().optional()),
+        tokens_per_minute: core.serialization.number().optional(),
+        requests_per_minute: core.serialization.number().optional(),
     });
 
 export declare namespace UsageLimits {

@@ -11,13 +11,10 @@ export const HuggingfaceArtifactSource: core.serialization.ObjectSchema<
     TrueFoundry.HuggingfaceArtifactSource
 > = core.serialization.object({
     type: core.serialization.stringLiteral("huggingface-hub"),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
+    model_id: core.serialization.string(),
     revision: core.serialization.string(),
-    ignorePatterns: core.serialization.property(
-        "ignore_patterns",
-        core.serialization.list(core.serialization.string()),
-    ),
-    downloadPathEnvVariable: core.serialization.property("download_path_env_variable", core.serialization.string()),
+    ignore_patterns: core.serialization.list(core.serialization.string()),
+    download_path_env_variable: core.serialization.string(),
 });
 
 export declare namespace HuggingfaceArtifactSource {

@@ -15,5 +15,5 @@ export interface SlackWebhook {
      * +uiProps={"integrationType":"notification-channel"}
      * +sort=660
      */
-    notificationChannel: string;
+    notification_channel: string;
 }

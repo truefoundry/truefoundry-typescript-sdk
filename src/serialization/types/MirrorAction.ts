@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const MirrorAction: core.serialization.ObjectSchema<serializers.MirrorAction.Raw, TrueFoundry.MirrorAction> =
     core.serialization.object({
         type: core.serialization.stringLiteral("mirror"),
-        serviceUri: core.serialization.property("service_uri", core.serialization.string()),
+        service_uri: core.serialization.string(),
         port: core.serialization.number(),
         percentage: core.serialization.number(),
     });

@@ -14,14 +14,11 @@ export const AzureOpenAiModelV2: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/model/azure-openai"),
     name: core.serialization.string(),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
-    apiVersion: core.serialization.property("api_version", core.serialization.string()),
-    modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+    model_id: core.serialization.string(),
+    api_version: core.serialization.string(),
+    model_types: core.serialization.list(ModelType),
     cost: ModelCostMetric.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureOpenAiModelV2 {

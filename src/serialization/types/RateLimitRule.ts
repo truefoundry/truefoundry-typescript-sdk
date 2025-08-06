@@ -12,7 +12,7 @@ export const RateLimitRule: core.serialization.ObjectSchema<serializers.RateLimi
     core.serialization.object({
         id: core.serialization.string(),
         when: RateLimitWhen,
-        limitTo: core.serialization.property("limit_to", core.serialization.number()),
+        limit_to: core.serialization.number(),
         unit: RateLimitUnit,
     });
 

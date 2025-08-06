@@ -17,17 +17,17 @@ export const BaseService: core.serialization.ObjectSchema<serializers.BaseServic
     core.serialization.object({
         name: core.serialization.string(),
         image: BaseServiceImage,
-        artifactsDownload: core.serialization.property("artifacts_download", ArtifactsDownload.optional()),
+        artifacts_download: ArtifactsDownload.optional(),
         resources: Resources.optional(),
         env: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
         ports: core.serialization.list(Port),
-        serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+        service_account: core.serialization.string().optional(),
         mounts: core.serialization.list(BaseServiceMountsItem).optional(),
         labels: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         kustomize: Kustomize.optional(),
-        livenessProbe: core.serialization.property("liveness_probe", HealthProbe.optional()),
-        readinessProbe: core.serialization.property("readiness_probe", HealthProbe.optional()),
-        workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
+        liveness_probe: HealthProbe.optional(),
+        readiness_probe: HealthProbe.optional(),
+        workspace_fqn: core.serialization.string().optional(),
     });
 
 export declare namespace BaseService {

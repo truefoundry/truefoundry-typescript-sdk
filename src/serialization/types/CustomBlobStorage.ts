@@ -14,12 +14,9 @@ export const CustomBlobStorage: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("integration/blob-storage/custom"),
     name: core.serialization.string(),
     endpoint: core.serialization.string(),
-    storageRoot: core.serialization.property("storage_root", core.serialization.string()),
-    authData: core.serialization.property("auth_data", CustomBasicAuth),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    storage_root: core.serialization.string(),
+    auth_data: CustomBasicAuth,
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace CustomBlobStorage {

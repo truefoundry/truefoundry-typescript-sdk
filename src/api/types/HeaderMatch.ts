@@ -14,5 +14,5 @@ export interface HeaderMatch {
      * +docs=Header value to match on
      * +label=Value
      */
-    exactMatch: string;
+    exact_match: string;
 }

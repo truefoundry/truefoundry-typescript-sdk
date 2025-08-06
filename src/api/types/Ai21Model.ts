@@ -24,14 +24,14 @@ export interface Ai21Model {
      * +usage=The unique identifier for the AI21 model
      * +message=Model ID must not be empty
      */
-    modelId: string;
+    model_id: string;
     /**
      * +label=Model Types
      * +sort=3
      * +usage=Specify the type of the AI21 model
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
@@ -39,5 +39,5 @@ export interface Ai21Model {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

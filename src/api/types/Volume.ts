@@ -19,13 +19,13 @@ export interface Volume {
      * +message=Volume Configuration, can be either Dynamically provisioned or statically provisioned.
      */
     config: Volume.Config;
-    volumeBrowser?: TrueFoundry.VolumeBrowser;
+    volume_browser?: TrueFoundry.VolumeBrowser;
     /**
      * +label=Workspace FQN
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
 }
 
 export namespace Volume {

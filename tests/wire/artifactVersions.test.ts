@@ -52,33 +52,33 @@ describe("ArtifactVersions", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                updated_at: new Date("2024-01-15T09:30:00.000Z"),
                 manifest: {
                     name: "name",
                     description: "description",
                     metadata: {
                         key: "value",
                     },
-                    versionAlias: "version_alias",
-                    mlRepo: "ml_repo",
+                    version_alias: "version_alias",
+                    ml_repo: "ml_repo",
                     version: 1,
                     type: "artifact-version",
                     source: {
                         type: "truefoundry",
                     },
                     step: 1,
-                    runId: "run_id",
+                    run_id: "run_id",
                 },
-                usageCodeSnippet: "usage_code_snippet",
-                mlRepoId: "ml_repo_id",
-                artifactId: "artifact_id",
+                usage_code_snippet: "usage_code_snippet",
+                ml_repo_id: "ml_repo_id",
+                artifact_id: "artifact_id",
             },
         });
     });
@@ -123,7 +123,7 @@ describe("ArtifactVersions", () => {
             data: [
                 {
                     path: "path",
-                    signedUrl: "signed_url",
+                    signed_url: "signed_url",
                 },
             ],
         });
@@ -154,22 +154,22 @@ describe("ArtifactVersions", () => {
         const response = await client.artifactVersions.createMultiPartUpload({
             id: "id",
             path: "path",
-            numParts: 1,
+            num_parts: 1,
         });
         expect(response).toEqual({
             data: {
-                storageProvider: "S3_COMPATIBLE",
-                partSignedUrls: [
+                storage_provider: "S3_COMPATIBLE",
+                part_signed_urls: [
                     {
                         path: "path",
-                        signedUrl: "signed_url",
+                        signed_url: "signed_url",
                     },
                 ],
-                s3CompatibleUploadId: "s3_compatible_upload_id",
-                azureBlobBlockIds: ["azure_blob_block_ids"],
-                finalizeSignedUrl: {
+                s3_compatible_upload_id: "s3_compatible_upload_id",
+                azure_blob_block_ids: ["azure_blob_block_ids"],
+                finalize_signed_url: {
                     path: "path",
-                    signedUrl: "signed_url",
+                    signed_url: "signed_url",
                 },
             },
         });
@@ -203,7 +203,7 @@ describe("ArtifactVersions", () => {
                 metadata: {
                     key: "value",
                 },
-                mlRepo: "ml_repo",
+                ml_repo: "ml_repo",
                 type: "model-version",
                 source: {
                     type: "truefoundry",
@@ -212,8 +212,8 @@ describe("ArtifactVersions", () => {
         });
         expect(response).toEqual({
             id: "id",
-            storageRoot: "storage_root",
-            artifactId: "artifact_id",
+            storage_root: "storage_root",
+            artifact_id: "artifact_id",
         });
     });
 

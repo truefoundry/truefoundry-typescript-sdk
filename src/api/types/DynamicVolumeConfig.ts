@@ -16,7 +16,7 @@ export interface DynamicVolumeConfig {
      * +label=Storage Class Name
      * +usage=Name of the storage class to be used for the volume.
      */
-    storageClass: string;
+    storage_class: string;
     /**
      * +label=Size(Gi)
      * +unit=Gi

@@ -3,6 +3,6 @@
  */
 
 export interface UsageLimits {
-    tokensPerMinute?: number;
-    requestsPerMinute?: number;
+    tokens_per_minute?: number;
+    requests_per_minute?: number;
 }

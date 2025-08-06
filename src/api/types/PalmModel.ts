@@ -24,14 +24,14 @@ export interface PalmModel {
      * +usage=The name of the PaLM model to use
      * +message=Model ID must not be empty
      */
-    modelId: string;
+    model_id: string;
     /**
      * +label=Model Types
      * +sort=3
      * +usage=Specify the type of the PaLM model
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
@@ -39,5 +39,5 @@ export interface PalmModel {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

@@ -9,10 +9,10 @@ import * as core from "../../core/index.js";
 export const AzureOAuth: core.serialization.ObjectSchema<serializers.AzureOAuth.Raw, TrueFoundry.AzureOAuth> =
     core.serialization.object({
         type: core.serialization.stringLiteral("oauth"),
-        tenantId: core.serialization.property("tenant_id", core.serialization.string()),
-        clientId: core.serialization.property("client_id", core.serialization.string()),
-        clientSecret: core.serialization.property("client_secret", core.serialization.string()),
-        subscriptionId: core.serialization.property("subscription_id", core.serialization.string()),
+        tenant_id: core.serialization.string(),
+        client_id: core.serialization.string(),
+        client_secret: core.serialization.string(),
+        subscription_id: core.serialization.string(),
     });
 
 export declare namespace AzureOAuth {

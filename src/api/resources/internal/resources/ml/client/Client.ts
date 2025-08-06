@@ -53,7 +53,7 @@ export class Ml {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             mlRepo: "ml_repo",
+     *             ml_repo: "ml_repo",
      *             type: "model-version",
      *             source: {
      *                 type: "truefoundry"
@@ -153,7 +153,7 @@ export class Ml {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             mlRepo: "ml_repo",
+     *             ml_repo: "ml_repo",
      *             type: "model-version",
      *             source: {
      *                 type: "truefoundry"

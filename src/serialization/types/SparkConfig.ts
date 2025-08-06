@@ -8,7 +8,7 @@ import * as core from "../../core/index.js";
 
 export const SparkConfig: core.serialization.ObjectSchema<serializers.SparkConfig.Raw, TrueFoundry.SparkConfig> =
     core.serialization.object({
-        uiBaseDomain: core.serialization.property("ui_base_domain", core.serialization.string()),
+        ui_base_domain: core.serialization.string(),
     });
 
 export declare namespace SparkConfig {

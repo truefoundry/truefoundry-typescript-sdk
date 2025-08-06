@@ -12,15 +12,12 @@ import { ModelCostMetric } from "./ModelCostMetric.js";
 export const VertexModel: core.serialization.ObjectSchema<serializers.VertexModel.Raw, TrueFoundry.VertexModel> =
     core.serialization.object({
         name: core.serialization.string(),
-        modelId: core.serialization.property("model_id", core.serialization.string()),
+        model_id: core.serialization.string(),
         type: core.serialization.stringLiteral("integration/model/gcp/vertex"),
-        modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+        model_types: core.serialization.list(ModelType),
         region: GcpRegion.optional(),
         cost: ModelCostMetric.optional(),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace VertexModel {

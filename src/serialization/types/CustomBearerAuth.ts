@@ -11,7 +11,7 @@ export const CustomBearerAuth: core.serialization.ObjectSchema<
     TrueFoundry.CustomBearerAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("bearer-auth"),
-    bearerToken: core.serialization.property("bearer_token", core.serialization.string()),
+    bearer_token: core.serialization.string(),
 });
 
 export declare namespace CustomBearerAuth {

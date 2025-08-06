@@ -11,18 +11,12 @@ export const TaskPythonBuild: core.serialization.ObjectSchema<
     TrueFoundry.TaskPythonBuild
 > = core.serialization.object({
     type: core.serialization.stringLiteral("task-python-build"),
-    dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
-    pythonVersion: core.serialization.property("python_version", core.serialization.string().optional()),
-    requirementsPath: core.serialization.property("requirements_path", core.serialization.string().optional()),
-    pipPackages: core.serialization.property(
-        "pip_packages",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    aptPackages: core.serialization.property(
-        "apt_packages",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    cudaVersion: core.serialization.property("cuda_version", core.serialization.string().optional()),
+    docker_registry: core.serialization.string().optional(),
+    python_version: core.serialization.string().optional(),
+    requirements_path: core.serialization.string().optional(),
+    pip_packages: core.serialization.list(core.serialization.string()).optional(),
+    apt_packages: core.serialization.list(core.serialization.string()).optional(),
+    cuda_version: core.serialization.string().optional(),
 });
 
 export declare namespace TaskPythonBuild {

@@ -12,13 +12,10 @@ export const DockerFileBuild: core.serialization.ObjectSchema<
     TrueFoundry.DockerFileBuild
 > = core.serialization.object({
     type: core.serialization.stringLiteral("dockerfile"),
-    dockerfilePath: core.serialization.property("dockerfile_path", core.serialization.string()),
-    buildContextPath: core.serialization.property("build_context_path", core.serialization.string()),
+    dockerfile_path: core.serialization.string(),
+    build_context_path: core.serialization.string(),
     command: DockerFileBuildCommand.optional(),
-    buildArgs: core.serialization.property(
-        "build_args",
-        core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    ),
+    build_args: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace DockerFileBuild {

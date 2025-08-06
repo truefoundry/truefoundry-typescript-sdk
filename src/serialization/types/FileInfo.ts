@@ -9,10 +9,10 @@ import * as core from "../../core/index.js";
 export const FileInfo: core.serialization.ObjectSchema<serializers.FileInfo.Raw, TrueFoundry.FileInfo> =
     core.serialization.object({
         path: core.serialization.string(),
-        isDir: core.serialization.property("is_dir", core.serialization.boolean()),
-        fileSize: core.serialization.property("file_size", core.serialization.number().optional()),
-        signedUrl: core.serialization.property("signed_url", core.serialization.string().optional()),
-        lastModified: core.serialization.property("last_modified", core.serialization.date().optional()),
+        is_dir: core.serialization.boolean(),
+        file_size: core.serialization.number().optional(),
+        signed_url: core.serialization.string().optional(),
+        last_modified: core.serialization.date().optional(),
     });
 
 export declare namespace FileInfo {

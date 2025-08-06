@@ -13,12 +13,9 @@ export const DockerhubRegistry: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/docker-registry/dockerhub"),
     name: core.serialization.string(),
-    registryUrl: core.serialization.property("registry_url", core.serialization.string()),
-    authData: core.serialization.property("auth_data", DockerhubBasicAuth.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    registry_url: core.serialization.string(),
+    auth_data: DockerhubBasicAuth.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace DockerhubRegistry {

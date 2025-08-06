@@ -11,8 +11,8 @@ export const SparkJobScalaEntrypoint: core.serialization.ObjectSchema<
     TrueFoundry.SparkJobScalaEntrypoint
 > = core.serialization.object({
     type: core.serialization.stringLiteral("scala"),
-    mainApplicationFile: core.serialization.property("main_application_file", core.serialization.string()),
-    mainClass: core.serialization.property("main_class", core.serialization.string()),
+    main_application_file: core.serialization.string(),
+    main_class: core.serialization.string(),
     arguments: core.serialization.string().optional(),
 });
 

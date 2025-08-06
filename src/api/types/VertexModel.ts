@@ -16,14 +16,14 @@ export interface VertexModel {
      */
     name: string;
     /** +sort=2 */
-    modelId: string;
+    model_id: string;
     /** +value=integration/model/gcp/vertex */
     type: "integration/model/gcp/vertex";
     /**
      * +usage=Specify the type of the model
      * +sort=4
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.GcpRegion;
     cost?: TrueFoundry.ModelCostMetric;
     /**
@@ -31,5 +31,5 @@ export interface VertexModel {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

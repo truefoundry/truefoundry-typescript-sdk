@@ -17,7 +17,7 @@ export const AwsBedrockProviderAccount: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("provider-account/aws-bedrock"),
     name: core.serialization.string(),
     region: AwsRegion,
-    authData: core.serialization.property("auth_data", AwsBedrockProviderAccountAuthData.optional()),
+    auth_data: AwsBedrockProviderAccountAuthData.optional(),
     integrations: core.serialization.list(BedrockModelV2),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

@@ -5,10 +5,10 @@
 /**
  * @example
  *     {
- *         repoUrl: "repoURL"
+ *         repoURL: "repoURL"
  *     }
  */
 export interface GetAuthenticatedVcsurlRequest {
     /** Repository URL (e.g., https://github.com/user/repo, https://bitbucket.org/user/repo) */
-    repoUrl: string;
+    repoURL: string;
 }

@@ -18,7 +18,7 @@ export const Helm: core.serialization.ObjectSchema<serializers.Helm.Raw, TrueFou
     ignoreDifferences: core.serialization
         .list(core.serialization.record(core.serialization.string(), core.serialization.unknown()))
         .optional(),
-    workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
+    workspace_fqn: core.serialization.string().optional(),
 });
 
 export declare namespace Helm {

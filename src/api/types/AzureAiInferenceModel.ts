@@ -22,8 +22,8 @@ export interface AzureAiInferenceModel {
      * +usage=Types of models supported by this Azure AI deployment
      * +sort=200
      */
-    modelTypes: TrueFoundry.ModelType[];
-    authData?: TrueFoundry.AzureKeyAuth;
+    model_types: TrueFoundry.ModelType[];
+    auth_data?: TrueFoundry.AzureKeyAuth;
     /**
      * +label=Deployment Configuration
      * +usage=Configuration details for the Azure AI deployment
@@ -36,7 +36,7 @@ export interface AzureAiInferenceModel {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace AzureAiInferenceModel {

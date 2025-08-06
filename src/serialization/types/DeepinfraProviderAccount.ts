@@ -15,7 +15,7 @@ export const DeepinfraProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/deepinfra"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", DeepinfraKeyAuth),
+    auth_data: DeepinfraKeyAuth,
     integrations: core.serialization.list(DeepinfraIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

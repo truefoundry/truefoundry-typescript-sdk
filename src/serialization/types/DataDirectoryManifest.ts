@@ -13,7 +13,7 @@ export const DataDirectoryManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("data-dir"),
     name: core.serialization.string(),
-    mlRepo: core.serialization.property("ml_repo", core.serialization.string()),
+    ml_repo: core.serialization.string(),
     description: core.serialization.string().optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
     source: DataDirectoryManifestSource,

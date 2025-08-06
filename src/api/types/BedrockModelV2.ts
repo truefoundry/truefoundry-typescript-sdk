@@ -22,7 +22,7 @@ export interface BedrockModelV2 {
      * +usage=The unique identifier for the Bedrock model
      * +message=Model ID must not be empty
      */
-    modelId: string;
+    model_id: string;
     /** +value=integration/model/bedrock */
     type: "integration/model/bedrock";
     /**
@@ -31,7 +31,7 @@ export interface BedrockModelV2 {
      * +usage=Specify the type of the Bedrock model
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion;
     cost?: TrueFoundry.ModelCostMetric;
     /**
@@ -40,5 +40,5 @@ export interface BedrockModelV2 {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

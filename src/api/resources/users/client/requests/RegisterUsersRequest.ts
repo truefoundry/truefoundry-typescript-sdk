@@ -18,5 +18,5 @@ export interface RegisterUsersRequest {
     /** Dry run */
     dryRun?: boolean;
     /** Url to redirect when invite is accepted */
-    acceptInviteClientUrl?: string;
+    acceptInviteClientURL?: string;
 }

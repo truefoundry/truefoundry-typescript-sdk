@@ -11,11 +11,8 @@ export const GcpGsm: core.serialization.ObjectSchema<serializers.GcpGsm.Raw, Tru
     core.serialization.object({
         type: core.serialization.stringLiteral("integration/secret-store/gcp/gsm"),
         name: core.serialization.string(),
-        authData: core.serialization.property("auth_data", GcpKeyFileAuth.optional()),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        auth_data: GcpKeyFileAuth.optional(),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace GcpGsm {

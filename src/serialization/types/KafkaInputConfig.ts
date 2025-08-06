@@ -12,11 +12,11 @@ export const KafkaInputConfig: core.serialization.ObjectSchema<
     TrueFoundry.KafkaInputConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("kafka"),
-    bootstrapServers: core.serialization.property("bootstrap_servers", core.serialization.string()),
-    topicName: core.serialization.property("topic_name", core.serialization.string()),
-    consumerGroup: core.serialization.property("consumer_group", core.serialization.string()),
+    bootstrap_servers: core.serialization.string(),
+    topic_name: core.serialization.string(),
+    consumer_group: core.serialization.string(),
     tls: core.serialization.boolean(),
-    waitTimeSeconds: core.serialization.property("wait_time_seconds", core.serialization.number().optional()),
+    wait_time_seconds: core.serialization.number().optional(),
     auth: KafkaSaslAuth.optional(),
 });
 

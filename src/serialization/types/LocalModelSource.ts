@@ -11,7 +11,7 @@ export const LocalModelSource: core.serialization.ObjectSchema<
     TrueFoundry.LocalModelSource
 > = core.serialization.object({
     type: core.serialization.stringLiteral("local"),
-    fileOrFolder: core.serialization.property("file_or_folder", core.serialization.string()),
+    file_or_folder: core.serialization.string(),
 });
 
 export declare namespace LocalModelSource {

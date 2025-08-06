@@ -21,7 +21,7 @@ describe("Logs", () => {
         expect(response).toEqual({
             data: [
                 {
-                    jobName: "job_name",
+                    job_name: "job_name",
                     log: "log",
                     stream: "stream",
                     time: "time",

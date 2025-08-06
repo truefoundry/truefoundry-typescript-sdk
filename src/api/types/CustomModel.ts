@@ -14,25 +14,25 @@ export interface CustomModel {
      * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    hostedModelName: string;
+    hosted_model_name: string;
     /** +message=enter valid https/http URL that should not end with trailing slash */
     url: string;
-    modelServer: CustomModel.ModelServer;
+    model_server: CustomModel.ModelServer;
     /** +uiType=Hidden */
-    tfyApplicationId?: string;
+    tfy_application_id?: string;
     /** +value=integration/model/custom */
     type: "integration/model/custom";
     /**
      * +usage=Specify the type of the model
      * +sort=4
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     /**
      * +label=Auth Data
      * +usage=Custom authentication data for the integration.
      * +sort=300
      */
-    authData?: CustomModel.AuthData;
+    auth_data?: CustomModel.AuthData;
     /**
      * +label=Custom Headers
      * +usage=Custom headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}`
@@ -46,7 +46,7 @@ export interface CustomModel {
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace CustomModel {

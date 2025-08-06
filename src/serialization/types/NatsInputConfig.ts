@@ -12,12 +12,12 @@ export const NatsInputConfig: core.serialization.ObjectSchema<
     TrueFoundry.NatsInputConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("nats"),
-    natsUrl: core.serialization.property("nats_url", core.serialization.string()),
-    streamName: core.serialization.property("stream_name", core.serialization.string()),
-    rootSubject: core.serialization.property("root_subject", core.serialization.string()),
-    consumerName: core.serialization.property("consumer_name", core.serialization.string()),
-    waitTimeSeconds: core.serialization.property("wait_time_seconds", core.serialization.number()),
-    natsMetricsUrl: core.serialization.property("nats_metrics_url", core.serialization.string().optional()),
+    nats_url: core.serialization.string(),
+    stream_name: core.serialization.string(),
+    root_subject: core.serialization.string(),
+    consumer_name: core.serialization.string(),
+    wait_time_seconds: core.serialization.number(),
+    nats_metrics_url: core.serialization.string().optional(),
     auth: NatsUserPasswordAuth.optional(),
 });
 

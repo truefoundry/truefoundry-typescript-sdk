@@ -14,7 +14,7 @@ export interface PagerDutyIntegrationKeyAuth {
      * +usage=The integration key for the PagerDuty integration
      * +uiType=Password
      */
-    integrationKey: string;
+    integration_key: string;
     /**
      * +label=Integration URL
      * +sort=200
@@ -22,5 +22,5 @@ export interface PagerDutyIntegrationKeyAuth {
      * +docs=The integration URL for the PagerDuty integration. This is the URL that will be used to send events to PagerDuty. eg. https://events.pagerduty.com/generic/2010-04-15/create_event.json
      * +placeholder=https://events.pagerduty.com/generic/2010-04-15/create_event.json
      */
-    integrationUrl: string;
+    integration_url: string;
 }

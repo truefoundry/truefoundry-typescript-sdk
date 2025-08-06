@@ -11,8 +11,8 @@ export const StageArtifactResponse: core.serialization.ObjectSchema<
     TrueFoundry.StageArtifactResponse
 > = core.serialization.object({
     id: core.serialization.string(),
-    storageRoot: core.serialization.property("storage_root", core.serialization.string()),
-    artifactId: core.serialization.property("artifact_id", core.serialization.string()),
+    storage_root: core.serialization.string(),
+    artifact_id: core.serialization.string(),
 });
 
 export declare namespace StageArtifactResponse {

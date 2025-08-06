@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const PalmKeyAuth: core.serialization.ObjectSchema<serializers.PalmKeyAuth.Raw, TrueFoundry.PalmKeyAuth> =
     core.serialization.object({
         type: core.serialization.stringLiteral("api-key"),
-        apiKey: core.serialization.property("api_key", core.serialization.string()),
+        api_key: core.serialization.string(),
     });
 
 export declare namespace PalmKeyAuth {

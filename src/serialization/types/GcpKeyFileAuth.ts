@@ -11,10 +11,7 @@ export const GcpKeyFileAuth: core.serialization.ObjectSchema<
     TrueFoundry.GcpKeyFileAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("key-file"),
-    keyFileContent: core.serialization.property(
-        "key_file_content",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()),
-    ),
+    key_file_content: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });
 
 export declare namespace GcpKeyFileAuth {

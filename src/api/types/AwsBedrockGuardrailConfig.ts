@@ -34,17 +34,17 @@ export interface AwsBedrockGuardrailConfig {
      * +label=AWS Account Auth Data
      * +usage=Authentication data for the AWS account
      */
-    authData?: AwsBedrockGuardrailConfig.AuthData;
+    auth_data?: AwsBedrockGuardrailConfig.AuthData;
     /**
      * +label=Guardrail ID
      * +usage=The ID of the Guardrail to use.
      */
-    guardrailId: string;
+    guardrail_id: string;
     /**
      * +label=Guardrail Version
      * +usage=The version of the Guardrail to use.
      */
-    guardrailVersion: string;
+    guardrail_version: string;
     region: TrueFoundry.AwsRegion;
 }
 

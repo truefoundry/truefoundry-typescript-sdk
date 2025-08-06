@@ -24,7 +24,7 @@ export interface VertexModelV2 {
      * +usage=The unique identifier for the Vertex AI model
      * +message=Model ID must not be empty
      */
-    modelId: string;
+    model_id: string;
     region?: TrueFoundry.GcpRegion;
     /**
      * +label=Model Types
@@ -32,7 +32,7 @@ export interface VertexModelV2 {
      * +usage=Specify the type of the Vertex AI model (e.g., chat, text, etc.)
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
@@ -40,5 +40,5 @@ export interface VertexModelV2 {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

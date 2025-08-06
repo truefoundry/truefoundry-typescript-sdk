@@ -15,7 +15,7 @@ export const MistralAiProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/mistral-ai"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", MistralAiKeyAuth),
+    auth_data: MistralAiKeyAuth,
     integrations: core.serialization.list(MistralAiIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

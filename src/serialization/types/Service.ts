@@ -14,9 +14,9 @@ export const Service: core.serialization.ObjectSchema<serializers.Service.Raw, T
     .object({
         type: core.serialization.stringLiteral("service").optional(),
         replicas: ServiceReplicas.optional(),
-        autoShutdown: core.serialization.property("auto_shutdown", Autoshutdown.optional()),
-        allowInterception: core.serialization.property("allow_interception", core.serialization.boolean().optional()),
-        rolloutStrategy: core.serialization.property("rollout_strategy", ServiceRolloutStrategy.optional()),
+        auto_shutdown: Autoshutdown.optional(),
+        allow_interception: core.serialization.boolean().optional(),
+        rollout_strategy: ServiceRolloutStrategy.optional(),
     })
     .extend(BaseService);
 

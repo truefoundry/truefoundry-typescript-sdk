@@ -11,12 +11,9 @@ export const AwsEcr: core.serialization.ObjectSchema<serializers.AwsEcr.Raw, Tru
     core.serialization.object({
         type: core.serialization.stringLiteral("integration/docker-registry/aws/ecr"),
         name: core.serialization.string(),
-        registryUrl: core.serialization.property("registry_url", core.serialization.string()),
-        authData: core.serialization.property("auth_data", AwsEcrAuthData.optional()),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        registry_url: core.serialization.string(),
+        auth_data: AwsEcrAuthData.optional(),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace AwsEcr {

@@ -21,14 +21,14 @@ export interface SparkImageBuild {
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      * +sort=1002
      */
-    dockerRegistry?: string;
+    docker_registry?: string;
     /**
      * TODO (gw): The following is a hack till the uiType GitSelect is fixed fron frontend
      * +label=Fetch source code
      * +sort=1003
      */
-    buildSource: SparkImageBuild.BuildSource;
-    buildSpec: TrueFoundry.SparkBuild;
+    build_source: SparkImageBuild.BuildSource;
+    build_spec: TrueFoundry.SparkBuild;
 }
 
 export namespace SparkImageBuild {

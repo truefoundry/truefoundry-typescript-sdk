@@ -24,7 +24,7 @@ export interface AlertConfig {
      * +uiProps={"descriptionInline":true}
      * +sort=1
      */
-    notificationTargets: TrueFoundry.NotificationTargetForAlertRule[];
+    notification_targets: TrueFoundry.NotificationTargetForAlertRule[];
     /**
      * +label=Rules
      * +usage=Define one or more alert rules that specify the conditions to monitor, when to trigger alerts, and how they should be handled.

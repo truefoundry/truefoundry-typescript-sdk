@@ -11,7 +11,7 @@ export const StringDataMount: core.serialization.ObjectSchema<
     TrueFoundry.StringDataMount
 > = core.serialization.object({
     type: core.serialization.stringLiteral("string"),
-    mountPath: core.serialization.property("mount_path", core.serialization.string()),
+    mount_path: core.serialization.string(),
     data: core.serialization.string(),
 });
 

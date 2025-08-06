@@ -9,8 +9,8 @@ import * as core from "../../core/index.js";
 export const LocalSource: core.serialization.ObjectSchema<serializers.LocalSource.Raw, TrueFoundry.LocalSource> =
     core.serialization.object({
         type: core.serialization.stringLiteral("local"),
-        projectRootPath: core.serialization.property("project_root_path", core.serialization.string()),
-        localBuild: core.serialization.property("local_build", core.serialization.boolean()),
+        project_root_path: core.serialization.string(),
+        local_build: core.serialization.boolean(),
     });
 
 export declare namespace LocalSource {

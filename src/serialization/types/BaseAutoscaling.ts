@@ -10,9 +10,9 @@ export const BaseAutoscaling: core.serialization.ObjectSchema<
     serializers.BaseAutoscaling.Raw,
     TrueFoundry.BaseAutoscaling
 > = core.serialization.object({
-    minReplicas: core.serialization.property("min_replicas", core.serialization.number()),
-    maxReplicas: core.serialization.property("max_replicas", core.serialization.number()),
-    pollingInterval: core.serialization.property("polling_interval", core.serialization.number().optional()),
+    min_replicas: core.serialization.number(),
+    max_replicas: core.serialization.number(),
+    polling_interval: core.serialization.number().optional(),
 });
 
 export declare namespace BaseAutoscaling {

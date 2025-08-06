@@ -5,9 +5,9 @@
 import * as TrueFoundry from "../index.js";
 
 export interface MultiPartUpload {
-    storageProvider: TrueFoundry.MultiPartUploadStorageProvider;
-    partSignedUrls: TrueFoundry.SignedUrl[];
-    s3CompatibleUploadId?: string;
-    azureBlobBlockIds?: string[];
-    finalizeSignedUrl: TrueFoundry.SignedUrl;
+    storage_provider: TrueFoundry.MultiPartUploadStorageProvider;
+    part_signed_urls: TrueFoundry.SignedUrl[];
+    s3_compatible_upload_id?: string;
+    azure_blob_block_ids?: string[];
+    finalize_signed_url: TrueFoundry.SignedUrl;
 }

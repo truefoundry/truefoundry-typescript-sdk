@@ -10,9 +10,9 @@ import { WorkerConfigOutputConfig } from "./WorkerConfigOutputConfig";
 
 export const WorkerConfig: core.serialization.ObjectSchema<serializers.WorkerConfig.Raw, TrueFoundry.WorkerConfig> =
     core.serialization.object({
-        inputConfig: core.serialization.property("input_config", WorkerConfigInputConfig),
-        outputConfig: core.serialization.property("output_config", WorkerConfigOutputConfig.optional()),
-        numConcurrentWorkers: core.serialization.property("num_concurrent_workers", core.serialization.number()),
+        input_config: WorkerConfigInputConfig,
+        output_config: WorkerConfigOutputConfig.optional(),
+        num_concurrent_workers: core.serialization.number(),
     });
 
 export declare namespace WorkerConfig {

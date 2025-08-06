@@ -14,9 +14,9 @@ export interface ChatPromptManifest {
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    versionAlias?: string;
+    version_alias?: string;
     /** Name of the ML Repo */
-    mlRepo: string;
+    ml_repo: string;
     /** Version of the entity */
     version?: number;
     type: "chat_prompt";
@@ -24,11 +24,11 @@ export interface ChatPromptManifest {
     messages: ChatPromptManifest.Messages.Item[];
     /** Variables referenced in messages and that can be replaced when running generation */
     variables?: Record<string, string>;
-    modelConfiguration?: TrueFoundry.ModelConfiguration;
+    model_configuration?: TrueFoundry.ModelConfiguration;
     /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];
     /** A list of MCP servers FQNs or URLs and their tools */
-    mcpServers?: ChatPromptManifest.McpServers.Item[];
+    mcp_servers?: ChatPromptManifest.McpServers.Item[];
     guardrails?: TrueFoundry.Guardrails;
 }
 

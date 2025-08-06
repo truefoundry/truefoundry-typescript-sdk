@@ -43,13 +43,13 @@ export interface ApplicationSet {
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
     /**
      * +label=Convert Template Manifest
      * +docs=Flag to indicate if the template manifest should be converted to TrueFoundry manifest
      * +uiType=Hidden
      */
-    convertTemplateManifest?: boolean;
+    convert_template_manifest?: boolean;
 }
 
 export namespace ApplicationSet {

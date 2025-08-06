@@ -20,7 +20,7 @@ export interface BaseWorkbenchInput {
      * +usage=Size of the home directory for the workbench (Persistent Storage)
      * +sort=6
      */
-    homeDirectorySize: number;
+    home_directory_size: number;
     resources?: TrueFoundry.Resources;
     /**
      * +label=Environment Variables
@@ -34,14 +34,14 @@ export interface BaseWorkbenchInput {
      */
     mounts?: BaseWorkbenchInput.Mounts.Item[];
     /** +sort=10113 */
-    serviceAccount?: string;
+    service_account?: string;
     kustomize?: TrueFoundry.Kustomize;
     /**
      * +label=Workspace FQN
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
 }
 
 export namespace BaseWorkbenchInput {

@@ -13,7 +13,7 @@ export const ListFilesRequest: core.serialization.ObjectSchema<
     id: core.serialization.string(),
     path: core.serialization.string().optional(),
     limit: core.serialization.number().optional(),
-    pageToken: core.serialization.property("page_token", core.serialization.string().optional()),
+    page_token: core.serialization.string().optional(),
 });
 
 export declare namespace ListFilesRequest {

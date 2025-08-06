@@ -9,9 +9,9 @@ import { NotificationTarget } from "./NotificationTarget.js";
 
 export const WorkflowAlert: core.serialization.ObjectSchema<serializers.WorkflowAlert.Raw, TrueFoundry.WorkflowAlert> =
     core.serialization.object({
-        notificationTarget: core.serialization.property("notification_target", NotificationTarget.optional()),
-        onCompletion: core.serialization.property("on_completion", core.serialization.boolean().optional()),
-        onFailure: core.serialization.property("on_failure", core.serialization.boolean().optional()),
+        notification_target: NotificationTarget.optional(),
+        on_completion: core.serialization.boolean().optional(),
+        on_failure: core.serialization.boolean().optional(),
     });
 
 export declare namespace WorkflowAlert {

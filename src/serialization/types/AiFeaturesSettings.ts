@@ -12,7 +12,7 @@ export const AiFeaturesSettings: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("settings/ai-features"),
     enabled: core.serialization.boolean(),
-    aiProvider: core.serialization.property("ai_provider", core.serialization.stringLiteral("truefoundry")),
+    ai_provider: core.serialization.stringLiteral("truefoundry"),
 });
 
 export declare namespace AiFeaturesSettings {

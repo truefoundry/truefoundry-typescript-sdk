@@ -13,11 +13,8 @@ export const PagerDutyIntegration: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/notification-channel/pagerduty"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", PagerDutyIntegrationKeyAuth),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    auth_data: PagerDutyIntegrationKeyAuth,
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace PagerDutyIntegration {

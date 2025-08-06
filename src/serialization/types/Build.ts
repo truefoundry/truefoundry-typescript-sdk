@@ -11,9 +11,9 @@ import { BuildBuildSpec } from "./BuildBuildSpec";
 export const Build: core.serialization.ObjectSchema<serializers.Build.Raw, TrueFoundry.Build> =
     core.serialization.object({
         type: core.serialization.stringLiteral("build"),
-        dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
-        buildSource: core.serialization.property("build_source", BuildBuildSource),
-        buildSpec: core.serialization.property("build_spec", BuildBuildSpec),
+        docker_registry: core.serialization.string().optional(),
+        build_source: BuildBuildSource,
+        build_spec: BuildBuildSpec,
     });
 
 export declare namespace Build {

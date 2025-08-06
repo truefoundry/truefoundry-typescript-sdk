@@ -10,11 +10,8 @@ export const ModelVersionEnvironment: core.serialization.ObjectSchema<
     serializers.ModelVersionEnvironment.Raw,
     TrueFoundry.ModelVersionEnvironment
 > = core.serialization.object({
-    pythonVersion: core.serialization.property("python_version", core.serialization.string().optional()),
-    pipPackages: core.serialization.property(
-        "pip_packages",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    python_version: core.serialization.string().optional(),
+    pip_packages: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace ModelVersionEnvironment {

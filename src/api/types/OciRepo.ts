@@ -12,7 +12,7 @@ export interface OciRepo {
      * +label=OCI chart URL
      * +message=Need to be a valid URL.
      */
-    ociChartUrl: string;
+    oci_chart_url: string;
     /**
      * +docs=FQN of the container registry. You can use the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations) page
@@ -22,7 +22,7 @@ export interface OciRepo {
      * +uiType=IntegrationSelect
      * +uiProps={"integrationType":"docker-registry"}
      */
-    integrationFqn?: string;
+    integration_fqn?: string;
     /**
      * +label=Version
      * +usage=Helm chart version

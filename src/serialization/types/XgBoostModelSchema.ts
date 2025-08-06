@@ -10,7 +10,7 @@ export const XgBoostModelSchema: core.serialization.ObjectSchema<
     serializers.XgBoostModelSchema.Raw,
     TrueFoundry.XgBoostModelSchema
 > = core.serialization.object({
-    inferMethodName: core.serialization.property("infer_method_name", core.serialization.stringLiteral("predict")),
+    infer_method_name: core.serialization.stringLiteral("predict"),
     inputs: core.serialization.list(
         core.serialization.record(core.serialization.string(), core.serialization.unknown()),
     ),

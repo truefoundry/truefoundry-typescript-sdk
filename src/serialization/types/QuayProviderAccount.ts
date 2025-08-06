@@ -14,8 +14,8 @@ export const QuayProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/quay"),
     name: core.serialization.string(),
-    accountName: core.serialization.property("account_name", core.serialization.string().optional()),
-    authData: core.serialization.property("auth_data", QuayBasicAuth.optional()),
+    account_name: core.serialization.string().optional(),
+    auth_data: QuayBasicAuth.optional(),
     integrations: core.serialization.list(QuayIntegrations),
 });
 

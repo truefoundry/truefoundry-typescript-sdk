@@ -16,10 +16,7 @@ export const CustomMcpServerIntegration: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     url: core.serialization.string(),
     auth: McpServerAuth.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace CustomMcpServerIntegration {

@@ -11,12 +11,12 @@ export const BaseOAuth2Login: core.serialization.ObjectSchema<
     serializers.BaseOAuth2Login.Raw,
     TrueFoundry.BaseOAuth2Login
 > = core.serialization.object({
-    clientId: core.serialization.property("client_id", core.serialization.string()),
-    clientSecret: core.serialization.property("client_secret", core.serialization.string().optional()),
-    authorizationUrl: core.serialization.property("authorization_url", core.serialization.string()),
-    tokenUrl: core.serialization.property("token_url", core.serialization.string()),
+    client_id: core.serialization.string(),
+    client_secret: core.serialization.string().optional(),
+    authorization_url: core.serialization.string(),
+    token_url: core.serialization.string(),
     scopes: core.serialization.list(core.serialization.string()),
-    jwtSource: core.serialization.property("jwt_source", BaseOAuth2LoginJwtSource),
+    jwt_source: BaseOAuth2LoginJwtSource,
 });
 
 export declare namespace BaseOAuth2Login {

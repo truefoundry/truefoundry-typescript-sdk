@@ -12,7 +12,7 @@ export const Param: core.serialization.ObjectSchema<serializers.Param.Raw, TrueF
         name: core.serialization.string(),
         description: core.serialization.string().optional(),
         default: core.serialization.string().optional(),
-        paramType: core.serialization.property("param_type", ParamParamType.optional()),
+        param_type: ParamParamType.optional(),
     });
 
 export declare namespace Param {

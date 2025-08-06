@@ -15,7 +15,7 @@ export const GroqProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/groq"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", GroqKeyAuth),
+    auth_data: GroqKeyAuth,
     integrations: core.serialization.list(GroqIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

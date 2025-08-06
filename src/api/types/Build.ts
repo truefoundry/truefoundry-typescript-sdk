@@ -19,21 +19,21 @@ export interface Build {
      * +usage=FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    dockerRegistry?: string;
+    docker_registry?: string;
     /**
      * +docs=Source code location.
      * +label=Fetch source code to build and deploy
      * +icon=fa-code
      * +sort=1
      */
-    buildSource: Build.BuildSource;
+    build_source: Build.BuildSource;
     /**
      * +docs=Instructions to build a container image out of the build source
      * +label=Build using DockerFile or using Buildpack
      * +icon=fa-wrench
      * +sort=2
      */
-    buildSpec: Build.BuildSpec;
+    build_spec: Build.BuildSpec;
 }
 
 export namespace Build {

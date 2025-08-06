@@ -11,12 +11,9 @@ export const TaskDockerFileBuild: core.serialization.ObjectSchema<
     TrueFoundry.TaskDockerFileBuild
 > = core.serialization.object({
     type: core.serialization.stringLiteral("task-dockerfile-build"),
-    dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
-    dockerfilePath: core.serialization.property("dockerfile_path", core.serialization.string()),
-    buildArgs: core.serialization.property(
-        "build_args",
-        core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    ),
+    docker_registry: core.serialization.string().optional(),
+    dockerfile_path: core.serialization.string(),
+    build_args: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
 export declare namespace TaskDockerFileBuild {

@@ -14,17 +14,14 @@ export const AzureOpenAiModel: core.serialization.ObjectSchema<
     TrueFoundry.AzureOpenAiModel
 > = core.serialization.object({
     name: core.serialization.string(),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
+    model_id: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/model/azure"),
-    authData: core.serialization.property("auth_data", AzureKeyAuth),
-    azureEndpoint: core.serialization.property("azure_endpoint", core.serialization.string()),
-    apiVersion: core.serialization.property("api_version", core.serialization.string()),
-    modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+    auth_data: AzureKeyAuth,
+    azure_endpoint: core.serialization.string(),
+    api_version: core.serialization.string(),
+    model_types: core.serialization.list(ModelType),
     cost: ModelCostMetric.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureOpenAiModel {

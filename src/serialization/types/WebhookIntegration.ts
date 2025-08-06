@@ -13,12 +13,9 @@ export const WebhookIntegration: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/gateway-request-logger/webhook"),
     name: core.serialization.string(),
-    webhookUrl: core.serialization.property("webhook_url", core.serialization.string()),
-    authData: core.serialization.property("auth_data", WebhookIntegrationAuthData.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    webhook_url: core.serialization.string(),
+    auth_data: WebhookIntegrationAuthData.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace WebhookIntegration {

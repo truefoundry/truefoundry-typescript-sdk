@@ -8,15 +8,15 @@ export interface PySparkTaskConfig {
     /** +value=pyspark-task-config */
     type: "pyspark-task-config";
     image: TrueFoundry.TaskPySparkBuild;
-    driverConfig: TrueFoundry.SparkDriverConfig;
-    executorConfig: TrueFoundry.SparkExecutorConfig;
+    driver_config: TrueFoundry.SparkDriverConfig;
+    executor_config: TrueFoundry.SparkExecutorConfig;
     /**
      * +label=Spark Config Properties
      * +usage=Extra configuration properties to be passed to the spark job. [Docs](https://spark.apache.org/docs/latest/configuration.html)
      * +icon=fa-gear:#68BBE3
      * +sort=3000
      */
-    sparkConf?: Record<string, unknown>;
+    spark_conf?: Record<string, unknown>;
     /**
      * +label=Environment Variables
      * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
@@ -33,7 +33,7 @@ export interface PySparkTaskConfig {
      * +label=Service Account
      * +sort=6000
      */
-    serviceAccount?: string;
+    service_account?: string;
 }
 
 export namespace PySparkTaskConfig {

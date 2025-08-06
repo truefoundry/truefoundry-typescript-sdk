@@ -12,7 +12,7 @@ export interface SlackBot {
      * +uiProps={"integrationType":"notification-channel"}
      * +sort=660
      */
-    notificationChannel: string;
+    notification_channel: string;
     /**
      * +label=Slack Channel Names
      * +usage=List of channels to send messages to.

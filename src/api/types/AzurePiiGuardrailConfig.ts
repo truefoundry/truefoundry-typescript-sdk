@@ -27,20 +27,20 @@ export interface AzurePiiGuardrailConfig {
      * +usage=The resource name where API is deployed.
      * +sort=50
      */
-    resourceName: string;
+    resource_name: string;
     /**
      * +label=API Version
      * +usage=API version for the Content Safety API
      * +sort=100
      */
-    apiVersion: string;
+    api_version: string;
     /**
      * +label=Custom Host
      * +usage=Custom host for the PII detection API
      * +sort=200
      * +uiType=Hidden
      */
-    customHost?: string;
+    custom_host?: string;
     /**
      * +label=Domain
      * +usage=Domain for PII detection
@@ -53,20 +53,20 @@ export interface AzurePiiGuardrailConfig {
      * +sort=500
      * +uiType=MultiSelectPills
      */
-    piiCategories: TrueFoundry.AzurePiiCategory[];
+    pii_categories: TrueFoundry.AzurePiiCategory[];
     /**
      * +label=Model Version
      * +usage=Version of the PII detection model to use
      * +sort=600
      */
-    modelVersion: string;
+    model_version: string;
     /**
      * +label=Language Code
      * +usage=Language code for PII detection
      * +sort=700
      */
     language: string;
-    authData: TrueFoundry.AzureKeyAuth;
+    auth_data: TrueFoundry.AzureKeyAuth;
 }
 
 export namespace AzurePiiGuardrailConfig {

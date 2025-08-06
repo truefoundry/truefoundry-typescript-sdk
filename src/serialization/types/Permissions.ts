@@ -8,9 +8,9 @@ import * as core from "../../core/index.js";
 
 export const Permissions: core.serialization.ObjectSchema<serializers.Permissions.Raw, TrueFoundry.Permissions> =
     core.serialization.object({
-        resourceFqn: core.serialization.property("resource_fqn", core.serialization.string()),
-        resourceType: core.serialization.property("resource_type", core.serialization.string()),
-        roleId: core.serialization.property("role_id", core.serialization.string()),
+        resource_fqn: core.serialization.string(),
+        resource_type: core.serialization.string(),
+        role_id: core.serialization.string(),
     });
 
 export declare namespace Permissions {

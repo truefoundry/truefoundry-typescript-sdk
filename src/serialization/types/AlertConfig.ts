@@ -14,10 +14,7 @@ export const AlertConfig: core.serialization.ObjectSchema<serializers.AlertConfi
         type: core.serialization.stringLiteral("alert-config"),
         name: core.serialization.string(),
         resource: AlertConfigResource,
-        notificationTargets: core.serialization.property(
-            "notification_targets",
-            core.serialization.list(NotificationTargetForAlertRule),
-        ),
+        notification_targets: core.serialization.list(NotificationTargetForAlertRule),
         rules: core.serialization.list(PrometheusAlertRule),
     });
 

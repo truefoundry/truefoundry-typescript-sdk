@@ -46,7 +46,7 @@ export class Vcs {
      *
      * @example
      *     await client.internal.vcs.getRepositoryDetails({
-     *         repoUrl: "repoURL"
+     *         repoURL: "repoURL"
      *     })
      */
     public getRepositoryDetails(
@@ -131,7 +131,7 @@ export class Vcs {
      *
      * @example
      *     await client.internal.vcs.getAuthenticatedUrl({
-     *         repoUrl: "repoURL"
+     *         repoURL: "repoURL"
      *     })
      */
     public getAuthenticatedUrl(

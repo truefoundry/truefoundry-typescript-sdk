@@ -19,7 +19,7 @@ export interface GoogleGeminiProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.GcpApiKeyAuth;
+    auth_data: TrueFoundry.GcpApiKeyAuth;
     /**
      * +label=Integrations
      * +sort=500

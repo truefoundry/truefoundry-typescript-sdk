@@ -11,10 +11,7 @@ export const TrueFoundryInteractiveLogin: core.serialization.ObjectSchema<
     TrueFoundry.TrueFoundryInteractiveLogin
 > = core.serialization.object({
     type: core.serialization.stringLiteral("truefoundry_oauth"),
-    bypassAuthPaths: core.serialization.property(
-        "bypass_auth_paths",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    bypass_auth_paths: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace TrueFoundryInteractiveLogin {

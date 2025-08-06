@@ -7,6 +7,6 @@ import * as TrueFoundry from "../index.js";
 export interface BudgetRule {
     id: string;
     when: TrueFoundry.BudgetWhen;
-    limitTo: number;
+    limit_to: number;
     unit: TrueFoundry.BudgetLimitUnit;
 }

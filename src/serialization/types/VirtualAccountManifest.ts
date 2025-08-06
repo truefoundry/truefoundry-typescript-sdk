@@ -13,7 +13,7 @@ export const VirtualAccountManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("virtual-account"),
-    expirationDate: core.serialization.property("expiration_date", core.serialization.string().optional()),
+    expiration_date: core.serialization.string().optional(),
     permissions: core.serialization.list(Permissions),
 });
 

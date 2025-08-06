@@ -18,7 +18,7 @@ export const ContainerTaskConfig: core.serialization.ObjectSchema<
     env: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     resources: Resources.optional(),
     mounts: core.serialization.list(VolumeMount).optional(),
-    serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+    service_account: core.serialization.string().optional(),
 });
 
 export declare namespace ContainerTaskConfig {

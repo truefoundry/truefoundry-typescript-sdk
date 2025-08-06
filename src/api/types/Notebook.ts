@@ -18,5 +18,5 @@ export interface Notebook extends TrueFoundry.BaseWorkbenchInput {
      * +sort=5
      * +uiProps={"descriptionInline":true}
      */
-    cullTimeout?: number;
+    cull_timeout?: number;
 }

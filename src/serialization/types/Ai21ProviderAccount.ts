@@ -15,7 +15,7 @@ export const Ai21ProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/ai21"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", Ai21KeyAuth),
+    auth_data: Ai21KeyAuth,
     integrations: core.serialization.list(Ai21Integrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

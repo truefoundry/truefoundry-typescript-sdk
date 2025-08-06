@@ -24,14 +24,14 @@ export interface AwsParameterStore {
      * +usage=Custom authentication data for the integration.
      * +sort=300
      */
-    authData?: AwsParameterStore.AuthData;
+    auth_data?: AwsParameterStore.AuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace AwsParameterStore {

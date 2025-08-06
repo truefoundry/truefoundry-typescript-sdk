@@ -16,12 +16,12 @@ export interface SqsOutputConfig {
      * +usage=AWS SQS Queue URL of Publisher
      * +sort=1
      */
-    queueUrl: string;
+    queue_url: string;
     /**
      * +label=Region Name
      * +usage=AWS Region Name
      * +sort=2
      */
-    regionName: string;
+    region_name: string;
     auth: TrueFoundry.AwsAccessKeyAuth;
 }

@@ -12,7 +12,7 @@ export const TracingProjectManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("tracing-project"),
     name: core.serialization.string(),
-    mlRepo: core.serialization.property("ml_repo", core.serialization.string().optional()),
+    ml_repo: core.serialization.string().optional(),
 });
 
 export declare namespace TracingProjectManifest {

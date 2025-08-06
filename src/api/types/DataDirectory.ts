@@ -6,12 +6,12 @@ import * as TrueFoundry from "../index.js";
 
 export interface DataDirectory {
     id: string;
-    mlRepoId: string;
+    ml_repo_id: string;
     name: string;
     fqn: string;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt: Date;
-    updatedAt: Date;
+    created_by_subject: TrueFoundry.Subject;
+    created_at: Date;
+    updated_at: Date;
     manifest: TrueFoundry.DataDirectoryManifest;
-    usageCodeSnippet?: string;
+    usage_code_snippet?: string;
 }

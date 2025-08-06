@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const ForwardAction: core.serialization.ObjectSchema<serializers.ForwardAction.Raw, TrueFoundry.ForwardAction> =
     core.serialization.object({
         type: core.serialization.stringLiteral("forward"),
-        serviceUri: core.serialization.property("service_uri", core.serialization.string()),
+        service_uri: core.serialization.string(),
         port: core.serialization.number(),
     });
 

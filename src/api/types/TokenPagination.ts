@@ -4,6 +4,6 @@
 
 export interface TokenPagination {
     limit?: number;
-    previousPageToken?: string;
-    nextPageToken?: string;
+    previous_page_token?: string;
+    next_page_token?: string;
 }

@@ -17,7 +17,7 @@ export interface Image {
      * You can use an image from a private registry using Advanced fields
      * +placeholder=registry-url/account/image:version (e.g. docker.io/tensorflow/tensorflow)
      */
-    imageUri: string;
+    image_uri: string;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -25,7 +25,7 @@ export interface Image {
      * +usage=FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    dockerRegistry?: string;
+    docker_registry?: string;
     /**
      * +label=Command Override
      * +usage=Override the command to run when container starts.

@@ -169,11 +169,11 @@ export class Clusters {
      *         manifest: {
      *             type: "cluster",
      *             name: "name",
-     *             clusterType: "aws-eks",
-     *             environmentNames: ["environment_names"],
+     *             cluster_type: "aws-eks",
+     *             environment_names: ["environment_names"],
      *             collaborators: [{
      *                     subject: "subject",
-     *                     roleId: "role_id"
+     *                     role_id: "role_id"
      *                 }]
      *         }
      *     })

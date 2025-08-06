@@ -13,5 +13,5 @@ export interface OllamaKeyAuth {
      * +usage=The custom host URL for Ollama API
      * +message=Host URL must not be empty
      */
-    customHost: string;
+    custom_host: string;
 }

@@ -12,8 +12,8 @@ export const KafkaOutputConfig: core.serialization.ObjectSchema<
     TrueFoundry.KafkaOutputConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("kafka"),
-    bootstrapServers: core.serialization.property("bootstrap_servers", core.serialization.string()),
-    topicName: core.serialization.property("topic_name", core.serialization.string()),
+    bootstrap_servers: core.serialization.string(),
+    topic_name: core.serialization.string(),
     tls: core.serialization.boolean(),
     auth: KafkaSaslAuth.optional(),
 });

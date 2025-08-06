@@ -14,15 +14,12 @@ export const BedrockModelV2: core.serialization.ObjectSchema<
     TrueFoundry.BedrockModelV2
 > = core.serialization.object({
     name: core.serialization.string(),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
+    model_id: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/model/bedrock"),
-    modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+    model_types: core.serialization.list(ModelType),
     region: AwsRegion.optional(),
     cost: ModelCostMetric.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace BedrockModelV2 {

@@ -16,24 +16,24 @@ export interface BedrockModel {
      */
     name: string;
     /** +sort=2 */
-    modelId: string;
+    model_id: string;
     /** +value=integration/model/aws */
     type: "integration/model/aws";
     /** +label=Auth Data */
-    authData?: BedrockModel.AuthData;
+    auth_data?: BedrockModel.AuthData;
     region: TrueFoundry.AwsRegion;
     /**
      * +usage=Specify the type of the model
      * +sort=4
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace BedrockModel {

@@ -19,14 +19,14 @@ export interface OpenaiProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.OpenaiApiKeyAuth;
+    auth_data: TrueFoundry.OpenaiApiKeyAuth;
     /**
      * +label=Base URL
      * +sort=300
      * +usage=Optional custom base URL for OpenAI API
      * +message=Base URL must not be empty
      */
-    baseUrl?: string;
+    base_url?: string;
     /**
      * +label=Integrations
      * +sort=400

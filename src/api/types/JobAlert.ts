@@ -15,7 +15,7 @@ export interface JobAlert {
      * +uiType=Hidden
      * +sort=660
      */
-    notificationChannel?: string;
+    notification_channel?: string;
     /**
      * +label=To Emails
      * +usage=List of recipients' email addresses if the notification channel is Email.
@@ -23,19 +23,19 @@ export interface JobAlert {
      * +uiType=Hidden
      * +sort=665
      */
-    toEmails?: string[];
-    notificationTarget?: TrueFoundry.NotificationTarget;
+    to_emails?: string[];
+    notification_target?: TrueFoundry.NotificationTarget;
     /**
      * +label=On Start
      * +usage=Send an alert when the job starts
      * +sort=670
      */
-    onStart?: boolean;
-    onCompletion?: boolean;
+    on_start?: boolean;
+    on_completion?: boolean;
     /**
      * +label=On Failure
      * +usage=Send an alert when the job fails
      * +sort=690
      */
-    onFailure?: boolean;
+    on_failure?: boolean;
 }

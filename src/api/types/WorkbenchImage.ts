@@ -13,7 +13,7 @@ export interface WorkbenchImage {
      * You can use an image from a private registry using Advanced fields
      * +placeholder=registry-url/account/image:version
      */
-    imageUri: string;
+    image_uri: string;
     /**
      * +label=Build Script
      * +usage=The build script to run when building the image.
@@ -22,7 +22,7 @@ export interface WorkbenchImage {
      * +uiType=CodeEditor
      * +uiProps={"language":"shell"}
      */
-    buildScript?: string;
+    build_script?: string;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -32,5 +32,5 @@ export interface WorkbenchImage {
      * +usage=FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    dockerRegistry?: string;
+    docker_registry?: string;
 }

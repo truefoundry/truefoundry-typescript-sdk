@@ -28,8 +28,8 @@ export interface OpenAiModerationsGuardrailConfig {
      * +sort=100
      * +usage=Optional custom base URL for OpenAI API. If not provided, the default base URL will be used.
      */
-    baseUrl?: string;
-    authData: TrueFoundry.OpenaiApiKeyAuth;
+    base_url?: string;
+    auth_data: TrueFoundry.OpenaiApiKeyAuth;
     /**
      * +label=OpenAI Moderation Model
      * +sort=300
@@ -42,7 +42,7 @@ export interface OpenAiModerationsGuardrailConfig {
      * +usage=The thresholds for the OpenAI Moderation API.
      * +uiType=KV
      */
-    categoryThresholds?: Record<string, OpenAiModerationsGuardrailConfig.CategoryThresholds.Value>;
+    category_thresholds?: Record<string, OpenAiModerationsGuardrailConfig.CategoryThresholds.Value>;
 }
 
 export namespace OpenAiModerationsGuardrailConfig {

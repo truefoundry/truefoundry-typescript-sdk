@@ -15,8 +15,8 @@ export const OpenaiProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/openai"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", OpenaiApiKeyAuth),
-    baseUrl: core.serialization.property("base_url", core.serialization.string().optional()),
+    auth_data: OpenaiApiKeyAuth,
+    base_url: core.serialization.string().optional(),
     integrations: core.serialization.list(OpenAiIntegrations),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

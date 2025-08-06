@@ -10,7 +10,7 @@ export const AddOnComponentSource: core.serialization.ObjectSchema<
     serializers.AddOnComponentSource.Raw,
     TrueFoundry.AddOnComponentSource
 > = core.serialization.object({
-    repoUrl: core.serialization.property("repo_url", core.serialization.string()),
+    repo_url: core.serialization.string(),
     chart: core.serialization.string(),
 });
 

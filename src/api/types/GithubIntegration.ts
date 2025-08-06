@@ -15,12 +15,12 @@ export interface GithubIntegration {
      * +label=Account Name
      * +sort=200
      */
-    accountName: string;
+    account_name: string;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

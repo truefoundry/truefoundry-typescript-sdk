@@ -15,14 +15,14 @@ export const AzurePiiGuardrailConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/guardrail-config/azure-pii"),
-    resourceName: core.serialization.property("resource_name", core.serialization.string()),
-    apiVersion: core.serialization.property("api_version", core.serialization.string()),
-    customHost: core.serialization.property("custom_host", core.serialization.string().optional()),
+    resource_name: core.serialization.string(),
+    api_version: core.serialization.string(),
+    custom_host: core.serialization.string().optional(),
     domain: AzurePiiGuardrailConfigDomain,
-    piiCategories: core.serialization.property("pii_categories", core.serialization.list(AzurePiiCategory)),
-    modelVersion: core.serialization.property("model_version", core.serialization.string()),
+    pii_categories: core.serialization.list(AzurePiiCategory),
+    model_version: core.serialization.string(),
     language: core.serialization.string(),
-    authData: core.serialization.property("auth_data", AzureKeyAuth),
+    auth_data: AzureKeyAuth,
 });
 
 export declare namespace AzurePiiGuardrailConfig {

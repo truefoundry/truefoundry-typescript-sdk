@@ -13,12 +13,9 @@ export const AzureBlobStorage: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/blob-storage/azure/blob"),
     name: core.serialization.string(),
-    storageRoot: core.serialization.property("storage_root", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AzureConnectionStringAuth.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    storage_root: core.serialization.string(),
+    auth_data: AzureConnectionStringAuth.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureBlobStorage {

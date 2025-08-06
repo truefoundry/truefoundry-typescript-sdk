@@ -19,7 +19,7 @@ export interface Param {
      * +label=Default value
      */
     default?: string;
-    paramType?: Param.ParamType;
+    param_type?: Param.ParamType;
 }
 
 export namespace Param {

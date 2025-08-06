@@ -8,8 +8,8 @@ import * as core from "../../core/index.js";
 
 export const CanaryStep: core.serialization.ObjectSchema<serializers.CanaryStep.Raw, TrueFoundry.CanaryStep> =
     core.serialization.object({
-        weightPercentage: core.serialization.property("weight_percentage", core.serialization.number()),
-        pauseDuration: core.serialization.property("pause_duration", core.serialization.number().optional()),
+        weight_percentage: core.serialization.number(),
+        pause_duration: core.serialization.number().optional(),
     });
 
 export declare namespace CanaryStep {

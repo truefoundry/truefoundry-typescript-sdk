@@ -11,7 +11,7 @@ export const StaticVolumeConfig: core.serialization.ObjectSchema<
     TrueFoundry.StaticVolumeConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("static"),
-    persistentVolumeName: core.serialization.property("persistent_volume_name", core.serialization.string()),
+    persistent_volume_name: core.serialization.string(),
 });
 
 export declare namespace StaticVolumeConfig {

@@ -14,13 +14,13 @@ export const BaseWorkbenchInput: core.serialization.ObjectSchema<
     TrueFoundry.BaseWorkbenchInput
 > = core.serialization.object({
     name: core.serialization.string(),
-    homeDirectorySize: core.serialization.property("home_directory_size", core.serialization.number()),
+    home_directory_size: core.serialization.number(),
     resources: Resources.optional(),
     env: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     mounts: core.serialization.list(BaseWorkbenchInputMountsItem).optional(),
-    serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+    service_account: core.serialization.string().optional(),
     kustomize: Kustomize.optional(),
-    workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
+    workspace_fqn: core.serialization.string().optional(),
 });
 
 export declare namespace BaseWorkbenchInput {

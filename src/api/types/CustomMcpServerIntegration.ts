@@ -38,5 +38,5 @@ export interface CustomMcpServerIntegration {
      * +sort=500
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

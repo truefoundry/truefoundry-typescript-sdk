@@ -13,8 +13,8 @@ export const Volume: core.serialization.ObjectSchema<serializers.Volume.Raw, Tru
         type: core.serialization.stringLiteral("volume"),
         name: core.serialization.string(),
         config: VolumeConfig,
-        volumeBrowser: core.serialization.property("volume_browser", VolumeBrowser.optional()),
-        workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
+        volume_browser: VolumeBrowser.optional(),
+        workspace_fqn: core.serialization.string().optional(),
     });
 
 export declare namespace Volume {

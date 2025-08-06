@@ -6,13 +6,13 @@ import * as TrueFoundry from "../index.js";
 
 export interface Prompt {
     id: string;
-    mlRepoId: string;
+    ml_repo_id: string;
     type?: "chat_prompt";
     name: string;
     fqn: string;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt?: Date;
-    updatedAt?: Date;
-    latestVersion?: TrueFoundry.PromptVersion;
-    runSteps?: number[];
+    created_by_subject: TrueFoundry.Subject;
+    created_at?: Date;
+    updated_at?: Date;
+    latest_version?: TrueFoundry.PromptVersion;
+    run_steps?: number[];
 }

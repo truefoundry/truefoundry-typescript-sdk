@@ -16,9 +16,9 @@ export const GoogleVertexProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/google-vertex"),
     name: core.serialization.string(),
-    projectId: core.serialization.property("project_id", core.serialization.string()),
+    project_id: core.serialization.string(),
     region: GcpRegion,
-    authData: core.serialization.property("auth_data", GcpKeyFileAuth.optional()),
+    auth_data: GcpKeyFileAuth.optional(),
     integrations: core.serialization.list(VertexModelV2),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

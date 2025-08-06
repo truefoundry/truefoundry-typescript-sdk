@@ -7,6 +7,6 @@ import * as TrueFoundry from "../index.js";
 export interface LoadBalancingConfig {
     name: string;
     type: "gateway-load-balancing-config";
-    modelConfigs?: TrueFoundry.ModelConfig[];
+    model_configs?: TrueFoundry.ModelConfig[];
     rules: TrueFoundry.LoadBalancingRule[];
 }

@@ -20,28 +20,28 @@ export interface AzureOpenAiModel {
      * +label=Model ID
      * +usage=This is the name of the deployment
      */
-    modelId: string;
+    model_id: string;
     /** +value=integration/model/azure */
     type: "integration/model/azure";
-    authData: TrueFoundry.AzureKeyAuth;
+    auth_data: TrueFoundry.AzureKeyAuth;
     /**
      * +sort=100
      * +label=Azure Endpoint
      * +usage=Azure OpenAI Service endpoint
      */
-    azureEndpoint: string;
+    azure_endpoint: string;
     /** +sort=100 */
-    apiVersion: string;
+    api_version: string;
     /**
      * +usage=Specify the type of the model
      * +sort=4
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

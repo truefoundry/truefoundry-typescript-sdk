@@ -36,7 +36,7 @@ export interface MlRepoManifest {
      * [View Docs](https://docs.truefoundry.com/docs/integrations)
      * +sort=4
      */
-    storageIntegrationFqn: string;
+    storage_integration_fqn: string;
     /**
      * +label=Collaborators
      * +sort=5

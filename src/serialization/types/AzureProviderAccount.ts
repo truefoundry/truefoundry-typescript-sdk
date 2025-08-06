@@ -13,7 +13,7 @@ export const AzureProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/azure"),
     name: core.serialization.string(),
-    subscriptionId: core.serialization.property("subscription_id", core.serialization.string().optional()),
+    subscription_id: core.serialization.string().optional(),
     integrations: core.serialization.list(AzureIntegrations),
 });
 

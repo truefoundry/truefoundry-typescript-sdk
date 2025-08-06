@@ -17,8 +17,8 @@ export interface DockerhubProviderAccount {
      */
     name: string;
     /** +label=Account Name */
-    accountName?: string;
-    authData?: TrueFoundry.DockerhubBasicAuth;
+    account_name?: string;
+    auth_data?: TrueFoundry.DockerhubBasicAuth;
     /** +uiType=IntegrationsGroup */
     integrations: TrueFoundry.DockerhubIntegrations[];
 }

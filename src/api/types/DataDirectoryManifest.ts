@@ -12,7 +12,7 @@ export interface DataDirectoryManifest {
     /** Name of the data directory */
     name: string;
     /** Name of the ML Repo to create the data directory under */
-    mlRepo: string;
+    ml_repo: string;
     /** Description for the data directory */
     description?: string;
     /** Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */

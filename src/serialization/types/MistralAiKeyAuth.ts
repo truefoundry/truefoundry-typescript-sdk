@@ -11,7 +11,7 @@ export const MistralAiKeyAuth: core.serialization.ObjectSchema<
     TrueFoundry.MistralAiKeyAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("api-key"),
-    apiKey: core.serialization.property("api_key", core.serialization.string()),
+    api_key: core.serialization.string(),
 });
 
 export declare namespace MistralAiKeyAuth {

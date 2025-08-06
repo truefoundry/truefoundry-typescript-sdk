@@ -11,8 +11,8 @@ export const AwsAccessKeyBasedAuth: core.serialization.ObjectSchema<
     TrueFoundry.AwsAccessKeyBasedAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("access-key-based"),
-    accessKeyId: core.serialization.property("access_key_id", core.serialization.string()),
-    secretAccessKey: core.serialization.property("secret_access_key", core.serialization.string()),
+    access_key_id: core.serialization.string(),
+    secret_access_key: core.serialization.string(),
 });
 
 export declare namespace AwsAccessKeyBasedAuth {

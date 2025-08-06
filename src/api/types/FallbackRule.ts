@@ -7,5 +7,5 @@ import * as TrueFoundry from "../index.js";
 export interface FallbackRule {
     id: string;
     when: TrueFoundry.FallbackWhen;
-    fallbackModels: TrueFoundry.FallbackModel[];
+    fallback_models: TrueFoundry.FallbackModel[];
 }

@@ -19,7 +19,7 @@ export interface NomicProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.NomicKeyAuth;
+    auth_data: TrueFoundry.NomicKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

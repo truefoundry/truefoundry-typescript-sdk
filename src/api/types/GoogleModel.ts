@@ -16,20 +16,20 @@ export interface GoogleModel {
      */
     name: string;
     /** +sort=2 */
-    modelId: string;
+    model_id: string;
     /** +value=integration/model/gcp/google */
     type: "integration/model/gcp/google";
     /**
      * +usage=Specify the type of the model
      * +sort=4
      */
-    modelTypes: TrueFoundry.ModelType[];
-    authData?: TrueFoundry.GcpApiKeyAuth;
+    model_types: TrueFoundry.ModelType[];
+    auth_data?: TrueFoundry.GcpApiKeyAuth;
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

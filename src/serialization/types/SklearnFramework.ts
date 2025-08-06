@@ -13,9 +13,9 @@ export const SklearnFramework: core.serialization.ObjectSchema<
     TrueFoundry.SklearnFramework
 > = core.serialization.object({
     type: core.serialization.stringLiteral("sklearn"),
-    modelFilepath: core.serialization.property("model_filepath", core.serialization.string().optional()),
-    serializationFormat: core.serialization.property("serialization_format", SklearnSerializationFormat.optional()),
-    modelSchema: core.serialization.property("model_schema", SklearnModelSchema.optional()),
+    model_filepath: core.serialization.string().optional(),
+    serialization_format: SklearnSerializationFormat.optional(),
+    model_schema: SklearnModelSchema.optional(),
 });
 
 export declare namespace SklearnFramework {

@@ -19,7 +19,7 @@ export interface PalmProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.PalmKeyAuth;
+    auth_data: TrueFoundry.PalmKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

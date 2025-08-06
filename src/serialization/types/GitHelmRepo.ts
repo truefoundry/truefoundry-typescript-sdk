@@ -9,13 +9,10 @@ import * as core from "../../core/index.js";
 export const GitHelmRepo: core.serialization.ObjectSchema<serializers.GitHelmRepo.Raw, TrueFoundry.GitHelmRepo> =
     core.serialization.object({
         type: core.serialization.stringLiteral("git-helm-repo"),
-        repoUrl: core.serialization.property("repo_url", core.serialization.string()),
+        repo_url: core.serialization.string(),
         revision: core.serialization.string(),
         path: core.serialization.string(),
-        valueFiles: core.serialization.property(
-            "value_files",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        value_files: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace GitHelmRepo {

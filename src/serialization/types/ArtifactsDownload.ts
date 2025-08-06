@@ -12,7 +12,7 @@ export const ArtifactsDownload: core.serialization.ObjectSchema<
     serializers.ArtifactsDownload.Raw,
     TrueFoundry.ArtifactsDownload
 > = core.serialization.object({
-    cacheVolume: core.serialization.property("cache_volume", ArtifactsCacheVolume.optional()),
+    cache_volume: ArtifactsCacheVolume.optional(),
     artifacts: core.serialization.list(ArtifactsDownloadArtifactsItem),
 });
 

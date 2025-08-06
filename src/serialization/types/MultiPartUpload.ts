@@ -12,17 +12,11 @@ export const MultiPartUpload: core.serialization.ObjectSchema<
     serializers.MultiPartUpload.Raw,
     TrueFoundry.MultiPartUpload
 > = core.serialization.object({
-    storageProvider: core.serialization.property("storage_provider", MultiPartUploadStorageProvider),
-    partSignedUrls: core.serialization.property("part_signed_urls", core.serialization.list(SignedUrl)),
-    s3CompatibleUploadId: core.serialization.property(
-        "s3_compatible_upload_id",
-        core.serialization.string().optional(),
-    ),
-    azureBlobBlockIds: core.serialization.property(
-        "azure_blob_block_ids",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    finalizeSignedUrl: core.serialization.property("finalize_signed_url", SignedUrl),
+    storage_provider: MultiPartUploadStorageProvider,
+    part_signed_urls: core.serialization.list(SignedUrl),
+    s3_compatible_upload_id: core.serialization.string().optional(),
+    azure_blob_block_ids: core.serialization.list(core.serialization.string()).optional(),
+    finalize_signed_url: SignedUrl,
 });
 
 export declare namespace MultiPartUpload {

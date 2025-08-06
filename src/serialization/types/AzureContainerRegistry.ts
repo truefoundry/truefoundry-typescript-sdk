@@ -13,12 +13,9 @@ export const AzureContainerRegistry: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/docker-registry/azure/acr"),
     name: core.serialization.string(),
-    registryUrl: core.serialization.property("registry_url", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AzureBasicAuth.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    registry_url: core.serialization.string(),
+    auth_data: AzureBasicAuth.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureContainerRegistry {

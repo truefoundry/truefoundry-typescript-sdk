@@ -7,11 +7,11 @@ import * as TrueFoundry from "../index.js";
 export interface ArtifactVersion {
     id: string;
     fqn: string;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_by_subject: TrueFoundry.Subject;
+    created_at?: Date;
+    updated_at?: Date;
     manifest: TrueFoundry.ArtifactManifest;
-    usageCodeSnippet?: string;
-    mlRepoId: string;
-    artifactId: string;
+    usage_code_snippet?: string;
+    ml_repo_id: string;
+    artifact_id: string;
 }

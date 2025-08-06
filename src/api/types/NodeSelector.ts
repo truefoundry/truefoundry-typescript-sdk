@@ -14,7 +14,7 @@ export interface NodeSelector {
      * +usage=Instance family of the underlying machine to use. Multiple instance families can be supplied.
      * The workload is guaranteed to be scheduled on one of them.
      */
-    instanceFamilies?: string[];
+    instance_families?: string[];
     /**
      * +label=Capacity Type
      * +usage=Configure what type of nodes to run the app. By default no placement logic is applied.
@@ -22,7 +22,7 @@ export interface NodeSelector {
      * "spot" will strictly place the application on spot nodes.
      * "on_demand" will strictly place the application on on-demand nodes.
      */
-    capacityType?: NodeSelector.CapacityType;
+    capacity_type?: NodeSelector.CapacityType;
 }
 
 export namespace NodeSelector {

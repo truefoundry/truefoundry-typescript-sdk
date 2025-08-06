@@ -13,12 +13,9 @@ export const EmailNotificationChannel: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/notification-channel/email"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", SmtpCredentials),
-    fromEmail: core.serialization.property("from_email", core.serialization.string()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    auth_data: SmtpCredentials,
+    from_email: core.serialization.string(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace EmailNotificationChannel {

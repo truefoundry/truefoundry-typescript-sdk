@@ -53,43 +53,43 @@ describe("MlRepos", () => {
             manifest: {
                 type: "ml-repo",
                 name: "name",
-                storageIntegrationFqn: "storage_integration_fqn",
+                storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
                     {
                         subject: "subject",
-                        roleId: "role_id",
+                        role_id: "role_id",
                     },
                 ],
             },
         });
         expect(response).toEqual({
             data: {
-                tenantName: "truefoundry",
+                tenant_name: "truefoundry",
                 manifest: {
                     type: "ml-repo",
                     name: "name",
                     description: "description",
-                    storageIntegrationFqn: "storage_integration_fqn",
+                    storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                 },
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
                 id: "420",
-                numRuns: 10,
-                artifactTypeCounts: {
+                num_runs: 10,
+                artifact_type_counts: {
                     key: 1,
                 },
-                datasetsCount: 10,
+                datasets_count: 10,
             },
         });
     });
@@ -132,32 +132,32 @@ describe("MlRepos", () => {
         const response = await client.mlRepos.get("id");
         expect(response).toEqual({
             data: {
-                tenantName: "truefoundry",
+                tenant_name: "truefoundry",
                 manifest: {
                     type: "ml-repo",
                     name: "name",
                     description: "description",
-                    storageIntegrationFqn: "storage_integration_fqn",
+                    storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                 },
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
                 id: "420",
-                numRuns: 10,
-                artifactTypeCounts: {
+                num_runs: 10,
+                artifact_type_counts: {
                     key: 1,
                 },
-                datasetsCount: 10,
+                datasets_count: 10,
             },
         });
     });

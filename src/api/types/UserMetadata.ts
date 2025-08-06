@@ -4,7 +4,7 @@
 
 export interface UserMetadata {
     sub?: string;
-    imageUrl?: string;
+    imageURL?: string;
     displayName?: string;
     userObject?: Record<string, unknown>;
     inviteAccepted?: boolean;

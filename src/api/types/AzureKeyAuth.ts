@@ -16,5 +16,5 @@ export interface AzureKeyAuth {
      * +message=API key must not be empty
      * +uiType=Password
      */
-    apiKey: string;
+    api_key: string;
 }

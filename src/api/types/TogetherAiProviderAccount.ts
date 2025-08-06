@@ -19,7 +19,7 @@ export interface TogetherAiProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.TogetherAiKeyAuth;
+    auth_data: TrueFoundry.TogetherAiKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

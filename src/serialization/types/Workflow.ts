@@ -14,11 +14,8 @@ export const Workflow: core.serialization.ObjectSchema<serializers.Workflow.Raw,
         type: core.serialization.stringLiteral("workflow"),
         name: core.serialization.string(),
         source: WorkflowSource,
-        workflowFilePath: core.serialization.property("workflow_file_path", core.serialization.string()),
-        flyteEntities: core.serialization.property(
-            "flyte_entities",
-            core.serialization.list(WorkflowFlyteEntitiesItem).optional(),
-        ),
+        workflow_file_path: core.serialization.string(),
+        flyte_entities: core.serialization.list(WorkflowFlyteEntitiesItem).optional(),
         alerts: core.serialization.list(WorkflowAlert).optional(),
     });
 

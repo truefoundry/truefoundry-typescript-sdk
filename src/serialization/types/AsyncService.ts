@@ -16,8 +16,8 @@ export const AsyncService: core.serialization.ObjectSchema<serializers.AsyncServ
         .object({
             type: core.serialization.stringLiteral("async-service").optional(),
             replicas: AsyncServiceReplicas.optional(),
-            rolloutStrategy: core.serialization.property("rollout_strategy", Rolling.optional()),
-            workerConfig: core.serialization.property("worker_config", WorkerConfig.optional()),
+            rollout_strategy: Rolling.optional(),
+            worker_config: WorkerConfig.optional(),
             sidecar: AsyncProcessorSidecar.optional(),
         })
         .extend(BaseService);

@@ -16,17 +16,17 @@ export interface SparkBuild {
      * +usage=Spark version should match the spark version installed in the image.
      * +sort=1001
      */
-    sparkVersion: string;
+    spark_version: string;
     /**
      * +label=Path to build context
      * +usage=Build path relative to project root path.
      */
-    buildContextPath: string;
+    build_context_path: string;
     /**
      * `Path to build context`
      * +label=Path to requirements
      * +usage=Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirementsPath?: string;
+    requirements_path?: string;
 }

@@ -10,9 +10,9 @@ export const AwsAccessKeyAuth: core.serialization.ObjectSchema<
     serializers.AwsAccessKeyAuth.Raw,
     TrueFoundry.AwsAccessKeyAuth
 > = core.serialization.object({
-    awsAccessKeyId: core.serialization.property("aws_access_key_id", core.serialization.string()),
-    awsSecretAccessKey: core.serialization.property("aws_secret_access_key", core.serialization.string()),
-    awsSessionToken: core.serialization.property("aws_session_token", core.serialization.string().optional()),
+    aws_access_key_id: core.serialization.string(),
+    aws_secret_access_key: core.serialization.string(),
+    aws_session_token: core.serialization.string().optional(),
 });
 
 export declare namespace AwsAccessKeyAuth {

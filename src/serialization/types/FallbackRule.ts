@@ -12,7 +12,7 @@ export const FallbackRule: core.serialization.ObjectSchema<serializers.FallbackR
     core.serialization.object({
         id: core.serialization.string(),
         when: FallbackWhen,
-        fallbackModels: core.serialization.property("fallback_models", core.serialization.list(FallbackModel)),
+        fallback_models: core.serialization.list(FallbackModel),
     });
 
 export declare namespace FallbackRule {

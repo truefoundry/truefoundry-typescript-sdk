@@ -10,9 +10,9 @@ import { Endpoint } from "./Endpoint.js";
 export const VolumeBrowser: core.serialization.ObjectSchema<serializers.VolumeBrowser.Raw, TrueFoundry.VolumeBrowser> =
     core.serialization.object({
         username: core.serialization.string(),
-        passwordSecretFqn: core.serialization.property("password_secret_fqn", core.serialization.string()),
+        password_secret_fqn: core.serialization.string(),
         endpoint: Endpoint,
-        serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+        service_account: core.serialization.string().optional(),
     });
 
 export declare namespace VolumeBrowser {

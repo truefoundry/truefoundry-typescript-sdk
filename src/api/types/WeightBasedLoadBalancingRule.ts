@@ -7,6 +7,6 @@ import * as TrueFoundry from "../index.js";
 export interface WeightBasedLoadBalancingRule {
     id: string;
     when: TrueFoundry.LoadBalancingWhen;
-    loadBalanceTargets: TrueFoundry.LoadBalanceTarget[];
+    load_balance_targets: TrueFoundry.LoadBalanceTarget[];
     type: "weight-based-routing";
 }

@@ -14,15 +14,12 @@ export const OpenAiModerationsGuardrailConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/guardrail-config/openai-moderations"),
-    baseUrl: core.serialization.property("base_url", core.serialization.string().optional()),
-    authData: core.serialization.property("auth_data", OpenaiApiKeyAuth),
+    base_url: core.serialization.string().optional(),
+    auth_data: OpenaiApiKeyAuth,
     model: core.serialization.string(),
-    categoryThresholds: core.serialization.property(
-        "category_thresholds",
-        core.serialization
-            .record(core.serialization.string(), OpenAiModerationsGuardrailConfigCategoryThresholdsValue)
-            .optional(),
-    ),
+    category_thresholds: core.serialization
+        .record(core.serialization.string(), OpenAiModerationsGuardrailConfigCategoryThresholdsValue)
+        .optional(),
 });
 
 export declare namespace OpenAiModerationsGuardrailConfig {

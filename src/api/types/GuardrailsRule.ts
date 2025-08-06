@@ -9,7 +9,7 @@ export interface GuardrailsRule {
     id: string;
     when: TrueFoundry.GuardrailsWhen;
     /** +usage=Guardrail selectors of the guardrails to apply to the input (format: groupName/guardrailName) */
-    inputGuardrails: string[];
+    input_guardrails: string[];
     /** +usage=Guardrail selectors of the guardrails to apply to the output (format: groupName/guardrailName) */
-    outputGuardrails: string[];
+    output_guardrails: string[];
 }

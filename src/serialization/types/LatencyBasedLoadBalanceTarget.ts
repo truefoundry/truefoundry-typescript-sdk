@@ -11,10 +11,7 @@ export const LatencyBasedLoadBalanceTarget: core.serialization.ObjectSchema<
     TrueFoundry.LatencyBasedLoadBalanceTarget
 > = core.serialization.object({
     target: core.serialization.string(),
-    overrideParams: core.serialization.property(
-        "override_params",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    ),
+    override_params: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace LatencyBasedLoadBalanceTarget {

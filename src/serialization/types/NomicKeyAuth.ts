@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const NomicKeyAuth: core.serialization.ObjectSchema<serializers.NomicKeyAuth.Raw, TrueFoundry.NomicKeyAuth> =
     core.serialization.object({
         type: core.serialization.stringLiteral("api-key"),
-        apiKey: core.serialization.property("api_key", core.serialization.string()),
+        api_key: core.serialization.string(),
     });
 
 export declare namespace NomicKeyAuth {

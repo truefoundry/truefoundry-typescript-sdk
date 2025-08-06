@@ -65,7 +65,7 @@ describe("Ml", () => {
                 metadata: {
                     key: "value",
                 },
-                mlRepo: "ml_repo",
+                ml_repo: "ml_repo",
                 type: "model-version",
                 source: {
                     type: "truefoundry",
@@ -76,22 +76,22 @@ describe("Ml", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                updated_at: new Date("2024-01-15T09:30:00.000Z"),
                 manifest: {
                     name: "name",
                     description: "description",
                     metadata: {
                         key: "value",
                     },
-                    versionAlias: "version_alias",
-                    mlRepo: "ml_repo",
+                    version_alias: "version_alias",
+                    ml_repo: "ml_repo",
                     version: 1,
                     type: "model-version",
                     source: {
@@ -101,11 +101,11 @@ describe("Ml", () => {
                         type: "transformers",
                     },
                     step: 1,
-                    runId: "run_id",
+                    run_id: "run_id",
                 },
-                usageCodeSnippet: "usage_code_snippet",
-                mlRepoId: "ml_repo_id",
-                modelId: "model_id",
+                usage_code_snippet: "usage_code_snippet",
+                ml_repo_id: "ml_repo_id",
+                model_id: "model_id",
                 metrics: [
                     {
                         key: "key",
@@ -144,7 +144,7 @@ describe("Ml", () => {
                 metadata: {
                     key: "value",
                 },
-                mlRepo: "ml_repo",
+                ml_repo: "ml_repo",
                 type: "model-version",
                 source: {
                     type: "truefoundry",

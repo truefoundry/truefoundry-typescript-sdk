@@ -11,7 +11,7 @@ export const AmqpMetricConfig: core.serialization.ObjectSchema<
     TrueFoundry.AmqpMetricConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("amqp"),
-    queueLength: core.serialization.property("queue_length", core.serialization.number()),
+    queue_length: core.serialization.number(),
 });
 
 export declare namespace AmqpMetricConfig {

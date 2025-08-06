@@ -15,12 +15,9 @@ export const AwsEksIntegration: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("integration/cluster/aws/eks"),
     name: core.serialization.string(),
     region: AwsRegion,
-    clusterName: core.serialization.property("cluster_name", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AwsEksIntegrationAuthData.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    cluster_name: core.serialization.string(),
+    auth_data: AwsEksIntegrationAuthData.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AwsEksIntegration {

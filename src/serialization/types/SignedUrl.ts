@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const SignedUrl: core.serialization.ObjectSchema<serializers.SignedUrl.Raw, TrueFoundry.SignedUrl> =
     core.serialization.object({
         path: core.serialization.string(),
-        signedUrl: core.serialization.property("signed_url", core.serialization.string()),
+        signed_url: core.serialization.string(),
     });
 
 export declare namespace SignedUrl {

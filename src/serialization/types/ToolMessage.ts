@@ -11,7 +11,7 @@ export const ToolMessage: core.serialization.ObjectSchema<serializers.ToolMessag
     core.serialization.object({
         role: core.serialization.stringLiteral("tool"),
         content: ToolMessageContent,
-        toolCallId: core.serialization.property("tool_call_id", core.serialization.string()),
+        tool_call_id: core.serialization.string(),
     });
 
 export declare namespace ToolMessage {

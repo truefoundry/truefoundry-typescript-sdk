@@ -11,8 +11,8 @@ export const PagerDutyIntegrationKeyAuth: core.serialization.ObjectSchema<
     TrueFoundry.PagerDutyIntegrationKeyAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("pagerduty-integration-auth"),
-    integrationKey: core.serialization.property("integration_key", core.serialization.string()),
-    integrationUrl: core.serialization.property("integration_url", core.serialization.string()),
+    integration_key: core.serialization.string(),
+    integration_url: core.serialization.string(),
 });
 
 export declare namespace PagerDutyIntegrationKeyAuth {

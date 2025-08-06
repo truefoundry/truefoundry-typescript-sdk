@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const SlackWebhook: core.serialization.ObjectSchema<serializers.SlackWebhook.Raw, TrueFoundry.SlackWebhook> =
     core.serialization.object({
         type: core.serialization.stringLiteral("slack-webhook"),
-        notificationChannel: core.serialization.property("notification_channel", core.serialization.string()),
+        notification_channel: core.serialization.string(),
     });
 
 export declare namespace SlackWebhook {

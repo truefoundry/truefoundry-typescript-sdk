@@ -9,8 +9,8 @@ import * as core from "../../core/index.js";
 export const HelmRepo: core.serialization.ObjectSchema<serializers.HelmRepo.Raw, TrueFoundry.HelmRepo> =
     core.serialization.object({
         type: core.serialization.stringLiteral("helm-repo"),
-        repoUrl: core.serialization.property("repo_url", core.serialization.string()),
-        integrationFqn: core.serialization.property("integration_fqn", core.serialization.string().optional()),
+        repo_url: core.serialization.string(),
+        integration_fqn: core.serialization.string().optional(),
         chart: core.serialization.string(),
         version: core.serialization.string(),
     });

@@ -19,7 +19,7 @@ export interface CustomProviderAccount {
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    authData?: TrueFoundry.CustomBasicAuth;
+    auth_data?: TrueFoundry.CustomBasicAuth;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the provider account.

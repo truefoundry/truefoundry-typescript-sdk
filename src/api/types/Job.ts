@@ -33,7 +33,7 @@ export interface Job {
      * +sort=350
      * +usage=Trigger the job after deploy immediately
      */
-    triggerOnDeploy?: boolean;
+    trigger_on_deploy?: boolean;
     /**
      * +label=Params for input
      * +uiType=StructsTable
@@ -76,9 +76,9 @@ export interface Job {
      * +icon=fa-copy
      * +sort=900
      */
-    concurrencyLimit?: number;
+    concurrency_limit?: number;
     /** +sort=1000 */
-    serviceAccount?: string;
+    service_account?: string;
     /** +usage=Configure data to be mounted to job pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
     mounts?: Job.Mounts.Item[];
     /** +label=Labels */
@@ -89,7 +89,7 @@ export interface Job {
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
 }
 
 export namespace Job {

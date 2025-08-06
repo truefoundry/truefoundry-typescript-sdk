@@ -16,7 +16,7 @@ export interface CommonToolsSettings {
      * +icon=fa-searchengin
      * +sort=1
      */
-    webSearch: boolean;
+    web_search: boolean;
     /**
      * +label=Code Executor
      * +usage=Enable code executor tool
@@ -24,7 +24,7 @@ export interface CommonToolsSettings {
      * +icon=fa-code
      * +sort=2
      */
-    codeExecutor: boolean;
+    code_executor: boolean;
     /**
      * +label=Sequential Thinking
      * +usage=Enable sequential thinking tool
@@ -32,7 +32,7 @@ export interface CommonToolsSettings {
      * +icon=fa-brain
      * +sort=3
      */
-    sequentialThinking: boolean;
+    sequential_thinking: boolean;
     /**
      * +label=Vision OCR
      * +usage=Enable vision OCR tool
@@ -40,7 +40,7 @@ export interface CommonToolsSettings {
      * +icon=fa-eye
      * +sort=4
      */
-    visionOcr: boolean;
+    vision_ocr: boolean;
     /**
      * +label=Web Scrape
      * +usage=Enable web scraping tool.
@@ -48,5 +48,5 @@ export interface CommonToolsSettings {
      * +icon=fa-brands fa-readme
      * +sort=5
      */
-    webScrape: boolean;
+    web_scrape: boolean;
 }

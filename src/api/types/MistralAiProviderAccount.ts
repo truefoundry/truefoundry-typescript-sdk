@@ -19,7 +19,7 @@ export interface MistralAiProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.MistralAiKeyAuth;
+    auth_data: TrueFoundry.MistralAiKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

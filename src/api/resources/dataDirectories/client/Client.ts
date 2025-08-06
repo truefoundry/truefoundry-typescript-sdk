@@ -164,7 +164,7 @@ export class DataDirectories {
         request: TrueFoundry.DataDirectoriesDeleteRequest = {},
         requestOptions?: DataDirectories.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
-        const { deleteContents = false } = request;
+        const { delete_contents: deleteContents = false } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
         if (deleteContents != null) {
             _queryParams["delete_contents"] = deleteContents.toString();
@@ -262,7 +262,7 @@ export class DataDirectories {
             async (
                 request: TrueFoundry.DataDirectoriesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListDataDirectoriesResponse>> => {
-                const { fqn, mlRepoId, name, limit = 100, offset = 0 } = request;
+                const { fqn, ml_repo_id: mlRepoId, name, limit = 100, offset = 0 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
@@ -365,7 +365,7 @@ export class DataDirectories {
      *         manifest: {
      *             type: "data-dir",
      *             name: "name",
-     *             mlRepo: "ml_repo",
+     *             ml_repo: "ml_repo",
      *             metadata: {
      *                 "key": "value"
      *             },
@@ -558,14 +558,14 @@ export class DataDirectories {
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) =>
-                response?.pagination?.nextPageToken != null &&
+                response?.pagination?.next_page_token != null &&
                 !(
-                    typeof response?.pagination?.nextPageToken === "string" &&
-                    response?.pagination?.nextPageToken === ""
+                    typeof response?.pagination?.next_page_token === "string" &&
+                    response?.pagination?.next_page_token === ""
                 ),
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
-                return list(core.setObjectProperty(request, "pageToken", response?.pagination?.nextPageToken));
+                return list(core.setObjectProperty(request, "page_token", response?.pagination?.next_page_token));
             },
         });
     }
@@ -794,7 +794,7 @@ export class DataDirectories {
      *     await client.dataDirectories.createMultipartUpload({
      *         id: "id",
      *         path: "path",
-     *         numParts: 1
+     *         num_parts: 1
      *     })
      */
     public createMultipartUpload(

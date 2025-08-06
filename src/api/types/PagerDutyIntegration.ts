@@ -18,12 +18,12 @@ export interface PagerDutyIntegration {
      * +uiProps={"disableEdit":false}
      */
     name: string;
-    authData: TrueFoundry.PagerDutyIntegrationKeyAuth;
+    auth_data: TrueFoundry.PagerDutyIntegrationKeyAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=10005
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

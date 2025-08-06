@@ -13,8 +13,8 @@ export const SshServer: core.serialization.ObjectSchema<serializers.SshServer.Ra
         .object({
             type: core.serialization.stringLiteral("ssh-server").optional(),
             image: WorkbenchImage.optional(),
-            sshPublicKey: core.serialization.property("ssh_public_key", core.serialization.string().optional()),
-            cullTimeout: core.serialization.property("cull_timeout", core.serialization.number().optional()),
+            ssh_public_key: core.serialization.string().optional(),
+            cull_timeout: core.serialization.number().optional(),
         })
         .extend(BaseWorkbenchInput);
 

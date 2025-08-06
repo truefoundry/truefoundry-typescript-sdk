@@ -12,8 +12,8 @@ export const NatsOutputConfig: core.serialization.ObjectSchema<
     TrueFoundry.NatsOutputConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("nats"),
-    natsUrl: core.serialization.property("nats_url", core.serialization.string()),
-    rootSubject: core.serialization.property("root_subject", core.serialization.string()),
+    nats_url: core.serialization.string(),
+    root_subject: core.serialization.string(),
     auth: NatsUserPasswordAuth.optional(),
 });
 

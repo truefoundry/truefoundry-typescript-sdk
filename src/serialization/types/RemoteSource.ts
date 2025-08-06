@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const RemoteSource: core.serialization.ObjectSchema<serializers.RemoteSource.Raw, TrueFoundry.RemoteSource> =
     core.serialization.object({
         type: core.serialization.stringLiteral("remote"),
-        remoteUri: core.serialization.property("remote_uri", core.serialization.string()),
+        remote_uri: core.serialization.string(),
     });
 
 export declare namespace RemoteSource {

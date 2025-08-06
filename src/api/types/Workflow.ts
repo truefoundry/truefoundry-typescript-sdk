@@ -28,9 +28,9 @@ export interface Workflow {
      * +docs=Path to the workflow file relative to the project root path
      * +sort=550
      */
-    workflowFilePath: string;
+    workflow_file_path: string;
     /** +label=Flyte Entities */
-    flyteEntities?: Workflow.FlyteEntities.Item[];
+    flyte_entities?: Workflow.FlyteEntities.Item[];
     /** +label=Alerts */
     alerts?: TrueFoundry.WorkflowAlert[];
 }

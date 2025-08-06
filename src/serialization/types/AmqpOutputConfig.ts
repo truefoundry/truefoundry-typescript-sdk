@@ -12,8 +12,8 @@ export const AmqpOutputConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("amqp"),
     url: core.serialization.string(),
-    routingKey: core.serialization.property("routing_key", core.serialization.string()),
-    exchangeName: core.serialization.property("exchange_name", core.serialization.string().optional()),
+    routing_key: core.serialization.string(),
+    exchange_name: core.serialization.string().optional(),
 });
 
 export declare namespace AmqpOutputConfig {

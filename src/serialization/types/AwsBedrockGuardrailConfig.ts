@@ -16,9 +16,9 @@ export const AwsBedrockGuardrailConfig: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/guardrail-config/aws-bedrock"),
     operation: AwsBedrockGuardrailConfigOperation,
-    authData: core.serialization.property("auth_data", AwsBedrockGuardrailConfigAuthData.optional()),
-    guardrailId: core.serialization.property("guardrail_id", core.serialization.string()),
-    guardrailVersion: core.serialization.property("guardrail_version", core.serialization.string()),
+    auth_data: AwsBedrockGuardrailConfigAuthData.optional(),
+    guardrail_id: core.serialization.string(),
+    guardrail_version: core.serialization.string(),
     region: AwsRegion,
 });
 

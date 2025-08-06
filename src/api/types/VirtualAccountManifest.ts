@@ -21,7 +21,7 @@ export interface VirtualAccountManifest {
      * +usage=Expiration Date of the Virtual Account (should be in the format yyyy-mm-dd)
      * +uiType=DatePicker
      */
-    expirationDate?: string;
+    expiration_date?: string;
     /**
      * +label=Permissions
      * +sort=3

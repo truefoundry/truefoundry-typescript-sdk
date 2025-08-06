@@ -10,5 +10,5 @@ export interface CustomBearerAuth {
      * +usage=The bearer token for the custom bearer authentication.
      * +sort=100
      */
-    bearerToken: string;
+    bearer_token: string;
 }

@@ -13,19 +13,16 @@ import { ModelCostMetric } from "./ModelCostMetric.js";
 export const CustomModel: core.serialization.ObjectSchema<serializers.CustomModel.Raw, TrueFoundry.CustomModel> =
     core.serialization.object({
         name: core.serialization.string(),
-        hostedModelName: core.serialization.property("hosted_model_name", core.serialization.string()),
+        hosted_model_name: core.serialization.string(),
         url: core.serialization.string(),
-        modelServer: core.serialization.property("model_server", CustomModelModelServer),
-        tfyApplicationId: core.serialization.property("tfy_application_id", core.serialization.string().optional()),
+        model_server: CustomModelModelServer,
+        tfy_application_id: core.serialization.string().optional(),
         type: core.serialization.stringLiteral("integration/model/custom"),
-        modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
-        authData: core.serialization.property("auth_data", CustomModelAuthData.optional()),
+        model_types: core.serialization.list(ModelType),
+        auth_data: CustomModelAuthData.optional(),
         headers: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
         cost: ModelCostMetric.optional(),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace CustomModel {

@@ -10,15 +10,15 @@ export interface VolumeMount {
      * +usage=Absolute file path where the volume will be mounted.
      * +message=Please enter a valid mount path
      */
-    mountPath: string;
+    mount_path: string;
     /**
      * +label=Sub Path
      * +usage=Sub path within the volume to mount. Defaults to root of the volume.
      */
-    subPath?: string;
+    sub_path?: string;
     /**
      * +label=Volume
      * +usage=The TrueFoundry volume that needs to be mounted.
      */
-    volumeFqn: string;
+    volume_fqn: string;
 }

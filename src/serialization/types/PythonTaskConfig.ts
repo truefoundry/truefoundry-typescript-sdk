@@ -18,7 +18,7 @@ export const PythonTaskConfig: core.serialization.ObjectSchema<
     env: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     resources: Resources.optional(),
     mounts: core.serialization.list(PythonTaskConfigMountsItem).optional(),
-    serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+    service_account: core.serialization.string().optional(),
 });
 
 export declare namespace PythonTaskConfig {

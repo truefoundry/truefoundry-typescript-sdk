@@ -92,12 +92,12 @@ describe("PersonalAccessTokens", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expirationDate: "expiration_date",
+                    expiration_date: "expiration_date",
                     permissions: [
                         {
-                            resourceFqn: "resource_fqn",
-                            resourceType: "resource_type",
-                            roleId: "role_id",
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
                         },
                     ],
                 },

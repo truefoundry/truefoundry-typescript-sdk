@@ -10,11 +10,8 @@ export const TtlRegistry: core.serialization.ObjectSchema<serializers.TtlRegistr
     core.serialization.object({
         type: core.serialization.stringLiteral("integration/docker-registry/ttl"),
         name: core.serialization.string(),
-        registryUrl: core.serialization.property("registry_url", core.serialization.string()),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        registry_url: core.serialization.string(),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace TtlRegistry {

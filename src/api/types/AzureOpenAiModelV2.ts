@@ -24,21 +24,21 @@ export interface AzureOpenAiModelV2 {
      * +usage=The name of the Azure OpenAI model deployment (e.g. gpt-35-turbo, gpt-4). Used for cost tracking and management
      * +message=Model ID must not be empty
      */
-    modelId: string;
+    model_id: string;
     /**
      * +label=API Version
      * +sort=3
      * +usage=The Azure OpenAI API version to use
      * +message=API version must not be empty
      */
-    apiVersion: string;
+    api_version: string;
     /**
      * +label=Model Types
      * +sort=4
      * +usage=Specify the type of the Azure OpenAI model
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
@@ -46,5 +46,5 @@ export interface AzureOpenAiModelV2 {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

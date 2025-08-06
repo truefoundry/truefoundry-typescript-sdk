@@ -8,7 +8,7 @@
  */
 export interface DataDirectoriesListRequest {
     fqn?: string;
-    mlRepoId?: string;
+    ml_repo_id?: string;
     name?: string;
     limit?: number;
     offset?: number;

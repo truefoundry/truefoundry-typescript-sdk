@@ -11,5 +11,5 @@ export interface ImageContentPart {
     /** Type of the content part */
     type: "image_url";
     /** Image URL linking to the image */
-    imageUrl: TrueFoundry.ImageUrl;
+    image_url: TrueFoundry.ImageUrl;
 }

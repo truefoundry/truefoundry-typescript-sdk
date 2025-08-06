@@ -24,13 +24,13 @@ export interface GcpGkeIntegration {
      * +usage=Name of the cluster given in the cloud account.
      * +sort=300
      */
-    clusterName: string;
-    authData?: TrueFoundry.GcpKeyFileAuth;
+    cluster_name: string;
+    auth_data?: TrueFoundry.GcpKeyFileAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

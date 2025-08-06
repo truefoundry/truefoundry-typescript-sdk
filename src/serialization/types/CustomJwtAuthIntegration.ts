@@ -14,12 +14,9 @@ export const CustomJwtAuthIntegration: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("integration/jwt-auth/custom"),
     name: core.serialization.string(),
     issuer: core.serialization.string(),
-    jwksUri: core.serialization.property("jwks_uri", core.serialization.string()),
-    loginProvider: core.serialization.property("login_provider", OAuth2LoginProvider.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    jwks_uri: core.serialization.string(),
+    login_provider: OAuth2LoginProvider.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace CustomJwtAuthIntegration {

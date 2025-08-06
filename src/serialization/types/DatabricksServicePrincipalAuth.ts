@@ -11,8 +11,8 @@ export const DatabricksServicePrincipalAuth: core.serialization.ObjectSchema<
     TrueFoundry.DatabricksServicePrincipalAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("service-principal"),
-    oauthSecret: core.serialization.property("oauth_secret", core.serialization.string()),
-    clientId: core.serialization.property("client_id", core.serialization.string()),
+    oauth_secret: core.serialization.string(),
+    client_id: core.serialization.string(),
 });
 
 export declare namespace DatabricksServicePrincipalAuth {

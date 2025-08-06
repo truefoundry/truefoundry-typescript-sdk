@@ -29,7 +29,7 @@ export interface Schedule {
      * will enable multiple instances of this job to run. Forbid will keep the current instance of the job running and stop a new instance from being run.
      * Replace will terminate any currently running instance of the job and start a new one.
      */
-    concurrencyPolicy: Schedule.ConcurrencyPolicy;
+    concurrency_policy: Schedule.ConcurrencyPolicy;
     /**
      * +usage=Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
      * https://docs.truefoundry.com/docs/list-of-supported-timezones

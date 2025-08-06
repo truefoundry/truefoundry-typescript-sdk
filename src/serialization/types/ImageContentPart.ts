@@ -12,7 +12,7 @@ export const ImageContentPart: core.serialization.ObjectSchema<
     TrueFoundry.ImageContentPart
 > = core.serialization.object({
     type: core.serialization.stringLiteral("image_url"),
-    imageUrl: core.serialization.property("image_url", ImageUrl),
+    image_url: ImageUrl,
 });
 
 export declare namespace ImageContentPart {

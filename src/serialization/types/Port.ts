@@ -13,10 +13,10 @@ export const Port: core.serialization.ObjectSchema<serializers.Port.Raw, TrueFou
     port: core.serialization.number(),
     protocol: PortProtocol,
     expose: core.serialization.boolean(),
-    appProtocol: core.serialization.property("app_protocol", PortAppProtocol.optional()),
+    app_protocol: PortAppProtocol.optional(),
     host: core.serialization.string().optional(),
     path: core.serialization.string().optional(),
-    rewritePathTo: core.serialization.property("rewrite_path_to", core.serialization.string().optional()),
+    rewrite_path_to: core.serialization.string().optional(),
     auth: PortAuth.optional(),
 });
 

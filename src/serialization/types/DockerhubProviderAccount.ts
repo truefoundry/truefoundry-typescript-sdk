@@ -14,8 +14,8 @@ export const DockerhubProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/dockerhub"),
     name: core.serialization.string(),
-    accountName: core.serialization.property("account_name", core.serialization.string().optional()),
-    authData: core.serialization.property("auth_data", DockerhubBasicAuth.optional()),
+    account_name: core.serialization.string().optional(),
+    auth_data: DockerhubBasicAuth.optional(),
     integrations: core.serialization.list(DockerhubIntegrations),
 });
 

@@ -22,13 +22,13 @@ export interface DockerhubRegistry {
      * +label=Registry URL
      * +sort=200
      */
-    registryUrl: string;
-    authData?: TrueFoundry.DockerhubBasicAuth;
+    registry_url: string;
+    auth_data?: TrueFoundry.DockerhubBasicAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

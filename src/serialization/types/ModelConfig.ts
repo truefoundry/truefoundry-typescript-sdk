@@ -11,8 +11,8 @@ import { FailureToleranceConfig } from "./FailureToleranceConfig.js";
 export const ModelConfig: core.serialization.ObjectSchema<serializers.ModelConfig.Raw, TrueFoundry.ModelConfig> =
     core.serialization.object({
         model: core.serialization.string(),
-        usageLimits: core.serialization.property("usage_limits", UsageLimits.optional()),
-        failureTolerance: core.serialization.property("failure_tolerance", FailureToleranceConfig.optional()),
+        usage_limits: UsageLimits.optional(),
+        failure_tolerance: FailureToleranceConfig.optional(),
     });
 
 export declare namespace ModelConfig {

@@ -9,9 +9,9 @@ import * as core from "../../core/index.js";
 export const SparkImage: core.serialization.ObjectSchema<serializers.SparkImage.Raw, TrueFoundry.SparkImage> =
     core.serialization.object({
         type: core.serialization.stringLiteral("spark-image"),
-        sparkVersion: core.serialization.property("spark_version", core.serialization.string()),
-        imageUri: core.serialization.property("image_uri", core.serialization.string()),
-        dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
+        spark_version: core.serialization.string(),
+        image_uri: core.serialization.string(),
+        docker_registry: core.serialization.string().optional(),
     });
 
 export declare namespace SparkImage {

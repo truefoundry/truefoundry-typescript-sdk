@@ -8,7 +8,7 @@ export interface SklearnFramework {
     /** Type of the framework */
     type: "sklearn";
     /** Relative path to the model file in the model version contents */
-    modelFilepath?: string;
-    serializationFormat?: TrueFoundry.SklearnSerializationFormat;
-    modelSchema?: TrueFoundry.SklearnModelSchema;
+    model_filepath?: string;
+    serialization_format?: TrueFoundry.SklearnSerializationFormat;
+    model_schema?: TrueFoundry.SklearnModelSchema;
 }

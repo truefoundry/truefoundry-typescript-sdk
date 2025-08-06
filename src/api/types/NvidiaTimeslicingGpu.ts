@@ -17,5 +17,5 @@ export interface NvidiaTimeslicingGpu {
      * +label=GPU Memory (MB)
      * +usage=Amount of GPU memory (in MB) to allocate. Please note, this limit is not being enforced today but will be in future. Applications are expected to operate in co-opertative mode
      */
-    gpuMemory: number;
+    gpu_memory: number;
 }

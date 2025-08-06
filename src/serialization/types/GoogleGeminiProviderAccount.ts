@@ -15,7 +15,7 @@ export const GoogleGeminiProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/google-gemini"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", GcpApiKeyAuth),
+    auth_data: GcpApiKeyAuth,
     integrations: core.serialization.list(GeminiModelV2),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

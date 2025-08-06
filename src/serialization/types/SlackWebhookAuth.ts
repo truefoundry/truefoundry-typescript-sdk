@@ -11,7 +11,7 @@ export const SlackWebhookAuth: core.serialization.ObjectSchema<
     TrueFoundry.SlackWebhookAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("slack-webhook"),
-    webhookUrl: core.serialization.property("webhook_url", core.serialization.string()),
+    webhook_url: core.serialization.string(),
 });
 
 export declare namespace SlackWebhookAuth {

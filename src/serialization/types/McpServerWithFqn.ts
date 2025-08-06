@@ -12,8 +12,8 @@ export const McpServerWithFqn: core.serialization.ObjectSchema<
     TrueFoundry.McpServerWithFqn
 > = core.serialization.object({
     type: core.serialization.stringLiteral("mcp-server-fqn"),
-    integrationFqn: core.serialization.property("integration_fqn", core.serialization.string()),
-    enableAllTools: core.serialization.property("enable_all_tools", core.serialization.boolean().optional()),
+    integration_fqn: core.serialization.string(),
+    enable_all_tools: core.serialization.boolean().optional(),
     tools: core.serialization.list(McpTool).optional(),
 });
 

@@ -10,7 +10,7 @@ export const SshServerConfig: core.serialization.ObjectSchema<
     serializers.SshServerConfig.Raw,
     TrueFoundry.SshServerConfig
 > = core.serialization.object({
-    baseDomain: core.serialization.property("base_domain", core.serialization.string()),
+    base_domain: core.serialization.string(),
     port: core.serialization.number(),
 });
 

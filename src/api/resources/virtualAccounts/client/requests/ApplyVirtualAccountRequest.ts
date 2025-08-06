@@ -11,9 +11,9 @@ import * as TrueFoundry from "../../../../index.js";
  *             name: "name",
  *             type: "virtual-account",
  *             permissions: [{
- *                     resourceFqn: "resource_fqn",
- *                     resourceType: "resource_type",
- *                     roleId: "role_id"
+ *                     resource_fqn: "resource_fqn",
+ *                     resource_type: "resource_type",
+ *                     role_id: "role_id"
  *                 }]
  *         }
  *     }

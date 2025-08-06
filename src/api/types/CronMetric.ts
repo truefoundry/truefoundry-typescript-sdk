@@ -9,7 +9,7 @@ export interface CronMetric {
      * +label=Desired Replicas
      * +usage=Desired number of replicas during the given interval. Default value is max_replicas.
      */
-    desiredReplicas?: number;
+    desired_replicas?: number;
     /**
      * +label=Start Schedule
      * +docs=Cron expression indicating the start of the cron schedule.

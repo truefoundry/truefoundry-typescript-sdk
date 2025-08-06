@@ -13,7 +13,7 @@ export interface WorkspaceManifest {
      * +icon=fa-spider-web:#326ce5
      * +uiProps={"disableCloudProvider": true}
      */
-    clusterFqn: string;
+    cluster_fqn: string;
     /**
      * +label=Name
      * +sort=200
@@ -27,7 +27,7 @@ export interface WorkspaceManifest {
      * +icon=fa-tags:#black
      * +usage=Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already.
      */
-    environmentName?: string;
+    environment_name?: string;
     /** +sort=700 */
     labels?: Record<string, string>;
     /** +sort=750 */

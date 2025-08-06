@@ -11,9 +11,9 @@ export interface McpServerWithFqn {
     /** The FQN of the MCP server */
     type: "mcp-server-fqn";
     /** The FQN of the MCP server */
-    integrationFqn: string;
+    integration_fqn: string;
     /** Whether to enable all tools from the MCP server */
-    enableAllTools?: boolean;
+    enable_all_tools?: boolean;
     /** The tools to enable from the MCP server */
     tools?: TrueFoundry.McpTool[];
 }

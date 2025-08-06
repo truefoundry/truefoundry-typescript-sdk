@@ -6,5 +6,5 @@ export interface LocalModelSource {
     /** Type of the source */
     type: "local";
     /** Path to the model file or folder */
-    fileOrFolder: string;
+    file_or_folder: string;
 }

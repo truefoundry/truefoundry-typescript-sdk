@@ -23,13 +23,13 @@ export interface AzureBlobStorage {
      * +usage=The root path of the storage.
      * +sort=200
      */
-    storageRoot: string;
-    authData?: TrueFoundry.AzureConnectionStringAuth;
+    storage_root: string;
+    auth_data?: TrueFoundry.AzureConnectionStringAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

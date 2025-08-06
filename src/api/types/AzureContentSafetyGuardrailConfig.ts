@@ -27,32 +27,32 @@ export interface AzureContentSafetyGuardrailConfig {
      * +usage=The resource name where API is deployed.
      * +sort=100
      */
-    resourceName: string;
+    resource_name: string;
     /**
      * +label=API Version
      * +usage=API version for the Content Safety API
      * +sort=200
      */
-    apiVersion: string;
+    api_version: string;
     /**
      * +label=Custom Host
      * +usage=Custom host for the PII detection API
      * +sort=300
      * +uiType=Hidden
      */
-    customHost?: string;
+    custom_host?: string;
     /**
      * +label=Blocklist Names
      * +usage=Array of blocklist names to check against
      * +sort=400
      */
-    blocklistNames?: string[];
+    blocklist_names?: string[];
     /**
      * +label=Severity
      * +usage=Severity threshold for the Content Safety API
      * +sort=500
      */
-    severityThreshold: number;
+    severity_threshold: number;
     /**
      * +label=Categories
      * +usage=Categories to check against
@@ -60,5 +60,5 @@ export interface AzureContentSafetyGuardrailConfig {
      * +sort=600
      */
     categories: TrueFoundry.AzureContentSafetyCategory[];
-    authData: TrueFoundry.AzureKeyAuth;
+    auth_data: TrueFoundry.AzureKeyAuth;
 }

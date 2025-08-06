@@ -13,9 +13,9 @@ export const SparkImageBuild: core.serialization.ObjectSchema<
     TrueFoundry.SparkImageBuild
 > = core.serialization.object({
     type: core.serialization.stringLiteral("spark-image-build"),
-    dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
-    buildSource: core.serialization.property("build_source", SparkImageBuildBuildSource),
-    buildSpec: core.serialization.property("build_spec", SparkBuild),
+    docker_registry: core.serialization.string().optional(),
+    build_source: SparkImageBuildBuildSource,
+    build_spec: SparkBuild,
 });
 
 export declare namespace SparkImageBuild {

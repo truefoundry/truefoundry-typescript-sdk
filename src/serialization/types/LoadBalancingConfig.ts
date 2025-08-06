@@ -14,7 +14,7 @@ export const LoadBalancingConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("gateway-load-balancing-config"),
-    modelConfigs: core.serialization.property("model_configs", core.serialization.list(ModelConfig).optional()),
+    model_configs: core.serialization.list(ModelConfig).optional(),
     rules: core.serialization.list(LoadBalancingRule),
 });
 

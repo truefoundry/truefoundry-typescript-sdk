@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const CronMetric: core.serialization.ObjectSchema<serializers.CronMetric.Raw, TrueFoundry.CronMetric> =
     core.serialization.object({
         type: core.serialization.stringLiteral("cron"),
-        desiredReplicas: core.serialization.property("desired_replicas", core.serialization.number().optional()),
+        desired_replicas: core.serialization.number().optional(),
         start: core.serialization.string(),
         end: core.serialization.string(),
         timezone: core.serialization.string(),

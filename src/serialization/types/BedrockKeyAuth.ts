@@ -11,8 +11,8 @@ export const BedrockKeyAuth: core.serialization.ObjectSchema<
     TrueFoundry.BedrockKeyAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("api-key"),
-    accessKey: core.serialization.property("access_key", core.serialization.string()),
-    accessKeySecret: core.serialization.property("access_key_secret", core.serialization.string()),
+    access_key: core.serialization.string(),
+    access_key_secret: core.serialization.string(),
 });
 
 export declare namespace BedrockKeyAuth {

@@ -11,7 +11,7 @@ export const Schedule: core.serialization.ObjectSchema<serializers.Schedule.Raw,
     core.serialization.object({
         type: core.serialization.stringLiteral("scheduled"),
         schedule: core.serialization.string(),
-        concurrencyPolicy: core.serialization.property("concurrency_policy", ScheduleConcurrencyPolicy),
+        concurrency_policy: ScheduleConcurrencyPolicy,
         timezone: core.serialization.string().optional(),
     });
 

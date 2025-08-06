@@ -16,7 +16,7 @@ export interface TaskPySparkBuild {
      * +usage=Spark version should match the spark version installed in the image.
      * +sort=1001
      */
-    sparkVersion: string;
+    spark_version: string;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -24,26 +24,26 @@ export interface TaskPySparkBuild {
      * +usage=FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    dockerRegistry?: string;
+    docker_registry?: string;
     /**
      * `Path to build context`
      * +label=Path to requirements
      * +usage=Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirementsPath?: string;
+    requirements_path?: string;
     /**
      * +label=Pip packages to install
      * +usage=Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
      * +placeholder=Enter a pip package name E.g. fastapi>=0.90,<1.0
      */
-    pipPackages?: string[];
+    pip_packages?: string[];
     /**
      * +label=List of Debian packages to install.
      * +usage=Debian packages to install via `apt get`.
      * In Python/YAML E.g. ["git", "ffmpeg", "htop"]
      * +placeholder=Enter a debian package name E.g. ffmpeg
      */
-    aptPackages?: string[];
+    apt_packages?: string[];
 }

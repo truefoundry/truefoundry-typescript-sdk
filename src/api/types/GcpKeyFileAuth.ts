@@ -13,5 +13,5 @@ export interface GcpKeyFileAuth {
      * +label=Key File Content
      * +sort=100
      */
-    keyFileContent: Record<string, unknown>;
+    key_file_content: Record<string, unknown>;
 }

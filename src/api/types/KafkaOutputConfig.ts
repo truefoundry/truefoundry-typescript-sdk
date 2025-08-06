@@ -16,13 +16,13 @@ export interface KafkaOutputConfig {
      * +usage='Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap'
      * +sort=1
      */
-    bootstrapServers: string;
+    bootstrap_servers: string;
     /**
      * +label=Topic Name
      * +usage=Kafka topic to publish to
      * +sort=2
      */
-    topicName: string;
+    topic_name: string;
     /**
      * +label=TLS
      * +usage=TLS configuration for SASL authentication

@@ -9,7 +9,7 @@ import * as TrueFoundry from "../../../../index.js";
  *     {
  *         manifest: {
  *             type: "workspace",
- *             clusterFqn: "cluster_fqn",
+ *             cluster_fqn: "cluster_fqn",
  *             name: "name"
  *         }
  *     }

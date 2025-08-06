@@ -8,16 +8,16 @@ export interface BaseAutoscaling {
      * +usage=Minimum number of replicas to keep available
      * +sort=1
      */
-    minReplicas: number;
+    min_replicas: number;
     /**
      * +label=Maximum replicas
      * +usage=Maximum number of replicas allowed for the component.
      * +sort=2
      */
-    maxReplicas: number;
+    max_replicas: number;
     /**
      * +label=Polling Interval
      * +usage=This is the interval to check each trigger on.
      */
-    pollingInterval?: number;
+    polling_interval?: number;
 }

@@ -28,8 +28,8 @@ export interface SparkJob {
      * +sort=1000
      */
     entrypoint: SparkJob.Entrypoint;
-    driverConfig: TrueFoundry.SparkDriverConfig;
-    executorConfig: TrueFoundry.SparkExecutorConfig;
+    driver_config: TrueFoundry.SparkDriverConfig;
+    executor_config: TrueFoundry.SparkExecutorConfig;
     /**
      * +label=Environment Variables
      * +usage=Configure environment variables to be injected in the service either as plain text. [Docs](https://docs.truefoundry.com/docs/env-variables)
@@ -43,7 +43,7 @@ export interface SparkJob {
      * +icon=fa-gear:#68BBE3
      * +sort=21500
      */
-    sparkConf?: Record<string, unknown>;
+    spark_conf?: Record<string, unknown>;
     /**
      * +label=Mounts
      * +usage=Configure volumes to be mounted to driver and executors. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job)
@@ -62,13 +62,13 @@ export interface SparkJob {
      * +label=Service Account
      * +sort=24000
      */
-    serviceAccount?: string;
+    service_account?: string;
     /**
      * +label=Workspace FQN
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
 }
 
 export namespace SparkJob {

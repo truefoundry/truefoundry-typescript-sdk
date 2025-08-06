@@ -15,7 +15,7 @@ export const CohereProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/cohere"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", CohereKeyAuth),
+    auth_data: CohereKeyAuth,
     integrations: core.serialization.list(CohereIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

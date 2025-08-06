@@ -12,13 +12,10 @@ export const CohereModel: core.serialization.ObjectSchema<serializers.CohereMode
     core.serialization.object({
         type: core.serialization.stringLiteral("integration/model/cohere"),
         name: core.serialization.string(),
-        modelId: core.serialization.property("model_id", core.serialization.string()),
-        modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+        model_id: core.serialization.string(),
+        model_types: core.serialization.list(ModelType),
         cost: ModelCostMetric.optional(),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace CohereModel {

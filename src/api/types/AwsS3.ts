@@ -23,21 +23,21 @@ export interface AwsS3 {
      * +usage=The root path of the storage.
      * +sort=200
      */
-    storageRoot: string;
+    storage_root: string;
     region: TrueFoundry.AwsRegion;
     /**
      * +label=Auth Data
      * +usage=Custom authentication data for the integration.
      * +sort=400
      */
-    authData?: AwsS3.AuthData;
+    auth_data?: AwsS3.AuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace AwsS3 {

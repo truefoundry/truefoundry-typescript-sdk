@@ -21,7 +21,7 @@ export interface Port {
      * If you are running a gRPC server, select the `grpc` option.
      * This is only applicable if `expose=true`.
      */
-    appProtocol?: Port.AppProtocol;
+    app_protocol?: Port.AppProtocol;
     /**
      * +usage=Host e.g. ai.example.com, app.truefoundry.com
      * +message=Upto 253 characters, each part of host should be at most 63 characters long, can contain alphabets, digits and hypen, must begin and end with an alphanumeric characters. Parts must be separated by periods (.)
@@ -40,7 +40,7 @@ export interface Port {
      * This is only applicable if `path` is given.
      * +message=Should begin and end with a forward slash (/). Each part can can contain alphabets, digits and hypen, must begin and end with an alphanumeric characters. Parts should be separated by forward slashes (/)
      */
-    rewritePathTo?: string;
+    rewrite_path_to?: string;
     /** +usage=Authentication method for inbound traffic */
     auth?: Port.Auth;
 }

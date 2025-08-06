@@ -16,14 +16,11 @@ export const AzureAiInferenceModel: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/model/azure/ai-inference"),
-    modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
-    authData: core.serialization.property("auth_data", AzureKeyAuth.optional()),
+    model_types: core.serialization.list(ModelType),
+    auth_data: AzureKeyAuth.optional(),
     deploymentDetails: AzureAiInferenceModelDeploymentDetails,
     cost: ModelCostMetric.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureAiInferenceModel {

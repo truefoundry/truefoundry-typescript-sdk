@@ -15,11 +15,8 @@ export const AwsSecretsManager: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("integration/secret-store/aws/secrets-manager"),
     name: core.serialization.string(),
     region: AwsRegion,
-    authData: core.serialization.property("auth_data", AwsSecretsManagerAuthData.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    auth_data: AwsSecretsManagerAuthData.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AwsSecretsManager {

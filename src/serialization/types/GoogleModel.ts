@@ -12,15 +12,12 @@ import { ModelCostMetric } from "./ModelCostMetric.js";
 export const GoogleModel: core.serialization.ObjectSchema<serializers.GoogleModel.Raw, TrueFoundry.GoogleModel> =
     core.serialization.object({
         name: core.serialization.string(),
-        modelId: core.serialization.property("model_id", core.serialization.string()),
+        model_id: core.serialization.string(),
         type: core.serialization.stringLiteral("integration/model/gcp/google"),
-        modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
-        authData: core.serialization.property("auth_data", GcpApiKeyAuth.optional()),
+        model_types: core.serialization.list(ModelType),
+        auth_data: GcpApiKeyAuth.optional(),
         cost: ModelCostMetric.optional(),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace GoogleModel {

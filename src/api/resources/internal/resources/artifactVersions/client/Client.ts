@@ -61,16 +61,16 @@ export class ArtifactVersions {
             ): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionsResponse>> => {
                 const {
                     fqn,
-                    artifactId,
-                    mlRepoId,
+                    artifact_id: artifactId,
+                    ml_repo_id: mlRepoId,
                     name,
                     version,
-                    runIds,
-                    runSteps,
+                    run_ids: runIds,
+                    run_steps: runSteps,
                     offset = 0,
                     limit = 100,
-                    includeInternalMetadata = false,
-                    includeModelVersions = false,
+                    include_internal_metadata: includeInternalMetadata = false,
+                    include_model_versions: includeModelVersions = false,
                 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {

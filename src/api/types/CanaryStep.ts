@@ -10,7 +10,7 @@ export interface CanaryStep {
      * +unit=%
      * +placeholder=Weight
      */
-    weightPercentage: number;
+    weight_percentage: number;
     /**
      * +docs=Duration for which to pause the release. The release process will wait for these seconds before proceeding to the next step.
      * If this is not set, the step will pause indefinitely on this step
@@ -18,5 +18,5 @@ export interface CanaryStep {
      * +unit=seconds
      * +placeholder=Duration
      */
-    pauseDuration?: number;
+    pause_duration?: number;
 }

@@ -14,12 +14,12 @@ export interface DockerFileBuild {
      * +label=Path to Dockerfile
      * +usage=The file path of the Dockerfile relative to project root path.
      */
-    dockerfilePath: string;
+    dockerfile_path: string;
     /**
      * +label=Path to build context
      * +usage=Build context path for the Dockerfile relative to project root path.
      */
-    buildContextPath: string;
+    build_context_path: string;
     /**
      * +label=Command Override
      * +usage=Override the command to run when the container starts
@@ -28,7 +28,7 @@ export interface DockerFileBuild {
      */
     command?: DockerFileBuild.Command;
     /** +label=Build arguments to pass to docker build */
-    buildArgs?: Record<string, string>;
+    build_args?: Record<string, string>;
 }
 
 export namespace DockerFileBuild {

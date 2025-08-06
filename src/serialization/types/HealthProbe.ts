@@ -10,14 +10,11 @@ import { HttpProbe } from "./HttpProbe.js";
 export const HealthProbe: core.serialization.ObjectSchema<serializers.HealthProbe.Raw, TrueFoundry.HealthProbe> =
     core.serialization.object({
         config: HttpProbe,
-        initialDelaySeconds: core.serialization.property(
-            "initial_delay_seconds",
-            core.serialization.number().optional(),
-        ),
-        periodSeconds: core.serialization.property("period_seconds", core.serialization.number().optional()),
-        timeoutSeconds: core.serialization.property("timeout_seconds", core.serialization.number().optional()),
-        successThreshold: core.serialization.property("success_threshold", core.serialization.number().optional()),
-        failureThreshold: core.serialization.property("failure_threshold", core.serialization.number().optional()),
+        initial_delay_seconds: core.serialization.number().optional(),
+        period_seconds: core.serialization.number().optional(),
+        timeout_seconds: core.serialization.number().optional(),
+        success_threshold: core.serialization.number().optional(),
+        failure_threshold: core.serialization.number().optional(),
     });
 
 export declare namespace HealthProbe {

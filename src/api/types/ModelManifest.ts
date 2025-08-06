@@ -14,9 +14,9 @@ export interface ModelManifest {
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    versionAlias?: string;
+    version_alias?: string;
     /** Name of the ML Repo */
-    mlRepo: string;
+    ml_repo: string;
     /** Version of the entity */
     version?: number;
     type: "model-version";
@@ -27,7 +27,7 @@ export interface ModelManifest {
     /** Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run */
     step?: number;
     /** ID of the MLRepo Run that generated the model version */
-    runId?: string;
+    run_id?: string;
 }
 
 export namespace ModelManifest {

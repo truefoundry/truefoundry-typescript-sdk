@@ -11,8 +11,8 @@ export const TrueFoundryArtifactSource: core.serialization.ObjectSchema<
     TrueFoundry.TrueFoundryArtifactSource
 > = core.serialization.object({
     type: core.serialization.stringLiteral("truefoundry-artifact"),
-    artifactVersionFqn: core.serialization.property("artifact_version_fqn", core.serialization.string()),
-    downloadPathEnvVariable: core.serialization.property("download_path_env_variable", core.serialization.string()),
+    artifact_version_fqn: core.serialization.string(),
+    download_path_env_variable: core.serialization.string(),
 });
 
 export declare namespace TrueFoundryArtifactSource {

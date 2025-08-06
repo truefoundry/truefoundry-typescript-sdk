@@ -8,7 +8,7 @@ import * as core from "../../core/index.js";
 
 export const Metadata: core.serialization.ObjectSchema<serializers.Metadata.Raw, TrueFoundry.Metadata> =
     core.serialization.object({
-        jobRunNameAlias: core.serialization.property("job_run_name_alias", core.serialization.string().optional()),
+        job_run_name_alias: core.serialization.string().optional(),
     });
 
 export declare namespace Metadata {

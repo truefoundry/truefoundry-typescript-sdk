@@ -14,8 +14,8 @@ export const JfrogProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/jfrog"),
     name: core.serialization.string(),
-    accountName: core.serialization.property("account_name", core.serialization.string().optional()),
-    authData: core.serialization.property("auth_data", JfrogBasicAuth.optional()),
+    account_name: core.serialization.string().optional(),
+    auth_data: JfrogBasicAuth.optional(),
     integrations: core.serialization.list(JFrogIntegrations),
 });
 

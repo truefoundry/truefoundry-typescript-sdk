@@ -11,7 +11,7 @@ export const SqsQueueMetricConfig: core.serialization.ObjectSchema<
     TrueFoundry.SqsQueueMetricConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("sqs"),
-    queueLength: core.serialization.property("queue_length", core.serialization.number()),
+    queue_length: core.serialization.number(),
 });
 
 export declare namespace SqsQueueMetricConfig {

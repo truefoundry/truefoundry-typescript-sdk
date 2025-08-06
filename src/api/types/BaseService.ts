@@ -19,7 +19,7 @@ export interface BaseService {
      * +sort=2
      */
     image: BaseService.Image;
-    artifactsDownload?: TrueFoundry.ArtifactsDownload;
+    artifacts_download?: TrueFoundry.ArtifactsDownload;
     resources?: TrueFoundry.Resources;
     /**
      * +label=Environment Variables
@@ -36,7 +36,7 @@ export interface BaseService {
      * +sort=4
      */
     ports: TrueFoundry.Port[];
-    serviceAccount?: string;
+    service_account?: string;
     /**
      * +usage=Configure data to be mounted to service pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-service)
      * +sort=10011
@@ -45,14 +45,14 @@ export interface BaseService {
     /** +label=Labels */
     labels?: Record<string, string>;
     kustomize?: TrueFoundry.Kustomize;
-    livenessProbe?: TrueFoundry.HealthProbe;
-    readinessProbe?: TrueFoundry.HealthProbe;
+    liveness_probe?: TrueFoundry.HealthProbe;
+    readiness_probe?: TrueFoundry.HealthProbe;
     /**
      * +label=Workspace FQN
      * +docs=Fully qualified name of the workspace
      * +uiType=Hidden
      */
-    workspaceFqn?: string;
+    workspace_fqn?: string;
 }
 
 export namespace BaseService {

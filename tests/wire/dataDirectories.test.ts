@@ -47,21 +47,21 @@ describe("DataDirectories", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                mlRepoId: "ml_repo_id",
+                ml_repo_id: "ml_repo_id",
                 name: "name",
                 fqn: "fqn",
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                updated_at: new Date("2024-01-15T09:30:00.000Z"),
                 manifest: {
                     type: "data-dir",
                     name: "name",
-                    mlRepo: "ml_repo",
+                    ml_repo: "ml_repo",
                     description: "description",
                     metadata: {
                         key: "value",
@@ -70,7 +70,7 @@ describe("DataDirectories", () => {
                         type: "truefoundry",
                     },
                 },
-                usageCodeSnippet: "usage_code_snippet",
+                usage_code_snippet: "usage_code_snippet",
             },
         });
     });
@@ -142,7 +142,7 @@ describe("DataDirectories", () => {
             manifest: {
                 type: "data-dir",
                 name: "name",
-                mlRepo: "ml_repo",
+                ml_repo: "ml_repo",
                 metadata: {
                     key: "value",
                 },
@@ -154,21 +154,21 @@ describe("DataDirectories", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                mlRepoId: "ml_repo_id",
+                ml_repo_id: "ml_repo_id",
                 name: "name",
                 fqn: "fqn",
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                updated_at: new Date("2024-01-15T09:30:00.000Z"),
                 manifest: {
                     type: "data-dir",
                     name: "name",
-                    mlRepo: "ml_repo",
+                    ml_repo: "ml_repo",
                     description: "description",
                     metadata: {
                         key: "value",
@@ -177,7 +177,7 @@ describe("DataDirectories", () => {
                         type: "truefoundry",
                     },
                 },
-                usageCodeSnippet: "usage_code_snippet",
+                usage_code_snippet: "usage_code_snippet",
             },
         });
     });
@@ -226,7 +226,7 @@ describe("DataDirectories", () => {
             data: [
                 {
                     path: "path",
-                    signedUrl: "signed_url",
+                    signed_url: "signed_url",
                 },
             ],
         });
@@ -257,22 +257,22 @@ describe("DataDirectories", () => {
         const response = await client.dataDirectories.createMultipartUpload({
             id: "id",
             path: "path",
-            numParts: 1,
+            num_parts: 1,
         });
         expect(response).toEqual({
             data: {
-                storageProvider: "S3_COMPATIBLE",
-                partSignedUrls: [
+                storage_provider: "S3_COMPATIBLE",
+                part_signed_urls: [
                     {
                         path: "path",
-                        signedUrl: "signed_url",
+                        signed_url: "signed_url",
                     },
                 ],
-                s3CompatibleUploadId: "s3_compatible_upload_id",
-                azureBlobBlockIds: ["azure_blob_block_ids"],
-                finalizeSignedUrl: {
+                s3_compatible_upload_id: "s3_compatible_upload_id",
+                azure_blob_block_ids: ["azure_blob_block_ids"],
+                finalize_signed_url: {
                     path: "path",
-                    signedUrl: "signed_url",
+                    signed_url: "signed_url",
                 },
             },
         });

@@ -7,7 +7,7 @@
  */
 export interface XgBoostModelSchema {
     /** Name of the method used for inference */
-    inferMethodName: "predict";
+    infer_method_name: "predict";
     /** Schema of the input */
     inputs: Record<string, unknown>[];
     /** Schema of the output */

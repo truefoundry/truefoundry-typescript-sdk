@@ -12,13 +12,13 @@ export const PromptVersion: core.serialization.ObjectSchema<serializers.PromptVe
     core.serialization.object({
         id: core.serialization.string(),
         fqn: core.serialization.string(),
-        createdBySubject: core.serialization.property("created_by_subject", Subject),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        updatedAt: core.serialization.property("updated_at", core.serialization.date().optional()),
+        created_by_subject: Subject,
+        created_at: core.serialization.date().optional(),
+        updated_at: core.serialization.date().optional(),
         manifest: ChatPromptManifest,
-        usageCodeSnippet: core.serialization.property("usage_code_snippet", core.serialization.string().optional()),
-        mlRepoId: core.serialization.property("ml_repo_id", core.serialization.string()),
-        promptId: core.serialization.property("prompt_id", core.serialization.string()),
+        usage_code_snippet: core.serialization.string().optional(),
+        ml_repo_id: core.serialization.string(),
+        prompt_id: core.serialization.string(),
     });
 
 export declare namespace PromptVersion {

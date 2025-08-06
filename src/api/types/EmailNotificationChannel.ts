@@ -18,18 +18,18 @@ export interface EmailNotificationChannel {
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    authData: TrueFoundry.SmtpCredentials;
+    auth_data: TrueFoundry.SmtpCredentials;
     /**
      * +label=From Email
      * +usage=The email address from which the email will be sent.
      * +sort=1000
      */
-    fromEmail: string;
+    from_email: string;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=1200
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

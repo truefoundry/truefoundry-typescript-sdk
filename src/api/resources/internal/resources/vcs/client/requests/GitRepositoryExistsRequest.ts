@@ -5,12 +5,12 @@
 /**
  * @example
  *     {
- *         repoUrl: "repoURL"
+ *         repoURL: "repoURL"
  *     }
  */
 export interface GitRepositoryExistsRequest {
     /** The URL of the repository */
-    repoUrl: string;
+    repoURL: string;
     /** The integration id of the repository */
     id?: string;
 }

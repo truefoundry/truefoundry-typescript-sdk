@@ -9,8 +9,8 @@ import * as core from "../../core/index.js";
 export const Email: core.serialization.ObjectSchema<serializers.Email.Raw, TrueFoundry.Email> =
     core.serialization.object({
         type: core.serialization.stringLiteral("email"),
-        notificationChannel: core.serialization.property("notification_channel", core.serialization.string()),
-        toEmails: core.serialization.property("to_emails", core.serialization.list(core.serialization.string())),
+        notification_channel: core.serialization.string(),
+        to_emails: core.serialization.list(core.serialization.string()),
     });
 
 export declare namespace Email {

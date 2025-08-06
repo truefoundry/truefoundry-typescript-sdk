@@ -7,6 +7,6 @@ import * as TrueFoundry from "../index.js";
 export interface LatencyBasedLoadBalancingRule {
     id: string;
     when: TrueFoundry.LoadBalancingWhen;
-    loadBalanceTargets: TrueFoundry.LatencyBasedLoadBalanceTarget[];
+    load_balance_targets: TrueFoundry.LatencyBasedLoadBalanceTarget[];
     type: "latency-based-routing";
 }

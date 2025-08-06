@@ -7,6 +7,6 @@ import * as TrueFoundry from "../index.js";
 export interface RateLimitRule {
     id: string;
     when: TrueFoundry.RateLimitWhen;
-    limitTo: number;
+    limit_to: number;
     unit: TrueFoundry.RateLimitUnit;
 }

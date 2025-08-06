@@ -19,7 +19,7 @@ export interface GroqProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.GroqKeyAuth;
+    auth_data: TrueFoundry.GroqKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

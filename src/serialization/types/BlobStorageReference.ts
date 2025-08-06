@@ -13,7 +13,7 @@ export const BlobStorageReference: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("blob-storage"),
     path: core.serialization.string(),
-    mimeType: core.serialization.property("mime_type", MimeType),
+    mime_type: MimeType,
 });
 
 export declare namespace BlobStorageReference {

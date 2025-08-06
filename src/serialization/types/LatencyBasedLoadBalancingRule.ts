@@ -14,10 +14,7 @@ export const LatencyBasedLoadBalancingRule: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string(),
     when: LoadBalancingWhen,
-    loadBalanceTargets: core.serialization.property(
-        "load_balance_targets",
-        core.serialization.list(LatencyBasedLoadBalanceTarget),
-    ),
+    load_balance_targets: core.serialization.list(LatencyBasedLoadBalanceTarget),
     type: core.serialization.stringLiteral("latency-based-routing"),
 });
 

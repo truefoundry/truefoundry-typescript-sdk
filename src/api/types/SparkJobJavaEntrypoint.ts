@@ -15,7 +15,7 @@ export interface SparkJobJavaEntrypoint {
      * +sort=5
      * +placeholder=For example: local:///path/to/file.jar, s3:///bucket/path/to/file.jar, etc.
      */
-    mainApplicationFile: string;
+    main_application_file: string;
     /**
      * +label=Main Class
      * +usage=The main class to be executed by the spark job.
@@ -23,7 +23,7 @@ export interface SparkJobJavaEntrypoint {
      * +required=true
      * +message=The main class must be a valid Java class name.
      */
-    mainClass: string;
+    main_class: string;
     /**
      * +label=Arguments
      * +usage=Arguments to be passed to the main application file.

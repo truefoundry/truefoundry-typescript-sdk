@@ -11,11 +11,11 @@ export const CommonToolsSettings: core.serialization.ObjectSchema<
     TrueFoundry.CommonToolsSettings
 > = core.serialization.object({
     type: core.serialization.stringLiteral("settings/common-tools"),
-    webSearch: core.serialization.property("web_search", core.serialization.boolean()),
-    codeExecutor: core.serialization.property("code_executor", core.serialization.boolean()),
-    sequentialThinking: core.serialization.property("sequential_thinking", core.serialization.boolean()),
-    visionOcr: core.serialization.property("vision_ocr", core.serialization.boolean()),
-    webScrape: core.serialization.property("web_scrape", core.serialization.boolean()),
+    web_search: core.serialization.boolean(),
+    code_executor: core.serialization.boolean(),
+    sequential_thinking: core.serialization.boolean(),
+    vision_ocr: core.serialization.boolean(),
+    web_scrape: core.serialization.boolean(),
 });
 
 export declare namespace CommonToolsSettings {

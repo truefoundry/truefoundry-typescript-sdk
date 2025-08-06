@@ -12,10 +12,7 @@ export const TrueFoundryDbssm: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/secret-store/truefoundry/db"),
     name: core.serialization.string(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace TrueFoundryDbssm {

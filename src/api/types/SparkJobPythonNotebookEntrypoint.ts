@@ -15,5 +15,5 @@ export interface SparkJobPythonNotebookEntrypoint {
      * +sort=5
      * +placeholder=For example: local:///path/to/file.ipynb, s3:///bucket/path/to/file.ipynb, etc.
      */
-    mainApplicationFile: string;
+    main_application_file: string;
 }

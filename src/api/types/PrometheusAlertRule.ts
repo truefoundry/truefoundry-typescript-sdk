@@ -53,5 +53,5 @@ export interface PrometheusAlertRule {
      * +uiProps={"descriptionInline":true}
      * +sort=7
      */
-    notificationEnabled: boolean;
+    notification_enabled: boolean;
 }

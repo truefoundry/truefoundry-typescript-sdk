@@ -17,12 +17,12 @@ export interface TaskDockerFileBuild {
      * +usage=FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    dockerRegistry?: string;
+    docker_registry?: string;
     /**
      * +label=Path to Dockerfile
      * +usage=The file path of the Dockerfile relative to project root path.
      */
-    dockerfilePath: string;
+    dockerfile_path: string;
     /** +label=Build arguments to pass to docker build */
-    buildArgs?: Record<string, string>;
+    build_args?: Record<string, string>;
 }

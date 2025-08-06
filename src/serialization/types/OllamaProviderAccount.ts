@@ -15,7 +15,7 @@ export const OllamaProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/ollama"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", OllamaKeyAuth),
+    auth_data: OllamaKeyAuth,
     integrations: core.serialization.list(OllamaIntegrations),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

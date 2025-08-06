@@ -15,15 +15,12 @@ export const AzureFoundryModel: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/model/azure/ai-foundry"),
     name: core.serialization.string(),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
-    modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
-    azureEndpoint: core.serialization.property("azure_endpoint", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AzureKeyAuth.optional()),
+    model_id: core.serialization.string(),
+    model_types: core.serialization.list(ModelType),
+    azure_endpoint: core.serialization.string(),
+    auth_data: AzureKeyAuth.optional(),
     cost: ModelCostMetric.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureFoundryModel {

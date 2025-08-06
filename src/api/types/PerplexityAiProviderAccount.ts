@@ -19,7 +19,7 @@ export interface PerplexityAiProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.PerplexityAiKeyAuth;
+    auth_data: TrueFoundry.PerplexityAiKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

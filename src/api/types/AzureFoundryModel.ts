@@ -22,25 +22,25 @@ export interface AzureFoundryModel {
      * +label=Model Name
      * +usage=This is the Model Name on Azure
      */
-    modelId: string;
+    model_id: string;
     /**
      * +label=Model Types
      * +usage=Types of models supported by this Azure AI Foundry deployment
      * +sort=200
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     /**
      * +sort=300
      * +label=Azure Endpoint
      * +usage=Azure Foundry endpoint
      */
-    azureEndpoint: string;
-    authData?: TrueFoundry.AzureKeyAuth;
+    azure_endpoint: string;
+    auth_data?: TrueFoundry.AzureKeyAuth;
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

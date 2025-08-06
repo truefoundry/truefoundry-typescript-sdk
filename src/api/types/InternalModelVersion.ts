@@ -7,15 +7,15 @@ import * as TrueFoundry from "../index.js";
 export interface InternalModelVersion {
     id: string;
     fqn: string;
-    createdBySubject: TrueFoundry.Subject;
-    createdAt?: Date;
-    updatedAt?: Date;
+    created_by_subject: TrueFoundry.Subject;
+    created_at?: Date;
+    updated_at?: Date;
     manifest: TrueFoundry.ModelManifest;
-    usageCodeSnippet?: string;
-    mlRepoId: string;
-    modelId: string;
+    usage_code_snippet?: string;
+    ml_repo_id: string;
+    model_id: string;
     metrics?: TrueFoundry.Metric[];
     deployable?: boolean;
-    artifactFqn: string;
-    artifactSize?: number;
+    artifact_fqn: string;
+    artifact_size?: number;
 }

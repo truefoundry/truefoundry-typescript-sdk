@@ -12,13 +12,10 @@ export const AwsS3: core.serialization.ObjectSchema<serializers.AwsS3.Raw, TrueF
     core.serialization.object({
         type: core.serialization.stringLiteral("integration/blob-storage/aws/s3"),
         name: core.serialization.string(),
-        storageRoot: core.serialization.property("storage_root", core.serialization.string()),
+        storage_root: core.serialization.string(),
         region: AwsRegion,
-        authData: core.serialization.property("auth_data", AwsS3AuthData.optional()),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        auth_data: AwsS3AuthData.optional(),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace AwsS3 {

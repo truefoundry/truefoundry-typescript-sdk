@@ -14,7 +14,7 @@ export const MlRepoManifest: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("ml-repo"),
     name: core.serialization.string(),
     description: core.serialization.string().optional(),
-    storageIntegrationFqn: core.serialization.property("storage_integration_fqn", core.serialization.string()),
+    storage_integration_fqn: core.serialization.string(),
     collaborators: core.serialization.list(Collaborator),
 });
 

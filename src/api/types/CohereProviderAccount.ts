@@ -19,7 +19,7 @@ export interface CohereProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.CohereKeyAuth;
+    auth_data: TrueFoundry.CohereKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

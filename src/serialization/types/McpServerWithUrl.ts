@@ -14,7 +14,7 @@ export const McpServerWithUrl: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("mcp-server-url"),
     url: core.serialization.string(),
     headers: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    enableAllTools: core.serialization.property("enable_all_tools", core.serialization.boolean().optional()),
+    enable_all_tools: core.serialization.boolean().optional(),
     tools: core.serialization.list(McpTool).optional(),
 });
 

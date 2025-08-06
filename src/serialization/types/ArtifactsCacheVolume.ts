@@ -10,8 +10,8 @@ export const ArtifactsCacheVolume: core.serialization.ObjectSchema<
     serializers.ArtifactsCacheVolume.Raw,
     TrueFoundry.ArtifactsCacheVolume
 > = core.serialization.object({
-    storageClass: core.serialization.property("storage_class", core.serialization.string()),
-    cacheSize: core.serialization.property("cache_size", core.serialization.number()),
+    storage_class: core.serialization.string(),
+    cache_size: core.serialization.number(),
 });
 
 export declare namespace ArtifactsCacheVolume {

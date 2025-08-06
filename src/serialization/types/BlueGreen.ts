@@ -9,14 +9,8 @@ import * as core from "../../core/index.js";
 export const BlueGreen: core.serialization.ObjectSchema<serializers.BlueGreen.Raw, TrueFoundry.BlueGreen> =
     core.serialization.object({
         type: core.serialization.stringLiteral("blue_green"),
-        enableAutoPromotion: core.serialization.property(
-            "enable_auto_promotion",
-            core.serialization.boolean().optional(),
-        ),
-        autoPromotionSeconds: core.serialization.property(
-            "auto_promotion_seconds",
-            core.serialization.number().optional(),
-        ),
+        enable_auto_promotion: core.serialization.boolean().optional(),
+        auto_promotion_seconds: core.serialization.number().optional(),
     });
 
 export declare namespace BlueGreen {

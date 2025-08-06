@@ -13,7 +13,7 @@ export interface ToolMessage {
     /** Content of the tool call result */
     content: ToolMessage.Content;
     /** Unique identifier for the tool call */
-    toolCallId: string;
+    tool_call_id: string;
 }
 
 export namespace ToolMessage {

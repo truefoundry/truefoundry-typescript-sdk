@@ -16,5 +16,5 @@ export interface StaticVolumeConfig {
      * +label=Persistent Volume
      * +usage=Persistent Volume Name of the volume to be used.
      */
-    persistentVolumeName: string;
+    persistent_volume_name: string;
 }

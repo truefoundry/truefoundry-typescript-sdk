@@ -15,7 +15,7 @@ export const TogetherAiProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/together-ai"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", TogetherAiKeyAuth),
+    auth_data: TogetherAiKeyAuth,
     integrations: core.serialization.list(TogetherAiIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

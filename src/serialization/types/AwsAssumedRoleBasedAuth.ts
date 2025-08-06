@@ -11,7 +11,7 @@ export const AwsAssumedRoleBasedAuth: core.serialization.ObjectSchema<
     TrueFoundry.AwsAssumedRoleBasedAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("assumed-role-based"),
-    assumedRoleArn: core.serialization.property("assumed_role_arn", core.serialization.string()),
+    assumed_role_arn: core.serialization.string(),
 });
 
 export declare namespace AwsAssumedRoleBasedAuth {

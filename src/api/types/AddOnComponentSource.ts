@@ -4,7 +4,7 @@
 
 export interface AddOnComponentSource {
     /** Repository URL of the source */
-    repoUrl: string;
+    repo_url: string;
     /** Chart of the source */
     chart: string;
 }

@@ -11,17 +11,11 @@ export const TaskPySparkBuild: core.serialization.ObjectSchema<
     TrueFoundry.TaskPySparkBuild
 > = core.serialization.object({
     type: core.serialization.stringLiteral("task-pyspark-build"),
-    sparkVersion: core.serialization.property("spark_version", core.serialization.string()),
-    dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
-    requirementsPath: core.serialization.property("requirements_path", core.serialization.string().optional()),
-    pipPackages: core.serialization.property(
-        "pip_packages",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    aptPackages: core.serialization.property(
-        "apt_packages",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    spark_version: core.serialization.string(),
+    docker_registry: core.serialization.string().optional(),
+    requirements_path: core.serialization.string().optional(),
+    pip_packages: core.serialization.list(core.serialization.string()).optional(),
+    apt_packages: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace TaskPySparkBuild {

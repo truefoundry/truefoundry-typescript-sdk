@@ -10,9 +10,9 @@ export const AsyncProcessorSidecar: core.serialization.ObjectSchema<
     serializers.AsyncProcessorSidecar.Raw,
     TrueFoundry.AsyncProcessorSidecar
 > = core.serialization.object({
-    destinationUrl: core.serialization.property("destination_url", core.serialization.string()),
-    requestTimeout: core.serialization.property("request_timeout", core.serialization.number().optional()),
-    sidecarImage: core.serialization.property("sidecar_image", core.serialization.string().optional()),
+    destination_url: core.serialization.string(),
+    request_timeout: core.serialization.number().optional(),
+    sidecar_image: core.serialization.string().optional(),
 });
 
 export declare namespace AsyncProcessorSidecar {

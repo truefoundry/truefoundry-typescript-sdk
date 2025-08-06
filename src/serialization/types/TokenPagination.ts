@@ -11,8 +11,8 @@ export const TokenPagination: core.serialization.ObjectSchema<
     TrueFoundry.TokenPagination
 > = core.serialization.object({
     limit: core.serialization.number().optional(),
-    previousPageToken: core.serialization.property("previous_page_token", core.serialization.string().optional()),
-    nextPageToken: core.serialization.property("next_page_token", core.serialization.string().optional()),
+    previous_page_token: core.serialization.string().optional(),
+    next_page_token: core.serialization.string().optional(),
 });
 
 export declare namespace TokenPagination {

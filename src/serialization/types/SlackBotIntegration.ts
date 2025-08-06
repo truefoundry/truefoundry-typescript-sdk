@@ -13,11 +13,8 @@ export const SlackBotIntegration: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/notification-channel/slack-bot"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", SlackBotAuth),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    auth_data: SlackBotAuth,
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace SlackBotIntegration {

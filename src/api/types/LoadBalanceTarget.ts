@@ -5,5 +5,5 @@
 export interface LoadBalanceTarget {
     target: string;
     weight: number;
-    overrideParams?: Record<string, unknown>;
+    override_params?: Record<string, unknown>;
 }

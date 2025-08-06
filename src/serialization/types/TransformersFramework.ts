@@ -12,9 +12,9 @@ export const TransformersFramework: core.serialization.ObjectSchema<
     TrueFoundry.TransformersFramework
 > = core.serialization.object({
     type: core.serialization.stringLiteral("transformers"),
-    libraryName: core.serialization.property("library_name", LibraryName.optional()),
-    pipelineTag: core.serialization.property("pipeline_tag", core.serialization.string().optional()),
-    baseModel: core.serialization.property("base_model", core.serialization.string().optional()),
+    library_name: LibraryName.optional(),
+    pipeline_tag: core.serialization.string().optional(),
+    base_model: core.serialization.string().optional(),
 });
 
 export declare namespace TransformersFramework {

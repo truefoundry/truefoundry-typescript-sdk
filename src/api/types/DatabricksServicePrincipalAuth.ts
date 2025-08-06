@@ -15,12 +15,12 @@ export interface DatabricksServicePrincipalAuth {
      * +sort=200
      * +uiType=Password
      */
-    oauthSecret: string;
+    oauth_secret: string;
     /**
      * +label=Client ID
      * +usage=Client ID or Application ID of the Databricks service principal.
      * +sort=100
      * +uiType=Password
      */
-    clientId: string;
+    client_id: string;
 }

@@ -14,16 +14,13 @@ export const AzureContentSafetyGuardrailConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/guardrail-config/azure-content-safety"),
-    resourceName: core.serialization.property("resource_name", core.serialization.string()),
-    apiVersion: core.serialization.property("api_version", core.serialization.string()),
-    customHost: core.serialization.property("custom_host", core.serialization.string().optional()),
-    blocklistNames: core.serialization.property(
-        "blocklist_names",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    severityThreshold: core.serialization.property("severity_threshold", core.serialization.number()),
+    resource_name: core.serialization.string(),
+    api_version: core.serialization.string(),
+    custom_host: core.serialization.string().optional(),
+    blocklist_names: core.serialization.list(core.serialization.string()).optional(),
+    severity_threshold: core.serialization.number(),
     categories: core.serialization.list(AzureContentSafetyCategory),
-    authData: core.serialization.property("auth_data", AzureKeyAuth),
+    auth_data: AzureKeyAuth,
 });
 
 export declare namespace AzureContentSafetyGuardrailConfig {

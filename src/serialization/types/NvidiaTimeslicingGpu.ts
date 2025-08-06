@@ -12,7 +12,7 @@ export const NvidiaTimeslicingGpu: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("nvidia_timeslicing_gpu"),
     name: core.serialization.string().optional(),
-    gpuMemory: core.serialization.property("gpu_memory", core.serialization.number()),
+    gpu_memory: core.serialization.number(),
 });
 
 export declare namespace NvidiaTimeslicingGpu {

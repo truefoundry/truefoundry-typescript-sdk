@@ -14,13 +14,13 @@ export const ArtifactManifest: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     description: core.serialization.string().optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
-    versionAlias: core.serialization.property("version_alias", core.serialization.string().optional()),
-    mlRepo: core.serialization.property("ml_repo", core.serialization.string()),
+    version_alias: core.serialization.string().optional(),
+    ml_repo: core.serialization.string(),
     version: core.serialization.number().optional(),
     type: core.serialization.stringLiteral("artifact-version"),
     source: ArtifactManifestSource,
     step: core.serialization.number().optional(),
-    runId: core.serialization.property("run_id", core.serialization.string().optional()),
+    run_id: core.serialization.string().optional(),
 });
 
 export declare namespace ArtifactManifest {

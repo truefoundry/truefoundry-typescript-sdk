@@ -19,7 +19,7 @@ export interface Ai21ProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.Ai21KeyAuth;
+    auth_data: TrueFoundry.Ai21KeyAuth;
     /**
      * +label=Integrations
      * +sort=400

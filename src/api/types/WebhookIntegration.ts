@@ -24,20 +24,20 @@ export interface WebhookIntegration {
      * +usage=The URL of the webhook endpoint
      * +sort=200
      */
-    webhookUrl: string;
+    webhook_url: string;
     /**
      * +label=Authentication
      * +usage=Authentication configuration for the webhook
      * +sort=300
      */
-    authData?: WebhookIntegration.AuthData;
+    auth_data?: WebhookIntegration.AuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=10005
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace WebhookIntegration {

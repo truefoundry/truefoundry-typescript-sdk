@@ -19,42 +19,42 @@ export interface Resources {
      * amount, but not the value specified in the limit. 1 CPU means 1 CPU core. Fractional CPU can be requested
      * like `0.5` or `0.05`
      */
-    cpuRequest: number;
+    cpu_request: number;
     /**
      * +label=CPU Limit
      * +usage=CPU limit beyond which the usage cannot be exceeded. 1 CPU means 1 CPU core. Fractional CPU can be requested
      * like `0.5`. CPU limit should be >= cpu request.
      * +sort=2
      */
-    cpuLimit: number;
+    cpu_limit: number;
     /**
      * +label=Memory Request
      * +usage=Requested memory which determines the minimum cost incurred. The unit of memory is in megabytes(MB).
      * So 1 means 1 MB and 2000 means 2GB.
      * +sort=3
      */
-    memoryRequest: number;
+    memory_request: number;
     /**
      * +label=Memory Limit
      * +usage=Memory limit after which the application will be killed with an OOM error. The unit of memory is
      * in megabytes(MB). So 1 means 1 MB and 2000 means 2GB. MemoryLimit should be greater than memory request.
      * +sort=4
      */
-    memoryLimit: number;
+    memory_limit: number;
     /**
      * +label=Storage Request
      * +usage=Requested disk storage. The unit of memory is in megabytes(MB).
      * This is ephemeral storage and will be wiped out on pod restarts or eviction
      * +sort=5
      */
-    ephemeralStorageRequest: number;
+    ephemeral_storage_request: number;
     /**
      * +label=Storage Limit
      * +usage=Disk storage limit. The unit of memory is in megabytes(MB). Exceeding this limit will result in eviction.
      * It should be greater than the request. This is ephemeral storage and will be wiped out on pod restarts or eviction
      * +sort=6
      */
-    ephemeralStorageLimit: number;
+    ephemeral_storage_limit: number;
     /**
      * +label=Shared Memory Size (MB)
      * +usage=Define the shared memory requirements for your workload. Machine learning libraries like Pytorch can use Shared Memory
@@ -63,7 +63,7 @@ export interface Resources {
      * If the overall usage goes above `resources.memory_limit` the user process may get killed.
      * Shared Memory Size cannot be more than the defined Memory Limit for the workload.
      */
-    sharedMemorySize?: number;
+    shared_memory_size?: number;
     /**
      * +label=Node
      * +usage=This field determines how the underlying node resource is to be utilized

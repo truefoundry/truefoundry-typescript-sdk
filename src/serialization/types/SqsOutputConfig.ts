@@ -12,8 +12,8 @@ export const SqsOutputConfig: core.serialization.ObjectSchema<
     TrueFoundry.SqsOutputConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("sqs"),
-    queueUrl: core.serialization.property("queue_url", core.serialization.string()),
-    regionName: core.serialization.property("region_name", core.serialization.string()),
+    queue_url: core.serialization.string(),
+    region_name: core.serialization.string(),
     auth: AwsAccessKeyAuth,
 });
 

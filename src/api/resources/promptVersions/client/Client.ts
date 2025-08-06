@@ -227,7 +227,15 @@ export class PromptVersions {
             async (
                 request: TrueFoundry.PromptVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListPromptVersionsResponse>> => {
-                const { fqn, promptId, mlRepoId, name, version, offset = 0, limit = 100 } = request;
+                const {
+                    fqn,
+                    prompt_id: promptId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                    offset = 0,
+                    limit = 100,
+                } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;

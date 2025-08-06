@@ -13,24 +13,24 @@ export interface AzureOAuth {
      * +usage=The Azure Active Directory tenant (directory) ID.
      * +sort=100
      */
-    tenantId: string;
+    tenant_id: string;
     /**
      * +label=Azure Client ID
      * +usage=The client (application) ID of an App Registration in the tenant.
      * +sort=200
      */
-    clientId: string;
+    client_id: string;
     /**
      * +label=Azure Client secret
      * +sort=300
      * +usage=A client secret that was generated for the App Registration.
      * +uiType=Password
      */
-    clientSecret: string;
+    client_secret: string;
     /**
      * +label=Azure Subscription ID
      * +usage=The ID of the target subscription. The value must be an UUID.
      * +sort=400
      */
-    subscriptionId: string;
+    subscription_id: string;
 }

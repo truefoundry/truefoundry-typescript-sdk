@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const PagerDuty: core.serialization.ObjectSchema<serializers.PagerDuty.Raw, TrueFoundry.PagerDuty> =
     core.serialization.object({
         type: core.serialization.stringLiteral("pagerduty"),
-        notificationChannel: core.serialization.property("notification_channel", core.serialization.string()),
+        notification_channel: core.serialization.string(),
     });
 
 export declare namespace PagerDuty {

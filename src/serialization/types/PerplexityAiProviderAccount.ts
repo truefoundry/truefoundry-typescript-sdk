@@ -15,7 +15,7 @@ export const PerplexityAiProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/perplexity-ai"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", PerplexityAiKeyAuth),
+    auth_data: PerplexityAiKeyAuth,
     integrations: core.serialization.list(PerplexityIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

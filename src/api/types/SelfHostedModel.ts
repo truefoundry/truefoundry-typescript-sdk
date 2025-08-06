@@ -21,7 +21,7 @@ export interface SelfHostedModel {
      * +sort=2
      * +usage=The name of the hosted model
      */
-    hostedModelName: string;
+    hosted_model_name: string;
     /**
      * +sort=3
      * +message=enter valid https/http URL that should not end with trailing slash
@@ -32,21 +32,21 @@ export interface SelfHostedModel {
      * +label=Model Server Type
      * +usage=The type of model server being used
      */
-    modelServer: SelfHostedModel.ModelServer;
+    model_server: SelfHostedModel.ModelServer;
     /** +uiType=Hidden */
-    tfyApplicationId?: string;
+    tfy_application_id?: string;
     /**
      * +usage=Specify the type of the model
      * +sort=4
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     /**
      * +label=Auth Data
      * +usage=SelfHostedModel authentication data for the integration.
      * +sort=300
      */
-    authData?: SelfHostedModel.AuthData;
+    auth_data?: SelfHostedModel.AuthData;
     /**
      * +label=SelfHostedModel Headers
      * +usage=SelfHostedModel headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}`
@@ -60,7 +60,7 @@ export interface SelfHostedModel {
      * +sort=600
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }
 
 export namespace SelfHostedModel {

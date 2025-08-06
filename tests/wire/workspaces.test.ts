@@ -52,7 +52,7 @@ describe("Workspaces", () => {
         const response = await client.workspaces.createOrUpdate({
             manifest: {
                 type: "workspace",
-                clusterFqn: "cluster_fqn",
+                cluster_fqn: "cluster_fqn",
                 name: "name",
             },
         });
@@ -74,9 +74,9 @@ describe("Workspaces", () => {
                 environmentId: "environmentId",
                 manifest: {
                     type: "workspace",
-                    clusterFqn: "cluster_fqn",
+                    cluster_fqn: "cluster_fqn",
                     name: "name",
-                    environmentName: "environment_name",
+                    environment_name: "environment_name",
                     labels: {
                         key: "value",
                     },
@@ -86,14 +86,14 @@ describe("Workspaces", () => {
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                     permissions: [
                         {
-                            resourceFqn: "resource_fqn",
-                            resourceType: "resource_type",
-                            roleId: "role_id",
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
                         },
                     ],
                 },
@@ -164,9 +164,9 @@ describe("Workspaces", () => {
                 environmentId: "environmentId",
                 manifest: {
                     type: "workspace",
-                    clusterFqn: "cluster_fqn",
+                    cluster_fqn: "cluster_fqn",
                     name: "name",
-                    environmentName: "environment_name",
+                    environment_name: "environment_name",
                     labels: {
                         key: "value",
                     },
@@ -176,14 +176,14 @@ describe("Workspaces", () => {
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                     permissions: [
                         {
-                            resourceFqn: "resource_fqn",
-                            resourceType: "resource_type",
-                            roleId: "role_id",
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
                         },
                     ],
                 },
@@ -255,9 +255,9 @@ describe("Workspaces", () => {
                 environmentId: "environmentId",
                 manifest: {
                     type: "workspace",
-                    clusterFqn: "cluster_fqn",
+                    cluster_fqn: "cluster_fqn",
                     name: "name",
-                    environmentName: "environment_name",
+                    environment_name: "environment_name",
                     labels: {
                         key: "value",
                     },
@@ -267,14 +267,14 @@ describe("Workspaces", () => {
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                     permissions: [
                         {
-                            resourceFqn: "resource_fqn",
-                            resourceType: "resource_type",
-                            roleId: "role_id",
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
                         },
                     ],
                 },

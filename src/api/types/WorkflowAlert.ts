@@ -9,17 +9,17 @@ import * as TrueFoundry from "../index.js";
  * +label=Alert
  */
 export interface WorkflowAlert {
-    notificationTarget?: TrueFoundry.NotificationTarget;
+    notification_target?: TrueFoundry.NotificationTarget;
     /**
      * +label=On Completion
      * +usage=Send an alert when the job completes
      * +sort=680
      */
-    onCompletion?: boolean;
+    on_completion?: boolean;
     /**
      * +label=On Failure
      * +usage=Send an alert when the job fails
      * +sort=690
      */
-    onFailure?: boolean;
+    on_failure?: boolean;
 }

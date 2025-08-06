@@ -13,9 +13,9 @@ export const WorkspaceManifest: core.serialization.ObjectSchema<
     TrueFoundry.WorkspaceManifest
 > = core.serialization.object({
     type: core.serialization.stringLiteral("workspace"),
-    clusterFqn: core.serialization.property("cluster_fqn", core.serialization.string()),
+    cluster_fqn: core.serialization.string(),
     name: core.serialization.string(),
-    environmentName: core.serialization.property("environment_name", core.serialization.string().optional()),
+    environment_name: core.serialization.string().optional(),
     labels: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     annotations: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),

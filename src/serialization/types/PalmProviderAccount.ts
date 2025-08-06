@@ -15,7 +15,7 @@ export const PalmProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/palm"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", PalmKeyAuth),
+    auth_data: PalmKeyAuth,
     integrations: core.serialization.list(PalmIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

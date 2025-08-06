@@ -13,16 +13,13 @@ import { ModelCostMetric } from "./ModelCostMetric.js";
 export const BedrockModel: core.serialization.ObjectSchema<serializers.BedrockModel.Raw, TrueFoundry.BedrockModel> =
     core.serialization.object({
         name: core.serialization.string(),
-        modelId: core.serialization.property("model_id", core.serialization.string()),
+        model_id: core.serialization.string(),
         type: core.serialization.stringLiteral("integration/model/aws"),
-        authData: core.serialization.property("auth_data", BedrockModelAuthData.optional()),
+        auth_data: BedrockModelAuthData.optional(),
         region: AwsRegion,
-        modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+        model_types: core.serialization.list(ModelType),
         cost: ModelCostMetric.optional(),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace BedrockModel {

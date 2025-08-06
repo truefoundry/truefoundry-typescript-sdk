@@ -16,19 +16,19 @@ export interface KafkaInputConfig {
      * +usage='Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap'
      * +sort=1
      */
-    bootstrapServers: string;
+    bootstrap_servers: string;
     /**
      * +label=Topic Name
      * +usage=Kafka topic to subscribe to
      * +sort=2
      */
-    topicName: string;
+    topic_name: string;
     /**
      * +label=Consumer Group Name
      * +usage=The name of the consumer group to join for dynamic partition assignment
      * +sort=3
      */
-    consumerGroup: string;
+    consumer_group: string;
     /**
      * +label=TLS
      * +usage=TLS configuration for SASL authentication
@@ -38,6 +38,6 @@ export interface KafkaInputConfig {
      * +label=Wait Time Seconds
      * +usage=Wait timeout for long polling.
      */
-    waitTimeSeconds?: number;
+    wait_time_seconds?: number;
     auth?: TrueFoundry.KafkaSaslAuth;
 }

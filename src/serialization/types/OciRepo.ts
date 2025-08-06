@@ -9,8 +9,8 @@ import * as core from "../../core/index.js";
 export const OciRepo: core.serialization.ObjectSchema<serializers.OciRepo.Raw, TrueFoundry.OciRepo> =
     core.serialization.object({
         type: core.serialization.stringLiteral("oci-repo"),
-        ociChartUrl: core.serialization.property("oci_chart_url", core.serialization.string()),
-        integrationFqn: core.serialization.property("integration_fqn", core.serialization.string().optional()),
+        oci_chart_url: core.serialization.string(),
+        integration_fqn: core.serialization.string().optional(),
         version: core.serialization.string(),
     });
 

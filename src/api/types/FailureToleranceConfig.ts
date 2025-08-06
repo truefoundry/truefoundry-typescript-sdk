@@ -3,7 +3,7 @@
  */
 
 export interface FailureToleranceConfig {
-    allowedFailuresPerMinute: number;
-    cooldownPeriodMinutes: number;
-    failureStatusCodes: number[];
+    allowed_failures_per_minute: number;
+    cooldown_period_minutes: number;
+    failure_status_codes: number[];
 }

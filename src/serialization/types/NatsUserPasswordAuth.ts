@@ -10,7 +10,7 @@ export const NatsUserPasswordAuth: core.serialization.ObjectSchema<
     serializers.NatsUserPasswordAuth.Raw,
     TrueFoundry.NatsUserPasswordAuth
 > = core.serialization.object({
-    accountName: core.serialization.property("account_name", core.serialization.string()),
+    account_name: core.serialization.string(),
     user: core.serialization.string(),
     password: core.serialization.string(),
 });

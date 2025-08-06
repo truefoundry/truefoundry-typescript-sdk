@@ -11,7 +11,7 @@ export const AzureConnectionStringAuth: core.serialization.ObjectSchema<
     TrueFoundry.AzureConnectionStringAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("connection-string"),
-    connectionString: core.serialization.property("connection_string", core.serialization.string()),
+    connection_string: core.serialization.string(),
 });
 
 export declare namespace AzureConnectionStringAuth {

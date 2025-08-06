@@ -14,7 +14,7 @@ export const RegisterUsersRequest: core.serialization.Schema<
     sendInviteEmail: core.serialization.boolean().optional(),
     skipIfUserExists: core.serialization.boolean().optional(),
     dryRun: core.serialization.boolean().optional(),
-    acceptInviteClientUrl: core.serialization.property("acceptInviteClientURL", core.serialization.string().optional()),
+    acceptInviteClientURL: core.serialization.string().optional(),
 });
 
 export declare namespace RegisterUsersRequest {

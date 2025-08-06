@@ -21,7 +21,7 @@ describe("Vcs", () => {
             .build();
 
         const response = await client.internal.vcs.getRepositoryDetails({
-            repoUrl: "repoURL",
+            repoURL: "repoURL",
         });
         expect(response).toEqual({
             exists: true,
@@ -44,10 +44,10 @@ describe("Vcs", () => {
             .build();
 
         const response = await client.internal.vcs.getAuthenticatedUrl({
-            repoUrl: "repoURL",
+            repoURL: "repoURL",
         });
         expect(response).toEqual({
-            authenticatedUrl: "authenticatedURL",
+            authenticatedURL: "authenticatedURL",
         });
     });
 });

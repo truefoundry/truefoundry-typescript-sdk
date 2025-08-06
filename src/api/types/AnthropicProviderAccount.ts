@@ -19,7 +19,7 @@ export interface AnthropicProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.AnthropicKeyAuth;
+    auth_data: TrueFoundry.AnthropicKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

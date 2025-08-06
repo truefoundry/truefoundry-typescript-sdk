@@ -11,14 +11,14 @@ import { DataDirectoryManifest } from "./DataDirectoryManifest.js";
 export const DataDirectory: core.serialization.ObjectSchema<serializers.DataDirectory.Raw, TrueFoundry.DataDirectory> =
     core.serialization.object({
         id: core.serialization.string(),
-        mlRepoId: core.serialization.property("ml_repo_id", core.serialization.string()),
+        ml_repo_id: core.serialization.string(),
         name: core.serialization.string(),
         fqn: core.serialization.string(),
-        createdBySubject: core.serialization.property("created_by_subject", Subject),
-        createdAt: core.serialization.property("created_at", core.serialization.date()),
-        updatedAt: core.serialization.property("updated_at", core.serialization.date()),
+        created_by_subject: Subject,
+        created_at: core.serialization.date(),
+        updated_at: core.serialization.date(),
         manifest: DataDirectoryManifest,
-        usageCodeSnippet: core.serialization.property("usage_code_snippet", core.serialization.string().optional()),
+        usage_code_snippet: core.serialization.string().optional(),
     });
 
 export declare namespace DataDirectory {

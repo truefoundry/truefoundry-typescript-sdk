@@ -6,6 +6,6 @@ import * as TrueFoundry from "../index.js";
 
 export interface ModelConfig {
     model: string;
-    usageLimits?: TrueFoundry.UsageLimits;
-    failureTolerance?: TrueFoundry.FailureToleranceConfig;
+    usage_limits?: TrueFoundry.UsageLimits;
+    failure_tolerance?: TrueFoundry.FailureToleranceConfig;
 }

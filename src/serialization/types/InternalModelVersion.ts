@@ -15,17 +15,17 @@ export const InternalModelVersion: core.serialization.ObjectSchema<
 > = core.serialization.object({
     id: core.serialization.string(),
     fqn: core.serialization.string(),
-    createdBySubject: core.serialization.property("created_by_subject", Subject),
-    createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-    updatedAt: core.serialization.property("updated_at", core.serialization.date().optional()),
+    created_by_subject: Subject,
+    created_at: core.serialization.date().optional(),
+    updated_at: core.serialization.date().optional(),
     manifest: ModelManifest,
-    usageCodeSnippet: core.serialization.property("usage_code_snippet", core.serialization.string().optional()),
-    mlRepoId: core.serialization.property("ml_repo_id", core.serialization.string()),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
+    usage_code_snippet: core.serialization.string().optional(),
+    ml_repo_id: core.serialization.string(),
+    model_id: core.serialization.string(),
     metrics: core.serialization.list(Metric).optional(),
     deployable: core.serialization.boolean().optional(),
-    artifactFqn: core.serialization.property("artifact_fqn", core.serialization.string()),
-    artifactSize: core.serialization.property("artifact_size", core.serialization.number().optional()),
+    artifact_fqn: core.serialization.string(),
+    artifact_size: core.serialization.number().optional(),
 });
 
 export declare namespace InternalModelVersion {

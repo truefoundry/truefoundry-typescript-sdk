@@ -17,7 +17,7 @@ export const PrometheusAlertRule: core.serialization.ObjectSchema<
     for: core.serialization.number(),
     severity: AlertSeverity,
     description: core.serialization.string().optional(),
-    notificationEnabled: core.serialization.property("notification_enabled", core.serialization.boolean()),
+    notification_enabled: core.serialization.boolean(),
 });
 
 export declare namespace PrometheusAlertRule {

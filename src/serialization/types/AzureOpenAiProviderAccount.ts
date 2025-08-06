@@ -15,8 +15,8 @@ export const AzureOpenAiProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/azure-openai"),
     name: core.serialization.string(),
-    azureEndpoint: core.serialization.property("azure_endpoint", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AzureKeyAuth),
+    azure_endpoint: core.serialization.string(),
+    auth_data: AzureKeyAuth,
     integrations: core.serialization.list(AzureOpenAiModelV2),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

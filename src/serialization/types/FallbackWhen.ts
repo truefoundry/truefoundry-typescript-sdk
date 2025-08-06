@@ -11,10 +11,7 @@ export const FallbackWhen: core.serialization.ObjectSchema<serializers.FallbackW
         subjects: core.serialization.list(core.serialization.string()).optional(),
         models: core.serialization.list(core.serialization.string()).optional(),
         metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-        responseStatusCodes: core.serialization.property(
-            "response_status_codes",
-            core.serialization.list(core.serialization.number()),
-        ),
+        response_status_codes: core.serialization.list(core.serialization.number()),
     });
 
 export declare namespace FallbackWhen {

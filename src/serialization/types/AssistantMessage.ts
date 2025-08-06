@@ -14,7 +14,7 @@ export const AssistantMessage: core.serialization.ObjectSchema<
 > = core.serialization.object({
     role: core.serialization.stringLiteral("assistant"),
     content: AssistantMessageContent.optional(),
-    toolCalls: core.serialization.property("tool_calls", core.serialization.list(ToolCall).optional()),
+    tool_calls: core.serialization.list(ToolCall).optional(),
     name: core.serialization.string().optional(),
 });
 

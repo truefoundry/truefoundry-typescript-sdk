@@ -10,12 +10,9 @@ export const FailureToleranceConfig: core.serialization.ObjectSchema<
     serializers.FailureToleranceConfig.Raw,
     TrueFoundry.FailureToleranceConfig
 > = core.serialization.object({
-    allowedFailuresPerMinute: core.serialization.property("allowed_failures_per_minute", core.serialization.number()),
-    cooldownPeriodMinutes: core.serialization.property("cooldown_period_minutes", core.serialization.number()),
-    failureStatusCodes: core.serialization.property(
-        "failure_status_codes",
-        core.serialization.list(core.serialization.number()),
-    ),
+    allowed_failures_per_minute: core.serialization.number(),
+    cooldown_period_minutes: core.serialization.number(),
+    failure_status_codes: core.serialization.list(core.serialization.number()),
 });
 
 export declare namespace FailureToleranceConfig {

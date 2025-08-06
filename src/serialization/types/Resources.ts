@@ -10,13 +10,13 @@ import { ResourcesDevicesItem } from "./ResourcesDevicesItem";
 
 export const Resources: core.serialization.ObjectSchema<serializers.Resources.Raw, TrueFoundry.Resources> =
     core.serialization.object({
-        cpuRequest: core.serialization.property("cpu_request", core.serialization.number()),
-        cpuLimit: core.serialization.property("cpu_limit", core.serialization.number()),
-        memoryRequest: core.serialization.property("memory_request", core.serialization.number()),
-        memoryLimit: core.serialization.property("memory_limit", core.serialization.number()),
-        ephemeralStorageRequest: core.serialization.property("ephemeral_storage_request", core.serialization.number()),
-        ephemeralStorageLimit: core.serialization.property("ephemeral_storage_limit", core.serialization.number()),
-        sharedMemorySize: core.serialization.property("shared_memory_size", core.serialization.number().optional()),
+        cpu_request: core.serialization.number(),
+        cpu_limit: core.serialization.number(),
+        memory_request: core.serialization.number(),
+        memory_limit: core.serialization.number(),
+        ephemeral_storage_request: core.serialization.number(),
+        ephemeral_storage_limit: core.serialization.number(),
+        shared_memory_size: core.serialization.number().optional(),
         node: ResourcesNode.optional(),
         devices: core.serialization.list(ResourcesDevicesItem).optional(),
     });

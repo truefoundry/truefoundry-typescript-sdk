@@ -9,9 +9,9 @@ import * as core from "../../core/index.js";
 export const GitSource: core.serialization.ObjectSchema<serializers.GitSource.Raw, TrueFoundry.GitSource> =
     core.serialization.object({
         type: core.serialization.stringLiteral("git"),
-        repoUrl: core.serialization.property("repo_url", core.serialization.string()),
+        repo_url: core.serialization.string(),
         ref: core.serialization.string(),
-        branchName: core.serialization.property("branch_name", core.serialization.string().optional()),
+        branch_name: core.serialization.string().optional(),
     });
 
 export declare namespace GitSource {

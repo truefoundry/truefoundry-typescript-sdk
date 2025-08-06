@@ -10,7 +10,7 @@ export const GitRepositoryExistsRequest: core.serialization.Schema<
     serializers.internal.GitRepositoryExistsRequest.Raw,
     TrueFoundry.internal.GitRepositoryExistsRequest
 > = core.serialization.object({
-    repoUrl: core.serialization.property("repoURL", core.serialization.string()),
+    repoURL: core.serialization.string(),
     id: core.serialization.string().optional(),
 });
 

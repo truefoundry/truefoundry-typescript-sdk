@@ -13,12 +13,9 @@ export const CustomHelmRepo: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/helm-repo/custom"),
     name: core.serialization.string(),
-    repoUrl: core.serialization.property("repo_url", core.serialization.string()),
-    authData: core.serialization.property("auth_data", CustomBasicAuth),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    repo_url: core.serialization.string(),
+    auth_data: CustomBasicAuth,
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace CustomHelmRepo {

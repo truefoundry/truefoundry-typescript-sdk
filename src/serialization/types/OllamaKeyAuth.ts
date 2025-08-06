@@ -8,7 +8,7 @@ import * as core from "../../core/index.js";
 
 export const OllamaKeyAuth: core.serialization.ObjectSchema<serializers.OllamaKeyAuth.Raw, TrueFoundry.OllamaKeyAuth> =
     core.serialization.object({
-        customHost: core.serialization.property("custom_host", core.serialization.string()),
+        custom_host: core.serialization.string(),
     });
 
 export declare namespace OllamaKeyAuth {

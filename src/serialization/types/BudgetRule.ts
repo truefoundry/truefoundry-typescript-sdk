@@ -12,7 +12,7 @@ export const BudgetRule: core.serialization.ObjectSchema<serializers.BudgetRule.
     core.serialization.object({
         id: core.serialization.string(),
         when: BudgetWhen,
-        limitTo: core.serialization.property("limit_to", core.serialization.number()),
+        limit_to: core.serialization.number(),
         unit: BudgetLimitUnit,
     });
 

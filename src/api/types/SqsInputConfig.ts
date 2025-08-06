@@ -16,23 +16,23 @@ export interface SqsInputConfig {
      * +usage=AWS SQS Queue URL of Subscriber
      * +sort=1
      */
-    queueUrl: string;
+    queue_url: string;
     /**
      * +label=Region Name
      * +usage=AWS Region Name
      * +sort=2
      */
-    regionName: string;
+    region_name: string;
     /**
      * +label=Visibility Timeout (seconds)
      * +usage=A period during which Amazon SQS prevents all consumers from receiving and processing the message. If one message takes 5 seconds to process, you can set this number to 7 or any number higher than 5. This will ensure that while the message is being processed, it will not be available to other replicas. For more information, see [here](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
      * +sort=3
      */
-    visibilityTimeout: number;
+    visibility_timeout: number;
     /**
      * +label=Wait Time Seconds
      * +usage=Wait timeout for long polling. For more information, see [here](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html)
      */
-    waitTimeSeconds: number;
+    wait_time_seconds: number;
     auth: TrueFoundry.AwsAccessKeyAuth;
 }

@@ -14,10 +14,7 @@ export const ModelConfiguration: core.serialization.ObjectSchema<
     provider: core.serialization.string(),
     model: core.serialization.string(),
     parameters: Parameters.optional(),
-    extraParameters: core.serialization.property(
-        "extra_parameters",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    ),
+    extra_parameters: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace ModelConfiguration {

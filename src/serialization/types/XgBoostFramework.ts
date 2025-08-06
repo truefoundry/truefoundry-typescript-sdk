@@ -13,9 +13,9 @@ export const XgBoostFramework: core.serialization.ObjectSchema<
     TrueFoundry.XgBoostFramework
 > = core.serialization.object({
     type: core.serialization.stringLiteral("xgboost"),
-    serializationFormat: core.serialization.property("serialization_format", XgBoostSerializationFormat.optional()),
-    modelFilepath: core.serialization.property("model_filepath", core.serialization.string().optional()),
-    modelSchema: core.serialization.property("model_schema", XgBoostModelSchema.optional()),
+    serialization_format: XgBoostSerializationFormat.optional(),
+    model_filepath: core.serialization.string().optional(),
+    model_schema: XgBoostModelSchema.optional(),
 });
 
 export declare namespace XgBoostFramework {

@@ -10,8 +10,8 @@ import { ImageCommand } from "./ImageCommand";
 export const Image: core.serialization.ObjectSchema<serializers.Image.Raw, TrueFoundry.Image> =
     core.serialization.object({
         type: core.serialization.stringLiteral("image"),
-        imageUri: core.serialization.property("image_uri", core.serialization.string()),
-        dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
+        image_uri: core.serialization.string(),
+        docker_registry: core.serialization.string().optional(),
         command: ImageCommand.optional(),
     });
 

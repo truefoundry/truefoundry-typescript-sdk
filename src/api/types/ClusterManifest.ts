@@ -20,14 +20,14 @@ export interface ClusterManifest {
      * +sort=20
      * +usage=The cluster type of this cluster
      */
-    clusterType: ClusterManifest.ClusterType;
+    cluster_type: ClusterManifest.ClusterType;
     /**
      * +label=Environments
      * +icon=fa-tags:#black
      * +usage=Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already.
      * +sort=30
      */
-    environmentNames: string[];
+    environment_names: string[];
     /**
      * +label=Base Domain URLs
      * +placeholder=Enter Base Domain URL eg. devtest.mydomain.com or *.mydomain.com
@@ -37,7 +37,7 @@ export interface ClusterManifest {
      * +sort=40
      * +message=Domain URL should be valid domain or IP address
      */
-    baseDomains?: string[];
+    base_domains?: string[];
     /**
      * +label=Monitoring
      * +icon=fa-gear:#68BBE3
@@ -48,34 +48,34 @@ export interface ClusterManifest {
      * +label=Cluster Default Registry
      * +sort=60
      */
-    defaultRegistryFqn?: string;
+    default_registry_fqn?: string;
     /**
      * +label=Workbench Config
      * +sort=70
      */
-    workbenchConfig?: ClusterManifest.WorkbenchConfig;
-    sparkConfig?: TrueFoundry.SparkConfig;
+    workbench_config?: ClusterManifest.WorkbenchConfig;
+    spark_config?: TrueFoundry.SparkConfig;
     /**
      * +label=Cluster Integration FQN
      * +sort=75
      * +uiType=IntegrationSelect
      * +uiProps={"descriptionKey": "cluster_name","integrationType": "cluster"}
      */
-    clusterIntegrationFqn?: string;
+    cluster_integration_fqn?: string;
     /**
      * +label=Workflow Storage Integration
      * +sort=80
      * +uiType=IntegrationSelect
      * +uiProps={"descriptionKey": "cluster_name","integrationType": "blob-storage"}
      */
-    workflowStorageIntegrationFqn?: string;
+    workflow_storage_integration_fqn?: string;
     /**
      * +label=Nodepools
      * +usage=Add nodepools that are already created in your cluster.
      * When deploying, applications can choose to schedule from these nodepools.
      * +sort=90
      */
-    supportedNodepools?: TrueFoundry.Nodepool[];
+    supported_nodepools?: TrueFoundry.Nodepool[];
     /**
      * +label=Node Label Keys
      * +usage=The node label keys that this cluster supports.
@@ -83,7 +83,7 @@ export interface ClusterManifest {
      * For more information, check out [this documentation](https://docs.truefoundry.com/docs/generic-control-plane#configuring-node-pools-for-truefoundry).
      * +sort=100
      */
-    nodeLabelKeys?: ClusterManifest.NodeLabelKeys;
+    node_label_keys?: ClusterManifest.NodeLabelKeys;
     /**
      * +label=Collaborators
      * +usage=Collaborators who can access this cluster
@@ -115,13 +115,13 @@ export namespace ClusterManifest {
      */
     export interface Monitoring {
         /** +label=Cluster Loki URL */
-        lokiUrl?: string;
+        loki_url?: string;
         /** +label=Cluster VictoriaLogs URL */
-        victoriaLogsUrl?: string;
+        victoria_logs_url?: string;
         /** +label=Cluster Prometheus URL */
-        prometheusUrl?: string;
+        prometheus_url?: string;
         /** +label=Cluster Kubecost URL */
-        kubecostUrl?: string;
+        kubecost_url?: string;
     }
 
     /**
@@ -129,14 +129,14 @@ export namespace ClusterManifest {
      * +sort=70
      */
     export interface WorkbenchConfig {
-        notebookConfig?: TrueFoundry.NotebookConfig;
-        sshServerConfig?: TrueFoundry.SshServerConfig;
+        notebook_config?: TrueFoundry.NotebookConfig;
+        ssh_server_config?: TrueFoundry.SshServerConfig;
         /**
          * +label=Default Storage Class
          * +usage=The default storage class for the home directory of workbench
          * +message=Must not contain any spaces.
          */
-        defaultStorageClass?: string;
+        default_storage_class?: string;
     }
 
     /**
@@ -151,6 +151,6 @@ export namespace ClusterManifest {
          * +label=Nodepool Selector Label
          * +usage=The nodepool selector label that this cluster supports
          */
-        nodepoolSelectorLabel: string;
+        nodepool_selector_label: string;
     }
 }

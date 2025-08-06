@@ -15,7 +15,7 @@ export const AnthropicProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/anthropic"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", AnthropicKeyAuth),
+    auth_data: AnthropicKeyAuth,
     integrations: core.serialization.list(AnthropicIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

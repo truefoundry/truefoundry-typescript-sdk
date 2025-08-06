@@ -14,8 +14,8 @@ export const GcpProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/gcp"),
     name: core.serialization.string(),
-    projectId: core.serialization.property("project_id", core.serialization.string().optional()),
-    authData: core.serialization.property("auth_data", GcpProviderAccountAuthData.optional()),
+    project_id: core.serialization.string().optional(),
+    auth_data: GcpProviderAccountAuthData.optional(),
     integrations: core.serialization.list(GcpIntegrations),
 });
 

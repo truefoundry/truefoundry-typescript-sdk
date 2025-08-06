@@ -13,5 +13,5 @@ export interface AzureConnectionStringAuth {
      * +usage=The connection string for the Azure managed identity.
      * +sort=100
      */
-    connectionString: string;
+    connection_string: string;
 }

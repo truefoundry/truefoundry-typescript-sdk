@@ -14,7 +14,7 @@ export const CustomProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/custom"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", CustomBasicAuth.optional()),
+    auth_data: CustomBasicAuth.optional(),
     integrations: core.serialization.list(CustomIntegrations),
 });
 

@@ -12,18 +12,15 @@ import { BaseArtifactVersion } from "./BaseArtifactVersion.js";
 export const Artifact: core.serialization.ObjectSchema<serializers.Artifact.Raw, TrueFoundry.Artifact> =
     core.serialization.object({
         id: core.serialization.string(),
-        mlRepoId: core.serialization.property("ml_repo_id", core.serialization.string()),
+        ml_repo_id: core.serialization.string(),
         type: ArtifactType,
         name: core.serialization.string(),
         fqn: core.serialization.string(),
-        createdBySubject: core.serialization.property("created_by_subject", Subject),
-        createdAt: core.serialization.property("created_at", core.serialization.date().optional()),
-        updatedAt: core.serialization.property("updated_at", core.serialization.date().optional()),
-        latestVersion: core.serialization.property("latest_version", BaseArtifactVersion.optional()),
-        runSteps: core.serialization.property(
-            "run_steps",
-            core.serialization.list(core.serialization.number()).optional(),
-        ),
+        created_by_subject: Subject,
+        created_at: core.serialization.date().optional(),
+        updated_at: core.serialization.date().optional(),
+        latest_version: BaseArtifactVersion.optional(),
+        run_steps: core.serialization.list(core.serialization.number()).optional(),
     });
 
 export declare namespace Artifact {

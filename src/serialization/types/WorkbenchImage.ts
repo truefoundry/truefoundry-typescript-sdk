@@ -10,9 +10,9 @@ export const WorkbenchImage: core.serialization.ObjectSchema<
     serializers.WorkbenchImage.Raw,
     TrueFoundry.WorkbenchImage
 > = core.serialization.object({
-    imageUri: core.serialization.property("image_uri", core.serialization.string()),
-    buildScript: core.serialization.property("build_script", core.serialization.string().optional()),
-    dockerRegistry: core.serialization.property("docker_registry", core.serialization.string().optional()),
+    image_uri: core.serialization.string(),
+    build_script: core.serialization.string().optional(),
+    docker_registry: core.serialization.string().optional(),
 });
 
 export declare namespace WorkbenchImage {

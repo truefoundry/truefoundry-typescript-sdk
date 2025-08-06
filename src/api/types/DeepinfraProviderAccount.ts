@@ -19,7 +19,7 @@ export interface DeepinfraProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.DeepinfraKeyAuth;
+    auth_data: TrueFoundry.DeepinfraKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

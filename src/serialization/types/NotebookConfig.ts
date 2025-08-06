@@ -10,7 +10,7 @@ export const NotebookConfig: core.serialization.ObjectSchema<
     serializers.NotebookConfig.Raw,
     TrueFoundry.NotebookConfig
 > = core.serialization.object({
-    baseDomain: core.serialization.property("base_domain", core.serialization.string()),
+    base_domain: core.serialization.string(),
 });
 
 export declare namespace NotebookConfig {

@@ -57,33 +57,33 @@ describe("Prompts", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                mlRepoId: "ml_repo_id",
+                ml_repo_id: "ml_repo_id",
                 type: "chat_prompt",
                 name: "name",
                 fqn: "fqn",
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-                latestVersion: {
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                updated_at: new Date("2024-01-15T09:30:00.000Z"),
+                latest_version: {
                     id: "id",
                     fqn: "fqn",
-                    createdBySubject: {
+                    created_by_subject: {
                         subjectId: "subjectId",
                         subjectType: "user",
                     },
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    created_at: new Date("2024-01-15T09:30:00.000Z"),
+                    updated_at: new Date("2024-01-15T09:30:00.000Z"),
                     manifest: {
                         name: "name",
                         metadata: {
                             key: "value",
                         },
-                        mlRepo: "ml_repo",
+                        ml_repo: "ml_repo",
                         type: "chat_prompt",
                         messages: [
                             {
@@ -92,11 +92,11 @@ describe("Prompts", () => {
                             },
                         ],
                     },
-                    usageCodeSnippet: "usage_code_snippet",
-                    mlRepoId: "ml_repo_id",
-                    promptId: "prompt_id",
+                    usage_code_snippet: "usage_code_snippet",
+                    ml_repo_id: "ml_repo_id",
+                    prompt_id: "prompt_id",
                 },
-                runSteps: [1],
+                run_steps: [1],
             },
         });
     });
@@ -176,7 +176,7 @@ describe("Prompts", () => {
                 metadata: {
                     key: "value",
                 },
-                mlRepo: "ml_repo",
+                ml_repo: "ml_repo",
                 type: "chat_prompt",
                 messages: [
                     {
@@ -190,22 +190,22 @@ describe("Prompts", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                createdBySubject: {
+                created_by_subject: {
                     subjectId: "subjectId",
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                updated_at: new Date("2024-01-15T09:30:00.000Z"),
                 manifest: {
                     name: "name",
                     description: "description",
                     metadata: {
                         key: "value",
                     },
-                    versionAlias: "version_alias",
-                    mlRepo: "ml_repo",
+                    version_alias: "version_alias",
+                    ml_repo: "ml_repo",
                     version: 1,
                     type: "chat_prompt",
                     messages: [
@@ -217,7 +217,7 @@ describe("Prompts", () => {
                     variables: {
                         key: "value",
                     },
-                    modelConfiguration: {
+                    model_configuration: {
                         provider: "provider",
                         model: "model",
                     },
@@ -230,16 +230,16 @@ describe("Prompts", () => {
                             },
                         },
                     ],
-                    mcpServers: [
+                    mcp_servers: [
                         {
                             type: "mcp-server-fqn",
-                            integrationFqn: "integration_fqn",
+                            integration_fqn: "integration_fqn",
                         },
                     ],
                 },
-                usageCodeSnippet: "usage_code_snippet",
-                mlRepoId: "ml_repo_id",
-                promptId: "prompt_id",
+                usage_code_snippet: "usage_code_snippet",
+                ml_repo_id: "ml_repo_id",
+                prompt_id: "prompt_id",
             },
         });
     });

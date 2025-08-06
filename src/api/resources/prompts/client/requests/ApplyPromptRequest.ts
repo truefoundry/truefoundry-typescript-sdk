@@ -12,7 +12,7 @@ import * as TrueFoundry from "../../../../index.js";
  *             metadata: {
  *                 "key": "value"
  *             },
- *             mlRepo: "ml_repo",
+ *             ml_repo: "ml_repo",
  *             type: "chat_prompt",
  *             messages: [{
  *                     role: "system",

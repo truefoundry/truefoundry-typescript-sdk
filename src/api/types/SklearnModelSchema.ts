@@ -6,7 +6,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface SklearnModelSchema {
     /** Name of the method used for inference */
-    inferMethodName: TrueFoundry.InferMethodName;
+    infer_method_name: TrueFoundry.InferMethodName;
     /** Schema of the input */
     inputs: Record<string, unknown>[];
     /** Schema of the output */

@@ -12,10 +12,10 @@ export const SqsInputConfig: core.serialization.ObjectSchema<
     TrueFoundry.SqsInputConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("sqs"),
-    queueUrl: core.serialization.property("queue_url", core.serialization.string()),
-    regionName: core.serialization.property("region_name", core.serialization.string()),
-    visibilityTimeout: core.serialization.property("visibility_timeout", core.serialization.number()),
-    waitTimeSeconds: core.serialization.property("wait_time_seconds", core.serialization.number()),
+    queue_url: core.serialization.string(),
+    region_name: core.serialization.string(),
+    visibility_timeout: core.serialization.number(),
+    wait_time_seconds: core.serialization.number(),
     auth: AwsAccessKeyAuth,
 });
 

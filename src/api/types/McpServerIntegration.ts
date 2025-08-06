@@ -32,5 +32,5 @@ export interface McpServerIntegration {
      * +sort=300
      */
     url: string;
-    authData?: TrueFoundry.McpServerAuth;
+    auth_data?: TrueFoundry.McpServerAuth;
 }

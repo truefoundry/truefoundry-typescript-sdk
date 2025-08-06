@@ -21,12 +21,12 @@ export interface Rolling {
      * For a value of 25 when replicas are set to 12 this would mean minimum (25% of 12) = 3 pods might be unavailable during the deployment.
      * Setting this to a higher value can help in speeding up the deployment process.
      */
-    maxUnavailablePercentage: number;
+    max_unavailable_percentage: number;
     /**
      * +label=Max Surge(%)
      * +usage=Percentage of total replicas of updated image that can be brought up over the total replicas count.
      * For a value of 25 when replicas are set to 12 this would mean (12+(25% of 12) = 15) pods might be running at one time.
      * Setting this to a higher value can help in speeding up the deployment process.
      */
-    maxSurgePercentage: number;
+    max_surge_percentage: number;
 }

@@ -23,13 +23,13 @@ export interface CustomUsernamePasswordArtifactsRegistry {
      * +usage=The URL of the registry.
      * +sort=200
      */
-    registryUrl: string;
-    authData?: TrueFoundry.CustomBasicAuth;
+    registry_url: string;
+    auth_data?: TrueFoundry.CustomBasicAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

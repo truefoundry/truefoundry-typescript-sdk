@@ -12,25 +12,25 @@ export interface BaseOAuth2Login {
      * +usage=client ID for OAuth2.
      * +sort=200
      */
-    clientId: string;
+    client_id: string;
     /**
      * +label=Client Secret
      * +usage=Client secret or the TrueFoundry secret containing the client secret for OAuth2.
      * +sort=300
      */
-    clientSecret?: string;
+    client_secret?: string;
     /**
      * +label=Authorization URL
      * +usage=URL for the authorization request
      * +sort=400
      */
-    authorizationUrl: string;
+    authorization_url: string;
     /**
      * +label=Token URL
      * +usage=The endpoint to exchange auth code for tokens.
      * +sort=500
      */
-    tokenUrl: string;
+    token_url: string;
     /**
      * +label=Scopes
      * +usage=List of scopes to request from the OAuth2 provider.
@@ -42,7 +42,7 @@ export interface BaseOAuth2Login {
      * +usage=Source of the JWT token to be used for verification.
      * +sort=700
      */
-    jwtSource: BaseOAuth2Login.JwtSource;
+    jwt_source: BaseOAuth2Login.JwtSource;
 }
 
 export namespace BaseOAuth2Login {

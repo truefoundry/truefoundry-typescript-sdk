@@ -7,5 +7,5 @@ export interface Autoshutdown {
      * +label=Wait Time
      * +usage=The period to wait after the last received request before scaling the replicas to 0. This value should be high enough to allow for the replicas of the service to come up to avoid premature scaling down.
      */
-    waitTime: number;
+    wait_time: number;
 }

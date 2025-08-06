@@ -6,5 +6,5 @@ export interface ListFilesRequest {
     id: string;
     path?: string;
     limit?: number;
-    pageToken?: string;
+    page_token?: string;
 }

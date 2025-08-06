@@ -11,7 +11,7 @@ export const SklearnModelSchema: core.serialization.ObjectSchema<
     serializers.SklearnModelSchema.Raw,
     TrueFoundry.SklearnModelSchema
 > = core.serialization.object({
-    inferMethodName: core.serialization.property("infer_method_name", InferMethodName),
+    infer_method_name: InferMethodName,
     inputs: core.serialization.list(
         core.serialization.record(core.serialization.string(), core.serialization.unknown()),
     ),

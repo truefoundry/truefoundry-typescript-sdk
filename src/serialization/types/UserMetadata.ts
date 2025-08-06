@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const UserMetadata: core.serialization.ObjectSchema<serializers.UserMetadata.Raw, TrueFoundry.UserMetadata> =
     core.serialization.object({
         sub: core.serialization.string().optional(),
-        imageUrl: core.serialization.property("imageURL", core.serialization.string().optional()),
+        imageURL: core.serialization.string().optional(),
         displayName: core.serialization.string().optional(),
         userObject: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
         inviteAccepted: core.serialization.boolean().optional(),

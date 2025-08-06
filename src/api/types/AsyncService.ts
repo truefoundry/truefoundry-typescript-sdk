@@ -16,8 +16,8 @@ export interface AsyncService extends TrueFoundry.BaseService {
      * +icon=fa-clone
      */
     replicas?: AsyncService.Replicas;
-    rolloutStrategy?: TrueFoundry.Rolling;
-    workerConfig?: TrueFoundry.WorkerConfig;
+    rollout_strategy?: TrueFoundry.Rolling;
+    worker_config?: TrueFoundry.WorkerConfig;
     sidecar?: TrueFoundry.AsyncProcessorSidecar;
 }
 

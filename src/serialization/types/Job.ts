@@ -18,19 +18,19 @@ export const Job: core.serialization.ObjectSchema<serializers.Job.Raw, TrueFound
     name: core.serialization.string(),
     image: JobImage,
     trigger: JobTrigger,
-    triggerOnDeploy: core.serialization.property("trigger_on_deploy", core.serialization.boolean().optional()),
+    trigger_on_deploy: core.serialization.boolean().optional(),
     params: core.serialization.list(Param).optional(),
     env: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     resources: Resources.optional(),
     alerts: core.serialization.list(JobAlert).optional(),
     retries: core.serialization.number().optional(),
     timeout: core.serialization.number().optional(),
-    concurrencyLimit: core.serialization.property("concurrency_limit", core.serialization.number().optional()),
-    serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+    concurrency_limit: core.serialization.number().optional(),
+    service_account: core.serialization.string().optional(),
     mounts: core.serialization.list(JobMountsItem).optional(),
     labels: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     kustomize: Kustomize.optional(),
-    workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
+    workspace_fqn: core.serialization.string().optional(),
 });
 
 export declare namespace Job {

@@ -10,17 +10,16 @@ import { Subject } from "./Subject.js";
 
 export const MlRepo: core.serialization.ObjectSchema<serializers.MlRepo.Raw, TrueFoundry.MlRepo> =
     core.serialization.object({
-        tenantName: core.serialization.property("tenant_name", core.serialization.string()),
+        tenant_name: core.serialization.string(),
         manifest: MlRepoManifest,
-        createdBySubject: core.serialization.property("created_by_subject", Subject),
-        createdAt: core.serialization.property("created_at", core.serialization.date()),
+        created_by_subject: Subject,
+        created_at: core.serialization.date(),
         id: core.serialization.string(),
-        numRuns: core.serialization.property("num_runs", core.serialization.number().optional()),
-        artifactTypeCounts: core.serialization.property(
-            "artifact_type_counts",
-            core.serialization.record(core.serialization.string(), core.serialization.number()).optional(),
-        ),
-        datasetsCount: core.serialization.property("datasets_count", core.serialization.number().optional()),
+        num_runs: core.serialization.number().optional(),
+        artifact_type_counts: core.serialization
+            .record(core.serialization.string(), core.serialization.number())
+            .optional(),
+        datasets_count: core.serialization.number().optional(),
     });
 
 export declare namespace MlRepo {

@@ -18,7 +18,7 @@ export const CustomGuardrailConfig: core.serialization.ObjectSchema<
     operation: CustomGuardrailConfigOperation,
     target: CustomGuardrailConfigTarget,
     url: core.serialization.string(),
-    authData: core.serialization.property("auth_data", CustomGuardrailConfigAuthData.optional()),
+    auth_data: CustomGuardrailConfigAuthData.optional(),
     headers: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
     config: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
 });

@@ -11,7 +11,7 @@ export const SparkJobPythonNotebookEntrypoint: core.serialization.ObjectSchema<
     TrueFoundry.SparkJobPythonNotebookEntrypoint
 > = core.serialization.object({
     type: core.serialization.stringLiteral("python-notebook"),
-    mainApplicationFile: core.serialization.property("main_application_file", core.serialization.string()),
+    main_application_file: core.serialization.string(),
 });
 
 export declare namespace SparkJobPythonNotebookEntrypoint {

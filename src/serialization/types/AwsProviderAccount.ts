@@ -14,8 +14,8 @@ export const AwsProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/aws"),
     name: core.serialization.string(),
-    awsAccountId: core.serialization.property("aws_account_id", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AwsProviderAccountAuthData.optional()),
+    aws_account_id: core.serialization.string(),
+    auth_data: AwsProviderAccountAuthData.optional(),
     integrations: core.serialization.list(AwsIntegrations),
 });
 

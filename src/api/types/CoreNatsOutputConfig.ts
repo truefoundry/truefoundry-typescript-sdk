@@ -16,13 +16,13 @@ export interface CoreNatsOutputConfig {
      * +usage=Output NATS URL
      * +sort=1
      */
-    natsUrl: string;
+    nats_url: string;
     /**
      * +label=Root Subject
      * +usage=Root subject of output NATS
      * +message=Output NATS root subject should only contain alphanumeric letters, dashes(-), and periods(.)
      * +sort=2
      */
-    rootSubject: string;
+    root_subject: string;
     auth?: TrueFoundry.NatsUserPasswordAuth;
 }

@@ -16,11 +16,8 @@ export const ApplicationSet: core.serialization.ObjectSchema<
     components: core.serialization.list(ApplicationSetComponentsItem).optional(),
     template: core.serialization.string().optional(),
     values: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    workspaceFqn: core.serialization.property("workspace_fqn", core.serialization.string().optional()),
-    convertTemplateManifest: core.serialization.property(
-        "convert_template_manifest",
-        core.serialization.boolean().optional(),
-    ),
+    workspace_fqn: core.serialization.string().optional(),
+    convert_template_manifest: core.serialization.boolean().optional(),
 });
 
 export declare namespace ApplicationSet {

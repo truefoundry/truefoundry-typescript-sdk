@@ -19,7 +19,7 @@ export interface AddonComponent {
     installationSource?: string;
     unsupportedClusterTypes?: TrueFoundry.ClusterType[];
     required?: boolean;
-    knownCrDs?: string[];
+    knownCRDs?: string[];
     source?: TrueFoundry.AddOnComponentSource;
     upgrades?: TrueFoundry.UpgradeData;
     labels?: string[];

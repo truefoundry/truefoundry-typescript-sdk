@@ -10,10 +10,10 @@ import * as TrueFoundry from "../../../../index.js";
  *         manifest: {
  *             type: "ml-repo",
  *             name: "name",
- *             storageIntegrationFqn: "storage_integration_fqn",
+ *             storage_integration_fqn: "storage_integration_fqn",
  *             collaborators: [{
  *                     subject: "subject",
- *                     roleId: "role_id"
+ *                     role_id: "role_id"
  *                 }]
  *         }
  *     }

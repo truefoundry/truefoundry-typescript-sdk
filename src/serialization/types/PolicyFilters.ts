@@ -8,18 +8,9 @@ import * as core from "../../core/index.js";
 
 export const PolicyFilters: core.serialization.ObjectSchema<serializers.PolicyFilters.Raw, TrueFoundry.PolicyFilters> =
     core.serialization.object({
-        clusterNames: core.serialization.property(
-            "cluster_names",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
-        workspaceNames: core.serialization.property(
-            "workspace_names",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
-        envNames: core.serialization.property(
-            "env_names",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        cluster_names: core.serialization.list(core.serialization.string()).optional(),
+        workspace_names: core.serialization.list(core.serialization.string()).optional(),
+        env_names: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace PolicyFilters {

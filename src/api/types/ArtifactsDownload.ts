@@ -10,7 +10,7 @@ import * as TrueFoundry from "../index.js";
  * +usage=Download and cache models in a volume to enhance loading speeds and reduce costs by avoiding repeated downloads. [Docs](https://docs.truefoundry.com/docs/download-and-cache-models)
  */
 export interface ArtifactsDownload {
-    cacheVolume?: TrueFoundry.ArtifactsCacheVolume;
+    cache_volume?: TrueFoundry.ArtifactsCacheVolume;
     /**
      * +label=Artifacts
      * +usage=List of artifacts to be cached

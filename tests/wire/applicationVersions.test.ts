@@ -150,32 +150,32 @@ describe("ApplicationVersions", () => {
                     name: "name",
                     image: {
                         type: "build",
-                        buildSource: {
+                        build_source: {
                             type: "remote",
-                            remoteUri: "remote_uri",
+                            remote_uri: "remote_uri",
                         },
-                        buildSpec: {
+                        build_spec: {
                             type: "dockerfile",
-                            dockerfilePath: "dockerfile_path",
-                            buildContextPath: "build_context_path",
+                            dockerfile_path: "dockerfile_path",
+                            build_context_path: "build_context_path",
                         },
                     },
-                    artifactsDownload: {
+                    artifacts_download: {
                         artifacts: [
                             {
                                 type: "truefoundry-artifact",
-                                artifactVersionFqn: "artifact_version_fqn",
-                                downloadPathEnvVariable: "download_path_env_variable",
+                                artifact_version_fqn: "artifact_version_fqn",
+                                download_path_env_variable: "download_path_env_variable",
                             },
                         ],
                     },
                     resources: {
-                        cpuRequest: 1.1,
-                        cpuLimit: 1.1,
-                        memoryRequest: 1,
-                        memoryLimit: 1,
-                        ephemeralStorageRequest: 1,
-                        ephemeralStorageLimit: 1,
+                        cpu_request: 1.1,
+                        cpu_limit: 1.1,
+                        memory_request: 1,
+                        memory_limit: 1,
+                        ephemeral_storage_request: 1,
+                        ephemeral_storage_limit: 1,
                     },
                     ports: [
                         {
@@ -184,42 +184,42 @@ describe("ApplicationVersions", () => {
                             expose: true,
                         },
                     ],
-                    serviceAccount: "service_account",
+                    service_account: "service_account",
                     mounts: [
                         {
                             type: "secret",
-                            mountPath: "mount_path",
-                            secretFqn: "secret_fqn",
+                            mount_path: "mount_path",
+                            secret_fqn: "secret_fqn",
                         },
                     ],
                     labels: {
                         key: "value",
                     },
-                    livenessProbe: {
+                    liveness_probe: {
                         config: {
                             type: "http",
                             path: "path",
                             port: 1,
                         },
                     },
-                    readinessProbe: {
+                    readiness_probe: {
                         config: {
                             type: "http",
                             path: "path",
                             port: 1,
                         },
                     },
-                    workspaceFqn: "workspace_fqn",
+                    workspace_fqn: "workspace_fqn",
                     type: "service",
                     replicas: 1.1,
-                    autoShutdown: {
-                        waitTime: 1,
+                    auto_shutdown: {
+                        wait_time: 1,
                     },
-                    allowInterception: true,
-                    rolloutStrategy: {
+                    allow_interception: true,
+                    rollout_strategy: {
                         type: "rolling_update",
-                        maxUnavailablePercentage: 1,
-                        maxSurgePercentage: 1,
+                        max_unavailable_percentage: 1,
+                        max_surge_percentage: 1,
                     },
                 },
                 application: {

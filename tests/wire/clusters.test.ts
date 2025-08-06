@@ -62,12 +62,12 @@ describe("Clusters", () => {
             manifest: {
                 type: "cluster",
                 name: "name",
-                clusterType: "aws-eks",
-                environmentNames: ["environment_names"],
+                cluster_type: "aws-eks",
+                environment_names: ["environment_names"],
                 collaborators: [
                     {
                         subject: "subject",
-                        roleId: "role_id",
+                        role_id: "role_id",
                     },
                 ],
             },
@@ -80,27 +80,27 @@ describe("Clusters", () => {
                 manifest: {
                     type: "cluster",
                     name: "name",
-                    clusterType: "aws-eks",
-                    environmentNames: ["environment_names"],
-                    baseDomains: ["base_domains"],
-                    defaultRegistryFqn: "default_registry_fqn",
-                    sparkConfig: {
-                        uiBaseDomain: "ui_base_domain",
+                    cluster_type: "aws-eks",
+                    environment_names: ["environment_names"],
+                    base_domains: ["base_domains"],
+                    default_registry_fqn: "default_registry_fqn",
+                    spark_config: {
+                        ui_base_domain: "ui_base_domain",
                     },
-                    clusterIntegrationFqn: "cluster_integration_fqn",
-                    workflowStorageIntegrationFqn: "workflow_storage_integration_fqn",
-                    supportedNodepools: [
+                    cluster_integration_fqn: "cluster_integration_fqn",
+                    workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
+                    supported_nodepools: [
                         {
                             name: "name",
                         },
                     ],
-                    nodeLabelKeys: {
-                        nodepoolSelectorLabel: "nodepool_selector_label",
+                    node_label_keys: {
+                        nodepool_selector_label: "nodepool_selector_label",
                     },
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                 },
@@ -170,27 +170,27 @@ describe("Clusters", () => {
                 manifest: {
                     type: "cluster",
                     name: "name",
-                    clusterType: "aws-eks",
-                    environmentNames: ["environment_names"],
-                    baseDomains: ["base_domains"],
-                    defaultRegistryFqn: "default_registry_fqn",
-                    sparkConfig: {
-                        uiBaseDomain: "ui_base_domain",
+                    cluster_type: "aws-eks",
+                    environment_names: ["environment_names"],
+                    base_domains: ["base_domains"],
+                    default_registry_fqn: "default_registry_fqn",
+                    spark_config: {
+                        ui_base_domain: "ui_base_domain",
                     },
-                    clusterIntegrationFqn: "cluster_integration_fqn",
-                    workflowStorageIntegrationFqn: "workflow_storage_integration_fqn",
-                    supportedNodepools: [
+                    cluster_integration_fqn: "cluster_integration_fqn",
+                    workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
+                    supported_nodepools: [
                         {
                             name: "name",
                         },
                     ],
-                    nodeLabelKeys: {
-                        nodepoolSelectorLabel: "nodepool_selector_label",
+                    node_label_keys: {
+                        nodepool_selector_label: "nodepool_selector_label",
                     },
                     collaborators: [
                         {
                             subject: "subject",
-                            roleId: "role_id",
+                            role_id: "role_id",
                         },
                     ],
                 },
@@ -296,9 +296,9 @@ describe("Clusters", () => {
                     installationSource: "installationSource",
                     unsupportedClusterTypes: ["aws-eks"],
                     required: true,
-                    knownCrDs: ["knownCRDs"],
+                    knownCRDs: ["knownCRDs"],
                     source: {
-                        repoUrl: "repo_url",
+                        repo_url: "repo_url",
                         chart: "chart",
                     },
                     labels: ["labels"],

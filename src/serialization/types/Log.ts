@@ -7,7 +7,7 @@ import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 
 export const Log: core.serialization.ObjectSchema<serializers.Log.Raw, TrueFoundry.Log> = core.serialization.object({
-    jobName: core.serialization.property("job_name", core.serialization.string().optional()),
+    job_name: core.serialization.string().optional(),
     log: core.serialization.string(),
     stream: core.serialization.string(),
     time: core.serialization.string(),

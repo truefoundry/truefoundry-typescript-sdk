@@ -13,13 +13,10 @@ export const AzureAksIntegration: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/cluster/azure/aks"),
     name: core.serialization.string(),
-    resourceGroup: core.serialization.property("resource_group", core.serialization.string()),
-    clusterName: core.serialization.property("cluster_name", core.serialization.string()),
-    authData: core.serialization.property("auth_data", AzureOAuth.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    resource_group: core.serialization.string(),
+    cluster_name: core.serialization.string(),
+    auth_data: AzureOAuth.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AzureAksIntegration {

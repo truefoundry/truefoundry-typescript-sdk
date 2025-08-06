@@ -18,18 +18,15 @@ export const ChatPromptManifest: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     description: core.serialization.string().optional(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()),
-    versionAlias: core.serialization.property("version_alias", core.serialization.string().optional()),
-    mlRepo: core.serialization.property("ml_repo", core.serialization.string()),
+    version_alias: core.serialization.string().optional(),
+    ml_repo: core.serialization.string(),
     version: core.serialization.number().optional(),
     type: core.serialization.stringLiteral("chat_prompt"),
     messages: core.serialization.list(ChatPromptManifestMessagesItem),
     variables: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
-    modelConfiguration: core.serialization.property("model_configuration", ModelConfiguration.optional()),
+    model_configuration: ModelConfiguration.optional(),
     tools: core.serialization.list(ToolSchema).optional(),
-    mcpServers: core.serialization.property(
-        "mcp_servers",
-        core.serialization.list(ChatPromptManifestMcpServersItem).optional(),
-    ),
+    mcp_servers: core.serialization.list(ChatPromptManifestMcpServersItem).optional(),
     guardrails: Guardrails.optional(),
 });
 

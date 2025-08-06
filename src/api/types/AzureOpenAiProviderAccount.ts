@@ -25,8 +25,8 @@ export interface AzureOpenAiProviderAccount {
      * +usage=The Azure OpenAI Service endpoint URL
      * +message=Endpoint URL must not be empty
      */
-    azureEndpoint: string;
-    authData: TrueFoundry.AzureKeyAuth;
+    azure_endpoint: string;
+    auth_data: TrueFoundry.AzureKeyAuth;
     /**
      * +label=Integrations
      * +sort=500

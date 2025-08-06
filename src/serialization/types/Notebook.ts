@@ -13,7 +13,7 @@ export const Notebook: core.serialization.ObjectSchema<serializers.Notebook.Raw,
         .object({
             type: core.serialization.stringLiteral("notebook").optional(),
             image: WorkbenchImage.optional(),
-            cullTimeout: core.serialization.property("cull_timeout", core.serialization.number().optional()),
+            cull_timeout: core.serialization.number().optional(),
         })
         .extend(BaseWorkbenchInput);
 

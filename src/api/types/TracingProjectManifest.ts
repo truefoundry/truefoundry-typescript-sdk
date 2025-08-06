@@ -10,5 +10,5 @@ export interface TracingProjectManifest {
     /** Name of the tracing project */
     name: string;
     /** Name of the ML Repo */
-    mlRepo?: string;
+    ml_repo?: string;
 }

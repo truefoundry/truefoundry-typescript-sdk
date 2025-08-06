@@ -9,11 +9,8 @@ import * as core from "../../core/index.js";
 export const Rolling: core.serialization.ObjectSchema<serializers.Rolling.Raw, TrueFoundry.Rolling> =
     core.serialization.object({
         type: core.serialization.stringLiteral("rolling_update"),
-        maxUnavailablePercentage: core.serialization.property(
-            "max_unavailable_percentage",
-            core.serialization.number(),
-        ),
-        maxSurgePercentage: core.serialization.property("max_surge_percentage", core.serialization.number()),
+        max_unavailable_percentage: core.serialization.number(),
+        max_surge_percentage: core.serialization.number(),
     });
 
 export declare namespace Rolling {

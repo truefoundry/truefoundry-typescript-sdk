@@ -19,12 +19,12 @@ export interface VolumeBrowser {
      * +usage=TFY Secret containing the password for logging in the volume browser.
      * +sort=2
      */
-    passwordSecretFqn: string;
+    password_secret_fqn: string;
     endpoint: TrueFoundry.Endpoint;
     /**
      * +label=Service Account Name
      * +usage=Kubernetes Service account name for the volume browser.
      * +sort=4
      */
-    serviceAccount?: string;
+    service_account?: string;
 }

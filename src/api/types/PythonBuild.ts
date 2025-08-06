@@ -15,33 +15,33 @@ export interface PythonBuild {
      * +usage=Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python)
      * +message=Please enter a valid Python version tag
      */
-    pythonVersion?: string;
+    python_version?: string;
     /**
      * +label=Path to build context
      * +usage=Build path relative to project root path.
      */
-    buildContextPath: string;
+    build_context_path: string;
     /**
      * `Path to build context`
      * +label=Path to requirements
      * +usage=Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirementsPath?: string;
+    requirements_path?: string;
     /**
      * +label=Pip packages to install
      * +usage=Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
      * +placeholder=Enter a pip package name E.g. fastapi>=0.90,<1.0
      */
-    pipPackages?: string[];
+    pip_packages?: string[];
     /**
      * +label=List of Debian packages to install.
      * +usage=Debian packages to install via `apt get`.
      * In Python/YAML E.g. ["git", "ffmpeg", "htop"]
      * +placeholder=Enter a debian package name E.g. ffmpeg
      */
-    aptPackages?: string[];
+    apt_packages?: string[];
     /**
      * Command will be set as the Entrypoint of the generated
      * image.
@@ -60,7 +60,7 @@ export interface PythonBuild {
      * Refer https://hub.docker.com/r/nvidia/cuda/tags for valid set of values
      * Note: We use deadsnakes ubuntu ppa to add Python that currently supports only Ubuntu 18.04, 20.04 and 22.04
      */
-    cudaVersion?: string;
+    cuda_version?: string;
 }
 
 export namespace PythonBuild {

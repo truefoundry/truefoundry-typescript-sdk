@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const Collaborator: core.serialization.ObjectSchema<serializers.Collaborator.Raw, TrueFoundry.Collaborator> =
     core.serialization.object({
         subject: core.serialization.string(),
-        roleId: core.serialization.property("role_id", core.serialization.string()),
+        role_id: core.serialization.string(),
     });
 
 export declare namespace Collaborator {

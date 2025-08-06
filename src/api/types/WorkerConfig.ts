@@ -10,19 +10,19 @@ export interface WorkerConfig {
      * +usage=Input Config
      * +sort=1
      */
-    inputConfig: WorkerConfig.InputConfig;
+    input_config: WorkerConfig.InputConfig;
     /**
      * +label=Output Config
      * +usage=Output Config
      * +sort=2
      */
-    outputConfig?: WorkerConfig.OutputConfig;
+    output_config?: WorkerConfig.OutputConfig;
     /**
      * +label=Number of Concurrent Workers
      * +usage=Number of concurrent workers to spawn for the processor
      * +sort=3
      */
-    numConcurrentWorkers: number;
+    num_concurrent_workers: number;
 }
 
 export namespace WorkerConfig {

@@ -13,12 +13,9 @@ export const CustomUsernamePasswordArtifactsRegistry: core.serialization.ObjectS
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/docker-registry/custom"),
     name: core.serialization.string(),
-    registryUrl: core.serialization.property("registry_url", core.serialization.string()),
-    authData: core.serialization.property("auth_data", CustomBasicAuth.optional()),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    registry_url: core.serialization.string(),
+    auth_data: CustomBasicAuth.optional(),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace CustomUsernamePasswordArtifactsRegistry {

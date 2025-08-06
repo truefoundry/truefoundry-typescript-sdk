@@ -15,7 +15,7 @@ export const McpServerIntegration: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     description: core.serialization.string(),
     url: core.serialization.string(),
-    authData: core.serialization.property("auth_data", McpServerAuth.optional()),
+    auth_data: McpServerAuth.optional(),
 });
 
 export declare namespace McpServerIntegration {

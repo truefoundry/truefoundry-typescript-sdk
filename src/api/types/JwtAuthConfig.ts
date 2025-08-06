@@ -19,13 +19,13 @@ export interface JwtAuthConfig {
      * +uiType=IntegrationSelect
      * +uiProps={"integrationType":"jwt-auth"}
      */
-    integrationFqn: string;
+    integration_fqn: string;
     /**
      * +label=Enable Login
      * +usage=Enable login for the service
      * +sort=300
      */
-    enableLogin?: boolean;
+    enable_login?: boolean;
     /**
      * +label=Claims
      * +usage=List of key-value pairs of claims to verify in the JWT token
@@ -38,7 +38,7 @@ export interface JwtAuthConfig {
      * needs to start with a forward slash(/) and should not contain wildcards(*)
      * +sort=500
      */
-    bypassAuthPaths?: string[];
+    bypass_auth_paths?: string[];
 }
 
 export namespace JwtAuthConfig {

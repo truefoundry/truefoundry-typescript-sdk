@@ -12,5 +12,5 @@ export interface Collaborator {
      * +label=Role ID
      * +usage=Role ID for the resource
      */
-    roleId: string;
+    role_id: string;
 }

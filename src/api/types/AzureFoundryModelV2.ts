@@ -18,33 +18,33 @@ export interface AzureFoundryModelV2 {
      * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    authData: TrueFoundry.AzureKeyAuth;
+    auth_data: TrueFoundry.AzureKeyAuth;
     /**
      * +label=Model Types
      * +sort=3
      * +usage=Types of models supported by this Azure AI Foundry deployment
      * +uiProps={"disableAllOption": true}
      */
-    modelTypes: TrueFoundry.ModelType[];
+    model_types: TrueFoundry.ModelType[];
     /**
      * +label=Azure Deployment Name
      * +sort=3
      * +usage=The name of the Azure Foundry deployment
      */
-    modelId: string;
+    model_id: string;
     /**
      * +label=Azure Endpoint
      * +sort=4
      * +usage=The Azure AI Foundry endpoint URL
      * +message=Endpoint URL must not be empty
      */
-    azureEndpoint: string;
+    azure_endpoint: string;
     /**
      * +label=API Version
      * +sort=5
      * +usage=The API version for the Azure Foundry model
      */
-    apiVersion: string;
+    api_version: string;
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
@@ -52,5 +52,5 @@ export interface AzureFoundryModelV2 {
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +uiType=Hidden
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

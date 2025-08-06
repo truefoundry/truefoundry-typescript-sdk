@@ -9,8 +9,8 @@ import * as core from "../../core/index.js";
 export const SecretMount: core.serialization.ObjectSchema<serializers.SecretMount.Raw, TrueFoundry.SecretMount> =
     core.serialization.object({
         type: core.serialization.stringLiteral("secret"),
-        mountPath: core.serialization.property("mount_path", core.serialization.string()),
-        secretFqn: core.serialization.property("secret_fqn", core.serialization.string()),
+        mount_path: core.serialization.string(),
+        secret_fqn: core.serialization.string(),
     });
 
 export declare namespace SecretMount {

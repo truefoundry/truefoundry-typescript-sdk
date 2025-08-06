@@ -13,7 +13,7 @@ export interface AssistantMessage {
     /** Text content for the assistant message */
     content?: AssistantMessage.Content;
     /** List of tool calls made by the assistant */
-    toolCalls?: TrueFoundry.ToolCall[];
+    tool_calls?: TrueFoundry.ToolCall[];
     /** Name of the assistant this message is from */
     name?: string;
 }

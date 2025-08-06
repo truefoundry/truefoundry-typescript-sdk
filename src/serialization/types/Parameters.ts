@@ -9,10 +9,10 @@ import { ParametersStop } from "./ParametersStop";
 
 export const Parameters: core.serialization.ObjectSchema<serializers.Parameters.Raw, TrueFoundry.Parameters> =
     core.serialization.object({
-        maxTokens: core.serialization.property("max_tokens", core.serialization.number().optional()),
+        max_tokens: core.serialization.number().optional(),
         temperature: core.serialization.number().optional(),
-        topK: core.serialization.property("top_k", core.serialization.number().optional()),
-        topP: core.serialization.property("top_p", core.serialization.number().optional()),
+        top_k: core.serialization.number().optional(),
+        top_p: core.serialization.number().optional(),
         stop: ParametersStop.optional(),
     });
 

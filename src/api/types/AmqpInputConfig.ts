@@ -20,10 +20,10 @@ export interface AmqpInputConfig {
      * +usage=AMQP Queue Name
      * +sort=2
      */
-    queueName: string;
+    queue_name: string;
     /**
      * +label=Wait Time Seconds
      * +usage=Wait timeout for long polling.
      */
-    waitTimeSeconds: number;
+    wait_time_seconds: number;
 }

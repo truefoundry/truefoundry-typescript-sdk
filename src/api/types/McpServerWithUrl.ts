@@ -15,7 +15,7 @@ export interface McpServerWithUrl {
     /** The headers to send to the MCP server */
     headers?: Record<string, string>;
     /** Whether to enable all tools from the MCP server */
-    enableAllTools?: boolean;
+    enable_all_tools?: boolean;
     /** The tools to enable from the MCP server */
     tools?: TrueFoundry.McpTool[];
 }

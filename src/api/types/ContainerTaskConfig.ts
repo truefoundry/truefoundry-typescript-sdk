@@ -31,7 +31,7 @@ export interface ContainerTaskConfig {
      * +label=Service Account
      * +sort=500
      */
-    serviceAccount?: string;
+    service_account?: string;
 }
 
 export namespace ContainerTaskConfig {

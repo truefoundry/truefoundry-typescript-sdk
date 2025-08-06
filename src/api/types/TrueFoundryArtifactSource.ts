@@ -13,10 +13,10 @@ export interface TrueFoundryArtifactSource {
      * +label=Artifact or Model Version FQN
      * +usage=Artifact or Model Version FQN of the artifact to be downloaded
      */
-    artifactVersionFqn: string;
+    artifact_version_fqn: string;
     /**
      * +label=Download Path Environment Variable
      * +usage=Environment variable which will contain the download path of the artifact
      */
-    downloadPathEnvVariable: string;
+    download_path_env_variable: string;
 }

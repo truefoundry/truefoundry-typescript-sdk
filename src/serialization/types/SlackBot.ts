@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const SlackBot: core.serialization.ObjectSchema<serializers.SlackBot.Raw, TrueFoundry.SlackBot> =
     core.serialization.object({
         type: core.serialization.stringLiteral("slack-bot"),
-        notificationChannel: core.serialization.property("notification_channel", core.serialization.string()),
+        notification_channel: core.serialization.string(),
         channels: core.serialization.list(core.serialization.string()),
     });
 

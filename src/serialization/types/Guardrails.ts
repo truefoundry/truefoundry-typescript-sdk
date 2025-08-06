@@ -8,14 +8,8 @@ import * as core from "../../core/index.js";
 
 export const Guardrails: core.serialization.ObjectSchema<serializers.Guardrails.Raw, TrueFoundry.Guardrails> =
     core.serialization.object({
-        inputGuardrails: core.serialization.property(
-            "input_guardrails",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
-        outputGuardrails: core.serialization.property(
-            "output_guardrails",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        input_guardrails: core.serialization.list(core.serialization.string()).optional(),
+        output_guardrails: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace Guardrails {

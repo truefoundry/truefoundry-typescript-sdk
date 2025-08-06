@@ -32,11 +32,11 @@ await client.delete({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
+        storage_integration_fqn: "storage_integration_fqn",
         collaborators: [
             {
                 subject: "subject",
-                roleId: "role_id",
+                role_id: "role_id",
             },
         ],
     },
@@ -79,7 +79,7 @@ await client.delete({
 
 ## Internal
 
-<details><summary><code>client.internal.<a href="/src/api/resources/internal/client/Client.ts">getIdFromFqn</a>(type_, { ...params }) -> Record<string, unknown></code></summary>
+<details><summary><code>client.internal.<a href="/src/api/resources/internal/client/Client.ts">getIdFromFqn</a>(type, { ...params }) -> Record<string, unknown></code></summary>
 <dl>
 <dd>
 
@@ -125,7 +125,7 @@ await client.internal.getIdFromFqn("type", {
 <dl>
 <dd>
 
-**type\_:** `string` — Entity Type
+**type:** `string` — Entity Type
 
 </dd>
 </dl>
@@ -1349,9 +1349,9 @@ await client.virtualAccounts.createOrUpdate({
         type: "virtual-account",
         permissions: [
             {
-                resourceFqn: "resource_fqn",
-                resourceType: "resource_type",
-                roleId: "role_id",
+                resource_fqn: "resource_fqn",
+                resource_type: "resource_type",
+                role_id: "role_id",
             },
         ],
     },
@@ -2183,12 +2183,12 @@ await client.clusters.createOrUpdate({
     manifest: {
         type: "cluster",
         name: "name",
-        clusterType: "aws-eks",
-        environmentNames: ["environment_names"],
+        cluster_type: "aws-eks",
+        environment_names: ["environment_names"],
         collaborators: [
             {
                 subject: "subject",
-                roleId: "role_id",
+                role_id: "role_id",
             },
         ],
     },
@@ -3870,7 +3870,7 @@ Creates a new workspace or updates an existing one based on the provided manifes
 await client.workspaces.createOrUpdate({
     manifest: {
         type: "workspace",
-        clusterFqn: "cluster_fqn",
+        cluster_fqn: "cluster_fqn",
         name: "name",
     },
 });
@@ -4133,11 +4133,11 @@ await client.mlRepos.createOrUpdate({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
+        storage_integration_fqn: "storage_integration_fqn",
         collaborators: [
             {
                 subject: "subject",
-                roleId: "role_id",
+                role_id: "role_id",
             },
         ],
     },
@@ -4566,7 +4566,7 @@ await client.artifacts.createOrUpdate({
         metadata: {
             key: "value",
         },
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         type: "artifact-version",
         source: {
             type: "truefoundry",
@@ -4781,7 +4781,7 @@ await client.prompts.createOrUpdate({
         metadata: {
             key: "value",
         },
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         type: "chat_prompt",
         messages: [
             {
@@ -4999,7 +4999,7 @@ await client.models.createOrUpdate({
         metadata: {
             key: "value",
         },
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -5308,7 +5308,7 @@ await client.artifactVersions.getSignedUrls({
 await client.artifactVersions.createMultiPartUpload({
     id: "id",
     path: "path",
-    numParts: 1,
+    num_parts: 1,
 });
 ```
 
@@ -5363,7 +5363,7 @@ await client.artifactVersions.stage({
         metadata: {
             key: "value",
         },
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -6162,7 +6162,7 @@ await client.dataDirectories.createOrUpdate({
     manifest: {
         type: "data-dir",
         name: "name",
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         metadata: {
             key: "value",
         },
@@ -6473,7 +6473,7 @@ MultiPartUploadResponse: Response containing multipart upload info
 await client.dataDirectories.createMultipartUpload({
     id: "id",
     path: "path",
-    numParts: 1,
+    num_parts: 1,
 });
 ```
 
@@ -7073,7 +7073,7 @@ await client.internal.metrics.getCharts("workspaceId", {
 
 ```typescript
 await client.internal.vcs.getRepositoryDetails({
-    repoUrl: "repoURL",
+    repoURL: "repoURL",
 });
 ```
 
@@ -7123,7 +7123,7 @@ await client.internal.vcs.getRepositoryDetails({
 
 ```typescript
 await client.internal.vcs.getAuthenticatedUrl({
-    repoUrl: "repoURL",
+    repoURL: "repoURL",
 });
 ```
 
@@ -7459,7 +7459,7 @@ await client.internal.ml.apply({
         metadata: {
             key: "value",
         },
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -7519,7 +7519,7 @@ await client.internal.ml.delete({
         metadata: {
             key: "value",
         },
-        mlRepo: "ml_repo",
+        ml_repo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",

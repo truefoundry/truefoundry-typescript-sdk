@@ -11,7 +11,7 @@ export const PerplexityAiKeyAuth: core.serialization.ObjectSchema<
     TrueFoundry.PerplexityAiKeyAuth
 > = core.serialization.object({
     type: core.serialization.stringLiteral("api-key"),
-    apiKey: core.serialization.property("api_key", core.serialization.string()),
+    api_key: core.serialization.string(),
 });
 
 export declare namespace PerplexityAiKeyAuth {

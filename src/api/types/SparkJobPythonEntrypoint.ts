@@ -15,7 +15,7 @@ export interface SparkJobPythonEntrypoint {
      * +sort=5
      * +placeholder=For example: local:///path/to/file.py, s3:///bucket/path/to/file.py, etc.
      */
-    mainApplicationFile: string;
+    main_application_file: string;
     /**
      * +label=Arguments
      * +usage=Arguments to be passed to the main application file.

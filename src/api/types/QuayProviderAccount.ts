@@ -24,8 +24,8 @@ export interface QuayProviderAccount {
      * +usage=The name of the account on Quay.
      * +sort=200
      */
-    accountName?: string;
-    authData?: TrueFoundry.QuayBasicAuth;
+    account_name?: string;
+    auth_data?: TrueFoundry.QuayBasicAuth;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the provider account.

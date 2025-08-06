@@ -16,15 +16,12 @@ export const PySparkTaskConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("pyspark-task-config"),
     image: TaskPySparkBuild,
-    driverConfig: core.serialization.property("driver_config", SparkDriverConfig),
-    executorConfig: core.serialization.property("executor_config", SparkExecutorConfig),
-    sparkConf: core.serialization.property(
-        "spark_conf",
-        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    ),
+    driver_config: SparkDriverConfig,
+    executor_config: SparkExecutorConfig,
+    spark_conf: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
     env: core.serialization.record(core.serialization.string(), core.serialization.string().optional()).optional(),
     mounts: core.serialization.list(PySparkTaskConfigMountsItem).optional(),
-    serviceAccount: core.serialization.property("service_account", core.serialization.string().optional()),
+    service_account: core.serialization.string().optional(),
 });
 
 export declare namespace PySparkTaskConfig {

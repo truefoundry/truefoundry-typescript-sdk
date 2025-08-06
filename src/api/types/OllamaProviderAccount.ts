@@ -19,7 +19,7 @@ export interface OllamaProviderAccount {
      * +uiProps={"disableEdit":true}
      */
     name: string;
-    authData: TrueFoundry.OllamaKeyAuth;
+    auth_data: TrueFoundry.OllamaKeyAuth;
     /**
      * +label=Integrations
      * +sort=300

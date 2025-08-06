@@ -10,11 +10,8 @@ import { NodeSelectorCapacityType } from "./NodeSelectorCapacityType";
 export const NodeSelector: core.serialization.ObjectSchema<serializers.NodeSelector.Raw, TrueFoundry.NodeSelector> =
     core.serialization.object({
         type: core.serialization.stringLiteral("node_selector"),
-        instanceFamilies: core.serialization.property(
-            "instance_families",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
-        capacityType: core.serialization.property("capacity_type", NodeSelectorCapacityType.optional()),
+        instance_families: core.serialization.list(core.serialization.string()).optional(),
+        capacity_type: NodeSelectorCapacityType.optional(),
     });
 
 export declare namespace NodeSelector {

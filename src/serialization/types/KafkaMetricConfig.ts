@@ -11,7 +11,7 @@ export const KafkaMetricConfig: core.serialization.ObjectSchema<
     TrueFoundry.KafkaMetricConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("kafka"),
-    lagThreshold: core.serialization.property("lag_threshold", core.serialization.number()),
+    lag_threshold: core.serialization.number(),
 });
 
 export declare namespace KafkaMetricConfig {

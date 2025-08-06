@@ -19,32 +19,17 @@ export const ClusterManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("cluster"),
     name: core.serialization.string(),
-    clusterType: core.serialization.property("cluster_type", ClusterManifestClusterType),
-    environmentNames: core.serialization.property(
-        "environment_names",
-        core.serialization.list(core.serialization.string()),
-    ),
-    baseDomains: core.serialization.property(
-        "base_domains",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    cluster_type: ClusterManifestClusterType,
+    environment_names: core.serialization.list(core.serialization.string()),
+    base_domains: core.serialization.list(core.serialization.string()).optional(),
     monitoring: ClusterManifestMonitoring.optional(),
-    defaultRegistryFqn: core.serialization.property("default_registry_fqn", core.serialization.string().optional()),
-    workbenchConfig: core.serialization.property("workbench_config", ClusterManifestWorkbenchConfig.optional()),
-    sparkConfig: core.serialization.property("spark_config", SparkConfig.optional()),
-    clusterIntegrationFqn: core.serialization.property(
-        "cluster_integration_fqn",
-        core.serialization.string().optional(),
-    ),
-    workflowStorageIntegrationFqn: core.serialization.property(
-        "workflow_storage_integration_fqn",
-        core.serialization.string().optional(),
-    ),
-    supportedNodepools: core.serialization.property(
-        "supported_nodepools",
-        core.serialization.list(Nodepool).optional(),
-    ),
-    nodeLabelKeys: core.serialization.property("node_label_keys", ClusterManifestNodeLabelKeys.optional()),
+    default_registry_fqn: core.serialization.string().optional(),
+    workbench_config: ClusterManifestWorkbenchConfig.optional(),
+    spark_config: SparkConfig.optional(),
+    cluster_integration_fqn: core.serialization.string().optional(),
+    workflow_storage_integration_fqn: core.serialization.string().optional(),
+    supported_nodepools: core.serialization.list(Nodepool).optional(),
+    node_label_keys: ClusterManifestNodeLabelKeys.optional(),
     collaborators: core.serialization.list(Collaborator),
 });
 

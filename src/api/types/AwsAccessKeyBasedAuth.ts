@@ -14,12 +14,12 @@ export interface AwsAccessKeyBasedAuth {
      * +sort=100
      * +uiType=Password
      */
-    accessKeyId: string;
+    access_key_id: string;
     /**
      * +label=AWS access key secret
      * +usage=AWS access key secret that you want to use for authentication.
      * +sort=200
      * +uiType=Password
      */
-    secretAccessKey: string;
+    secret_access_key: string;
 }

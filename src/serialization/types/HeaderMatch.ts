@@ -10,7 +10,7 @@ export const HeaderMatch: core.serialization.ObjectSchema<serializers.HeaderMatc
     core.serialization.object({
         type: core.serialization.stringLiteral("header"),
         name: core.serialization.string(),
-        exactMatch: core.serialization.property("exact_match", core.serialization.string()),
+        exact_match: core.serialization.string(),
     });
 
 export declare namespace HeaderMatch {

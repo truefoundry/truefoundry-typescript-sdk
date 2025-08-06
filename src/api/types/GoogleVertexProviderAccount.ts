@@ -26,9 +26,9 @@ export interface GoogleVertexProviderAccount {
      * +usage=The Google Cloud project ID where Vertex AI is enabled
      * +message=Project ID must not be empty
      */
-    projectId: string;
+    project_id: string;
     region: TrueFoundry.GcpRegion;
-    authData?: TrueFoundry.GcpKeyFileAuth;
+    auth_data?: TrueFoundry.GcpKeyFileAuth;
     /**
      * +label=Integrations
      * +sort=500

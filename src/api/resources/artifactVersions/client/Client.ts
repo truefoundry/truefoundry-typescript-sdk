@@ -229,15 +229,15 @@ export class ArtifactVersions {
             ): Promise<core.WithRawResponse<TrueFoundry.ListArtifactVersionsResponse>> => {
                 const {
                     fqn,
-                    artifactId,
-                    mlRepoId,
+                    artifact_id: artifactId,
+                    ml_repo_id: mlRepoId,
                     name,
                     version,
-                    runIds,
-                    runSteps,
+                    run_ids: runIds,
+                    run_steps: runSteps,
                     offset = 0,
                     limit = 100,
-                    includeInternalMetadata = false,
+                    include_internal_metadata: includeInternalMetadata = false,
                 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (fqn != null) {
@@ -457,7 +457,7 @@ export class ArtifactVersions {
      *     await client.artifactVersions.createMultiPartUpload({
      *         id: "id",
      *         path: "path",
-     *         numParts: 1
+     *         num_parts: 1
      *     })
      */
     public createMultiPartUpload(
@@ -554,7 +554,7 @@ export class ArtifactVersions {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             mlRepo: "ml_repo",
+     *             ml_repo: "ml_repo",
      *             type: "model-version",
      *             source: {
      *                 type: "truefoundry"
@@ -736,14 +736,14 @@ export class ArtifactVersions {
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) =>
-                response?.pagination?.nextPageToken != null &&
+                response?.pagination?.next_page_token != null &&
                 !(
-                    typeof response?.pagination?.nextPageToken === "string" &&
-                    response?.pagination?.nextPageToken === ""
+                    typeof response?.pagination?.next_page_token === "string" &&
+                    response?.pagination?.next_page_token === ""
                 ),
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
-                return list(core.setObjectProperty(request, "pageToken", response?.pagination?.nextPageToken));
+                return list(core.setObjectProperty(request, "page_token", response?.pagination?.next_page_token));
             },
         });
     }

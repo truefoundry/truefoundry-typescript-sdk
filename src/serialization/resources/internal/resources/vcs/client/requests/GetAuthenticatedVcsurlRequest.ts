@@ -10,7 +10,7 @@ export const GetAuthenticatedVcsurlRequest: core.serialization.Schema<
     serializers.internal.GetAuthenticatedVcsurlRequest.Raw,
     TrueFoundry.internal.GetAuthenticatedVcsurlRequest
 > = core.serialization.object({
-    repoUrl: core.serialization.property("repoURL", core.serialization.string()),
+    repoURL: core.serialization.string(),
 });
 
 export declare namespace GetAuthenticatedVcsurlRequest {

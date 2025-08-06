@@ -9,10 +9,9 @@ import * as core from "../../core/index.js";
 export const FallbackModel: core.serialization.ObjectSchema<serializers.FallbackModel.Raw, TrueFoundry.FallbackModel> =
     core.serialization.object({
         target: core.serialization.string(),
-        overrideParams: core.serialization.property(
-            "override_params",
-            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        ),
+        override_params: core.serialization
+            .record(core.serialization.string(), core.serialization.unknown())
+            .optional(),
     });
 
 export declare namespace FallbackModel {

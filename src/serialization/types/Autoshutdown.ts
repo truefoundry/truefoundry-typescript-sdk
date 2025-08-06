@@ -8,7 +8,7 @@ import * as core from "../../core/index.js";
 
 export const Autoshutdown: core.serialization.ObjectSchema<serializers.Autoshutdown.Raw, TrueFoundry.Autoshutdown> =
     core.serialization.object({
-        waitTime: core.serialization.property("wait_time", core.serialization.number()),
+        wait_time: core.serialization.number(),
     });
 
 export declare namespace Autoshutdown {

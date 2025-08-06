@@ -25,13 +25,13 @@ export interface AwsProviderAccount {
      * +usage=The AWS account ID.
      * +sort=300
      */
-    awsAccountId: string;
+    aws_account_id: string;
     /**
      * +label=AWS Account Auth Data
      * +usage=Authentication data for the AWS account.
      * +sort=400
      */
-    authData?: AwsProviderAccount.AuthData;
+    auth_data?: AwsProviderAccount.AuthData;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the AWS provider account.

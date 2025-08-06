@@ -13,14 +13,11 @@ export const AnthropicModel: core.serialization.ObjectSchema<
     TrueFoundry.AnthropicModel
 > = core.serialization.object({
     name: core.serialization.string(),
-    modelId: core.serialization.property("model_id", core.serialization.string()),
+    model_id: core.serialization.string(),
     type: core.serialization.stringLiteral("integration/model/anthropic"),
-    modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
+    model_types: core.serialization.list(ModelType),
     cost: ModelCostMetric.optional(),
-    authorizedSubjects: core.serialization.property(
-        "authorized_subjects",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AnthropicModel {

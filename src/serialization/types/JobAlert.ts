@@ -9,18 +9,12 @@ import { NotificationTarget } from "./NotificationTarget.js";
 
 export const JobAlert: core.serialization.ObjectSchema<serializers.JobAlert.Raw, TrueFoundry.JobAlert> =
     core.serialization.object({
-        notificationChannel: core.serialization.property(
-            "notification_channel",
-            core.serialization.string().optional(),
-        ),
-        toEmails: core.serialization.property(
-            "to_emails",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
-        notificationTarget: core.serialization.property("notification_target", NotificationTarget.optional()),
-        onStart: core.serialization.property("on_start", core.serialization.boolean().optional()),
-        onCompletion: core.serialization.property("on_completion", core.serialization.boolean().optional()),
-        onFailure: core.serialization.property("on_failure", core.serialization.boolean().optional()),
+        notification_channel: core.serialization.string().optional(),
+        to_emails: core.serialization.list(core.serialization.string()).optional(),
+        notification_target: NotificationTarget.optional(),
+        on_start: core.serialization.boolean().optional(),
+        on_completion: core.serialization.boolean().optional(),
+        on_failure: core.serialization.boolean().optional(),
     });
 
 export declare namespace JobAlert {

@@ -35,8 +35,8 @@ export interface EnkryptAiGuardrailConfig {
      * +usage=The name of the guardrail to use for the Enkrypt AI Guardrail.
      * +sort=100
      */
-    guardrailName: string;
-    authData: TrueFoundry.EnkryptAiKeyAuth;
+    guardrail_name: string;
+    auth_data: TrueFoundry.EnkryptAiKeyAuth;
 }
 
 export namespace EnkryptAiGuardrailConfig {

@@ -15,8 +15,8 @@ export const DatabricksProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/databricks"),
     name: core.serialization.string(),
-    authData: core.serialization.property("auth_data", DatabricksProviderAccountAuthData),
-    baseUrl: core.serialization.property("base_url", core.serialization.string()),
+    auth_data: DatabricksProviderAccountAuthData,
+    base_url: core.serialization.string(),
     integrations: core.serialization.list(DatabricksIntegrations),
     collaborators: core.serialization.list(Collaborator).optional(),
 });

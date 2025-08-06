@@ -25,7 +25,7 @@ export interface AzureProviderAccount {
      * +usage=The ID of the target subscription. The value must be an UUID.
      * +sort=200
      */
-    subscriptionId?: string;
+    subscription_id?: string;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the Azure provider account.

@@ -30,10 +30,7 @@ export const AddonComponent: core.serialization.ObjectSchema<
     installationSource: core.serialization.string().optional(),
     unsupportedClusterTypes: core.serialization.list(ClusterType).optional(),
     required: core.serialization.boolean().optional(),
-    knownCrDs: core.serialization.property(
-        "knownCRDs",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
+    knownCRDs: core.serialization.list(core.serialization.string()).optional(),
     source: AddOnComponentSource.optional(),
     upgrades: UpgradeData.optional(),
     labels: core.serialization.list(core.serialization.string()).optional(),

@@ -9,9 +9,9 @@ import * as core from "../../core/index.js";
 export const SparkBuild: core.serialization.ObjectSchema<serializers.SparkBuild.Raw, TrueFoundry.SparkBuild> =
     core.serialization.object({
         type: core.serialization.stringLiteral("tfy-spark-buildpack"),
-        sparkVersion: core.serialization.property("spark_version", core.serialization.string()),
-        buildContextPath: core.serialization.property("build_context_path", core.serialization.string()),
-        requirementsPath: core.serialization.property("requirements_path", core.serialization.string().optional()),
+        spark_version: core.serialization.string(),
+        build_context_path: core.serialization.string(),
+        requirements_path: core.serialization.string().optional(),
     });
 
 export declare namespace SparkBuild {

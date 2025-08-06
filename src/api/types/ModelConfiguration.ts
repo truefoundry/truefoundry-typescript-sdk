@@ -15,5 +15,5 @@ export interface ModelConfiguration {
     /** Parameters to pass to the model when generating */
     parameters?: TrueFoundry.Parameters;
     /** Arbitrary extra parameters to pass to the model when generating */
-    extraParameters?: Record<string, unknown>;
+    extra_parameters?: Record<string, unknown>;
 }

@@ -11,12 +11,9 @@ export const AzureVault: core.serialization.ObjectSchema<serializers.AzureVault.
     core.serialization.object({
         type: core.serialization.stringLiteral("integration/secret-store/azure/vault"),
         name: core.serialization.string(),
-        authData: core.serialization.property("auth_data", AzureOAuth.optional()),
-        keyVaultName: core.serialization.property("key_vault_name", core.serialization.string()),
-        authorizedSubjects: core.serialization.property(
-            "authorized_subjects",
-            core.serialization.list(core.serialization.string()).optional(),
-        ),
+        auth_data: AzureOAuth.optional(),
+        key_vault_name: core.serialization.string(),
+        authorized_subjects: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace AzureVault {

@@ -9,7 +9,7 @@ import * as core from "../../core/index.js";
 export const SlackBotAuth: core.serialization.ObjectSchema<serializers.SlackBotAuth.Raw, TrueFoundry.SlackBotAuth> =
     core.serialization.object({
         type: core.serialization.stringLiteral("slack-bot"),
-        botToken: core.serialization.property("bot_token", core.serialization.string()),
+        bot_token: core.serialization.string(),
     });
 
 export declare namespace SlackBotAuth {

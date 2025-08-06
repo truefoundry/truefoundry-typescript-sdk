@@ -19,12 +19,12 @@ export interface SlackWebhookIntegration {
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    authData: TrueFoundry.SlackWebhookAuth;
+    auth_data: TrueFoundry.SlackWebhookAuth;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=10005
      * +uiType=AuthorizedSubjects
      */
-    authorizedSubjects?: string[];
+    authorized_subjects?: string[];
 }

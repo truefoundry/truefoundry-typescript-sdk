@@ -24,8 +24,8 @@ export interface JfrogProviderAccount {
      * +usage=The name of the JFrog account.
      * +sort=200
      */
-    accountName?: string;
-    authData?: TrueFoundry.JfrogBasicAuth;
+    account_name?: string;
+    auth_data?: TrueFoundry.JfrogBasicAuth;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the provider account.
