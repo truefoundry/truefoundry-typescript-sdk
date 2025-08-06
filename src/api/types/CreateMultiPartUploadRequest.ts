@@ -5,5 +5,5 @@
 export interface CreateMultiPartUploadRequest {
     id: string;
     path: string;
-    num_parts: number;
+    numParts: number;
 }

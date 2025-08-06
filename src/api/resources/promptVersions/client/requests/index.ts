@@ -1,1 +1,1 @@
-export { type PromptVersionsListRequest } from "./PromptVersionsListRequest";
+export { type PromptVersionsListRequest } from "./PromptVersionsListRequest.js";

@@ -1,1 +1,1 @@
-export { type ApplicationsGetPodTemplateHashToDeploymentVersionRequest } from "./ApplicationsGetPodTemplateHashToDeploymentVersionRequest";
+export { type ApplicationsGetPodTemplateHashToDeploymentVersionRequest } from "./ApplicationsGetPodTemplateHashToDeploymentVersionRequest.js";

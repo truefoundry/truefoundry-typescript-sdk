@@ -8,9 +8,9 @@
  */
 export interface ArtifactsListRequest {
     fqn?: string;
-    ml_repo_id?: string;
+    mlRepoId?: string;
     name?: string;
     offset?: number;
     limit?: number;
-    run_id?: string;
+    runId?: string;
 }

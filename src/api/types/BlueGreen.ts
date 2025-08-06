@@ -14,10 +14,10 @@ export interface BlueGreen {
      * +docs=Promote the new release to handle the complete traffic. A manual promotion would be needed if this is disabled
      * +label=Auto-promotion
      */
-    enable_auto_promotion?: boolean;
+    enableAutoPromotion?: boolean;
     /**
      * +docs=Promote the new release to handle the complete traffic after waiting for these many seconds
      * +label=Auto-promotion seconds
      */
-    auto_promotion_seconds?: number;
+    autoPromotionSeconds?: number;
 }

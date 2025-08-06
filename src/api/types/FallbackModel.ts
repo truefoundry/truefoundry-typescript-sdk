@@ -4,5 +4,5 @@
 
 export interface FallbackModel {
     target: string;
-    override_params?: Record<string, unknown>;
+    overrideParams?: Record<string, unknown>;
 }

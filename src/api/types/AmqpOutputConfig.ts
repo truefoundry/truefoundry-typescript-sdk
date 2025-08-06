@@ -20,11 +20,11 @@ export interface AmqpOutputConfig {
      * +usage=AMQP Routing Key to publish to.
      * +sort=2
      */
-    routing_key: string;
+    routingKey: string;
     /**
      * +label=Exchange Name
      * +usage=AMQP Exchange Name
      * +sort=3
      */
-    exchange_name?: string;
+    exchangeName?: string;
 }

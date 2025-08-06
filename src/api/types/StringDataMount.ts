@@ -10,7 +10,7 @@ export interface StringDataMount {
      * +usage=Absolute file path where the file will be created.
      * +message=Please enter a valid file path
      */
-    mount_path: string;
+    mountPath: string;
     /**
      * +label=Data
      * +usage=The file content.

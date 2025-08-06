@@ -1,2 +1,2 @@
-export { type VirtualAccountsListRequest } from "./VirtualAccountsListRequest";
-export { type ApplyVirtualAccountRequest } from "./ApplyVirtualAccountRequest";
+export { type VirtualAccountsListRequest } from "./VirtualAccountsListRequest.js";
+export { type ApplyVirtualAccountRequest } from "./ApplyVirtualAccountRequest.js";

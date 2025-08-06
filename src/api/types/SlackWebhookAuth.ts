@@ -10,5 +10,5 @@ export interface SlackWebhookAuth {
      * +usage=The URL of the slack webhook
      * +sort=100
      */
-    webhook_url: string;
+    webhookUrl: string;
 }

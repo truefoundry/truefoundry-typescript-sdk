@@ -22,5 +22,5 @@ export interface TrueFoundryDbssm {
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorized_subjects?: string[];
+    authorizedSubjects?: string[];
 }

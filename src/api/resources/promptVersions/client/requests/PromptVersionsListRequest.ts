@@ -8,8 +8,8 @@
  */
 export interface PromptVersionsListRequest {
     fqn?: string;
-    prompt_id?: string;
-    ml_repo_id?: string;
+    promptId?: string;
+    mlRepoId?: string;
     name?: string;
     version?: number;
     offset?: number;

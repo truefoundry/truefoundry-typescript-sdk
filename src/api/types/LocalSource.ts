@@ -12,7 +12,7 @@ export interface LocalSource {
     /** +value=local */
     type: "local";
     /** +usage=Local project root path. */
-    project_root_path: string;
+    projectRootPath: string;
     /** run docker build locally */
-    local_build: boolean;
+    localBuild: boolean;
 }

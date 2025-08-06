@@ -11,10 +11,10 @@ export interface ArtifactsCacheVolume {
      * +label=Storage Class
      * +usage=Storage class of the Volume where artifacts will be cached
      */
-    storage_class: string;
+    storageClass: string;
     /**
      * +label=Cache Size (GB)
      * +usage=Size of the Volume (in GB) where artifacts will be cached. Should be greater than twice the size of artifacts getting cached
      */
-    cache_size: number;
+    cacheSize: number;
 }

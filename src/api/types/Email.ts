@@ -15,12 +15,12 @@ export interface Email {
      * +uiProps={"integrationType":"notification-channel"}
      * +sort=660
      */
-    notification_channel: string;
+    notificationChannel: string;
     /**
      * +label=To Emails
      * +usage=List of recipients' email addresses if the notification channel is Email.
      * +docs=Specify the emails to send alerts to
      * +sort=665
      */
-    to_emails: string[];
+    toEmails: string[];
 }

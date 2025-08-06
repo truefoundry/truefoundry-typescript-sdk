@@ -15,5 +15,5 @@ export interface EnkryptAiKeyAuth {
      * +usage=The API key for Enkrypt AI authentication
      * +message=API key must not be empty
      */
-    api_key: string;
+    apiKey: string;
 }

@@ -1,2 +1,2 @@
-export { type ApplyMlEntityRequest } from "./ApplyMlEntityRequest";
-export { type DeleteMlEntityRequest } from "./DeleteMlEntityRequest";
+export { type ApplyMlEntityRequest } from "./ApplyMlEntityRequest.js";
+export { type DeleteMlEntityRequest } from "./DeleteMlEntityRequest.js";

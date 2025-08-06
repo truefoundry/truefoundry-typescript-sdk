@@ -4,5 +4,5 @@
 
 export interface LatencyBasedLoadBalanceTarget {
     target: string;
-    override_params?: Record<string, unknown>;
+    overrideParams?: Record<string, unknown>;
 }

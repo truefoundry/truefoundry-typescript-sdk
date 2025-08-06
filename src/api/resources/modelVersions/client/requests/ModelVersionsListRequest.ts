@@ -8,13 +8,13 @@
  */
 export interface ModelVersionsListRequest {
     fqn?: string;
-    model_id?: string;
-    ml_repo_id?: string;
+    modelId?: string;
+    mlRepoId?: string;
     name?: string;
     version?: number;
-    run_ids?: string | string[];
-    run_steps?: number | number[];
+    runIds?: string | string[];
+    runSteps?: number | number[];
     offset?: number;
     limit?: number;
-    include_internal_metadata?: boolean;
+    includeInternalMetadata?: boolean;
 }

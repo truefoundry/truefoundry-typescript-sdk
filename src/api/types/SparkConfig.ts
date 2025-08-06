@@ -8,5 +8,5 @@ export interface SparkConfig {
      * +usage=The base domain for the cluster with which you can access your Spark UI
      * +message=Must not contain any spaces.
      */
-    ui_base_domain: string;
+    uiBaseDomain: string;
 }

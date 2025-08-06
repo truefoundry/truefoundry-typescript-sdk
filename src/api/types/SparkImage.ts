@@ -16,7 +16,7 @@ export interface SparkImage {
      * +usage=Spark version should match the spark version installed in the image.
      * +sort=1000
      */
-    spark_version: string;
+    sparkVersion: string;
     /**
      * +label=Image URI
      * +usage=The image URI. Specify the name of the image and the tag.
@@ -25,7 +25,7 @@ export interface SparkImage {
      * +placeholder=registry-url/account/image:version (e.g. docker.io/tensorflow/tensorflow)
      * +sort=1001
      */
-    image_uri: string;
+    imageUri: string;
     /**
      * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
      * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
@@ -34,5 +34,5 @@ export interface SparkImage {
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      * +sort=1002
      */
-    docker_registry?: string;
+    dockerRegistry?: string;
 }

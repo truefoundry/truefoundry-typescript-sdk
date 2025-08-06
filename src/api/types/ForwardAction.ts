@@ -10,7 +10,7 @@ export interface ForwardAction {
      * Eg - For a service called `sample-service` in workspace `ws` this would be `sample-service.ws.svc.cluster.local
      * +label=Service URI
      */
-    service_uri: string;
+    serviceUri: string;
     /**
      * +docs=Port to redirect the service traffic to
      * +label=Target port

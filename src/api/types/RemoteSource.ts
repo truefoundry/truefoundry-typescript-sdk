@@ -15,5 +15,5 @@ export interface RemoteSource {
      * +docs=Remote repository URI
      * +label=Remote URI
      */
-    remote_uri: string;
+    remoteUri: string;
 }

@@ -21,12 +21,12 @@ export interface TtlRegistry {
      * +usage=The URL of the registry.
      * +sort=200
      */
-    registry_url: string;
+    registryUrl: string;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
      * +sort=600
      * +uiType=AuthorizedSubjects
      */
-    authorized_subjects?: string[];
+    authorizedSubjects?: string[];
 }

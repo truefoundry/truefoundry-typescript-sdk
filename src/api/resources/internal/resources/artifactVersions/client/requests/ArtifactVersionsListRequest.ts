@@ -8,14 +8,14 @@
  */
 export interface ArtifactVersionsListRequest {
     fqn?: string;
-    artifact_id?: string;
-    ml_repo_id?: string;
+    artifactId?: string;
+    mlRepoId?: string;
     name?: string;
     version?: number;
-    run_ids?: string | string[];
-    run_steps?: number | number[];
+    runIds?: string | string[];
+    runSteps?: number | number[];
     offset?: number;
     limit?: number;
-    include_internal_metadata?: boolean;
-    include_model_versions?: boolean;
+    includeInternalMetadata?: boolean;
+    includeModelVersions?: boolean;
 }

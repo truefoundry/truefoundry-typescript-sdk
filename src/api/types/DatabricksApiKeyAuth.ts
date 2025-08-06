@@ -14,5 +14,5 @@ export interface DatabricksApiKeyAuth {
      * +sort=100
      * +uiType=Password
      */
-    api_key: string;
+    apiKey: string;
 }

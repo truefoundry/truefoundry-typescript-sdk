@@ -22,5 +22,5 @@ export interface AiFeaturesSettings {
      * When TrueFoundry is selected, TrueFoundry will manage and provide the AI models for the features.
      * +uiProps={"disableEdit":true}
      */
-    ai_provider: "truefoundry";
+    aiProvider: "truefoundry";
 }

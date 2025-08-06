@@ -1,2 +1,2 @@
-export { type TrueFoundryApplyRequest } from "./TrueFoundryApplyRequest";
-export { type TrueFoundryDeleteRequest } from "./TrueFoundryDeleteRequest";
+export { type TrueFoundryApplyRequest } from "./TrueFoundryApplyRequest.js";
+export { type TrueFoundryDeleteRequest } from "./TrueFoundryDeleteRequest.js";

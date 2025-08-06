@@ -11,17 +11,17 @@ export interface PolicyFilters {
      * +usage=Cluster names where Policy applies
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
-    cluster_names?: string[];
+    clusterNames?: string[];
     /**
      * +label=Workspaces
      * +usage=Workspace names where Policy applies
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
-    workspace_names?: string[];
+    workspaceNames?: string[];
     /**
      * +label=Environments
      * +usage=Environment names where Policy applies
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
-    env_names?: string[];
+    envNames?: string[];
 }

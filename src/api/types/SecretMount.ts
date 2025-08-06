@@ -10,10 +10,10 @@ export interface SecretMount {
      * +usage=Absolute file path where the file will be created.
      * +message=Please enter a valid file path
      */
-    mount_path: string;
+    mountPath: string;
     /**
      * +label=Secret
      * +usage=The TrueFoundry secret whose value will be the file content.
      */
-    secret_fqn: string;
+    secretFqn: string;
 }

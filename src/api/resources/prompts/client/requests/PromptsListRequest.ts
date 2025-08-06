@@ -8,7 +8,7 @@
  */
 export interface PromptsListRequest {
     fqn?: string;
-    ml_repo_id?: string;
+    mlRepoId?: string;
     name?: string;
     offset?: number;
     limit?: number;

@@ -4,5 +4,5 @@
 
 export interface Metadata {
     /** Job Run Name Alias */
-    job_run_name_alias?: string;
+    jobRunNameAlias?: string;
 }

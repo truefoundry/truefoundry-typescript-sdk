@@ -11,7 +11,7 @@ export interface Recommendation {
     recommendationData: Record<string, unknown>;
     recommendationType: string;
     appliedDeploymentId?: string;
-    expiryTimestamp: string;
-    createdAt?: string;
-    updatedAt?: string;
+    expiryTimestamp: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

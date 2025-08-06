@@ -15,5 +15,5 @@ export interface AnthropicKeyAuth {
      * +usage=The API key for Anthropic authentication
      * +message=API key must not be empty
      */
-    api_key: string;
+    apiKey: string;
 }

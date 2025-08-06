@@ -16,5 +16,5 @@ export interface PerplexityAiKeyAuth {
      * +message=API key must not be empty
      * +uiType=Password
      */
-    api_key: string;
+    apiKey: string;
 }

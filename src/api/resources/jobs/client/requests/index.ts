@@ -1,3 +1,3 @@
-export { type JobsListRunsRequest } from "./JobsListRunsRequest";
-export { type TriggerJobRequest } from "./TriggerJobRequest";
-export { type JobsTerminateRequest } from "./JobsTerminateRequest";
+export { type JobsListRunsRequest } from "./JobsListRunsRequest.js";
+export { type TriggerJobRequest } from "./TriggerJobRequest.js";
+export { type JobsTerminateRequest } from "./JobsTerminateRequest.js";

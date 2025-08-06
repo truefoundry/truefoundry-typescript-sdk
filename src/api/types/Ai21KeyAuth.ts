@@ -15,5 +15,5 @@ export interface Ai21KeyAuth {
      * +usage=The API key for AI21 authentication
      * +message=API key must not be empty
      */
-    api_key: string;
+    apiKey: string;
 }

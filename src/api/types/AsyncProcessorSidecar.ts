@@ -7,15 +7,15 @@ export interface AsyncProcessorSidecar {
      * +label=Destination URL
      * +usage=URL for the processor to invoke
      */
-    destination_url: string;
+    destinationUrl: string;
     /**
      * +label=Request Timeout Seconds
      * +usage=Timeout for the invoke request in seconds
      */
-    request_timeout?: number;
+    requestTimeout?: number;
     /**
      * +label=Sidecar Image
      * +usage=Image for the processor sidecar (This field will be deprecated in the future)
      */
-    sidecar_image?: string;
+    sidecarImage?: string;
 }

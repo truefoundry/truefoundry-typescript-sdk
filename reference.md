@@ -32,11 +32,11 @@ await client.delete({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storage_integration_fqn: "storage_integration_fqn",
+        storageIntegrationFqn: "storage_integration_fqn",
         collaborators: [
             {
                 subject: "subject",
-                role_id: "role_id",
+                roleId: "role_id",
             },
         ],
     },
@@ -191,7 +191,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.users.list({
+let page = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -728,7 +728,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.teams.list({
+let page = await client.teams.list({
     limit: 10,
     offset: 0,
 });
@@ -1003,7 +1003,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.personalAccessTokens.list({
+let page = await client.personalAccessTokens.list({
     limit: 10,
     offset: 0,
 });
@@ -1274,7 +1274,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.virtualAccounts.list({
+let page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
 });
@@ -1349,9 +1349,9 @@ await client.virtualAccounts.createOrUpdate({
         type: "virtual-account",
         permissions: [
             {
-                resource_fqn: "resource_fqn",
-                resource_type: "resource_type",
-                role_id: "role_id",
+                resourceFqn: "resource_fqn",
+                resourceType: "resource_type",
+                roleId: "role_id",
             },
         ],
     },
@@ -1552,7 +1552,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.secrets.list();
+let page = await client.secrets.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1755,7 +1755,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.secretGroups.list({
+let page = await client.secretGroups.list({
     limit: 10,
     offset: 0,
 });
@@ -2110,7 +2110,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.clusters.list({
+let page = await client.clusters.list({
     limit: 10,
     offset: 0,
 });
@@ -2183,12 +2183,12 @@ await client.clusters.createOrUpdate({
     manifest: {
         type: "cluster",
         name: "name",
-        cluster_type: "aws-eks",
-        environment_names: ["environment_names"],
+        clusterType: "aws-eks",
+        environmentNames: ["environment_names"],
         collaborators: [
             {
                 subject: "subject",
-                role_id: "role_id",
+                roleId: "role_id",
             },
         ],
     },
@@ -2529,7 +2529,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.environments.list({
+let page = await client.environments.list({
     limit: 10,
     offset: 0,
 });
@@ -2806,7 +2806,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.applications.list({
+let page = await client.applications.list({
     limit: 10,
     offset: 0,
 });
@@ -3278,7 +3278,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.applicationVersions.list("id", {
+let page = await client.applicationVersions.list("id", {
     limit: 10,
     offset: 0,
     version: "1",
@@ -3439,7 +3439,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.jobs.listRuns("jobId", {
+let page = await client.jobs.listRuns("jobId", {
     limit: 10,
     offset: 0,
 });
@@ -3798,7 +3798,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.workspaces.list({
+let page = await client.workspaces.list({
     limit: 10,
     offset: 0,
 });
@@ -3870,7 +3870,7 @@ Creates a new workspace or updates an existing one based on the provided manifes
 await client.workspaces.createOrUpdate({
     manifest: {
         type: "workspace",
-        cluster_fqn: "cluster_fqn",
+        clusterFqn: "cluster_fqn",
         name: "name",
     },
 });
@@ -4133,11 +4133,11 @@ await client.mlRepos.createOrUpdate({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storage_integration_fqn: "storage_integration_fqn",
+        storageIntegrationFqn: "storage_integration_fqn",
         collaborators: [
             {
                 subject: "subject",
-                role_id: "role_id",
+                roleId: "role_id",
             },
         ],
     },
@@ -4354,7 +4354,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.mlRepos.list();
+let page = await client.mlRepos.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4509,7 +4509,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.artifacts.list();
+let page = await client.artifacts.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4566,7 +4566,7 @@ await client.artifacts.createOrUpdate({
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "artifact-version",
         source: {
             type: "truefoundry",
@@ -4724,7 +4724,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.prompts.list();
+let page = await client.prompts.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4781,7 +4781,7 @@ await client.prompts.createOrUpdate({
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "chat_prompt",
         messages: [
             {
@@ -4942,7 +4942,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.models.list();
+let page = await client.models.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4999,7 +4999,7 @@ await client.models.createOrUpdate({
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -5202,7 +5202,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.artifactVersions.list();
+let page = await client.artifactVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5308,7 +5308,7 @@ await client.artifactVersions.getSignedUrls({
 await client.artifactVersions.createMultiPartUpload({
     id: "id",
     path: "path",
-    num_parts: 1,
+    numParts: 1,
 });
 ```
 
@@ -5363,7 +5363,7 @@ await client.artifactVersions.stage({
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -5425,7 +5425,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.artifactVersions.listFiles({
+let page = await client.artifactVersions.listFiles({
     id: "id",
 });
 while (page.hasNextPage()) {
@@ -5677,7 +5677,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.modelVersions.list();
+let page = await client.modelVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5877,7 +5877,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.promptVersions.list();
+let page = await client.promptVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6107,7 +6107,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.dataDirectories.list();
+let page = await client.dataDirectories.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6162,7 +6162,7 @@ await client.dataDirectories.createOrUpdate({
     manifest: {
         type: "data-dir",
         name: "name",
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         metadata: {
             key: "value",
         },
@@ -6248,7 +6248,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.dataDirectories.listFiles({
+let page = await client.dataDirectories.listFiles({
     id: "id",
 });
 while (page.hasNextPage()) {
@@ -6473,7 +6473,7 @@ MultiPartUploadResponse: Response containing multipart upload info
 await client.dataDirectories.createMultipartUpload({
     id: "id",
     path: "path",
-    num_parts: 1,
+    numParts: 1,
 });
 ```
 
@@ -7073,7 +7073,7 @@ await client.internal.metrics.getCharts("workspaceId", {
 
 ```typescript
 await client.internal.vcs.getRepositoryDetails({
-    repoURL: "repoURL",
+    repoUrl: "repoURL",
 });
 ```
 
@@ -7123,7 +7123,7 @@ await client.internal.vcs.getRepositoryDetails({
 
 ```typescript
 await client.internal.vcs.getAuthenticatedUrl({
-    repoURL: "repoURL",
+    repoUrl: "repoURL",
 });
 ```
 
@@ -7400,7 +7400,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.internal.artifactVersions.list();
+let page = await client.internal.artifactVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -7459,7 +7459,7 @@ await client.internal.ml.apply({
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",
@@ -7519,7 +7519,7 @@ await client.internal.ml.delete({
         metadata: {
             key: "value",
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "model-version",
         source: {
             type: "truefoundry",

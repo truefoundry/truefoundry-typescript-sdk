@@ -4,7 +4,7 @@
 
 export interface Log {
     /** Job Name */
-    job_name?: string;
+    jobName?: string;
     /** Log Content */
     log: string;
     /** Log Stream */

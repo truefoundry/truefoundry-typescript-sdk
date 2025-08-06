@@ -1,2 +1,2 @@
-export { type ApplyMlRepoRequest } from "./ApplyMlRepoRequest";
-export { type MlReposListRequest } from "./MlReposListRequest";
+export { type ApplyMlRepoRequest } from "./ApplyMlRepoRequest.js";
+export { type MlReposListRequest } from "./MlReposListRequest.js";

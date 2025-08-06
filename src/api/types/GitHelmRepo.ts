@@ -11,7 +11,7 @@ export interface GitHelmRepo {
      * +sort=1
      * +message=Needs to be a valid URL.
      */
-    repo_url: string;
+    repoUrl: string;
     /**
      * +label=Revision
      * +sort=2
@@ -30,5 +30,5 @@ export interface GitHelmRepo {
      * +usage=Helm values files for overriding values in the helm chart.
      * The path is relative to the Path directory defined above
      */
-    value_files?: string[];
+    valueFiles?: string[];
 }

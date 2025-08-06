@@ -13,7 +13,7 @@ export interface HuggingfaceArtifactSource {
      * +label=Model ID
      * +usage=Model ID of the artifact to be downloaded
      */
-    model_id: string;
+    modelId: string;
     /**
      * +label=Revision
      * +usage=Revision of the artifact to be downloaded
@@ -23,10 +23,10 @@ export interface HuggingfaceArtifactSource {
      * +label=Ignore Patterns
      * +usage=List of patterns to ignore while downloading the artifact
      */
-    ignore_patterns: string[];
+    ignorePatterns: string[];
     /**
      * +label=Download Path Environment Variable
      * +usage=Environment variable which will contain the download path of the artifact
      */
-    download_path_env_variable: string;
+    downloadPathEnvVariable: string;
 }

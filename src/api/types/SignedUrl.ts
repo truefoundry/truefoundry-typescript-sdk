@@ -4,5 +4,5 @@
 
 export interface SignedUrl {
     path: string;
-    signed_url: string;
+    signedUrl: string;
 }

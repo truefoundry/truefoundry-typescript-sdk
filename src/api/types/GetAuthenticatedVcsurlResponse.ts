@@ -4,5 +4,5 @@
 
 export interface GetAuthenticatedVcsurlResponse {
     /** Authenticated URL to access the repository */
-    authenticatedURL: string;
+    authenticatedUrl: string;
 }

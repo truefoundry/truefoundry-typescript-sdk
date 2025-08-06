@@ -17,7 +17,7 @@ export interface GitSource {
      * +sort=1
      * +message=Needs to be a valid Github, Bitbucket, Azure Repos or Gitlab link
      */
-    repo_url: string;
+    repoUrl: string;
     /**
      * +label=Commit SHA
      * +usage=The commit SHA.
@@ -29,5 +29,5 @@ export interface GitSource {
      * +usage=Selecting branch will select latest commit SHA of the branch.
      * +sort=3
      */
-    branch_name?: string;
+    branchName?: string;
 }

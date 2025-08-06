@@ -9,7 +9,7 @@ export interface BedrockKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** +sort=100 */
-    access_key: string;
+    accessKey: string;
     /** +sort=100 */
-    access_key_secret: string;
+    accessKeySecret: string;
 }

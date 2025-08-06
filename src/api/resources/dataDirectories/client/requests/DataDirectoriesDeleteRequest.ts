@@ -7,5 +7,5 @@
  *     {}
  */
 export interface DataDirectoriesDeleteRequest {
-    delete_contents?: boolean;
+    deleteContents?: boolean;
 }

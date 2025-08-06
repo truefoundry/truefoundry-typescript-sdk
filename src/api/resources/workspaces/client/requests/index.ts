@@ -1,2 +1,2 @@
-export { type WorkspacesListRequest } from "./WorkspacesListRequest";
-export { type WorkspaceRequest } from "./WorkspaceRequest";
+export { type WorkspacesListRequest } from "./WorkspacesListRequest.js";
+export { type WorkspaceRequest } from "./WorkspaceRequest.js";

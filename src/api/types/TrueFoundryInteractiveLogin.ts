@@ -13,5 +13,5 @@ export interface TrueFoundryInteractiveLogin {
      * +usage=List of paths that will bypass auth.
      * needs to start with a forward slash(/) and should not contain wildcards(*)
      */
-    bypass_auth_paths?: string[];
+    bypassAuthPaths?: string[];
 }

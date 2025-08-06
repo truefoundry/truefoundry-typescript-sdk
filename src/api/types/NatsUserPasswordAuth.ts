@@ -12,7 +12,7 @@ export interface NatsUserPasswordAuth {
      * +usage=Name of the NATS account
      * +sort=1
      */
-    account_name: string;
+    accountName: string;
     /**
      * +label=User
      * +usage=User for NATS authentication

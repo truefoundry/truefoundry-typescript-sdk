@@ -8,5 +8,5 @@ export interface NotebookConfig {
      * +usage=The base domain for the cluster with which you can access your Notebooks
      * +message=Must not contain any spaces.
      */
-    base_domain: string;
+    baseDomain: string;
 }

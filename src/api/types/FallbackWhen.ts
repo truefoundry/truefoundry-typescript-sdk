@@ -6,5 +6,5 @@ export interface FallbackWhen {
     subjects?: string[];
     models?: string[];
     metadata?: Record<string, string>;
-    response_status_codes: number[];
+    responseStatusCodes: number[];
 }

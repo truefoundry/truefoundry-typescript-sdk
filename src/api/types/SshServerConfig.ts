@@ -9,7 +9,7 @@ export interface SshServerConfig {
      * +sort=1000
      * +message=Must not contain any spaces.
      */
-    base_domain: string;
+    baseDomain: string;
     /**
      * +label=SSH Port
      * +usage=The port for the cluster with which you can access your SSH containers
