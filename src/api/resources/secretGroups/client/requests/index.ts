@@ -1,3 +1,3 @@
-export { type SecretGroupsListRequest } from "./SecretGroupsListRequest";
-export { type CreateSecretGroupRequest } from "./CreateSecretGroupRequest";
-export { type UpdateSecretGroupRequest } from "./UpdateSecretGroupRequest";
+export { type SecretGroupsListRequest } from "./SecretGroupsListRequest.js";
+export { type CreateSecretGroupRequest } from "./CreateSecretGroupRequest.js";
+export { type UpdateSecretGroupRequest } from "./UpdateSecretGroupRequest.js";

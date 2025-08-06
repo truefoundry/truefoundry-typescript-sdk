@@ -1,1 +1,1 @@
-export { type LogsGetRequest } from "./LogsGetRequest";
+export { type LogsGetRequest } from "./LogsGetRequest.js";

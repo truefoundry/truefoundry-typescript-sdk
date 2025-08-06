@@ -1,2 +1,2 @@
-export { type PromptsListRequest } from "./PromptsListRequest";
-export { type ApplyPromptRequest } from "./ApplyPromptRequest";
+export { type PromptsListRequest } from "./PromptsListRequest.js";
+export { type ApplyPromptRequest } from "./ApplyPromptRequest.js";

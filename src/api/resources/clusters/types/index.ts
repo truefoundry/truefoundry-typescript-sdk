@@ -1,1 +1,1 @@
-export * from "./ClustersDeleteResponse";
+export * from "./ClustersDeleteResponse.js";

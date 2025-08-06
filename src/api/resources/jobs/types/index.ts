@@ -1,1 +1,1 @@
-export * from "./TriggerJobRequestInput";
+export * from "./TriggerJobRequestInput.js";

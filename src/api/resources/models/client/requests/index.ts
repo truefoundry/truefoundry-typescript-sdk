@@ -1,2 +1,2 @@
-export { type ModelsListRequest } from "./ModelsListRequest";
-export { type ApplyModelRequest } from "./ApplyModelRequest";
+export { type ModelsListRequest } from "./ModelsListRequest.js";
+export { type ApplyModelRequest } from "./ApplyModelRequest.js";

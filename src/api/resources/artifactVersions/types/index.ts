@@ -1,1 +1,1 @@
-export * from "./StageArtifactRequestManifest";
+export * from "./StageArtifactRequestManifest.js";

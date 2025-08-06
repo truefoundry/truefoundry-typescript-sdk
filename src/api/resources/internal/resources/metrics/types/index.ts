@@ -1,1 +1,1 @@
-export * from "./MetricsGetChartsRequestFilterEntity";
+export * from "./MetricsGetChartsRequestFilterEntity.js";

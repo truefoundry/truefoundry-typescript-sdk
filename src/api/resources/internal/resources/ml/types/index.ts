@@ -1,2 +1,2 @@
-export * from "./ApplyMlEntityRequestManifest";
-export * from "./DeleteMlEntityRequestManifest";
+export * from "./ApplyMlEntityRequestManifest.js";
+export * from "./DeleteMlEntityRequestManifest.js";

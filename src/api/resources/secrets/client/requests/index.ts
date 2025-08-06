@@ -1,1 +1,1 @@
-export { type ListSecretsRequest } from "./ListSecretsRequest";
+export { type ListSecretsRequest } from "./ListSecretsRequest.js";

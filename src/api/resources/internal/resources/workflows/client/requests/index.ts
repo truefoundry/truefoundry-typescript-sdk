@@ -1,1 +1,1 @@
-export { type ExecuteWorkflowRequest } from "./ExecuteWorkflowRequest";
+export { type ExecuteWorkflowRequest } from "./ExecuteWorkflowRequest.js";

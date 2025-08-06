@@ -1,2 +1,2 @@
-export { type GenerateCodeUploadPresignedUrlRequest } from "./GenerateCodeUploadPresignedUrlRequest";
-export { type DeploymentsGetSuggestedEndpointRequest } from "./DeploymentsGetSuggestedEndpointRequest";
+export { type GenerateCodeUploadPresignedUrlRequest } from "./GenerateCodeUploadPresignedUrlRequest.js";
+export { type DeploymentsGetSuggestedEndpointRequest } from "./DeploymentsGetSuggestedEndpointRequest.js";

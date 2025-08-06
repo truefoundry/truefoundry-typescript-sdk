@@ -1,2 +1,2 @@
-export * from "./DockerRegistriesCreateRepositoryResponse";
-export * from "./DockerRegistriesGetCredentialsResponse";
+export * from "./DockerRegistriesCreateRepositoryResponse.js";
+export * from "./DockerRegistriesGetCredentialsResponse.js";

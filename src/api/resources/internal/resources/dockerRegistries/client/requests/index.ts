@@ -1,2 +1,2 @@
-export { type CreateDockerRepositoryRequest } from "./CreateDockerRepositoryRequest";
-export { type DockerRegistriesGetCredentialsRequest } from "./DockerRegistriesGetCredentialsRequest";
+export { type CreateDockerRepositoryRequest } from "./CreateDockerRepositoryRequest.js";
+export { type DockerRegistriesGetCredentialsRequest } from "./DockerRegistriesGetCredentialsRequest.js";

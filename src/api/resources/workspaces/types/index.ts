@@ -1,1 +1,1 @@
-export * from "./WorkspacesDeleteResponse";
+export * from "./WorkspacesDeleteResponse.js";

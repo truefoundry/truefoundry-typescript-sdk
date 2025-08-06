@@ -1,3 +1,3 @@
-export * from "./ApplicationsListRequestDeviceTypeFilter";
-export * from "./ApplicationsListRequestLifecycleStage";
-export * from "./ApplicationsCancelDeploymentResponse";
+export * from "./ApplicationsListRequestDeviceTypeFilter.js";
+export * from "./ApplicationsListRequestLifecycleStage.js";
+export * from "./ApplicationsCancelDeploymentResponse.js";
