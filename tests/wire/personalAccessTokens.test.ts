@@ -28,6 +28,26 @@ describe("PersonalAccessTokens", () => {
         });
     });
 
+    test("revokeAll", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/personal-access-tokens/revoke/all")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.personalAccessTokens.revokeAll({
+            email: "email",
+        });
+        expect(response).toEqual({});
+    });
+
     test("delete", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });

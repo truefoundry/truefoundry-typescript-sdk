@@ -50,6 +50,7 @@ describe("ApplicationVersions", () => {
                     labels: { key: "value" },
                     liveness_probe: { config: { type: "http", path: "path", port: 1 } },
                     readiness_probe: { config: { type: "http", path: "path", port: 1 } },
+                    startup_probe: { config: { type: "http", path: "path", port: 1 } },
                     workspace_fqn: "workspace_fqn",
                     type: "service",
                     replicas: 1.1,
@@ -203,6 +204,13 @@ describe("ApplicationVersions", () => {
                         },
                     },
                     readiness_probe: {
+                        config: {
+                            type: "http",
+                            path: "path",
+                            port: 1,
+                        },
+                    },
+                    startup_probe: {
                         config: {
                             type: "http",
                             path: "path",

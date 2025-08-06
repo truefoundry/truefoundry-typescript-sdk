@@ -4,8 +4,23 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Fallback Rule
+ */
 export interface FallbackRule {
+    /**
+     * +usage=Unique identifier for the rule
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Rule ID
+     */
     id: string;
     when: TrueFoundry.FallbackWhen;
+    /**
+     * +usage=List of fallback models to try in sequence
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Fallback Models
+     */
     fallback_models: TrueFoundry.FallbackModel[];
 }

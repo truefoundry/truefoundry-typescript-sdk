@@ -4,9 +4,24 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Rate Limit Rule
+ */
 export interface RateLimitRule {
+    /**
+     * +usage=Unique identifier for the rule
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Rule ID
+     */
     id: string;
     when: TrueFoundry.RateLimitWhen;
+    /**
+     * +usage=Maximum number of requests or tokens allowed
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Limit Value
+     */
     limit_to: number;
     unit: TrueFoundry.RateLimitUnit;
 }

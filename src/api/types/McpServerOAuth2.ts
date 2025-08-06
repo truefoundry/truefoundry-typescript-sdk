@@ -7,7 +7,7 @@ import * as TrueFoundry from "../index.js";
 /**
  * +label=OAuth2
  */
-export interface McpServerOAuth2 extends TrueFoundry.BaseOAuth2Login {
+export interface McpServerOAuth2 extends TrueFoundry.BaseOAuth2McpServerLogin {
     /** +value=oauth2 */
     type?: "oauth2";
 }

@@ -4,8 +4,27 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Fallback Configuration
+ */
 export interface FallbackConfig {
+    /**
+     * +usage=Name of the fallback configuration
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Configuration Name
+     */
     name: string;
+    /**
+     * +value=gateway-fallback-config
+     * +sort=2
+     */
     type: "gateway-fallback-config";
+    /**
+     * +usage=List of fallback rules
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Fallback Rules
+     */
     rules: TrueFoundry.FallbackRule[];
 }

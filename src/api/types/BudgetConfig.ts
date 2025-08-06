@@ -4,8 +4,27 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Budget Configuration
+ */
 export interface BudgetConfig {
+    /**
+     * +usage=Name of the budget configuration
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Configuration Name
+     */
     name: string;
+    /**
+     * +value=gateway-budget-config
+     * +sort=2
+     */
     type: "gateway-budget-config";
+    /**
+     * +usage=List of budget rules
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Budget Rules
+     */
     rules: TrueFoundry.BudgetRule[];
 }
