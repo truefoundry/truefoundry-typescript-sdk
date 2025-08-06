@@ -11,7 +11,7 @@ export interface Cluster {
     manifest: TrueFoundry.ClusterManifest;
     tenantName: string;
     createdBySubject?: TrueFoundry.Subject;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
     createdBy?: string;
 }

@@ -12,8 +12,8 @@ export interface Deployment {
     manifest: Deployment.Manifest;
     application?: TrueFoundry.Application;
     createdBySubject: TrueFoundry.Subject;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
     deploymentBuilds?: TrueFoundry.BuildInfo[];
     deploymentStatuses?: TrueFoundry.DeploymentStatus[];
     currentStatusId?: string;

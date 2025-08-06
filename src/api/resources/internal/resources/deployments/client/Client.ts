@@ -5,7 +5,6 @@
 import * as core from "../../../../../../core/index.js";
 import * as TrueFoundry from "../../../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import * as serializers from "../../../../../../serialization/index.js";
 import * as errors from "../../../../../../errors/index.js";
 
 export declare namespace Deployments {
@@ -83,22 +82,13 @@ export class Deployments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.internal.deployments.getDeploymentStatuses.Response.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.DeploymentStatus[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -170,22 +160,13 @@ export class Deployments {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.internal.deployments.getBuilds.Response.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.DeploymentBuild[], rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -252,27 +233,13 @@ export class Deployments {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.internal.GenerateCodeUploadPresignedUrlRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.PresignedUrlObject.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.PresignedUrlObject, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -330,12 +297,7 @@ export class Deployments {
     ): Promise<core.WithRawResponse<TrueFoundry.GetSuggestedDeploymentEndpointResponse>> {
         const { applicationType, applicationName, workspaceId, baseDomain, port, preferWildcard = false } = request;
         const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams["applicationType"] = serializers.ApplicationType.jsonOrThrow(applicationType, {
-            unrecognizedObjectKeys: "passthrough",
-            allowUnrecognizedUnionMembers: true,
-            allowUnrecognizedEnumValues: true,
-            omitUndefined: true,
-        });
+        _queryParams["applicationType"] = applicationType;
         _queryParams["applicationName"] = applicationName;
         _queryParams["workspaceId"] = workspaceId;
         if (baseDomain != null) {
@@ -369,13 +331,7 @@ export class Deployments {
         });
         if (_response.ok) {
             return {
-                data: serializers.GetSuggestedDeploymentEndpointResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.GetSuggestedDeploymentEndpointResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -383,7 +339,7 @@ export class Deployments {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

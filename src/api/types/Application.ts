@@ -16,8 +16,8 @@ export interface Application {
     workspaceId?: string;
     lastVersion?: number;
     activeVersion?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
     /** Recommendations for this application */
     recommendations?: TrueFoundry.Recommendation[];
     /** Alerts for this application */

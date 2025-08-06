@@ -11,8 +11,8 @@ export interface Model {
     name: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
     latest_version?: TrueFoundry.ModelVersion;
     run_steps?: number[];
 }

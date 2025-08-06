@@ -10,7 +10,7 @@ export interface MlRepo {
     manifest: TrueFoundry.MlRepoManifest;
     created_by_subject: TrueFoundry.Subject;
     /** Created At */
-    created_at: Date;
+    created_at: string;
     /** Experiment Id */
     id: string;
     /** Number of runs */

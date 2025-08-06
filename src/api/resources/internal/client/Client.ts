@@ -5,7 +5,6 @@
 import * as core from "../../../../core/index.js";
 import * as TrueFoundry from "../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
-import * as serializers from "../../../../serialization/index.js";
 import * as errors from "../../../../errors/index.js";
 import { Users } from "../resources/users/client/Client.js";
 import { Clusters } from "../resources/clusters/client/Client.js";
@@ -149,24 +148,15 @@ export class Internal {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.internal.getIdFromFqn.Response.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as Record<string, unknown>, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

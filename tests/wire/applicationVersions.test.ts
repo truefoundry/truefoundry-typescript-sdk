@@ -236,22 +236,22 @@ describe("ApplicationVersions", () => {
                     workspaceId: "workspaceId",
                     lastVersion: 1,
                     activeVersion: 1,
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                     recommendations: [
                         {
                             recommendationData: {
                                 key: "value",
                             },
                             recommendationType: "recommendationType",
-                            expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
                         },
                     ],
                     alerts: [
                         {
                             name: "name",
-                            timestamps: [new Date("2024-01-15T09:30:00.000Z")],
-                            startTime: new Date("2024-01-15T09:30:00.000Z"),
+                            timestamps: ["2024-01-15T09:30:00Z"],
+                            startTime: "2024-01-15T09:30:00Z",
                             clusterId: "clusterId",
                             fingerprint: "fingerprint",
                         },
@@ -287,8 +287,8 @@ describe("ApplicationVersions", () => {
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 deploymentBuilds: [
                     {
                         name: "name",
@@ -307,8 +307,8 @@ describe("ApplicationVersions", () => {
                     transition: "BUILDING",
                     message: "message",
                     retryCount: 1.1,
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                 },
                 appliedRecommendations: [
                     {
@@ -316,7 +316,7 @@ describe("ApplicationVersions", () => {
                             key: "value",
                         },
                         recommendationType: "recommendationType",
-                        expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                        expiryTimestamp: "2024-01-15T09:30:00Z",
                     },
                 ],
                 createdBy: "createdBy",

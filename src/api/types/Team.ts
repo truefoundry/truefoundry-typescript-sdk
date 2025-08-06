@@ -11,7 +11,7 @@ export interface Team {
     tenantName: string;
     createdBySubject: TrueFoundry.Subject;
     members?: string[];
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
     manifest: TrueFoundry.TeamManifest;
 }

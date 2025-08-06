@@ -11,6 +11,6 @@ export interface SecretVersion {
     version?: number;
     secret?: TrueFoundry.Secret;
     secretId?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
 }

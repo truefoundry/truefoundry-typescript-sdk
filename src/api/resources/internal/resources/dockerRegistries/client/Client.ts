@@ -5,7 +5,6 @@
 import * as core from "../../../../../../core/index.js";
 import * as TrueFoundry from "../../../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import * as serializers from "../../../../../../serialization/index.js";
 import * as errors from "../../../../../../errors/index.js";
 
 export declare namespace DockerRegistries {
@@ -81,25 +80,14 @@ export class DockerRegistries {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.internal.CreateDockerRepositoryRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return {
-                data: serializers.internal.DockerRegistriesCreateRepositoryResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.internal.DockerRegistriesCreateRepositoryResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -107,7 +95,7 @@ export class DockerRegistries {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -185,13 +173,7 @@ export class DockerRegistries {
         });
         if (_response.ok) {
             return {
-                data: serializers.internal.DockerRegistriesGetCredentialsResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.internal.DockerRegistriesGetCredentialsResponse,
                 rawResponse: _response.rawResponse,
             };
         }

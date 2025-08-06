@@ -43,8 +43,8 @@ describe("Deployments", () => {
                 transition: "BUILDING",
                 message: "message",
                 retryCount: 1.1,
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
             },
         ]);
     });
@@ -95,8 +95,8 @@ describe("Deployments", () => {
                 getLogsUrl: "getLogsUrl",
                 tailLogsUrl: "tailLogsUrl",
                 logsStartTs: "logsStartTs",
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
             },
         ]);
     });

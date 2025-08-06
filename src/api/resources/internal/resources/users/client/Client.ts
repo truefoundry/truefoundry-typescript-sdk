@@ -5,7 +5,6 @@
 import * as core from "../../../../../../core/index.js";
 import * as TrueFoundry from "../../../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import * as serializers from "../../../../../../serialization/index.js";
 import * as errors from "../../../../../../errors/index.js";
 
 export declare namespace Users {
@@ -71,16 +70,7 @@ export class Users {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.Session.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.Session, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

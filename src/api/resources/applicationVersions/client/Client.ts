@@ -5,7 +5,6 @@
 import * as core from "../../../../core/index.js";
 import * as TrueFoundry from "../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
-import * as serializers from "../../../../serialization/index.js";
 import * as errors from "../../../../errors/index.js";
 
 export declare namespace ApplicationVersions {
@@ -101,13 +100,7 @@ export class ApplicationVersions {
                 });
                 if (_response.ok) {
                     return {
-                        data: serializers.ListApplicationDeploymentsResponse.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        data: _response.body as TrueFoundry.ListApplicationDeploymentsResponse,
                         rawResponse: _response.rawResponse,
                     };
                 }
@@ -115,17 +108,11 @@ export class ApplicationVersions {
                     switch (_response.error.statusCode) {
                         case 403:
                             throw new TrueFoundry.ForbiddenError(
-                                serializers.HttpError.parseOrThrow(_response.error.body, {
-                                    unrecognizedObjectKeys: "passthrough",
-                                    allowUnrecognizedUnionMembers: true,
-                                    allowUnrecognizedEnumValues: true,
-                                    skipValidation: true,
-                                    breadcrumbsPrefix: ["response"],
-                                }),
+                                _response.error.body as TrueFoundry.HttpError,
                                 _response.rawResponse,
                             );
                         case 404:
-                            throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                            throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                         default:
                             throw new errors.TrueFoundryError({
                                 statusCode: _response.error.statusCode,
@@ -212,13 +199,7 @@ export class ApplicationVersions {
         });
         if (_response.ok) {
             return {
-                data: serializers.GetApplicationDeploymentResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.GetApplicationDeploymentResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -227,17 +208,11 @@ export class ApplicationVersions {
             switch (_response.error.statusCode) {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

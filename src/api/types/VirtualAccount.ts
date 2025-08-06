@@ -11,7 +11,7 @@ export interface VirtualAccount {
     tenantName: string;
     manifest?: TrueFoundry.VirtualAccountManifest;
     createdBySubject: TrueFoundry.Subject;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
     createdBy?: string;
 }

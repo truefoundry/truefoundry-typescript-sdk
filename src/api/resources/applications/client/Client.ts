@@ -4,7 +4,6 @@
 
 import * as core from "../../../../core/index.js";
 import * as TrueFoundry from "../../../index.js";
-import * as serializers from "../../../../serialization/index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
 import * as errors from "../../../../errors/index.js";
 
@@ -122,29 +121,13 @@ export class Applications {
                     _queryParams["paused"] = paused.toString();
                 }
                 if (deviceTypeFilter != null) {
-                    _queryParams["deviceTypeFilter"] = serializers.ApplicationsListRequestDeviceTypeFilter.jsonOrThrow(
-                        deviceTypeFilter,
-                        {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            omitUndefined: true,
-                        },
-                    );
+                    _queryParams["deviceTypeFilter"] = deviceTypeFilter;
                 }
                 if (lastDeployedBySubjects != null) {
                     _queryParams["lastDeployedBySubjects"] = lastDeployedBySubjects;
                 }
                 if (lifecycleStage != null) {
-                    _queryParams["lifecycleStage"] = serializers.ApplicationsListRequestLifecycleStage.jsonOrThrow(
-                        lifecycleStage,
-                        {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            omitUndefined: true,
-                        },
-                    );
+                    _queryParams["lifecycleStage"] = lifecycleStage;
                 }
                 if (isRecommendationPresentAndVisible != null) {
                     _queryParams["isRecommendationPresentAndVisible"] = isRecommendationPresentAndVisible.toString();
@@ -169,20 +152,17 @@ export class Applications {
                 });
                 if (_response.ok) {
                     return {
-                        data: serializers.ListApplicationsResponse.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        data: _response.body as TrueFoundry.ListApplicationsResponse,
                         rawResponse: _response.rawResponse,
                     };
                 }
                 if (_response.error.reason === "status-code") {
                     switch (_response.error.statusCode) {
                         case 400:
-                            throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                            throw new TrueFoundry.BadRequestError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
                         default:
                             throw new errors.TrueFoundryError({
                                 statusCode: _response.error.statusCode,
@@ -266,25 +246,14 @@ export class Applications {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.CreateDeploymentRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return {
-                data: serializers.GetApplicationDeploymentResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.GetApplicationDeploymentResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -292,29 +261,17 @@ export class Applications {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
                     throw new TrueFoundry.ConflictError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:
@@ -384,33 +341,18 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.GetApplicationResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.GetApplicationResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -479,13 +421,7 @@ export class Applications {
         });
         if (_response.ok) {
             return {
-                data: serializers.DeleteApplicationResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.DeleteApplicationResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -494,17 +430,11 @@ export class Applications {
             switch (_response.error.statusCode) {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -578,28 +508,16 @@ export class Applications {
             switch (_response.error.statusCode) {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 405:
-                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown, _response.rawResponse);
                 case 501:
                     throw new TrueFoundry.NotImplementedError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:
@@ -672,42 +590,21 @@ export class Applications {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.Deployment.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.Deployment, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 501:
                     throw new TrueFoundry.NotImplementedError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:
@@ -784,13 +681,7 @@ export class Applications {
         });
         if (_response.ok) {
             return {
-                data: serializers.ApplicationsCancelDeploymentResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.ApplicationsCancelDeploymentResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -799,26 +690,14 @@ export class Applications {
             switch (_response.error.statusCode) {
                 case 403:
                     throw new TrueFoundry.ForbiddenError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
                     throw new TrueFoundry.ConflictError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:

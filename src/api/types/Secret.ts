@@ -11,8 +11,8 @@ export interface Secret {
     secretGroupId: string;
     value?: string;
     createdBySubject?: TrueFoundry.Subject;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
     secretVersions?: TrueFoundry.SecretVersion[];
     activeDeploymentsCount?: number;
     createdBy?: string;

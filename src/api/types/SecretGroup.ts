@@ -12,7 +12,7 @@ export interface SecretGroup {
     createdBySubject: TrueFoundry.Subject;
     associatedSecrets: TrueFoundry.Secret[];
     integrationId?: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
     createdBy?: string;
 }

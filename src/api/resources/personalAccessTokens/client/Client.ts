@@ -5,7 +5,6 @@
 import * as core from "../../../../core/index.js";
 import * as TrueFoundry from "../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
-import * as serializers from "../../../../serialization/index.js";
 import * as errors from "../../../../errors/index.js";
 
 export declare namespace PersonalAccessTokens {
@@ -88,13 +87,7 @@ export class PersonalAccessTokens {
                 });
                 if (_response.ok) {
                     return {
-                        data: serializers.ListPersonalAccessTokenResponse.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        data: _response.body as TrueFoundry.ListPersonalAccessTokenResponse,
                         rawResponse: _response.rawResponse,
                     };
                 }
@@ -178,25 +171,14 @@ export class PersonalAccessTokens {
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
-            body: serializers.CreatePersonalAccessTokenRequest.jsonOrThrow(request, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            }),
+            body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
             return {
-                data: serializers.CreatePersonalAccessTokenResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.CreatePersonalAccessTokenResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -204,16 +186,10 @@ export class PersonalAccessTokens {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 409:
                     throw new TrueFoundry.ConflictError(
-                        serializers.HttpError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:
@@ -285,13 +261,7 @@ export class PersonalAccessTokens {
         });
         if (_response.ok) {
             return {
-                data: serializers.DeletePersonalAccessTokenResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.DeletePersonalAccessTokenResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -299,7 +269,7 @@ export class PersonalAccessTokens {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -369,13 +339,7 @@ export class PersonalAccessTokens {
         });
         if (_response.ok) {
             return {
-                data: serializers.GetOrCreatePersonalAccessTokenResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
+                data: _response.body as TrueFoundry.GetOrCreatePersonalAccessTokenResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -383,7 +347,7 @@ export class PersonalAccessTokens {
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

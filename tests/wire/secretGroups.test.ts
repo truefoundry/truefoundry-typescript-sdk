@@ -73,8 +73,8 @@ describe("SecretGroups", () => {
                     },
                 ],
                 integrationId: "integrationId",
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 createdBy: "createdBy",
             },
         });
@@ -133,8 +133,8 @@ describe("SecretGroups", () => {
                     },
                 ],
                 integrationId: "integrationId",
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 createdBy: "createdBy",
             },
         });
@@ -200,8 +200,8 @@ describe("SecretGroups", () => {
                     },
                 ],
                 integrationId: "integrationId",
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 createdBy: "createdBy",
             },
         });

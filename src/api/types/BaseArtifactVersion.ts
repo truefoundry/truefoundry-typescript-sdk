@@ -8,8 +8,8 @@ export interface BaseArtifactVersion {
     id: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
-    created_at?: Date;
-    updated_at?: Date;
+    created_at?: string;
+    updated_at?: string;
     manifest?: BaseArtifactVersion.Manifest;
     usage_code_snippet?: string;
     ml_repo_id: string;

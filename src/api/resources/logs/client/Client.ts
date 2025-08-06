@@ -4,7 +4,6 @@
 
 import * as core from "../../../../core/index.js";
 import * as TrueFoundry from "../../../index.js";
-import * as serializers from "../../../../serialization/index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
 import * as errors from "../../../../errors/index.js";
 
@@ -94,12 +93,7 @@ export class Logs {
         }
 
         if (direction != null) {
-            _queryParams["direction"] = serializers.LogsSortingDirection.jsonOrThrow(direction, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            });
+            _queryParams["direction"] = direction;
         }
 
         if (numLogsToIgnore != null) {
@@ -147,21 +141,11 @@ export class Logs {
         }
 
         if (searchType != null) {
-            _queryParams["searchType"] = serializers.LogsSearchFilterType.jsonOrThrow(searchType, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            });
+            _queryParams["searchType"] = searchType;
         }
 
         if (searchOperator != null) {
-            _queryParams["searchOperator"] = serializers.LogsSearchOperatorType.jsonOrThrow(searchOperator, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                omitUndefined: true,
-            });
+            _queryParams["searchOperator"] = searchOperator;
         }
 
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -182,22 +166,13 @@ export class Logs {
             abortSignal: requestOptions?.abortSignal,
         });
         if (_response.ok) {
-            return {
-                data: serializers.GetLogsResponse.parseOrThrow(_response.body, {
-                    unrecognizedObjectKeys: "passthrough",
-                    allowUnrecognizedUnionMembers: true,
-                    allowUnrecognizedEnumValues: true,
-                    skipValidation: true,
-                    breadcrumbsPrefix: ["response"],
-                }),
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.GetLogsResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
                 case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

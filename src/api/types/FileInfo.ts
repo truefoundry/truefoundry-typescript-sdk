@@ -7,5 +7,5 @@ export interface FileInfo {
     is_dir: boolean;
     file_size?: number;
     signed_url?: string;
-    last_modified?: Date;
+    last_modified?: string;
 }

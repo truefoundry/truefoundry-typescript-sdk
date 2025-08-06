@@ -83,7 +83,7 @@ describe("MlRepos", () => {
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: "2024-01-15T09:30:00Z",
                 id: "420",
                 num_runs: 10,
                 artifact_type_counts: {
@@ -151,7 +151,7 @@ describe("MlRepos", () => {
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                created_at: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: "2024-01-15T09:30:00Z",
                 id: "420",
                 num_runs: 10,
                 artifact_type_counts: {

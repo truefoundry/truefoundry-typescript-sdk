@@ -12,6 +12,6 @@ export interface DeploymentStatus {
     transition?: TrueFoundry.DeploymentTransition;
     message?: string;
     retryCount?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
 }

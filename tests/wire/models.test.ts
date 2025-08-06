@@ -69,8 +69,8 @@ describe("Models", () => {
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                created_at: new Date("2024-01-15T09:30:00.000Z"),
-                updated_at: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
                 latest_version: {
                     id: "id",
                     fqn: "fqn",
@@ -78,8 +78,8 @@ describe("Models", () => {
                         subjectId: "subjectId",
                         subjectType: "user",
                     },
-                    created_at: new Date("2024-01-15T09:30:00.000Z"),
-                    updated_at: new Date("2024-01-15T09:30:00.000Z"),
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
                     manifest: {
                         name: "name",
                         metadata: {
@@ -199,8 +199,8 @@ describe("Models", () => {
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                created_at: new Date("2024-01-15T09:30:00.000Z"),
-                updated_at: new Date("2024-01-15T09:30:00.000Z"),
+                created_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
                 manifest: {
                     name: "name",
                     description: "description",

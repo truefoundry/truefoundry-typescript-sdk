@@ -5,7 +5,6 @@
 import * as core from "../../../../../../core/index.js";
 import * as TrueFoundry from "../../../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../../../core/headers.js";
-import * as serializers from "../../../../../../serialization/index.js";
 import * as errors from "../../../../../../errors/index.js";
 
 export declare namespace ArtifactVersions {
@@ -134,20 +133,17 @@ export class ArtifactVersions {
                 });
                 if (_response.ok) {
                     return {
-                        data: serializers.InternalListArtifactVersionsResponse.parseOrThrow(_response.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        }),
+                        data: _response.body as TrueFoundry.InternalListArtifactVersionsResponse,
                         rawResponse: _response.rawResponse,
                     };
                 }
                 if (_response.error.reason === "status-code") {
                     switch (_response.error.statusCode) {
                         case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(_response.error.body, _response.rawResponse);
+                            throw new TrueFoundry.UnprocessableEntityError(
+                                _response.error.body as unknown,
+                                _response.rawResponse,
+                            );
                         default:
                             throw new errors.TrueFoundryError({
                                 statusCode: _response.error.statusCode,

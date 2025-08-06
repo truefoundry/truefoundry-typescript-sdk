@@ -9,6 +9,6 @@ export interface ApplicationDebugInfo {
     applicationId: string;
     application?: TrueFoundry.Application;
     debugInfo: Record<string, unknown>;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
 }

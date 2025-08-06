@@ -12,6 +12,6 @@ export interface User {
     metadata: TrueFoundry.UserMetadata;
     roles?: string[];
     active: boolean;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }

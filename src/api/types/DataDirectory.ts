@@ -10,8 +10,8 @@ export interface DataDirectory {
     name: string;
     fqn: string;
     created_by_subject: TrueFoundry.Subject;
-    created_at: Date;
-    updated_at: Date;
+    created_at: string;
+    updated_at: string;
     manifest: TrueFoundry.DataDirectoryManifest;
     usage_code_snippet?: string;
 }

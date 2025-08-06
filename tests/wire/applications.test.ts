@@ -241,22 +241,22 @@ describe("Applications", () => {
                     workspaceId: "workspaceId",
                     lastVersion: 1,
                     activeVersion: 1,
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                     recommendations: [
                         {
                             recommendationData: {
                                 key: "value",
                             },
                             recommendationType: "recommendationType",
-                            expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
                         },
                     ],
                     alerts: [
                         {
                             name: "name",
-                            timestamps: [new Date("2024-01-15T09:30:00.000Z")],
-                            startTime: new Date("2024-01-15T09:30:00.000Z"),
+                            timestamps: ["2024-01-15T09:30:00Z"],
+                            startTime: "2024-01-15T09:30:00Z",
                             clusterId: "clusterId",
                             fingerprint: "fingerprint",
                         },
@@ -292,8 +292,8 @@ describe("Applications", () => {
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
                 },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 deploymentBuilds: [
                     {
                         name: "name",
@@ -312,8 +312,8 @@ describe("Applications", () => {
                     transition: "BUILDING",
                     message: "message",
                     retryCount: 1.1,
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                 },
                 appliedRecommendations: [
                     {
@@ -321,7 +321,7 @@ describe("Applications", () => {
                             key: "value",
                         },
                         recommendationType: "recommendationType",
-                        expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                        expiryTimestamp: "2024-01-15T09:30:00Z",
                     },
                 ],
                 createdBy: "createdBy",
@@ -441,22 +441,22 @@ describe("Applications", () => {
                 workspaceId: "workspaceId",
                 lastVersion: 1,
                 activeVersion: 1,
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 recommendations: [
                     {
                         recommendationData: {
                             key: "value",
                         },
                         recommendationType: "recommendationType",
-                        expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                        expiryTimestamp: "2024-01-15T09:30:00Z",
                     },
                 ],
                 alerts: [
                     {
                         name: "name",
-                        timestamps: [new Date("2024-01-15T09:30:00.000Z")],
-                        startTime: new Date("2024-01-15T09:30:00.000Z"),
+                        timestamps: ["2024-01-15T09:30:00Z"],
+                        startTime: "2024-01-15T09:30:00Z",
                         clusterId: "clusterId",
                         fingerprint: "fingerprint",
                     },
@@ -514,8 +514,8 @@ describe("Applications", () => {
                         subjectId: "subjectId",
                         subjectType: "user",
                     },
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                     deploymentBuilds: [
                         {
                             name: "name",
@@ -530,7 +530,7 @@ describe("Applications", () => {
                                 key: "value",
                             },
                             recommendationType: "recommendationType",
-                            expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
                         },
                     ],
                     createdBy: "createdBy",
@@ -883,22 +883,22 @@ describe("Applications", () => {
                 workspaceId: "workspaceId",
                 lastVersion: 1,
                 activeVersion: 1,
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
                 recommendations: [
                     {
                         recommendationData: {
                             key: "value",
                         },
                         recommendationType: "recommendationType",
-                        expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
+                        expiryTimestamp: "2024-01-15T09:30:00Z",
                     },
                 ],
                 alerts: [
                     {
                         name: "name",
-                        timestamps: [new Date("2024-01-15T09:30:00.000Z")],
-                        startTime: new Date("2024-01-15T09:30:00.000Z"),
+                        timestamps: ["2024-01-15T09:30:00Z"],
+                        startTime: "2024-01-15T09:30:00Z",
                         clusterId: "clusterId",
                         fingerprint: "fingerprint",
                     },
@@ -934,8 +934,8 @@ describe("Applications", () => {
                 subjectSlug: "subjectSlug",
                 subjectDisplayName: "subjectDisplayName",
             },
-            createdAt: new Date("2024-01-15T09:30:00.000Z"),
-            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            createdAt: "2024-01-15T09:30:00Z",
+            updatedAt: "2024-01-15T09:30:00Z",
             deploymentBuilds: [
                 {
                     name: "name",
@@ -953,8 +953,8 @@ describe("Applications", () => {
                     transition: "BUILDING",
                     message: "message",
                     retryCount: 1.1,
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                 },
             ],
             currentStatusId: "currentStatusId",
@@ -968,8 +968,8 @@ describe("Applications", () => {
                 transition: "BUILDING",
                 message: "message",
                 retryCount: 1.1,
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
             },
             appliedRecommendations: [
                 {
@@ -983,9 +983,9 @@ describe("Applications", () => {
                     },
                     recommendationType: "recommendationType",
                     appliedDeploymentId: "appliedDeploymentId",
-                    expiryTimestamp: new Date("2024-01-15T09:30:00.000Z"),
-                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                    expiryTimestamp: "2024-01-15T09:30:00Z",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                 },
             ],
             createdBy: "createdBy",

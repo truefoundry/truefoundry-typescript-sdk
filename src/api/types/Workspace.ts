@@ -11,8 +11,8 @@ export interface Workspace {
     tenantName: string;
     clusterId: string;
     createdBySubject: TrueFoundry.Subject;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
     environmentId?: string;
     manifest: TrueFoundry.WorkspaceManifest;
     isSystemWs?: boolean;

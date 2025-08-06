@@ -5,9 +5,9 @@
 export interface Alert {
     id?: string;
     name: string;
-    timestamps: Date[];
-    startTime: Date;
-    resolvedTime?: Date;
+    timestamps: string[];
+    startTime: string;
+    resolvedTime?: string;
     applicationId?: string;
     clusterId: string;
     tenantName?: string;

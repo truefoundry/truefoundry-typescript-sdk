@@ -16,6 +16,6 @@ export interface DeploymentBuild {
     getLogsUrl?: string;
     tailLogsUrl?: string;
     logsStartTs?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: string;
+    updatedAt?: string;
 }
