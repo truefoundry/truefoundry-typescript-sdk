@@ -13,13 +13,13 @@ export interface VolumeBrowser {
      * +usage=Username for logging in the volume browser.
      * +sort=1
      */
-    username: string;
+    username?: string;
     /**
      * +label=Password Secret FQN
      * +usage=TFY Secret containing the password for logging in the volume browser.
      * +sort=2
      */
-    password_secret_fqn: string;
+    password_secret_fqn?: string;
     endpoint: TrueFoundry.Endpoint;
     /**
      * +label=Service Account Name

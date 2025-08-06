@@ -4,9 +4,34 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Load Balancing Configuration
+ */
 export interface LoadBalancingConfig {
+    /**
+     * +usage=Name of the load balancing configuration
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Configuration Name
+     */
     name: string;
+    /**
+     * +value=gateway-load-balancing-config
+     * +sort=2
+     */
     type: "gateway-load-balancing-config";
+    /**
+     * +usage=Configuration for specific models
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Model Configurations
+     */
     model_configs?: TrueFoundry.ModelConfig[];
+    /**
+     * +usage=List of load balancing rules
+     * +uiProps={"descriptionInline":true}
+     * +sort=4
+     * +label=Load Balancing Rules
+     */
     rules: TrueFoundry.LoadBalancingRule[];
 }

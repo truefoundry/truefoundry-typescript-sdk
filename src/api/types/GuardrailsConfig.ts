@@ -4,11 +4,27 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Guardrails Configuration
+ */
 export interface GuardrailsConfig {
-    /** +usage=Name of the guardrails configuration */
+    /**
+     * +usage=Name of the guardrails configuration
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Configuration Name
+     */
     name: string;
-    /** +value=gateway-guardrails-config */
+    /**
+     * +value=gateway-guardrails-config
+     * +sort=2
+     */
     type: "gateway-guardrails-config";
-    /** +usage=List of guardrail rules */
+    /**
+     * +usage=List of guardrail rules
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Guardrail Rules
+     */
     rules: TrueFoundry.GuardrailsRule[];
 }

@@ -4,7 +4,16 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Model Configuration
+ */
 export interface ModelConfig {
+    /**
+     * +usage=Model identifier
+     * +uiProps={"descriptionInline":true}
+     * +sort=1
+     * +label=Model
+     */
     model: string;
     usage_limits?: TrueFoundry.UsageLimits;
     failure_tolerance?: TrueFoundry.FailureToleranceConfig;

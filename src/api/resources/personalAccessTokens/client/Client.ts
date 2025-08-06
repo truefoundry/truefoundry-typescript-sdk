@@ -218,6 +218,88 @@ export class PersonalAccessTokens {
     }
 
     /**
+     * Revoke All Personal Access Tokens for the user with the given email
+     *
+     * @param {TrueFoundry.RevokeAllPersonalAccessTokenRequest} request
+     * @param {PersonalAccessTokens.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.personalAccessTokens.revokeAll({
+     *         email: "email"
+     *     })
+     */
+    public revokeAll(
+        request: TrueFoundry.RevokeAllPersonalAccessTokenRequest,
+        requestOptions?: PersonalAccessTokens.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.RevokeAllPersonalAccessTokenResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__revokeAll(request, requestOptions));
+    }
+
+    private async __revokeAll(
+        request: TrueFoundry.RevokeAllPersonalAccessTokenRequest,
+        requestOptions?: PersonalAccessTokens.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.RevokeAllPersonalAccessTokenResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/personal-access-tokens/revoke/all",
+            ),
+            method: "DELETE",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                requestOptions?.headers,
+            ),
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.RevokeAllPersonalAccessTokenResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling DELETE /api/svc/v1/personal-access-tokens/revoke/all.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * Delete Personal Access Token associated with the provided serviceAccountId
      *
      * @param {string} id - serviceaccount id

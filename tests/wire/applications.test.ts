@@ -50,6 +50,7 @@ describe("Applications", () => {
                     labels: { key: "value" },
                     liveness_probe: { config: { type: "http", path: "path", port: 1 } },
                     readiness_probe: { config: { type: "http", path: "path", port: 1 } },
+                    startup_probe: { config: { type: "http", path: "path", port: 1 } },
                     workspace_fqn: "workspace_fqn",
                     type: "service",
                     replicas: 1.1,
@@ -208,6 +209,13 @@ describe("Applications", () => {
                         },
                     },
                     readiness_probe: {
+                        config: {
+                            type: "http",
+                            path: "path",
+                            port: 1,
+                        },
+                    },
+                    startup_probe: {
                         config: {
                             type: "http",
                             path: "path",
@@ -634,6 +642,14 @@ describe("Applications", () => {
                     success_threshold: 1,
                     failure_threshold: 1,
                 },
+                startup_probe: {
+                    config: { type: "http", path: "path", port: 1 },
+                    initial_delay_seconds: 1,
+                    period_seconds: 1,
+                    timeout_seconds: 1,
+                    success_threshold: 1,
+                    failure_threshold: 1,
+                },
                 workspace_fqn: "workspace_fqn",
                 type: "service",
                 replicas: 1.1,
@@ -840,6 +856,18 @@ describe("Applications", () => {
                     failure_threshold: 1,
                 },
                 readiness_probe: {
+                    config: {
+                        type: "http",
+                        path: "path",
+                        port: 1,
+                    },
+                    initial_delay_seconds: 1,
+                    period_seconds: 1,
+                    timeout_seconds: 1,
+                    success_threshold: 1,
+                    failure_threshold: 1,
+                },
+                startup_probe: {
                     config: {
                         type: "http",
                         path: "path",

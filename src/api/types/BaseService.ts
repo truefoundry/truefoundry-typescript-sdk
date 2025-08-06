@@ -47,6 +47,7 @@ export interface BaseService {
     kustomize?: TrueFoundry.Kustomize;
     liveness_probe?: TrueFoundry.HealthProbe;
     readiness_probe?: TrueFoundry.HealthProbe;
+    startup_probe?: TrueFoundry.HealthProbe;
     /**
      * +label=Workspace FQN
      * +docs=Fully qualified name of the workspace
