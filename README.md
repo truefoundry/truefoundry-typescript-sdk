@@ -38,7 +38,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.applications.list({
+const page = await client.applications.list({
     limit: 10,
     offset: 0,
 });
@@ -97,7 +97,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.users.list({
+const page = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -116,18 +116,6 @@ If you would like to send additional headers as part of the request, use the `he
 const response = await client.applications.list(..., {
     headers: {
         'X-Custom-Header': 'custom value'
-    }
-});
-```
-
-### Additional Query String Parameters
-
-If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
-
-```typescript
-const response = await client.applications.list(..., {
-    queryParams: {
-        'customQueryParamKey': 'custom query param value'
     }
 });
 ```
@@ -188,7 +176,8 @@ console.log(rawResponse.headers['X-My-Header']);
 
 ### Runtime Compatibility
 
-The SDK works in the following runtimes:
+The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
+runtimes:
 
 - Node.js 18+
 - Vercel

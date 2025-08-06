@@ -12,18 +12,12 @@ export function withJson(expectedBody: unknown, resolver: HttpResponseResolver):
         const { request } = args;
 
         let clonedRequest: Request;
-        let bodyText: string | undefined;
         let actualBody: unknown;
         try {
             clonedRequest = request.clone();
-            bodyText = await clonedRequest.text();
-            if (bodyText === "") {
-                console.error("Request body is empty, expected a JSON object.");
-                return passthrough();
-            }
-            actualBody = fromJson(bodyText);
+            actualBody = fromJson(await clonedRequest.text());
         } catch (error) {
-            console.error(`Error processing request body:\n\tError: ${error}\n\tBody: ${bodyText}`);
+            console.error("Error processing request body:", error);
             return passthrough();
         }
 
@@ -81,14 +75,8 @@ function findMismatches(actual: any, expected: any): Record<string, { actual: an
 
     for (const key of allKeys) {
         if (!expectedKeys.includes(key)) {
-            if (actual[key] === undefined) {
-                continue; // Skip undefined values in actual
-            }
             mismatches[key] = { actual: actual[key], expected: undefined };
         } else if (!actualKeys.includes(key)) {
-            if (expected[key] === undefined) {
-                continue; // Skip undefined values in expected
-            }
             mismatches[key] = { actual: undefined, expected: expected[key] };
         } else if (
             typeof actual[key] === "object" &&

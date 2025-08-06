@@ -3,7 +3,6 @@ import { APIResponse } from "./APIResponse.js";
 import { abortRawResponse, toRawResponse, unknownRawResponse } from "./RawResponse.js";
 import { Supplier } from "./Supplier.js";
 import { createRequestUrl } from "./createRequestUrl.js";
-import { getErrorResponseBody } from "./getErrorResponseBody.js";
 import { getFetchFn } from "./getFetchFn.js";
 import { getRequestBody } from "./getRequestBody.js";
 import { getResponseBody } from "./getResponseBody.js";
@@ -18,7 +17,7 @@ export declare namespace Fetcher {
         method: string;
         contentType?: string;
         headers?: Record<string, string | Supplier<string | undefined> | undefined>;
-        queryParameters?: Record<string, unknown>;
+        queryParameters?: Record<string, string | string[] | object | object[] | null>;
         body?: unknown;
         timeoutMs?: number;
         maxRetries?: number;
@@ -101,11 +100,12 @@ export async function fetcherImpl<R = unknown>(args: Fetcher.Args): Promise<APIR
                 ),
             args.maxRetries,
         );
+        const responseBody = await getResponseBody(response, args.responseType);
 
         if (response.status >= 200 && response.status < 400) {
             return {
                 ok: true,
-                body: (await getResponseBody(response, args.responseType)) as R,
+                body: responseBody as R,
                 headers: response.headers,
                 rawResponse: toRawResponse(response),
             };
@@ -115,7 +115,7 @@ export async function fetcherImpl<R = unknown>(args: Fetcher.Args): Promise<APIR
                 error: {
                     reason: "status-code",
                     statusCode: response.status,
-                    body: await getErrorResponseBody(response),
+                    body: responseBody,
                 },
                 rawResponse: toRawResponse(response),
             };

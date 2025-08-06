@@ -3,10 +3,6 @@ export function join(base: string, ...segments: string[]): string {
         return "";
     }
 
-    if (segments.length === 0) {
-        return base;
-    }
-
     if (base.includes("://")) {
         let url: URL;
         try {
@@ -16,18 +12,11 @@ export function join(base: string, ...segments: string[]): string {
             return joinPath(base, ...segments);
         }
 
-        const lastSegment = segments[segments.length - 1];
-        const shouldPreserveTrailingSlash = lastSegment && lastSegment.endsWith("/");
-
         for (const segment of segments) {
             const cleanSegment = trimSlashes(segment);
             if (cleanSegment) {
                 url.pathname = joinPathSegments(url.pathname, cleanSegment);
             }
-        }
-
-        if (shouldPreserveTrailingSlash && !url.pathname.endsWith("/")) {
-            url.pathname += "/";
         }
 
         return url.toString();
@@ -37,24 +26,13 @@ export function join(base: string, ...segments: string[]): string {
 }
 
 function joinPath(base: string, ...segments: string[]): string {
-    if (segments.length === 0) {
-        return base;
-    }
-
     let result = base;
-
-    const lastSegment = segments[segments.length - 1];
-    const shouldPreserveTrailingSlash = lastSegment && lastSegment.endsWith("/");
 
     for (const segment of segments) {
         const cleanSegment = trimSlashes(segment);
         if (cleanSegment) {
             result = joinPathSegments(result, cleanSegment);
         }
-    }
-
-    if (shouldPreserveTrailingSlash && !result.endsWith("/")) {
-        result += "/";
     }
 
     return result;
@@ -70,11 +48,8 @@ function joinPathSegments(left: string, right: string): string {
 function trimSlashes(str: string): string {
     if (!str) return str;
 
-    let start = 0;
-    let end = str.length;
+    let start = str.startsWith("/") ? 1 : 0;
+    let end = str.endsWith("/") ? str.length - 1 : str.length;
 
-    if (str.startsWith("/")) start = 1;
-    if (str.endsWith("/")) end = str.length - 1;
-
-    return start === 0 && end === str.length ? str : str.slice(start, end);
+    return str.slice(start, end);
 }
