@@ -38,7 +38,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.applications.list({
+let page = await client.applications.list({
     limit: 10,
     offset: 0,
 });
@@ -97,7 +97,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.users.list({
+let page = await client.users.list({
     limit: 10,
     offset: 0,
 });

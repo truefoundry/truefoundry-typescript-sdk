@@ -191,7 +191,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.users.list({
+let page = await client.users.list({
     limit: 10,
     offset: 0,
 });
@@ -728,7 +728,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.teams.list({
+let page = await client.teams.list({
     limit: 10,
     offset: 0,
 });
@@ -1003,7 +1003,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.personalAccessTokens.list({
+let page = await client.personalAccessTokens.list({
     limit: 10,
     offset: 0,
 });
@@ -1274,7 +1274,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.virtualAccounts.list({
+let page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
 });
@@ -1552,7 +1552,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.secrets.list();
+let page = await client.secrets.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -1755,7 +1755,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.secretGroups.list({
+let page = await client.secretGroups.list({
     limit: 10,
     offset: 0,
 });
@@ -2110,7 +2110,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.clusters.list({
+let page = await client.clusters.list({
     limit: 10,
     offset: 0,
 });
@@ -2529,7 +2529,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.environments.list({
+let page = await client.environments.list({
     limit: 10,
     offset: 0,
 });
@@ -2806,7 +2806,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.applications.list({
+let page = await client.applications.list({
     limit: 10,
     offset: 0,
 });
@@ -3278,7 +3278,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.applicationVersions.list("id", {
+let page = await client.applicationVersions.list("id", {
     limit: 10,
     offset: 0,
     version: "1",
@@ -3439,7 +3439,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.jobs.listRuns("jobId", {
+let page = await client.jobs.listRuns("jobId", {
     limit: 10,
     offset: 0,
 });
@@ -3798,7 +3798,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.workspaces.list({
+let page = await client.workspaces.list({
     limit: 10,
     offset: 0,
 });
@@ -4354,7 +4354,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.mlRepos.list();
+let page = await client.mlRepos.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4509,7 +4509,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.artifacts.list();
+let page = await client.artifacts.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4724,7 +4724,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.prompts.list();
+let page = await client.prompts.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -4942,7 +4942,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.models.list();
+let page = await client.models.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5202,7 +5202,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.artifactVersions.list();
+let page = await client.artifactVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5425,7 +5425,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.artifactVersions.listFiles({
+let page = await client.artifactVersions.listFiles({
     id: "id",
 });
 while (page.hasNextPage()) {
@@ -5677,7 +5677,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.modelVersions.list();
+let page = await client.modelVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5877,7 +5877,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.promptVersions.list();
+let page = await client.promptVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6107,7 +6107,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.dataDirectories.list();
+let page = await client.dataDirectories.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6248,7 +6248,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.dataDirectories.listFiles({
+let page = await client.dataDirectories.listFiles({
     id: "id",
 });
 while (page.hasNextPage()) {
@@ -7400,7 +7400,7 @@ for await (const item of response) {
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.internal.artifactVersions.list();
+let page = await client.internal.artifactVersions.list();
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
