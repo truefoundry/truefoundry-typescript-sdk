@@ -22,7 +22,7 @@ export interface Helm {
      * +label=Source helm repository
      * +sort=2
      */
-    source: Helm.Source;
+    source: TrueFoundry.HelmSource;
     /**
      * +label=Values
      * +usage=Values file as block file
@@ -36,12 +36,4 @@ export interface Helm {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-}
-
-export namespace Helm {
-    /**
-     * +label=Source helm repository
-     * +sort=2
-     */
-    export type Source = TrueFoundry.HelmRepo | TrueFoundry.OciRepo | TrueFoundry.GitHelmRepo;
 }

@@ -30,7 +30,7 @@ export interface AwsS3 {
      * +usage=Custom authentication data for the integration.
      * +sort=400
      */
-    auth_data?: AwsS3.AuthData;
+    auth_data?: TrueFoundry.AwsS3AuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
@@ -38,13 +38,4 @@ export interface AwsS3 {
      * +uiType=AuthorizedSubjects
      */
     authorized_subjects?: string[];
-}
-
-export namespace AwsS3 {
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=400
-     */
-    export type AuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

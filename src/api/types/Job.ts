@@ -22,12 +22,12 @@ export interface Job {
      * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
      * +sort=200
      */
-    image: Job.Image;
+    image: TrueFoundry.JobImage;
     /**
      * +docs=Specify the trigger
      * +sort=300
      */
-    trigger: Job.Trigger;
+    trigger: TrueFoundry.JobTrigger;
     /**
      * +docs=Trigger on deploy
      * +sort=350
@@ -80,7 +80,7 @@ export interface Job {
     /** +sort=1000 */
     service_account?: string;
     /** +usage=Configure data to be mounted to job pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
-    mounts?: Job.Mounts.Item[];
+    mounts?: TrueFoundry.JobMountsItem[];
     /** +label=Labels */
     labels?: Record<string, string>;
     kustomize?: TrueFoundry.Kustomize;
@@ -90,24 +90,4 @@ export interface Job {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-}
-
-export namespace Job {
-    /**
-     * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
-     * +label=Deploy a Docker image or build and deploy from source code
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=200
-     */
-    export type Image = TrueFoundry.Build | TrueFoundry.Image;
-    /**
-     * +docs=Specify the trigger
-     * +sort=300
-     */
-    export type Trigger = TrueFoundry.Manual | TrueFoundry.Schedule;
-    export type Mounts = Mounts.Item[];
-
-    export namespace Mounts {
-        export type Item = TrueFoundry.SecretMount | TrueFoundry.StringDataMount | TrueFoundry.VolumeMount;
-    }
 }

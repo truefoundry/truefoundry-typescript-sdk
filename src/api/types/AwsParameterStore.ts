@@ -24,7 +24,7 @@ export interface AwsParameterStore {
      * +usage=Custom authentication data for the integration.
      * +sort=300
      */
-    auth_data?: AwsParameterStore.AuthData;
+    auth_data?: TrueFoundry.AwsParameterStoreAuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
@@ -32,13 +32,4 @@ export interface AwsParameterStore {
      * +uiType=AuthorizedSubjects
      */
     authorized_subjects?: string[];
-}
-
-export namespace AwsParameterStore {
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=300
-     */
-    export type AuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

@@ -29,7 +29,7 @@ export interface EnkryptAiGuardrailConfig {
      * +uiType=Select
      * +sort=100
      */
-    operation: EnkryptAiGuardrailConfig.Operation;
+    operation: TrueFoundry.EnkryptAiGuardrailConfigOperation;
     /**
      * +label=Guardrail Name
      * +usage=The name of the guardrail to use for the Enkrypt AI Guardrail.
@@ -37,19 +37,4 @@ export interface EnkryptAiGuardrailConfig {
      */
     guardrail_name: string;
     auth_data: TrueFoundry.EnkryptAiKeyAuth;
-}
-
-export namespace EnkryptAiGuardrailConfig {
-    /**
-     * +label=Operation
-     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
-     * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
-     * +uiType=Select
-     * +sort=100
-     */
-    export type Operation = "validate" | "mutate";
-    export const Operation = {
-        Validate: "validate",
-        Mutate: "mutate",
-    } as const;
 }

@@ -31,7 +31,7 @@ export interface AwsProviderAccount {
      * +usage=Authentication data for the AWS account.
      * +sort=400
      */
-    auth_data?: AwsProviderAccount.AuthData;
+    auth_data?: TrueFoundry.AwsProviderAccountAuthData;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the AWS provider account.
@@ -39,13 +39,4 @@ export interface AwsProviderAccount {
      * +uiType=IntegrationsGroup
      */
     integrations: TrueFoundry.AwsIntegrations[];
-}
-
-export namespace AwsProviderAccount {
-    /**
-     * +label=AWS Account Auth Data
-     * +usage=Authentication data for the AWS account.
-     * +sort=400
-     */
-    export type AuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

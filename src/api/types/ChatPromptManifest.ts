@@ -21,32 +21,13 @@ export interface ChatPromptManifest {
     version?: number;
     type: "chat_prompt";
     /** List of messages in the chat conversation, must be non-empty */
-    messages: ChatPromptManifest.Messages.Item[];
+    messages: TrueFoundry.ChatPromptManifestMessagesItem[];
     /** Variables referenced in messages and that can be replaced when running generation */
     variables?: Record<string, string>;
     model_configuration?: TrueFoundry.ModelConfiguration;
     /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];
     /** A list of MCP servers FQNs or URLs and their tools */
-    mcp_servers?: ChatPromptManifest.McpServers.Item[];
+    mcp_servers?: TrueFoundry.ChatPromptManifestMcpServersItem[];
     guardrails?: TrueFoundry.Guardrails;
-}
-
-export namespace ChatPromptManifest {
-    export type Messages = Messages.Item[];
-
-    export namespace Messages {
-        export type Item =
-            | TrueFoundry.SystemMessage
-            | TrueFoundry.AssistantMessage
-            | TrueFoundry.UserMessage
-            | TrueFoundry.ToolMessage
-            | TrueFoundry.DeveloperMessage;
-    }
-
-    export type McpServers = McpServers.Item[];
-
-    export namespace McpServers {
-        export type Item = TrueFoundry.McpServerWithFqn | TrueFoundry.McpServerWithUrl;
-    }
 }

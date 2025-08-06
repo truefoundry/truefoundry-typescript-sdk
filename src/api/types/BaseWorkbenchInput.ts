@@ -32,7 +32,7 @@ export interface BaseWorkbenchInput {
      * +usage=Configure data to be mounted to workbench pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job)
      * +sort=10111
      */
-    mounts?: BaseWorkbenchInput.Mounts.Item[];
+    mounts?: TrueFoundry.BaseWorkbenchInputMountsItem[];
     /** +sort=10113 */
     service_account?: string;
     kustomize?: TrueFoundry.Kustomize;
@@ -42,12 +42,4 @@ export interface BaseWorkbenchInput {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-}
-
-export namespace BaseWorkbenchInput {
-    export type Mounts = Mounts.Item[];
-
-    export namespace Mounts {
-        export type Item = TrueFoundry.SecretMount | TrueFoundry.StringDataMount | TrueFoundry.VolumeMount;
-    }
 }

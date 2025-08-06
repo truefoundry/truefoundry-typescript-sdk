@@ -22,7 +22,7 @@ export interface Workflow {
      * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
      * +sort=200
      */
-    source: Workflow.Source;
+    source: TrueFoundry.WorkflowSource;
     /**
      * +label=Workflow File Path
      * +docs=Path to the workflow file relative to the project root path
@@ -30,22 +30,7 @@ export interface Workflow {
      */
     workflow_file_path: string;
     /** +label=Flyte Entities */
-    flyte_entities?: Workflow.FlyteEntities.Item[];
+    flyte_entities?: TrueFoundry.WorkflowFlyteEntitiesItem[];
     /** +label=Alerts */
     alerts?: TrueFoundry.WorkflowAlert[];
-}
-
-export namespace Workflow {
-    /**
-     * +docs=Source Code for the workflow, either local or remote
-     * +label=Source Code for your workflow
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=200
-     */
-    export type Source = TrueFoundry.LocalSource | TrueFoundry.RemoteSource;
-    export type FlyteEntities = FlyteEntities.Item[];
-
-    export namespace FlyteEntities {
-        export type Item = TrueFoundry.FlyteTask | TrueFoundry.FlyteWorkflow | TrueFoundry.FlyteLaunchPlan;
-    }
 }

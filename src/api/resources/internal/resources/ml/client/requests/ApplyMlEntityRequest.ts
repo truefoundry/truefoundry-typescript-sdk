@@ -21,14 +21,5 @@ import * as TrueFoundry from "../../../../../../index.js";
  *     }
  */
 export interface ApplyMlEntityRequest {
-    manifest: ApplyMlEntityRequest.Manifest;
-}
-
-export namespace ApplyMlEntityRequest {
-    export type Manifest =
-        | TrueFoundry.ModelManifest
-        | TrueFoundry.ChatPromptManifest
-        | TrueFoundry.ArtifactManifest
-        | TrueFoundry.DataDirectoryManifest
-        | TrueFoundry.TracingProjectManifest;
+    manifest: TrueFoundry.internal.ApplyMlEntityRequestManifest;
 }

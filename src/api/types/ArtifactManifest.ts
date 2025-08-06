@@ -20,16 +20,9 @@ export interface ArtifactManifest {
     /** Version of the entity */
     version?: number;
     type: "artifact-version";
-    source: ArtifactManifest.Source;
+    source: TrueFoundry.ArtifactManifestSource;
     /** Step/Epoch number in an iterative training loop the artifact version was created. Generally useful when logging a model version from a MLRepo Run */
     step?: number;
     /** ID of the MLRepo Run that generated the artifact version */
     run_id?: string;
-}
-
-export namespace ArtifactManifest {
-    export type Source =
-        | TrueFoundry.TrueFoundryManagedSource
-        | TrueFoundry.ExternalBlobStorageSource
-        | TrueFoundry.LocalArtifactSource;
 }

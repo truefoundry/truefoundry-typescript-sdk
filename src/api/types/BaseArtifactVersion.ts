@@ -10,11 +10,7 @@ export interface BaseArtifactVersion {
     created_by_subject: TrueFoundry.Subject;
     created_at?: string;
     updated_at?: string;
-    manifest?: BaseArtifactVersion.Manifest;
+    manifest?: TrueFoundry.BaseArtifactVersionManifest;
     usage_code_snippet?: string;
     ml_repo_id: string;
-}
-
-export namespace BaseArtifactVersion {
-    export type Manifest = TrueFoundry.ModelManifest | TrueFoundry.ChatPromptManifest | TrueFoundry.ArtifactManifest;
 }

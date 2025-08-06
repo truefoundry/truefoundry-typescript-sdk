@@ -68,28 +68,10 @@ export interface Resources {
      * +label=Node
      * +usage=This field determines how the underlying node resource is to be utilized
      */
-    node?: Resources.Node;
+    node?: TrueFoundry.ResourcesNode;
     /**
      * +label=Devices
      * +usage=Define custom device or accelerator requirements for your workload. We currently support NVIDIA GPUs, AWS Inferentia Accelerators, Single Host TPU Slices.
      */
-    devices?: Resources.Devices.Item[];
-}
-
-export namespace Resources {
-    /**
-     * +label=Node
-     * +usage=This field determines how the underlying node resource is to be utilized
-     */
-    export type Node = TrueFoundry.NodeSelector | TrueFoundry.NodepoolSelector;
-    export type Devices = Devices.Item[];
-
-    export namespace Devices {
-        export type Item =
-            | TrueFoundry.NvidiaGpu
-            | TrueFoundry.AwsInferentia
-            | TrueFoundry.NvidiaMiggpu
-            | TrueFoundry.NvidiaTimeslicingGpu
-            | TrueFoundry.GcpTpu;
-    }
+    devices?: TrueFoundry.ResourcesDevicesItem[];
 }

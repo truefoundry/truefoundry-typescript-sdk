@@ -10,41 +10,17 @@ export interface WorkerConfig {
      * +usage=Input Config
      * +sort=1
      */
-    input_config: WorkerConfig.InputConfig;
+    input_config: TrueFoundry.WorkerConfigInputConfig;
     /**
      * +label=Output Config
      * +usage=Output Config
      * +sort=2
      */
-    output_config?: WorkerConfig.OutputConfig;
+    output_config?: TrueFoundry.WorkerConfigOutputConfig;
     /**
      * +label=Number of Concurrent Workers
      * +usage=Number of concurrent workers to spawn for the processor
      * +sort=3
      */
     num_concurrent_workers: number;
-}
-
-export namespace WorkerConfig {
-    /**
-     * +label=Input Config
-     * +usage=Input Config
-     * +sort=1
-     */
-    export type InputConfig =
-        | TrueFoundry.SqsInputConfig
-        | TrueFoundry.NatsInputConfig
-        | TrueFoundry.KafkaInputConfig
-        | TrueFoundry.AmqpInputConfig;
-    /**
-     * +label=Output Config
-     * +usage=Output Config
-     * +sort=2
-     */
-    export type OutputConfig =
-        | TrueFoundry.SqsOutputConfig
-        | TrueFoundry.NatsOutputConfig
-        | TrueFoundry.CoreNatsOutputConfig
-        | TrueFoundry.KafkaOutputConfig
-        | TrueFoundry.AmqpOutputConfig;
 }

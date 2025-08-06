@@ -20,7 +20,7 @@ export interface ClusterManifest {
      * +sort=20
      * +usage=The cluster type of this cluster
      */
-    cluster_type: ClusterManifest.ClusterType;
+    cluster_type: TrueFoundry.ClusterManifestClusterType;
     /**
      * +label=Environments
      * +icon=fa-tags:#black
@@ -43,7 +43,7 @@ export interface ClusterManifest {
      * +icon=fa-gear:#68BBE3
      * +sort=50
      */
-    monitoring?: ClusterManifest.Monitoring;
+    monitoring?: TrueFoundry.ClusterManifestMonitoring;
     /**
      * +label=Cluster Default Registry
      * +sort=60
@@ -53,7 +53,7 @@ export interface ClusterManifest {
      * +label=Workbench Config
      * +sort=70
      */
-    workbench_config?: ClusterManifest.WorkbenchConfig;
+    workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig;
     spark_config?: TrueFoundry.SparkConfig;
     /**
      * +label=Cluster Integration FQN
@@ -83,74 +83,11 @@ export interface ClusterManifest {
      * For more information, check out [this documentation](https://docs.truefoundry.com/docs/generic-control-plane#configuring-node-pools-for-truefoundry).
      * +sort=100
      */
-    node_label_keys?: ClusterManifest.NodeLabelKeys;
+    node_label_keys?: TrueFoundry.ClusterManifestNodeLabelKeys;
     /**
      * +label=Collaborators
      * +usage=Collaborators who can access this cluster
      * +sort=110
      */
     collaborators: TrueFoundry.Collaborator[];
-}
-
-export namespace ClusterManifest {
-    /**
-     * +label=Cluster Type
-     * +icon=fa-cloud:#7EC8E3
-     * +sort=20
-     * +usage=The cluster type of this cluster
-     */
-    export type ClusterType = "aws-eks" | "gcp-gke-standard" | "azure-aks" | "generic" | "civo-talos";
-    export const ClusterType = {
-        AwsEks: "aws-eks",
-        GcpGkeStandard: "gcp-gke-standard",
-        AzureAks: "azure-aks",
-        Generic: "generic",
-        CivoTalos: "civo-talos",
-    } as const;
-
-    /**
-     * +label=Monitoring
-     * +icon=fa-gear:#68BBE3
-     * +sort=50
-     */
-    export interface Monitoring {
-        /** +label=Cluster Loki URL */
-        loki_url?: string;
-        /** +label=Cluster VictoriaLogs URL */
-        victoria_logs_url?: string;
-        /** +label=Cluster Prometheus URL */
-        prometheus_url?: string;
-        /** +label=Cluster Kubecost URL */
-        kubecost_url?: string;
-    }
-
-    /**
-     * +label=Workbench Config
-     * +sort=70
-     */
-    export interface WorkbenchConfig {
-        notebook_config?: TrueFoundry.NotebookConfig;
-        ssh_server_config?: TrueFoundry.SshServerConfig;
-        /**
-         * +label=Default Storage Class
-         * +usage=The default storage class for the home directory of workbench
-         * +message=Must not contain any spaces.
-         */
-        default_storage_class?: string;
-    }
-
-    /**
-     * +label=Node Label Keys
-     * +usage=The node label keys that this cluster supports.
-     * Note: You will additionally need to add `truefoundry.com/gpu_type` label for GPU-supported node pools.
-     * For more information, check out [this documentation](https://docs.truefoundry.com/docs/generic-control-plane#configuring-node-pools-for-truefoundry).
-     * +sort=100
-     */
-    export interface NodeLabelKeys {
-        /**
-         * +label=Nodepool Selector Label
-         * +usage=The nodepool selector label that this cluster supports
-         */
-        nodepool_selector_label: string;
-    }
 }

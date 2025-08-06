@@ -29,12 +29,12 @@ export interface AwsBedrockGuardrailConfig {
      * +uiType=Select
      * +sort=50
      */
-    operation: AwsBedrockGuardrailConfig.Operation;
+    operation: TrueFoundry.AwsBedrockGuardrailConfigOperation;
     /**
      * +label=AWS Account Auth Data
      * +usage=Authentication data for the AWS account
      */
-    auth_data?: AwsBedrockGuardrailConfig.AuthData;
+    auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
     /**
      * +label=Guardrail ID
      * +usage=The ID of the Guardrail to use.
@@ -46,24 +46,4 @@ export interface AwsBedrockGuardrailConfig {
      */
     guardrail_version: string;
     region: TrueFoundry.AwsRegion;
-}
-
-export namespace AwsBedrockGuardrailConfig {
-    /**
-     * +label=Operation
-     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
-     * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
-     * +uiType=Select
-     * +sort=50
-     */
-    export type Operation = "validate" | "mutate";
-    export const Operation = {
-        Validate: "validate",
-        Mutate: "mutate",
-    } as const;
-    /**
-     * +label=AWS Account Auth Data
-     * +usage=Authentication data for the AWS account
-     */
-    export type AuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

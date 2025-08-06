@@ -29,7 +29,7 @@ export interface AzureAiInferenceModel {
      * +usage=Configuration details for the Azure AI deployment
      * +sort=400
      */
-    deploymentDetails: AzureAiInferenceModel.DeploymentDetails;
+    deploymentDetails: TrueFoundry.AzureAiInferenceModelDeploymentDetails;
     cost?: TrueFoundry.ModelCostMetric;
     /**
      * +label=Access Control
@@ -37,13 +37,4 @@ export interface AzureAiInferenceModel {
      * +uiType=Hidden
      */
     authorized_subjects?: string[];
-}
-
-export namespace AzureAiInferenceModel {
-    /**
-     * +label=Deployment Configuration
-     * +usage=Configuration details for the Azure AI deployment
-     * +sort=400
-     */
-    export type DeploymentDetails = TrueFoundry.AzureAiManagedDeployment | TrueFoundry.AzureAiServerlessDeployment;
 }

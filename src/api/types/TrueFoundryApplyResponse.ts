@@ -6,48 +6,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface TrueFoundryApplyResponse {
     /** The existing manifest of the resource */
-    existingManifest?: TrueFoundryApplyResponse.ExistingManifest;
+    existingManifest?: TrueFoundry.TrueFoundryApplyResponseExistingManifest;
     /** The action performed: CREATE or UPDATE */
-    action?: TrueFoundryApplyResponse.Action;
-}
-
-export namespace TrueFoundryApplyResponse {
-    /**
-     * The existing manifest of the resource
-     */
-    export type ExistingManifest =
-        | TrueFoundry.MlRepoManifest
-        | TrueFoundry.ArtifactManifest
-        | TrueFoundry.ModelManifest
-        | TrueFoundry.ChatPromptManifest
-        | TrueFoundry.DataDirectory
-        | TrueFoundry.Service
-        | TrueFoundry.ApplicationSet
-        | TrueFoundry.ProviderAccounts
-        | TrueFoundry.ClusterManifest
-        | TrueFoundry.WorkspaceManifest
-        | TrueFoundry.Job
-        | TrueFoundry.Helm
-        | TrueFoundry.Volume
-        | TrueFoundry.Notebook
-        | TrueFoundry.RStudio
-        | TrueFoundry.Workflow
-        | TrueFoundry.AsyncService
-        | TrueFoundry.SshServer
-        | TrueFoundry.SparkJob
-        | TrueFoundry.GatewayConfig
-        | TrueFoundry.TeamManifest
-        | TrueFoundry.PolicyManifest
-        | TrueFoundry.AlertConfig
-        | TrueFoundry.VirtualAccountManifest
-        | TrueFoundry.CommonToolsSettings
-        | TrueFoundry.AiFeaturesSettings;
-    /**
-     * The action performed: CREATE or UPDATE
-     */
-    export type Action = "CREATE" | "UPDATE";
-    export const Action = {
-        Create: "CREATE",
-        Update: "UPDATE",
-    } as const;
+    action?: TrueFoundry.TrueFoundryApplyResponseAction;
 }

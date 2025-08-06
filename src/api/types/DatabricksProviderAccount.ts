@@ -24,7 +24,7 @@ export interface DatabricksProviderAccount {
      * +sort=300
      * +usage=Databricks authentication credentials
      */
-    auth_data: DatabricksProviderAccount.AuthData;
+    auth_data: TrueFoundry.DatabricksProviderAccountAuthData;
     /**
      * +label=Base URL
      * +sort=400
@@ -46,13 +46,4 @@ export interface DatabricksProviderAccount {
      * +uiType=Collaborators
      */
     collaborators?: TrueFoundry.Collaborator[];
-}
-
-export namespace DatabricksProviderAccount {
-    /**
-     * +label=Auth Data
-     * +sort=300
-     * +usage=Databricks authentication credentials
-     */
-    export type AuthData = TrueFoundry.DatabricksServicePrincipalAuth | TrueFoundry.DatabricksApiKeyAuth;
 }

@@ -11,7 +11,7 @@ export interface Port {
     /** +usage=Port number to expose. */
     port: number;
     /** +usage=Protocol for the port. */
-    protocol: Port.Protocol;
+    protocol: TrueFoundry.PortProtocol;
     /** +usage=Expose the port */
     expose: boolean;
     /**
@@ -21,7 +21,7 @@ export interface Port {
      * If you are running a gRPC server, select the `grpc` option.
      * This is only applicable if `expose=true`.
      */
-    app_protocol?: Port.AppProtocol;
+    app_protocol?: TrueFoundry.PortAppProtocol;
     /**
      * +usage=Host e.g. ai.example.com, app.truefoundry.com
      * +message=Upto 253 characters, each part of host should be at most 63 characters long, can contain alphabets, digits and hypen, must begin and end with an alphanumeric characters. Parts must be separated by periods (.)
@@ -42,33 +42,5 @@ export interface Port {
      */
     rewrite_path_to?: string;
     /** +usage=Authentication method for inbound traffic */
-    auth?: Port.Auth;
-}
-
-export namespace Port {
-    /**
-     * +usage=Protocol for the port.
-     */
-    export type Protocol = "TCP" | "UDP";
-    export const Protocol = {
-        Tcp: "TCP",
-        Udp: "UDP",
-    } as const;
-    /**
-     * +label=Application Protocol
-     * +usage=Application Protocol for the port.
-     * Select the application protocol used by your service. For most use cases, this should be `http`(HTTP/1.1).
-     * If you are running a gRPC server, select the `grpc` option.
-     * This is only applicable if `expose=true`.
-     */
-    export type AppProtocol = "http" | "grpc" | "tcp";
-    export const AppProtocol = {
-        Http: "http",
-        Grpc: "grpc",
-        Tcp: "tcp",
-    } as const;
-    /**
-     * +usage=Authentication method for inbound traffic
-     */
-    export type Auth = TrueFoundry.BasicAuthCreds | TrueFoundry.JwtAuthConfig | TrueFoundry.TrueFoundryInteractiveLogin;
+    auth?: TrueFoundry.PortAuth;
 }

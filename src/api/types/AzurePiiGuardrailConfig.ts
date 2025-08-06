@@ -46,7 +46,7 @@ export interface AzurePiiGuardrailConfig {
      * +usage=Domain for PII detection
      * +sort=400
      */
-    domain: AzurePiiGuardrailConfig.Domain;
+    domain: TrueFoundry.AzurePiiGuardrailConfigDomain;
     /**
      * +label=PII Categories
      * +usage=Categories of PII to detect.
@@ -67,17 +67,4 @@ export interface AzurePiiGuardrailConfig {
      */
     language: string;
     auth_data: TrueFoundry.AzureKeyAuth;
-}
-
-export namespace AzurePiiGuardrailConfig {
-    /**
-     * +label=Domain
-     * +usage=Domain for PII detection
-     * +sort=400
-     */
-    export type Domain = "none" | "healthcare";
-    export const Domain = {
-        None: "none",
-        Healthcare: "healthcare",
-    } as const;
 }

@@ -9,7 +9,7 @@ export interface Deployment {
     version?: number;
     fqn?: string;
     applicationId?: string;
-    manifest: Deployment.Manifest;
+    manifest: TrueFoundry.DeploymentManifest;
     application?: TrueFoundry.Application;
     createdBySubject: TrueFoundry.Subject;
     createdAt?: string;
@@ -21,21 +21,4 @@ export interface Deployment {
     /** Applied recommendations for this deployment */
     appliedRecommendations?: TrueFoundry.Recommendation[];
     createdBy?: string;
-}
-
-export namespace Deployment {
-    export type Manifest =
-        | TrueFoundry.Service
-        | TrueFoundry.AsyncService
-        | TrueFoundry.Job
-        | TrueFoundry.Notebook
-        | TrueFoundry.Codeserver
-        | TrueFoundry.SshServer
-        | TrueFoundry.RStudio
-        | TrueFoundry.Helm
-        | TrueFoundry.Volume
-        | TrueFoundry.ApplicationSet
-        | TrueFoundry.Workflow
-        | TrueFoundry.SparkJob
-        | TrueFoundry.Intercept;
 }

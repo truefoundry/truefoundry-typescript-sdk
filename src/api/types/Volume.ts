@@ -18,7 +18,7 @@ export interface Volume {
      * +label=Volume Config
      * +message=Volume Configuration, can be either Dynamically provisioned or statically provisioned.
      */
-    config: Volume.Config;
+    config: TrueFoundry.VolumeConfig;
     volume_browser?: TrueFoundry.VolumeBrowser;
     /**
      * +label=Workspace FQN
@@ -26,13 +26,4 @@ export interface Volume {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-}
-
-export namespace Volume {
-    /**
-     * +sort=2
-     * +label=Volume Config
-     * +message=Volume Configuration, can be either Dynamically provisioned or statically provisioned.
-     */
-    export type Config = TrueFoundry.DynamicVolumeConfig | TrueFoundry.StaticVolumeConfig;
 }

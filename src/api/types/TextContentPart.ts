@@ -11,12 +11,5 @@ export interface TextContentPart {
     /** Type of the content part */
     type: "text";
     /** Text content for the message */
-    text: TextContentPart.Text;
-}
-
-export namespace TextContentPart {
-    /**
-     * Text content for the message
-     */
-    export type Text = string | TrueFoundry.BlobStorageReference;
+    text: TrueFoundry.TextContentPartText;
 }

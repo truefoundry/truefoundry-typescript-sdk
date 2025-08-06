@@ -17,7 +17,7 @@ export interface CustomModel {
     hosted_model_name: string;
     /** +message=enter valid https/http URL that should not end with trailing slash */
     url: string;
-    model_server: CustomModel.ModelServer;
+    model_server: TrueFoundry.CustomModelModelServer;
     /** +uiType=Hidden */
     tfy_application_id?: string;
     /** +value=integration/model/custom */
@@ -32,7 +32,7 @@ export interface CustomModel {
      * +usage=Custom authentication data for the integration.
      * +sort=300
      */
-    auth_data?: CustomModel.AuthData;
+    auth_data?: TrueFoundry.CustomModelAuthData;
     /**
      * +label=Custom Headers
      * +usage=Custom headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}`
@@ -47,20 +47,4 @@ export interface CustomModel {
      * +uiType=AuthorizedSubjects
      */
     authorized_subjects?: string[];
-}
-
-export namespace CustomModel {
-    export type ModelServer = "vllm-openai" | "tei" | "infinity" | "nemo-retriever";
-    export const ModelServer = {
-        VllmOpenai: "vllm-openai",
-        Tei: "tei",
-        Infinity: "infinity",
-        NemoRetriever: "nemo-retriever",
-    } as const;
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=300
-     */
-    export type AuthData = TrueFoundry.CustomBasicAuth | TrueFoundry.CustomBearerAuth;
 }

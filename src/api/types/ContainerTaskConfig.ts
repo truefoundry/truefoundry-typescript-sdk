@@ -13,7 +13,7 @@ export interface ContainerTaskConfig {
      * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
      * +sort=200
      */
-    image: ContainerTaskConfig.Image;
+    image: TrueFoundry.ContainerTaskConfigImage;
     /**
      * +label=Environment Variables
      * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
@@ -32,14 +32,4 @@ export interface ContainerTaskConfig {
      * +sort=500
      */
     service_account?: string;
-}
-
-export namespace ContainerTaskConfig {
-    /**
-     * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
-     * +label=Deploy a Docker image or build and deploy from source code
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=200
-     */
-    export type Image = TrueFoundry.Build | TrueFoundry.Image;
 }

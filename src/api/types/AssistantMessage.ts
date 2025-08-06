@@ -11,19 +11,9 @@ export interface AssistantMessage {
     /** Role of the message */
     role: "assistant";
     /** Text content for the assistant message */
-    content?: AssistantMessage.Content;
+    content?: TrueFoundry.AssistantMessageContent;
     /** List of tool calls made by the assistant */
     tool_calls?: TrueFoundry.ToolCall[];
     /** Name of the assistant this message is from */
     name?: string;
-}
-
-export namespace AssistantMessage {
-    /**
-     * Text content for the assistant message
-     */
-    export type Content =
-        | string
-        | (TrueFoundry.TextContentPart | TrueFoundry.RefusalContentPart)[]
-        | TrueFoundry.BlobStorageReference;
 }

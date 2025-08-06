@@ -22,7 +22,7 @@ export interface ApplicationSet {
      * +icon=fa-puzzle-piece
      * +uiType=AppComponents
      */
-    components?: ApplicationSet.Components.Item[];
+    components?: TrueFoundry.ApplicationSetComponentsItem[];
     /**
      * +label=Template
      * +usage=Template to be used for the application set.
@@ -50,12 +50,4 @@ export interface ApplicationSet {
      * +uiType=Hidden
      */
     convert_template_manifest?: boolean;
-}
-
-export namespace ApplicationSet {
-    export type Components = Components.Item[];
-
-    export namespace Components {
-        export type Item = TrueFoundry.Service | TrueFoundry.AsyncService | TrueFoundry.Job | TrueFoundry.Helm;
-    }
 }

@@ -26,29 +26,12 @@ export interface Build {
      * +icon=fa-code
      * +sort=1
      */
-    build_source: Build.BuildSource;
+    build_source: TrueFoundry.BuildBuildSource;
     /**
      * +docs=Instructions to build a container image out of the build source
      * +label=Build using DockerFile or using Buildpack
      * +icon=fa-wrench
      * +sort=2
      */
-    build_spec: Build.BuildSpec;
-}
-
-export namespace Build {
-    /**
-     * +docs=Source code location.
-     * +label=Fetch source code to build and deploy
-     * +icon=fa-code
-     * +sort=1
-     */
-    export type BuildSource = TrueFoundry.RemoteSource | TrueFoundry.GitSource | TrueFoundry.LocalSource;
-    /**
-     * +docs=Instructions to build a container image out of the build source
-     * +label=Build using DockerFile or using Buildpack
-     * +icon=fa-wrench
-     * +sort=2
-     */
-    export type BuildSpec = TrueFoundry.DockerFileBuild | TrueFoundry.PythonBuild;
+    build_spec: TrueFoundry.BuildBuildSpec;
 }

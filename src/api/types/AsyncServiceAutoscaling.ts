@@ -10,19 +10,5 @@ export interface AsyncServiceAutoscaling extends TrueFoundry.BaseAutoscaling {
      * +usage=Metrics to use for the autoscaler
      * +sort=4
      */
-    metrics?: AsyncServiceAutoscaling.Metrics;
-}
-
-export namespace AsyncServiceAutoscaling {
-    /**
-     * +label=Autoscaling metrics
-     * +usage=Metrics to use for the autoscaler
-     * +sort=4
-     */
-    export type Metrics =
-        | TrueFoundry.SqsQueueMetricConfig
-        | TrueFoundry.NatsMetricConfig
-        | TrueFoundry.KafkaMetricConfig
-        | TrueFoundry.CronMetric
-        | TrueFoundry.AmqpMetricConfig;
+    metrics?: TrueFoundry.AsyncServiceAutoscalingMetrics;
 }

@@ -11,14 +11,7 @@ export interface SystemMessage {
     /** Role of the message */
     role: "system";
     /** Text content for the system message */
-    content: SystemMessage.Content;
+    content: TrueFoundry.SystemMessageContent;
     /** Name of the system */
     name?: string;
-}
-
-export namespace SystemMessage {
-    /**
-     * Text content for the system message
-     */
-    export type Content = string | TrueFoundry.BlobStorageReference;
 }

@@ -30,7 +30,7 @@ export interface WebhookIntegration {
      * +usage=Authentication configuration for the webhook
      * +sort=300
      */
-    auth_data?: WebhookIntegration.AuthData;
+    auth_data?: TrueFoundry.WebhookIntegrationAuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
@@ -38,13 +38,4 @@ export interface WebhookIntegration {
      * +uiType=AuthorizedSubjects
      */
     authorized_subjects?: string[];
-}
-
-export namespace WebhookIntegration {
-    /**
-     * +label=Authentication
-     * +usage=Authentication configuration for the webhook
-     * +sort=300
-     */
-    export type AuthData = TrueFoundry.WebhookBasicAuth | TrueFoundry.WebhookBearerAuth;
 }

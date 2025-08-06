@@ -29,7 +29,7 @@ export interface AwsEcr {
      * +usage=Custom authentication data for the integration.
      * +sort=300
      */
-    auth_data?: AwsEcr.AuthData;
+    auth_data?: TrueFoundry.AwsEcrAuthData;
     /**
      * +label=Access Control
      * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
@@ -37,13 +37,4 @@ export interface AwsEcr {
      * +uiType=AuthorizedSubjects
      */
     authorized_subjects?: string[];
-}
-
-export namespace AwsEcr {
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=300
-     */
-    export type AuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

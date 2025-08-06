@@ -20,7 +20,7 @@ export interface BedrockModel {
     /** +value=integration/model/aws */
     type: "integration/model/aws";
     /** +label=Auth Data */
-    auth_data?: BedrockModel.AuthData;
+    auth_data?: TrueFoundry.BedrockModelAuthData;
     region: TrueFoundry.AwsRegion;
     /**
      * +usage=Specify the type of the model
@@ -34,11 +34,4 @@ export interface BedrockModel {
      * +uiType=Hidden
      */
     authorized_subjects?: string[];
-}
-
-export namespace BedrockModel {
-    /**
-     * +label=Auth Data
-     */
-    export type AuthData = TrueFoundry.BedrockKeyAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

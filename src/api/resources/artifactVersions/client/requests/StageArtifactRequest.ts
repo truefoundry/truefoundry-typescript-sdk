@@ -21,9 +21,5 @@ import * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface StageArtifactRequest {
-    manifest: StageArtifactRequest.Manifest;
-}
-
-export namespace StageArtifactRequest {
-    export type Manifest = TrueFoundry.ModelManifest | TrueFoundry.ArtifactManifest;
+    manifest: TrueFoundry.StageArtifactRequestManifest;
 }

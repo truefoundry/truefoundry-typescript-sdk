@@ -20,38 +20,5 @@ import * as TrueFoundry from "../../index.js";
  */
 export interface TrueFoundryDeleteRequest {
     /** manifest of the resource to be deleted */
-    manifest: TrueFoundryDeleteRequest.Manifest;
-}
-
-export namespace TrueFoundryDeleteRequest {
-    /**
-     * manifest of the resource to be deleted
-     */
-    export type Manifest =
-        | TrueFoundry.MlRepoManifest
-        | TrueFoundry.ArtifactManifest
-        | TrueFoundry.ModelManifest
-        | TrueFoundry.ChatPromptManifest
-        | TrueFoundry.DataDirectory
-        | TrueFoundry.Service
-        | TrueFoundry.ApplicationSet
-        | TrueFoundry.ProviderAccounts
-        | TrueFoundry.ClusterManifest
-        | TrueFoundry.WorkspaceManifest
-        | TrueFoundry.Job
-        | TrueFoundry.Helm
-        | TrueFoundry.Volume
-        | TrueFoundry.Notebook
-        | TrueFoundry.RStudio
-        | TrueFoundry.Workflow
-        | TrueFoundry.AsyncService
-        | TrueFoundry.SshServer
-        | TrueFoundry.SparkJob
-        | TrueFoundry.GatewayConfig
-        | TrueFoundry.TeamManifest
-        | TrueFoundry.PolicyManifest
-        | TrueFoundry.AlertConfig
-        | TrueFoundry.VirtualAccountManifest
-        | TrueFoundry.CommonToolsSettings
-        | TrueFoundry.AiFeaturesSettings;
+    manifest: TrueFoundry.TrueFoundryDeleteRequestManifest;
 }

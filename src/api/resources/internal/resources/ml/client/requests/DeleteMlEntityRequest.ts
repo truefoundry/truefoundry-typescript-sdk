@@ -21,14 +21,5 @@ import * as TrueFoundry from "../../../../../../index.js";
  *     }
  */
 export interface DeleteMlEntityRequest {
-    manifest: DeleteMlEntityRequest.Manifest;
-}
-
-export namespace DeleteMlEntityRequest {
-    export type Manifest =
-        | TrueFoundry.ModelManifest
-        | TrueFoundry.ChatPromptManifest
-        | TrueFoundry.ArtifactManifest
-        | TrueFoundry.DataDirectoryManifest
-        | TrueFoundry.MlRepoManifest;
+    manifest: TrueFoundry.internal.DeleteMlEntityRequestManifest;
 }

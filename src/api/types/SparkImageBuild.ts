@@ -27,15 +27,6 @@ export interface SparkImageBuild {
      * +label=Fetch source code
      * +sort=1003
      */
-    build_source: SparkImageBuild.BuildSource;
+    build_source: TrueFoundry.SparkImageBuildBuildSource;
     build_spec: TrueFoundry.SparkBuild;
-}
-
-export namespace SparkImageBuild {
-    /**
-     * TODO (gw): The following is a hack till the uiType GitSelect is fixed fron frontend
-     * +label=Fetch source code
-     * +sort=1003
-     */
-    export type BuildSource = TrueFoundry.GitSource | TrueFoundry.RemoteSource;
 }

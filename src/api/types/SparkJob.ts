@@ -22,12 +22,12 @@ export interface SparkJob {
      * +usage=The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image.
      * +sort=500
      */
-    image: SparkJob.Image;
+    image: TrueFoundry.SparkJobImage;
     /**
      * +label=Entrypoint
      * +sort=1000
      */
-    entrypoint: SparkJob.Entrypoint;
+    entrypoint: TrueFoundry.SparkJobEntrypoint;
     driver_config: TrueFoundry.SparkDriverConfig;
     executor_config: TrueFoundry.SparkExecutorConfig;
     /**
@@ -69,23 +69,4 @@ export interface SparkJob {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-}
-
-export namespace SparkJob {
-    /**
-     * +label=Deploy a Docker image & Specify Spark Version
-     * +usage=The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image.
-     * +sort=500
-     */
-    export type Image = TrueFoundry.SparkImage | TrueFoundry.SparkImageBuild;
-    /**
-     * +label=Entrypoint
-     * +sort=1000
-     */
-    export type Entrypoint =
-        | TrueFoundry.SparkJobPythonEntrypoint
-        | TrueFoundry.SparkJobScalaEntrypoint
-        | TrueFoundry.SparkJobJavaEntrypoint
-        | TrueFoundry.SparkJobPythonNotebookEntrypoint
-        | TrueFoundry.SparkJobScalaNotebookEntrypoint;
 }

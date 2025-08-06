@@ -5,14 +5,5 @@
 import * as TrueFoundry from "../index.js";
 
 export interface ApplyMlEntityResponse {
-    data: ApplyMlEntityResponse.Data;
-}
-
-export namespace ApplyMlEntityResponse {
-    export type Data =
-        | TrueFoundry.ModelVersion
-        | TrueFoundry.PromptVersion
-        | TrueFoundry.ArtifactVersion
-        | TrueFoundry.DataDirectory
-        | TrueFoundry.TracingProject;
+    data: TrueFoundry.ApplyMlEntityResponseData;
 }

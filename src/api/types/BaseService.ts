@@ -18,7 +18,7 @@ export interface BaseService {
      * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
      * +sort=2
      */
-    image: BaseService.Image;
+    image: TrueFoundry.BaseServiceImage;
     artifacts_download?: TrueFoundry.ArtifactsDownload;
     resources?: TrueFoundry.Resources;
     /**
@@ -41,7 +41,7 @@ export interface BaseService {
      * +usage=Configure data to be mounted to service pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-service)
      * +sort=10011
      */
-    mounts?: BaseService.Mounts.Item[];
+    mounts?: TrueFoundry.BaseServiceMountsItem[];
     /** +label=Labels */
     labels?: Record<string, string>;
     kustomize?: TrueFoundry.Kustomize;
@@ -53,19 +53,4 @@ export interface BaseService {
      * +uiType=Hidden
      */
     workspace_fqn?: string;
-}
-
-export namespace BaseService {
-    /**
-     * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
-     * +label=Deploy a Docker image or build and deploy from source code
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=2
-     */
-    export type Image = TrueFoundry.Build | TrueFoundry.Image;
-    export type Mounts = Mounts.Item[];
-
-    export namespace Mounts {
-        export type Item = TrueFoundry.SecretMount | TrueFoundry.StringDataMount | TrueFoundry.VolumeMount;
-    }
 }

@@ -16,7 +16,7 @@ export interface Service extends TrueFoundry.BaseService {
      * +icon=fa-clone
      * +sort=4
      */
-    replicas?: Service.Replicas;
+    replicas?: TrueFoundry.ServiceReplicas;
     auto_shutdown?: TrueFoundry.Autoshutdown;
     /**
      * +label=Allow intercepts
@@ -28,20 +28,5 @@ export interface Service extends TrueFoundry.BaseService {
      * +label=Rollout strategy
      * +usage=Strategy to dictate how a rollout should happen when a new release for this service is made [Docs](https://docs.truefoundry.com/docs/rollout-strategy)
      */
-    rollout_strategy?: Service.RolloutStrategy;
-}
-
-export namespace Service {
-    /**
-     * +label=Replicas
-     * +usage=Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing.
-     * +icon=fa-clone
-     * +sort=4
-     */
-    export type Replicas = number | TrueFoundry.ServiceAutoscaling;
-    /**
-     * +label=Rollout strategy
-     * +usage=Strategy to dictate how a rollout should happen when a new release for this service is made [Docs](https://docs.truefoundry.com/docs/rollout-strategy)
-     */
-    export type RolloutStrategy = TrueFoundry.Rolling | TrueFoundry.Canary | TrueFoundry.BlueGreen;
+    rollout_strategy?: TrueFoundry.ServiceRolloutStrategy;
 }

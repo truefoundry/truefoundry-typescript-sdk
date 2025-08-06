@@ -20,37 +20,12 @@ export interface ModelManifest {
     /** Version of the entity */
     version?: number;
     type: "model-version";
-    source: ModelManifest.Source;
+    source: TrueFoundry.ModelManifestSource;
     /** Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration */
-    framework?: ModelManifest.Framework;
+    framework?: TrueFoundry.ModelManifestFramework;
     environment?: TrueFoundry.ModelVersionEnvironment;
     /** Step/Epoch number in an iterative training loop the model version was created. Generally useful when logging a model version from a MLRepo Run */
     step?: number;
     /** ID of the MLRepo Run that generated the model version */
     run_id?: string;
-}
-
-export namespace ModelManifest {
-    export type Source =
-        | TrueFoundry.TrueFoundryManagedSource
-        | TrueFoundry.ExternalBlobStorageSource
-        | TrueFoundry.LocalModelSource;
-    /**
-     * Framework for the model version like Transformers, PyTorch, Sklearn, Xgboost etc with framework specific metadata. This will be used to infer model deployment configuration
-     */
-    export type Framework =
-        | TrueFoundry.TransformersFramework
-        | TrueFoundry.TensorFlowFramework
-        | TrueFoundry.SklearnFramework
-        | TrueFoundry.PyTorchFramework
-        | TrueFoundry.KerasFramework
-        | TrueFoundry.XgBoostFramework
-        | TrueFoundry.LightGbmFramework
-        | TrueFoundry.FastAiFramework
-        | TrueFoundry.H2OFramework
-        | TrueFoundry.OnnxFramework
-        | TrueFoundry.SpaCyFramework
-        | TrueFoundry.StatsModelsFramework
-        | TrueFoundry.GluonFramework
-        | TrueFoundry.PaddleFramework;
 }

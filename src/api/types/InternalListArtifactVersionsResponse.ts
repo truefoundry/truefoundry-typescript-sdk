@@ -5,14 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 export interface InternalListArtifactVersionsResponse {
-    data: InternalListArtifactVersionsResponse.Data.Item[];
+    data: TrueFoundry.InternalListArtifactVersionsResponseDataItem[];
     pagination: TrueFoundry.Pagination;
-}
-
-export namespace InternalListArtifactVersionsResponse {
-    export type Data = Data.Item[];
-
-    export namespace Data {
-        export type Item = TrueFoundry.InternalArtifactVersion | TrueFoundry.InternalModelVersion;
-    }
 }

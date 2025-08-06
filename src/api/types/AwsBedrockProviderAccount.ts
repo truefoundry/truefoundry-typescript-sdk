@@ -25,7 +25,7 @@ export interface AwsBedrockProviderAccount {
      * +sort=400
      * +usage=Authentication data for the AWS account
      */
-    auth_data?: AwsBedrockProviderAccount.AuthData;
+    auth_data?: TrueFoundry.AwsBedrockProviderAccountAuthData;
     /**
      * +label=Integrations
      * +sort=500
@@ -40,13 +40,4 @@ export interface AwsBedrockProviderAccount {
      * +uiType=Collaborators
      */
     collaborators?: TrueFoundry.Collaborator[];
-}
-
-export namespace AwsBedrockProviderAccount {
-    /**
-     * +label=AWS Account Auth Data
-     * +sort=400
-     * +usage=Authentication data for the AWS account
-     */
-    export type AuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;
 }

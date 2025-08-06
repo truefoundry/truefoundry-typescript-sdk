@@ -15,13 +15,5 @@ export interface ArtifactsDownload {
      * +label=Artifacts
      * +usage=List of artifacts to be cached
      */
-    artifacts: ArtifactsDownload.Artifacts.Item[];
-}
-
-export namespace ArtifactsDownload {
-    export type Artifacts = Artifacts.Item[];
-
-    export namespace Artifacts {
-        export type Item = TrueFoundry.TrueFoundryArtifactSource | TrueFoundry.HuggingfaceArtifactSource;
-    }
+    artifacts: TrueFoundry.ArtifactsDownloadArtifactsItem[];
 }

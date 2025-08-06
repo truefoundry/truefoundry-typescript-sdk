@@ -9,13 +9,6 @@ import * as TrueFoundry from "../index.js";
  */
 export interface ImageUrl {
     /** Image URL linking to the image */
-    url: ImageUrl.Url;
+    url: TrueFoundry.ImageUrlUrl;
     detail?: string;
-}
-
-export namespace ImageUrl {
-    /**
-     * Image URL linking to the image
-     */
-    export type Url = string | TrueFoundry.BlobStorageReference;
 }

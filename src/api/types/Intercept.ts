@@ -13,33 +13,5 @@ export interface Intercept {
      * +usage=Name of the service this intercept is for
      */
     name: string;
-    rules: Intercept.Rules.Item[];
-}
-
-export namespace Intercept {
-    export type Rules = Rules.Item[];
-
-    export namespace Rules {
-        export interface Item {
-            /**
-             * +docs=Port of service to be intercepted
-             * +label=Service port
-             */
-            port: number;
-            match?: TrueFoundry.HeaderMatch;
-            /**
-             * +docs=Action to take on succesful match
-             * +label=Action
-             */
-            action: Item.Action;
-        }
-
-        export namespace Item {
-            /**
-             * +docs=Action to take on succesful match
-             * +label=Action
-             */
-            export type Action = TrueFoundry.ForwardAction | TrueFoundry.MirrorAction;
-        }
-    }
+    rules: TrueFoundry.InterceptRulesItem[];
 }

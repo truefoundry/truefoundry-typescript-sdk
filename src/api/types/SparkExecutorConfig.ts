@@ -9,13 +9,6 @@ import * as TrueFoundry from "../index.js";
  */
 export interface SparkExecutorConfig {
     /** +label=Executor Instances */
-    instances: SparkExecutorConfig.Instances;
+    instances: TrueFoundry.SparkExecutorConfigInstances;
     resources?: TrueFoundry.Resources;
-}
-
-export namespace SparkExecutorConfig {
-    /**
-     * +label=Executor Instances
-     */
-    export type Instances = TrueFoundry.SparkExecutorFixedInstances | TrueFoundry.SparkExecutorDynamicScaling;
 }

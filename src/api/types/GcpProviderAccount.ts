@@ -31,7 +31,7 @@ export interface GcpProviderAccount {
      * +usage=Authentication data for the GCP account.
      * +sort=400
      */
-    auth_data?: GcpProviderAccount.AuthData;
+    auth_data?: TrueFoundry.GcpProviderAccountAuthData;
     /**
      * +label=Integrations
      * +usage=List of integrations that are associated with the GCP provider account.
@@ -39,13 +39,4 @@ export interface GcpProviderAccount {
      * +uiType=IntegrationsGroup
      */
     integrations: TrueFoundry.GcpIntegrations[];
-}
-
-export namespace GcpProviderAccount {
-    /**
-     * +label=GCP Account Auth Data
-     * +usage=Authentication data for the GCP account.
-     * +sort=400
-     */
-    export type AuthData = TrueFoundry.GcpKeyFileAuth | TrueFoundry.GcpApiKeyAuth;
 }

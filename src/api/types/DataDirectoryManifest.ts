@@ -17,9 +17,5 @@ export interface DataDirectoryManifest {
     description?: string;
     /** Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
-    source: DataDirectoryManifest.Source;
-}
-
-export namespace DataDirectoryManifest {
-    export type Source = TrueFoundry.TrueFoundryManagedSource | TrueFoundry.ExternalBlobStorageSource;
+    source: TrueFoundry.DataDirectoryManifestSource;
 }

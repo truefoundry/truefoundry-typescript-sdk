@@ -32,7 +32,7 @@ export interface SelfHostedModel {
      * +label=Model Server Type
      * +usage=The type of model server being used
      */
-    model_server: SelfHostedModel.ModelServer;
+    model_server: TrueFoundry.SelfHostedModelModelServer;
     /** +uiType=Hidden */
     tfy_application_id?: string;
     /**
@@ -46,7 +46,7 @@ export interface SelfHostedModel {
      * +usage=SelfHostedModel authentication data for the integration.
      * +sort=300
      */
-    auth_data?: SelfHostedModel.AuthData;
+    auth_data?: TrueFoundry.SelfHostedModelAuthData;
     /**
      * +label=SelfHostedModel Headers
      * +usage=SelfHostedModel headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}`
@@ -61,25 +61,4 @@ export interface SelfHostedModel {
      * +uiType=Hidden
      */
     authorized_subjects?: string[];
-}
-
-export namespace SelfHostedModel {
-    /**
-     * +sort=4
-     * +label=Model Server Type
-     * +usage=The type of model server being used
-     */
-    export type ModelServer = "vllm-openai" | "tei" | "infinity" | "nemo-retriever";
-    export const ModelServer = {
-        VllmOpenai: "vllm-openai",
-        Tei: "tei",
-        Infinity: "infinity",
-        NemoRetriever: "nemo-retriever",
-    } as const;
-    /**
-     * +label=Auth Data
-     * +usage=SelfHostedModel authentication data for the integration.
-     * +sort=300
-     */
-    export type AuthData = TrueFoundry.CustomBasicAuth | TrueFoundry.CustomBearerAuth;
 }

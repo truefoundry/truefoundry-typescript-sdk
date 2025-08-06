@@ -42,17 +42,5 @@ export interface OpenAiModerationsGuardrailConfig {
      * +usage=The thresholds for the OpenAI Moderation API.
      * +uiType=KV
      */
-    category_thresholds?: Record<string, OpenAiModerationsGuardrailConfig.CategoryThresholds.Value>;
-}
-
-export namespace OpenAiModerationsGuardrailConfig {
-    export namespace CategoryThresholds {
-        export type Value =
-            | number
-            | {
-                  harassment: number;
-                  sexual: number;
-                  violence: number;
-              };
-    }
+    category_thresholds?: Record<string, TrueFoundry.OpenAiModerationsGuardrailConfigCategoryThresholdsValue>;
 }

@@ -5,12 +5,5 @@
 import * as TrueFoundry from "../index.js";
 
 export interface FlyteTaskCustom {
-    truefoundry: FlyteTaskCustom.Truefoundry;
-}
-
-export namespace FlyteTaskCustom {
-    export type Truefoundry =
-        | TrueFoundry.PythonTaskConfig
-        | TrueFoundry.ContainerTaskConfig
-        | TrueFoundry.PySparkTaskConfig;
+    truefoundry: TrueFoundry.FlyteTaskCustomTruefoundry;
 }

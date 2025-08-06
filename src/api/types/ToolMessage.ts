@@ -11,14 +11,7 @@ export interface ToolMessage {
     /** Role of the message */
     role: "tool";
     /** Content of the tool call result */
-    content: ToolMessage.Content;
+    content: TrueFoundry.ToolMessageContent;
     /** Unique identifier for the tool call */
     tool_call_id: string;
-}
-
-export namespace ToolMessage {
-    /**
-     * Content of the tool call result
-     */
-    export type Content = string | TrueFoundry.BlobStorageReference;
 }

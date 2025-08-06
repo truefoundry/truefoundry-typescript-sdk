@@ -20,40 +20,7 @@ import * as TrueFoundry from "../../index.js";
  */
 export interface TrueFoundryApplyRequest {
     /** manifest of the resource to be created or updated */
-    manifest: TrueFoundryApplyRequest.Manifest;
+    manifest: TrueFoundry.TrueFoundryApplyRequestManifest;
     /** Dry run the apply operation without actually applying */
     dryRun?: boolean;
-}
-
-export namespace TrueFoundryApplyRequest {
-    /**
-     * manifest of the resource to be created or updated
-     */
-    export type Manifest =
-        | TrueFoundry.MlRepoManifest
-        | TrueFoundry.ArtifactManifest
-        | TrueFoundry.ModelManifest
-        | TrueFoundry.ChatPromptManifest
-        | TrueFoundry.DataDirectory
-        | TrueFoundry.Service
-        | TrueFoundry.ApplicationSet
-        | TrueFoundry.ProviderAccounts
-        | TrueFoundry.ClusterManifest
-        | TrueFoundry.WorkspaceManifest
-        | TrueFoundry.Job
-        | TrueFoundry.Helm
-        | TrueFoundry.Volume
-        | TrueFoundry.Notebook
-        | TrueFoundry.RStudio
-        | TrueFoundry.Workflow
-        | TrueFoundry.AsyncService
-        | TrueFoundry.SshServer
-        | TrueFoundry.SparkJob
-        | TrueFoundry.GatewayConfig
-        | TrueFoundry.TeamManifest
-        | TrueFoundry.PolicyManifest
-        | TrueFoundry.AlertConfig
-        | TrueFoundry.VirtualAccountManifest
-        | TrueFoundry.CommonToolsSettings
-        | TrueFoundry.AiFeaturesSettings;
 }

@@ -10,14 +10,5 @@ export interface ServiceAutoscaling extends TrueFoundry.BaseAutoscaling {
      * +usage=Metrics to use for the autoscaler
      * +sort=4
      */
-    metrics?: ServiceAutoscaling.Metrics;
-}
-
-export namespace ServiceAutoscaling {
-    /**
-     * +label=Autoscaling metrics
-     * +usage=Metrics to use for the autoscaler
-     * +sort=4
-     */
-    export type Metrics = TrueFoundry.CpuUtilizationMetric | TrueFoundry.RpsMetric | TrueFoundry.CronMetric;
+    metrics?: TrueFoundry.ServiceAutoscalingMetrics;
 }

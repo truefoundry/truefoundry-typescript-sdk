@@ -11,14 +11,7 @@ export interface DeveloperMessage {
     /** The role of the messages author, in this case developer. */
     role: "developer";
     /** The contents of the developer message. */
-    content: DeveloperMessage.Content;
+    content: TrueFoundry.DeveloperMessageContent;
     /** An optional name for the participant. */
     name?: string;
-}
-
-export namespace DeveloperMessage {
-    /**
-     * The contents of the developer message.
-     */
-    export type Content = string | TrueFoundry.BlobStorageReference;
 }

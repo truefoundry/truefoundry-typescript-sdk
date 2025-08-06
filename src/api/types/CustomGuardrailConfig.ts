@@ -29,14 +29,14 @@ export interface CustomGuardrailConfig {
      * +uiType=Select
      * +sort=100
      */
-    operation: CustomGuardrailConfig.Operation;
+    operation: TrueFoundry.CustomGuardrailConfigOperation;
     /**
      * +label=Target
      * +usage=Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails.
      * +uiType=Select
      * +sort=200
      */
-    target: CustomGuardrailConfig.Target;
+    target: TrueFoundry.CustomGuardrailConfigTarget;
     /**
      * +label=URL
      * +sort=300
@@ -48,7 +48,7 @@ export interface CustomGuardrailConfig {
      * +sort=450
      * +usage=Authentication data for the Guardrail Server.
      */
-    auth_data?: CustomGuardrailConfig.AuthData;
+    auth_data?: TrueFoundry.CustomGuardrailConfigAuthData;
     /**
      * +label=Headers
      * +sort=500
@@ -62,36 +62,4 @@ export interface CustomGuardrailConfig {
      * +usage=The config for the Guardrail Server. This is a JSON object that will be sent as a config to Guardrail Server along with the request.
      */
     config: Record<string, unknown>;
-}
-
-export namespace CustomGuardrailConfig {
-    /**
-     * +label=Operation
-     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
-     * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
-     * +uiType=Select
-     * +sort=100
-     */
-    export type Operation = "validate" | "mutate";
-    export const Operation = {
-        Validate: "validate",
-        Mutate: "mutate",
-    } as const;
-    /**
-     * +label=Target
-     * +usage=Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails.
-     * +uiType=Select
-     * +sort=200
-     */
-    export type Target = "request" | "response";
-    export const Target = {
-        Request: "request",
-        Response: "response",
-    } as const;
-    /**
-     * +label=Auth Data
-     * +sort=450
-     * +usage=Authentication data for the Guardrail Server.
-     */
-    export type AuthData = TrueFoundry.CustomBasicAuth | TrueFoundry.CustomBearerAuth;
 }
