@@ -4,4 +4,7 @@
 
 import * as TrueFoundry from "../index.js";
 
-export type LoadBalancingRule = TrueFoundry.WeightBasedLoadBalancingRule | TrueFoundry.LatencyBasedLoadBalancingRule;
+export type LoadBalancingRule =
+    | TrueFoundry.WeightBasedLoadBalancingRule
+    | TrueFoundry.LatencyBasedLoadBalancingRule
+    | TrueFoundry.PriorityBasedLoadBalancingRule;

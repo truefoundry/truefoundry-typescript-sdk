@@ -13,5 +13,6 @@ export interface ArtifactVersion {
     manifest: TrueFoundry.ArtifactManifest;
     usage_code_snippet?: string;
     ml_repo_id: string;
+    tags?: string[];
     artifact_id: string;
 }

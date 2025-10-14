@@ -23,4 +23,8 @@ export type ModelProviderAccount =
     | TrueFoundry.OllamaProviderAccount
     | TrueFoundry.OpenaiProviderAccount
     | TrueFoundry.DatabricksProviderAccount
-    | TrueFoundry.SelfHostedModelProviderAccount;
+    | TrueFoundry.SelfHostedModelProviderAccount
+    | TrueFoundry.OpenRouterProviderAccount
+    | TrueFoundry.SambaNovaProviderAccount
+    | TrueFoundry.AwsSagemakerProviderAccount
+    | TrueFoundry.CerebrasProviderAccount;

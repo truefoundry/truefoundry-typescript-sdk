@@ -6,14 +6,26 @@
  * +label=Model Type
  * +uiType=Select
  */
-export type ModelType = "chat" | "completion" | "embedding" | "realtime" | "rerank" | "audio" | "moderation" | "image";
+export type ModelType =
+    | "chat"
+    | "completion"
+    | "embedding"
+    | "realtime"
+    | "rerank"
+    | "audio_transcription"
+    | "audio_translation"
+    | "text_to_speech"
+    | "moderation"
+    | "image";
 export const ModelType = {
     Chat: "chat",
     Completion: "completion",
     Embedding: "embedding",
     Realtime: "realtime",
     Rerank: "rerank",
-    Audio: "audio",
+    AudioTranscription: "audio_transcription",
+    AudioTranslation: "audio_translation",
+    TextToSpeech: "text_to_speech",
     Moderation: "moderation",
     Image: "image",
 } as const;

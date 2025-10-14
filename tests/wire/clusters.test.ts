@@ -31,6 +31,7 @@ describe("Clusters", () => {
                     base_domains: ["base_domains"],
                     default_registry_fqn: "default_registry_fqn",
                     spark_config: { ui_base_domain: "ui_base_domain" },
+                    ingress_controller_config: { ingress_class_name: "ingress_class_name" },
                     cluster_integration_fqn: "cluster_integration_fqn",
                     workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
                     supported_nodepools: [{ name: "name" }],
@@ -87,6 +88,9 @@ describe("Clusters", () => {
                     spark_config: {
                         ui_base_domain: "ui_base_domain",
                     },
+                    ingress_controller_config: {
+                        ingress_class_name: "ingress_class_name",
+                    },
                     cluster_integration_fqn: "cluster_integration_fqn",
                     workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
                     supported_nodepools: [
@@ -135,6 +139,7 @@ describe("Clusters", () => {
                     base_domains: ["base_domains"],
                     default_registry_fqn: "default_registry_fqn",
                     spark_config: { ui_base_domain: "ui_base_domain" },
+                    ingress_controller_config: { ingress_class_name: "ingress_class_name" },
                     cluster_integration_fqn: "cluster_integration_fqn",
                     workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
                     supported_nodepools: [{ name: "name" }],
@@ -176,6 +181,9 @@ describe("Clusters", () => {
                     default_registry_fqn: "default_registry_fqn",
                     spark_config: {
                         ui_base_domain: "ui_base_domain",
+                    },
+                    ingress_controller_config: {
+                        ingress_class_name: "ingress_class_name",
                     },
                     cluster_integration_fqn: "cluster_integration_fqn",
                     workflow_storage_integration_fqn: "workflow_storage_integration_fqn",

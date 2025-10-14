@@ -12,7 +12,7 @@ export interface AzureAiInferenceModel {
      * +label=Display Name
      * +usage=Name to identify this Azure AI model
      * +sort=100
-     * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
      */
     name: string;
     /** +value=integration/model/azure/ai-inference */

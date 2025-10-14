@@ -13,5 +13,6 @@ export interface VirtualAccount {
     createdBySubject: TrueFoundry.Subject;
     createdAt: string;
     updatedAt: string;
+    isExpired?: boolean;
     createdBy?: string;
 }

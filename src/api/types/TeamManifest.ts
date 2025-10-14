@@ -3,7 +3,7 @@
  */
 
 export interface TeamManifest {
-    /** +value=volume */
+    /** +value=team */
     type: "team";
     /**
      * +sort=1
@@ -12,9 +12,17 @@ export interface TeamManifest {
      */
     name: string;
     /**
-     * +sort=2
+     * +sort=3
+     * +label=Team Managers
+     * +usage=Emails of each of the user who can manage the members of the team. Any tenant admin is by default a team manager.
+     * +uiType=UserSelect
+     * +uiProps={"optionTypes": ["users"]}
+     */
+    managers?: string[];
+    /**
+     * +sort=4
      * +label=Team Members
-     * +message=Enter email of each of the user you want to add in the team.
+     * +usage=Enter email of each of the user you want to add in the team.
      * +uiType=UserSelect
      * +uiProps={"optionTypes": ["users"]}
      */

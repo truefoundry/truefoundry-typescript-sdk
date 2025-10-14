@@ -401,7 +401,7 @@ export class Clusters {
     }
 
     /**
-     * List addons for the provided cluster.Pagination is available based on query parameters.
+     * List addons for the provided cluster. Pagination is available based on query parameters.
      *
      * @param {string} id - Cluster id of the cluster
      * @param {TrueFoundry.ClustersGetAddonsRequest} request

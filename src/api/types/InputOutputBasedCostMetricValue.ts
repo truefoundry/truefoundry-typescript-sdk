@@ -5,4 +5,14 @@
 export interface InputOutputBasedCostMetricValue {
     input: number;
     output: number;
+    /**
+     * Cost for reading cached tokens (e.g., OpenAI cached prompts, Anthropic cache reads)
+     * +uiProps={"allowDecimal":true}
+     */
+    cache_read?: number;
+    /**
+     * Cost for writing/creating cached tokens (e.g., Anthropic cache creation)
+     * +uiProps={"allowDecimal":true}
+     */
+    cache_write?: number;
 }

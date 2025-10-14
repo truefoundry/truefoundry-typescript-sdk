@@ -5,11 +5,22 @@
 /**
  * Chart type
  */
-export type GraphChartType = "line" | "vertical_line" | "stacked_bar" | "stacked_area" | "bubble";
+export type GraphChartType =
+    | "line"
+    | "vertical_line"
+    | "stacked_bar"
+    | "stacked_area"
+    | "bubble"
+    | "horizontal_bar"
+    | "horizontal_stacked_bar"
+    | "horizontal_box_plot";
 export const GraphChartType = {
     Line: "line",
     VerticalLine: "vertical_line",
     StackedBar: "stacked_bar",
     StackedArea: "stacked_area",
     Bubble: "bubble",
+    HorizontalBar: "horizontal_bar",
+    HorizontalStackedBar: "horizontal_stacked_bar",
+    HorizontalBoxPlot: "horizontal_box_plot",
 } as const;

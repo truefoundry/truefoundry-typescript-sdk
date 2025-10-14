@@ -9,4 +9,6 @@ export interface TrueFoundryApplyResponse {
     existingManifest?: TrueFoundry.TrueFoundryApplyResponseExistingManifest;
     /** The action performed: CREATE or UPDATE */
     action?: TrueFoundry.TrueFoundryApplyResponseAction;
+    /** The created or updated resource */
+    data?: Record<string, unknown>;
 }

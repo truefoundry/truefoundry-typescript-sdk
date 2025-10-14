@@ -13,6 +13,7 @@ export interface InternalModelVersion {
     manifest: TrueFoundry.ModelManifest;
     usage_code_snippet?: string;
     ml_repo_id: string;
+    tags?: string[];
     model_id: string;
     metrics?: TrueFoundry.Metric[];
     deployable?: boolean;

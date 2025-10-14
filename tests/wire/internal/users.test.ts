@@ -29,6 +29,9 @@ describe("Users", () => {
                 inviteAccepted: true,
                 registeredInIdp: true,
                 preference: { key: "value" },
+                groups: ["groups"],
+                tenantRoleManagedBy: "manual",
+                ssoName: "ssoName",
             },
         };
         server
@@ -63,6 +66,9 @@ describe("Users", () => {
                 preference: {
                     key: "value",
                 },
+                groups: ["groups"],
+                tenantRoleManagedBy: "manual",
+                ssoName: "ssoName",
             },
         });
     });

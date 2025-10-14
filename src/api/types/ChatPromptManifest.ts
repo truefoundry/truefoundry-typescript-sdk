@@ -30,4 +30,9 @@ export interface ChatPromptManifest {
     /** A list of MCP servers FQNs or URLs and their tools */
     mcp_servers?: TrueFoundry.ChatPromptManifestMcpServersItem[];
     guardrails?: TrueFoundry.Guardrails;
+    /** Response format configuration for structured outputs */
+    response_format?: TrueFoundry.ChatPromptManifestResponseFormat;
+    routing_config?: TrueFoundry.ChatPromptManifestRoutingConfig;
+    /** Mapping of tool calls to MCP server integration IDs and tool names */
+    tool_call_to_mcp_mapping?: Record<string, TrueFoundry.McpServerToolDetails>;
 }

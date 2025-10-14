@@ -62,11 +62,15 @@ export interface LogsGetRequest {
      */
     podNamesRegex?: string;
     /**
+     * JSON string containing array of search filters with string, type and operator
+     */
+    searchFilters?: string;
+    /**
      * String that needs to be matched
      */
     searchString?: string;
     /**
-     * Query filter type, `regex` or `substring`
+     * Query filter type, `regex` `substring` `ignore_case_substring`
      */
     searchType?: TrueFoundry.LogsSearchFilterType;
     /**

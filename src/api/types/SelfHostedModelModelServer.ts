@@ -7,10 +7,18 @@
  * +label=Model Server Type
  * +usage=The type of model server being used
  */
-export type SelfHostedModelModelServer = "vllm-openai" | "tei" | "infinity" | "nemo-retriever";
+export type SelfHostedModelModelServer =
+    | "openai-compatible"
+    | "vllm-openai"
+    | "tei"
+    | "infinity"
+    | "nemo-retriever"
+    | "cohere-rerank-v2";
 export const SelfHostedModelModelServer = {
+    OpenaiCompatible: "openai-compatible",
     VllmOpenai: "vllm-openai",
     Tei: "tei",
     Infinity: "infinity",
     NemoRetriever: "nemo-retriever",
+    CohereRerankV2: "cohere-rerank-v2",
 } as const;

@@ -12,7 +12,7 @@ export interface GoogleModel {
     /**
      * +label=Display Name
      * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
      */
     name: string;
     /** +sort=2 */

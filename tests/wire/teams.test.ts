@@ -25,7 +25,7 @@ describe("Teams", () => {
                 members: ["members"],
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                manifest: { type: "team", name: "name", members: ["members"] },
+                manifest: { type: "team", name: "name", managers: ["managers"], members: ["members"] },
             },
         };
         server
@@ -62,6 +62,7 @@ describe("Teams", () => {
                 manifest: {
                     type: "team",
                     name: "name",
+                    managers: ["managers"],
                     members: ["members"],
                 },
             },
@@ -87,7 +88,7 @@ describe("Teams", () => {
                 members: ["members"],
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                manifest: { type: "team", name: "name", members: ["members"] },
+                manifest: { type: "team", name: "name", managers: ["managers"], members: ["members"] },
             },
         };
         server
@@ -117,6 +118,7 @@ describe("Teams", () => {
                 manifest: {
                     type: "team",
                     name: "name",
+                    managers: ["managers"],
                     members: ["members"],
                 },
             },

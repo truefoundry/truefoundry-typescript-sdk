@@ -27,6 +27,7 @@ describe("VirtualAccounts", () => {
                     type: "virtual-account",
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
+                    auto_rotate: { auto_rotate_period: 1, grace_period: 1 },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -36,6 +37,7 @@ describe("VirtualAccounts", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                isExpired: true,
                 createdBy: "createdBy",
             },
             token: "token",
@@ -79,6 +81,10 @@ describe("VirtualAccounts", () => {
                             role_id: "role_id",
                         },
                     ],
+                    auto_rotate: {
+                        auto_rotate_period: 1,
+                        grace_period: 1,
+                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -88,6 +94,7 @@ describe("VirtualAccounts", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                isExpired: true,
                 createdBy: "createdBy",
             },
             token: "token",
@@ -109,6 +116,7 @@ describe("VirtualAccounts", () => {
                     type: "virtual-account",
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
+                    auto_rotate: { auto_rotate_period: 1, grace_period: 1 },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -118,6 +126,7 @@ describe("VirtualAccounts", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                isExpired: true,
                 createdBy: "createdBy",
             },
             token: "token",
@@ -148,6 +157,10 @@ describe("VirtualAccounts", () => {
                             role_id: "role_id",
                         },
                     ],
+                    auto_rotate: {
+                        auto_rotate_period: 1,
+                        grace_period: 1,
+                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -157,6 +170,7 @@ describe("VirtualAccounts", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                isExpired: true,
                 createdBy: "createdBy",
             },
             token: "token",

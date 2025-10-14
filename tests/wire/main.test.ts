@@ -26,6 +26,7 @@ describe("TrueFoundryClient", () => {
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
             },
             action: "CREATE",
+            data: { key: "value" },
         };
         server
             .mockEndpoint()
@@ -63,6 +64,9 @@ describe("TrueFoundryClient", () => {
                 ],
             },
             action: "CREATE",
+            data: {
+                key: "value",
+            },
         });
     });
 

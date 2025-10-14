@@ -3,6 +3,7 @@
  */
 
 export type GcpRegion =
+    | "global"
     | "northamerica-northeast1"
     | "northamerica-northeast2"
     | "southamerica-east1"
@@ -38,9 +39,9 @@ export type GcpRegion =
     | "europe-west9"
     | "me-central1"
     | "me-central2"
-    | "me-west1"
-    | "global";
+    | "me-west1";
 export const GcpRegion = {
+    Global: "global",
     NorthamericaNortheast1: "northamerica-northeast1",
     NorthamericaNortheast2: "northamerica-northeast2",
     SouthamericaEast1: "southamerica-east1",
@@ -77,5 +78,4 @@ export const GcpRegion = {
     MeCentral1: "me-central1",
     MeCentral2: "me-central2",
     MeWest1: "me-west1",
-    Global: "global",
 } as const;

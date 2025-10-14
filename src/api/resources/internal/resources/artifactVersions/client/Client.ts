@@ -57,6 +57,7 @@ export class ArtifactVersions {
                 request: TrueFoundry.internal.ArtifactVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionsResponse>> => {
                 const {
+                    tag,
                     fqn,
                     artifact_id: artifactId,
                     ml_repo_id: mlRepoId,
@@ -70,6 +71,9 @@ export class ArtifactVersions {
                     include_model_versions: includeModelVersions = false,
                 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (tag != null) {
+                    _queryParams["tag"] = tag;
+                }
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
                 }

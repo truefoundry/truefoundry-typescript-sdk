@@ -10,4 +10,9 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.CustomGuardrailConfig
     | TrueFoundry.AzurePiiGuardrailConfig
     | TrueFoundry.AzureContentSafetyGuardrailConfig
-    | TrueFoundry.EnkryptAiGuardrailConfig;
+    | TrueFoundry.EnkryptAiGuardrailConfig
+    | TrueFoundry.PaloAltoPrismaAirsGuardrailConfig
+    | TrueFoundry.PromptFooGuardrailConfig
+    | TrueFoundry.FiddlerGuardrailConfig
+    | TrueFoundry.PangeaGuardrailConfig
+    | TrueFoundry.PatronusGuardrailConfig;

@@ -23,4 +23,8 @@ export interface UsersListRequest {
      * Show Deactivated users
      */
     showInvalidUsers?: boolean;
+    /**
+     * Include virtual accounts
+     */
+    includeVirtualAccounts?: string;
 }

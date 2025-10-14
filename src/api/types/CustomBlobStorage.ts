@@ -30,6 +30,12 @@ export interface CustomBlobStorage {
      * +sort=200
      */
     storage_root: string;
+    /**
+     * +label=Region
+     * +usage=The region where the storage is located.
+     * +sort=600
+     */
+    region?: string;
     auth_data: TrueFoundry.CustomBasicAuth;
     /**
      * +label=Access Control

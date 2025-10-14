@@ -9,10 +9,10 @@ import * as TrueFoundry from "../index.js";
  * +icon=puzzle-piece
  */
 export interface McpServerProviderAccount {
-    /** +value=provider-account/hosted-mcp-server */
-    type: "provider-account/hosted-mcp-server";
+    /** +value=provider-account/mcp-server-group */
+    type: "provider-account/mcp-server-group";
     /**
-     * +label=Name
+     * +label=Group Name
      * +sort=100
      * +usage=The name of the MCP Server Group.
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
@@ -20,12 +20,13 @@ export interface McpServerProviderAccount {
      */
     name: string;
     /**
-     * +label=Access Control
+     * +label=Managers
      * +sort=200
-     * +usage=List of users who have access to this MCP Server Group.
+     * +usage=List of teams/users who can manage this MCP Server Group. These subjects can add new MCP server integrations, can edit existing ones and can also use the MCP server.
      * +uiType=Collaborators
+     * +uiProps={"optionTypes": ["Manager"]}
      */
-    collaborators?: TrueFoundry.Collaborator[];
+    collaborators: TrueFoundry.Collaborator[];
     /**
      * +label=MCP Servers
      * +usage=List of MCP Servers, which are part of this MCP Server Group.

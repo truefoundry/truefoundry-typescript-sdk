@@ -13,7 +13,7 @@ export interface BedrockModelV2 {
      * +label=Display Name
      * +sort=1
      * +usage=Name to identify this Bedrock model in the UI
-     * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
      */
     name: string;
     /**

@@ -57,13 +57,16 @@ export class Teams {
             async (
                 request: TrueFoundry.TeamsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => {
-                const { limit = 100, offset = 0 } = request;
+                const { limit = 100, offset = 0, type: type_ } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (limit != null) {
                     _queryParams["limit"] = limit.toString();
                 }
                 if (offset != null) {
                     _queryParams["offset"] = offset.toString();
+                }
+                if (type_ != null) {
+                    _queryParams["type"] = type_;
                 }
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(

@@ -63,7 +63,16 @@ export class Jobs {
             async (
                 request: TrueFoundry.JobsListRunsRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListJobRunResponse>> => {
-                const { limit = 100, offset = 0, searchPrefix, sortBy, order, triggeredBy, status } = request;
+                const {
+                    limit = 100,
+                    offset = 0,
+                    searchPrefix,
+                    sortBy,
+                    order,
+                    triggeredBy,
+                    status,
+                    versionNumbers,
+                } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (limit != null) {
                     _queryParams["limit"] = limit.toString();
@@ -92,6 +101,13 @@ export class Jobs {
                         _queryParams["status"] = status.map((item) => item);
                     } else {
                         _queryParams["status"] = status;
+                    }
+                }
+                if (versionNumbers != null) {
+                    if (Array.isArray(versionNumbers)) {
+                        _queryParams["versionNumbers"] = versionNumbers.map((item) => item.toString());
+                    } else {
+                        _queryParams["versionNumbers"] = versionNumbers.toString();
                     }
                 }
                 const _response = await (this._options.fetcher ?? core.fetcher)({

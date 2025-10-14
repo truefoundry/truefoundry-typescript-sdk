@@ -7,6 +7,7 @@ import * as TrueFoundry from "../../../index.js";
 import { mergeHeaders, mergeOnlyDefinedHeaders } from "../../../../core/headers.js";
 import * as errors from "../../../../errors/index.js";
 import { Users } from "../resources/users/client/Client.js";
+import { AiGateway } from "../resources/aiGateway/client/Client.js";
 import { Clusters } from "../resources/clusters/client/Client.js";
 import { Deployments } from "../resources/deployments/client/Client.js";
 import { Applications } from "../resources/applications/client/Client.js";
@@ -43,6 +44,7 @@ export declare namespace Internal {
 export class Internal {
     protected readonly _options: Internal.Options;
     protected _users: Users | undefined;
+    protected _aiGateway: AiGateway | undefined;
     protected _clusters: Clusters | undefined;
     protected _deployments: Deployments | undefined;
     protected _applications: Applications | undefined;
@@ -59,6 +61,10 @@ export class Internal {
 
     public get users(): Users {
         return (this._users ??= new Users(this._options));
+    }
+
+    public get aiGateway(): AiGateway {
+        return (this._aiGateway ??= new AiGateway(this._options));
     }
 
     public get clusters(): Clusters {

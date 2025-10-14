@@ -7,8 +7,8 @@
  * +usage=Source of the JWT token to be used for verification.
  * +sort=700
  */
-export type BaseOAuth2McpServerLoginJwtSource = "access_token" | "id_token";
-export const BaseOAuth2McpServerLoginJwtSource = {
+export type McpServerOAuth2JwtSource = "access_token" | "id_token";
+export const McpServerOAuth2JwtSource = {
     AccessToken: "access_token",
     IdToken: "id_token",
 } as const;

@@ -40,6 +40,7 @@ describe("Models", () => {
                     },
                     usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
+                    tags: ["tags"],
                     model_id: "model_id",
                     metrics: [{ key: "key" }],
                     deployable: true,
@@ -93,6 +94,7 @@ describe("Models", () => {
                     },
                     usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
+                    tags: ["tags"],
                     model_id: "model_id",
                     metrics: [
                         {
@@ -162,6 +164,7 @@ describe("Models", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [{ key: "key" }],
                 deployable: true,
@@ -222,6 +225,7 @@ describe("Models", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [
                     {

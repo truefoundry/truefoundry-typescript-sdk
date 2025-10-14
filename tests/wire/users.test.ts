@@ -55,7 +55,6 @@ describe("Users", () => {
             data: {
                 id: "id",
                 email: "email",
-                userName: "userName",
                 tenantName: "tenantName",
                 metadata: {
                     sub: "sub",
@@ -65,6 +64,9 @@ describe("Users", () => {
                     inviteAccepted: true,
                     registeredInIdp: true,
                     preference: { key: "value" },
+                    groups: ["groups"],
+                    tenantRoleManagedBy: "manual",
+                    ssoName: "ssoName",
                 },
                 roles: ["roles"],
                 active: true,
@@ -85,7 +87,6 @@ describe("Users", () => {
             data: {
                 id: "id",
                 email: "email",
-                userName: "userName",
                 tenantName: "tenantName",
                 metadata: {
                     sub: "sub",
@@ -99,6 +100,9 @@ describe("Users", () => {
                     preference: {
                         key: "value",
                     },
+                    groups: ["groups"],
+                    tenantRoleManagedBy: "manual",
+                    ssoName: "ssoName",
                 },
                 roles: ["roles"],
                 active: true,
@@ -108,11 +112,28 @@ describe("Users", () => {
         });
     });
 
+    test("delete", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/users/id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.users.delete("id");
+        expect(response).toEqual({});
+    });
+
     test("invite_user", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { acceptInviteClientUrl: "<control plane url>/invite-accept", email: "email" };
-        const rawResponseBody = {};
+        const rawResponseBody = { link: "link" };
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/invite")
@@ -126,7 +147,9 @@ describe("Users", () => {
             acceptInviteClientUrl: "<control plane url>/invite-accept",
             email: "email",
         });
-        expect(response).toEqual({});
+        expect(response).toEqual({
+            link: "link",
+        });
     });
 
     test("deactivate", async () => {
@@ -189,5 +212,92 @@ describe("Users", () => {
             oldPassword: "oldPassword",
         });
         expect(response).toEqual({});
+    });
+
+    test("get_resources", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    resourceType: "resourceType",
+                    resourceId: "resourceId",
+                    roleId: "roleId",
+                    resourceName: "resourceName",
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/resources")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.users.getResources("id");
+        expect(response).toEqual({
+            data: [
+                {
+                    resourceType: "resourceType",
+                    resourceId: "resourceId",
+                    roleId: "roleId",
+                    resourceName: "resourceName",
+                },
+            ],
+        });
+    });
+
+    test("get_teams", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    teamName: "teamName",
+                    description: "description",
+                    tenantName: "tenantName",
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    members: ["members"],
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    manifest: { type: "team", name: "name", members: ["members"] },
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/teams")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.users.getTeams("id");
+        expect(response).toEqual({
+            data: [
+                {
+                    id: "id",
+                    teamName: "teamName",
+                    description: "description",
+                    tenantName: "tenantName",
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    members: ["members"],
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    manifest: {
+                        type: "team",
+                        name: "name",
+                        members: ["members"],
+                    },
+                },
+            ],
+        });
     });
 });

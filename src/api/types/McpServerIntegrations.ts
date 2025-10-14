@@ -4,4 +4,4 @@
 
 import * as TrueFoundry from "../index.js";
 
-export type McpServerIntegrations = TrueFoundry.McpServerIntegration;
+export type McpServerIntegrations = TrueFoundry.McpServerIntegration | TrueFoundry.VirtualMcpServerIntegration;

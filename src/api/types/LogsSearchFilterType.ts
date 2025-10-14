@@ -5,8 +5,9 @@
 /**
  * Query filter type for logs search
  */
-export type LogsSearchFilterType = "regex" | "substring";
+export type LogsSearchFilterType = "regex" | "substring" | "ignore_case_substring";
 export const LogsSearchFilterType = {
     Regex: "regex",
     Substring: "substring",
+    IgnoreCaseSubstring: "ignore_case_substring",
 } as const;

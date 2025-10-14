@@ -73,6 +73,7 @@ export class Logs {
             containerName,
             podNames,
             podNamesRegex,
+            searchFilters,
             searchString,
             searchType,
             searchOperator,
@@ -132,6 +133,10 @@ export class Logs {
 
         if (podNamesRegex != null) {
             _queryParams["podNamesRegex"] = podNamesRegex;
+        }
+
+        if (searchFilters != null) {
+            _queryParams["searchFilters"] = searchFilters;
         }
 
         if (searchString != null) {

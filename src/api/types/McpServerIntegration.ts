@@ -9,8 +9,8 @@ import * as TrueFoundry from "../index.js";
  * +icon=puzzle-piece
  */
 export interface McpServerIntegration {
-    /** +value=integration/mcp-server/hosted-mcp-server */
-    type: "integration/mcp-server/hosted-mcp-server";
+    /** +value=integration/mcp-server/remote */
+    type: "integration/mcp-server/remote";
     /**
      * +label=Name
      * +usage=The name of the MCP Server.
@@ -33,4 +33,11 @@ export interface McpServerIntegration {
      */
     url: string;
     auth_data?: TrueFoundry.McpServerAuth;
+    /**
+     * +label=Access Control
+     * +usage=List of teams/users who can use this MCP server.
+     * +sort=500
+     * +uiType=AuthorizedSubjects
+     */
+    authorized_subjects?: string[];
 }

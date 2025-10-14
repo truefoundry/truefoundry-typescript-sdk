@@ -6,6 +6,27 @@ import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
 
 describe("ModelVersions", () => {
+    test("apply_tags", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { model_version_id: "model_version_id", tags: ["tags"] };
+        const rawResponseBody = {};
+        server
+            .mockEndpoint()
+            .put("/api/ml/v1/model-versions/tags")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.modelVersions.applyTags({
+            model_version_id: "model_version_id",
+            tags: ["tags"],
+        });
+        expect(response).toEqual({});
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
@@ -37,6 +58,7 @@ describe("ModelVersions", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [{ key: "key" }],
                 deployable: true,
@@ -84,6 +106,7 @@ describe("ModelVersions", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [
                     {

@@ -6,7 +6,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface Session {
     id: string;
-    userName: string;
+    userName?: string;
     subjectSlug: string;
     subjectControllerName?: string;
     subjectPatName?: string;

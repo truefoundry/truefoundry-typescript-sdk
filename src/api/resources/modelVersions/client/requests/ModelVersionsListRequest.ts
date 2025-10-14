@@ -7,6 +7,7 @@
  *     {}
  */
 export interface ModelVersionsListRequest {
+    tag?: string;
     fqn?: string;
     model_id?: string;
     ml_repo_id?: string;

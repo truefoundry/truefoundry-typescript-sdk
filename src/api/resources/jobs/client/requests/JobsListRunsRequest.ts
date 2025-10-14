@@ -40,4 +40,8 @@ export interface JobsListRunsRequest {
      * Status of the job run
      */
     status?: TrueFoundry.JobRunStatus | TrueFoundry.JobRunStatus[];
+    /**
+     * Version number of the deployment
+     */
+    versionNumbers?: number | number[];
 }

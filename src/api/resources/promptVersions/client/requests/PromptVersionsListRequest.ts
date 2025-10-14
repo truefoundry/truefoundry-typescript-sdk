@@ -7,6 +7,7 @@
  *     {}
  */
 export interface PromptVersionsListRequest {
+    tag?: string;
     fqn?: string;
     prompt_id?: string;
     ml_repo_id?: string;

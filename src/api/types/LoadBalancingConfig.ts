@@ -21,13 +21,6 @@ export interface LoadBalancingConfig {
      */
     type: "gateway-load-balancing-config";
     /**
-     * +usage=Configuration for specific models
-     * +uiProps={"descriptionInline":true}
-     * +sort=3
-     * +label=Model Configurations
-     */
-    model_configs?: TrueFoundry.ModelConfig[];
-    /**
      * +usage=List of load balancing rules
      * +uiProps={"descriptionInline":true}
      * +sort=4

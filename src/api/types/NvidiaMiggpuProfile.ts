@@ -6,54 +6,82 @@
  * +label=MIG Profile
  * +usage=Name of the MIG profile to use. One of the following based on gpu type
  * Please refer to https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#supported-mig-profiles for more details
- * A100 40 GB - [1g.5gb, 1g.10gb, 2g.10gb, 3g.20gb, 4g.20gb]
- * A100 80 GB / H100 80 GB - [1g.10gb, 1g.20gb, 2g.20gb, 3g.40gb, 4g.40gb]
- * H100 94 GB - [1g.12gb, 1g.24gb, 2g.24gb, 3g.47gb, 4g.47gb]
- * H100 96 GB - [1g.12gb, 1g.24gb, 2g.24gb, 3g.48gb, 4g.48gb]
+ * A30 - [1g.6gb, 2g.12gb, 4g.24gb]
+ * A100 40 GB - [1g.5gb, 1g.10gb, 2g.10gb, 3g.20gb, 4g.20gb, 7g.40gb]
+ * A100 80 GB / H100 80 GB - [1g.10gb, 1g.20gb, 2g.20gb, 3g.40gb, 4g.40gb, 7g.80gb]
+ * H100 94 GB - [1g.12gb, 1g.24gb, 2g.24gb, 3g.47gb, 4g.47gb, 7g.94gb]
+ * H100 96 GB - [1g.12gb, 1g.24gb, 2g.24gb, 3g.48gb, 4g.48gb, 7g.96gb]
  * H200 141 GB - [1g.18gb, 1g.35gb, 2g.35gb, 3g.71gb, 4g.71gb]
+ * B200 180 GB - [1g.23gb, 1g.45gb, 2g.45gb, 3g.90gb, 4g.90gb, 7g.180gb]
  */
 export type NvidiaMiggpuProfile =
+    | "1g.6gb"
+    | "2g.12gb"
     | "1g.5gb"
     | "1g.10gb"
-    | "1g.12gb"
-    | "1g.18gb"
-    | "1g.20gb"
-    | "1g.24gb"
-    | "1g.35gb"
     | "2g.10gb"
-    | "2g.20gb"
-    | "2g.24gb"
-    | "2g.35gb"
     | "3g.20gb"
-    | "3g.40gb"
-    | "3g.47gb"
-    | "3g.48gb"
-    | "3g.71gb"
     | "4g.20gb"
+    | "1g.20gb"
+    | "2g.20gb"
+    | "3g.40gb"
     | "4g.40gb"
+    | "1g.12gb"
+    | "1g.24gb"
+    | "2g.24gb"
+    | "3g.47gb"
     | "4g.47gb"
+    | "3g.48gb"
     | "4g.48gb"
-    | "4g.71gb";
+    | "1g.18gb"
+    | "1g.35gb"
+    | "2g.35gb"
+    | "3g.71gb"
+    | "4g.71gb"
+    | "1g.23gb"
+    | "1g.45gb"
+    | "2g.45gb"
+    | "3g.90gb"
+    | "4g.90gb"
+    | "4g.24gb"
+    | "7g.40gb"
+    | "7g.80gb"
+    | "7g.94gb"
+    | "7g.96gb"
+    | "7g.180gb";
 export const NvidiaMiggpuProfile = {
+    OneG6Gb: "1g.6gb",
+    TwoG12Gb: "2g.12gb",
     OneG5Gb: "1g.5gb",
     OneG10Gb: "1g.10gb",
-    OneG12Gb: "1g.12gb",
-    OneG18Gb: "1g.18gb",
-    OneG20Gb: "1g.20gb",
-    OneG24Gb: "1g.24gb",
-    OneG35Gb: "1g.35gb",
     TwoG10Gb: "2g.10gb",
-    TwoG20Gb: "2g.20gb",
-    TwoG24Gb: "2g.24gb",
-    TwoG35Gb: "2g.35gb",
     ThreeG20Gb: "3g.20gb",
-    ThreeG40Gb: "3g.40gb",
-    ThreeG47Gb: "3g.47gb",
-    ThreeG48Gb: "3g.48gb",
-    ThreeG71Gb: "3g.71gb",
     FourG20Gb: "4g.20gb",
+    OneG20Gb: "1g.20gb",
+    TwoG20Gb: "2g.20gb",
+    ThreeG40Gb: "3g.40gb",
     FourG40Gb: "4g.40gb",
+    OneG12Gb: "1g.12gb",
+    OneG24Gb: "1g.24gb",
+    TwoG24Gb: "2g.24gb",
+    ThreeG47Gb: "3g.47gb",
     FourG47Gb: "4g.47gb",
+    ThreeG48Gb: "3g.48gb",
     FourG48Gb: "4g.48gb",
+    OneG18Gb: "1g.18gb",
+    OneG35Gb: "1g.35gb",
+    TwoG35Gb: "2g.35gb",
+    ThreeG71Gb: "3g.71gb",
     FourG71Gb: "4g.71gb",
+    OneG23Gb: "1g.23gb",
+    OneG45Gb: "1g.45gb",
+    TwoG45Gb: "2g.45gb",
+    ThreeG90Gb: "3g.90gb",
+    FourG90Gb: "4g.90gb",
+    FourG24Gb: "4g.24gb",
+    SevenG40Gb: "7g.40gb",
+    SevenG80Gb: "7g.80gb",
+    SevenG94Gb: "7g.94gb",
+    SevenG96Gb: "7g.96gb",
+    SevenG180Gb: "7g.180gb",
 } as const;

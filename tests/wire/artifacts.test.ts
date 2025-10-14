@@ -40,6 +40,7 @@ describe("Artifacts", () => {
                     },
                     usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
+                    tags: ["tags"],
                 },
                 run_steps: [1],
             },
@@ -90,6 +91,7 @@ describe("Artifacts", () => {
                     },
                     usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
+                    tags: ["tags"],
                 },
                 run_steps: [1],
             },
@@ -151,6 +153,7 @@ describe("Artifacts", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 artifact_id: "artifact_id",
             },
         };
@@ -206,6 +209,7 @@ describe("Artifacts", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 artifact_id: "artifact_id",
             },
         });

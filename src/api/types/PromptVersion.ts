@@ -13,5 +13,7 @@ export interface PromptVersion {
     manifest: TrueFoundry.ChatPromptManifest;
     usage_code_snippet?: string;
     ml_repo_id: string;
+    tags?: string[];
+    usage_code_snippets?: TrueFoundry.UsageCodeSnippet[];
     prompt_id: string;
 }

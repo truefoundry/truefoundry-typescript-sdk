@@ -16,11 +16,13 @@ export interface PythonBuild {
      * +label=Python version
      * +usage=Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python)
      * +message=Please enter a valid Python version tag
+     * +sort=10002
      */
     python_version?: string;
     /**
      * +label=Path to build context
      * +usage=Build path relative to project root path.
+     * +sort=10000
      */
     build_context_path: string;
     /**
@@ -28,6 +30,8 @@ export interface PythonBuild {
      * +label=Path to requirements
      * +usage=Path to `requirements.txt` relative to
      * `Path to build context`
+     * +uiType=Hidden
+     * +sort=10004
      */
     requirements_path?: string;
     /**
@@ -35,8 +39,15 @@ export interface PythonBuild {
      * +usage=Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
      * +placeholder=Enter a pip package name E.g. fastapi>=0.90,<1.0
+     * +uiType=Hidden
      */
     pip_packages?: string[];
+    /**
+     * +label=Python dependencies
+     * +usage=Python dependencies to install
+     * +sort=10004
+     */
+    python_dependencies?: TrueFoundry.PythonBuildPythonDependencies;
     /**
      * +label=List of Debian packages to install.
      * +usage=Debian packages to install via `apt get`.
@@ -52,6 +63,7 @@ export interface PythonBuild {
      * Command will be set as the Entrypoint of the generated image.
      * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
      * E.g. `python main.py --learning_rate {{learning_rate}}`
+     * +sort=10001
      */
     command: TrueFoundry.PythonBuildCommand;
     /**
@@ -61,6 +73,7 @@ export interface PythonBuild {
      * You can also specify a valid tag of the form {cuda_version_number}-cudnn{cudnn_version_number}-{runtime|devel}-ubuntu{ubuntu_version}
      * Refer https://hub.docker.com/r/nvidia/cuda/tags for valid set of values
      * Note: We use deadsnakes ubuntu ppa to add Python that currently supports only Ubuntu 18.04, 20.04 and 22.04
+     * +sort=10003
      */
     cuda_version?: string;
 }

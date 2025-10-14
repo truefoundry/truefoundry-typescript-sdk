@@ -11,6 +11,7 @@ import { Users } from "./api/resources/users/client/Client.js";
 import { Teams } from "./api/resources/teams/client/Client.js";
 import { PersonalAccessTokens } from "./api/resources/personalAccessTokens/client/Client.js";
 import { VirtualAccounts } from "./api/resources/virtualAccounts/client/Client.js";
+import { LlmGateway } from "./api/resources/llmGateway/client/Client.js";
 import { Secrets } from "./api/resources/secrets/client/Client.js";
 import { SecretGroups } from "./api/resources/secretGroups/client/Client.js";
 import { Clusters } from "./api/resources/clusters/client/Client.js";
@@ -61,6 +62,7 @@ export class TrueFoundryClient {
     protected _teams: Teams | undefined;
     protected _personalAccessTokens: PersonalAccessTokens | undefined;
     protected _virtualAccounts: VirtualAccounts | undefined;
+    protected _llmGateway: LlmGateway | undefined;
     protected _secrets: Secrets | undefined;
     protected _secretGroups: SecretGroups | undefined;
     protected _clusters: Clusters | undefined;
@@ -116,6 +118,10 @@ export class TrueFoundryClient {
 
     public get virtualAccounts(): VirtualAccounts {
         return (this._virtualAccounts ??= new VirtualAccounts(this._options));
+    }
+
+    public get llmGateway(): LlmGateway {
+        return (this._llmGateway ??= new LlmGateway(this._options));
     }
 
     public get secrets(): Secrets {

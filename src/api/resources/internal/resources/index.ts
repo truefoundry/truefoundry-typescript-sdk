@@ -1,3 +1,5 @@
+export * as aiGateway from "./aiGateway/index.js";
+export * from "./aiGateway/types/index.js";
 export * as metrics from "./metrics/index.js";
 export * from "./metrics/types/index.js";
 export * as dockerRegistries from "./dockerRegistries/index.js";

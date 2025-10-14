@@ -7,7 +7,6 @@ import * as TrueFoundry from "../index.js";
 export interface User {
     id: string;
     email: string;
-    userName: string;
     tenantName: string;
     metadata: TrueFoundry.UserMetadata;
     roles?: string[];

@@ -28,4 +28,5 @@ export interface VirtualAccountManifest {
      * +uiType=ServiceAccountPermissions
      */
     permissions: TrueFoundry.Permissions[];
+    auto_rotate?: TrueFoundry.AutoRotate;
 }

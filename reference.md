@@ -426,6 +426,69 @@ await client.users.get("id");
 </dl>
 </details>
 
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteUserResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete user if they are not a collaborator in any resource and not part of any team other than everyone.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — User Id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">inviteUser</a>({ ...params }) -> TrueFoundry.InviteUserResponse</code></summary>
 <dl>
 <dd>
@@ -671,6 +734,132 @@ await client.users.changePassword({
 <dd>
 
 **request:** `TrueFoundry.ChangePasswordRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getResources</a>(id) -> TrueFoundry.GetUserResourcesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all resources associated with a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getResources("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — User Id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getTeams</a>(id) -> TrueFoundry.GetUserTeamsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all manual teams associated with a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getTeams("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — User Id
 
 </dd>
 </dl>
@@ -1581,6 +1770,611 @@ await client.virtualAccounts.delete("id");
 </dl>
 </details>
 
+## LlmGateway
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMetricsGetLlmPlaygroundTables</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcMetricsGetLlmPlaygroundTables();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.GetLlmGatewayMetricsRequestDto`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcInferenceRequestGetFilterTypeAndLabelValues</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcInferenceRequestGetFilterTypeAndLabelValues();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMetricsCharts</a>({ ...params }) -> TrueFoundry.McpMetricsChartsResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves available MCP metrics charts.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcMcpMetricsGetMcpMetricsCharts({
+    page: "mcpserver",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.SvcMcpMetricsGetMcpMetricsChartsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMetricsFilters</a>({ ...params }) -> TrueFoundry.McpMetricsFiltersResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves available MCP metrics filters.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcMcpMetricsGetMcpMetricsFilters({
+    startTime: 1710201609,
+    endTime: 1710202200,
+    page: "mcpserver",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.SvcMcpMetricsGetMcpMetricsFiltersRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMeters</a>({ ...params }) -> TrueFoundry.McpMetersResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves aggregated MCP metrics data.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcMcpMetricsGetMcpMeters({
+    page: "mcpserver",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.McpMetersRequestDto`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMetricsChartsData</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves available MCP metrics charts.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcMcpMetricsGetMcpMetricsChartsData({
+    startTime: 1710201609,
+    endTime: 1710202200,
+    chartName: "rateOfRequestsPerMcpServer",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.McpMetricsChartsDataRequestDto`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMetricsCharts</a>() -> TrueFoundry.GuardrailMetricsChartsResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves available Guardrail metrics charts.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcGuardrailMetricsGetGuardrailMetricsCharts();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMetricsFilters</a>({ ...params }) -> TrueFoundry.GuardrailMetricsFiltersResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves available Guardrail metrics filters.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcGuardrailMetricsGetGuardrailMetricsFilters({
+    startTime: 1710201609,
+    endTime: 1710202200,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.SvcGuardrailMetricsGetGuardrailMetricsFiltersRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMeters</a>({ ...params }) -> TrueFoundry.GuardrailMetersResponseDto</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves aggregated Guardrail metrics data.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcGuardrailMetricsGetGuardrailMeters();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.GuardrailMetersRequestDto`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMetricsChartsData</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves Guardrail metrics charts data.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.llmGateway.svcGuardrailMetricsGetGuardrailMetricsChartsData({
+    startTime: 1710201609,
+    endTime: 1710202200,
+    chartName: "rateOfRequestsPerGuardrail",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.GuardrailMetricsChartsDataRequestDto`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LlmGateway.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Secrets
 
 <details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Secret></code></summary>
@@ -2430,7 +3224,7 @@ await client.clusters.delete("id");
 <dl>
 <dd>
 
-List addons for the provided cluster.Pagination is available based on query parameters.
+List addons for the provided cluster. Pagination is available based on query parameters.
 
 </dd>
 </dl>
@@ -5237,6 +6031,57 @@ await client.models.createOrUpdate({
 
 ## ArtifactVersions
 
+<details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">applyTags</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.artifactVersions.applyTags({
+    artifact_version_id: "artifact_version_id",
+    tags: ["tags"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ApplyArtifactVersionTagsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ArtifactVersions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetArtifactVersionResponse</code></summary>
 <dl>
 <dd>
@@ -5712,6 +6557,57 @@ await client.artifactVersions.markStageFailure({
 
 ## ModelVersions
 
+<details><summary><code>client.modelVersions.<a href="/src/api/resources/modelVersions/client/Client.ts">applyTags</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.modelVersions.applyTags({
+    model_version_id: "model_version_id",
+    tags: ["tags"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ApplyModelVersionTagsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModelVersions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.modelVersions.<a href="/src/api/resources/modelVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetModelVersionResponse</code></summary>
 <dl>
 <dd>
@@ -5911,6 +6807,57 @@ while (page.hasNextPage()) {
 </details>
 
 ## PromptVersions
+
+<details><summary><code>client.promptVersions.<a href="/src/api/resources/promptVersions/client/Client.ts">applyTags</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.promptVersions.applyTags({
+    prompt_version_id: "prompt_version_id",
+    tags: ["tags"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ApplyPromptVersionTagsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PromptVersions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.promptVersions.<a href="/src/api/resources/promptVersions/client/Client.ts">get</a>(id) -> TrueFoundry.GetPromptVersionResponse</code></summary>
 <dl>
@@ -6751,6 +7698,71 @@ await client.internal.users.getInfo();
 <dd>
 
 **requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Internal AiGateway
+
+<details><summary><code>client.internal.aiGateway.<a href="/src/api/resources/internal/resources/aiGateway/client/Client.ts">getGatewayConfig</a>(type) -> TrueFoundry.GatewayConfiguration</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get Gateway configuration based on type for the tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**type:** `TrueFoundry.AiGatewayGetGatewayConfigRequestType` — Type of Config
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AiGateway.RequestOptions`
 
 </dd>
 </dl>

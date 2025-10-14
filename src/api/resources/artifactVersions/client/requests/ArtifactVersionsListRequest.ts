@@ -7,6 +7,7 @@
  *     {}
  */
 export interface ArtifactVersionsListRequest {
+    tag?: string;
     fqn?: string;
     artifact_id?: string;
     ml_repo_id?: string;

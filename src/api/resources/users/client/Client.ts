@@ -57,7 +57,7 @@ export class Users {
             async (
                 request: TrueFoundry.UsersListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => {
-                const { limit = 100, offset = 0, query, showInvalidUsers } = request;
+                const { limit = 100, offset = 0, query, showInvalidUsers, includeVirtualAccounts } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
                 if (limit != null) {
                     _queryParams["limit"] = limit.toString();
@@ -70,6 +70,9 @@ export class Users {
                 }
                 if (showInvalidUsers != null) {
                     _queryParams["showInvalidUsers"] = showInvalidUsers.toString();
+                }
+                if (includeVirtualAccounts != null) {
+                    _queryParams["includeVirtualAccounts"] = includeVirtualAccounts;
                 }
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
@@ -385,6 +388,89 @@ export class Users {
                 });
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError("Timeout exceeded when calling GET /api/svc/v1/users/{id}.");
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Delete user if they are not a collaborator in any resource and not part of any team other than everyone.
+     *
+     * @param {string} id - User Id
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.delete("id")
+     */
+    public delete(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.DeleteUserResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.DeleteUserResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/users/${encodeURIComponent(id)}`,
+            ),
+            method: "DELETE",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                requestOptions?.headers,
+            ),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.DeleteUserResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling DELETE /api/svc/v1/users/{id}.",
+                );
             case "unknown":
                 throw new errors.TrueFoundryError({
                     message: _response.error.errorMessage,
@@ -723,6 +809,166 @@ export class Users {
             case "timeout":
                 throw new errors.TrueFoundryTimeoutError(
                     "Timeout exceeded when calling POST /api/svc/v1/users/change-password.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Get all resources associated with a user.
+     *
+     * @param {string} id - User Id
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.getResources("id")
+     */
+    public getResources(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetUserResourcesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getResources(id, requestOptions));
+    }
+
+    private async __getResources(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetUserResourcesResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/users/${encodeURIComponent(id)}/resources`,
+            ),
+            method: "GET",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                requestOptions?.headers,
+            ),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.GetUserResourcesResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/users/{id}/resources.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Get all manual teams associated with a user.
+     *
+     * @param {string} id - User Id
+     * @param {Users.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.getTeams("id")
+     */
+    public getTeams(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetUserTeamsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getTeams(id, requestOptions));
+    }
+
+    private async __getTeams(
+        id: string,
+        requestOptions?: Users.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetUserTeamsResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/users/${encodeURIComponent(id)}/teams`,
+            ),
+            method: "GET",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                requestOptions?.headers,
+            ),
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.GetUserTeamsResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling GET /api/svc/v1/users/{id}/teams.",
                 );
             case "unknown":
                 throw new errors.TrueFoundryError({

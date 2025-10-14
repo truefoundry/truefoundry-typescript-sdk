@@ -4,7 +4,7 @@
 
 import * as TrueFoundry from "../index.js";
 
-export type PySparkTaskConfigMountsItem =
+export type ContainerTaskConfigMountsItem =
     | TrueFoundry.SecretMount
     | TrueFoundry.StringDataMount
     | TrueFoundry.VolumeMount;

@@ -28,7 +28,7 @@ export interface PySparkTaskConfig {
      * +usage=Configure data to be mounted to Workflow pod(s) as a volume.
      * +sort=5000
      */
-    mounts?: TrueFoundry.PySparkTaskConfigMountsItem[];
+    mounts?: TrueFoundry.VolumeMount[];
     /**
      * +label=Service Account
      * +sort=6000

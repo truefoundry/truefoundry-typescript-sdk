@@ -38,6 +38,87 @@ export class PromptVersions {
     }
 
     /**
+     * @param {TrueFoundry.ApplyPromptVersionTagsRequest} request
+     * @param {PromptVersions.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     *
+     * @example
+     *     await client.promptVersions.applyTags({
+     *         prompt_version_id: "prompt_version_id",
+     *         tags: ["tags"]
+     *     })
+     */
+    public applyTags(
+        request: TrueFoundry.ApplyPromptVersionTagsRequest,
+        requestOptions?: PromptVersions.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__applyTags(request, requestOptions));
+    }
+
+    private async __applyTags(
+        request: TrueFoundry.ApplyPromptVersionTagsRequest,
+        requestOptions?: PromptVersions.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/ml/v1/prompt-versions/tags",
+            ),
+            method: "PUT",
+            headers: mergeHeaders(
+                this._options?.headers,
+                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                requestOptions?.headers,
+            ),
+            contentType: "application/json",
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        _response.error.body as unknown,
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling PUT /api/ml/v1/prompt-versions/tags.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
      * Get prompt version API
      *
      * @param {string} id
@@ -211,6 +292,7 @@ export class PromptVersions {
                 request: TrueFoundry.PromptVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListPromptVersionsResponse>> => {
                 const {
+                    tag,
                     fqn,
                     prompt_id: promptId,
                     ml_repo_id: mlRepoId,
@@ -220,6 +302,9 @@ export class PromptVersions {
                     limit = 100,
                 } = request;
                 const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+                if (tag != null) {
+                    _queryParams["tag"] = tag;
+                }
                 if (fqn != null) {
                     _queryParams["fqn"] = fqn;
                 }

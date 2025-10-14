@@ -55,6 +55,7 @@ export interface ClusterManifest {
      */
     workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig;
     spark_config?: TrueFoundry.SparkConfig;
+    ingress_controller_config?: TrueFoundry.IngressControllerConfig;
     /**
      * +label=Cluster Integration FQN
      * +sort=75

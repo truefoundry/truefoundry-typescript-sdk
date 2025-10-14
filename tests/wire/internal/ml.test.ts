@@ -45,6 +45,7 @@ describe("Ml", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [{ key: "key" }],
                 deployable: true,
@@ -105,6 +106,7 @@ describe("Ml", () => {
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [
                     {

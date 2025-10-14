@@ -13,7 +13,7 @@ export interface SelfHostedModel {
     type: "integration/model/self-hosted-model";
     /**
      * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
      */
     name: string;
     /**
@@ -41,6 +41,7 @@ export interface SelfHostedModel {
      * +uiProps={"disableAllOption": true}
      */
     model_types: TrueFoundry.ModelType[];
+    tls_settings?: TrueFoundry.CustomTlsSettings;
     /**
      * +label=Auth Data
      * +usage=SelfHostedModel authentication data for the integration.

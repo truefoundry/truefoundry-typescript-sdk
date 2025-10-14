@@ -8,7 +8,7 @@
 export interface BudgetWhen {
     /**
      * +usage=List of subjects that this rule applies to
-     * +uiProps={"descriptionInline":true}
+     * +uiProps={"descriptionInline":true, "optionTypes": ["users","teams","virtualAccounts"]}
      * +label=Subjects
      */
     subjects?: string[];

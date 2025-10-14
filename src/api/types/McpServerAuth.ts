@@ -6,5 +6,6 @@ import * as TrueFoundry from "../index.js";
 
 export type McpServerAuth =
     | TrueFoundry.McpServerHeaderAuth
+    | TrueFoundry.McpServerOAuth2Dcr
     | TrueFoundry.McpServerOAuth2
     | TrueFoundry.McpServerPassthrough;

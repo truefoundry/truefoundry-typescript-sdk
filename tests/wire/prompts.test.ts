@@ -40,6 +40,8 @@ describe("Prompts", () => {
                     },
                     usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
+                    tags: ["tags"],
+                    usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
                     prompt_id: "prompt_id",
                 },
                 run_steps: [1],
@@ -94,6 +96,14 @@ describe("Prompts", () => {
                     },
                     usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
+                    tags: ["tags"],
+                    usage_code_snippets: [
+                        {
+                            display_name: "display_name",
+                            language: "language",
+                            code: "code",
+                        },
+                    ],
                     prompt_id: "prompt_id",
                 },
                 run_steps: [1],
@@ -153,11 +163,21 @@ describe("Prompts", () => {
                     messages: [{ role: "system", content: "content" }],
                     variables: { key: "value" },
                     model_configuration: { provider: "provider", model: "model" },
-                    tools: [{ type: "function", function: { name: "name", description: "description" } }],
+                    tools: [{ type: "function", function: { name: "name" } }],
                     mcp_servers: [{ type: "mcp-server-fqn", integration_fqn: "integration_fqn" }],
+                    response_format: { type: "json_object" },
+                    routing_config: {
+                        load_balance_targets: [{ target: "target", weight: 1 }],
+                        type: "weight-based-routing",
+                    },
+                    tool_call_to_mcp_mapping: {
+                        key: { mcp_server_integration_id: "mcp_server_integration_id", tool_name: "tool_name" },
+                    },
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
+                usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
                 prompt_id: "prompt_id",
             },
         };
@@ -226,7 +246,6 @@ describe("Prompts", () => {
                             type: "function",
                             function: {
                                 name: "name",
-                                description: "description",
                             },
                         },
                     ],
@@ -236,9 +255,35 @@ describe("Prompts", () => {
                             integration_fqn: "integration_fqn",
                         },
                     ],
+                    response_format: {
+                        type: "json_object",
+                    },
+                    routing_config: {
+                        load_balance_targets: [
+                            {
+                                target: "target",
+                                weight: 1,
+                            },
+                        ],
+                        type: "weight-based-routing",
+                    },
+                    tool_call_to_mcp_mapping: {
+                        key: {
+                            mcp_server_integration_id: "mcp_server_integration_id",
+                            tool_name: "tool_name",
+                        },
+                    },
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
+                tags: ["tags"],
+                usage_code_snippets: [
+                    {
+                        display_name: "display_name",
+                        language: "language",
+                        code: "code",
+                    },
+                ],
                 prompt_id: "prompt_id",
             },
         });

@@ -18,7 +18,7 @@ export interface WorkspaceManifest {
      * +label=Name
      * +sort=200
      * +icon=fa-desktop:#black
-     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
+     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
     /**
