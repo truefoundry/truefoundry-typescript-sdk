@@ -129,6 +129,7 @@ describe("VirtualAccounts", () => {
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
+                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -196,6 +197,10 @@ describe("VirtualAccounts", () => {
                         auto_rotate_interval: 1,
                         grace_period: 1,
                     },
+                    secret_store_config: {
+                        integration_fqn: "integration_fqn",
+                        secret_path: "secret_path",
+                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -235,6 +240,7 @@ describe("VirtualAccounts", () => {
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                 ],
                 auto_rotate: undefined,
+                secret_store_config: undefined,
             },
             dryRun: undefined,
         };
@@ -267,6 +273,7 @@ describe("VirtualAccounts", () => {
                         },
                     ],
                     auto_rotate: undefined,
+                    secret_store_config: undefined,
                 },
                 dryRun: undefined,
             });
@@ -286,6 +293,7 @@ describe("VirtualAccounts", () => {
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                 ],
                 auto_rotate: undefined,
+                secret_store_config: undefined,
             },
             dryRun: undefined,
         };
@@ -318,6 +326,7 @@ describe("VirtualAccounts", () => {
                         },
                     ],
                     auto_rotate: undefined,
+                    secret_store_config: undefined,
                 },
                 dryRun: undefined,
             });
@@ -340,6 +349,7 @@ describe("VirtualAccounts", () => {
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
+                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -393,6 +403,10 @@ describe("VirtualAccounts", () => {
                     auto_rotate: {
                         auto_rotate_interval: 1,
                         grace_period: 1,
+                    },
+                    secret_store_config: {
+                        integration_fqn: "integration_fqn",
+                        secret_path: "secret_path",
                     },
                 },
                 createdBySubject: {

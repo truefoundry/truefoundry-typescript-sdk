@@ -378,12 +378,7 @@ describe("DataDirectories", () => {
                     last_modified: "2024-01-15T09:30:00Z",
                 },
             ],
-            pagination: {
-                limit: 10,
-                nextPageToken: "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDoxMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
-                previousPageToken:
-                    "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDowMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
-            },
+            pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
         };
         server
             .mockEndpoint()
@@ -406,9 +401,8 @@ describe("DataDirectories", () => {
             ],
             pagination: {
                 limit: 10,
-                nextPageToken: "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDoxMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
-                previousPageToken:
-                    "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDowMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
+                nextPageToken: "nextPageToken",
+                previousPageToken: "previousPageToken",
             },
         };
         const page = await client.dataDirectories.listFiles({

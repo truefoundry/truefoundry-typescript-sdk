@@ -19,6 +19,8 @@ import { Applications } from "./api/resources/applications/client/Client.js";
 import { ApplicationVersions } from "./api/resources/applicationVersions/client/Client.js";
 import { Jobs } from "./api/resources/jobs/client/Client.js";
 import { Workspaces } from "./api/resources/workspaces/client/Client.js";
+import { Events } from "./api/resources/events/client/Client.js";
+import { Alerts } from "./api/resources/alerts/client/Client.js";
 import { Logs } from "./api/resources/logs/client/Client.js";
 import { MlRepos } from "./api/resources/mlRepos/client/Client.js";
 import { Traces } from "./api/resources/traces/client/Client.js";
@@ -70,6 +72,8 @@ export class TrueFoundryClient {
     protected _applicationVersions: ApplicationVersions | undefined;
     protected _jobs: Jobs | undefined;
     protected _workspaces: Workspaces | undefined;
+    protected _events: Events | undefined;
+    protected _alerts: Alerts | undefined;
     protected _logs: Logs | undefined;
     protected _mlRepos: MlRepos | undefined;
     protected _traces: Traces | undefined;
@@ -148,6 +152,14 @@ export class TrueFoundryClient {
 
     public get workspaces(): Workspaces {
         return (this._workspaces ??= new Workspaces(this._options));
+    }
+
+    public get events(): Events {
+        return (this._events ??= new Events(this._options));
+    }
+
+    public get alerts(): Alerts {
+        return (this._alerts ??= new Alerts(this._options));
     }
 
     public get logs(): Logs {

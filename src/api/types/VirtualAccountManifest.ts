@@ -29,4 +29,5 @@ export interface VirtualAccountManifest {
      */
     permissions: TrueFoundry.Permissions[];
     auto_rotate?: TrueFoundry.AutoRotate;
+    secret_store_config?: TrueFoundry.SecretStoreConfig;
 }
