@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Prompts", () => {
-    test("get", async () => {
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -111,7 +112,25 @@ describe("Prompts", () => {
         });
     });
 
-    test("delete", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/prompts/id")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.prompts.get("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -128,7 +147,134 @@ describe("Prompts", () => {
         expect(response).toEqual({});
     });
 
-    test("create_or_update", async () => {
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/ml/v1/prompts/id")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.prompts.delete("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("list (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    type: "chat_prompt",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    latest_version: {
+                        id: "id",
+                        fqn: "fqn",
+                        created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                        manifest: {
+                            name: "name",
+                            metadata: { key: "value" },
+                            ml_repo: "ml_repo",
+                            type: "chat_prompt",
+                            messages: [{ role: "system", content: "content" }],
+                        },
+                        ml_repo_id: "ml_repo_id",
+                        prompt_id: "prompt_id",
+                    },
+                    run_steps: [1],
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server.mockEndpoint().get("/api/ml/v1/prompts").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    type: "chat_prompt",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    latest_version: {
+                        id: "id",
+                        fqn: "fqn",
+                        created_by_subject: {
+                            subjectId: "subjectId",
+                            subjectType: "user",
+                        },
+                        manifest: {
+                            name: "name",
+                            metadata: {
+                                key: "value",
+                            },
+                            ml_repo: "ml_repo",
+                            type: "chat_prompt",
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: "content",
+                                },
+                            ],
+                        },
+                        ml_repo_id: "ml_repo_id",
+                        prompt_id: "prompt_id",
+                    },
+                    run_steps: [1],
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.prompts.list({
+            fqn: "fqn",
+            ml_repo_id: "ml_repo_id",
+            name: "name",
+            offset: 1,
+            limit: 1,
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server.mockEndpoint().get("/api/ml/v1/prompts").respondWith().statusCode(422).jsonBody(rawResponseBody).build();
+
+        await expect(async () => {
+            return await client.prompts.list();
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -167,8 +313,8 @@ describe("Prompts", () => {
                     mcp_servers: [{ type: "mcp-server-fqn", integration_fqn: "integration_fqn" }],
                     response_format: { type: "json_object" },
                     routing_config: {
-                        load_balance_targets: [{ target: "target", weight: 1 }],
                         type: "weight-based-routing",
+                        load_balance_targets: [{ target: "target", weight: 1 }],
                     },
                     tool_call_to_mcp_mapping: {
                         key: { mcp_server_integration_id: "mcp_server_integration_id", tool_name: "tool_name" },
@@ -259,13 +405,13 @@ describe("Prompts", () => {
                         type: "json_object",
                     },
                     routing_config: {
+                        type: "weight-based-routing",
                         load_balance_targets: [
                             {
                                 target: "target",
                                 weight: 1,
                             },
                         ],
-                        type: "weight-based-routing",
                     },
                     tool_call_to_mcp_mapping: {
                         key: {
@@ -287,5 +433,80 @@ describe("Prompts", () => {
                 prompt_id: "prompt_id",
             },
         });
+    });
+
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                name: "name",
+                description: undefined,
+                metadata: { metadata: { key: "value" } },
+                version_alias: undefined,
+                ml_repo: "ml_repo",
+                version: undefined,
+                type: "chat_prompt",
+                messages: [
+                    { role: "system", content: "content", name: undefined },
+                    { role: "system", content: "content", name: undefined },
+                ],
+                variables: undefined,
+                model_configuration: undefined,
+                tools: undefined,
+                mcp_servers: undefined,
+                guardrails: undefined,
+                response_format: undefined,
+                routing_config: undefined,
+                tool_call_to_mcp_mapping: undefined,
+            },
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/ml/v1/prompt-versions")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.prompts.createOrUpdate({
+                manifest: {
+                    name: "name",
+                    description: undefined,
+                    metadata: {
+                        metadata: {
+                            key: "value",
+                        },
+                    },
+                    version_alias: undefined,
+                    ml_repo: "ml_repo",
+                    version: undefined,
+                    type: "chat_prompt",
+                    messages: [
+                        {
+                            role: "system",
+                            content: "content",
+                            name: undefined,
+                        },
+                        {
+                            role: "system",
+                            content: "content",
+                            name: undefined,
+                        },
+                    ],
+                    variables: undefined,
+                    model_configuration: undefined,
+                    tools: undefined,
+                    mcp_servers: undefined,
+                    guardrails: undefined,
+                    response_format: undefined,
+                    routing_config: undefined,
+                    tool_call_to_mcp_mapping: undefined,
+                },
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

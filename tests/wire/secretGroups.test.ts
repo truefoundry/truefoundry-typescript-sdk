@@ -4,9 +4,83 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("SecretGroups", () => {
-    test("create", async () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    fqn: "fqn",
+                    name: "name",
+                    tenantName: "tenantName",
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    associatedSecrets: [{ id: "id", fqn: "fqn", name: "name", secretGroupId: "secretGroupId" }],
+                    integrationId: "integrationId",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/secret-groups")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    fqn: "fqn",
+                    name: "name",
+                    tenantName: "tenantName",
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    associatedSecrets: [
+                        {
+                            id: "id",
+                            fqn: "fqn",
+                            name: "name",
+                            secretGroupId: "secretGroupId",
+                        },
+                    ],
+                    integrationId: "integrationId",
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.secretGroups.list({
+            limit: 10,
+            offset: 0,
+            fqn: "fqn",
+            search: "search",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("create (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -80,7 +154,85 @@ describe("SecretGroups", () => {
         });
     });
 
-    test("get", async () => {
+    test("create (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            name: "name",
+            integrationId: "integrationId",
+            secrets: [
+                { key: "key", value: "value" },
+                { key: "key", value: "value" },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/secret-groups")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.create({
+                name: "name",
+                integrationId: "integrationId",
+                secrets: [
+                    {
+                        key: "key",
+                        value: "value",
+                    },
+                    {
+                        key: "key",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("create (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            name: "name",
+            integrationId: "integrationId",
+            secrets: [
+                { key: "key", value: "value" },
+                { key: "key", value: "value" },
+            ],
+        };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/secret-groups")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(424)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.create({
+                name: "name",
+                integrationId: "integrationId",
+                secrets: [
+                    {
+                        key: "key",
+                        value: "value",
+                    },
+                    {
+                        key: "key",
+                        value: "value",
+                    },
+                ],
+            });
+        }).rejects.toThrow(TrueFoundry.FailedDependencyError);
+    });
+
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -140,7 +292,43 @@ describe("SecretGroups", () => {
         });
     });
 
-    test("update", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/secret-groups/id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.get("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/secret-groups/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.get("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { secrets: [{ key: "key" }] };
@@ -207,7 +395,147 @@ describe("SecretGroups", () => {
         });
     });
 
-    test("delete", async () => {
+    test("update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            secrets: [
+                { key: "key", value: undefined },
+                { key: "key", value: undefined },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/secret-groups/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.update("id", {
+                secrets: [
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                ],
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("update (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            secrets: [
+                { key: "key", value: undefined },
+                { key: "key", value: undefined },
+            ],
+        };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/secret-groups/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.update("id", {
+                secrets: [
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                ],
+            });
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("update (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            secrets: [
+                { key: "key", value: undefined },
+                { key: "key", value: undefined },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/secret-groups/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.update("id", {
+                secrets: [
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                ],
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("update (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            secrets: [
+                { key: "key", value: undefined },
+                { key: "key", value: undefined },
+            ],
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/secret-groups/id")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.update("id", {
+                secrets: [
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                    {
+                        key: "key",
+                        value: undefined,
+                    },
+                ],
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -222,5 +550,41 @@ describe("SecretGroups", () => {
 
         const response = await client.secretGroups.delete("id");
         expect(response).toEqual({});
+    });
+
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/secret-groups/id")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.delete("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("delete (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/secret-groups/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

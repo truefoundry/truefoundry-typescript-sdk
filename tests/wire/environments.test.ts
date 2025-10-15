@@ -4,9 +4,80 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Environments", () => {
-    test("create_or_update", async () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    name: "name",
+                    priority: 1.1,
+                    color: {},
+                    tenantName: "tenantName",
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    isProduction: true,
+                    optimizeFor: "COST",
+                    manifest: { type: "environment", name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/environments")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    name: "name",
+                    priority: 1.1,
+                    color: {},
+                    tenantName: "tenantName",
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    isProduction: true,
+                    optimizeFor: "COST",
+                    manifest: {
+                        type: "environment",
+                        name: "name",
+                        color: {},
+                        isProduction: true,
+                        optimizeFor: "COST",
+                    },
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.environments.list({
+            limit: 10,
+            offset: 0,
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -86,6 +157,53 @@ describe("Environments", () => {
         });
     });
 
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                type: "environment",
+                name: "name",
+                color: {
+                    colorHex: undefined,
+                    backgroundColorHex: undefined,
+                    color: undefined,
+                    backgroundColor: undefined,
+                },
+                isProduction: true,
+                optimizeFor: "COST",
+            },
+            dryRun: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/environments")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.environments.createOrUpdate({
+                manifest: {
+                    type: "environment",
+                    name: "name",
+                    color: {
+                        colorHex: undefined,
+                        backgroundColorHex: undefined,
+                        color: undefined,
+                        backgroundColor: undefined,
+                    },
+                    isProduction: true,
+                    optimizeFor: "COST",
+                },
+                dryRun: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
@@ -155,7 +273,7 @@ describe("Environments", () => {
         });
     });
 
-    test("delete", async () => {
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -170,5 +288,41 @@ describe("Environments", () => {
 
         const response = await client.environments.delete("id");
         expect(response).toEqual(true);
+    });
+
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/environments/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.environments.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/environments/id")
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.environments.delete("id");
+        }).rejects.toThrow(TrueFoundry.ConflictError);
     });
 });

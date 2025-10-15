@@ -4,9 +4,189 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("ApplicationVersions", () => {
-    test("get", async () => {
+    test("list (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    version: 1.1,
+                    fqn: "fqn",
+                    applicationId: "applicationId",
+                    manifest: {
+                        name: "name",
+                        image: {
+                            type: "build",
+                            build_source: { type: "remote", remote_uri: "remote_uri" },
+                            build_spec: {
+                                type: "dockerfile",
+                                dockerfile_path: "dockerfile_path",
+                                build_context_path: "build_context_path",
+                            },
+                        },
+                        ports: [{ port: 1, protocol: "TCP", expose: true }],
+                        type: "service",
+                        replicas: 1.1,
+                    },
+                    application: {
+                        createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                        lifecycleStage: "active",
+                        autopilot: { key: "value" },
+                    },
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    deploymentBuilds: [{ name: "name", status: 20 }],
+                    deploymentStatuses: [{}],
+                    currentStatusId: "currentStatusId",
+                    appliedRecommendations: [
+                        {
+                            recommendationData: { key: "value" },
+                            recommendationType: "recommendationType",
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    version: 1.1,
+                    fqn: "fqn",
+                    applicationId: "applicationId",
+                    manifest: {
+                        name: "name",
+                        image: {
+                            type: "build",
+                            build_source: {
+                                type: "remote",
+                                remote_uri: "remote_uri",
+                            },
+                            build_spec: {
+                                type: "dockerfile",
+                                dockerfile_path: "dockerfile_path",
+                                build_context_path: "build_context_path",
+                            },
+                        },
+                        ports: [
+                            {
+                                port: 1,
+                                protocol: "TCP",
+                                expose: true,
+                            },
+                        ],
+                        type: "service",
+                        replicas: 1.1,
+                    },
+                    application: {
+                        createdBySubject: {
+                            subjectId: "subjectId",
+                            subjectType: "user",
+                        },
+                        lifecycleStage: "active",
+                        autopilot: {
+                            key: "value",
+                        },
+                    },
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    deploymentBuilds: [
+                        {
+                            name: "name",
+                            status: 20,
+                        },
+                    ],
+                    deploymentStatuses: [{}],
+                    currentStatusId: "currentStatusId",
+                    appliedRecommendations: [
+                        {
+                            recommendationData: {
+                                key: "value",
+                            },
+                            recommendationType: "recommendationType",
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.applicationVersions.list("id", {
+            limit: 10,
+            offset: 0,
+            version: "1",
+            deploymentId: "deployment123",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.applicationVersions.list("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("list (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.applicationVersions.list("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -330,5 +510,41 @@ describe("ApplicationVersions", () => {
                 createdBy: "createdBy",
             },
         });
+    });
+
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments/deploymentId")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.applicationVersions.get("id", "deploymentId");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments/deploymentId")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.applicationVersions.get("id", "deploymentId");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

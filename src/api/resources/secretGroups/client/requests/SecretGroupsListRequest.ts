@@ -6,24 +6,18 @@
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         fqn: "fqn",
+ *         search: "search"
  *     }
  */
 export interface SecretGroupsListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
-    /**
-     * Fqn of secret group.
-     */
+    /** Fqn of secret group. */
     fqn?: string;
-    /**
-     * Search query - filters by secret group names that contain the search string
-     */
+    /** Search query - filters by secret group names that contain the search string */
     search?: string;
 }

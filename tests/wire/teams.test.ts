@@ -4,9 +4,77 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Teams", () => {
-    test("create_or_update", async () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    teamName: "teamName",
+                    description: "description",
+                    tenantName: "tenantName",
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    members: ["members"],
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    manifest: { type: "team", name: "name", members: ["members"] },
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/teams/user")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    teamName: "teamName",
+                    description: "description",
+                    tenantName: "tenantName",
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    members: ["members"],
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    manifest: {
+                        type: "team",
+                        name: "name",
+                        members: ["members"],
+                    },
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.teams.list({
+            limit: 10,
+            offset: 0,
+            type: "team",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members"] } };
@@ -69,7 +137,67 @@ describe("Teams", () => {
         });
     });
 
-    test("get", async () => {
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: { type: "team", name: "name", managers: undefined, members: ["members", "members"] },
+            dryRun: undefined,
+        };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/teams")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.createOrUpdate({
+                manifest: {
+                    type: "team",
+                    name: "name",
+                    managers: undefined,
+                    members: ["members", "members"],
+                },
+                dryRun: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("create_or_update (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: { type: "team", name: "name", managers: undefined, members: ["members", "members"] },
+            dryRun: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/teams")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.createOrUpdate({
+                manifest: {
+                    type: "team",
+                    name: "name",
+                    managers: undefined,
+                    members: ["members", "members"],
+                },
+                dryRun: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -125,7 +253,25 @@ describe("Teams", () => {
         });
     });
 
-    test("delete", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/teams/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.get("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -140,5 +286,41 @@ describe("Teams", () => {
 
         const response = await client.teams.delete("id");
         expect(response).toEqual({});
+    });
+
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/teams/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/teams/id")
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.delete("id");
+        }).rejects.toThrow(TrueFoundry.ConflictError);
     });
 });

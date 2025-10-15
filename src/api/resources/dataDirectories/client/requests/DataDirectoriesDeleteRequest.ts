@@ -4,7 +4,9 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         delete_contents: true
+ *     }
  */
 export interface DataDirectoriesDeleteRequest {
     delete_contents?: boolean;

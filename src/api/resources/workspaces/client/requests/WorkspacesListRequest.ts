@@ -6,28 +6,21 @@
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         clusterId: "clusterId",
+ *         name: "name",
+ *         fqn: "fqn"
  *     }
  */
 export interface WorkspacesListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
-    /**
-     * ClusterId of the Cluster
-     */
+    /** ClusterId of the Cluster */
     clusterId?: string;
-    /**
-     * Workspace Name
-     */
+    /** Workspace Name */
     name?: string;
-    /**
-     * Workspace FQN
-     */
+    /** Workspace FQN */
     fqn?: string;
 }

@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("Workflows", () => {
-    test("execute_workflow", async () => {
+    test("execute_workflow (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -24,5 +25,49 @@ describe("Workflows", () => {
         expect(response).toEqual({
             executionName: "executionName",
         });
+    });
+
+    test("execute_workflow (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { inputs: undefined, inputsLiteralMap: undefined };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/workflow/applicationId/executions")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.workflows.executeWorkflow("applicationId", {
+                inputs: undefined,
+                inputsLiteralMap: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("execute_workflow (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { inputs: undefined, inputsLiteralMap: undefined };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/workflow/applicationId/executions")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.workflows.executeWorkflow("applicationId", {
+                inputs: undefined,
+                inputsLiteralMap: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

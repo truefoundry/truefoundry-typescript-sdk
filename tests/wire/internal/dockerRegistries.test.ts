@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("DockerRegistries", () => {
-    test("create_repository", async () => {
+    test("create_repository (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
@@ -30,6 +31,29 @@ describe("DockerRegistries", () => {
         });
     });
 
+    test("create_repository (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/docker-registry/create-repo")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.dockerRegistries.createRepository({
+                fqn: "fqn",
+                applicationName: "applicationName",
+                workspaceFqn: "workspaceFqn",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
     test("get_credentials", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
@@ -43,7 +67,10 @@ describe("DockerRegistries", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.internal.dockerRegistries.getCredentials();
+        const response = await client.internal.dockerRegistries.getCredentials({
+            fqn: "fqn",
+            clusterId: "clusterId",
+        });
         expect(response).toEqual({
             fqn: "fqn",
             registryUrl: "registryUrl",

@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Internal", () => {
-    test("get_id_from_fqn", async () => {
+    test("get_id_from_fqn (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -25,5 +26,45 @@ describe("Internal", () => {
         expect(response).toEqual({
             key: "value",
         });
+    });
+
+    test("get_id_from_fqn (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/fqn/type")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.getIdFromFqn("type", {
+                fqn: "fqn",
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("get_id_from_fqn (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/fqn/type")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.getIdFromFqn("type", {
+                fqn: "fqn",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

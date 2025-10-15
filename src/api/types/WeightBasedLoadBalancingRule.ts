@@ -7,26 +7,13 @@ import * as TrueFoundry from "../index.js";
 /**
  * +label=Weight-based Load Balancing Rule
  */
-export interface WeightBasedLoadBalancingRule {
+export interface WeightBasedLoadBalancingRule extends TrueFoundry.WeightBasedLoadBalancing {
     /**
      * +usage=Unique identifier for the rule
      * +uiProps={"descriptionInline":true}
-     * +sort=1
+     * +sort=2
      * +label=Rule ID
      */
     id: string;
     when: TrueFoundry.LoadBalancingWhen;
-    /**
-     * +usage=List of targets for load balancing with weights
-     * +uiProps={"descriptionInline":true}
-     * +sort=3
-     * +label=Load Balance Targets
-     */
-    load_balance_targets: TrueFoundry.LoadBalanceTarget[];
-    /**
-     * +value=weight-based-routing
-     * +sort=4
-     * +label=Routing Type
-     */
-    type: "weight-based-routing";
 }

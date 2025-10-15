@@ -4,9 +4,110 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("PersonalAccessTokens", () => {
-    test("create", async () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    name: "name",
+                    type: "type",
+                    tenantName: "tenantName",
+                    manifest: {
+                        name: "name",
+                        type: "virtual-account",
+                        permissions: [
+                            { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
+                        ],
+                    },
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    isExpired: true,
+                    jwts: [
+                        {
+                            id: "id",
+                            subjectType: "subjectType",
+                            subjectId: "subjectId",
+                            expiry: "2024-01-15T09:30:00Z",
+                            createdAt: "2024-01-15T09:30:00Z",
+                            updatedAt: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/personal-access-tokens")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    name: "name",
+                    type: "type",
+                    tenantName: "tenantName",
+                    manifest: {
+                        name: "name",
+                        type: "virtual-account",
+                        permissions: [
+                            {
+                                resource_fqn: "resource_fqn",
+                                resource_type: "resource_type",
+                                role_id: "role_id",
+                            },
+                        ],
+                    },
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    isExpired: true,
+                    jwts: [
+                        {
+                            id: "id",
+                            subjectType: "subjectType",
+                            subjectId: "subjectId",
+                            expiry: "2024-01-15T09:30:00Z",
+                            createdAt: "2024-01-15T09:30:00Z",
+                            updatedAt: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.personalAccessTokens.list({
+            limit: 10,
+            offset: 0,
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("create (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { name: "name" };
@@ -28,7 +129,51 @@ describe("PersonalAccessTokens", () => {
         });
     });
 
-    test("revokeAll", async () => {
+    test("create (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "name", expirationDate: undefined };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.create({
+                name: "name",
+                expirationDate: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("create (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "name", expirationDate: undefined };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.create({
+                name: "name",
+                expirationDate: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("revokeAll (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
@@ -48,7 +193,28 @@ describe("PersonalAccessTokens", () => {
         expect(response).toEqual({});
     });
 
-    test("delete", async () => {
+    test("revokeAll (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/personal-access-tokens/revoke/all")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.revokeAll({
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -65,7 +231,25 @@ describe("PersonalAccessTokens", () => {
         expect(response).toEqual({});
     });
 
-    test("get", async () => {
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/personal-access-tokens/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -80,7 +264,7 @@ describe("PersonalAccessTokens", () => {
                     type: "virtual-account",
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    auto_rotate: { auto_rotate_period: 1, grace_period: 1 },
+                    auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -91,6 +275,16 @@ describe("PersonalAccessTokens", () => {
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
+                jwts: [
+                    {
+                        id: "id",
+                        subjectType: "subjectType",
+                        subjectId: "subjectId",
+                        expiry: "2024-01-15T09:30:00Z",
+                        createdAt: "2024-01-15T09:30:00Z",
+                        updatedAt: "2024-01-15T09:30:00Z",
+                    },
+                ],
                 createdBy: "createdBy",
             },
             token: "token",
@@ -123,7 +317,7 @@ describe("PersonalAccessTokens", () => {
                         },
                     ],
                     auto_rotate: {
-                        auto_rotate_period: 1,
+                        auto_rotate_interval: 1,
                         grace_period: 1,
                     },
                 },
@@ -136,10 +330,38 @@ describe("PersonalAccessTokens", () => {
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
+                jwts: [
+                    {
+                        id: "id",
+                        subjectType: "subjectType",
+                        subjectId: "subjectId",
+                        expiry: "2024-01-15T09:30:00Z",
+                        createdAt: "2024-01-15T09:30:00Z",
+                        updatedAt: "2024-01-15T09:30:00Z",
+                    },
+                ],
                 createdBy: "createdBy",
             },
             token: "token",
             created: true,
         });
+    });
+
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/personal-access-tokens/name")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.get("name");
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
 });

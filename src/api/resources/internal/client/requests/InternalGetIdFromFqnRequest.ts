@@ -9,8 +9,6 @@
  *     }
  */
 export interface InternalGetIdFromFqnRequest {
-    /**
-     * Entity FQN
-     */
+    /** Entity FQN */
     fqn: string;
 }

@@ -4,7 +4,10 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * Configuration for routing requests to different model targets
+ */
 export type ChatPromptManifestRoutingConfig =
-    | TrueFoundry.HeaderWeightBasedLoadBalancingRule
-    | TrueFoundry.HeaderLatencyBasedLoadBalancingRule
-    | TrueFoundry.HeaderPriorityBasedLoadBalancingRule;
+    | TrueFoundry.WeightBasedLoadBalancing
+    | TrueFoundry.LatencyBasedLoadBalancing
+    | TrueFoundry.PriorityBasedLoadBalancing;

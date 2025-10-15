@@ -9,14 +9,14 @@ import * as TrueFoundry from "../index.js";
  */
 export interface Service extends TrueFoundry.BaseService {
     /** +value=service */
-    type?: "service";
+    type: "service";
     /**
      * +label=Replicas
      * +usage=Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing.
      * +icon=fa-clone
      * +sort=4
      */
-    replicas?: TrueFoundry.ServiceReplicas;
+    replicas: TrueFoundry.ServiceReplicas;
     auto_shutdown?: TrueFoundry.Autoshutdown;
     /**
      * +label=Allow intercepts

@@ -6,5 +6,5 @@ import * as TrueFoundry from "../index.js";
 
 export interface OAuth2LoginProvider extends TrueFoundry.BaseOAuth2Login {
     /** +value=oauth2 */
-    type?: "oauth2";
+    type: "oauth2";
 }

@@ -4,15 +4,14 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         fqn: "fqn",
+ *         clusterId: "clusterId"
+ *     }
  */
 export interface DockerRegistriesGetCredentialsRequest {
-    /**
-     * Docker registry FQN
-     */
+    /** Docker registry FQN */
     fqn?: string;
-    /**
-     * Cluster Id if provided will fetch the default docker registry for the cluster
-     */
+    /** Cluster Id if provided will fetch the default docker registry for the cluster */
     clusterId?: string;
 }

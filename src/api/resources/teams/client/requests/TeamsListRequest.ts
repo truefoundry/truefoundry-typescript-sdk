@@ -8,20 +8,15 @@ import * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         type: "team"
  *     }
  */
 export interface TeamsListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
-    /**
-     * Filter teams by type
-     */
+    /** Filter teams by type */
     type?: TrueFoundry.TeamsListRequestType;
 }

@@ -10,12 +10,8 @@
  *     }
  */
 export interface PersonalAccessTokensListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
 }

@@ -14,7 +14,7 @@ export declare namespace ArtifactVersions {
         baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<core.BearerToken | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -25,8 +25,10 @@ export declare namespace ArtifactVersions {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -46,7 +48,18 @@ export class ArtifactVersions {
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.internal.artifactVersions.list()
+     *     await client.internal.artifactVersions.list({
+     *         tag: "tag",
+     *         fqn: "fqn",
+     *         artifact_id: "artifact_id",
+     *         ml_repo_id: "ml_repo_id",
+     *         name: "name",
+     *         version: 1,
+     *         offset: 1,
+     *         limit: 1,
+     *         include_internal_metadata: true,
+     *         include_model_versions: true
+     *     })
      */
     public async list(
         request: TrueFoundry.internal.ArtifactVersionsListRequest = {},
@@ -115,6 +128,11 @@ export class ArtifactVersions {
                 if (includeModelVersions != null) {
                     _queryParams["include_model_versions"] = includeModelVersions.toString();
                 }
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -122,12 +140,8 @@ export class ArtifactVersions {
                         "api/ml/v1/x/artifact-versions",
                     ),
                     method: "GET",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
-                    queryParameters: _queryParams,
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
                     timeoutMs:
                         requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
                     maxRetries: requestOptions?.maxRetries,

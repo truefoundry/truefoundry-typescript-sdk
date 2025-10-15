@@ -8,76 +8,57 @@ import * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         applicationId: "applicationId",
+ *         workspaceId: "workspaceId",
+ *         applicationName: "applicationName",
+ *         fqn: "fqn",
+ *         workspaceFqn: "workspaceFqn",
+ *         applicationType: "applicationType",
+ *         nameSearchQuery: "nameSearchQuery",
+ *         environmentId: "environmentId",
+ *         clusterId: "clusterId",
+ *         applicationSetId: "applicationSetId",
+ *         paused: true,
+ *         deviceTypeFilter: "cpu",
+ *         lastDeployedBySubjects: "lastDeployedBySubjects",
+ *         lifecycleStage: "active",
+ *         isRecommendationPresentAndVisible: true
  *     }
  */
 export interface ApplicationsListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
-    /**
-     * Application id of the application
-     */
+    /** Application id of the application */
     applicationId?: string;
-    /**
-     * Workspace id of the application (comma separated for multiple)
-     */
+    /** Workspace id of the application (comma separated for multiple) */
     workspaceId?: string;
-    /**
-     * Name of application
-     */
+    /** Name of application */
     applicationName?: string;
-    /**
-     * Fully qualified name (FQN) of the application
-     */
+    /** Fully qualified name (FQN) of the application */
     fqn?: string;
-    /**
-     * Fully qualified name (FQN) of the workspace
-     */
+    /** Fully qualified name (FQN) of the workspace */
     workspaceFqn?: string;
-    /**
-     * Type of application (comma separated for multiple). Allowed Values: async-service, service, job, spark-job, helm, notebook, codeserver, rstudio, ssh-server, volume, application, application-set, intercept, workflow
-     */
+    /** Type of application (comma separated for multiple). Allowed Values: async-service, service, job, spark-job, helm, notebook, codeserver, rstudio, ssh-server, volume, application, application-set, intercept, workflow */
     applicationType?: string;
-    /**
-     * Search query for application name
-     */
+    /** Search query for application name */
     nameSearchQuery?: string;
-    /**
-     * Filter by Environment ids of the application (comma separated for multiple)
-     */
+    /** Filter by Environment ids of the application (comma separated for multiple) */
     environmentId?: string;
-    /**
-     * Filter by Cluster ids of the application (comma separated for multiple)
-     */
+    /** Filter by Cluster ids of the application (comma separated for multiple) */
     clusterId?: string;
-    /**
-     * Filter by Application Set id of the application
-     */
+    /** Filter by Application Set id of the application */
     applicationSetId?: string;
-    /**
-     * Filter by Application Paused status
-     */
+    /** Filter by Application Paused status */
     paused?: boolean;
-    /**
-     * Filter by device type of the application. Allowed values: cpu, nvidia_gpu, aws_inferentia, nvidia_mig_gpu, nvidia_timeslicing_gpu, gcp_tpu
-     */
+    /** Filter by device type of the application. Allowed values: cpu, nvidia_gpu, aws_inferentia, nvidia_mig_gpu, nvidia_timeslicing_gpu, gcp_tpu */
     deviceTypeFilter?: TrueFoundry.ApplicationsListRequestDeviceTypeFilter;
-    /**
-     * Filter by last deployed by specific users
-     */
+    /** Filter by last deployed by specific users */
     lastDeployedBySubjects?: string;
-    /**
-     * Filter by application lifecycle state
-     */
+    /** Filter by application lifecycle state */
     lifecycleStage?: TrueFoundry.ApplicationsListRequestLifecycleStage;
-    /**
-     * Filter out applications with recommendations that are allowed to be shown
-     */
+    /** Filter out applications with recommendations that are allowed to be shown */
     isRecommendationPresentAndVisible?: boolean;
 }

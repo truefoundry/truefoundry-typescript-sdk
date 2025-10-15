@@ -14,5 +14,6 @@ export interface VirtualAccount {
     createdAt: string;
     updatedAt: string;
     isExpired?: boolean;
+    jwts?: TrueFoundry.Jwt[];
     createdBy?: string;
 }

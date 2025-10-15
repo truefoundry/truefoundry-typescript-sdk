@@ -28,5 +28,12 @@ export interface PaloAltoPrismaAirsGuardrailConfig {
      * +sort=60
      */
     profile_name: string;
+    /**
+     * +label=Mode
+     * +usage=Execution mode for the guardrail. Sync waits for the guardrail check to complete before proceeding. Async triggers the check without waiting. Defaults to sync.
+     * +sort=70
+     * +uiType=Select
+     */
+    mode?: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigMode;
     auth_data: TrueFoundry.PaloAltoPrismaAirsKeyAuth;
 }

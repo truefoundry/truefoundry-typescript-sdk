@@ -6,25 +6,20 @@
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         query: "query",
+ *         showInvalidUsers: true,
+ *         includeVirtualAccounts: "includeVirtualAccounts"
  *     }
  */
 export interface UsersListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
     query?: string;
-    /**
-     * Show Deactivated users
-     */
+    /** Show Deactivated users */
     showInvalidUsers?: boolean;
-    /**
-     * Include virtual accounts
-     */
+    /** Include virtual accounts */
     includeVirtualAccounts?: string;
 }

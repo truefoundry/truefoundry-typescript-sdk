@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("Metrics", () => {
-    test("get_charts", async () => {
+    test("get_charts (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -24,7 +25,10 @@ describe("Metrics", () => {
 
         const response = await client.internal.metrics.getCharts("workspaceId", {
             applicationId: "applicationId",
+            startTs: "startTs",
+            endTs: "endTs",
             filterEntity: "application",
+            filterQuery: "filterQuery",
         });
         expect(response).toEqual({
             step: "step",
@@ -38,5 +42,68 @@ describe("Metrics", () => {
                 },
             ],
         });
+    });
+
+    test("get_charts (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/metrics/workspaceId/charts")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.metrics.getCharts("workspaceId", {
+                applicationId: "applicationId",
+                filterEntity: "application",
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("get_charts (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/metrics/workspaceId/charts")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.metrics.getCharts("workspaceId", {
+                applicationId: "applicationId",
+                filterEntity: "application",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get_charts (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/metrics/workspaceId/charts")
+            .respondWith()
+            .statusCode(405)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.metrics.getCharts("workspaceId", {
+                applicationId: "applicationId",
+                filterEntity: "application",
+            });
+        }).rejects.toThrow(TrueFoundry.MethodNotAllowedError);
     });
 });

@@ -185,6 +185,9 @@ List all users of tenant filtered by query and showInvalidUsers. Pagination is a
 const response = await client.users.list({
     limit: 10,
     offset: 0,
+    query: "query",
+    showInvalidUsers: true,
+    includeVirtualAccounts: "includeVirtualAccounts",
 });
 for await (const item of response) {
     console.log(item);
@@ -194,6 +197,9 @@ for await (const item of response) {
 let page = await client.users.list({
     limit: 10,
     offset: 0,
+    query: "query",
+    showInvalidUsers: true,
+    includeVirtualAccounts: "includeVirtualAccounts",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -911,6 +917,7 @@ Retrieve all teams associated with the authenticated user. If the user is a tena
 const response = await client.teams.list({
     limit: 10,
     offset: 0,
+    type: "team",
 });
 for await (const item of response) {
     console.log(item);
@@ -920,6 +927,7 @@ for await (const item of response) {
 let page = await client.teams.list({
     limit: 10,
     offset: 0,
+    type: "team",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -1770,97 +1778,7 @@ await client.virtualAccounts.delete("id");
 </dl>
 </details>
 
-## LlmGateway
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMetricsGetLlmPlaygroundTables</a>({ ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcMetricsGetLlmPlaygroundTables();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.GetLlmGatewayMetricsRequestDto`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcInferenceRequestGetFilterTypeAndLabelValues</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcInferenceRequestGetFilterTypeAndLabelValues();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMetricsCharts</a>({ ...params }) -> TrueFoundry.McpMetricsChartsResponseDto</code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">getToken</a>(id) -> TrueFoundry.GetTokenForVirtualAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -1872,7 +1790,7 @@ await client.llmGateway.svcInferenceRequestGetFilterTypeAndLabelValues();
 <dl>
 <dd>
 
-Retrieves available MCP metrics charts.
+Get token for a virtual account by id
 
 </dd>
 </dl>
@@ -1888,9 +1806,7 @@ Retrieves available MCP metrics charts.
 <dd>
 
 ```typescript
-await client.llmGateway.svcMcpMetricsGetMcpMetricsCharts({
-    page: "mcpserver",
-});
+await client.virtualAccounts.getToken("id");
 ```
 
 </dd>
@@ -1906,7 +1822,7 @@ await client.llmGateway.svcMcpMetricsGetMcpMetricsCharts({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.SvcMcpMetricsGetMcpMetricsChartsRequest`
+**id:** `string` — serviceaccount id
 
 </dd>
 </dl>
@@ -1914,457 +1830,7 @@ await client.llmGateway.svcMcpMetricsGetMcpMetricsCharts({
 <dl>
 <dd>
 
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMetricsFilters</a>({ ...params }) -> TrueFoundry.McpMetricsFiltersResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves available MCP metrics filters.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcMcpMetricsGetMcpMetricsFilters({
-    startTime: 1710201609,
-    endTime: 1710202200,
-    page: "mcpserver",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.SvcMcpMetricsGetMcpMetricsFiltersRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMeters</a>({ ...params }) -> TrueFoundry.McpMetersResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves aggregated MCP metrics data.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcMcpMetricsGetMcpMeters({
-    page: "mcpserver",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.McpMetersRequestDto`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcMcpMetricsGetMcpMetricsChartsData</a>({ ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves available MCP metrics charts.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcMcpMetricsGetMcpMetricsChartsData({
-    startTime: 1710201609,
-    endTime: 1710202200,
-    chartName: "rateOfRequestsPerMcpServer",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.McpMetricsChartsDataRequestDto`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMetricsCharts</a>() -> TrueFoundry.GuardrailMetricsChartsResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves available Guardrail metrics charts.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcGuardrailMetricsGetGuardrailMetricsCharts();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMetricsFilters</a>({ ...params }) -> TrueFoundry.GuardrailMetricsFiltersResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves available Guardrail metrics filters.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcGuardrailMetricsGetGuardrailMetricsFilters({
-    startTime: 1710201609,
-    endTime: 1710202200,
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.SvcGuardrailMetricsGetGuardrailMetricsFiltersRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMeters</a>({ ...params }) -> TrueFoundry.GuardrailMetersResponseDto</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves aggregated Guardrail metrics data.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcGuardrailMetricsGetGuardrailMeters();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.GuardrailMetersRequestDto`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.llmGateway.<a href="/src/api/resources/llmGateway/client/Client.ts">svcGuardrailMetricsGetGuardrailMetricsChartsData</a>({ ...params }) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves Guardrail metrics charts data.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.llmGateway.svcGuardrailMetricsGetGuardrailMetricsChartsData({
-    startTime: 1710201609,
-    endTime: 1710202200,
-    chartName: "rateOfRequestsPerGuardrail",
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.GuardrailMetricsChartsDataRequestDto`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LlmGateway.RequestOptions`
+**requestOptions:** `VirtualAccounts.RequestOptions`
 
 </dd>
 </dl>
@@ -2608,6 +2074,8 @@ List the secret groups associated with a user along with the associated secrets 
 const response = await client.secretGroups.list({
     limit: 10,
     offset: 0,
+    fqn: "fqn",
+    search: "search",
 });
 for await (const item of response) {
     console.log(item);
@@ -2617,6 +2085,8 @@ for await (const item of response) {
 let page = await client.secretGroups.list({
     limit: 10,
     offset: 0,
+    fqn: "fqn",
+    search: "search",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -3659,6 +3129,21 @@ Retrieves a list of all latest applications. Supports filtering by application I
 const response = await client.applications.list({
     limit: 10,
     offset: 0,
+    applicationId: "applicationId",
+    workspaceId: "workspaceId",
+    applicationName: "applicationName",
+    fqn: "fqn",
+    workspaceFqn: "workspaceFqn",
+    applicationType: "applicationType",
+    nameSearchQuery: "nameSearchQuery",
+    environmentId: "environmentId",
+    clusterId: "clusterId",
+    applicationSetId: "applicationSetId",
+    paused: true,
+    deviceTypeFilter: "cpu",
+    lastDeployedBySubjects: "lastDeployedBySubjects",
+    lifecycleStage: "active",
+    isRecommendationPresentAndVisible: true,
 });
 for await (const item of response) {
     console.log(item);
@@ -3668,6 +3153,21 @@ for await (const item of response) {
 let page = await client.applications.list({
     limit: 10,
     offset: 0,
+    applicationId: "applicationId",
+    workspaceId: "workspaceId",
+    applicationName: "applicationName",
+    fqn: "fqn",
+    workspaceFqn: "workspaceFqn",
+    applicationType: "applicationType",
+    nameSearchQuery: "nameSearchQuery",
+    environmentId: "environmentId",
+    clusterId: "clusterId",
+    applicationSetId: "applicationSetId",
+    paused: true,
+    deviceTypeFilter: "cpu",
+    lastDeployedBySubjects: "lastDeployedBySubjects",
+    lifecycleStage: "active",
+    isRecommendationPresentAndVisible: true,
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4292,6 +3792,9 @@ List Job Runs for provided Job Id. Filter the data based on parameters passed in
 const response = await client.jobs.listRuns("jobId", {
     limit: 10,
     offset: 0,
+    searchPrefix: "searchPrefix",
+    sortBy: "startTime",
+    order: "asc",
 });
 for await (const item of response) {
     console.log(item);
@@ -4301,6 +3804,9 @@ for await (const item of response) {
 let page = await client.jobs.listRuns("jobId", {
     limit: 10,
     offset: 0,
+    searchPrefix: "searchPrefix",
+    sortBy: "startTime",
+    order: "asc",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4651,6 +4157,9 @@ List workspaces associated with the user. Optional filters include clusterId, fq
 const response = await client.workspaces.list({
     limit: 10,
     offset: 0,
+    clusterId: "clusterId",
+    name: "name",
+    fqn: "fqn",
 });
 for await (const item of response) {
     console.log(item);
@@ -4660,6 +4169,9 @@ for await (const item of response) {
 let page = await client.workspaces.list({
     limit: 10,
     offset: 0,
+    clusterId: "clusterId",
+    name: "name",
+    fqn: "fqn",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4893,136 +4405,6 @@ await client.workspaces.delete("id");
 </dl>
 </details>
 
-## Events
-
-<details><summary><code>client.events.<a href="/src/api/resources/events/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetEventsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get Events for Pod, Job Run, Application. The events are sourced from Kubernetes as well as events captured by truefoundry. Optional query parameters include startTs, endTs for filtering.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.events.get();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.EventsGetRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Events.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Alerts
-
-<details><summary><code>client.alerts.<a href="/src/api/resources/alerts/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.GetAlertsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get alerts for a given application or cluster filtered by start and end timestamp
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.alerts.list();
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.AlertsListRequest`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `Alerts.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
 ## Logs
 
 <details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetLogsResponse</code></summary>
@@ -5053,7 +4435,24 @@ Fetch logs for various workload components, including Services, Jobs, Workflows,
 <dd>
 
 ```typescript
-await client.logs.get();
+await client.logs.get({
+    startTs: 1000000,
+    endTs: 1000000,
+    limit: 1,
+    direction: "asc",
+    numLogsToIgnore: 1,
+    applicationId: "applicationId",
+    applicationFqn: "applicationFqn",
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName",
+    podName: "podName",
+    containerName: "containerName",
+    podNamesRegex: "podNamesRegex",
+    searchFilters: "searchFilters",
+    searchString: "searchString",
+    searchType: "regex",
+    searchOperator: "equal",
+});
 ```
 
 </dd>
@@ -5337,13 +4736,21 @@ ListMLReposResponse: List of ml repos
 <dd>
 
 ```typescript
-const response = await client.mlRepos.list();
+const response = await client.mlRepos.list({
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.mlRepos.list();
+let page = await client.mlRepos.list({
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5371,6 +4778,71 @@ while (page.hasNextPage()) {
 <dd>
 
 **requestOptions:** `MlRepos.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Traces
+
+<details><summary><code>client.traces.<a href="/src/api/resources/traces/client/Client.ts">querySpans</a>({ ...params }) -> core.Page<TrueFoundry.TraceSpan></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.traces.querySpans({
+    startTime: "startTime",
+    tracingProjectFqn: "tracingProjectFqn",
+});
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.traces.querySpans({
+    startTime: "startTime",
+    tracingProjectFqn: "tracingProjectFqn",
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.QuerySpansRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Traces.RequestOptions`
 
 </dd>
 </dl>
@@ -5492,13 +4964,27 @@ await client.artifacts.delete("id");
 <dd>
 
 ```typescript
-const response = await client.artifacts.list();
+const response = await client.artifacts.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+    run_id: "run_id",
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.artifacts.list();
+let page = await client.artifacts.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+    run_id: "run_id",
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5707,13 +5193,25 @@ await client.prompts.delete("id");
 <dd>
 
 ```typescript
-const response = await client.prompts.list();
+const response = await client.prompts.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.prompts.list();
+let page = await client.prompts.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -5925,13 +5423,27 @@ await client.models.delete("id");
 <dd>
 
 ```typescript
-const response = await client.models.list();
+const response = await client.models.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+    run_id: "run_id",
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.models.list();
+let page = await client.models.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+    run_id: "run_id",
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6236,13 +5748,33 @@ List artifact version API
 <dd>
 
 ```typescript
-const response = await client.artifactVersions.list();
+const response = await client.artifactVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    artifact_id: "artifact_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+    include_internal_metadata: true,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.artifactVersions.list();
+let page = await client.artifactVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    artifact_id: "artifact_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+    include_internal_metadata: true,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -6762,13 +6294,33 @@ List model version API
 <dd>
 
 ```typescript
-const response = await client.modelVersions.list();
+const response = await client.modelVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    model_id: "model_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+    include_internal_metadata: true,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.modelVersions.list();
+let page = await client.modelVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    model_id: "model_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+    include_internal_metadata: true,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -7013,13 +6565,31 @@ List prompt version API
 <dd>
 
 ```typescript
-const response = await client.promptVersions.list();
+const response = await client.promptVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    prompt_id: "prompt_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.promptVersions.list();
+let page = await client.promptVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    prompt_id: "prompt_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -7165,7 +6735,9 @@ EmptyResponse: Empty response indicating successful deletion
 <dd>
 
 ```typescript
-await client.dataDirectories.delete("id");
+await client.dataDirectories.delete("id", {
+    delete_contents: true,
+});
 ```
 
 </dd>
@@ -7243,13 +6815,25 @@ ListDataDirectoriesResponse: List of data directories and pagination info
 <dd>
 
 ```typescript
-const response = await client.dataDirectories.list();
+const response = await client.dataDirectories.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.dataDirectories.list();
+let page = await client.dataDirectories.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    limit: 1,
+    offset: 1,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
@@ -8080,6 +7664,9 @@ await client.internal.deployments.getSuggestedEndpoint({
     applicationType: "async-service",
     applicationName: "applicationName",
     workspaceId: "workspaceId",
+    baseDomain: "baseDomain",
+    port: "port",
+    preferWildcard: true,
 });
 ```
 
@@ -8117,6 +7704,79 @@ await client.internal.deployments.getSuggestedEndpoint({
 
 ## Internal Applications
 
+<details><summary><code>client.internal.applications.<a href="/src/api/resources/internal/resources/applications/client/Client.ts">promoteRollout</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Promote an application rollout for canary and blue-green.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.applications.promoteRollout("id", {
+    full: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Id of the application
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.internal.ApplicationsPromoteRolloutRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Applications.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.internal.applications.<a href="/src/api/resources/internal/resources/applications/client/Client.ts">getPodTemplateHashToDeploymentVersion</a>(id, { ...params }) -> Record<string, number></code></summary>
 <dl>
 <dd>
@@ -8145,7 +7805,9 @@ This endpoint fetches the pod template hash to deployment version map for a spec
 <dd>
 
 ```typescript
-await client.internal.applications.getPodTemplateHashToDeploymentVersion("id");
+await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
+    podTemplateHashes: "podTemplateHashes",
+});
 ```
 
 </dd>
@@ -8220,7 +7882,10 @@ List charts for a given Application based on parameters passed in the query.
 ```typescript
 await client.internal.metrics.getCharts("workspaceId", {
     applicationId: "applicationId",
+    startTs: "startTs",
+    endTs: "endTs",
     filterEntity: "application",
+    filterQuery: "filterQuery",
 });
 ```
 
@@ -8463,7 +8128,10 @@ Get docker registry credentials for building and pushing an image.
 <dd>
 
 ```typescript
-await client.internal.dockerRegistries.getCredentials();
+await client.internal.dockerRegistries.getCredentials({
+    fqn: "fqn",
+    clusterId: "clusterId",
+});
 ```
 
 </dd>
@@ -8601,13 +8269,35 @@ List artifact version API
 <dd>
 
 ```typescript
-const response = await client.internal.artifactVersions.list();
+const response = await client.internal.artifactVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    artifact_id: "artifact_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+    include_internal_metadata: true,
+    include_model_versions: true,
+});
 for await (const item of response) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.internal.artifactVersions.list();
+let page = await client.internal.artifactVersions.list({
+    tag: "tag",
+    fqn: "fqn",
+    artifact_id: "artifact_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1,
+    include_internal_metadata: true,
+    include_model_versions: true,
+});
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }

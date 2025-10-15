@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("Ml", () => {
-    test("apply", async () => {
+    test("apply (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -118,7 +119,63 @@ describe("Ml", () => {
         });
     });
 
-    test("delete", async () => {
+    test("apply (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                name: "name",
+                description: undefined,
+                metadata: { metadata: { key: "value" } },
+                version_alias: undefined,
+                ml_repo: "ml_repo",
+                version: undefined,
+                type: "model-version",
+                source: { type: "truefoundry", uri: undefined },
+                framework: undefined,
+                environment: undefined,
+                step: undefined,
+                run_id: undefined,
+            },
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/ml/v1/apply")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.ml.apply({
+                manifest: {
+                    name: "name",
+                    description: undefined,
+                    metadata: {
+                        metadata: {
+                            key: "value",
+                        },
+                    },
+                    version_alias: undefined,
+                    ml_repo: "ml_repo",
+                    version: undefined,
+                    type: "model-version",
+                    source: {
+                        type: "truefoundry",
+                        uri: undefined,
+                    },
+                    framework: undefined,
+                    environment: undefined,
+                    step: undefined,
+                    run_id: undefined,
+                },
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -154,5 +211,61 @@ describe("Ml", () => {
             },
         });
         expect(response).toEqual({});
+    });
+
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                name: "name",
+                description: undefined,
+                metadata: { metadata: { key: "value" } },
+                version_alias: undefined,
+                ml_repo: "ml_repo",
+                version: undefined,
+                type: "model-version",
+                source: { type: "truefoundry", uri: undefined },
+                framework: undefined,
+                environment: undefined,
+                step: undefined,
+                run_id: undefined,
+            },
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/ml/v1/delete")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.ml.delete({
+                manifest: {
+                    name: "name",
+                    description: undefined,
+                    metadata: {
+                        metadata: {
+                            key: "value",
+                        },
+                    },
+                    version_alias: undefined,
+                    ml_repo: "ml_repo",
+                    version: undefined,
+                    type: "model-version",
+                    source: {
+                        type: "truefoundry",
+                        uri: undefined,
+                    },
+                    framework: undefined,
+                    environment: undefined,
+                    step: undefined,
+                    run_id: undefined,
+                },
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

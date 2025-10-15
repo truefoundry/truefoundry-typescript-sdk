@@ -9,6 +9,6 @@ import * as TrueFoundry from "../index.js";
  */
 export interface Codeserver extends TrueFoundry.BaseWorkbenchInput {
     /** +value=codeserver */
-    type?: "codeserver";
-    image?: TrueFoundry.WorkbenchImage;
+    type: "codeserver";
+    image: TrueFoundry.WorkbenchImage;
 }

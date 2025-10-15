@@ -8,22 +8,19 @@ import * as TrueFoundry from "../../../../../../index.js";
  * @example
  *     {
  *         applicationId: "applicationId",
- *         filterEntity: "application"
+ *         startTs: "startTs",
+ *         endTs: "endTs",
+ *         filterEntity: "application",
+ *         filterQuery: "filterQuery"
  *     }
  */
 export interface MetricsGetChartsRequest {
     applicationId: string;
-    /**
-     * Start Timestamp
-     */
+    /** Start Timestamp */
     startTs?: string;
-    /**
-     * End Timestamp
-     */
+    /** End Timestamp */
     endTs?: string;
     filterEntity: TrueFoundry.internal.MetricsGetChartsRequestFilterEntity;
-    /**
-     * Query params to filter metrics
-     */
+    /** Query params to filter metrics */
     filterQuery?: string;
 }

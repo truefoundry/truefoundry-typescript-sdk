@@ -4,9 +4,64 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Users", () => {
-    test("pre_register_users", async () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    email: "email",
+                    tenantName: "tenantName",
+                    metadata: {},
+                    roles: ["roles"],
+                    active: true,
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server.mockEndpoint().get("/api/svc/v1/users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    email: "email",
+                    tenantName: "tenantName",
+                    metadata: {},
+                    roles: ["roles"],
+                    active: true,
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.users.list({
+            limit: 10,
+            offset: 0,
+            query: "query",
+            showInvalidUsers: true,
+            includeVirtualAccounts: "includeVirtualAccounts",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("pre_register_users (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
@@ -26,7 +81,100 @@ describe("Users", () => {
         expect(response).toEqual({});
     });
 
-    test("update_roles", async () => {
+    test("pre_register_users (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            email: "email",
+            sendInviteEmail: undefined,
+            skipIfUserExists: undefined,
+            dryRun: undefined,
+            acceptInviteClientURL: undefined,
+        };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/users/register")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.preRegisterUsers({
+                email: "email",
+                sendInviteEmail: undefined,
+                skipIfUserExists: undefined,
+                dryRun: undefined,
+                acceptInviteClientURL: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("pre_register_users (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            email: "email",
+            sendInviteEmail: undefined,
+            skipIfUserExists: undefined,
+            dryRun: undefined,
+            acceptInviteClientURL: undefined,
+        };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/users/register")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.preRegisterUsers({
+                email: "email",
+                sendInviteEmail: undefined,
+                skipIfUserExists: undefined,
+                dryRun: undefined,
+                acceptInviteClientURL: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("pre_register_users (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            email: "email",
+            sendInviteEmail: undefined,
+            skipIfUserExists: undefined,
+            dryRun: undefined,
+            acceptInviteClientURL: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/users/register")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.preRegisterUsers({
+                email: "email",
+                sendInviteEmail: undefined,
+                skipIfUserExists: undefined,
+                dryRun: undefined,
+                acceptInviteClientURL: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("update_roles (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", roles: ["roles"] };
@@ -47,7 +195,73 @@ describe("Users", () => {
         expect(response).toEqual({});
     });
 
-    test("get", async () => {
+    test("update_roles (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/roles")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.updateRoles({
+                email: "email",
+                roles: ["roles", "roles"],
+            });
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("update_roles (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/roles")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.updateRoles({
+                email: "email",
+                roles: ["roles", "roles"],
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("update_roles (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/roles")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.updateRoles({
+                email: "email",
+                roles: ["roles", "roles"],
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -112,7 +326,25 @@ describe("Users", () => {
         });
     });
 
-    test("delete", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.get("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -129,7 +361,61 @@ describe("Users", () => {
         expect(response).toEqual({});
     });
 
-    test("invite_user", async () => {
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/users/id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.delete("id");
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("delete (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/users/id")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.delete("id");
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("delete (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/users/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("invite_user (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { acceptInviteClientUrl: "<control plane url>/invite-accept", email: "email" };
@@ -152,7 +438,73 @@ describe("Users", () => {
         });
     });
 
-    test("deactivate", async () => {
+    test("invite_user (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/users/invite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.inviteUser({
+                acceptInviteClientUrl: "acceptInviteClientUrl",
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("invite_user (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/users/invite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.inviteUser({
+                acceptInviteClientUrl: "acceptInviteClientUrl",
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("invite_user (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/users/invite")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.inviteUser({
+                acceptInviteClientUrl: "acceptInviteClientUrl",
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("deactivate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
@@ -172,7 +524,49 @@ describe("Users", () => {
         expect(response).toEqual({});
     });
 
-    test("activate", async () => {
+    test("deactivate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/deactivate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deactivate({
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("deactivate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/deactivate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.deactivate({
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("activate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
@@ -190,6 +584,48 @@ describe("Users", () => {
             email: "email",
         });
         expect(response).toEqual({});
+    });
+
+    test("activate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/activate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.activate({
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("activate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { email: "email" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/activate")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.activate({
+                email: "email",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("change_password", async () => {
@@ -214,7 +650,7 @@ describe("Users", () => {
         expect(response).toEqual({});
     });
 
-    test("get_resources", async () => {
+    test("get_resources (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -249,7 +685,43 @@ describe("Users", () => {
         });
     });
 
-    test("get_teams", async () => {
+    test("get_resources (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/resources")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.getResources("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get_resources (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/resources")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.getResources("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get_teams (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -299,5 +771,41 @@ describe("Users", () => {
                 },
             ],
         });
+    });
+
+    test("get_teams (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/teams")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.getTeams("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get_teams (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/teams")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.getTeams("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

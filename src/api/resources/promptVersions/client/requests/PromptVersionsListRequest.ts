@@ -4,7 +4,16 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         tag: "tag",
+ *         fqn: "fqn",
+ *         prompt_id: "prompt_id",
+ *         ml_repo_id: "ml_repo_id",
+ *         name: "name",
+ *         version: 1,
+ *         offset: 1,
+ *         limit: 1
+ *     }
  */
 export interface PromptVersionsListRequest {
     tag?: string;

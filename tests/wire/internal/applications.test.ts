@@ -4,9 +4,58 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("Applications", () => {
-    test("get_pod_template_hash_to_deployment_version", async () => {
+    test("promote_rollout (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().post("/api/svc/v1/apps/id/rollout/promote").respondWith().statusCode(200).build();
+
+        const response = await client.internal.applications.promoteRollout("id", {
+            full: true,
+        });
+        expect(response).toEqual(undefined);
+    });
+
+    test("promote_rollout (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/apps/id/rollout/promote")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.applications.promoteRollout("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("promote_rollout (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/apps/id/rollout/promote")
+            .respondWith()
+            .statusCode(405)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.applications.promoteRollout("id");
+        }).rejects.toThrow(TrueFoundry.MethodNotAllowedError);
+    });
+
+    test("get_pod_template_hash_to_deployment_version (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -19,9 +68,29 @@ describe("Applications", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.internal.applications.getPodTemplateHashToDeploymentVersion("id");
+        const response = await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
+            podTemplateHashes: "podTemplateHashes",
+        });
         expect(response).toEqual({
             key: 1.1,
         });
+    });
+
+    test("get_pod_template_hash_to_deployment_version (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/pod-template-hash-deployment-version-map")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.applications.getPodTemplateHashToDeploymentVersion("id");
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
 });

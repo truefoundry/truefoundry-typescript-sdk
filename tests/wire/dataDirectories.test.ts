@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("DataDirectories", () => {
-    test("get", async () => {
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -75,7 +76,25 @@ describe("DataDirectories", () => {
         });
     });
 
-    test("delete", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/data-directories/id")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.get("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -88,11 +107,130 @@ describe("DataDirectories", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.dataDirectories.delete("id");
+        const response = await client.dataDirectories.delete("id", {
+            delete_contents: true,
+        });
         expect(response).toEqual({});
     });
 
-    test("create_or_update", async () => {
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/ml/v1/data-directories/id")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.delete("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("list (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    manifest: {
+                        type: "data-dir",
+                        name: "name",
+                        ml_repo: "ml_repo",
+                        metadata: { key: "value" },
+                        source: { type: "truefoundry" },
+                    },
+                    usage_code_snippet: "usage_code_snippet",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/data-directories")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    manifest: {
+                        type: "data-dir",
+                        name: "name",
+                        ml_repo: "ml_repo",
+                        metadata: {
+                            key: "value",
+                        },
+                        source: {
+                            type: "truefoundry",
+                        },
+                    },
+                    usage_code_snippet: "usage_code_snippet",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.dataDirectories.list({
+            fqn: "fqn",
+            ml_repo_id: "ml_repo_id",
+            name: "name",
+            limit: 1,
+            offset: 1,
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/data-directories")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.list();
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -182,7 +320,132 @@ describe("DataDirectories", () => {
         });
     });
 
-    test("delete_files", async () => {
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                type: "data-dir",
+                name: "name",
+                ml_repo: "ml_repo",
+                description: undefined,
+                metadata: { metadata: { key: "value" } },
+                source: { type: "truefoundry", uri: undefined },
+            },
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/ml/v1/data-directories")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.createOrUpdate({
+                manifest: {
+                    type: "data-dir",
+                    name: "name",
+                    ml_repo: "ml_repo",
+                    description: undefined,
+                    metadata: {
+                        metadata: {
+                            key: "value",
+                        },
+                    },
+                    source: {
+                        type: "truefoundry",
+                        uri: undefined,
+                    },
+                },
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("list_files (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id" };
+        const rawResponseBody = {
+            data: [
+                {
+                    path: "path",
+                    is_dir: true,
+                    file_size: 1,
+                    signed_url: "signed_url",
+                    last_modified: "2024-01-15T09:30:00Z",
+                },
+            ],
+            pagination: {
+                limit: 10,
+                nextPageToken: "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDoxMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
+                previousPageToken:
+                    "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDowMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
+            },
+        };
+        server
+            .mockEndpoint()
+            .post("/api/ml/v1/data-directories/files")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    path: "path",
+                    is_dir: true,
+                    file_size: 1,
+                    signed_url: "signed_url",
+                    last_modified: "2024-01-15T09:30:00Z",
+                },
+            ],
+            pagination: {
+                limit: 10,
+                nextPageToken: "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDoxMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
+                previousPageToken:
+                    "eyJlbmRUaW1lIjoiMjAyNS0wMy0xMlQwMDowMDowMC4wMDBaIiwidHJhY2VJZCI6IjEyMzQ1Njc4OTAifQ==",
+            },
+        };
+        const page = await client.dataDirectories.listFiles({
+            id: "id",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list_files (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", path: undefined, limit: undefined, pageToken: undefined };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/ml/v1/data-directories/files")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.listFiles({
+                id: "id",
+                path: undefined,
+                limit: undefined,
+                pageToken: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("delete_files (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths"] };
@@ -203,7 +466,29 @@ describe("DataDirectories", () => {
         expect(response).toEqual({});
     });
 
-    test("get_signed_urls", async () => {
+    test("delete_files (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", paths: ["paths", "paths"] };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/ml/v1/data-directories/files")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.deleteFiles({
+                id: "id",
+                paths: ["paths", "paths"],
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("get_signed_urls (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths"], operation: "READ" };
@@ -232,7 +517,30 @@ describe("DataDirectories", () => {
         });
     });
 
-    test("create_multipart_upload", async () => {
+    test("get_signed_urls (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", paths: ["paths", "paths"], operation: "READ" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/ml/v1/data-directories/signed-urls")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.getSignedUrls({
+                id: "id",
+                paths: ["paths", "paths"],
+                operation: "READ",
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("create_multipart_upload (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", path: "path", num_parts: 1 };
@@ -276,5 +584,28 @@ describe("DataDirectories", () => {
                 },
             },
         });
+    });
+
+    test("create_multipart_upload (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", path: "path", num_parts: 1 };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/ml/v1/data-directories/signed-urls/multipart")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.dataDirectories.createMultipartUpload({
+                id: "id",
+                path: "path",
+                num_parts: 1,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

@@ -8,40 +8,27 @@ import * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         searchPrefix: "searchPrefix",
+ *         sortBy: "startTime",
+ *         order: "asc"
  *     }
  */
 export interface JobsListRunsRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
-    /**
-     * Prefix used to search for job runs by name or identifier
-     */
+    /** Prefix used to search for job runs by name or identifier */
     searchPrefix?: string;
-    /**
-     * Attribute to sort by
-     */
+    /** Attribute to sort by */
     sortBy?: TrueFoundry.JobRunsSortBy;
-    /**
-     * Sorting order
-     */
-    order?: TrueFoundry.JobRunsSortDirection;
-    /**
-     * Array of subject slugs
-     */
+    /** Sorting order */
+    order?: TrueFoundry.SortDirection;
+    /** Array of subject slugs */
     triggeredBy?: string | string[];
-    /**
-     * Status of the job run
-     */
+    /** Status of the job run */
     status?: TrueFoundry.JobRunStatus | TrueFoundry.JobRunStatus[];
-    /**
-     * Version number of the deployment
-     */
+    /** Version number of the deployment */
     versionNumbers?: number | number[];
 }

@@ -4,7 +4,17 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         tag: "tag",
+ *         fqn: "fqn",
+ *         artifact_id: "artifact_id",
+ *         ml_repo_id: "ml_repo_id",
+ *         name: "name",
+ *         version: 1,
+ *         offset: 1,
+ *         limit: 1,
+ *         include_internal_metadata: true
+ *     }
  */
 export interface ArtifactVersionsListRequest {
     tag?: string;

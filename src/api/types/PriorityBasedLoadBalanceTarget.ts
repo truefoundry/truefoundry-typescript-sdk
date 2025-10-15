@@ -9,6 +9,8 @@ export interface PriorityBasedLoadBalanceTarget {
     target: string;
     /** Priority for the target, Lower the number, higher the priority (0 is the highest priority) */
     priority?: number;
+    /** Maximum inter-token latency threshold in milliseconds. If ITL exceeds this value, the target will be marked as unhealthy */
+    max_inter_token_latency?: number;
     retry_config?: TrueFoundry.RetryConfig;
     /** Status Codes for which the request will fallback to other targets. If the status code is not present in fallback_status_codes, it fails immediately. */
     fallback_status_codes?: string[];

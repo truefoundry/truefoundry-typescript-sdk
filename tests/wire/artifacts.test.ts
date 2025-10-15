@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Artifacts", () => {
-    test("get", async () => {
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -98,7 +99,25 @@ describe("Artifacts", () => {
         });
     });
 
-    test("delete", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/artifacts/id")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.artifacts.get("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -115,7 +134,124 @@ describe("Artifacts", () => {
         expect(response).toEqual({});
     });
 
-    test("create_or_update", async () => {
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/ml/v1/artifacts/id")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.artifacts.delete("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("list (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    type: "artifact",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    latest_version: {
+                        id: "id",
+                        fqn: "fqn",
+                        created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                        ml_repo_id: "ml_repo_id",
+                    },
+                    run_steps: [1],
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/artifacts")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    type: "artifact",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    latest_version: {
+                        id: "id",
+                        fqn: "fqn",
+                        created_by_subject: {
+                            subjectId: "subjectId",
+                            subjectType: "user",
+                        },
+                        ml_repo_id: "ml_repo_id",
+                    },
+                    run_steps: [1],
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.artifacts.list({
+            fqn: "fqn",
+            ml_repo_id: "ml_repo_id",
+            name: "name",
+            offset: 1,
+            limit: 1,
+            run_id: "run_id",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/ml/v1/artifacts")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.artifacts.list();
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -213,5 +349,57 @@ describe("Artifacts", () => {
                 artifact_id: "artifact_id",
             },
         });
+    });
+
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                name: "name",
+                description: undefined,
+                metadata: { metadata: { key: "value" } },
+                version_alias: undefined,
+                ml_repo: "ml_repo",
+                version: undefined,
+                type: "artifact-version",
+                source: { type: "truefoundry", uri: undefined },
+                step: undefined,
+                run_id: undefined,
+            },
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/ml/v1/artifact-versions")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.artifacts.createOrUpdate({
+                manifest: {
+                    name: "name",
+                    description: undefined,
+                    metadata: {
+                        metadata: {
+                            key: "value",
+                        },
+                    },
+                    version_alias: undefined,
+                    ml_repo: "ml_repo",
+                    version: undefined,
+                    type: "artifact-version",
+                    source: {
+                        type: "truefoundry",
+                        uri: undefined,
+                    },
+                    step: undefined,
+                    run_id: undefined,
+                },
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

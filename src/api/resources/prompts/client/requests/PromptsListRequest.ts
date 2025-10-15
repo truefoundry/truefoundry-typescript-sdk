@@ -4,7 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         fqn: "fqn",
+ *         ml_repo_id: "ml_repo_id",
+ *         name: "name",
+ *         offset: 1,
+ *         limit: 1
+ *     }
  */
 export interface PromptsListRequest {
     fqn?: string;

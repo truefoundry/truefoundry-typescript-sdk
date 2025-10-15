@@ -4,9 +4,110 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("VirtualAccounts", () => {
-    test("create_or_update", async () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    name: "name",
+                    type: "type",
+                    tenantName: "tenantName",
+                    manifest: {
+                        name: "name",
+                        type: "virtual-account",
+                        permissions: [
+                            { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
+                        ],
+                    },
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    isExpired: true,
+                    jwts: [
+                        {
+                            id: "id",
+                            subjectType: "subjectType",
+                            subjectId: "subjectId",
+                            expiry: "2024-01-15T09:30:00Z",
+                            createdAt: "2024-01-15T09:30:00Z",
+                            updatedAt: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/virtual-accounts")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    id: "id",
+                    name: "name",
+                    type: "type",
+                    tenantName: "tenantName",
+                    manifest: {
+                        name: "name",
+                        type: "virtual-account",
+                        permissions: [
+                            {
+                                resource_fqn: "resource_fqn",
+                                resource_type: "resource_type",
+                                role_id: "role_id",
+                            },
+                        ],
+                    },
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    isExpired: true,
+                    jwts: [
+                        {
+                            id: "id",
+                            subjectType: "subjectType",
+                            subjectId: "subjectId",
+                            expiry: "2024-01-15T09:30:00Z",
+                            createdAt: "2024-01-15T09:30:00Z",
+                            updatedAt: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.virtualAccounts.list({
+            limit: 10,
+            offset: 0,
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
@@ -27,7 +128,7 @@ describe("VirtualAccounts", () => {
                     type: "virtual-account",
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    auto_rotate: { auto_rotate_period: 1, grace_period: 1 },
+                    auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -38,6 +139,16 @@ describe("VirtualAccounts", () => {
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
+                jwts: [
+                    {
+                        id: "id",
+                        subjectType: "subjectType",
+                        subjectId: "subjectId",
+                        expiry: "2024-01-15T09:30:00Z",
+                        createdAt: "2024-01-15T09:30:00Z",
+                        updatedAt: "2024-01-15T09:30:00Z",
+                    },
+                ],
                 createdBy: "createdBy",
             },
             token: "token",
@@ -82,7 +193,7 @@ describe("VirtualAccounts", () => {
                         },
                     ],
                     auto_rotate: {
-                        auto_rotate_period: 1,
+                        auto_rotate_interval: 1,
                         grace_period: 1,
                     },
                 },
@@ -95,13 +206,125 @@ describe("VirtualAccounts", () => {
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
+                jwts: [
+                    {
+                        id: "id",
+                        subjectType: "subjectType",
+                        subjectId: "subjectId",
+                        expiry: "2024-01-15T09:30:00Z",
+                        createdAt: "2024-01-15T09:30:00Z",
+                        updatedAt: "2024-01-15T09:30:00Z",
+                    },
+                ],
                 createdBy: "createdBy",
             },
             token: "token",
         });
     });
 
-    test("get", async () => {
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                name: "name",
+                type: "virtual-account",
+                expiration_date: undefined,
+                permissions: [
+                    { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
+                    { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
+                ],
+                auto_rotate: undefined,
+            },
+            dryRun: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/virtual-accounts")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.createOrUpdate({
+                manifest: {
+                    name: "name",
+                    type: "virtual-account",
+                    expiration_date: undefined,
+                    permissions: [
+                        {
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
+                        },
+                        {
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
+                        },
+                    ],
+                    auto_rotate: undefined,
+                },
+                dryRun: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("create_or_update (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: {
+                name: "name",
+                type: "virtual-account",
+                expiration_date: undefined,
+                permissions: [
+                    { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
+                    { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
+                ],
+                auto_rotate: undefined,
+            },
+            dryRun: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/virtual-accounts")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.createOrUpdate({
+                manifest: {
+                    name: "name",
+                    type: "virtual-account",
+                    expiration_date: undefined,
+                    permissions: [
+                        {
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
+                        },
+                        {
+                            resource_fqn: "resource_fqn",
+                            resource_type: "resource_type",
+                            role_id: "role_id",
+                        },
+                    ],
+                    auto_rotate: undefined,
+                },
+                dryRun: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -116,7 +339,7 @@ describe("VirtualAccounts", () => {
                     type: "virtual-account",
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    auto_rotate: { auto_rotate_period: 1, grace_period: 1 },
+                    auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -127,6 +350,16 @@ describe("VirtualAccounts", () => {
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
+                jwts: [
+                    {
+                        id: "id",
+                        subjectType: "subjectType",
+                        subjectId: "subjectId",
+                        expiry: "2024-01-15T09:30:00Z",
+                        createdAt: "2024-01-15T09:30:00Z",
+                        updatedAt: "2024-01-15T09:30:00Z",
+                    },
+                ],
                 createdBy: "createdBy",
             },
             token: "token",
@@ -158,7 +391,7 @@ describe("VirtualAccounts", () => {
                         },
                     ],
                     auto_rotate: {
-                        auto_rotate_period: 1,
+                        auto_rotate_interval: 1,
                         grace_period: 1,
                     },
                 },
@@ -171,13 +404,41 @@ describe("VirtualAccounts", () => {
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
+                jwts: [
+                    {
+                        id: "id",
+                        subjectType: "subjectType",
+                        subjectId: "subjectId",
+                        expiry: "2024-01-15T09:30:00Z",
+                        createdAt: "2024-01-15T09:30:00Z",
+                        updatedAt: "2024-01-15T09:30:00Z",
+                    },
+                ],
                 createdBy: "createdBy",
             },
             token: "token",
         });
     });
 
-    test("delete", async () => {
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/virtual-accounts/id")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.get("id");
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("delete (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -192,5 +453,42 @@ describe("VirtualAccounts", () => {
 
         const response = await client.virtualAccounts.delete("id");
         expect(response).toEqual({});
+    });
+
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/virtual-accounts/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get_token", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { token: "token" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/virtual-accounts/id/token")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.virtualAccounts.getToken("id");
+        expect(response).toEqual({
+            token: "token",
+        });
     });
 });

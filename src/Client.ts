@@ -11,7 +11,6 @@ import { Users } from "./api/resources/users/client/Client.js";
 import { Teams } from "./api/resources/teams/client/Client.js";
 import { PersonalAccessTokens } from "./api/resources/personalAccessTokens/client/Client.js";
 import { VirtualAccounts } from "./api/resources/virtualAccounts/client/Client.js";
-import { LlmGateway } from "./api/resources/llmGateway/client/Client.js";
 import { Secrets } from "./api/resources/secrets/client/Client.js";
 import { SecretGroups } from "./api/resources/secretGroups/client/Client.js";
 import { Clusters } from "./api/resources/clusters/client/Client.js";
@@ -20,10 +19,9 @@ import { Applications } from "./api/resources/applications/client/Client.js";
 import { ApplicationVersions } from "./api/resources/applicationVersions/client/Client.js";
 import { Jobs } from "./api/resources/jobs/client/Client.js";
 import { Workspaces } from "./api/resources/workspaces/client/Client.js";
-import { Events } from "./api/resources/events/client/Client.js";
-import { Alerts } from "./api/resources/alerts/client/Client.js";
 import { Logs } from "./api/resources/logs/client/Client.js";
 import { MlRepos } from "./api/resources/mlRepos/client/Client.js";
+import { Traces } from "./api/resources/traces/client/Client.js";
 import { Artifacts } from "./api/resources/artifacts/client/Client.js";
 import { Prompts } from "./api/resources/prompts/client/Client.js";
 import { Models } from "./api/resources/models/client/Client.js";
@@ -39,7 +37,7 @@ export declare namespace TrueFoundryClient {
         baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<core.BearerToken | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -50,8 +48,10 @@ export declare namespace TrueFoundryClient {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -62,7 +62,6 @@ export class TrueFoundryClient {
     protected _teams: Teams | undefined;
     protected _personalAccessTokens: PersonalAccessTokens | undefined;
     protected _virtualAccounts: VirtualAccounts | undefined;
-    protected _llmGateway: LlmGateway | undefined;
     protected _secrets: Secrets | undefined;
     protected _secretGroups: SecretGroups | undefined;
     protected _clusters: Clusters | undefined;
@@ -71,10 +70,9 @@ export class TrueFoundryClient {
     protected _applicationVersions: ApplicationVersions | undefined;
     protected _jobs: Jobs | undefined;
     protected _workspaces: Workspaces | undefined;
-    protected _events: Events | undefined;
-    protected _alerts: Alerts | undefined;
     protected _logs: Logs | undefined;
     protected _mlRepos: MlRepos | undefined;
+    protected _traces: Traces | undefined;
     protected _artifacts: Artifacts | undefined;
     protected _prompts: Prompts | undefined;
     protected _models: Models | undefined;
@@ -120,10 +118,6 @@ export class TrueFoundryClient {
         return (this._virtualAccounts ??= new VirtualAccounts(this._options));
     }
 
-    public get llmGateway(): LlmGateway {
-        return (this._llmGateway ??= new LlmGateway(this._options));
-    }
-
     public get secrets(): Secrets {
         return (this._secrets ??= new Secrets(this._options));
     }
@@ -156,20 +150,16 @@ export class TrueFoundryClient {
         return (this._workspaces ??= new Workspaces(this._options));
     }
 
-    public get events(): Events {
-        return (this._events ??= new Events(this._options));
-    }
-
-    public get alerts(): Alerts {
-        return (this._alerts ??= new Alerts(this._options));
-    }
-
     public get logs(): Logs {
         return (this._logs ??= new Logs(this._options));
     }
 
     public get mlRepos(): MlRepos {
         return (this._mlRepos ??= new MlRepos(this._options));
+    }
+
+    public get traces(): Traces {
+        return (this._traces ??= new Traces(this._options));
     }
 
     public get artifacts(): Artifacts {
@@ -230,6 +220,11 @@ export class TrueFoundryClient {
         request: TrueFoundry.TrueFoundryApplyRequest,
         requestOptions?: TrueFoundryClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.TrueFoundryApplyResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -237,12 +232,9 @@ export class TrueFoundryClient {
                 "api/svc/v1/apply",
             ),
             method: "PUT",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -308,6 +300,11 @@ export class TrueFoundryClient {
         request: TrueFoundry.TrueFoundryDeleteRequest,
         requestOptions?: TrueFoundryClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -315,12 +312,9 @@ export class TrueFoundryClient {
                 "api/svc/v1/delete",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

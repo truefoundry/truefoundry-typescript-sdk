@@ -4,9 +4,139 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../src/Client";
+import * as TrueFoundry from "../../src/api/index";
 
 describe("Jobs", () => {
-    test("get_run", async () => {
+    test("list_runs (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    name: "name",
+                    applicationName: "applicationName",
+                    deploymentVersion: "deploymentVersion",
+                    createdAt: 1.1,
+                    endTime: 1.1,
+                    duration: 1,
+                    command: "command",
+                    totalRetries: 1,
+                    error: "error",
+                    status: "CREATED",
+                    triggeredBy: "triggeredBy",
+                    triggeredBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    exitCode: 1,
+                    sparkUi: "sparkUi",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/jobs/jobId/runs")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            data: [
+                {
+                    name: "name",
+                    applicationName: "applicationName",
+                    deploymentVersion: "deploymentVersion",
+                    createdAt: 1.1,
+                    endTime: 1.1,
+                    duration: 1,
+                    command: "command",
+                    totalRetries: 1,
+                    error: "error",
+                    status: "CREATED",
+                    triggeredBy: "triggeredBy",
+                    triggeredBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    exitCode: 1,
+                    sparkUi: "sparkUi",
+                },
+            ],
+            pagination: {
+                total: 100,
+                offset: 0,
+                limit: 10,
+            },
+        };
+        const page = await client.jobs.listRuns("jobId", {
+            limit: 10,
+            offset: 0,
+            searchPrefix: "searchPrefix",
+            sortBy: "startTime",
+            order: "asc",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list_runs (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/jobs/jobId/runs")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.listRuns("jobId");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("list_runs (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/jobs/jobId/runs")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.listRuns("jobId");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("list_runs (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/jobs/jobId/runs")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.listRuns("jobId");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("get_run (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -67,7 +197,43 @@ describe("Jobs", () => {
         });
     });
 
-    test("delete_run", async () => {
+    test("get_run (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.getRun("jobId", "jobRunName");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get_run (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.getRun("jobId", "jobRunName");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete_run (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -86,7 +252,61 @@ describe("Jobs", () => {
         });
     });
 
-    test("trigger", async () => {
+    test("delete_run (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.deleteRun("jobId", "jobRunName");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("delete_run (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.deleteRun("jobId", "jobRunName");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete_run (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.deleteRun("jobId", "jobRunName");
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("trigger (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
@@ -152,7 +372,123 @@ describe("Jobs", () => {
         });
     });
 
-    test("terminate", async () => {
+    test("trigger (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            deploymentId: undefined,
+            applicationId: undefined,
+            input: undefined,
+            metadata: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/trigger")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.trigger({
+                deploymentId: undefined,
+                applicationId: undefined,
+                input: undefined,
+                metadata: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("trigger (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            deploymentId: undefined,
+            applicationId: undefined,
+            input: undefined,
+            metadata: undefined,
+        };
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/trigger")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.trigger({
+                deploymentId: undefined,
+                applicationId: undefined,
+                input: undefined,
+                metadata: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("trigger (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            deploymentId: undefined,
+            applicationId: undefined,
+            input: undefined,
+            metadata: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/trigger")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.trigger({
+                deploymentId: undefined,
+                applicationId: undefined,
+                input: undefined,
+                metadata: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("trigger (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            deploymentId: undefined,
+            applicationId: undefined,
+            input: undefined,
+            metadata: undefined,
+        };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/trigger")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.trigger({
+                deploymentId: undefined,
+                applicationId: undefined,
+                input: undefined,
+                metadata: undefined,
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("terminate (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -173,5 +509,89 @@ describe("Jobs", () => {
             message: "message",
             jobRunStatus: "CREATED",
         });
+    });
+
+    test("terminate (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/terminate")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.terminate({
+                deploymentId: "deploymentId",
+                jobRunName: "jobRunName",
+            });
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("terminate (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/terminate")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.terminate({
+                deploymentId: "deploymentId",
+                jobRunName: "jobRunName",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("terminate (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/terminate")
+            .respondWith()
+            .statusCode(417)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.terminate({
+                deploymentId: "deploymentId",
+                jobRunName: "jobRunName",
+            });
+        }).rejects.toThrow(TrueFoundry.ExpectationFailedError);
+    });
+
+    test("terminate (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/jobs/terminate")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.jobs.terminate({
+                deploymentId: "deploymentId",
+                jobRunName: "jobRunName",
+            });
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

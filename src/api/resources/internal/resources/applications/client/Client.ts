@@ -14,7 +14,7 @@ export declare namespace Applications {
         baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<core.BearerToken | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -25,8 +25,10 @@ export declare namespace Applications {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -35,6 +37,96 @@ export class Applications {
 
     constructor(_options: Applications.Options) {
         this._options = _options;
+    }
+
+    /**
+     * Promote an application rollout for canary and blue-green.
+     *
+     * @param {string} id - Id of the application
+     * @param {TrueFoundry.internal.ApplicationsPromoteRolloutRequest} request
+     * @param {Applications.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.MethodNotAllowedError}
+     *
+     * @example
+     *     await client.internal.applications.promoteRollout("id", {
+     *         full: true
+     *     })
+     */
+    public promoteRollout(
+        id: string,
+        request: TrueFoundry.internal.ApplicationsPromoteRolloutRequest = {},
+        requestOptions?: Applications.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__promoteRollout(id, request, requestOptions));
+    }
+
+    private async __promoteRollout(
+        id: string,
+        request: TrueFoundry.internal.ApplicationsPromoteRolloutRequest = {},
+        requestOptions?: Applications.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const { full = false } = request;
+        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
+        if (full != null) {
+            _queryParams["full"] = full.toString();
+        }
+
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/apps/${encodeURIComponent(id)}/rollout/promote`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 405:
+                    throw new TrueFoundry.MethodNotAllowedError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/apps/{id}/rollout/promote.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
     }
 
     /**
@@ -47,7 +139,9 @@ export class Applications {
      * @throws {@link TrueFoundry.BadRequestError}
      *
      * @example
-     *     await client.internal.applications.getPodTemplateHashToDeploymentVersion("id")
+     *     await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
+     *         podTemplateHashes: "podTemplateHashes"
+     *     })
      */
     public getPodTemplateHashToDeploymentVersion(
         id: string,
@@ -70,6 +164,11 @@ export class Applications {
             _queryParams["podTemplateHashes"] = podTemplateHashes;
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -77,12 +176,8 @@ export class Applications {
                 `api/svc/v1/apps/${encodeURIComponent(id)}/pod-template-hash-deployment-version-map`,
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
-            queryParameters: _queryParams,
+            headers: _headers,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

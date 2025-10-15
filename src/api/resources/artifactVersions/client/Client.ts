@@ -14,7 +14,7 @@ export declare namespace ArtifactVersions {
         baseUrl?: core.Supplier<string>;
         apiKey?: core.Supplier<core.BearerToken | undefined>;
         /** Additional headers to include in requests. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
         fetcher?: core.FetchFunction;
     }
 
@@ -25,8 +25,10 @@ export declare namespace ArtifactVersions {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Additional query string parameters to include in the request. */
+        queryParams?: Record<string, unknown>;
         /** Additional headers to include in the request. */
-        headers?: Record<string, string | core.Supplier<string | undefined> | undefined>;
+        headers?: Record<string, string | core.Supplier<string | null | undefined> | null | undefined>;
     }
 }
 
@@ -60,6 +62,11 @@ export class ArtifactVersions {
         request: TrueFoundry.ApplyArtifactVersionTagsRequest,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -67,12 +74,9 @@ export class ArtifactVersions {
                 "api/ml/v1/artifact-versions/tags",
             ),
             method: "PUT",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -140,6 +144,11 @@ export class ArtifactVersions {
         id: string,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetArtifactVersionResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -147,11 +156,8 @@ export class ArtifactVersions {
                 `api/ml/v1/artifact-versions/${encodeURIComponent(id)}`,
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -220,6 +226,11 @@ export class ArtifactVersions {
         id: string,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -227,11 +238,8 @@ export class ArtifactVersions {
                 `api/ml/v1/artifact-versions/${encodeURIComponent(id)}`,
             ),
             method: "DELETE",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -284,7 +292,17 @@ export class ArtifactVersions {
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
-     *     await client.artifactVersions.list()
+     *     await client.artifactVersions.list({
+     *         tag: "tag",
+     *         fqn: "fqn",
+     *         artifact_id: "artifact_id",
+     *         ml_repo_id: "ml_repo_id",
+     *         name: "name",
+     *         version: 1,
+     *         offset: 1,
+     *         limit: 1,
+     *         include_internal_metadata: true
+     *     })
      */
     public async list(
         request: TrueFoundry.ArtifactVersionsListRequest = {},
@@ -349,6 +367,11 @@ export class ArtifactVersions {
                 if (includeInternalMetadata != null) {
                     _queryParams["include_internal_metadata"] = includeInternalMetadata.toString();
                 }
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -356,12 +379,8 @@ export class ArtifactVersions {
                         "api/ml/v1/artifact-versions",
                     ),
                     method: "GET",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
-                    queryParameters: _queryParams,
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
                     timeoutMs:
                         requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
                     maxRetries: requestOptions?.maxRetries,
@@ -445,6 +464,11 @@ export class ArtifactVersions {
         request: TrueFoundry.GetSignedUrLsRequest,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetSignedUrLsResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -452,12 +476,9 @@ export class ArtifactVersions {
                 "api/ml/v1/artifact-versions/signed-urls",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -527,6 +548,11 @@ export class ArtifactVersions {
         request: TrueFoundry.CreateMultiPartUploadRequest,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.MultiPartUploadResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -534,12 +560,9 @@ export class ArtifactVersions {
                 "api/ml/v1/artifact-versions/signed-urls/multipart",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -617,6 +640,11 @@ export class ArtifactVersions {
         request: TrueFoundry.StageArtifactRequest,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.StageArtifactResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -624,12 +652,9 @@ export class ArtifactVersions {
                 "api/ml/v1/artifact-versions/stage",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -694,6 +719,11 @@ export class ArtifactVersions {
             async (
                 request: TrueFoundry.ListFilesRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListFilesResponse>> => {
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -701,12 +731,9 @@ export class ArtifactVersions {
                         "api/ml/v1/artifact-versions/files",
                     ),
                     method: "POST",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
+                    headers: _headers,
                     contentType: "application/json",
+                    queryParameters: requestOptions?.queryParams,
                     requestType: "json",
                     body: request,
                     timeoutMs:
@@ -759,14 +786,11 @@ export class ArtifactVersions {
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) =>
-                response?.pagination?.next_page_token != null &&
-                !(
-                    typeof response?.pagination?.next_page_token === "string" &&
-                    response?.pagination?.next_page_token === ""
-                ),
+                response?.pagination.nextPageToken != null &&
+                !(typeof response?.pagination.nextPageToken === "string" && response?.pagination.nextPageToken === ""),
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
-                return list(core.setObjectProperty(request, "page_token", response?.pagination?.next_page_token));
+                return list(core.setObjectProperty(request, "pageToken", response?.pagination.nextPageToken));
             },
         });
     }
@@ -793,6 +817,11 @@ export class ArtifactVersions {
         request: TrueFoundry.MarkStageArtifactFailureRequest,
         requestOptions?: ArtifactVersions.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -800,12 +829,9 @@ export class ArtifactVersions {
                 "api/ml/v1/artifact-versions/mark-stage-failure",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
             requestType: "json",
             body: request,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,

@@ -9,32 +9,23 @@ import * as TrueFoundry from "../../../../../../index.js";
  *     {
  *         applicationType: "async-service",
  *         applicationName: "applicationName",
- *         workspaceId: "workspaceId"
+ *         workspaceId: "workspaceId",
+ *         baseDomain: "baseDomain",
+ *         port: "port",
+ *         preferWildcard: true
  *     }
  */
 export interface DeploymentsGetSuggestedEndpointRequest {
-    /**
-     * Application Type
-     */
+    /** Application Type */
     applicationType: TrueFoundry.ApplicationType;
-    /**
-     * Application name
-     */
+    /** Application name */
     applicationName: string;
-    /**
-     * Workspace id
-     */
+    /** Workspace id */
     workspaceId: string;
-    /**
-     * Base domain
-     */
+    /** Base domain */
     baseDomain?: string;
-    /**
-     * Port
-     */
+    /** Port */
     port?: string;
-    /**
-     * Prefer wildcard
-     */
+    /** Prefer wildcard */
     preferWildcard?: boolean;
 }

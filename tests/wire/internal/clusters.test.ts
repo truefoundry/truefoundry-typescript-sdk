@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("Clusters", () => {
-    test("get_autoprovisioning_state", async () => {
+    test("get_autoprovisioning_state (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -25,5 +26,23 @@ describe("Clusters", () => {
                 key: "value",
             },
         });
+    });
+
+    test("get_autoprovisioning_state (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/clusters/id/autoprovisioning-state")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.clusters.getAutoprovisioningState("id");
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
 });

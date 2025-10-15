@@ -12,20 +12,12 @@
  *     }
  */
 export interface ApplicationVersionsListRequest {
-    /**
-     * Number of items per page
-     */
+    /** Number of items per page */
     limit?: number;
-    /**
-     * Number of items to skip
-     */
+    /** Number of items to skip */
     offset?: number;
-    /**
-     * Deployment version. Filter deployments by version.
-     */
+    /** Deployment version. Filter deployments by version. */
     version?: string;
-    /**
-     * Deployment ID. Filter deployments by a specific ID.
-     */
+    /** Deployment ID. Filter deployments by a specific ID. */
     deploymentId?: string;
 }

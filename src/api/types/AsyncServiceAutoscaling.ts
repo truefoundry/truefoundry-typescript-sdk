@@ -10,5 +10,5 @@ export interface AsyncServiceAutoscaling extends TrueFoundry.BaseAutoscaling {
      * +usage=Metrics to use for the autoscaler
      * +sort=4
      */
-    metrics?: TrueFoundry.AsyncServiceAutoscalingMetrics;
+    metrics: TrueFoundry.AsyncServiceAutoscalingMetrics;
 }

@@ -9,8 +9,8 @@ import * as TrueFoundry from "../index.js";
  */
 export interface SshServer extends TrueFoundry.BaseWorkbenchInput {
     /** +value=ssh-server */
-    type?: "ssh-server";
-    image?: TrueFoundry.WorkbenchImage;
+    type: "ssh-server";
+    image: TrueFoundry.WorkbenchImage;
     /**
      * +label: SSH Public Key
      * +usage=Add Your SSH Public Key, this will be used to authenticate you to the SSH Server.  \
@@ -19,7 +19,7 @@ export interface SshServer extends TrueFoundry.BaseWorkbenchInput {
      * +uiType=TextArea
      * +sort=4
      */
-    ssh_public_key?: string;
+    ssh_public_key: string;
     /**
      * +label=Stop after (minutes of inactivity)
      * +usage=Stop the SSH Server instance after this much time in minutes of inactivity. The instance is considered active if there is at least one active SSH connection (a client connected to the SSH server), or if a background job is running using tmux or screen, or if the pod has restarted.

@@ -32,6 +32,7 @@ export interface ChatPromptManifest {
     guardrails?: TrueFoundry.Guardrails;
     /** Response format configuration for structured outputs */
     response_format?: TrueFoundry.ChatPromptManifestResponseFormat;
+    /** Configuration for routing requests to different model targets */
     routing_config?: TrueFoundry.ChatPromptManifestRoutingConfig;
     /** Mapping of tool calls to MCP server integration IDs and tool names */
     tool_call_to_mcp_mapping?: Record<string, TrueFoundry.McpServerToolDetails>;

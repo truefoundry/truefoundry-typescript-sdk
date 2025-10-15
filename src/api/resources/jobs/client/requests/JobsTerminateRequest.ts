@@ -10,12 +10,8 @@
  *     }
  */
 export interface JobsTerminateRequest {
-    /**
-     * Deployment Id of the Deployment
-     */
+    /** Deployment Id of the Deployment */
     deploymentId: string;
-    /**
-     * Job Run name
-     */
+    /** Job Run name */
     jobRunName: string;
 }

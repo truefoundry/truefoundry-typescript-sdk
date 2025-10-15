@@ -4,11 +4,11 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         podTemplateHashes: "podTemplateHashes"
+ *     }
  */
 export interface ApplicationsGetPodTemplateHashToDeploymentVersionRequest {
-    /**
-     * Pod Template Hashes (comma separated for multiple)
-     */
+    /** Pod Template Hashes (comma separated for multiple) */
     podTemplateHashes?: string;
 }

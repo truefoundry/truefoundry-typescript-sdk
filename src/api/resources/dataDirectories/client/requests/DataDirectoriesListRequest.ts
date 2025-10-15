@@ -4,7 +4,13 @@
 
 /**
  * @example
- *     {}
+ *     {
+ *         fqn: "fqn",
+ *         ml_repo_id: "ml_repo_id",
+ *         name: "name",
+ *         limit: 1,
+ *         offset: 1
+ *     }
  */
 export interface DataDirectoriesListRequest {
     fqn?: string;

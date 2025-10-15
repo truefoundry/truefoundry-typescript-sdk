@@ -4,9 +4,10 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool";
 import { TrueFoundryClient } from "../../../src/Client";
+import * as TrueFoundry from "../../../src/api/index";
 
 describe("Deployments", () => {
-    test("get_deployment_statuses", async () => {
+    test("get_deployment_statuses (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -49,7 +50,25 @@ describe("Deployments", () => {
         ]);
     });
 
-    test("get_builds", async () => {
+    test("get_deployment_statuses (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments/deploymentId/statuses")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get_builds (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -101,6 +120,24 @@ describe("Deployments", () => {
         ]);
     });
 
+    test("get_builds (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/apps/id/deployments/deploymentId/builds")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.deployments.getBuilds("id", "deploymentId");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
     test("get_code_upload_url", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
@@ -128,7 +165,7 @@ describe("Deployments", () => {
         });
     });
 
-    test("get_suggested_endpoint", async () => {
+    test("get_suggested_endpoint (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
 
@@ -149,6 +186,9 @@ describe("Deployments", () => {
             applicationType: "async-service",
             applicationName: "applicationName",
             workspaceId: "workspaceId",
+            baseDomain: "baseDomain",
+            port: "port",
+            preferWildcard: true,
         });
         expect(response).toEqual({
             host: "host",
@@ -163,5 +203,27 @@ describe("Deployments", () => {
                 },
             },
         });
+    });
+
+    test("get_suggested_endpoint (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/deployment/deployment-endpoint")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.internal.deployments.getSuggestedEndpoint({
+                applicationType: "async-service",
+                applicationName: "applicationName",
+                workspaceId: "workspaceId",
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
 });
