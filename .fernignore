@@ -1,4 +1,5 @@
 # Specify files that shouldn't be modified by Fern
+.github/workflows/ci.yml
 src/index.ts
 src/CustomClient.ts
 src/api/resources/_WrappedClients.ts
