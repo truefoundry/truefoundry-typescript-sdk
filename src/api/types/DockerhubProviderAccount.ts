@@ -5,18 +5,14 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Dockerhub
- * +icon=docker
+ * Dockerhub
  */
 export interface DockerhubProviderAccount {
     /** +value=provider-account/dockerhub */
     type: "provider-account/dockerhub";
-    /**
-     * +uiProps={"disableEdit":true}
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** 3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
-    /** +label=Account Name */
+    /** Account Name */
     account_name?: string;
     auth_data?: TrueFoundry.DockerhubBasicAuth;
     /** +uiType=IntegrationsGroup */

@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Fallback Rule
+ * Fallback Rule
  */
 export interface FallbackRule {
     /** Unique identifier for the rule */

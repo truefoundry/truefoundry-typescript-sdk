@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=SambaNova Model
- * +icon=sambanova
+ * SambaNova Model
  */
 export interface SambaNovaModel {
     /** +value=integration/model/sambanova */

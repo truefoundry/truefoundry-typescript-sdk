@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Quay Basic Auth
+ * Quay Basic Auth
  */
 export interface QuayBasicAuth {
     /** +value=basic-auth */

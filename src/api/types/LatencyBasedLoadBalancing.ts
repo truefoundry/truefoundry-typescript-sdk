@@ -5,14 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Latency-based Load Balancing
+ * Latency-based Load Balancing
  */
 export interface LatencyBasedLoadBalancing {
-    /**
-     * +value=latency-based-routing
-     * +sort=1
-     * +label=Routing Type
-     */
+    /** Routing Type */
     type: "latency-based-routing";
     /** List of targets for latency-based load balancing */
     load_balance_targets: TrueFoundry.LatencyBasedLoadBalanceTarget[];

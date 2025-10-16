@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=PagerDuty Integration
- * +icon=https://assets.production.truefoundry.com/pagerduty.png
+ * PagerDuty Integration
  */
 export interface PagerDutyIntegration {
     /** +value=integration/notification-channel/pagerduty */

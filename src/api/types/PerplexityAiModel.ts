@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Perplexity AI Model
- * +icon=perplexity-ai
+ * Perplexity AI Model
  */
 export interface PerplexityAiModel {
     /** +value=integration/model/perplexity-ai */

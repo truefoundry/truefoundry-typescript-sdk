@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Self Hosted
- * +icon=puzzle-piece
+ * Self Hosted
  */
 export interface SelfHostedModelProviderAccount {
     /** +value=provider-account/self-hosted-model */
@@ -15,10 +14,6 @@ export interface SelfHostedModelProviderAccount {
     name: string;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.SelfHostedModelIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=200
-     * +uiType=Collaborators
-     */
+    /** Collaborators */
     collaborators?: TrueFoundry.Collaborator[];
 }

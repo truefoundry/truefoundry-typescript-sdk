@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=PagerDuty Provider Account
- * +icon=https://assets.production.truefoundry.com/pagerduty.png
+ * PagerDuty Provider Account
  */
 export interface PagerDutyProviderAccount {
     /** +value=provider-account/pagerduty */

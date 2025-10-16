@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=PromptFoo
- * +icon=https://assets.production.truefoundry.com/promptfoo.svg
+ * PromptFoo
  */
 export interface PromptFooGuardrailConfig {
     /** The name of the Guardrail Config. */

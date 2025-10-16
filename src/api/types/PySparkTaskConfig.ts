@@ -16,9 +16,6 @@ export interface PySparkTaskConfig {
     env?: Record<string, string | undefined>;
     /** Configure data to be mounted to Workflow pod(s) as a volume. */
     mounts?: TrueFoundry.VolumeMount[];
-    /**
-     * +label=Service Account
-     * +sort=6000
-     */
+    /** Service Account */
     service_account?: string;
 }

@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Azure API Key Auth
- * +icon=azure
+ * Azure API Key Auth
  */
 export interface AzureKeyAuth {
     /** +value=api-key */

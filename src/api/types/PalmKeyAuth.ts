@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=PaLM API Key Auth
- * +icon=palm
+ * PaLM API Key Auth
  */
 export interface PalmKeyAuth {
     /** +value=api-key */

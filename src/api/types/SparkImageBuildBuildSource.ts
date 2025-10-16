@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * TODO (gw): The following is a hack till the uiType GitSelect is fixed fron frontend
- * +label=Fetch source code
- * +sort=1003
+ * Fetch source code
  */
 export type SparkImageBuildBuildSource = TrueFoundry.GitSource | TrueFoundry.RemoteSource;

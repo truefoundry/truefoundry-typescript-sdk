@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Volume Browser
+ * Volume Browser
  */
 export interface VolumeBrowser {
     /** Username for logging in the volume browser. */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Gitlab
- * +icon=gitlab
+ * Gitlab
  */
 export interface GitlabProviderAccount {
     /** +value=provider-account/gitlab */

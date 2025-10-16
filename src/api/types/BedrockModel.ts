@@ -5,21 +5,16 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Bedrock Model
- * +icon=aws-bedrock
+ * Bedrock Model
  */
 export interface BedrockModel {
-    /**
-     * +label=Display Name
-     * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Display Name - 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
     name: string;
     /** +sort=2 */
     model_id: string;
     /** +value=integration/model/aws */
     type: "integration/model/aws";
-    /** +label=Auth Data */
+    /** Auth Data */
     auth_data?: TrueFoundry.BedrockModelAuthData;
     region: TrueFoundry.AwsRegion;
     /** Specify the type of the model */

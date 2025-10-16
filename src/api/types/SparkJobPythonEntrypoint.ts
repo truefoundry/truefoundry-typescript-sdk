@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=python
+ * python
  */
 export interface SparkJobPythonEntrypoint {
     /** +value=python */

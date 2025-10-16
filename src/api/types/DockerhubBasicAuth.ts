@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Dockerhub Basic Auth
+ * Dockerhub Basic Auth
  */
 export interface DockerhubBasicAuth {
     /** +value=basic-auth */

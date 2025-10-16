@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=azure-acr
- * +label=Azure ACR
+ * Azure ACR
  */
 export interface AzureContainerRegistry {
     /** +value=integration/docker-registry/azure/acr */

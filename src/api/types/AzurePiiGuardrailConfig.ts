@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure PII
- * +icon=azure
+ * Azure PII
  */
 export interface AzurePiiGuardrailConfig {
     /** The name of the Guardrail Config. */

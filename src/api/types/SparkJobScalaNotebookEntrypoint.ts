@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=scala notebook
+ * scala notebook
  */
 export interface SparkJobScalaNotebookEntrypoint {
     /** +value=scala-notebook */

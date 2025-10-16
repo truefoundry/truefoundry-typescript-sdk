@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=java
+ * java
  */
 export interface SparkJobJavaEntrypoint {
     /** +value=java */

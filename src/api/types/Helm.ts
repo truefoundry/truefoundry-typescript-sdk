@@ -11,10 +11,7 @@ export interface Helm {
     name: string;
     /** Add labels to base argo app */
     labels?: Record<string, string>;
-    /**
-     * +label=Source helm repository
-     * +sort=2
-     */
+    /** Source helm repository */
     source: TrueFoundry.HelmSource;
     /** Values file as block file */
     values?: Record<string, unknown>;

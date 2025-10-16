@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=TrueFoundry
- * +icon=truefoundry
+ * TrueFoundry
  */
 export interface TrueFoundryProviderAccount {
     /** +value=provider-account/truefoundry */

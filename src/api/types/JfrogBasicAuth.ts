@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Jfrog Basic Auth
+ * Jfrog Basic Auth
  */
 export interface JfrogBasicAuth {
     /** +value=basic-auth */

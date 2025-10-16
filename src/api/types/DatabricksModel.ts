@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Databricks Model
- * +icon=databricks
+ * Databricks Model
  */
 export interface DatabricksModel {
     /** +value=integration/model/databricks */

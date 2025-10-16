@@ -3,18 +3,14 @@
  */
 
 /**
- * +label=Bitbucket
- * +icon=bitbucket
+ * Bitbucket
  */
 export interface BitbucketIntegration {
     /** +value=integration/vcs/bitbucket */
     type: "integration/vcs/bitbucket";
     /** +sort=100 */
     name: string;
-    /**
-     * +label=Account Name
-     * +sort=200
-     */
+    /** Account Name */
     account_name: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];

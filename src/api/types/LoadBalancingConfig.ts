@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Load Balancing Configuration
+ * Load Balancing Configuration
  */
 export interface LoadBalancingConfig {
     /** Name of the load balancing configuration */

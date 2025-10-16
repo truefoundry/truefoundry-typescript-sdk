@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Slack Webhook
+ * Slack Webhook
  */
 export interface SlackWebhook {
     /** +value=slack-webhook */

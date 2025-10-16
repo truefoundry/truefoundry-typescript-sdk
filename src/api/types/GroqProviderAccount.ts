@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Groq Provider Account
- * +icon=groq
+ * Groq Provider Account
  */
 export interface GroqProviderAccount {
     /** +value=provider-account/groq */

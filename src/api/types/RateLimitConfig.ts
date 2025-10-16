@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Rate Limit Configuration
+ * Rate Limit Configuration
  */
 export interface RateLimitConfig {
     /** Name of the rate limiting configuration */

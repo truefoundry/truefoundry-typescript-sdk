@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=python notebook
+ * python notebook
  */
 export interface SparkJobPythonNotebookEntrypoint {
     /** +value=python-notebook */

@@ -5,14 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Weight-based Load Balancing
+ * Weight-based Load Balancing
  */
 export interface WeightBasedLoadBalancing {
-    /**
-     * +value=weight-based-routing
-     * +sort=1
-     * +label=Routing Type
-     */
+    /** Routing Type */
     type: "weight-based-routing";
     /** List of targets for load balancing with weights */
     load_balance_targets: TrueFoundry.LoadBalanceTarget[];

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Cohere Provider Account
- * +icon=cohere
+ * Cohere Provider Account
  */
 export interface CohereProviderAccount {
     /** +value=provider-account/cohere */

@@ -35,7 +35,7 @@ export interface Job {
     service_account?: string;
     /** Configure data to be mounted to job pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
     mounts?: TrueFoundry.JobMountsItem[];
-    /** +label=Labels */
+    /** Labels */
     labels?: Record<string, string>;
     kustomize?: TrueFoundry.Kustomize;
     /** Fully qualified name of the workspace */

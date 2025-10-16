@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Workbench Config
- * +sort=70
+ * Workbench Config
  */
 export interface ClusterManifestWorkbenchConfig {
     notebook_config?: TrueFoundry.NotebookConfig;

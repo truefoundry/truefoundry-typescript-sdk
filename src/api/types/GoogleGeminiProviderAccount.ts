@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Google Gemini Provider Account
- * +icon=googleCloud
+ * Google Gemini Provider Account
  */
 export interface GoogleGeminiProviderAccount {
     /** +value=provider-account/google-gemini */

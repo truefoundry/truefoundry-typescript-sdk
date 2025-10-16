@@ -3,18 +3,14 @@
  */
 
 /**
- * +label=Gitlab
- * +icon=gitlab
+ * Gitlab
  */
 export interface GitlabIntegration {
     /** +value=integration/vcs/gitlab */
     type: "integration/vcs/gitlab";
     /** +sort=100 */
     name: string;
-    /**
-     * +label=Account Name
-     * +sort=200
-     */
+    /** Account Name */
     account_name: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];

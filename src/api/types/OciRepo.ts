@@ -3,15 +3,12 @@
  */
 
 /**
- * +label=OCIRepo
+ * OCIRepo
  */
 export interface OciRepo {
     /** +value=oci-repo */
     type: "oci-repo";
-    /**
-     * +label=OCI chart URL
-     * +message=Need to be a valid URL.
-     */
+    /** OCI chart URL - Need to be a valid URL. */
     oci_chart_url: string;
     /**
      * FQN of the container registry. If you can't find your registry here,

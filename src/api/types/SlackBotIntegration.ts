@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Slack Bot Integration
- * +icon=https://assets.production.truefoundry.com/slack.svg
+ * Slack Bot Integration
  */
 export interface SlackBotIntegration {
     /** +value=integration/notification-channel/slack-bot */

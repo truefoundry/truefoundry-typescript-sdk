@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=MCP Server Group
- * +icon=puzzle-piece
+ * MCP Server Group
  */
 export interface McpServerProviderAccount {
     /** +value=provider-account/mcp-server-group */

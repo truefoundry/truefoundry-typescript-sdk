@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS Bedrock
- * +icon=aws-bedrock
+ * AWS Bedrock
  */
 export interface AwsBedrockGuardrailConfig {
     /** The name of the Guardrail Config. */

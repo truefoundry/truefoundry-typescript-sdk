@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OpenAI Moderation
- * +icon=openai
+ * OpenAI Moderation
  */
 export interface OpenAiModerationsGuardrailConfig {
     /** The name of the Guardrail Config. */

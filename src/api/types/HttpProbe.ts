@@ -7,11 +7,7 @@
  * To learn more you can go [here](https://docs.truefoundry.com/docs/liveness-readiness-probe)
  */
 export interface HttpProbe {
-    /**
-     * +sort=1
-     * +label=Request Type
-     * +value=http
-     */
+    /** Request Type */
     type: "http";
     /** Path to the health check endpoint */
     path: string;

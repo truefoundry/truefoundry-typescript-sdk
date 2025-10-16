@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Latency-based Load Balancing Rule
+ * Latency-based Load Balancing Rule
  */
 export interface LatencyBasedLoadBalancingRule extends TrueFoundry.LatencyBasedLoadBalancing {
     /** Unique identifier for the rule */

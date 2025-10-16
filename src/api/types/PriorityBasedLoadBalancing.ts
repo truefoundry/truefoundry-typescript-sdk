@@ -5,14 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Priority-based Load Balancing
+ * Priority-based Load Balancing
  */
 export interface PriorityBasedLoadBalancing {
-    /**
-     * +value=priority-based-routing
-     * +sort=1
-     * +label=Routing Type
-     */
+    /** Routing Type */
     type: "priority-based-routing";
     /** List of targets for priority-based load balancing */
     load_balance_targets: TrueFoundry.PriorityBasedLoadBalanceTarget[];

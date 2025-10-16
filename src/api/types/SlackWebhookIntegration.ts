@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Slack Webhook Integration
- * +icon=https://assets.production.truefoundry.com/slack.svg
+ * Slack Webhook Integration
  */
 export interface SlackWebhookIntegration {
     /** +value=integration/notification-channel/slack-webhook */

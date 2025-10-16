@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Mutate
+ * Mutate
  */
 export interface PolicyMutationOperation {
     /** Mutates or Validates Resources */

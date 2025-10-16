@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Sagemaker
- * +icon=aws
+ * Sagemaker
  */
 export interface AwsSagemakerProviderAccount {
     /** +value=provider-account/aws-sagemaker */

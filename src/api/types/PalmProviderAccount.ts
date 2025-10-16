@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=PaLM Provider Account
- * +icon=palm
+ * PaLM Provider Account
  */
 export interface PalmProviderAccount {
     /** +value=provider-account/palm */

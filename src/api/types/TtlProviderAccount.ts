@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=TTL
- * +icon=puzzle-piece
+ * TTL
  */
 export interface TtlProviderAccount {
     /** +value=provider-account/ttl */

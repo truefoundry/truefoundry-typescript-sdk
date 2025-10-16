@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Mistral AI Model
- * +icon=mistral-ai
+ * Mistral AI Model
  */
 export interface MistralAiModel {
     /** +value=integration/model/mistral-ai */

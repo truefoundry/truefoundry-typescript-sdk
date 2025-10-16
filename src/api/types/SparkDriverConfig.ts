@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Driver Config
+ * Driver Config
  */
 export interface SparkDriverConfig {
     resources?: TrueFoundry.Resources;

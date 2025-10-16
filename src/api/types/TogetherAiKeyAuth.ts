@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Together AI API Key Auth
- * +icon=together-ai
+ * Together AI API Key Auth
  */
 export interface TogetherAiKeyAuth {
     /** +value=api-key */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OpenAI Provider Account
- * +icon=openai
+ * OpenAI Provider Account
  */
 export interface OpenaiProviderAccount {
     /** +value=provider-account/openai */

@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Guardrails
+ * Guardrails
  */
 export interface Guardrails {
     /** List of guardrail names to apply to user input messages before processing. */

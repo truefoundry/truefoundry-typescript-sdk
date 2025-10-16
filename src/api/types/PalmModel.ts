@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=PaLM Model
- * +icon=palm
+ * PaLM Model
  */
 export interface PalmModel {
     /** +value=integration/model/palm */

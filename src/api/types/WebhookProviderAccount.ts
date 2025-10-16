@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Webhook Provider Account
- * +icon=webhook
+ * Webhook Provider Account
  */
 export interface WebhookProviderAccount {
     /** +value=provider-account/webhook */

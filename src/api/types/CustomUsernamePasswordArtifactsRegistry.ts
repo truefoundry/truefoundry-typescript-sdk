@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Custom Docker Registry
- * +icon=puzzle-piece
+ * Custom Docker Registry
  */
 export interface CustomUsernamePasswordArtifactsRegistry {
     /** +value=integration/docker-registry/custom */

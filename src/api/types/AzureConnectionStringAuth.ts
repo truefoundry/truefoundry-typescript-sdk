@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Azure Connection String
+ * Azure Connection String
  */
 export interface AzureConnectionStringAuth {
     /** +value=connection-string */

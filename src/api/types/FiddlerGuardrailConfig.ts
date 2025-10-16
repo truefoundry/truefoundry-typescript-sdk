@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Fiddler
- * +icon=https://assets.production.truefoundry.com/fiddler.svg
+ * Fiddler
  */
 export interface FiddlerGuardrailConfig {
     /** The name of the Guardrail Config. */

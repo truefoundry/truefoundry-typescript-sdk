@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Pangea
- * +icon=https://assets.production.truefoundry.com/pangea-logo.svg
+ * Pangea
  */
 export interface PangeaGuardrailConfig {
     /** The name of the Guardrail Config. */

@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Mistral AI API Key Auth
- * +icon=mistral-ai
+ * Mistral AI API Key Auth
  */
 export interface MistralAiKeyAuth {
     /** +value=api-key */

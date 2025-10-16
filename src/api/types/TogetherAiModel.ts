@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Together AI Model
- * +icon=together-ai
+ * Together AI Model
  */
 export interface TogetherAiModel {
     /** +value=integration/model/together-ai */

@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure AI Inference Model
+ * Azure AI Inference Model
  */
 export interface AzureAiInferenceModel {
     /** Name to identify this Azure AI model */

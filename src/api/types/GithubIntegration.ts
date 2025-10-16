@@ -3,18 +3,14 @@
  */
 
 /**
- * +label=Github
- * +icon=github
+ * Github
  */
 export interface GithubIntegration {
     /** +value=integration/vcs/github */
     type: "integration/vcs/github";
     /** +sort=100 */
     name: string;
-    /**
-     * +label=Account Name
-     * +sort=200
-     */
+    /** Account Name */
     account_name: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];

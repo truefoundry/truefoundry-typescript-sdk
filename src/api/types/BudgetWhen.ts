@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Rule Conditions
+ * Rule Conditions
  */
 export interface BudgetWhen {
     /** List of subjects that this rule applies to */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Vertex Model
- * +icon=googleCloud
+ * Vertex Model
  */
 export interface VertexModelV2 {
     /** +value=integration/model/vertex */

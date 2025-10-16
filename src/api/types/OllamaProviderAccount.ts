@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Ollama Provider Account
- * +icon=ollama
+ * Ollama Provider Account
  */
 export interface OllamaProviderAccount {
     /** +value=provider-account/ollama */

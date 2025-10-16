@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Azure Basic Auth
+ * Azure Basic Auth
  */
 export interface AzureBasicAuth {
     /** +value=basic-auth */

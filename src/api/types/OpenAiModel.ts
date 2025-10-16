@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OpenAI Model
- * +icon=openai
+ * OpenAI Model
  */
 export interface OpenAiModel {
     /** +value=integration/model/openai */

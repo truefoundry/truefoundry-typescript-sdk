@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Perplexity AI API Key Auth
- * +icon=perplexity-ai
+ * Perplexity AI API Key Auth
  */
 export interface PerplexityAiKeyAuth {
     /** +value=api-key */

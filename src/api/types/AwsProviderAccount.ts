@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS
- * +icon=aws
- * +heroDataKey=aws_account_id
+ * AWS
  */
 export interface AwsProviderAccount {
     /** +value=provider-account/aws */

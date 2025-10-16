@@ -3,15 +3,11 @@
  */
 
 /**
- * +label=GCP Key File Auth
+ * GCP Key File Auth
  */
 export interface GcpKeyFileAuth {
     /** +value=key-file */
     type: "key-file";
-    /**
-     * +uiType=JsonInput
-     * +label=Key File Content
-     * +sort=100
-     */
+    /** Key File Content */
     key_file_content: Record<string, unknown>;
 }

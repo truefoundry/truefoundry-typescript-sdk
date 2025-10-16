@@ -5,17 +5,13 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Custom Model
- * +icon=puzzle-piece
+ * Custom Model
  */
 export interface CustomModel {
-    /**
-     * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** 2 to 62 characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     hosted_model_name: string;
-    /** +message=enter valid https/http URL that should not end with trailing slash */
+    /** enter valid https/http URL that should not end with trailing slash */
     url: string;
     model_server: TrueFoundry.CustomModelModelServer;
     /** +uiType=Hidden */

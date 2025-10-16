@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Groq Model
- * +icon=groq
+ * Groq Model
  */
 export interface GroqModel {
     /** +value=integration/model/groq */

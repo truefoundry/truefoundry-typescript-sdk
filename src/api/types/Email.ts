@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Email
+ * Email
  */
 export interface Email {
     /** +value=email */

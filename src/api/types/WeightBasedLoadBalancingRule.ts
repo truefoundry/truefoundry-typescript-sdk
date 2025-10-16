@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Weight-based Load Balancing Rule
+ * Weight-based Load Balancing Rule
  */
 export interface WeightBasedLoadBalancingRule extends TrueFoundry.WeightBasedLoadBalancing {
     /** Unique identifier for the rule */

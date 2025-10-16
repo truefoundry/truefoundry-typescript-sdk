@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Guardrails Rule
+ * Guardrails Rule
  */
 export interface GuardrailsRule {
     /** Unique identifier for the rule */

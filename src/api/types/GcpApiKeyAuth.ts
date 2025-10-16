@@ -3,14 +3,11 @@
  */
 
 /**
- * +label=GCP API Key Auth
+ * GCP API Key Auth
  */
 export interface GcpApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +sort=100
-     */
+    /** API Key */
     apiKey: string;
 }

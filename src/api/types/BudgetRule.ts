@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Budget Rule
+ * Budget Rule
  */
 export interface BudgetRule {
     /** Unique identifier for the rule */

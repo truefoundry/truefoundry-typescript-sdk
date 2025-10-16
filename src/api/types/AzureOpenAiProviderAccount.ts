@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure OpenAI Provider Account
- * +icon=azure
+ * Azure OpenAI Provider Account
  */
 export interface AzureOpenAiProviderAccount {
     /** +value=provider-account/azure-openai */

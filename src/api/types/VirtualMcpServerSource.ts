@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Virtual MCP Server Source
+ * Virtual MCP Server Source
  */
 export interface VirtualMcpServerSource {
     /** Name of the source MCP server within this group (use {provider_account_name}/{integration_name} format). */

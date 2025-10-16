@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Webhook Integration
- * +icon=https://assets.production.truefoundry.com/webhook.svg
+ * Webhook Integration
  */
 export interface WebhookIntegration {
     /** +value=integration/gateway-request-logger/webhook */

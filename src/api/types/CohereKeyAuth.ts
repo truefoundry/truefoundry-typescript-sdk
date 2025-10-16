@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Cohere API Key Auth
- * +icon=cohere
+ * Cohere API Key Auth
  */
 export interface CohereKeyAuth {
     /** +value=api-key */

@@ -20,6 +20,6 @@ export interface DockerFileBuild {
      * E.g. `python main.py --learning_rate {{learning_rate}}`
      */
     command?: TrueFoundry.DockerFileBuildCommand;
-    /** +label=Build arguments to pass to docker build */
+    /** Build arguments to pass to docker build */
     build_args?: Record<string, string>;
 }

@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Create new volume
+ * Create new volume
  */
 export interface DynamicVolumeConfig {
     /** Volume Type for the volume. */

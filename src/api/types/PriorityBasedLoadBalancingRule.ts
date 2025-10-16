@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Priority-based Load Balancing Rule
+ * Priority-based Load Balancing Rule
  */
 export interface PriorityBasedLoadBalancingRule extends TrueFoundry.PriorityBasedLoadBalancing {
     /** Unique identifier for the rule */

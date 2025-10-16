@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Palo Alto Prisma AIRS
- * +icon=https://assets.production.truefoundry.com/palo-alto-prisma-airs.svg
+ * Palo Alto Prisma AIRS
  */
 export interface PaloAltoPrismaAirsGuardrailConfig {
     /** The name of the Guardrail Config. */

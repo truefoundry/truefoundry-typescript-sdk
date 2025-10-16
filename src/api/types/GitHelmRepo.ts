@@ -5,12 +5,7 @@
 export interface GitHelmRepo {
     /** +value=git-helm-repo */
     type: "git-helm-repo";
-    /**
-     * TODO: Check this regex and add guidelines
-     * +label=Git repository URL
-     * +sort=1
-     * +message=Needs to be a valid URL.
-     */
+    /** Git repository URL - Needs to be a valid URL. */
     repo_url: string;
     /** Branch/Commit SHA/Tag of the git repo. */
     revision: string;

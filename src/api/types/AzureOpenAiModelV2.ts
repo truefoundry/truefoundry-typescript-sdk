@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure OpenAI Model
- * +icon=azure
+ * Azure OpenAI Model
  */
 export interface AzureOpenAiModelV2 {
     /** +value=integration/model/azure-openai */

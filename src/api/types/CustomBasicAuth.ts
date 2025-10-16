@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Custom Basic Auth
+ * Custom Basic Auth
  */
 export interface CustomBasicAuth {
     /** +value=basic-auth */

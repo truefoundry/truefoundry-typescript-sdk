@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=TrueFoundry DBSSM
- * +icon=truefoundry
+ * TrueFoundry DBSSM
  */
 export interface TrueFoundryDbssm {
     /** +value=integration/secret-store/truefoundry/db */

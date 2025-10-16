@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Cohere Model
- * +icon=cohere
+ * Cohere Model
  */
 export interface CohereModel {
     /** +value=integration/model/cohere */

@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Weight-based Target
+ * Weight-based Target
  */
 export interface LoadBalanceTarget {
     /** Target model or provider FQN */

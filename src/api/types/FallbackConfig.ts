@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Fallback Configuration
+ * Fallback Configuration
  */
 export interface FallbackConfig {
     /** Name of the fallback configuration */

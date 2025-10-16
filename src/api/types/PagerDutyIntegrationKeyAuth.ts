@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=PagerDuty Credentails
+ * PagerDuty Credentails
  */
 export interface PagerDutyIntegrationKeyAuth {
     /** +value=pagerduty-integration-auth */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Patronus
- * +icon=https://assets.production.truefoundry.com/patronus.svg
+ * Patronus
  */
 export interface PatronusGuardrailConfig {
     /** The name of the Guardrail Config. */

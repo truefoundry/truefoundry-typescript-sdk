@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure AI Foundry Model
+ * Azure AI Foundry Model
  */
 export interface AzureFoundryModel {
     /** +value=integration/model/azure/ai-foundry */

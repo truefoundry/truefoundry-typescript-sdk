@@ -3,7 +3,7 @@
  */
 
 export interface IngressControllerConfig {
-    /** +label=Ingress Class Name */
+    /** Ingress Class Name */
     ingress_class_name: string;
     /** Whether TLS is managed by the ingress controller. If enabled, the ingress object will have TLS configuration. */
     tls_enabled?: boolean;

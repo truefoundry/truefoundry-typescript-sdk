@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Google Vertex Provider Account
- * +icon=googleCloud
- * +heroDataKey=project_id
+ * Google Vertex Provider Account
  */
 export interface GoogleVertexProviderAccount {
     /** +value=provider-account/google-vertex */

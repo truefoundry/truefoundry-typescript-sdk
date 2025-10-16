@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS Parameter Store
- * +icon=aws-ssm
+ * AWS Parameter Store
  */
 export interface AwsParameterStore {
     /** +value=integration/secret-store/aws/parameter-store */

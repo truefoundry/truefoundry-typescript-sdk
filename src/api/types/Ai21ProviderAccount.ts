@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AI21
- * +icon=ai21
+ * AI21
  */
 export interface Ai21ProviderAccount {
     /** +value=provider-account/ai21 */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Mistral AI Provider Account
- * +icon=mistral-ai
+ * Mistral AI Provider Account
  */
 export interface MistralAiProviderAccount {
     /** +value=provider-account/mistral-ai */

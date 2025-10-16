@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=TTL
- * +icon=docker
+ * TTL
  */
 export interface TtlRegistry {
     /** +value=integration/docker-registry/ttl */

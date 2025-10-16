@@ -21,7 +21,7 @@ export interface BaseService {
     service_account?: string;
     /** Configure data to be mounted to service pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-service) */
     mounts?: TrueFoundry.BaseServiceMountsItem[];
-    /** +label=Labels */
+    /** Labels */
     labels?: Record<string, string>;
     kustomize?: TrueFoundry.Kustomize;
     liveness_probe?: TrueFoundry.HealthProbe;

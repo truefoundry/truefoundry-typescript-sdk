@@ -7,12 +7,7 @@ import * as TrueFoundry from "../index.js";
 export interface ClusterManifest {
     /** +value=cluster */
     type: "cluster";
-    /**
-     * +label=Name
-     * +icon=fa-desktop:#black
-     * +sort=10
-     * +message=3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** Name - 3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     /** The cluster type of this cluster */
     cluster_type: TrueFoundry.ClusterManifestClusterType;
@@ -23,37 +18,17 @@ export interface ClusterManifest {
      * > Read more about routing [here](https://docs.truefoundry.com/docs/routing) and about 'A' record and domain mapping [here](https://docs.truefoundry.com/docs/setting-up-domain)
      */
     base_domains?: string[];
-    /**
-     * +label=Monitoring
-     * +icon=fa-gear:#68BBE3
-     * +sort=50
-     */
+    /** Monitoring */
     monitoring?: TrueFoundry.ClusterManifestMonitoring;
-    /**
-     * +label=Cluster Default Registry
-     * +sort=60
-     */
+    /** Cluster Default Registry */
     default_registry_fqn?: string;
-    /**
-     * +label=Workbench Config
-     * +sort=70
-     */
+    /** Workbench Config */
     workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig;
     spark_config?: TrueFoundry.SparkConfig;
     ingress_controller_config?: TrueFoundry.IngressControllerConfig;
-    /**
-     * +label=Cluster Integration FQN
-     * +sort=75
-     * +uiType=IntegrationSelect
-     * +uiProps={"descriptionKey": "cluster_name","integrationType": "cluster"}
-     */
+    /** Cluster Integration FQN */
     cluster_integration_fqn?: string;
-    /**
-     * +label=Workflow Storage Integration
-     * +sort=80
-     * +uiType=IntegrationSelect
-     * +uiProps={"descriptionKey": "cluster_name","integrationType": "blob-storage"}
-     */
+    /** Workflow Storage Integration */
     workflow_storage_integration_fqn?: string;
     /**
      * Add nodepools that are already created in your cluster.

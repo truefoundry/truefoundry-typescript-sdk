@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Jfrog
- * +icon=jfrog
+ * Jfrog
  */
 export interface JfrogProviderAccount {
     /** +value=provider-account/jfrog */

@@ -5,18 +5,14 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Dockerhub Registry
- * +icon=docker
+ * Dockerhub Registry
  */
 export interface DockerhubRegistry {
     /** +value=integration/docker-registry/dockerhub */
     type: "integration/docker-registry/dockerhub";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    /**
-     * +label=Registry URL
-     * +sort=200
-     */
+    /** Registry URL */
     registry_url: string;
     auth_data?: TrueFoundry.DockerhubBasicAuth;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */

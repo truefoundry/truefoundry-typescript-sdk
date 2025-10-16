@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Github
- * +icon=github
+ * Github
  */
 export interface GithubProviderAccount {
     /** +value=provider-account/github */

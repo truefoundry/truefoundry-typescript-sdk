@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Auth Data
+ * Auth Data
  */
 export type BedrockModelAuthData = TrueFoundry.BedrockKeyAuth | TrueFoundry.AwsAssumedRoleBasedAuth;

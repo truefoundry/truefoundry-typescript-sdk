@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Ollama Model
- * +icon=ollama
+ * Ollama Model
  */
 export interface OllamaModel {
     /** +value=integration/model/ollama */

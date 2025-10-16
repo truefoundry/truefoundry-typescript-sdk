@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=gcp-gke
- * +label=GCP GKE
+ * GCP GKE
  */
 export interface GcpGkeIntegration {
     /** +value=integration/cluster/gcp/gke-standard */

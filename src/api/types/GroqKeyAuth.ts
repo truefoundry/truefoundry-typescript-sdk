@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Groq API Key Auth
- * +icon=groq
+ * Groq API Key Auth
  */
 export interface GroqKeyAuth {
     /** +value=api-key */

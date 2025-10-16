@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OAuth2
+ * OAuth2
  */
 export interface McpServerOAuth2 {
     /** OAuth2 authentication */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=gcp-gcs
- * +label=GCP GCS
+ * GCP GCS
  */
 export interface GcpGcs {
     /** +value=integration/blob-storage/gcp/gcs */

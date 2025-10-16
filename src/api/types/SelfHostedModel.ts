@@ -5,23 +5,16 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Self Hosted Model Integration
- * +icon=puzzle-piece
+ * Self Hosted Model Integration
  */
 export interface SelfHostedModel {
     /** +value=integration/model/self-hosted-model */
     type: "integration/model/self-hosted-model";
-    /**
-     * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
     name: string;
     /** The name of the hosted model */
     hosted_model_name: string;
-    /**
-     * +sort=3
-     * +message=enter valid https/http URL that should not end with trailing slash
-     */
+    /** enter valid https/http URL that should not end with trailing slash */
     url: string;
     /** The type of model server being used */
     model_server: TrueFoundry.SelfHostedModelModelServer;

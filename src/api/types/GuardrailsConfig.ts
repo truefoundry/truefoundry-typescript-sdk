@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Guardrails Configuration
+ * Guardrails Configuration
  */
 export interface GuardrailsConfig {
     /** Name of the guardrails configuration */

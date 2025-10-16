@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=DeepInfra Provider Account
- * +icon=deepinfra
+ * DeepInfra Provider Account
  */
 export interface DeepinfraProviderAccount {
     /** +value=provider-account/deepinfra */

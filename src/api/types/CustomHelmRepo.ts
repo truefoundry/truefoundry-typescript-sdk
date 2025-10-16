@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Custom Helm Repo
- * +icon=puzzle-piece
+ * Custom Helm Repo
  */
 export interface CustomHelmRepo {
     /** +value=integration/helm-repo/custom */

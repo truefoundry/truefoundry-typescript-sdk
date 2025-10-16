@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Databricks Provider Account
- * +icon=databricks
+ * Databricks Provider Account
  */
 export interface DatabricksProviderAccount {
     /** +value=provider-account/databricks */

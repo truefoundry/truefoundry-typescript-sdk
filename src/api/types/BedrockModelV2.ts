@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Bedrock Model
- * +icon=aws-bedrock
+ * Bedrock Model
  */
 export interface BedrockModelV2 {
     /** Name to identify this Bedrock model in the UI */

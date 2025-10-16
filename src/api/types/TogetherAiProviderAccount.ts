@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Together AI Provider Account
- * +icon=together-ai
+ * Together AI Provider Account
  */
 export interface TogetherAiProviderAccount {
     /** +value=provider-account/together-ai */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Anthropic
- * +icon=anthropic
+ * Anthropic
  */
 export interface AnthropicProviderAccount {
     /** +value=provider-account/anthropic */

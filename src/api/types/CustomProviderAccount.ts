@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Custom
- * +icon=puzzle-piece
+ * Custom
  */
 export interface CustomProviderAccount {
     /** +value=provider-account/custom */

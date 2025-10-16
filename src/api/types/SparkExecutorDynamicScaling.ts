@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Dynamic Scaling
+ * Dynamic Scaling
  */
 export interface SparkExecutorDynamicScaling {
     /** +value=dynamic */

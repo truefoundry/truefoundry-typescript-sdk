@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=SambaNova Provider Account
- * +icon=sambanova
+ * SambaNova Provider Account
  */
 export interface SambaNovaProviderAccount {
     /** +value=provider-account/sambanova */

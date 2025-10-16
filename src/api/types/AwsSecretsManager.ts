@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS Secrets Manager
- * +icon=aws-secrets-manager
+ * AWS Secrets Manager
  */
 export interface AwsSecretsManager {
     /** +value=integration/secret-store/aws/secrets-manager */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS S3
- * +icon=aws-s3
+ * AWS S3
  */
 export interface AwsS3 {
     /** +value=integration/blob-storage/aws/s3 */

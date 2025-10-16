@@ -10,13 +10,7 @@ export interface EnvironmentManifest {
     /** Environment Name */
     name: string;
     color: TrueFoundry.EnvironmentColor;
-    /**
-     * +sort=400
-     * +label=Environment Type
-     * +message=Indicates if the environment is for production use
-     * +uiType=MultiSelectPills
-     * +uiProps={"hideRadioIcon":true}
-     */
+    /** Environment Type - Indicates if the environment is for production use */
     isProduction: boolean;
     optimizeFor: TrueFoundry.EnvironmentOptimizeFor;
 }

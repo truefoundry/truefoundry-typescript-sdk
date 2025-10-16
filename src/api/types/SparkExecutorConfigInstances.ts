@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Executor Instances
+ * Executor Instances
  */
 export type SparkExecutorConfigInstances =
     | TrueFoundry.SparkExecutorFixedInstances

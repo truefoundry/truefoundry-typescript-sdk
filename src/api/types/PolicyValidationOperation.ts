@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Validate
+ * Validate
  */
 export interface PolicyValidationOperation {
     /** Mutates or Validates Resources */

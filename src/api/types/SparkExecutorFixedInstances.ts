@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Fixed Instances
+ * Fixed Instances
  */
 export interface SparkExecutorFixedInstances {
     /** +value=fixed */

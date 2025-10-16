@@ -15,6 +15,6 @@ export interface TaskDockerFileBuild {
     docker_registry?: string;
     /** The file path of the Dockerfile relative to project root path. */
     dockerfile_path: string;
-    /** +label=Build arguments to pass to docker build */
+    /** Build arguments to pass to docker build */
     build_args?: Record<string, string>;
 }

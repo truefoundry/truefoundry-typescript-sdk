@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure Foundry Provider Account
- * +icon=azure
+ * Azure Foundry Provider Account
  */
 export interface AzureFoundryProviderAccount {
     /** +value=provider-account/azure-foundry */

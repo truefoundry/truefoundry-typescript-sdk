@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Latency-based Target
+ * Latency-based Target
  */
 export interface LatencyBasedLoadBalanceTarget {
     /** Target model or provider FQN */

@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure
- * +icon=azure
- * +heroDataKey=subscription_id
+ * Azure
  */
 export interface AzureProviderAccount {
     /** +value=provider-account/azure */

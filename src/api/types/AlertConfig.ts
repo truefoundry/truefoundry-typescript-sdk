@@ -5,17 +5,9 @@
 import * as TrueFoundry from "../index.js";
 
 export interface AlertConfig {
-    /**
-     * +label=Type
-     * +value=alert-config
-     */
+    /** Type */
     type: "alert-config";
-    /**
-     * +label=Name
-     * +message=3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"descriptionInline":true}
-     * +uiType=Hidden
-     */
+    /** Name - 3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     resource: TrueFoundry.AlertConfigResource;
     /** Configure one or more notification targets where alerts will be sent. Each target specifies a notification channel (email or slack). */

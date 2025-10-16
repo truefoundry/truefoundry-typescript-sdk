@@ -5,14 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Prometheus Alert Rule
+ * Prometheus Alert Rule
  */
 export interface PrometheusAlertRule {
-    /**
-     * +label=Type
-     * +value=prometheus-alert-rule
-     * +uiType=Hidden
-     */
+    /** Type */
     type: "prometheus-alert-rule";
     /** Enter a unique, descriptive name for your Prometheus alert rule. Choose a name that clearly indicates the condition being monitored. Please note that reserved alert names for TrueFoundry managed alerts are not allowed. For checking the list of reserved alert names, please refer to the documentation. */
     name: string;

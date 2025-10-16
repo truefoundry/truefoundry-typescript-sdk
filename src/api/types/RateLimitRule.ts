@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Rate Limit Rule
+ * Rate Limit Rule
  */
 export interface RateLimitRule {
     /** Unique identifier for the rule */

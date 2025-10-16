@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=azure-blob
- * +label=Azure ABS
+ * Azure ABS
  */
 export interface AzureBlobStorage {
     /** +value=integration/blob-storage/azure/blob */

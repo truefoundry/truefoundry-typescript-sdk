@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Login with truefoundry
+ * Login with truefoundry
  */
 export interface TrueFoundryInteractiveLogin {
     /** +value=truefoundry_oauth */

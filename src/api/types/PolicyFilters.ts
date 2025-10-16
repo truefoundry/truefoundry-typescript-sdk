@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Filters
+ * Filters
  */
 export interface PolicyFilters {
     /** Cluster names where Policy applies */

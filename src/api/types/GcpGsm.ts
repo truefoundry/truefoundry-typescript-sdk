@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=gcp-gsm
- * +label=GCP GSM
+ * GCP GSM
  */
 export interface GcpGsm {
     /** +value=integration/secret-store/gcp/gsm */

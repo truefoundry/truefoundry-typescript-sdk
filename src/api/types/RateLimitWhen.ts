@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Rule Conditions
+ * Rule Conditions
  */
 export interface RateLimitWhen {
     /** List of subjects that this rule applies to */

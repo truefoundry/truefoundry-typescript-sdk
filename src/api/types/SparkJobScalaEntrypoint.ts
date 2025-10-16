@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=scala
+ * scala
  */
 export interface SparkJobScalaEntrypoint {
     /** +value=scala */

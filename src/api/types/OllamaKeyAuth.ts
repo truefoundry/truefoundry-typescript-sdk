@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Ollama API Key Auth
- * +icon=ollama
+ * Ollama API Key Auth
  */
 export interface OllamaKeyAuth {
     /** The custom host URL for Ollama API */

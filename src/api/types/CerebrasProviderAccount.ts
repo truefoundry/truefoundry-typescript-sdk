@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Cerebras Provider Account
- * +icon=cerebras
+ * Cerebras Provider Account
  */
 export interface CerebrasProviderAccount {
     /** +value=provider-account/cerebras */

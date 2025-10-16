@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Patronus Evaluators
+ * Patronus Evaluators
  */
 export type PatronusEvaluator =
     | TrueFoundry.PatronusAnswerRelevanceEvaluator

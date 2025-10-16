@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Fallback Model
+ * Fallback Model
  */
 export interface FallbackModel {
     /** Target model or provider FQN to use as fallback */

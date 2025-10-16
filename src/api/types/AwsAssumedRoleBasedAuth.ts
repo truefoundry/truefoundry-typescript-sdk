@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=AWS Assumed Role Based Auth
+ * AWS Assumed Role Based Auth
  */
 export interface AwsAssumedRoleBasedAuth {
     /** +value=assumed-role-based */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Nomic Model
- * +icon=nomic
+ * Nomic Model
  */
 export interface NomicModel {
     /** +value=integration/model/nomic */

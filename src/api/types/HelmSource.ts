@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Source helm repository
- * +sort=2
+ * Source helm repository
  */
 export type HelmSource = TrueFoundry.HelmRepo | TrueFoundry.OciRepo | TrueFoundry.GitHelmRepo;

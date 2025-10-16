@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Azure AI Serverless Deployment
+ * Azure AI Serverless Deployment
  */
 export interface AzureAiServerlessDeployment {
     /** +value=serverless */

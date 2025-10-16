@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Bedrock API Key Auth
+ * Bedrock API Key Auth
  */
 export interface BedrockKeyAuth {
     /** +value=api-key */

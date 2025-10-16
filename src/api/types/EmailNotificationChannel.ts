@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Email Notification Channel
- * +icon=envelope
+ * Email Notification Channel
  */
 export interface EmailNotificationChannel {
     /** +value=integration/notification-channel/email */

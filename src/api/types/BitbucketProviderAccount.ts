@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Bitbucket
- * +icon=bitbucket
+ * Bitbucket
  */
 export interface BitbucketProviderAccount {
     /** +value=provider-account/bitbucket */

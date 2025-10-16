@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS ECR
- * +icon=aws-ecr
+ * AWS ECR
  */
 export interface AwsEcr {
     /** +value=integration/docker-registry/aws/ecr */

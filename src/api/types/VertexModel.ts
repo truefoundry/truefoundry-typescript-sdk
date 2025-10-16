@@ -5,15 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Vertex Model
- * +icon=https://assets.production.truefoundry.com/vertex-ai.png
+ * Vertex Model
  */
 export interface VertexModel {
-    /**
-     * +label=Display Name
-     * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Display Name - 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
     name: string;
     /** +sort=2 */
     model_id: string;

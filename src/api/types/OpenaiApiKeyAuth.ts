@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=OpenAI API Key Auth
- * +icon=openai
+ * OpenAI API Key Auth
  */
 export interface OpenaiApiKeyAuth {
     /** +value=api-key */

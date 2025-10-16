@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Custom Blob Storage
- * +icon=puzzle-piece
+ * Custom Blob Storage
  */
 export interface CustomBlobStorage {
     /** +value=integration/blob-storage/custom */

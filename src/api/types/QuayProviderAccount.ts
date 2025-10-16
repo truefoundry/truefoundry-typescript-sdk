@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Quay
- * +icon=puzzle-piece
+ * Quay
  */
 export interface QuayProviderAccount {
     /** +value=provider-account/quay */

@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Entrypoint
- * +sort=1000
+ * Entrypoint
  */
 export type SparkJobEntrypoint =
     | TrueFoundry.SparkJobPythonEntrypoint

@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=AWS Access Key Based Auth
+ * AWS Access Key Based Auth
  */
 export interface AwsAccessKeyBasedAuth {
     /** +value=access-key-based */

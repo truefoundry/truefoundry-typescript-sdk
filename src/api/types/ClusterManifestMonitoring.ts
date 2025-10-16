@@ -3,17 +3,15 @@
  */
 
 /**
- * +label=Monitoring
- * +icon=fa-gear:#68BBE3
- * +sort=50
+ * Monitoring
  */
 export interface ClusterManifestMonitoring {
-    /** +label=Cluster Loki URL */
+    /** Cluster Loki URL */
     loki_url?: string;
-    /** +label=Cluster VictoriaLogs URL */
+    /** Cluster VictoriaLogs URL */
     victoria_logs_url?: string;
-    /** +label=Cluster Prometheus URL */
+    /** Cluster Prometheus URL */
     prometheus_url?: string;
-    /** +label=Cluster Kubecost URL */
+    /** Cluster Kubecost URL */
     kubecost_url?: string;
 }

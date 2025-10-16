@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Azure AI Managed Deployment
+ * Azure AI Managed Deployment
  */
 export interface AzureAiManagedDeployment {
     /** +value=managed */

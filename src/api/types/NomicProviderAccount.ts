@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Nomic Provider Account
- * +icon=nomic
+ * Nomic Provider Account
  */
 export interface NomicProviderAccount {
     /** +value=provider-account/nomic */

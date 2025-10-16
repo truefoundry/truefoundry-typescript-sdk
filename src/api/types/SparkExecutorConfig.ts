@@ -5,10 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Executor Config
+ * Executor Config
  */
 export interface SparkExecutorConfig {
-    /** +label=Executor Instances */
+    /** Executor Instances */
     instances: TrueFoundry.SparkExecutorConfigInstances;
     resources?: TrueFoundry.Resources;
 }

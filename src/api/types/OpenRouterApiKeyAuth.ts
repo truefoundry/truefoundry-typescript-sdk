@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=OpenRouter API Key Auth
- * +icon=openrouter
+ * OpenRouter API Key Auth
  */
 export interface OpenRouterApiKeyAuth {
     /** +value=api-key */

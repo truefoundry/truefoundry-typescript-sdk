@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure Vault
- * +icon=azure-vault
+ * Azure Vault
  */
 export interface AzureVault {
     /** +value=integration/secret-store/azure/vault */

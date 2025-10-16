@@ -5,11 +5,7 @@
 export interface HelmRepo {
     /** +value=helm-repo */
     type: "helm-repo";
-    /**
-     * +label=Helm repository URL
-     * +sort=1
-     * +message=Needs to be a valid URL.
-     */
+    /** Helm repository URL - Needs to be a valid URL. */
     repo_url: string;
     /**
      * FQN of the helm repo integration. If you can't find your integration here,

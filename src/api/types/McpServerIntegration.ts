@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=MCP Server
- * +icon=puzzle-piece
+ * MCP Server
  */
 export interface McpServerIntegration {
     /** +value=integration/mcp-server/remote */

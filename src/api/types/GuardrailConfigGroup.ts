@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Guardrail Configs Group
- * +icon=puzzle-piece
+ * Guardrail Configs Group
  */
 export interface GuardrailConfigGroup {
     /**

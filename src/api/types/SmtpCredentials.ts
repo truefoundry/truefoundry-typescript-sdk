@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=SMTP Credentials
+ * SMTP Credentials
  */
 export interface SmtpCredentials {
     /**

@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=SambaNova Key Auth
- * +icon=sambanova
+ * SambaNova Key Auth
  */
 export interface SambaNovaKeyAuth {
     /** +value=api-key */

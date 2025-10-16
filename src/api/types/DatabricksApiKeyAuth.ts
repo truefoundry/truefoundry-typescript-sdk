@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Databricks API Key Based Auth
+ * Databricks API Key Based Auth
  */
 export interface DatabricksApiKeyAuth {
     /** +value=api-key */

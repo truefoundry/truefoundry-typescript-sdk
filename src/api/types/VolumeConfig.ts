@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +sort=2
- * +label=Volume Config
- * +message=Volume Configuration, can be either Dynamically provisioned or statically provisioned.
+ * Volume Config - Volume Configuration, can be either Dynamically provisioned or statically provisioned.
  */
 export type VolumeConfig = TrueFoundry.DynamicVolumeConfig | TrueFoundry.StaticVolumeConfig;

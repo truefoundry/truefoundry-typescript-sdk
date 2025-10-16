@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Quay Artifacts Registry
- * +icon=quay
+ * Quay Artifacts Registry
  */
 export interface QuayArtifactsRegistry {
     /** +value=integration/docker-registry/quay */

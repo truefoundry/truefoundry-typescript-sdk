@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Model Type
- * +uiType=Select
+ * Model Type
  */
 export type ModelType =
     | "chat"

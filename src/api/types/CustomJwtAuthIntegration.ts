@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Custom JWT Auth Integration
- * +icon=puzzle-piece
+ * Custom JWT Auth Integration
  */
 export interface CustomJwtAuthIntegration {
     /** +value=integration/jwt-auth/custom */

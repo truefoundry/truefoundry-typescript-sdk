@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Enkrypt AI
- * +icon=https://app.enkryptai.com/favicon.ico
+ * Enkrypt AI
  */
 export interface EnkryptAiGuardrailConfig {
     /** The name of the Guardrail Config. */

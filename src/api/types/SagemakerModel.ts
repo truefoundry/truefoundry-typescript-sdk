@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Sagemaker Model
- * +icon=aws-sagemaker
+ * Sagemaker Model
  */
 export interface SagemakerModel {
     /** Name to identify this Sagemaker model in the UI */

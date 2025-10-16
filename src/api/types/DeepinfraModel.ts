@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=DeepInfra Model
- * +icon=deepinfra
+ * DeepInfra Model
  */
 export interface DeepinfraModel {
     /** +value=integration/model/deepinfra */

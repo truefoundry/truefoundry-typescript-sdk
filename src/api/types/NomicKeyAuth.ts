@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Nomic API Key Auth
- * +icon=nomic
+ * Nomic API Key Auth
  */
 export interface NomicKeyAuth {
     /** +value=api-key */

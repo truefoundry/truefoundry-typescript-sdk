@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Budget Configuration
+ * Budget Configuration
  */
 export interface BudgetConfig {
     /** Name of the budget configuration */

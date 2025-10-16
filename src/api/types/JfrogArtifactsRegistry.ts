@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Jfrog Artifacts Registry
- * +icon=jfrog
+ * Jfrog Artifacts Registry
  */
 export interface JfrogArtifactsRegistry {
     /** +value=integration/docker-registry/jfrog */

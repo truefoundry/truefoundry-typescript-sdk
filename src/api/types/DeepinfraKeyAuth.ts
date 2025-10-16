@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=DeepInfra API Key Auth
- * +icon=deepinfra
+ * DeepInfra API Key Auth
  */
 export interface DeepinfraKeyAuth {
     /** +value=api-key */

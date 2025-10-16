@@ -14,10 +14,7 @@ export interface SparkJob {
     name: string;
     /** The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image. */
     image: TrueFoundry.SparkJobImage;
-    /**
-     * +label=Entrypoint
-     * +sort=1000
-     */
+    /** Entrypoint */
     entrypoint: TrueFoundry.SparkJobEntrypoint;
     driver_config: TrueFoundry.SparkDriverConfig;
     executor_config: TrueFoundry.SparkExecutorConfig;
@@ -29,10 +26,7 @@ export interface SparkJob {
     mounts?: TrueFoundry.VolumeMount[];
     /** Specify the maximum number of attempts to retry a job before it is marked as failed. */
     retries?: number;
-    /**
-     * +label=Service Account
-     * +sort=24000
-     */
+    /** Service Account */
     service_account?: string;
     /** Fully qualified name of the workspace */
     workspace_fqn?: string;

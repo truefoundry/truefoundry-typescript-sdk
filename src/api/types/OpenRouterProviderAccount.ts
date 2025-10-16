@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OpenRouter Provider Account
- * +icon=openrouter
+ * OpenRouter Provider Account
  */
 export interface OpenRouterProviderAccount {
     /** +value=provider-account/openrouter */

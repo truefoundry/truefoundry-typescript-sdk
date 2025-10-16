@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=gcp-gcr
- * +label=GCP GCR
+ * GCP GCR
  */
 export interface GcpGcr {
     /** +value=integration/docker-registry/gcp/gcr */

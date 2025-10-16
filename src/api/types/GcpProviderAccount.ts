@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=GCP
- * +icon=googleCloud
- * +heroDataKey=project_id
+ * GCP
  */
 export interface GcpProviderAccount {
     /** +value=provider-account/gcp */

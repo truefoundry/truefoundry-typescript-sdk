@@ -14,9 +14,6 @@ export interface ContainerTaskConfig {
     resources?: TrueFoundry.Resources;
     /** Configure data to be mounted to Workflow pod(s) as a volume. */
     mounts?: TrueFoundry.ContainerTaskConfigMountsItem[];
-    /**
-     * +label=Service Account
-     * +sort=500
-     */
+    /** Service Account */
     service_account?: string;
 }

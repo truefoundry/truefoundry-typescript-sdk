@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure Foundry Model
- * +icon=azure
+ * Azure Foundry Model
  */
 export interface AzureFoundryModelV2 {
     /** +value=integration/model/azure-foundry */

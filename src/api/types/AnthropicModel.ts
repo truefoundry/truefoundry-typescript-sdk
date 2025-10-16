@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Anthropic Model
- * +icon=anthropic
+ * Anthropic Model
  */
 export interface AnthropicModel {
     /** Name to identify this Anthropic model in the UI */

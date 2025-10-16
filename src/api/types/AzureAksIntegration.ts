@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +icon=azure-aks
- * +label=Azure AKS
+ * Azure AKS
  */
 export interface AzureAksIntegration {
     /** +value=integration/cluster/azure/aks */

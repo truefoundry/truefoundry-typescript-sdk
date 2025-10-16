@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Slack Provider Account
- * +icon=slack
+ * Slack Provider Account
  */
 export interface SlackProviderAccount {
     /** +value=provider-account/slack */

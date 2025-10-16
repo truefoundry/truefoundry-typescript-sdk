@@ -3,7 +3,7 @@
  */
 
 /**
- * +label=Azure OAuth
+ * Azure OAuth
  */
 export interface AzureOAuth {
     /** +value=oauth */

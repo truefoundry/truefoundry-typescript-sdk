@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS EKS
- * +icon=aws-eks
+ * AWS EKS
  */
 export interface AwsEksIntegration {
     /** +value=integration/cluster/aws/eks */

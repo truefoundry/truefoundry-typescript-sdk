@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS Bedrock
- * +icon=aws
+ * AWS Bedrock
  */
 export interface AwsBedrockProviderAccount {
     /** +value=provider-account/aws-bedrock */

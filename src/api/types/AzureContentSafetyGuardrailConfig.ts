@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Azure Content Safety
- * +icon=azure
+ * Azure Content Safety
  */
 export interface AzureContentSafetyGuardrailConfig {
     /** The name of the Guardrail Config. */

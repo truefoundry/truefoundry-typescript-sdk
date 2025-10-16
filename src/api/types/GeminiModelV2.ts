@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Gemini Model
- * +icon=googleCloud
+ * Gemini Model
  */
 export interface GeminiModelV2 {
     /** +value=integration/model/gemini */

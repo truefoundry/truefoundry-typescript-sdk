@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OpenRouter Model
- * +icon=openrouter
+ * OpenRouter Model
  */
 export interface OpenRouterModel {
     /** +value=integration/model/openrouter */

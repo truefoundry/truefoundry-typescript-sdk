@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Perplexity AI Provider Account
- * +icon=perplexity-ai
+ * Perplexity AI Provider Account
  */
 export interface PerplexityAiProviderAccount {
     /** +value=provider-account/perplexity-ai */

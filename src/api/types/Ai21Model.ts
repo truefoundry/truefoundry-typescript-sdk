@@ -5,8 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AI21 Model
- * +icon=ai21
+ * AI21 Model
  */
 export interface Ai21Model {
     /** +value=integration/model/ai21 */

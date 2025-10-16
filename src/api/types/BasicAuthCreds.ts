@@ -3,21 +3,13 @@
  */
 
 /**
- * +label=Username and password
+ * Username and password
  */
 export interface BasicAuthCreds {
     /** +value=basic_auth */
     type: "basic_auth";
-    /**
-     * +label=Username for service auth
-     * +message=Username for the user to authenticate with
-     * +sort=1
-     */
+    /** Username for service auth - Username for the user to authenticate with */
     username: string;
-    /**
-     * +label=Password for service auth
-     * +message=Password for the user to authenticate with
-     * +sort=2
-     */
+    /** Password for service auth - Password for the user to authenticate with */
     password: string;
 }
