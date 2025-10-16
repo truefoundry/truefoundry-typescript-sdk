@@ -444,6 +444,7 @@ export * from "./OpenRouterModel.js";
 export * from "./OpenRouterProviderAccount.js";
 export * from "./OpenaiApiKeyAuth.js";
 export * from "./OpenaiProviderAccount.js";
+export * from "./OwnedBy.js";
 export * from "./PagerDuty.js";
 export * from "./PagerDutyIntegration.js";
 export * from "./PagerDutyIntegrationKeyAuth.js";

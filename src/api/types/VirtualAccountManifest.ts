@@ -28,6 +28,8 @@ export interface VirtualAccountManifest {
      * +uiType=ServiceAccountPermissions
      */
     permissions: TrueFoundry.Permissions[];
+    ownedBy?: TrueFoundry.OwnedBy;
     auto_rotate?: TrueFoundry.AutoRotate;
     secret_store_config?: TrueFoundry.SecretStoreConfig;
+    notification_target?: TrueFoundry.NotificationTarget;
 }
