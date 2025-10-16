@@ -3,11 +3,18 @@
  */
 
 /**
- * Mapping configuration for tool calls to MCP server integration and tool names
+ * +label=Mcp Server Tool Details
+ * +usage=Mapping configuration for tool calls to MCP server integration and tool names
  */
 export interface McpServerToolDetails {
-    /** The integration ID of the MCP server */
+    /**
+     * +label=MCP Server Integration ID
+     * +usage=The integration ID of the MCP server
+     */
     mcp_server_integration_id: string;
-    /** The name of the tool in the MCP server */
+    /**
+     * +label=Tool Name
+     * +usage=The name of the tool in the MCP server
+     */
     tool_name: string;
 }

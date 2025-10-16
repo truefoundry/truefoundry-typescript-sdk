@@ -5,13 +5,26 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * User message turn
+ * +label=User Message
+ * +usage=User message turn
  */
 export interface UserMessage {
-    /** Role of the message */
+    /**
+     * +value=user
+     * +usage=Role of the message
+     * +uiType=Ignore
+     */
     role: "user";
-    /** Content of the user message. can be a mix of text and images */
+    /**
+     * +label=Content
+     * +usage=Content of the user message. can be a mix of text and images
+     * +uiType=CodeEditor
+     * +uiProps={"language": "text"}
+     */
     content: TrueFoundry.UserMessageContent;
-    /** Name of the user this message is from */
+    /**
+     * +label=Name
+     * +usage=Name of the user this message is from
+     */
     name?: string;
 }

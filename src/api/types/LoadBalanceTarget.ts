@@ -4,16 +4,43 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Weight-based Target
+ */
 export interface LoadBalanceTarget {
-    /** Target model or provider FQN */
+    /**
+     * +usage=Target model or provider FQN
+     * +uiProps={"integrationType":"model", "valuePattern": "${providerAccount.name}/${manifest.name}"}
+     * +sort=1
+     * +label=Target
+     */
     target: string;
-    /** Relative weight for routing decisions (higher values mean more traffic) */
+    /**
+     * +usage=Relative weight for routing decisions (higher values mean more traffic)
+     * +uiProps={"descriptionInline":true}
+     * +sort=2
+     * +label=Weight
+     */
     weight: number;
     retry_config?: TrueFoundry.RetryConfig;
-    /** Status Codes for which the request will fallback to other targets. If the status code is not present in fallback_status_codes, it fails immediately. */
+    /**
+     * +usage=Status Codes for which the request will fallback to other targets. If the status code is not present in fallback_status_codes, it fails immediately.
+     * +uiProps={"descriptionInline":true}
+     * +label=Fallback Status Codes
+     */
     fallback_status_codes?: string[];
-    /** Whether this target is a fallback candidate.  If set to false, this model will not be considered as a fallback option for targets of this load-balance-rule */
+    /**
+     * +usage=Whether this target is a fallback candidate.  If set to false, this model will not be considered as a fallback option for targets of this load-balance-rule
+     * +uiProps={"descriptionInline":true}
+     * +sort=4
+     * +label=Fallback Candidate
+     */
     fallback_candidate?: boolean;
-    /** Optional parameters to override in the request */
+    /**
+     * +usage=Optional parameters to override in the request
+     * +uiProps={"descriptionInline":true}
+     * +sort=3
+     * +label=Override Parameters
+     */
     override_params?: Record<string, unknown>;
 }

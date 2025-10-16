@@ -3,9 +3,13 @@
  */
 
 /**
- * Tool configuration for MCP server
+ * +label=MCP Tool
+ * +usage=Tool configuration for MCP server
  */
 export interface McpTool {
-    /** The name of the tool as it appears in the MCP server */
+    /**
+     * +label=Name
+     * +usage=The name of the tool as it appears in the MCP server
+     */
     name: string;
 }

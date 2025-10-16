@@ -4,8 +4,21 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Priority-based Load Balancing
+ */
 export interface PriorityBasedLoadBalancing {
+    /**
+     * +value=priority-based-routing
+     * +sort=1
+     * +label=Routing Type
+     */
     type: "priority-based-routing";
-    /** List of targets for priority-based load balancing */
+    /**
+     * +usage=List of targets for priority-based load balancing
+     * +uiProps={"descriptionInline":true}
+     * +sort=4
+     * +label=Load Balance Targets
+     */
     load_balance_targets: TrueFoundry.PriorityBasedLoadBalanceTarget[];
 }

@@ -3,10 +3,22 @@
  */
 
 export interface RetryConfig {
-    /** Number of attempts to retry the request */
+    /**
+     * +usage=Number of attempts to retry the request
+     * +uiProps={"descriptionInline":true}
+     * +label=Attempts
+     */
     attempts: number;
-    /** Delay between retries in milliseconds */
+    /**
+     * +usage=Delay between retries in milliseconds
+     * +uiProps={"descriptionInline":true}
+     * +label=Delay
+     */
     delay?: number;
-    /** Status codes to retry on */
+    /**
+     * +usage=Status codes to retry on
+     * +uiProps={"descriptionInline":true}
+     * +label=Status Codes
+     */
     on_status_codes?: string[];
 }

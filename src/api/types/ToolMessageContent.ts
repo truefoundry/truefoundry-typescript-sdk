@@ -5,6 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * Content of the tool call result
+ * +label=Content
+ * +usage=Content of the tool call result
  */
 export type ToolMessageContent = string | TrueFoundry.BlobStorageReference;

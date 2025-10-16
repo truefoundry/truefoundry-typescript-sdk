@@ -4,8 +4,21 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Weight-based Load Balancing
+ */
 export interface WeightBasedLoadBalancing {
+    /**
+     * +value=weight-based-routing
+     * +sort=1
+     * +label=Routing Type
+     */
     type: "weight-based-routing";
-    /** List of targets for load balancing with weights */
+    /**
+     * +usage=List of targets for load balancing with weights
+     * +uiProps={"descriptionInline":true}
+     * +sort=4
+     * +label=Load Balance Targets
+     */
     load_balance_targets: TrueFoundry.LoadBalanceTarget[];
 }

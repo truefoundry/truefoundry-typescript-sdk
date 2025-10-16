@@ -4,8 +4,21 @@
 
 import * as TrueFoundry from "../index.js";
 
+/**
+ * +label=Latency-based Load Balancing
+ */
 export interface LatencyBasedLoadBalancing {
+    /**
+     * +value=latency-based-routing
+     * +sort=1
+     * +label=Routing Type
+     */
     type: "latency-based-routing";
-    /** List of targets for latency-based load balancing */
+    /**
+     * +usage=List of targets for latency-based load balancing
+     * +uiProps={"descriptionInline":true}
+     * +sort=4
+     * +label=Load Balance Targets
+     */
     load_balance_targets: TrueFoundry.LatencyBasedLoadBalanceTarget[];
 }

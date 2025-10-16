@@ -5,10 +5,14 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * Structured JSON response format with schema validation
+ * +label=JSON Schema Response Format
+ * +usage=Structured JSON response format with schema validation
  */
 export interface JsonSchemaResponseFormat {
-    /** Type of response format */
+    /**
+     * +label=Type
+     * +usage=Type of response format
+     */
     type: "json_schema";
     json_schema: TrueFoundry.JsonSchema;
 }

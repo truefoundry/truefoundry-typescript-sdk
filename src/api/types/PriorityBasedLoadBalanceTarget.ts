@@ -5,17 +5,41 @@
 import * as TrueFoundry from "../index.js";
 
 export interface PriorityBasedLoadBalanceTarget {
-    /** Target model or provider FQN */
+    /**
+     * +usage=Target model or provider FQN
+     * +uiProps={"integrationType":"model", "valuePattern": "${providerAccount.name}/${manifest.name}"}
+     * +sort=1
+     * +label=Target
+     */
     target: string;
-    /** Priority for the target, Lower the number, higher the priority (0 is the highest priority) */
-    priority?: number;
-    /** Maximum inter-token latency threshold in milliseconds. If ITL exceeds this value, the target will be marked as unhealthy */
-    max_inter_token_latency?: number;
+    /**
+     * +usage=Priority for the target, Lower the number, higher the priority (0 is the highest priority)
+     * +uiProps={"descriptionInline":true}
+     * +sort=2
+     * +label=Priority
+     */
+    priority: number;
+    sla_cutoff?: TrueFoundry.SlaCutoff;
     retry_config?: TrueFoundry.RetryConfig;
-    /** Status Codes for which the request will fallback to other targets. If the status code is not present in fallback_status_codes, it fails immediately. */
+    /**
+     * +usage=Status Codes for which the request will fallback to other targets. If the status code is not present in fallback_status_codes, it fails immediately.
+     * +uiProps={"descriptionInline":true}
+     * +sort=5
+     * +label=Fallback Status Codes
+     */
     fallback_status_codes?: string[];
-    /** Whether this target is a fallback candidate.  If set to false, this model will not be considered as a fallback option for targets of this load-balance-rule */
+    /**
+     * +usage=Whether this target is a fallback candidate.  If set to false, this model will not be considered as a fallback option for targets of this load-balance-rule
+     * +uiProps={"descriptionInline":true}
+     * +sort=6
+     * +label=Fallback Candidate
+     */
     fallback_candidate?: boolean;
-    /** Optional parameters to override in the request */
+    /**
+     * +usage=Optional parameters to override in the request
+     * +uiProps={"descriptionInline":true}
+     * +sort=7
+     * +label=Override Parameters
+     */
     override_params?: Record<string, unknown>;
 }

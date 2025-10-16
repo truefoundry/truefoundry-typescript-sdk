@@ -264,8 +264,14 @@ describe("PersonalAccessTokens", () => {
                     type: "virtual-account",
                     expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
+                    ownedBy: { team: "team" },
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
+                    notification_target: {
+                        type: "email",
+                        notification_channel: "notification_channel",
+                        to_emails: ["to_emails"],
+                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -317,6 +323,9 @@ describe("PersonalAccessTokens", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: {
+                        team: "team",
+                    },
                     auto_rotate: {
                         auto_rotate_interval: 1,
                         grace_period: 1,
@@ -324,6 +333,11 @@ describe("PersonalAccessTokens", () => {
                     secret_store_config: {
                         integration_fqn: "integration_fqn",
                         secret_path: "secret_path",
+                    },
+                    notification_target: {
+                        type: "email",
+                        notification_channel: "notification_channel",
+                        to_emails: ["to_emails"],
                     },
                 },
                 createdBySubject: {

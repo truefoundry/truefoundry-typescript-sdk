@@ -310,7 +310,9 @@ describe("Prompts", () => {
                     variables: { key: "value" },
                     model_configuration: { provider: "provider", model: "model" },
                     tools: [{ type: "function", function: { name: "name" } }],
-                    mcp_servers: [{ type: "mcp-server-fqn", integration_fqn: "integration_fqn" }],
+                    mcp_servers: [
+                        { type: "mcp-server-fqn", integration_fqn: "integration_fqn", enable_all_tools: true },
+                    ],
                     response_format: { type: "json_object" },
                     routing_config: {
                         type: "weight-based-routing",
@@ -399,6 +401,7 @@ describe("Prompts", () => {
                         {
                             type: "mcp-server-fqn",
                             integration_fqn: "integration_fqn",
+                            enable_all_tools: true,
                         },
                     ],
                     response_format: {

@@ -5,6 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * The contents of the developer message.
+ * +label=Content
+ * +usage=The contents of the developer message.
  */
 export type DeveloperMessageContent = string | TrueFoundry.BlobStorageReference;

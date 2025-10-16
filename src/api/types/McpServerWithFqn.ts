@@ -5,15 +5,30 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * MCP server with FQN
+ * +label=MCP Server FQN
+ * +icon=puzzle-piece
+ * +usage=MCP server with FQN
  */
 export interface McpServerWithFqn {
-    /** The FQN of the MCP server */
+    /**
+     * +label=MCP Server FQN Type
+     * +usage=The FQN of the MCP server
+     * +value=mcp-server-fqn
+     */
     type: "mcp-server-fqn";
-    /** The FQN of the MCP server */
+    /**
+     * +label=MCP Server Integration FQN
+     * +usage=The FQN of the MCP server
+     */
     integration_fqn: string;
-    /** Whether to enable all tools from the MCP server */
-    enable_all_tools?: boolean;
-    /** The tools to enable from the MCP server */
+    /**
+     * +label=Enable All Tools
+     * +usage=Whether to enable all tools from the MCP server
+     */
+    enable_all_tools: boolean;
+    /**
+     * +label=Tools
+     * +usage=The tools to enable from the MCP server
+     */
     tools?: TrueFoundry.McpTool[];
 }

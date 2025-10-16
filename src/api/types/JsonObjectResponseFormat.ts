@@ -3,9 +3,13 @@
  */
 
 /**
- * Simple JSON mode response format
+ * +label=JSON Object Response Format
+ * +usage=Simple JSON mode response format
  */
 export interface JsonObjectResponseFormat {
-    /** Type of response format */
+    /**
+     * +label=Type
+     * +usage=Type of response format
+     */
     type: "json_object";
 }

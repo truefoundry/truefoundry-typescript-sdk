@@ -5,6 +5,9 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * Text content for the system message
+ * +label=Content
+ * +usage=Text content for the system message
+ * +uiType=CodeEditor
+ * +uiProps={"language": "text"}
  */
 export type SystemMessageContent = string | TrueFoundry.BlobStorageReference;
