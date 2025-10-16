@@ -131,11 +131,6 @@ describe("VirtualAccounts", () => {
                     ownedBy: { team: "team" },
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
-                    notification_target: {
-                        type: "email",
-                        notification_channel: "notification_channel",
-                        to_emails: ["to_emails"],
-                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -210,11 +205,6 @@ describe("VirtualAccounts", () => {
                         integration_fqn: "integration_fqn",
                         secret_path: "secret_path",
                     },
-                    notification_target: {
-                        type: "email",
-                        notification_channel: "notification_channel",
-                        to_emails: ["to_emails"],
-                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -256,7 +246,6 @@ describe("VirtualAccounts", () => {
                 ownedBy: undefined,
                 auto_rotate: undefined,
                 secret_store_config: undefined,
-                notification_target: undefined,
             },
             dryRun: undefined,
         };
@@ -291,7 +280,6 @@ describe("VirtualAccounts", () => {
                     ownedBy: undefined,
                     auto_rotate: undefined,
                     secret_store_config: undefined,
-                    notification_target: undefined,
                 },
                 dryRun: undefined,
             });
@@ -313,7 +301,6 @@ describe("VirtualAccounts", () => {
                 ownedBy: undefined,
                 auto_rotate: undefined,
                 secret_store_config: undefined,
-                notification_target: undefined,
             },
             dryRun: undefined,
         };
@@ -348,7 +335,6 @@ describe("VirtualAccounts", () => {
                     ownedBy: undefined,
                     auto_rotate: undefined,
                     secret_store_config: undefined,
-                    notification_target: undefined,
                 },
                 dryRun: undefined,
             });
@@ -373,11 +359,6 @@ describe("VirtualAccounts", () => {
                     ownedBy: { team: "team" },
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
-                    notification_target: {
-                        type: "email",
-                        notification_channel: "notification_channel",
-                        to_emails: ["to_emails"],
-                    },
                 },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -438,11 +419,6 @@ describe("VirtualAccounts", () => {
                     secret_store_config: {
                         integration_fqn: "integration_fqn",
                         secret_path: "secret_path",
-                    },
-                    notification_target: {
-                        type: "email",
-                        notification_channel: "notification_channel",
-                        to_emails: ["to_emails"],
                     },
                 },
                 createdBySubject: {
