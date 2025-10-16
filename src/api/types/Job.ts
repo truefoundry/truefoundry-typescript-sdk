@@ -5,89 +5,39 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the job
+ * Describes the configuration for the job
  */
 export interface Job {
     /** +value=job */
     type: "job";
-    /**
-     * +usage=Name of the job
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** Name of the job */
     name: string;
-    /**
-     * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
-     * +label=Deploy a Docker image or build and deploy from source code
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=200
-     */
+    /** Specify whether you want to deploy a Docker image or build and deploy from source code */
     image: TrueFoundry.JobImage;
-    /**
-     * +docs=Specify the trigger
-     * +sort=300
-     */
+    /** Specify the trigger */
     trigger: TrueFoundry.JobTrigger;
-    /**
-     * +docs=Trigger on deploy
-     * +sort=350
-     * +usage=Trigger the job after deploy immediately
-     */
+    /** Trigger the job after deploy immediately */
     trigger_on_deploy?: boolean;
-    /**
-     * +label=Params for input
-     * +uiType=StructsTable
-     * +usage=Configure params and pass it to create different job runs
-     * +sort=400
-     */
+    /** Configure params and pass it to create different job runs */
     params?: TrueFoundry.Param[];
-    /**
-     * +label=Environment Variables
-     * +usage=Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
-     * +icon=fa-globe
-     * +sort=500
-     */
+    /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
     env?: Record<string, string | undefined>;
     resources?: TrueFoundry.Resources;
-    /**
-     * +label=Alerts
-     * +usage=Configure alerts to be sent when the job starts/fails/completes
-     * +icon=fa-bell
-     * +sort=650
-     */
+    /** Configure alerts to be sent when the job starts/fails/completes */
     alerts?: TrueFoundry.JobAlert[];
-    /**
-     * +label=Retries
-     * +usage=Specify the maximum number of attempts to retry a job before it is marked as failed.
-     * +icon=fa-repeat
-     * +sort=700
-     */
+    /** Specify the maximum number of attempts to retry a job before it is marked as failed. */
     retries?: number;
-    /**
-     * +label=Timeout
-     * +usage=Job timeout in seconds.
-     * +icon=fa-clock
-     * +sort=800
-     */
+    /** Job timeout in seconds. */
     timeout?: number;
-    /**
-     * +label=Concurrency Limit
-     * +usage=Number of runs that can run concurrently
-     * +icon=fa-copy
-     * +sort=900
-     */
+    /** Number of runs that can run concurrently */
     concurrency_limit?: number;
     /** +sort=1000 */
     service_account?: string;
-    /** +usage=Configure data to be mounted to job pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
+    /** Configure data to be mounted to job pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
     mounts?: TrueFoundry.JobMountsItem[];
     /** +label=Labels */
     labels?: Record<string, string>;
     kustomize?: TrueFoundry.Kustomize;
-    /**
-     * +label=Workspace FQN
-     * +docs=Fully qualified name of the workspace
-     * +uiType=Hidden
-     */
+    /** Fully qualified name of the workspace */
     workspace_fqn?: string;
 }

@@ -18,18 +18,8 @@ export interface AlertConfig {
      */
     name: string;
     resource: TrueFoundry.AlertConfigResource;
-    /**
-     * +label=Notification Targets
-     * +usage=Configure one or more notification targets where alerts will be sent. Each target specifies a notification channel (email or slack).
-     * +uiProps={"descriptionInline":true}
-     * +sort=1
-     */
+    /** Configure one or more notification targets where alerts will be sent. Each target specifies a notification channel (email or slack). */
     notification_targets: TrueFoundry.NotificationTargetForAlertRule[];
-    /**
-     * +label=Rules
-     * +usage=Define one or more alert rules that specify the conditions to monitor, when to trigger alerts, and how they should be handled.
-     * +uiProps={"descriptionInline":true}
-     * +uiType=Structs
-     */
+    /** Define one or more alert rules that specify the conditions to monitor, when to trigger alerts, and how they should be handled. */
     rules: TrueFoundry.PrometheusAlertRule[];
 }

@@ -9,36 +9,16 @@ import * as TrueFoundry from "../index.js";
  * +icon=aws-bedrock
  */
 export interface BedrockModelV2 {
-    /**
-     * +label=Display Name
-     * +sort=1
-     * +usage=Name to identify this Bedrock model in the UI
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Name to identify this Bedrock model in the UI */
     name: string;
-    /**
-     * +label=Model ID
-     * +sort=2
-     * +usage=The unique identifier for the Bedrock model
-     * +message=Model ID must not be empty
-     */
+    /** The unique identifier for the Bedrock model */
     model_id: string;
     /** +value=integration/model/bedrock */
     type: "integration/model/bedrock";
-    /**
-     * +label=Model Types
-     * +sort=3
-     * +usage=Specify the type of the Bedrock model
-     * +uiProps={"disableAllOption": true}
-     */
+    /** Specify the type of the Bedrock model */
     model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion;
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +sort=6
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

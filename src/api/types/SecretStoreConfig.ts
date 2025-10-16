@@ -3,24 +3,11 @@
  */
 
 /**
- * +label=Enable Sync to SecretManager
- * +sort=6
- * +usage=Enable to store the virtual account token in a secret store
- * +message=Enable to store the virtual account token in a secret store
+ * Enable to store the virtual account token in a secret store
  */
 export interface SecretStoreConfig {
-    /**
-     * +label=Secret Store
-     * +usage=The secret store to store the virtual account token in
-     * +sort=1
-     * +uiType=IntegrationSelect
-     */
+    /** The secret store to store the virtual account token in */
     integration_fqn: string;
-    /**
-     * +label=Secret Path
-     * +usage=The path where the virtual account token will be stored in the secret store (example: secret/path/to/virtual-account-token)
-     * +message=The path should only contain alphanumeric characters, hyphens, and slashes and it should start with a slash if giving the path containing slashes in between
-     * +sort=2
-     */
+    /** The path where the virtual account token will be stored in the secret store (example: secret/path/to/virtual-account-token) */
     secret_path: string;
 }

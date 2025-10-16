@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Image Spec
- * +docs=Specification for the image to be used for the task
- * +sort=100
- * +usage=Specify the image spec for the task
+ * Specify the image spec for the task
  */
 export type PythonTaskConfigImage = TrueFoundry.TaskPythonBuild | TrueFoundry.TaskDockerFileBuild;

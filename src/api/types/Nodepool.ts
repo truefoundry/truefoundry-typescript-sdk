@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Configured Nodepools
- * +usage=The nodepools that are already created in your cluster. This will be used to schedule your workloads on particular nodepools.
+ * The nodepools that are already created in your cluster. This will be used to schedule your workloads on particular nodepools.
  */
 export interface Nodepool {
     name: string;

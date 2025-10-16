@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=openai
  */
 export interface OpenAiModerationsGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +value=integration/guardrail-config/openai-moderations
@@ -23,24 +17,11 @@ export interface OpenAiModerationsGuardrailConfig {
      * +uiType=Hidden
      */
     type: "integration/guardrail-config/openai-moderations";
-    /**
-     * +label=Base URL
-     * +sort=100
-     * +usage=Optional custom base URL for OpenAI API. If not provided, the default base URL will be used.
-     */
+    /** Optional custom base URL for OpenAI API. If not provided, the default base URL will be used. */
     base_url?: string;
     auth_data: TrueFoundry.OpenaiApiKeyAuth;
-    /**
-     * +label=OpenAI Moderation Model
-     * +sort=300
-     * +usage=The model to use for the OpenAI Moderation API.
-     */
+    /** The model to use for the OpenAI Moderation API. */
     model: string;
-    /**
-     * +label=Category Thresholds
-     * +sort=400
-     * +usage=The thresholds for the OpenAI Moderation API.
-     * +uiType=KV
-     */
+    /** The thresholds for the OpenAI Moderation API. */
     category_thresholds?: Record<string, TrueFoundry.OpenAiModerationsGuardrailConfigCategoryThresholdsValue>;
 }

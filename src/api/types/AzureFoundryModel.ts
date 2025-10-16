@@ -10,37 +10,16 @@ import * as TrueFoundry from "../index.js";
 export interface AzureFoundryModel {
     /** +value=integration/model/azure/ai-foundry */
     type: "integration/model/azure/ai-foundry";
-    /**
-     * +label=Display Name
-     * +usage=Name to identify this Azure AI Foundry model
-     * +sort=1
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Name to identify this Azure AI Foundry model */
     name: string;
-    /**
-     * +sort=2
-     * +label=Model Name
-     * +usage=This is the Model Name on Azure
-     */
+    /** This is the Model Name on Azure */
     model_id: string;
-    /**
-     * +label=Model Types
-     * +usage=Types of models supported by this Azure AI Foundry deployment
-     * +sort=200
-     */
+    /** Types of models supported by this Azure AI Foundry deployment */
     model_types: TrueFoundry.ModelType[];
-    /**
-     * +sort=300
-     * +label=Azure Endpoint
-     * +usage=Azure Foundry endpoint
-     */
+    /** Azure Foundry endpoint */
     azure_endpoint: string;
     auth_data?: TrueFoundry.AzureKeyAuth;
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

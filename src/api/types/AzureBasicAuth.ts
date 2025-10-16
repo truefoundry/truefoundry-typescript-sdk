@@ -8,17 +8,8 @@
 export interface AzureBasicAuth {
     /** +value=basic-auth */
     type: "basic-auth";
-    /**
-     * +label=Username
-     * +usage=The username for the Azure managed identity.
-     * +sort=100
-     */
+    /** The username for the Azure managed identity. */
     username: string;
-    /**
-     * +sort=200
-     * +label=Password
-     * +usage=The password for the Azure managed identity.
-     * +uiType=Password
-     */
+    /** The password for the Azure managed identity. */
     password: string;
 }

@@ -9,18 +9,8 @@
 export interface TrueFoundryDbssm {
     /** +value=integration/secret-store/truefoundry/db */
     type: "integration/secret-store/truefoundry/db";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

@@ -5,11 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 export interface PatronusGliderEvaluator {
-    /**
-     * +label=Evaluator Type
-     * +usage=The type of the evaluator to use for the Patronus Guardrail.
-     * +sort=100
-     */
+    /** The type of the evaluator to use for the Patronus Guardrail. */
     type: "glider";
     criteria: TrueFoundry.PatronusGliderCriteria;
 }

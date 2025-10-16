@@ -3,7 +3,7 @@
  */
 
 /**
- * +usage=Unit for rate limit calculation
+ * Unit for rate limit calculation
  */
 export type RateLimitUnit =
     | "requests_per_day"

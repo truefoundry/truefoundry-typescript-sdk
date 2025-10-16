@@ -3,15 +3,9 @@
  */
 
 /**
- * +label=Owner of the virtual account
- * +sort=4
- * +usage=Name of the owner who owns the virtual account
+ * Name of the owner who owns the virtual account
  */
 export interface OwnedBy {
-    /**
-     * +label=Team Name
-     * +sort=1
-     * +usage=The name of the team who owns the virtual account
-     */
+    /** The name of the team who owns the virtual account */
     team: string;
 }

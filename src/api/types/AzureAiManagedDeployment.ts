@@ -8,16 +8,8 @@
 export interface AzureAiManagedDeployment {
     /** +value=managed */
     type: "managed";
-    /**
-     * +label=Azure Deployment Name
-     * +usage=Name of the Azure AI deployment
-     * +sort=1
-     */
+    /** Name of the Azure AI deployment */
     deploymentName: string;
-    /**
-     * +label=Azure Endpoint Name
-     * +usage=Name of the Azure AI endpoint
-     * +sort=2
-     */
+    /** Name of the Azure AI endpoint */
     endpointName: string;
 }

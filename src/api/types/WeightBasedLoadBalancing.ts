@@ -14,11 +14,6 @@ export interface WeightBasedLoadBalancing {
      * +label=Routing Type
      */
     type: "weight-based-routing";
-    /**
-     * +usage=List of targets for load balancing with weights
-     * +uiProps={"descriptionInline":true}
-     * +sort=4
-     * +label=Load Balance Targets
-     */
+    /** List of targets for load balancing with weights */
     load_balance_targets: TrueFoundry.LoadBalanceTarget[];
 }

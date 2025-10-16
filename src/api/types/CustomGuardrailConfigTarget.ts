@@ -3,10 +3,7 @@
  */
 
 /**
- * +label=Target
- * +usage=Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails.
- * +uiType=Select
- * +sort=200
+ * Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails.
  */
 export type CustomGuardrailConfigTarget = "request" | "response";
 export const CustomGuardrailConfigTarget = {

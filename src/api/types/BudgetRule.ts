@@ -8,20 +8,10 @@ import * as TrueFoundry from "../index.js";
  * +label=Budget Rule
  */
 export interface BudgetRule {
-    /**
-     * +usage=Unique identifier for the rule
-     * +uiProps={"descriptionInline":true}
-     * +sort=1
-     * +label=Rule ID
-     */
+    /** Unique identifier for the rule */
     id: string;
     when: TrueFoundry.BudgetWhen;
-    /**
-     * +usage=Numeric limit value for the budget
-     * +uiProps={"descriptionInline":true}
-     * +sort=3
-     * +label=Limit Value
-     */
+    /** Numeric limit value for the budget */
     limit_to: number;
     unit: TrueFoundry.BudgetLimitUnit;
 }

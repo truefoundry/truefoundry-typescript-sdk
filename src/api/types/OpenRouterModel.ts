@@ -11,34 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface OpenRouterModel {
     /** +value=integration/model/openrouter */
     type: "integration/model/openrouter";
-    /**
-     * +label=Display Name
-     * +sort=1
-     * +usage=Name to identify this OpenRouter model in the UI
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Name to identify this OpenRouter model in the UI */
     name: string;
-    /**
-     * +label=Model ID
-     * +sort=2
-     * +usage=The name of the OpenRouter model to use
-     * +message=Model ID must not be empty
-     */
+    /** The name of the OpenRouter model to use */
     model_id: string;
-    /**
-     * +label=Model Types
-     * +sort=3
-     * +usage=Specify the type of the OpenRouter model
-     * +uiType=Select
-     * +uiProps={"disableAllOption": true}
-     */
+    /** Specify the type of the OpenRouter model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +sort=5
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

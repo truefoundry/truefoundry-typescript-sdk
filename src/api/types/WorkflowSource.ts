@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Source Code for the workflow, either local or remote
- * +label=Source Code for your workflow
- * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
- * +sort=200
+ * Source Code for the workflow, either local or remote
  */
 export type WorkflowSource = TrueFoundry.LocalSource | TrueFoundry.RemoteSource;

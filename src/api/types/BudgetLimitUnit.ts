@@ -3,7 +3,7 @@
  */
 
 /**
- * +usage=Unit for budget limit calculation
+ * Unit for budget limit calculation
  */
 export type BudgetLimitUnit = "cost_per_day" | "cost_per_month" | "tokens_per_day" | "tokens_per_month";
 export const BudgetLimitUnit = {

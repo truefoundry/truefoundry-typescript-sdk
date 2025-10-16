@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=https://assets.production.truefoundry.com/pangea-logo.svg
  */
 export interface PangeaGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
@@ -24,24 +18,10 @@ export interface PangeaGuardrailConfig {
     type: "integration/guardrail-config/pangea";
     auth_data: TrueFoundry.PangeaKeyAuth;
     guard_type: TrueFoundry.PangeaGuardType;
-    /**
-     * +label=Domain
-     * +usage=Domain of the cloud provider and region where your Pangea project is configured. Example: if endpoint is: https://<service_name>.aws.us-west-2.pangea.cloud/v1/text/guard, the input should be: aws.us-west-2.pangea.cloud
-     * +message=Must be a valid domain name.
-     * +sort=200
-     */
+    /** Domain of the cloud provider and region where your Pangea project is configured. Example: if endpoint is: https://<service_name>.aws.us-west-2.pangea.cloud/v1/text/guard, the input should be: aws.us-west-2.pangea.cloud */
     domain: string;
-    /**
-     * +label=Recipe
-     * +usage=Recipe key of a configuration of data types and settings defined in the Pangea User Console. It specifies the rules that are to be applied to the text, such as defang malicious URLs.
-     * +sort=200
-     */
+    /** Recipe key of a configuration of data types and settings defined in the Pangea User Console. It specifies the rules that are to be applied to the text, such as defang malicious URLs. */
     recipe?: string;
-    /**
-     * +label=Overrides
-     * +usage=Overrides for the Pangea account
-     * +sort=300
-     * +uiType=KV
-     */
+    /** Overrides for the Pangea account */
     overrides?: Record<string, string>;
 }

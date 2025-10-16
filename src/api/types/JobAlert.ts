@@ -5,37 +5,17 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the job alerts
- * +label=Alert
+ * Describes the configuration for the job alerts
  */
 export interface JobAlert {
-    /**
-     * +label=Notification Channel
-     * +usage=Specify the notification channel to send alerts to
-     * +uiType=Hidden
-     * +sort=660
-     */
+    /** Specify the notification channel to send alerts to */
     notification_channel?: string;
-    /**
-     * +label=To Emails
-     * +usage=List of recipients' email addresses if the notification channel is Email.
-     * +docs=Specify the emails to send alerts to
-     * +uiType=Hidden
-     * +sort=665
-     */
+    /** List of recipients' email addresses if the notification channel is Email. */
     to_emails?: string[];
     notification_target?: TrueFoundry.NotificationTarget;
-    /**
-     * +label=On Start
-     * +usage=Send an alert when the job starts
-     * +sort=670
-     */
+    /** Send an alert when the job starts */
     on_start?: boolean;
     on_completion?: boolean;
-    /**
-     * +label=On Failure
-     * +usage=Send an alert when the job fails
-     * +sort=690
-     */
+    /** Send an alert when the job fails */
     on_failure?: boolean;
 }

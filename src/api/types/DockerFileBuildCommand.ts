@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Command Override
- * +usage=Override the command to run when the container starts
+ * Override the command to run when the container starts
  * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
  * E.g. `python main.py --learning_rate {{learning_rate}}`
  */

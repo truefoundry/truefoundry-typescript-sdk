@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=GCP Account Auth Data
- * +usage=Authentication data for the GCP account.
- * +sort=400
+ * Authentication data for the GCP account.
  */
 export type GcpProviderAccountAuthData = TrueFoundry.GcpKeyFileAuth | TrueFoundry.GcpApiKeyAuth;

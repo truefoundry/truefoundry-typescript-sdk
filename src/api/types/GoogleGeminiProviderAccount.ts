@@ -11,27 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface GoogleGeminiProviderAccount {
     /** +value=provider-account/google-gemini */
     type: "provider-account/google-gemini";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Google Gemini provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Google Gemini provider account */
     name: string;
     auth_data: TrueFoundry.GcpApiKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=500
-     * +usage=List of integrations that are associated with the Google Gemini provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Google Gemini provider account */
     integrations: TrueFoundry.GeminiModelV2[];
-    /**
-     * +label=Collaborators
-     * +sort=200
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

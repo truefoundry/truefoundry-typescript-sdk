@@ -5,21 +5,11 @@
 import * as TrueFoundry from "../index.js";
 
 export interface Param {
-    /**
-     * +usage=Name of the param
-     * +message=name can contain lower case alphabets, digits, underscore (_) and hypen (-). It can be 32 characters long, should start with an alphabet, and should end with either an alphabet or digit.
-     */
+    /** Name of the param */
     name: string;
-    /**
-     * +usage=Description of param
-     * +message=description cannot be longer than 127 characters
-     */
+    /** Description of param */
     description?: string;
-    /**
-     * +usage=Default value or placeholder
-     * +message=default value cannot be longer than 127 characters
-     * +label=Default value
-     */
+    /** Default value or placeholder */
     default?: string;
     param_type?: TrueFoundry.ParamParamType;
 }

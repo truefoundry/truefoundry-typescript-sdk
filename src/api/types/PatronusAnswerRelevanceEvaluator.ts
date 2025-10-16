@@ -5,11 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 export interface PatronusAnswerRelevanceEvaluator {
-    /**
-     * +label=Evaluator Type
-     * +usage=The type of the evaluator to use for the Patronus Guardrail.
-     * +sort=100
-     */
+    /** The type of the evaluator to use for the Patronus Guardrail. */
     type: "answer-relevance";
     criteria: TrueFoundry.PatronusAnswerRelevanceCriteria;
 }

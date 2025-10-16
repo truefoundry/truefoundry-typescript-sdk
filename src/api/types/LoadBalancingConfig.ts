@@ -8,23 +8,13 @@ import * as TrueFoundry from "../index.js";
  * +label=Load Balancing Configuration
  */
 export interface LoadBalancingConfig {
-    /**
-     * +usage=Name of the load balancing configuration
-     * +uiProps={"descriptionInline":true}
-     * +sort=1
-     * +label=Configuration Name
-     */
+    /** Name of the load balancing configuration */
     name: string;
     /**
      * +value=gateway-load-balancing-config
      * +sort=2
      */
     type: "gateway-load-balancing-config";
-    /**
-     * +usage=List of load balancing rules
-     * +uiProps={"descriptionInline":true}
-     * +sort=4
-     * +label=Load Balancing Rules
-     */
+    /** List of load balancing rules */
     rules: TrueFoundry.LoadBalancingRule[];
 }

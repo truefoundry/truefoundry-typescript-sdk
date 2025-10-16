@@ -22,29 +22,13 @@ export interface CustomModel {
     tfy_application_id?: string;
     /** +value=integration/model/custom */
     type: "integration/model/custom";
-    /**
-     * +usage=Specify the type of the model
-     * +sort=4
-     */
+    /** Specify the type of the model */
     model_types: TrueFoundry.ModelType[];
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=300
-     */
+    /** Custom authentication data for the integration. */
     auth_data?: TrueFoundry.CustomModelAuthData;
-    /**
-     * +label=Custom Headers
-     * +usage=Custom headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}`
-     * +sort=500
-     */
+    /** Custom headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}` */
     headers?: Record<string, string>;
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

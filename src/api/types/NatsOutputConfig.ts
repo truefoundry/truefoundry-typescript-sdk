@@ -5,24 +5,14 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the output NATS worker
- * +label=NATS
+ * Describes the configuration for the output NATS worker
  */
 export interface NatsOutputConfig {
     /** +value=nats */
     type: "nats";
-    /**
-     * +label=NATS URL
-     * +usage=Output NATS URL
-     * +sort=1
-     */
+    /** Output NATS URL */
     nats_url: string;
-    /**
-     * +label=Root Subject
-     * +usage=Root subject of output NATS
-     * +message=Output NATS root subject should only contain alphanumeric letters, dashes(-), and periods(.)
-     * +sort=2
-     */
+    /** Root subject of output NATS */
     root_subject: string;
     auth?: TrueFoundry.NatsUserPasswordAuth;
 }

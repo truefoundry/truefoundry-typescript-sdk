@@ -12,35 +12,14 @@ import * as TrueFoundry from "../index.js";
 export interface GoogleVertexProviderAccount {
     /** +value=provider-account/google-vertex */
     type: "provider-account/google-vertex";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Google Vertex provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Google Vertex provider account */
     name: string;
-    /**
-     * +label=Project ID
-     * +sort=200
-     * +usage=The Google Cloud project ID where Vertex AI is enabled
-     * +message=Project ID must not be empty
-     */
+    /** The Google Cloud project ID where Vertex AI is enabled */
     project_id: string;
     region: TrueFoundry.GcpRegion;
     auth_data?: TrueFoundry.GcpKeyFileAuth;
-    /**
-     * +label=Integrations
-     * +sort=500
-     * +usage=List of integrations that are associated with the Google Vertex provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Google Vertex provider account */
     integrations: TrueFoundry.VertexModelV2[];
-    /**
-     * +label=Collaborators
-     * +sort=600
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

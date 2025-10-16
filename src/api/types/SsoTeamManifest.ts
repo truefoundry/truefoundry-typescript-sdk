@@ -5,23 +5,10 @@
 export interface SsoTeamManifest {
     /** +value=sso-team */
     type: "sso-team";
-    /**
-     * +sort=100
-     * +message=Use of only alpha numeric character and "-" is allowed as team name and must be less than 25 characters
-     * +usage=Name of the Team
-     */
+    /** Name of the Team */
     name: string;
-    /**
-     * +sort=200
-     * +label=SSO
-     * +usage=SSO configuration to use for this team
-     * +uiType=Select
-     */
+    /** SSO configuration to use for this team */
     sso_name: string;
-    /**
-     * +sort=300
-     * +label=Group Name
-     * +usage=Group name from SSO that will be used to determine team membership
-     */
+    /** Group name from SSO that will be used to determine team membership */
     group_name: string;
 }

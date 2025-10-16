@@ -14,11 +14,6 @@ export interface PriorityBasedLoadBalancing {
      * +label=Routing Type
      */
     type: "priority-based-routing";
-    /**
-     * +usage=List of targets for priority-based load balancing
-     * +uiProps={"descriptionInline":true}
-     * +sort=4
-     * +label=Load Balance Targets
-     */
+    /** List of targets for priority-based load balancing */
     load_balance_targets: TrueFoundry.PriorityBasedLoadBalanceTarget[];
 }

@@ -16,50 +16,25 @@ export interface SelfHostedModel {
      * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
      */
     name: string;
-    /**
-     * +label=Hosted Model Name
-     * +sort=2
-     * +usage=The name of the hosted model
-     */
+    /** The name of the hosted model */
     hosted_model_name: string;
     /**
      * +sort=3
      * +message=enter valid https/http URL that should not end with trailing slash
      */
     url: string;
-    /**
-     * +sort=4
-     * +label=Model Server Type
-     * +usage=The type of model server being used
-     */
+    /** The type of model server being used */
     model_server: TrueFoundry.SelfHostedModelModelServer;
     /** +uiType=Hidden */
     tfy_application_id?: string;
-    /**
-     * +usage=Specify the type of the model
-     * +sort=4
-     * +uiProps={"disableAllOption": true}
-     */
+    /** Specify the type of the model */
     model_types: TrueFoundry.ModelType[];
     tls_settings?: TrueFoundry.CustomTlsSettings;
-    /**
-     * +label=Auth Data
-     * +usage=SelfHostedModel authentication data for the integration.
-     * +sort=300
-     */
+    /** SelfHostedModel authentication data for the integration. */
     auth_data?: TrueFoundry.SelfHostedModelAuthData;
-    /**
-     * +label=SelfHostedModel Headers
-     * +usage=SelfHostedModel headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}`
-     * +sort=500
-     */
+    /** SelfHostedModel headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}` */
     headers?: Record<string, string>;
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

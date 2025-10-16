@@ -11,26 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface SambaNovaProviderAccount {
     /** +value=provider-account/sambanova */
     type: "provider-account/sambanova";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the SambaNova provider account
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** The name of the SambaNova provider account */
     name: string;
     auth_data: TrueFoundry.SambaNovaKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=300
-     * +usage=List of integrations that are associated with the SambaNova provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the SambaNova provider account */
     integrations?: TrueFoundry.SambaNovaIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=400
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

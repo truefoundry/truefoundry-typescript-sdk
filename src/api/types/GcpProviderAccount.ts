@@ -12,31 +12,12 @@ import * as TrueFoundry from "../index.js";
 export interface GcpProviderAccount {
     /** +value=provider-account/gcp */
     type: "provider-account/gcp";
-    /**
-     * +uiProps={"disableEdit":true}
-     * +label=Name
-     * +usage=The name of the GCP provider account.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the GCP provider account. */
     name: string;
-    /**
-     * +label=Project Id
-     * +usage=The project id of the GCP account.
-     * +sort=200
-     */
+    /** The project id of the GCP account. */
     project_id?: string;
-    /**
-     * +label=GCP Account Auth Data
-     * +usage=Authentication data for the GCP account.
-     * +sort=400
-     */
+    /** Authentication data for the GCP account. */
     auth_data?: TrueFoundry.GcpProviderAccountAuthData;
-    /**
-     * +label=Integrations
-     * +usage=List of integrations that are associated with the GCP provider account.
-     * +sort=500
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the GCP provider account. */
     integrations: TrueFoundry.GcpIntegrations[];
 }

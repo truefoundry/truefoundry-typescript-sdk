@@ -12,31 +12,12 @@ import * as TrueFoundry from "../index.js";
 export interface AwsProviderAccount {
     /** +value=provider-account/aws */
     type: "provider-account/aws";
-    /**
-     * +uiProps={"disableEdit":true}
-     * +label=Name
-     * +usage=The name of the AWS provider account.
-     * +sort=200
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the AWS provider account. */
     name: string;
-    /**
-     * +label=AWS Account ID
-     * +usage=The AWS account ID.
-     * +sort=300
-     */
+    /** The AWS account ID. */
     aws_account_id: string;
-    /**
-     * +label=AWS Account Auth Data
-     * +usage=Authentication data for the AWS account.
-     * +sort=400
-     */
+    /** Authentication data for the AWS account. */
     auth_data?: TrueFoundry.AwsProviderAccountAuthData;
-    /**
-     * +label=Integrations
-     * +usage=List of integrations that are associated with the AWS provider account.
-     * +sort=500
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the AWS provider account. */
     integrations: TrueFoundry.AwsIntegrations[];
 }

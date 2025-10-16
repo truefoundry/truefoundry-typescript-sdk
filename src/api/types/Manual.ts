@@ -3,9 +3,7 @@
  */
 
 /**
- * +docs=Describes that we are going to manually trigger our job.
- * +label=Manual
- * +usage=Trigger the job manually. [Docs](https://docs.truefoundry.com/docs/deploy-a-cron-job)
+ * Trigger the job manually. [Docs](https://docs.truefoundry.com/docs/deploy-a-cron-job)
  */
 export interface Manual {
     /** +value=manual */

@@ -3,31 +3,15 @@
  */
 
 /**
- * +docs=Describes that we are using code stored in a git repository to build our image
- * +label=Git Source
- * +icon=fa-solid fa-code-branch:black
- * +sort=300
+ * Describes that we are using code stored in a git repository to build our image
  */
 export interface GitSource {
     /** +value=git */
     type: "git";
-    /**
-     * +label=Repo URL
-     * +usage=The repository URL.
-     * +sort=1
-     * +message=Needs to be a valid Github, Bitbucket, Azure Repos or Gitlab link
-     */
+    /** The repository URL. */
     repo_url: string;
-    /**
-     * +label=Commit SHA
-     * +usage=The commit SHA.
-     * +sort=2
-     */
+    /** The commit SHA. */
     ref: string;
-    /**
-     * +label=Branch Name
-     * +usage=Selecting branch will select latest commit SHA of the branch.
-     * +sort=3
-     */
+    /** Selecting branch will select latest commit SHA of the branch. */
     branch_name?: string;
 }

@@ -8,11 +8,6 @@
 export interface DatabricksApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +usage=API key for Databricks authentication.
-     * +sort=100
-     * +uiType=Password
-     */
+    /** API key for Databricks authentication. */
     api_key: string;
 }

@@ -5,12 +5,6 @@
 export interface PagerDuty {
     /** +value=pagerduty */
     type: "pagerduty";
-    /**
-     * +label=Notification Channel
-     * +usage=Specify the notification channel to send alerts to
-     * +uiType=AlertNotificationChannel
-     * +uiProps={"integrationType":"notification-channel"}
-     * +sort=660
-     */
+    /** Specify the notification channel to send alerts to */
     notification_channel: string;
 }

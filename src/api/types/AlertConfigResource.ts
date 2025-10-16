@@ -5,16 +5,8 @@
 import * as TrueFoundry from "../index.js";
 
 export interface AlertConfigResource {
-    /**
-     * +label=Resource Type
-     * +usage=The type of resource this alert config belongs to. Can be either an application or a cluster.
-     * +uiType=Hidden
-     */
+    /** The type of resource this alert config belongs to. Can be either an application or a cluster. */
     type: TrueFoundry.AlertConfigResourceType;
-    /**
-     * +label=Resource FQN
-     * +usage=FQN of the resource this alert config belongs to.
-     * +uiType=Hidden
-     */
+    /** FQN of the resource this alert config belongs to. */
     fqn: string;
 }

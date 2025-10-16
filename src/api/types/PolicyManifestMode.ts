@@ -3,10 +3,7 @@
  */
 
 /**
- * +label=Mode
- * +usage=Mode of the policy: `Audit` logs all policy evaluations without blocking deployments. `Enforce` blocks deployments if the policy fails. `Disabled` deactivates the policy.
- * +uiType=MultiSelectPills
- * +sort=6
+ * Mode of the policy: `Audit` logs all policy evaluations without blocking deployments. `Enforce` blocks deployments if the policy fails. `Disabled` deactivates the policy.
  */
 export type PolicyManifestMode = "audit" | "enforce" | "disabled";
 export const PolicyManifestMode = {

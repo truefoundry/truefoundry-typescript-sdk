@@ -3,28 +3,15 @@
  */
 
 /**
- * +docs=Describes the configuration for the output AMQP worker
- * +label=AMQP
+ * Describes the configuration for the output AMQP worker
  */
 export interface AmqpOutputConfig {
     /** +value=amqp */
     type: "amqp";
-    /**
-     * +label=Queue URL
-     * +usage=AMQP Queue URL of Publisher
-     * +sort=1
-     */
+    /** AMQP Queue URL of Publisher */
     url: string;
-    /**
-     * +label=Routing Key
-     * +usage=AMQP Routing Key to publish to.
-     * +sort=2
-     */
+    /** AMQP Routing Key to publish to. */
     routing_key: string;
-    /**
-     * +label=Exchange Name
-     * +usage=AMQP Exchange Name
-     * +sort=3
-     */
+    /** AMQP Exchange Name */
     exchange_name?: string;
 }

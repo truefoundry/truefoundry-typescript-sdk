@@ -5,39 +5,20 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the input Kafka worker
- * +label=Kafka
+ * Describes the configuration for the input Kafka worker
  */
 export interface KafkaInputConfig {
     /** +value=kafka */
     type: "kafka";
-    /**
-     * +label=Bootstrap servers
-     * +usage='Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap'
-     * +sort=1
-     */
+    /** 'Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap' */
     bootstrap_servers: string;
-    /**
-     * +label=Topic Name
-     * +usage=Kafka topic to subscribe to
-     * +sort=2
-     */
+    /** Kafka topic to subscribe to */
     topic_name: string;
-    /**
-     * +label=Consumer Group Name
-     * +usage=The name of the consumer group to join for dynamic partition assignment
-     * +sort=3
-     */
+    /** The name of the consumer group to join for dynamic partition assignment */
     consumer_group: string;
-    /**
-     * +label=TLS
-     * +usage=TLS configuration for SASL authentication
-     */
+    /** TLS configuration for SASL authentication */
     tls: boolean;
-    /**
-     * +label=Wait Time Seconds
-     * +usage=Wait timeout for long polling.
-     */
+    /** Wait timeout for long polling. */
     wait_time_seconds?: number;
     auth?: TrueFoundry.KafkaSaslAuth;
 }

@@ -5,19 +5,8 @@
 export interface SlackBot {
     /** +value=slack-bot */
     type: "slack-bot";
-    /**
-     * +label=Notification Channel
-     * +usage=Specify the notification channel to send alerts to
-     * +uiType=AlertNotificationChannel
-     * +uiProps={"integrationType":"notification-channel"}
-     * +sort=660
-     */
+    /** Specify the notification channel to send alerts to */
     notification_channel: string;
-    /**
-     * +label=Slack Channel Names
-     * +usage=List of channels to send messages to.
-     * +message=3 to 81 lower case characters long alphanumeric word, may contain - or _ in between, must start with #
-     * +sort=665
-     */
+    /** List of channels to send messages to. */
     channels: string[];
 }

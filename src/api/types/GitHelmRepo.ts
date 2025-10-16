@@ -12,22 +12,12 @@ export interface GitHelmRepo {
      * +message=Needs to be a valid URL.
      */
     repo_url: string;
-    /**
-     * +label=Revision
-     * +sort=2
-     * +usage=Branch/Commit SHA/Tag of the git repo.
-     */
+    /** Branch/Commit SHA/Tag of the git repo. */
     revision: string;
-    /**
-     * +label=Path
-     * +sort=3
-     * +usage=Path to the chart.
-     */
+    /** Path to the chart. */
     path: string;
     /**
-     * +label=Value files
-     * +sort=3
-     * +usage=Helm values files for overriding values in the helm chart.
+     * Helm values files for overriding values in the helm chart.
      * The path is relative to the Path directory defined above
      */
     value_files?: string[];

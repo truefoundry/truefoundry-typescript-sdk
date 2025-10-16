@@ -11,27 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface NomicProviderAccount {
     /** +value=provider-account/nomic */
     type: "provider-account/nomic";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Nomic provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Nomic provider account */
     name: string;
     auth_data: TrueFoundry.NomicKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=300
-     * +usage=List of integrations that are associated with the Nomic provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Nomic provider account */
     integrations?: TrueFoundry.NomicIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=400
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

@@ -3,9 +3,7 @@
  */
 
 /**
- * +label=JWT Source
- * +usage=Source of the JWT token to be used for verification.
- * +sort=700
+ * Source of the JWT token to be used for verification.
  */
 export type BaseOAuth2LoginJwtSource = "access_token" | "id_token";
 export const BaseOAuth2LoginJwtSource = {

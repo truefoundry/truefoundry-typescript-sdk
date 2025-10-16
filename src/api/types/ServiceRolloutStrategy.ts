@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Rollout strategy
- * +usage=Strategy to dictate how a rollout should happen when a new release for this service is made [Docs](https://docs.truefoundry.com/docs/rollout-strategy)
+ * Strategy to dictate how a rollout should happen when a new release for this service is made [Docs](https://docs.truefoundry.com/docs/rollout-strategy)
  */
 export type ServiceRolloutStrategy = TrueFoundry.Rolling | TrueFoundry.Canary | TrueFoundry.BlueGreen;

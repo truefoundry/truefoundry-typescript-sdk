@@ -11,26 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface CerebrasProviderAccount {
     /** +value=provider-account/cerebras */
     type: "provider-account/cerebras";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Cerebras provider account
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** The name of the Cerebras provider account */
     name: string;
     auth_data: TrueFoundry.CerebrasKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=300
-     * +usage=List of integrations that are associated with the Cerebras provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Cerebras provider account */
     integrations?: TrueFoundry.CerebrasIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=400
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

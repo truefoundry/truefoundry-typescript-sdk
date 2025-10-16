@@ -6,15 +6,8 @@
  * +label=Use existing volume
  */
 export interface StaticVolumeConfig {
-    /**
-     * +label=Volume Type
-     * +value=static
-     * +usage=Volume Type for the volume.
-     */
+    /** Volume Type for the volume. */
     type: "static";
-    /**
-     * +label=Persistent Volume
-     * +usage=Persistent Volume Name of the volume to be used.
-     */
+    /** Persistent Volume Name of the volume to be used. */
     persistent_volume_name: string;
 }

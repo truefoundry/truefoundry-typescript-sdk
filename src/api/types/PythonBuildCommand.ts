@@ -3,13 +3,9 @@
  */
 
 /**
- * Command will be set as the Entrypoint of the generated
- * image.
- * +label=Command
- * +usage=Command to run when the container starts.
+ * Command to run when the container starts.
  * Command will be set as the Entrypoint of the generated image.
  * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
  * E.g. `python main.py --learning_rate {{learning_rate}}`
- * +sort=10001
  */
 export type PythonBuildCommand = string | string[];

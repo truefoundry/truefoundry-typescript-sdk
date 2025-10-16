@@ -8,33 +8,16 @@ import * as TrueFoundry from "../index.js";
  * +label=Azure AI Inference Model
  */
 export interface AzureAiInferenceModel {
-    /**
-     * +label=Display Name
-     * +usage=Name to identify this Azure AI model
-     * +sort=100
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Name to identify this Azure AI model */
     name: string;
     /** +value=integration/model/azure/ai-inference */
     type: "integration/model/azure/ai-inference";
-    /**
-     * +label=Model Types
-     * +usage=Types of models supported by this Azure AI deployment
-     * +sort=200
-     */
+    /** Types of models supported by this Azure AI deployment */
     model_types: TrueFoundry.ModelType[];
     auth_data?: TrueFoundry.AzureKeyAuth;
-    /**
-     * +label=Deployment Configuration
-     * +usage=Configuration details for the Azure AI deployment
-     * +sort=400
-     */
+    /** Configuration details for the Azure AI deployment */
     deploymentDetails: TrueFoundry.AzureAiInferenceModelDeploymentDetails;
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

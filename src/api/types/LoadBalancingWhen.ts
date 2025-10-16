@@ -6,23 +6,10 @@
  * +label=Rule Conditions
  */
 export interface LoadBalancingWhen {
-    /**
-     * +usage=List of subjects that this rule applies to
-     * +uiProps={"descriptionInline":true}
-     * +label=Subjects
-     */
+    /** List of subjects that this rule applies to */
     subjects?: string[];
-    /**
-     * +usage=List of models that this rule applies to
-     * +uiType=IntegrationSelect
-     * +uiProps={"integrationType":"model"}
-     * +label=Models
-     */
+    /** List of models that this rule applies to */
     models: string[];
-    /**
-     * +usage=Metadata key-value pairs that this rule applies to
-     * +uiProps={"descriptionInline":true}
-     * +label=Metadata
-     */
+    /** Metadata key-value pairs that this rule applies to */
     metadata?: Record<string, string>;
 }

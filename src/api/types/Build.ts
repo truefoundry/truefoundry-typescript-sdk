@@ -5,33 +5,18 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes how we build our code into a Docker image.
- * +label=Source Code (Build and deploy source code)
- * +icon=fa-code
+ * Describes how we build our code into a Docker image.
  */
 export interface Build {
     /** +value=build */
     type: "build";
     /**
-     * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
-     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
-     * +label=Docker Registry
-     * +usage=FQN of the container registry. If you can't find your registry here,
+     * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
     docker_registry?: string;
-    /**
-     * +docs=Source code location.
-     * +label=Fetch source code to build and deploy
-     * +icon=fa-code
-     * +sort=1
-     */
+    /** Source code location. */
     build_source: TrueFoundry.BuildBuildSource;
-    /**
-     * +docs=Instructions to build a container image out of the build source
-     * +label=Build using DockerFile or using Buildpack
-     * +icon=fa-wrench
-     * +sort=2
-     */
+    /** Instructions to build a container image out of the build source */
     build_spec: TrueFoundry.BuildBuildSpec;
 }

@@ -3,17 +3,11 @@
  */
 
 /**
- * +label=AI21 API Key Auth
- * +usage=Authentication method using AI21 API key
+ * Authentication method using AI21 API key
  */
 export interface Ai21KeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +sort=100
-     * +uiType=Password
-     * +usage=The API key for AI21 authentication
-     * +message=API key must not be empty
-     */
+    /** The API key for AI21 authentication */
     api_key: string;
 }

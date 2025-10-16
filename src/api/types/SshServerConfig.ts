@@ -3,17 +3,8 @@
  */
 
 export interface SshServerConfig {
-    /**
-     * +label=SSH Base Domain
-     * +usage=The base domain for the cluster with which you can access your SSH containers
-     * +sort=1000
-     * +message=Must not contain any spaces.
-     */
+    /** The base domain for the cluster with which you can access your SSH containers */
     base_domain: string;
-    /**
-     * +label=SSH Port
-     * +usage=The port for the cluster with which you can access your SSH containers
-     * +sort=2000
-     */
+    /** The port for the cluster with which you can access your SSH containers */
     port: number;
 }

@@ -11,35 +11,14 @@ export interface SmtpCredentials {
      * +sort=250
      */
     type: "smtp-credentials";
-    /**
-     * +label=Host
-     * +usage=The SMTP host of the email server.
-     * +sort=300
-     */
+    /** The SMTP host of the email server. */
     host: string;
-    /**
-     * +label=Username
-     * +usage=The username for the SMTP server.
-     * +sort=400
-     */
+    /** The username for the SMTP server. */
     username: string;
-    /**
-     * +label=Password
-     * +usage=The password for the SMTP server.
-     * +sort=500
-     * +uiType=Password
-     */
+    /** The password for the SMTP server. */
     password: string;
-    /**
-     * +label=Port
-     * +usage=The port of the SMTP server.
-     * +sort=600
-     */
+    /** The port of the SMTP server. */
     port: number;
-    /**
-     * +label=TLS
-     * +usage=Whether to use TLS for the SMTP server.
-     * +sort=700
-     */
+    /** Whether to use TLS for the SMTP server. */
     tls: boolean;
 }

@@ -3,50 +3,34 @@
  */
 
 /**
- * +docs=Describes the configuration for Common Tools MCP Server in AI Gateway
- * +label=Common Tools Settings
+ * Describes the configuration for Common Tools MCP Server in AI Gateway
  */
 export interface CommonToolsSettings {
     /** +value=settings/common-tools */
     type: "settings/common-tools";
     /**
-     * +label=Web Search
-     * +usage=Enable web search tool
+     * Enable web search tool
      * Allows model to search the web for information.
-     * +icon=fa-searchengin
-     * +sort=1
      */
     web_search: boolean;
     /**
-     * +label=Code Executor
-     * +usage=Enable code executor tool
+     * Enable code executor tool
      * Allows model to execute code and return the results.
-     * +icon=fa-code
-     * +sort=2
      */
     code_executor: boolean;
     /**
-     * +label=Sequential Thinking
-     * +usage=Enable sequential thinking tool
+     * Enable sequential thinking tool
      * Allows model to reason step-by-step to solve complex problems.
-     * +icon=fa-brain
-     * +sort=3
      */
     sequential_thinking: boolean;
     /**
-     * +label=Vision OCR
-     * +usage=Enable vision OCR tool
+     * Enable vision OCR tool
      * Allows model to extract text from images or PDFs.
-     * +icon=fa-eye
-     * +sort=4
      */
     vision_ocr: boolean;
     /**
-     * +label=Web Scrape
-     * +usage=Enable web scraping tool.
+     * Enable web scraping tool.
      * Allows model to scrape content from web pages with intelligent format selection for structured or unstructured data.
-     * +icon=fa-brands fa-readme
-     * +sort=5
      */
     web_scrape: boolean;
 }

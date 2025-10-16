@@ -3,18 +3,11 @@
  */
 
 /**
- * +docs=Describes the volume that will be used to cache the models
- * +label=Artifacts Cache Volume
+ * Describes the volume that will be used to cache the models
  */
 export interface ArtifactsCacheVolume {
-    /**
-     * +label=Storage Class
-     * +usage=Storage class of the Volume where artifacts will be cached
-     */
+    /** Storage class of the Volume where artifacts will be cached */
     storage_class: string;
-    /**
-     * +label=Cache Size (GB)
-     * +usage=Size of the Volume (in GB) where artifacts will be cached. Should be greater than twice the size of artifacts getting cached
-     */
+    /** Size of the Volume (in GB) where artifacts will be cached. Should be greater than twice the size of artifacts getting cached */
     cache_size: number;
 }

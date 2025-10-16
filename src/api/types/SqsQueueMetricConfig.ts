@@ -5,9 +5,6 @@
 export interface SqsQueueMetricConfig {
     /** +value=sqs */
     type: "sqs";
-    /**
-     * +label=Queue length
-     * +usage=Upper limit of the number of backlog messages the auto-scaler will try to maintain per replica. If you set this number to 10 and have 30 messages in the queue and one replica, the auto-scaler will scale the number of replicas to 3.
-     */
+    /** Upper limit of the number of backlog messages the auto-scaler will try to maintain per replica. If you set this number to 10 and have 30 messages in the queue and one replica, the auto-scaler will scale the number of replicas to 3. */
     queue_length: number;
 }

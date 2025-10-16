@@ -3,10 +3,7 @@
  */
 
 /**
- * +label=Cluster Type
- * +icon=fa-cloud:#7EC8E3
- * +sort=20
- * +usage=The cluster type of this cluster
+ * The cluster type of this cluster
  */
 export type ClusterManifestClusterType = "aws-eks" | "gcp-gke-standard" | "azure-aks" | "generic" | "civo-talos";
 export const ClusterManifestClusterType = {

@@ -5,49 +5,21 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the application set
+ * Describes the configuration for the application set
  */
 export interface ApplicationSet {
     /** +value=application-set */
     type: "application-set";
-    /**
-     * +label=Name
-     * +usage=Name of the application set.
-     * +icon=fa-font
-     */
+    /** Name of the application set. */
     name: string;
-    /**
-     * +label=Components
-     * +usage=Array of components with their specifications.
-     * +icon=fa-puzzle-piece
-     * +uiType=AppComponents
-     */
+    /** Array of components with their specifications. */
     components?: TrueFoundry.ApplicationSetComponentsItem[];
-    /**
-     * +label=Template
-     * +usage=Template to be used for the application set.
-     * +icon=fa-file
-     * +uiType=Hidden
-     */
+    /** Template to be used for the application set. */
     template?: string;
-    /**
-     * +label=Values
-     * +usage=Values to be used to render components for the application set.
-     * +icon=fa-file
-     * +uiType=YamlInput
-     * +uiProps={"allowAllValues":true}
-     */
+    /** Values to be used to render components for the application set. */
     values?: Record<string, unknown>;
-    /**
-     * +label=Workspace FQN
-     * +docs=Fully qualified name of the workspace
-     * +uiType=Hidden
-     */
+    /** Fully qualified name of the workspace */
     workspace_fqn?: string;
-    /**
-     * +label=Convert Template Manifest
-     * +docs=Flag to indicate if the template manifest should be converted to TrueFoundry manifest
-     * +uiType=Hidden
-     */
+    /** Flag to indicate if the template manifest should be converted to TrueFoundry manifest */
     convert_template_manifest?: boolean;
 }

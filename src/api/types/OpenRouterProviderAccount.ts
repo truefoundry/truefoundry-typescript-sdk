@@ -11,27 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface OpenRouterProviderAccount {
     /** +value=provider-account/openrouter */
     type: "provider-account/openrouter";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the OpenRouter provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the OpenRouter provider account */
     name: string;
     auth_data: TrueFoundry.OpenRouterApiKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=400
-     * +usage=List of integrations that are associated with the OpenRouter provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the OpenRouter provider account */
     integrations: TrueFoundry.OpenRouterIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=500
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

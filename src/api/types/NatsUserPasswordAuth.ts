@@ -3,26 +3,13 @@
  */
 
 /**
- * +docs=NATS User Password Authentication
- * +label=NATS User Password Authentication
+ * NATS User Password Authentication
  */
 export interface NatsUserPasswordAuth {
-    /**
-     * +label=Account Name
-     * +usage=Name of the NATS account
-     * +sort=1
-     */
+    /** Name of the NATS account */
     account_name: string;
-    /**
-     * +label=User
-     * +usage=User for NATS authentication
-     * +sort=2
-     */
+    /** User for NATS authentication */
     user: string;
-    /**
-     * +label=Password
-     * +usage=Password for NATS authentication
-     * +sort=3
-     */
+    /** Password for NATS authentication */
     password: string;
 }

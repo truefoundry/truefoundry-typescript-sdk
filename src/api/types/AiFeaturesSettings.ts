@@ -3,24 +3,19 @@
  */
 
 /**
- * +docs=Describes the configuration for TrueFoundry AI features
- * +label=AI Features Settings
+ * Describes the configuration for TrueFoundry AI features
  */
 export interface AiFeaturesSettings {
     /** +value=settings/ai-features */
     type: "settings/ai-features";
     /**
-     * +label=Enabled
-     * +usage=Enable/Disable AI features.
+     * Enable/Disable AI features.
      * Other fields only apply when this is true
-     * +sort=1
      */
     enabled: boolean;
     /**
-     * +label=AI Provider
-     * +usage=AI provider to use for AI features
+     * AI provider to use for AI features
      * When TrueFoundry is selected, TrueFoundry will manage and provide the AI models for the features.
-     * +uiProps={"disableEdit":true}
      */
     ai_provider: "truefoundry";
 }

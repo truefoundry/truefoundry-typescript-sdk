@@ -9,12 +9,6 @@
 export interface OpenRouterApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +sort=100
-     * +usage=Your OpenRouter API key for authentication
-     * +message=API key must not be empty
-     * +uiType=Password
-     */
+    /** Your OpenRouter API key for authentication */
     api_key: string;
 }

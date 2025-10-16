@@ -8,16 +8,8 @@
 export interface AzureAiServerlessDeployment {
     /** +value=serverless */
     type: "serverless";
-    /**
-     * +label=Azure Deployment Name
-     * +usage=Name of the Azure AI deployment
-     * +sort=100
-     */
+    /** Name of the Azure AI deployment */
     deploymentName: string;
-    /**
-     * +label=Azure Region
-     * +usage=Region where the Azure AI deployment is located
-     * +sort=200
-     */
+    /** Region where the Azure AI deployment is located */
     region: string;
 }

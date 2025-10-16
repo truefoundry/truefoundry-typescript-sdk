@@ -5,26 +5,17 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes that we are using a dockerfile to build our image
- * +label=Docker File (I already have Docker File)
- * +icon=fa-brands fa-docker:#0db7ed
+ * Describes that we are using a dockerfile to build our image
  */
 export interface DockerFileBuild {
     /** +value=dockerfile */
     type: "dockerfile";
-    /**
-     * +label=Path to Dockerfile
-     * +usage=The file path of the Dockerfile relative to project root path.
-     */
+    /** The file path of the Dockerfile relative to project root path. */
     dockerfile_path: string;
-    /**
-     * +label=Path to build context
-     * +usage=Build context path for the Dockerfile relative to project root path.
-     */
+    /** Build context path for the Dockerfile relative to project root path. */
     build_context_path: string;
     /**
-     * +label=Command Override
-     * +usage=Override the command to run when the container starts
+     * Override the command to run when the container starts
      * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
      * E.g. `python main.py --learning_rate {{learning_rate}}`
      */

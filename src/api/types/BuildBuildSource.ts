@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Source code location.
- * +label=Fetch source code to build and deploy
- * +icon=fa-code
- * +sort=1
+ * Source code location.
  */
 export type BuildBuildSource = TrueFoundry.RemoteSource | TrueFoundry.GitSource | TrueFoundry.LocalSource;

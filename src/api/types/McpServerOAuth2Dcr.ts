@@ -6,11 +6,6 @@
  * +label=DCR
  */
 export interface McpServerOAuth2Dcr {
-    /**
-     * +label=DCR
-     * +sort=100
-     * +value=dcr
-     * +usage=Uses Dynamic Client Registration (RFC 7591) to automatically obtain OAuth2 credentials from the MCP server. The system will register as a client, receive client ID and secret, and handle the complete OAuth2 flow without manual configuration.
-     */
+    /** Uses Dynamic Client Registration (RFC 7591) to automatically obtain OAuth2 credentials from the MCP server. The system will register as a client, receive client ID and secret, and handle the complete OAuth2 flow without manual configuration. */
     type: "dcr";
 }

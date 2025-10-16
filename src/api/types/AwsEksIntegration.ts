@@ -11,31 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface AwsEksIntegration {
     /** +value=integration/cluster/aws/eks */
     type: "integration/cluster/aws/eks";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     region: TrueFoundry.AwsRegion;
-    /**
-     * +label=Cluster Name
-     * +usage=Name of the cluster given in the cloud account.
-     * +sort=300
-     */
+    /** Name of the cluster given in the cloud account. */
     cluster_name: string;
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=400
-     */
+    /** Custom authentication data for the integration. */
     auth_data?: TrueFoundry.AwsEksIntegrationAuthData;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

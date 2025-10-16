@@ -6,21 +6,10 @@
  * +label=Create new volume
  */
 export interface DynamicVolumeConfig {
-    /**
-     * +label=Volume Type
-     * +value=dynamic
-     * +usage=Volume Type for the volume.
-     */
+    /** Volume Type for the volume. */
     type: "dynamic";
-    /**
-     * +label=Storage Class Name
-     * +usage=Name of the storage class to be used for the volume.
-     */
+    /** Name of the storage class to be used for the volume. */
     storage_class: string;
-    /**
-     * +label=Size(Gi)
-     * +unit=Gi
-     * +usage=Size of volume in Gi
-     */
+    /** Size of volume in Gi */
     size: number;
 }

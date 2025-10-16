@@ -3,29 +3,17 @@
  */
 
 /**
- * +docs=Describes that we are using python to build a container image with a specific python version and pip packages installed.
- * +label=Build specification
- * +icon=fa-brands fa-python:#306998
+ * Describes that we are using python to build a container image with a specific python version and pip packages installed.
  */
 export interface SparkBuild {
     /** +value=tfy-spark-buildpack */
     type: "tfy-spark-buildpack";
-    /**
-     * --- Spark Specific Field ---
-     * +label=Spark Version
-     * +usage=Spark version should match the spark version installed in the image.
-     * +sort=1001
-     */
+    /** Spark version should match the spark version installed in the image. */
     spark_version: string;
-    /**
-     * +label=Path to build context
-     * +usage=Build path relative to project root path.
-     */
+    /** Build path relative to project root path. */
     build_context_path: string;
     /**
-     * `Path to build context`
-     * +label=Path to requirements
-     * +usage=Path to `requirements.txt` relative to
+     * Path to `requirements.txt` relative to
      * `Path to build context`
      */
     requirements_path?: string;

@@ -11,31 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface AwsS3 {
     /** +value=integration/blob-storage/aws/s3 */
     type: "integration/blob-storage/aws/s3";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    /**
-     * +label=Storage Root
-     * +usage=The root path of the storage.
-     * +sort=200
-     */
+    /** The root path of the storage. */
     storage_root: string;
     region: TrueFoundry.AwsRegion;
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=400
-     */
+    /** Custom authentication data for the integration. */
     auth_data?: TrueFoundry.AwsS3AuthData;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

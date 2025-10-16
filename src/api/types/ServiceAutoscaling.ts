@@ -5,10 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 export interface ServiceAutoscaling extends TrueFoundry.BaseAutoscaling {
-    /**
-     * +label=Autoscaling metrics
-     * +usage=Metrics to use for the autoscaler
-     * +sort=4
-     */
+    /** Metrics to use for the autoscaler */
     metrics: TrueFoundry.ServiceAutoscalingMetrics;
 }

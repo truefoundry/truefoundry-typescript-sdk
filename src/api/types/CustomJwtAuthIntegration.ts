@@ -11,31 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface CustomJwtAuthIntegration {
     /** +value=integration/jwt-auth/custom */
     type: "integration/jwt-auth/custom";
-    /**
-     * +label=Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    /**
-     * +label=Issuer
-     * +usage=The base URL of the authentication provider.
-     * +sort=200
-     */
+    /** The base URL of the authentication provider. */
     issuer: string;
-    /**
-     * +label=JWKS URI
-     * +usage=The JSON Web Key Set URI for JWT verification.
-     * +sort=300
-     */
+    /** The JSON Web Key Set URI for JWT verification. */
     jwks_uri: string;
     login_provider?: TrueFoundry.OAuth2LoginProvider;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=500
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

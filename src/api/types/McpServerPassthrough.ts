@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Token Passthrough
- * +usage=Authenticate using your existing TrueFoundry account (PAT or Virtual Accounts). Your credentials are automatically passed to the MCP server.
+ * Authenticate using your existing TrueFoundry account (PAT or Virtual Accounts). Your credentials are automatically passed to the MCP server.
  */
 export interface McpServerPassthrough {
     /** +value=passthrough */

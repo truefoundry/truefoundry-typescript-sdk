@@ -11,40 +11,15 @@ import * as TrueFoundry from "../index.js";
 export interface AzureOpenAiModelV2 {
     /** +value=integration/model/azure-openai */
     type: "integration/model/azure-openai";
-    /**
-     * +label=Display Name
-     * +sort=1
-     * +usage=Name to identify this Azure OpenAI model in the UI
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Name to identify this Azure OpenAI model in the UI */
     name: string;
-    /**
-     * +label=Model ID
-     * +sort=2
-     * +usage=The name of the Azure OpenAI model deployment (e.g. gpt-35-turbo, gpt-4). Used for cost tracking and management
-     * +message=Model ID must not be empty
-     */
+    /** The name of the Azure OpenAI model deployment (e.g. gpt-35-turbo, gpt-4). Used for cost tracking and management */
     model_id: string;
-    /**
-     * +label=API Version
-     * +sort=3
-     * +usage=The Azure OpenAI API version to use
-     * +message=API version must not be empty
-     */
+    /** The Azure OpenAI API version to use */
     api_version: string;
-    /**
-     * +label=Model Types
-     * +sort=4
-     * +usage=Specify the type of the Azure OpenAI model
-     * +uiProps={"disableAllOption": true}
-     */
+    /** Specify the type of the Azure OpenAI model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +sort=6
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

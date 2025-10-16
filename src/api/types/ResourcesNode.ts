@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Node
- * +usage=This field determines how the underlying node resource is to be utilized
+ * This field determines how the underlying node resource is to be utilized
  */
 export type ResourcesNode = TrueFoundry.NodeSelector | TrueFoundry.NodepoolSelector;

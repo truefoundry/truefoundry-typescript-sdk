@@ -8,12 +8,6 @@
 export interface SparkJobPythonNotebookEntrypoint {
     /** +value=python-notebook */
     type: "python-notebook";
-    /**
-     * +label=Main Application File
-     * +usage=The main application file to be executed by the spark job. Relative path in case of git repository.
-     * +message=Filename should have .ipynb extension
-     * +sort=5
-     * +placeholder=For example: local:///path/to/file.ipynb, s3:///bucket/path/to/file.ipynb, etc.
-     */
+    /** The main application file to be executed by the spark job. Relative path in case of git repository. */
     main_application_file: string;
 }

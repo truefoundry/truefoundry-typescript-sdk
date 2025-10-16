@@ -5,23 +5,14 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the output SQS worker
- * +label=SQS
+ * Describes the configuration for the output SQS worker
  */
 export interface SqsOutputConfig {
     /** +value=sqs */
     type: "sqs";
-    /**
-     * +label=Queue URL
-     * +usage=AWS SQS Queue URL of Publisher
-     * +sort=1
-     */
+    /** AWS SQS Queue URL of Publisher */
     queue_url: string;
-    /**
-     * +label=Region Name
-     * +usage=AWS Region Name
-     * +sort=2
-     */
+    /** AWS Region Name */
     region_name: string;
     auth: TrueFoundry.AwsAccessKeyAuth;
 }

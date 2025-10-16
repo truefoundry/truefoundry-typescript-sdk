@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Replicas
- * +usage=Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing.
- * +icon=fa-clone
- * +sort=4
+ * Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing.
  */
 export type ServiceReplicas = number | TrueFoundry.ServiceAutoscaling;

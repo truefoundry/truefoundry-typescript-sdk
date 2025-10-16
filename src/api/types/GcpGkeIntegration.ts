@@ -11,26 +11,12 @@ import * as TrueFoundry from "../index.js";
 export interface GcpGkeIntegration {
     /** +value=integration/cluster/gcp/gke-standard */
     type: "integration/cluster/gcp/gke-standard";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     location: TrueFoundry.GcpRegion;
-    /**
-     * +label=Cluster Name
-     * +usage=Name of the cluster given in the cloud account.
-     * +sort=300
-     */
+    /** Name of the cluster given in the cloud account. */
     cluster_name: string;
     auth_data?: TrueFoundry.GcpKeyFileAuth;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

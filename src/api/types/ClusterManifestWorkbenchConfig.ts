@@ -11,10 +11,6 @@ import * as TrueFoundry from "../index.js";
 export interface ClusterManifestWorkbenchConfig {
     notebook_config?: TrueFoundry.NotebookConfig;
     ssh_server_config?: TrueFoundry.SshServerConfig;
-    /**
-     * +label=Default Storage Class
-     * +usage=The default storage class for the home directory of workbench
-     * +message=Must not contain any spaces.
-     */
+    /** The default storage class for the home directory of workbench */
     default_storage_class?: string;
 }

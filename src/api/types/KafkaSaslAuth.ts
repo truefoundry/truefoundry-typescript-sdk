@@ -3,16 +3,8 @@
  */
 
 export interface KafkaSaslAuth {
-    /**
-     * +label=Username
-     * +usage=Username for SASL authentication
-     * +sort=1
-     */
+    /** Username for SASL authentication */
     username: string;
-    /**
-     * +label=Password
-     * +usage=Password for SASL authentication
-     * +sort=2
-     */
+    /** Password for SASL authentication */
     password: string;
 }

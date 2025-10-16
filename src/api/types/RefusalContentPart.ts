@@ -3,14 +3,8 @@
  */
 
 export interface RefusalContentPart {
-    /**
-     * +value=refusal
-     * +usage=Type of the content part
-     */
+    /** Type of the content part */
     type: string;
-    /**
-     * +label=Refusal
-     * +usage=Reason
-     */
+    /** Reason */
     refusal: string;
 }

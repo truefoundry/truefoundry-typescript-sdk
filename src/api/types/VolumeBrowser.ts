@@ -8,23 +8,11 @@ import * as TrueFoundry from "../index.js";
  * +label=Volume Browser
  */
 export interface VolumeBrowser {
-    /**
-     * +message=3 to 10 lower case characters long alphanumeric word, may contain - in between, cannot start with a number.
-     * +usage=Username for logging in the volume browser.
-     * +sort=1
-     */
+    /** Username for logging in the volume browser. */
     username?: string;
-    /**
-     * +label=Password Secret FQN
-     * +usage=TFY Secret containing the password for logging in the volume browser.
-     * +sort=2
-     */
+    /** TFY Secret containing the password for logging in the volume browser. */
     password_secret_fqn?: string;
     endpoint: TrueFoundry.Endpoint;
-    /**
-     * +label=Service Account Name
-     * +usage=Kubernetes Service account name for the volume browser.
-     * +sort=4
-     */
+    /** Kubernetes Service account name for the volume browser. */
     service_account?: string;
 }

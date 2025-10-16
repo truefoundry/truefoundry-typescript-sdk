@@ -11,20 +11,9 @@ import * as TrueFoundry from "../index.js";
 export interface SlackBotIntegration {
     /** +value=integration/notification-channel/slack-bot */
     type: "integration/notification-channel/slack-bot";
-    /**
-     * +label=Display Name
-     * +uiProps={"disableEdit":false}
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.SlackBotAuth;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=10005
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

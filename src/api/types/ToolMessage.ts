@@ -5,23 +5,13 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Tool Message
- * +usage=Tool message for the chat
+ * Tool message for the chat
  */
 export interface ToolMessage {
-    /**
-     * +label=Role
-     * +usage=Role of the message
-     */
+    /** Role of the message */
     role: "tool";
-    /**
-     * +label=Content
-     * +usage=Content of the tool call result
-     */
+    /** Content of the tool call result */
     content: TrueFoundry.ToolMessageContent;
-    /**
-     * +label=Tool Call ID
-     * +usage=Unique identifier for the tool call
-     */
+    /** Unique identifier for the tool call */
     tool_call_id: string;
 }

@@ -3,36 +3,22 @@
  */
 
 /**
- * +docs=Describes that we are using a pre-built image stored in a Docker Image registry
- * +label=Deploy an existing image
- * +icon=fa-brands fa-docker:#0db7ed
+ * Describes that we are using a pre-built image stored in a Docker Image registry
  */
 export interface SparkImage {
     /** +value=spark-image */
     type: "spark-image";
-    /**
-     * --- Spark Specific Field ---
-     * +label=Spark Version
-     * +usage=Spark version should match the spark version installed in the image.
-     * +sort=1000
-     */
+    /** Spark version should match the spark version installed in the image. */
     spark_version: string;
     /**
-     * +label=Image URI
-     * +usage=The image URI. Specify the name of the image and the tag.
+     * The image URI. Specify the name of the image and the tag.
      * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
      * You can use an image from a private registry using Advanced fields
-     * +placeholder=registry-url/account/image:version (e.g. docker.io/tensorflow/tensorflow)
-     * +sort=1001
      */
     image_uri: string;
     /**
-     * +docs=FQN of the container registry. You can the FQN of your desired container registry (or add one)
-     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations?tab=docker-registry) page
-     * +label=Docker Registry
-     * +usage=FQN of the container registry. If you can't find your registry here,
+     * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
-     * +sort=1002
      */
     docker_registry?: string;
 }

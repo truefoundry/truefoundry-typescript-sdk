@@ -11,27 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface CohereProviderAccount {
     /** +value=provider-account/cohere */
     type: "provider-account/cohere";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Cohere provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Cohere provider account */
     name: string;
     auth_data: TrueFoundry.CohereKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=300
-     * +usage=List of integrations that are associated with the Cohere provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Cohere provider account */
     integrations?: TrueFoundry.CohereIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=400
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

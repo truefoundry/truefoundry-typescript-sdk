@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the code server
+ * Describes the configuration for the code server
  */
 export interface Codeserver extends TrueFoundry.BaseWorkbenchInput {
     /** +value=codeserver */

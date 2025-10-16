@@ -7,33 +7,19 @@ import * as TrueFoundry from "../index.js";
 export interface Helm {
     /** +value=helm */
     type: "helm";
-    /**
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Name of the Helm deployment. This will be set as the release name of the chart you are deploying.
-     */
+    /** Name of the Helm deployment. This will be set as the release name of the chart you are deploying. */
     name: string;
-    /**
-     * +label=Labels
-     * +usage=Add labels to base argo app
-     */
+    /** Add labels to base argo app */
     labels?: Record<string, string>;
     /**
      * +label=Source helm repository
      * +sort=2
      */
     source: TrueFoundry.HelmSource;
-    /**
-     * +label=Values
-     * +usage=Values file as block file
-     */
+    /** Values file as block file */
     values?: Record<string, unknown>;
     kustomize?: TrueFoundry.Kustomize;
     ignoreDifferences?: Record<string, unknown>[];
-    /**
-     * +label=Workspace FQN
-     * +docs=Fully qualified name of the workspace
-     * +uiType=Hidden
-     */
+    /** Fully qualified name of the workspace */
     workspace_fqn?: string;
 }

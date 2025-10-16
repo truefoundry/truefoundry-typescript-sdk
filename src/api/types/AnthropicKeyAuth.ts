@@ -3,17 +3,11 @@
  */
 
 /**
- * +label=Anthropic API Key Auth
- * +usage=Authentication method using Anthropic API key
+ * Authentication method using Anthropic API key
  */
 export interface AnthropicKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +sort=100
-     * +uiType=Password
-     * +usage=The API key for Anthropic authentication
-     * +message=API key must not be empty
-     */
+    /** The API key for Anthropic authentication */
     api_key: string;
 }

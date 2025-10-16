@@ -3,17 +3,11 @@
  */
 
 /**
- * +docs=Describes that we are using code stored in a remote respository to build our image
- * +label=S3
- * +icon=fa-brands fa-aws:black
- * +sort=200
+ * Describes that we are using code stored in a remote respository to build our image
  */
 export interface RemoteSource {
     /** +value=remote */
     type: "remote";
-    /**
-     * +docs=Remote repository URI
-     * +label=Remote URI
-     */
+    /** Remote repository URI */
     remote_uri: string;
 }

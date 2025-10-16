@@ -5,22 +5,11 @@
 import * as TrueFoundry from "../index.js";
 
 export interface VirtualAccountManifest {
-    /**
-     * +label=Name
-     * +sort=1
-     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Virtual Account Name
-     */
+    /** Virtual Account Name */
     name: string;
     /** +value=virtual-account */
     type: "virtual-account";
-    /**
-     * +label=Expiration Date (UTC)
-     * +sort=2
-     * +message=Expiration date of the virtual account
-     * +usage=Expiration Date of the Virtual Account (should be in the format yyyy-mm-dd)
-     * +uiType=DatePicker
-     */
+    /** Expiration Date of the Virtual Account (should be in the format yyyy-mm-dd) */
     expiration_date?: string;
     /**
      * +label=Permissions

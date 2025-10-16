@@ -11,46 +11,18 @@ import * as TrueFoundry from "../index.js";
 export interface AzureFoundryModelV2 {
     /** +value=integration/model/azure-foundry */
     type: "integration/model/azure-foundry";
-    /**
-     * +label=Display Name
-     * +sort=1
-     * +usage=Name to identify this Azure Foundry model in the UI
-     * +message=2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number
-     */
+    /** Name to identify this Azure Foundry model in the UI */
     name: string;
     auth_data: TrueFoundry.AzureKeyAuth;
-    /**
-     * +label=Model Types
-     * +sort=3
-     * +usage=Types of models supported by this Azure AI Foundry deployment
-     * +uiProps={"disableAllOption": true}
-     */
+    /** Types of models supported by this Azure AI Foundry deployment */
     model_types: TrueFoundry.ModelType[];
-    /**
-     * +label=Azure Deployment Name
-     * +sort=3
-     * +usage=The name of the Azure Foundry deployment
-     */
+    /** The name of the Azure Foundry deployment */
     model_id: string;
-    /**
-     * +label=Azure Endpoint
-     * +sort=4
-     * +usage=The Azure AI Foundry endpoint URL
-     * +message=Endpoint URL must not be empty
-     */
+    /** The Azure AI Foundry endpoint URL */
     azure_endpoint: string;
-    /**
-     * +label=API Version
-     * +sort=5
-     * +usage=The API version for the Azure Foundry model
-     */
+    /** The API version for the Azure Foundry model */
     api_version: string;
     cost?: TrueFoundry.ModelCostMetric;
-    /**
-     * +label=Access Control
-     * +sort=7
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +uiType=Hidden
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

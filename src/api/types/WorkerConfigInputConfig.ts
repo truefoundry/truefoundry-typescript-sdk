@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Input Config
- * +usage=Input Config
- * +sort=1
+ * Input Config
  */
 export type WorkerConfigInputConfig =
     | TrueFoundry.SqsInputConfig

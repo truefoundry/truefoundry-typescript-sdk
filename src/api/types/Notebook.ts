@@ -5,18 +5,15 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the service
+ * Describes the configuration for the service
  */
 export interface Notebook extends TrueFoundry.BaseWorkbenchInput {
     /** +value=notebook */
     type: "notebook";
     image: TrueFoundry.WorkbenchImage;
     /**
-     * +label=Stop after (minutes of inactivity)
-     * +usage=Stop the notebook instance after this much time in minutes of inactivity.
+     * Stop the notebook instance after this much time in minutes of inactivity.
      * The notebook instance will be stopped even if the notebook is open in your browser, but nothing is running on the notebook.
-     * +sort=5
-     * +uiProps={"descriptionInline":true}
      */
     cull_timeout?: number;
 }

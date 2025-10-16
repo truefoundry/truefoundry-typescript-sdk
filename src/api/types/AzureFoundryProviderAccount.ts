@@ -11,26 +11,10 @@ import * as TrueFoundry from "../index.js";
 export interface AzureFoundryProviderAccount {
     /** +value=provider-account/azure-foundry */
     type: "provider-account/azure-foundry";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Azure Foundry provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Azure Foundry provider account */
     name: string;
-    /**
-     * +label=Integrations
-     * +sort=200
-     * +usage=List of integrations that are associated with the Azure Foundry provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Azure Foundry provider account */
     integrations: TrueFoundry.AzureFoundryModelV2[];
-    /**
-     * +label=Collaborators
-     * +sort=300
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

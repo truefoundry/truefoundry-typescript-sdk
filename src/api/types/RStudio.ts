@@ -5,7 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the Rstudio server
+ * Describes the configuration for the Rstudio server
  */
 export interface RStudio extends TrueFoundry.BaseWorkbenchInput {
     /** +value=rstudio */

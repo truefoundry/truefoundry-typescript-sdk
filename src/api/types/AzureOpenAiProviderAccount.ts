@@ -11,34 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface AzureOpenAiProviderAccount {
     /** +value=provider-account/azure-openai */
     type: "provider-account/azure-openai";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Azure OpenAI provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Azure OpenAI provider account */
     name: string;
-    /**
-     * +label=Azure Endpoint
-     * +sort=300
-     * +usage=The Azure OpenAI Service endpoint URL
-     * +message=Endpoint URL must not be empty
-     */
+    /** The Azure OpenAI Service endpoint URL */
     azure_endpoint: string;
     auth_data: TrueFoundry.AzureKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=500
-     * +usage=List of integrations that are associated with the Azure OpenAI provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Azure OpenAI provider account */
     integrations: TrueFoundry.AzureOpenAiModelV2[];
-    /**
-     * +label=Collaborators
-     * +sort=200
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

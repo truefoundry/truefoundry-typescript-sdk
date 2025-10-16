@@ -5,15 +5,10 @@
 export interface CronMetric {
     /** +value=cron */
     type: "cron";
-    /**
-     * +label=Desired Replicas
-     * +usage=Desired number of replicas during the given interval. Default value is max_replicas.
-     */
+    /** Desired number of replicas during the given interval. Default value is max_replicas. */
     desired_replicas?: number;
     /**
-     * +label=Start Schedule
-     * +docs=Cron expression indicating the start of the cron schedule.
-     * +usage=Cron expression indicating the start of the cron schedule.
+     * Cron expression indicating the start of the cron schedule.
      * ```
      * * * * * *
      * | | | | |
@@ -26,9 +21,7 @@ export interface CronMetric {
      */
     start: string;
     /**
-     * +label=End Schedule
-     * +docs=Cron expression indicating the end of the cron schedule.
-     * +usage=Cron expression indicating the end of the cron schedule.
+     * Cron expression indicating the end of the cron schedule.
      * ```
      * * * * * *
      * | | | | |
@@ -41,7 +34,7 @@ export interface CronMetric {
      */
     end: string;
     /**
-     * +usage=Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
+     * Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
      * https://docs.truefoundry.com/docs/list-of-supported-timezones
      */
     timezone: string;

@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Content
- * +usage=Content of the user message. can be a mix of text and images
- * +uiType=CodeEditor
- * +uiProps={"language": "text"}
+ * Content of the user message. can be a mix of text and images
  */
 export type UserMessageContent = string | TrueFoundry.UserMessageContentItem[] | TrueFoundry.BlobStorageReference;

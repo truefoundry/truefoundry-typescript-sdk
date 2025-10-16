@@ -6,14 +6,8 @@
  * +label=Guardrails
  */
 export interface Guardrails {
-    /**
-     * +label=Input Guardrails
-     * +usage=List of guardrail names to apply to user input messages before processing.
-     */
+    /** List of guardrail names to apply to user input messages before processing. */
     input_guardrails?: string[];
-    /**
-     * +label=Output Guardrails
-     * +usage=List of guardrail names to apply to AI response messages before returning to user.
-     */
+    /** List of guardrail names to apply to AI response messages before returning to user. */
     output_guardrails?: string[];
 }

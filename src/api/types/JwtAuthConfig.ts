@@ -5,40 +5,23 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=JWT Authentication
- * +usage=Configure JWT-based authentication using JWKS
+ * Configure JWT-based authentication using JWKS
  */
 export interface JwtAuthConfig {
     /** +value=jwt_auth */
     type: "jwt_auth";
     /**
-     * +docs=FQN of the JWT Auth integration. You can use the FQN of your desired jwt auth integration (or add one)
-     * in the  Integrations page[Integrations](/integrations) page
-     * +label=JWT Auth Integration
-     * +sort=200
-     * +usage=FQN of the JWT Auth integration. If you can't find your integration here,
+     * FQN of the JWT Auth integration. If you can't find your integration here,
      * add it through the [Integrations](/integrations) page
-     * +uiType=IntegrationSelect
-     * +uiProps={"integrationType":"jwt-auth"}
      */
     integration_fqn: string;
-    /**
-     * +label=Enable Login
-     * +usage=Enable login for the service
-     * +sort=300
-     */
+    /** Enable login for the service */
     enable_login?: boolean;
-    /**
-     * +label=Claims
-     * +usage=List of key-value pairs of claims to verify in the JWT token
-     * +sort=400
-     */
+    /** List of key-value pairs of claims to verify in the JWT token */
     claims?: TrueFoundry.JwtAuthConfigClaimsItem[];
     /**
-     * +label=Paths that will bypass auth
-     * +usage=List of paths that will bypass auth.
+     * List of paths that will bypass auth.
      * needs to start with a forward slash(/) and should not contain wildcards(*)
-     * +sort=500
      */
     bypass_auth_paths?: string[];
 }

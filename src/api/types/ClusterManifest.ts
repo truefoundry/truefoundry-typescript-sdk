@@ -14,28 +14,13 @@ export interface ClusterManifest {
      * +message=3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    /**
-     * +label=Cluster Type
-     * +icon=fa-cloud:#7EC8E3
-     * +sort=20
-     * +usage=The cluster type of this cluster
-     */
+    /** The cluster type of this cluster */
     cluster_type: TrueFoundry.ClusterManifestClusterType;
-    /**
-     * +label=Environments
-     * +icon=fa-tags:#black
-     * +usage=Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already.
-     * +sort=30
-     */
+    /** Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already. */
     environment_names: string[];
     /**
-     * +label=Base Domain URLs
-     * +placeholder=Enter Base Domain URL eg. devtest.mydomain.com or *.mydomain.com
-     * +usage=One or more base URLs, which can be either a wildcard domain (resulting in app URLs like `<app-name>-<workspace-name>.<base-domain-URL>`) or a non-wildcard domain (resulting in app URLs like `<base-domain-URL>/<app-name>-<workspace-name>`)
+     * One or more base URLs, which can be either a wildcard domain (resulting in app URLs like `<app-name>-<workspace-name>.<base-domain-URL>`) or a non-wildcard domain (resulting in app URLs like `<base-domain-URL>/<app-name>-<workspace-name>`)
      * > Read more about routing [here](https://docs.truefoundry.com/docs/routing) and about 'A' record and domain mapping [here](https://docs.truefoundry.com/docs/setting-up-domain)
-     * +icon=fa-globe:#68BBE3
-     * +sort=40
-     * +message=Domain URL should be valid domain or IP address
      */
     base_domains?: string[];
     /**
@@ -71,24 +56,16 @@ export interface ClusterManifest {
      */
     workflow_storage_integration_fqn?: string;
     /**
-     * +label=Nodepools
-     * +usage=Add nodepools that are already created in your cluster.
+     * Add nodepools that are already created in your cluster.
      * When deploying, applications can choose to schedule from these nodepools.
-     * +sort=90
      */
     supported_nodepools?: TrueFoundry.Nodepool[];
     /**
-     * +label=Node Label Keys
-     * +usage=The node label keys that this cluster supports.
+     * The node label keys that this cluster supports.
      * Note: You will additionally need to add `truefoundry.com/gpu_type` label for GPU-supported node pools.
      * For more information, check out [this documentation](https://docs.truefoundry.com/docs/generic-control-plane#configuring-node-pools-for-truefoundry).
-     * +sort=100
      */
     node_label_keys?: TrueFoundry.ClusterManifestNodeLabelKeys;
-    /**
-     * +label=Collaborators
-     * +usage=Collaborators who can access this cluster
-     * +sort=110
-     */
+    /** Collaborators who can access this cluster */
     collaborators: TrueFoundry.Collaborator[];
 }

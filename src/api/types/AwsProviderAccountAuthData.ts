@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS Account Auth Data
- * +usage=Authentication data for the AWS account.
- * +sort=400
+ * Authentication data for the AWS account.
  */
 export type AwsProviderAccountAuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;

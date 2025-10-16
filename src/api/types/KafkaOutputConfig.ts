@@ -5,28 +5,16 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the output Kafka worker
- * +label=Kafka
+ * Describes the configuration for the output Kafka worker
  */
 export interface KafkaOutputConfig {
     /** +value=kafka */
     type: "kafka";
-    /**
-     * +label=Bootstrap servers
-     * +usage='Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap'
-     * +sort=1
-     */
+    /** 'Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap' */
     bootstrap_servers: string;
-    /**
-     * +label=Topic Name
-     * +usage=Kafka topic to publish to
-     * +sort=2
-     */
+    /** Kafka topic to publish to */
     topic_name: string;
-    /**
-     * +label=TLS
-     * +usage=TLS configuration for SASL authentication
-     */
+    /** TLS configuration for SASL authentication */
     tls: boolean;
     auth?: TrueFoundry.KafkaSaslAuth;
 }

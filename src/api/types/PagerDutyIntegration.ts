@@ -11,19 +11,9 @@ import * as TrueFoundry from "../index.js";
 export interface PagerDutyIntegration {
     /** +value=integration/notification-channel/pagerduty */
     type: "integration/notification-channel/pagerduty";
-    /**
-     * +label=Display Name
-     * +sort=100
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +uiProps={"disableEdit":false}
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.PagerDutyIntegrationKeyAuth;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=10005
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

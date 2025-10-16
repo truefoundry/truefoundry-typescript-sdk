@@ -14,11 +14,6 @@ export interface LatencyBasedLoadBalancing {
      * +label=Routing Type
      */
     type: "latency-based-routing";
-    /**
-     * +usage=List of targets for latency-based load balancing
-     * +uiProps={"descriptionInline":true}
-     * +sort=4
-     * +label=Load Balance Targets
-     */
+    /** List of targets for latency-based load balancing */
     load_balance_targets: TrueFoundry.LatencyBasedLoadBalanceTarget[];
 }

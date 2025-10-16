@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Override authentication header
- * +usage=Override authentication for this source server
+ * Override authentication for this source server
  */
 export interface McpServerHeaderOverrideAuth {
     /** +value=header */

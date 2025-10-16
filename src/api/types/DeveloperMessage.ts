@@ -5,24 +5,13 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Developer Message
- * +usage=Developer message for the chat
+ * Developer message for the chat
  */
 export interface DeveloperMessage {
-    /**
-     * +value=Developer
-     * +label=Role
-     * +usage=The role of the messages author, in this case developer.
-     */
+    /** The role of the messages author, in this case developer. */
     role: "developer";
-    /**
-     * +label=Content
-     * +usage=The contents of the developer message.
-     */
+    /** The contents of the developer message. */
     content: TrueFoundry.DeveloperMessageContent;
-    /**
-     * +label=Name
-     * +usage=An optional name for the participant.
-     */
+    /** An optional name for the participant. */
     name?: string;
 }

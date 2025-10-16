@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=URL
- * +usage=Image URL linking to the image
+ * Image URL linking to the image
  */
 export type ImageContentPartImageUrlUrl = string | TrueFoundry.BlobStorageReference;

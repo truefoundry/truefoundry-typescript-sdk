@@ -3,15 +3,13 @@
  */
 
 /**
- * +label=Nodepool selector
- * +usage=Specify one or more nodepools to run your application on.
+ * Specify one or more nodepools to run your application on.
  */
 export interface NodepoolSelector {
     /** +value=nodepool_selector */
     type: "nodepool_selector";
     /**
-     * +label=Nodepools
-     * +usage=Nodepools where you want to run your workload. Multiple nodepools can be selected.
+     * Nodepools where you want to run your workload. Multiple nodepools can be selected.
      *  The workload is guaranteed to be scheduled on one of the nodepool
      */
     nodepools?: string[];

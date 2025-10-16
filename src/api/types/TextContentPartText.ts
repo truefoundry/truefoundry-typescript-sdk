@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Text
- * +usage=Text content for the message
+ * Text content for the message
  */
 export type TextContentPartText = string | TrueFoundry.BlobStorageReference;

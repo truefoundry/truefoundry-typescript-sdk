@@ -5,21 +5,19 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the Health Probe's
+ * Describes the configuration for the Health Probe's
  * To learn more you can go [here](https://docs.truefoundry.com/docs/liveness-readiness-probe)
- * +icon=fa-heart
- * +uiType=HealthProbe
  */
 export interface HealthProbe {
     config: TrueFoundry.HttpProbe;
-    /** +usage=Time to wait after container has started before checking the endpoint */
+    /** Time to wait after container has started before checking the endpoint */
     initial_delay_seconds?: number;
-    /** +usage=How often to check the endpoint */
+    /** How often to check the endpoint */
     period_seconds?: number;
-    /** +usage=Time to wait for a response from the endpoint before considering it down */
+    /** Time to wait for a response from the endpoint before considering it down */
     timeout_seconds?: number;
-    /** +usage=Number of successful responses from the endpoint before container is considered healthy */
+    /** Number of successful responses from the endpoint before container is considered healthy */
     success_threshold?: number;
-    /** +usage=Number of consecutive failures before the container is considered down */
+    /** Number of consecutive failures before the container is considered down */
     failure_threshold?: number;
 }

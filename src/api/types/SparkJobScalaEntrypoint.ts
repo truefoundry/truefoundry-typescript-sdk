@@ -8,26 +8,10 @@
 export interface SparkJobScalaEntrypoint {
     /** +value=scala */
     type: "scala";
-    /**
-     * +label=Main Application File
-     * +usage=The main application file to be executed by the spark job.
-     * +message=Filename should have .jar extension
-     * +sort=5
-     * +placeholder=For example: local:///path/to/file.jar, s3:///bucket/path/to/file.jar, etc.
-     */
+    /** The main application file to be executed by the spark job. */
     main_application_file: string;
-    /**
-     * +label=Main Class
-     * +usage=The main class to be executed by the spark job.
-     * +sort=6
-     * +required=true
-     * +message=The main class must be a valid Java class name.
-     */
+    /** The main class to be executed by the spark job. */
     main_class: string;
-    /**
-     * +label=Arguments
-     * +usage=Arguments to be passed to the main application file.
-     * +sort=7
-     */
+    /** Arguments to be passed to the main application file. */
     arguments?: string;
 }

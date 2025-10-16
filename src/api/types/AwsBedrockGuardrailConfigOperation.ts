@@ -3,11 +3,8 @@
  */
 
 /**
- * +label=Operation
- * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
+ * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
  * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
- * +uiType=Select
- * +sort=50
  */
 export type AwsBedrockGuardrailConfigOperation = "validate" | "mutate";
 export const AwsBedrockGuardrailConfigOperation = {

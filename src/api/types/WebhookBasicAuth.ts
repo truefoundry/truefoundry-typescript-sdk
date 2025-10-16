@@ -5,17 +5,8 @@
 export interface WebhookBasicAuth {
     /** +value=auth/webhook-basic */
     type: "webhook-basic";
-    /**
-     * +label=Username
-     * +usage=Basic auth username
-     * +sort=100
-     */
+    /** Basic auth username */
     username: string;
-    /**
-     * +label=Password
-     * +usage=Basic auth password
-     * +sort=200
-     * +uiType=Password
-     */
+    /** Basic auth password */
     password: string;
 }

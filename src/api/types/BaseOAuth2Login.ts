@@ -5,44 +5,19 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=OAuth2 Client Configuration
- * +usage=OAuth2 client configuration to get the JWT.
+ * OAuth2 client configuration to get the JWT.
  */
 export interface BaseOAuth2Login {
-    /**
-     * +label=Client ID
-     * +usage=client ID for OAuth2.
-     * +sort=200
-     */
+    /** client ID for OAuth2. */
     client_id: string;
-    /**
-     * +label=Client Secret
-     * +usage=Client secret or the TrueFoundry secret containing the client secret for OAuth2.
-     * +sort=300
-     */
+    /** Client secret or the TrueFoundry secret containing the client secret for OAuth2. */
     client_secret?: string;
-    /**
-     * +label=Authorization URL
-     * +usage=URL for the authorization request
-     * +sort=400
-     */
+    /** URL for the authorization request */
     authorization_url: string;
-    /**
-     * +label=Token URL
-     * +usage=The endpoint to exchange auth code for tokens.
-     * +sort=500
-     */
+    /** The endpoint to exchange auth code for tokens. */
     token_url: string;
-    /**
-     * +label=Scopes
-     * +usage=List of scopes to request from the OAuth2 provider.
-     * +sort=600
-     */
+    /** List of scopes to request from the OAuth2 provider. */
     scopes: string[];
-    /**
-     * +label=JWT Source
-     * +usage=Source of the JWT token to be used for verification.
-     * +sort=700
-     */
+    /** Source of the JWT token to be used for verification. */
     jwt_source: TrueFoundry.BaseOAuth2LoginJwtSource;
 }

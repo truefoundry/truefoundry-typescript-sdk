@@ -5,35 +5,17 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=MCP Server URL
- * +icon=puzzle-piece
- * +usage=MCP server with URL
+ * MCP server with URL
  */
 export interface McpServerWithUrl {
-    /**
-     * +label=URL
-     * +usage=The URL of the MCP server
-     * +value=mcp-server-url
-     */
+    /** The URL of the MCP server */
     type: "mcp-server-url";
-    /**
-     * +label=URL
-     * +usage=The URL of the MCP server
-     */
+    /** The URL of the MCP server */
     url: string;
-    /**
-     * +label=Headers
-     * +usage=The headers to send to the MCP server
-     */
+    /** The headers to send to the MCP server */
     headers?: Record<string, string>;
-    /**
-     * +label=Enable All Tools
-     * +usage=Whether to enable all tools from the MCP server
-     */
+    /** Whether to enable all tools from the MCP server */
     enable_all_tools: boolean;
-    /**
-     * +label=Tools
-     * +usage=The tools to enable from the MCP server
-     */
+    /** The tools to enable from the MCP server */
     tools?: TrueFoundry.McpTool[];
 }

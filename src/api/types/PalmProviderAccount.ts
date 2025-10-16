@@ -11,27 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface PalmProviderAccount {
     /** +value=provider-account/palm */
     type: "provider-account/palm";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the PaLM provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the PaLM provider account */
     name: string;
     auth_data: TrueFoundry.PalmKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=300
-     * +usage=List of integrations that are associated with the PaLM provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the PaLM provider account */
     integrations?: TrueFoundry.PalmIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=400
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

@@ -5,16 +5,12 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=This strategy brings up the new release without bringing the older release down. Traffic is shifted from the older release to the newer release in a staged manner.
+ * This strategy brings up the new release without bringing the older release down. Traffic is shifted from the older release to the newer release in a staged manner.
  * This can help with verifying the health of the new release without shifting complete traffic.
- * +label=Canary strategy
  */
 export interface Canary {
     /** +value=canary */
     type: "canary";
-    /**
-     * +docs=These steps would be executed in order to enable shifting of traffic slowly from stable to canary version
-     * +label=Steps
-     */
+    /** These steps would be executed in order to enable shifting of traffic slowly from stable to canary version */
     steps: TrueFoundry.CanaryStep[];
 }

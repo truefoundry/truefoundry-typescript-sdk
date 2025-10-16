@@ -5,26 +5,10 @@
 export interface TeamManifest {
     /** +value=team */
     type: "team";
-    /**
-     * +sort=1
-     * +message=Use of only alpha numeric character and "-" is allowed as team name and must be less than 25 characters
-     * +usage=Name of the Team
-     */
+    /** Name of the Team */
     name: string;
-    /**
-     * +sort=3
-     * +label=Team Managers
-     * +usage=Emails of each of the user who can manage the members of the team. Any tenant admin is by default a team manager.
-     * +uiType=UserSelect
-     * +uiProps={"optionTypes": ["users"]}
-     */
+    /** Emails of each of the user who can manage the members of the team. Any tenant admin is by default a team manager. */
     managers?: string[];
-    /**
-     * +sort=4
-     * +label=Team Members
-     * +usage=Enter email of each of the user you want to add in the team.
-     * +uiType=UserSelect
-     * +uiProps={"optionTypes": ["users"]}
-     */
+    /** Enter email of each of the user you want to add in the team. */
     members: string[];
 }

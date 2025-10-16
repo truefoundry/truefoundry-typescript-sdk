@@ -3,27 +3,12 @@
  */
 
 export interface PersonalAccessTokenManifest {
-    /**
-     * +label=Name
-     * +sort=1
-     * +message=3 to 25 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Personal Access Token Name
-     */
+    /** Personal Access Token Name */
     name: string;
     /** +value=pat */
     type: "pat";
-    /**
-     * +label=Expiration Date (UTC)
-     * +sort=2
-     * +message=Expiration date of the personal access token
-     * +usage=Expiration Date of the Personal Access Token (should be in the ISO 8601 format)
-     * +uiType=DatePicker
-     */
+    /** Expiration Date of the Personal Access Token (should be in the ISO 8601 format) */
     expiration_date?: string;
-    /**
-     * +label=User FQN
-     * +sort=3
-     * +usage=The fully qualified name of the user
-     */
+    /** The fully qualified name of the user */
     user_fqn: string;
 }

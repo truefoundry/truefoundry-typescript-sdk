@@ -5,10 +5,6 @@
 export interface PangeaKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +uiType=Password
-     * +sort=100
-     * +usage=API key for the Pangea account
-     */
+    /** API key for the Pangea account */
     api_key: string;
 }

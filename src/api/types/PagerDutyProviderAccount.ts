@@ -11,19 +11,8 @@ import * as TrueFoundry from "../index.js";
 export interface PagerDutyProviderAccount {
     /** +value=provider-account/pagerduty */
     type: "provider-account/pagerduty";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the PagerDuty provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the PagerDuty provider account */
     name: string;
-    /**
-     * +label=Integrations
-     * +sort=500
-     * +usage=List of integrations that are associated with the PagerDuty provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the PagerDuty provider account */
     integrations: TrueFoundry.PagerDutyIntegrations[];
 }

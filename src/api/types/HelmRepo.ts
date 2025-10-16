@@ -12,30 +12,12 @@ export interface HelmRepo {
      */
     repo_url: string;
     /**
-     * +docs=FQN of the helm repo integration. You can use the FQN of your desired helm integration (or add one)
-     * in the  Integrations page[Integrations](https://app.truefoundry.tech/integrations) page
-     * +label=Helm repo integration
-     * +sort=2
-     * +usage=FQN of the helm repo integration. If you can't find your integration here,
+     * FQN of the helm repo integration. If you can't find your integration here,
      * add it through the [Integrations](/integrations) page
-     * +uiType=IntegrationSelect
-     * +uiProps={"integrationType":"helm-repo"}
      */
     integration_fqn?: string;
-    /**
-     * +label=Chart name
-     * +sort=3
-     * +usage=The helm chart name
-     * +uiType=InputSelect
-     * +uiProps={"creatable":true, "searchable":true}
-     */
+    /** The helm chart name */
     chart: string;
-    /**
-     * +label=Version
-     * +sort=4
-     * +usage=Helm chart version
-     * +uiType=InputSelect
-     * +uiProps={"creatable":true, "searchable":true}
-     */
+    /** Helm chart version */
     version: string;
 }

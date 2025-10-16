@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
- * +label=Deploy a Docker image or build and deploy from source code
- * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
- * +sort=2
+ * Specify whether you want to deploy a Docker image or build and deploy from source code
  */
 export type BaseServiceImage = TrueFoundry.Build | TrueFoundry.Image;

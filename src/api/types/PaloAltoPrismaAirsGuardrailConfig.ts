@@ -9,31 +9,16 @@ import * as TrueFoundry from "../index.js";
  * +icon=https://assets.production.truefoundry.com/palo-alto-prisma-airs.svg
  */
 export interface PaloAltoPrismaAirsGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/palo-alto-prisma-airs
      */
     type: "integration/guardrail-config/palo-alto-prisma-airs";
-    /**
-     * +label=Profile Name
-     * +usage=The profile name associated with this Guardrail Config.
-     * +sort=60
-     */
+    /** The profile name associated with this Guardrail Config. */
     profile_name: string;
-    /**
-     * +label=Mode
-     * +usage=Execution mode for the guardrail. Sync waits for the guardrail check to complete before proceeding. Async triggers the check without waiting. Defaults to sync.
-     * +sort=70
-     * +uiType=Select
-     */
+    /** Execution mode for the guardrail. Sync waits for the guardrail check to complete before proceeding. Async triggers the check without waiting. Defaults to sync. */
     mode?: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigMode;
     auth_data: TrueFoundry.PaloAltoPrismaAirsKeyAuth;
 }

@@ -21,12 +21,7 @@ export interface WorkspaceManifest {
      * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    /**
-     * +label=Environment
-     * +sort=300
-     * +icon=fa-tags:#black
-     * +usage=Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already.
-     */
+    /** Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already. */
     environment_name?: string;
     /** +sort=700 */
     labels?: Record<string, string>;

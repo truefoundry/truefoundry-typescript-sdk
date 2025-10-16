@@ -5,22 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 export interface WorkerConfig {
-    /**
-     * +label=Input Config
-     * +usage=Input Config
-     * +sort=1
-     */
+    /** Input Config */
     input_config: TrueFoundry.WorkerConfigInputConfig;
-    /**
-     * +label=Output Config
-     * +usage=Output Config
-     * +sort=2
-     */
+    /** Output Config */
     output_config?: TrueFoundry.WorkerConfigOutputConfig;
-    /**
-     * +label=Number of Concurrent Workers
-     * +usage=Number of concurrent workers to spawn for the processor
-     * +sort=3
-     */
+    /** Number of concurrent workers to spawn for the processor */
     num_concurrent_workers: number;
 }

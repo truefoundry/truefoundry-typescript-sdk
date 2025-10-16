@@ -9,12 +9,6 @@
 export interface PerplexityAiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +sort=100
-     * +usage=Your Perplexity AI API key for authentication
-     * +message=API key must not be empty
-     * +uiType=Password
-     */
+    /** Your Perplexity AI API key for authentication */
     api_key: string;
 }

@@ -5,10 +5,6 @@
 export interface SlackWebhookAuth {
     /** +value=auth/slack-webhook */
     type: "slack-webhook";
-    /**
-     * +label=Webhook URL
-     * +usage=The URL of the slack webhook
-     * +sort=100
-     */
+    /** The URL of the slack webhook */
     webhook_url: string;
 }

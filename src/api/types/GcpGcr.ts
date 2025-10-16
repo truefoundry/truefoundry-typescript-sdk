@@ -11,25 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface GcpGcr {
     /** +value=integration/docker-registry/gcp/gcr */
     type: "integration/docker-registry/gcp/gcr";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    /**
-     * +label=Registry URL
-     * +usage=The URL of the registry.
-     * +sort=200
-     */
+    /** The URL of the registry. */
     registry_url: string;
     auth_data?: TrueFoundry.GcpKeyFileAuth;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

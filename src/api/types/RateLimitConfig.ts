@@ -8,23 +8,13 @@ import * as TrueFoundry from "../index.js";
  * +label=Rate Limit Configuration
  */
 export interface RateLimitConfig {
-    /**
-     * +usage=Name of the rate limiting configuration
-     * +uiProps={"descriptionInline":true}
-     * +sort=1
-     * +label=Configuration Name
-     */
+    /** Name of the rate limiting configuration */
     name: string;
     /**
      * +value=gateway-rate-limiting-config
      * +sort=2
      */
     type: "gateway-rate-limiting-config";
-    /**
-     * +usage=List of rate limit rules
-     * +uiProps={"descriptionInline":true}
-     * +sort=3
-     * +label=Rate Limit Rules
-     */
+    /** List of rate limit rules */
     rules: TrueFoundry.RateLimitRule[];
 }

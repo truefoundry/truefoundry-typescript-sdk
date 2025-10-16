@@ -8,9 +8,6 @@
 export interface SparkExecutorFixedInstances {
     /** +value=fixed */
     type: "fixed";
-    /**
-     * +label=Instances Count
-     * +usage=Number of instances to start
-     */
+    /** Number of instances to start */
     count: number;
 }

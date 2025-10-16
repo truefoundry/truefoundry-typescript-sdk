@@ -11,25 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface EmailNotificationChannel {
     /** +value=integration/notification-channel/email */
     type: "integration/notification-channel/email";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.SmtpCredentials;
-    /**
-     * +label=From Email
-     * +usage=The email address from which the email will be sent.
-     * +sort=1000
-     */
+    /** The email address from which the email will be sent. */
     from_email: string;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=1200
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

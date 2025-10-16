@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Auth Data
- * +sort=300
- * +usage=Databricks authentication credentials
+ * Databricks authentication credentials
  */
 export type DatabricksProviderAccountAuthData =
     | TrueFoundry.DatabricksServicePrincipalAuth

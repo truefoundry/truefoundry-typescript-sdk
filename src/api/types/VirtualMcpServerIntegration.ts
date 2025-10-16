@@ -11,32 +11,12 @@ import * as TrueFoundry from "../index.js";
 export interface VirtualMcpServerIntegration {
     /** +value=integration/mcp-server/virtual */
     type: "integration/mcp-server/virtual";
-    /**
-     * +label=Name
-     * +usage=The name of the Virtual MCP Server.
-     * +sort=100
-     */
+    /** The name of the Virtual MCP Server. */
     name: string;
-    /**
-     * +label=Description
-     * +usage=Provide a brief description of the purpose of this Virtual MCP Server.
-     * +uiType=TextArea
-     * +message=1 to 1000 characters long, may contain any character except newlines
-     * +sort=200
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Provide a brief description of the purpose of this Virtual MCP Server. */
     description: string;
-    /**
-     * +label=Source MCP Servers
-     * +usage=List of source MCP servers to include in this virtual server.
-     * +sort=300
-     */
+    /** List of source MCP servers to include in this virtual server. */
     servers: TrueFoundry.VirtualMcpServerSource[];
-    /**
-     * +label=Access Control
-     * +usage=List of teams/users who can use this MCP server.
-     * +sort=400
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of teams/users who can use this MCP server. */
     authorized_subjects?: string[];
 }

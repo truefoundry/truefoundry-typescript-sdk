@@ -3,9 +3,7 @@
  */
 
 /**
- * +sort=4
- * +label=Model Server Type
- * +usage=The type of model server being used
+ * The type of model server being used
  */
 export type SelfHostedModelModelServer =
     | "openai-compatible"

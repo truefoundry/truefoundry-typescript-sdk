@@ -11,25 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface AwsParameterStore {
     /** +value=integration/secret-store/aws/parameter-store */
     type: "integration/secret-store/aws/parameter-store";
-    /**
-     * +label=Display Name
-     * +usage=The name of the integration that will be displayed in the TrueFoundry UI.
-     * +sort=150
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     region: TrueFoundry.AwsRegion;
-    /**
-     * +label=Auth Data
-     * +usage=Custom authentication data for the integration.
-     * +sort=300
-     */
+    /** Custom authentication data for the integration. */
     auth_data?: TrueFoundry.AwsParameterStoreAuthData;
-    /**
-     * +label=Access Control
-     * +usage=List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>.
-     * +sort=600
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
 }

@@ -5,41 +5,24 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the service
+ * Describes the configuration for the service
  */
 export interface BaseWorkbenchInput {
     /**
-     * +usage=Name of the workbench. This uniquely identifies this workbench in the workspace.
+     * Name of the workbench. This uniquely identifies this workbench in the workspace.
      * > Name can only contain alphanumeric characters and '-' and can be atmost 25 characters long
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    /**
-     * +label=Home Directory Size in GB (Persistent)
-     * +usage=Size of the home directory for the workbench (Persistent Storage)
-     * +sort=6
-     */
+    /** Size of the home directory for the workbench (Persistent Storage) */
     home_directory_size: number;
     resources?: TrueFoundry.Resources;
-    /**
-     * +label=Environment Variables
-     * +usage=Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/environment-variables-and-secrets-jobs)
-     * +sort=10110
-     */
+    /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/environment-variables-and-secrets-jobs) */
     env?: Record<string, string | undefined>;
-    /**
-     * +usage=Configure data to be mounted to workbench pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job)
-     * +sort=10111
-     */
+    /** Configure data to be mounted to workbench pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
     mounts?: TrueFoundry.BaseWorkbenchInputMountsItem[];
     /** +sort=10113 */
     service_account?: string;
     kustomize?: TrueFoundry.Kustomize;
-    /**
-     * +label=Workspace FQN
-     * +docs=Fully qualified name of the workspace
-     * +uiType=Hidden
-     */
+    /** Fully qualified name of the workspace */
     workspace_fqn?: string;
 }

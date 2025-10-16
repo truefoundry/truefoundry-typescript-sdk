@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +usage=Authentication method for inbound traffic
+ * Authentication method for inbound traffic
  */
 export type PortAuth = TrueFoundry.BasicAuthCreds | TrueFoundry.JwtAuthConfig | TrueFoundry.TrueFoundryInteractiveLogin;

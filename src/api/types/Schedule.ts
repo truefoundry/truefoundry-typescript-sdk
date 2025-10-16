@@ -5,16 +5,13 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes that we are going to schedule our job to run at a schedule, making our job a cron job.
- * +label=Schedule
- * +usage=Run the job on a schedule. [Docs](https://docs.truefoundry.com/docs/deploy-a-cron-job)
+ * Run the job on a schedule. [Docs](https://docs.truefoundry.com/docs/deploy-a-cron-job)
  */
 export interface Schedule {
     /** +value=scheduled */
     type: "scheduled";
     /**
-     * +docs=Specify the schedule for this job to be run periodically in cron format. [Learn more](https://docs.truefoundry.com/docs/deploy-a-cron-job)
-     * +usage=Specify the schedule for this job to be run periodically in cron format.
+     * Specify the schedule for this job to be run periodically in cron format.
      * ```
      * * * * * *
      * | | | | |
@@ -27,13 +24,13 @@ export interface Schedule {
      */
     schedule: string;
     /**
-     * +usage=Choose whether to allow this job to run while another instance of the job is running, or to replace the currently running instance. Allow
+     * Choose whether to allow this job to run while another instance of the job is running, or to replace the currently running instance. Allow
      * will enable multiple instances of this job to run. Forbid will keep the current instance of the job running and stop a new instance from being run.
      * Replace will terminate any currently running instance of the job and start a new one.
      */
     concurrency_policy: TrueFoundry.ScheduleConcurrencyPolicy;
     /**
-     * +usage=Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
+     * Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
      * https://docs.truefoundry.com/docs/list-of-supported-timezones
      */
     timezone?: string;

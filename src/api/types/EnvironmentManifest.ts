@@ -7,11 +7,7 @@ import * as TrueFoundry from "../index.js";
 export interface EnvironmentManifest {
     /** +value=environment */
     type: "environment";
-    /**
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Environment Name
-     */
+    /** Environment Name */
     name: string;
     color: TrueFoundry.EnvironmentColor;
     /**

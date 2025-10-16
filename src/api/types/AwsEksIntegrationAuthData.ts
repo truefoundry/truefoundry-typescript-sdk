@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Auth Data
- * +usage=Custom authentication data for the integration.
- * +sort=400
+ * Custom authentication data for the integration.
  */
 export type AwsEksIntegrationAuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;

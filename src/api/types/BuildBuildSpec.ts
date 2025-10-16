@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Instructions to build a container image out of the build source
- * +label=Build using DockerFile or using Buildpack
- * +icon=fa-wrench
- * +sort=2
+ * Instructions to build a container image out of the build source
  */
 export type BuildBuildSpec = TrueFoundry.DockerFileBuild | TrueFoundry.PythonBuild;

@@ -5,10 +5,6 @@
 export interface SlackBotAuth {
     /** +value=auth/slack-bot */
     type: "slack-bot";
-    /**
-     * +label=Bot Token
-     * +usage=The bot token for the slack bot to send messages to the channels. This bot should have the following permissions: chat:write, chat:write.public
-     * +sort=100
-     */
+    /** The bot token for the slack bot to send messages to the channels. This bot should have the following permissions: chat:write, chat:write.public */
     bot_token: string;
 }

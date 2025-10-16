@@ -3,9 +3,7 @@
  */
 
 /**
- * +label=JWT Source
- * +usage=Source of the JWT token to be used for verification.
- * +sort=700
+ * Source of the JWT token to be used for verification.
  */
 export type McpServerOAuth2JwtSource = "access_token" | "id_token";
 export const McpServerOAuth2JwtSource = {

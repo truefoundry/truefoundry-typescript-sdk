@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Authentication
- * +usage=Authentication configuration for the webhook
- * +sort=300
+ * Authentication configuration for the webhook
  */
 export type WebhookIntegrationAuthData = TrueFoundry.WebhookBasicAuth | TrueFoundry.WebhookBearerAuth;

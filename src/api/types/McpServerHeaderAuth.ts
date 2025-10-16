@@ -3,8 +3,7 @@
  */
 
 /**
- * +label=Header Auth
- * +usage=Static API key or token authentication via request headers. All users share the same credentials.
+ * Static API key or token authentication via request headers. All users share the same credentials.
  */
 export interface McpServerHeaderAuth {
     /** +value=header */

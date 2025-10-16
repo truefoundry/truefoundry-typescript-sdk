@@ -5,17 +5,8 @@
 export interface WebhookBearerAuth {
     /** +value=auth/webhook-bearer */
     type: "webhook-bearer";
-    /**
-     * +label=Token
-     * +usage=Bearer token for authentication
-     * +sort=100
-     * +uiType=Password
-     */
+    /** Bearer token for authentication */
     token: string;
-    /**
-     * +label=Prefix
-     * +usage=Prefix for the token
-     * +sort=200
-     */
+    /** Prefix for the token */
     prefix: string;
 }

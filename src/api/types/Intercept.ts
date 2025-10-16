@@ -7,11 +7,7 @@ import * as TrueFoundry from "../index.js";
 export interface Intercept {
     /** +value=intercept */
     type: "intercept";
-    /**
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Name of the service this intercept is for
-     */
+    /** Name of the service this intercept is for */
     name: string;
     rules: TrueFoundry.InterceptRulesItem[];
 }

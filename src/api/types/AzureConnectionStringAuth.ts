@@ -8,10 +8,6 @@
 export interface AzureConnectionStringAuth {
     /** +value=connection-string */
     type: "connection-string";
-    /**
-     * +label=Connection String
-     * +usage=The connection string for the Azure managed identity.
-     * +sort=100
-     */
+    /** The connection string for the Azure managed identity. */
     connection_string: string;
 }

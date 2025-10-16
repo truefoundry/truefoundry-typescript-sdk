@@ -5,14 +5,10 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Image URL
- * +usage=Image URL linking to the image
+ * Image URL linking to the image
  */
 export interface ImageContentPartImageUrl {
-    /**
-     * +label=URL
-     * +usage=Image URL linking to the image
-     */
+    /** Image URL linking to the image */
     url: TrueFoundry.ImageContentPartImageUrlUrl;
     /** +label=Details */
     detail?: string;

@@ -11,33 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface AwsBedrockProviderAccount {
     /** +value=provider-account/aws-bedrock */
     type: "provider-account/aws-bedrock";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the AWS Bedrock provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the AWS Bedrock provider account */
     name: string;
     region: TrueFoundry.AwsRegion;
-    /**
-     * +label=AWS Account Auth Data
-     * +sort=400
-     * +usage=Authentication data for the AWS account
-     */
+    /** Authentication data for the AWS account */
     auth_data?: TrueFoundry.AwsBedrockProviderAccountAuthData;
-    /**
-     * +label=Integrations
-     * +sort=500
-     * +usage=List of integrations that are associated with the AWS Bedrock provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the AWS Bedrock provider account */
     integrations: TrueFoundry.BedrockModelV2[];
-    /**
-     * +label=Collaborators
-     * +sort=600
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

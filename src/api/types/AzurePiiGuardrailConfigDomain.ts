@@ -3,9 +3,7 @@
  */
 
 /**
- * +label=Domain
- * +usage=Domain for PII detection
- * +sort=400
+ * Domain for PII detection
  */
 export type AzurePiiGuardrailConfigDomain = "none" | "healthcare";
 export const AzurePiiGuardrailConfigDomain = {

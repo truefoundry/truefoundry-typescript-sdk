@@ -3,21 +3,14 @@
  */
 
 /**
- * +usage=Use `uv` to setup env.
+ * Use `uv` to setup env.
  * Your build context root must contain `pyproject.toml` and `uv.lock`
- * +label=uv
  */
 export interface Uv {
     /** +value=uv */
     type: "uv";
-    /**
-     * +label=UV version
-     * +usage=UV version to use
-     */
+    /** UV version to use */
     uv_version?: string;
-    /**
-     * +label=Sync options
-     * +usage=Sync options to pass to uv command
-     */
+    /** Sync options to pass to uv command */
     sync_options?: string;
 }

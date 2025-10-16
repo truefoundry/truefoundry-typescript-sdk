@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Specify the trigger
- * +sort=300
+ * Specify the trigger
  */
 export type JobTrigger = TrueFoundry.Manual | TrueFoundry.Schedule;

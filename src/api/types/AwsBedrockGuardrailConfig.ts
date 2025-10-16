@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=aws-bedrock
  */
 export interface AwsBedrockGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
@@ -23,27 +17,15 @@ export interface AwsBedrockGuardrailConfig {
      */
     type: "integration/guardrail-config/aws-bedrock";
     /**
-     * +label=Operation
-     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
+     * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
-     * +uiType=Select
-     * +sort=50
      */
     operation: TrueFoundry.AwsBedrockGuardrailConfigOperation;
-    /**
-     * +label=AWS Account Auth Data
-     * +usage=Authentication data for the AWS account
-     */
+    /** Authentication data for the AWS account */
     auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
-    /**
-     * +label=Guardrail ID
-     * +usage=The ID of the Guardrail to use.
-     */
+    /** The ID of the Guardrail to use. */
     guardrail_id: string;
-    /**
-     * +label=Guardrail Version
-     * +usage=The version of the Guardrail to use.
-     */
+    /** The version of the Guardrail to use. */
     guardrail_version: string;
     region: TrueFoundry.AwsRegion;
 }

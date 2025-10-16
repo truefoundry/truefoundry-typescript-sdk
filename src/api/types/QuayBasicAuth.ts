@@ -8,17 +8,8 @@
 export interface QuayBasicAuth {
     /** +value=basic-auth */
     type: "basic-auth";
-    /**
-     * +label=Username
-     * +usage=The username for the basic authentication.
-     * +sort=100
-     */
+    /** The username for the basic authentication. */
     username: string;
-    /**
-     * +label=Password
-     * +usage=The password for the basic authentication.
-     * +sort=200
-     * +uiType=Password
-     */
+    /** The password for the basic authentication. */
     password: string;
 }

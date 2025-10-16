@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Output Config
- * +usage=Output Config
- * +sort=2
+ * Output Config
  */
 export type WorkerConfigOutputConfig =
     | TrueFoundry.SqsOutputConfig

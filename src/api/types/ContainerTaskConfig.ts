@@ -7,25 +7,12 @@ import * as TrueFoundry from "../index.js";
 export interface ContainerTaskConfig {
     /** +value=container-task-config */
     type: "container-task-config";
-    /**
-     * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
-     * +label=Deploy a Docker image or build and deploy from source code
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=200
-     */
+    /** Specify whether you want to deploy a Docker image or build and deploy from source code */
     image: TrueFoundry.ContainerTaskConfigImage;
-    /**
-     * +label=Environment Variables
-     * +usage=Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
-     * +icon=fa-globe
-     * +sort=200
-     */
+    /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
     env?: Record<string, string | undefined>;
     resources?: TrueFoundry.Resources;
-    /**
-     * +usage=Configure data to be mounted to Workflow pod(s) as a volume.
-     * +sort=400
-     */
+    /** Configure data to be mounted to Workflow pod(s) as a volume. */
     mounts?: TrueFoundry.ContainerTaskConfigMountsItem[];
     /**
      * +label=Service Account

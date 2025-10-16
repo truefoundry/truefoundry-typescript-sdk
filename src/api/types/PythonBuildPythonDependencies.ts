@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Python dependencies
- * +usage=Python dependencies to install
- * +sort=10004
+ * Python dependencies to install
  */
 export type PythonBuildPythonDependencies = TrueFoundry.Pip | TrueFoundry.Uv | TrueFoundry.Poetry;

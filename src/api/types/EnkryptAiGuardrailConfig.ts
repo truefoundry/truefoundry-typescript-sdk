@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=https://app.enkryptai.com/favicon.ico
  */
 export interface EnkryptAiGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
@@ -23,18 +17,11 @@ export interface EnkryptAiGuardrailConfig {
      */
     type: "integration/guardrail-config/enkrypt-ai";
     /**
-     * +label=Operation
-     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
+     * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
-     * +uiType=Select
-     * +sort=100
      */
     operation: TrueFoundry.EnkryptAiGuardrailConfigOperation;
-    /**
-     * +label=Guardrail Name
-     * +usage=The name of the guardrail to use for the Enkrypt AI Guardrail.
-     * +sort=100
-     */
+    /** The name of the guardrail to use for the Enkrypt AI Guardrail. */
     guardrail_name: string;
     auth_data: TrueFoundry.EnkryptAiKeyAuth;
 }

@@ -3,15 +3,12 @@
  */
 
 /**
- * +docs=Describes that we are using code stored in a local developement environment to build our image
- * +label=Local
- * +icon=fa-folder:black
- * +sort=100
+ * Describes that we are using code stored in a local developement environment to build our image
  */
 export interface LocalSource {
     /** +value=local */
     type: "local";
-    /** +usage=Local project root path. */
+    /** Local project root path. */
     project_root_path: string;
     /** run docker build locally */
     local_build: boolean;

@@ -3,10 +3,7 @@
  */
 
 /**
- * +label=Target
- * +usage=The type of request to use for the Patronus Guardrail.
- * +sort=100
- * +uiType=Select
+ * The type of request to use for the Patronus Guardrail.
  */
 export type PatronusGuardrailConfigTarget = "response" | "request";
 export const PatronusGuardrailConfigTarget = {

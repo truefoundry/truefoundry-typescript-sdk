@@ -6,41 +6,20 @@ import * as TrueFoundry from "../index.js";
 
 export interface BaseService {
     /**
-     * +usage=Name of the service. This uniquely identifies this service in the workspace.
+     * Name of the service. This uniquely identifies this service in the workspace.
      * > Name can only contain alphanumeric characters and '-' and can be atmost 25 characters long
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
      */
     name: string;
-    /**
-     * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
-     * +label=Deploy a Docker image or build and deploy from source code
-     * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
-     * +sort=2
-     */
+    /** Specify whether you want to deploy a Docker image or build and deploy from source code */
     image: TrueFoundry.BaseServiceImage;
     artifacts_download?: TrueFoundry.ArtifactsDownload;
     resources?: TrueFoundry.Resources;
-    /**
-     * +label=Environment Variables
-     * +usage=Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables)
-     * +icon=fa-globe
-     * +sort=6
-     */
+    /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
     env?: Record<string, string | undefined>;
-    /**
-     * +docs=Specify the ports you want the service to be exposed to
-     * +label=Configure ports and endpoints to route customer traffic
-     * +usage=Expose the deployment to make it accessible over the internet or keep it private. Implement authentication to restrict access. [Docs](https://docs.truefoundry.com/docs/define-ports-and-domains)
-     * +icon=fa-plug
-     * +sort=4
-     */
+    /** Expose the deployment to make it accessible over the internet or keep it private. Implement authentication to restrict access. [Docs](https://docs.truefoundry.com/docs/define-ports-and-domains) */
     ports: TrueFoundry.Port[];
     service_account?: string;
-    /**
-     * +usage=Configure data to be mounted to service pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-service)
-     * +sort=10011
-     */
+    /** Configure data to be mounted to service pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-service) */
     mounts?: TrueFoundry.BaseServiceMountsItem[];
     /** +label=Labels */
     labels?: Record<string, string>;
@@ -48,10 +27,6 @@ export interface BaseService {
     liveness_probe?: TrueFoundry.HealthProbe;
     readiness_probe?: TrueFoundry.HealthProbe;
     startup_probe?: TrueFoundry.HealthProbe;
-    /**
-     * +label=Workspace FQN
-     * +docs=Fully qualified name of the workspace
-     * +uiType=Hidden
-     */
+    /** Fully qualified name of the workspace */
     workspace_fqn?: string;
 }

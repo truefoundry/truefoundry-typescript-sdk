@@ -3,20 +3,11 @@
  */
 
 /**
- * +label=JSON Schema
- * +usage=JSON schema for structured output
+ * JSON schema for structured output
  */
 export interface JsonSchema {
-    /**
-     * +label=Name
-     * +usage=Name of the schema
-     */
+    /** Name of the schema */
     name: string;
-    /**
-     * +label=Schema
-     * +usage=JSON schema object defining the expected structure
-     * +uiType=JsonInput
-     * +uiProps={"descriptionInline":true}
-     */
+    /** JSON schema object defining the expected structure */
     schema: Record<string, unknown>;
 }

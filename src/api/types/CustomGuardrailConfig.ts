@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=puzzle-piece
  */
 export interface CustomGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
@@ -23,43 +17,18 @@ export interface CustomGuardrailConfig {
      */
     type: "integration/guardrail-config/custom";
     /**
-     * +label=Operation
-     * +usage=The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
+     * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
-     * +uiType=Select
-     * +sort=100
      */
     operation: TrueFoundry.CustomGuardrailConfigOperation;
-    /**
-     * +label=Target
-     * +usage=Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails.
-     * +uiType=Select
-     * +sort=200
-     */
+    /** Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails. */
     target: TrueFoundry.CustomGuardrailConfigTarget;
-    /**
-     * +label=URL
-     * +sort=300
-     * +usage=The URL of the Guardrail to send a post request to.
-     */
+    /** The URL of the Guardrail to send a post request to. */
     url: string;
-    /**
-     * +label=Auth Data
-     * +sort=450
-     * +usage=Authentication data for the Guardrail Server.
-     */
+    /** Authentication data for the Guardrail Server. */
     auth_data?: TrueFoundry.CustomGuardrailConfigAuthData;
-    /**
-     * +label=Headers
-     * +sort=500
-     * +usage=Headers for the Guardrail Server. Forwarded to the Guardrail Server as is. For example: `{"Authorization": "APIKey <token>"}`
-     */
+    /** Headers for the Guardrail Server. Forwarded to the Guardrail Server as is. For example: `{"Authorization": "APIKey <token>"}` */
     headers?: Record<string, string>;
-    /**
-     * +label=Config
-     * +sort=600
-     * +uiType=JsonInput
-     * +usage=The config for the Guardrail Server. This is a JSON object that will be sent as a config to Guardrail Server along with the request.
-     */
+    /** The config for the Guardrail Server. This is a JSON object that will be sent as a config to Guardrail Server along with the request. */
     config: Record<string, unknown>;
 }

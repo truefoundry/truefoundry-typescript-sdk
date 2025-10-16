@@ -3,7 +3,7 @@
  */
 
 /**
- * +usage=Protocol for the port.
+ * Protocol for the port.
  */
 export type PortProtocol = "TCP" | "UDP";
 export const PortProtocol = {

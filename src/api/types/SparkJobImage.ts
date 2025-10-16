@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Deploy a Docker image & Specify Spark Version
- * +usage=The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image.
- * +sort=500
+ * The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image.
  */
 export type SparkJobImage = TrueFoundry.SparkImage | TrueFoundry.SparkImageBuild;

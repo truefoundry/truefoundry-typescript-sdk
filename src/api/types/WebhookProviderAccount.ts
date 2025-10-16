@@ -11,19 +11,8 @@ import * as TrueFoundry from "../index.js";
 export interface WebhookProviderAccount {
     /** +value=provider-account/webhook */
     type: "provider-account/webhook";
-    /**
-     * +uiProps={"disableEdit":true}
-     * +label=Name
-     * +usage=The name of the provider account.
-     * +sort=100
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     */
+    /** The name of the provider account. */
     name: string;
-    /**
-     * +label=Integrations
-     * +usage=List of integrations that are associated with the provider account.
-     * +sort=400
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.WebhookIntegrations[];
 }

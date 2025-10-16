@@ -9,12 +9,6 @@
 export interface GroqKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +sort=100
-     * +usage=The API key for Groq authentication
-     * +message=API key must not be empty
-     * +uiType=Password
-     */
+    /** The API key for Groq authentication */
     api_key: string;
 }

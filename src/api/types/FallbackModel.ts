@@ -6,18 +6,8 @@
  * +label=Fallback Model
  */
 export interface FallbackModel {
-    /**
-     * +usage=Target model or provider FQN to use as fallback
-     * +uiProps={"integrationType":"model", "valuePattern": "${providerAccount.name}/${manifest.name}"}
-     * +sort=1
-     * +label=Target
-     */
+    /** Target model or provider FQN to use as fallback */
     target: string;
-    /**
-     * +usage=Optional parameters to override in the fallback request
-     * +uiProps={"descriptionInline":true}
-     * +sort=2
-     * +label=Override Parameters
-     */
+    /** Optional parameters to override in the fallback request */
     override_params?: Record<string, unknown>;
 }

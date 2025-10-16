@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Autoscaling metrics
- * +usage=Metrics to use for the autoscaler
- * +sort=4
+ * Metrics to use for the autoscaler
  */
 export type ServiceAutoscalingMetrics =
     | TrueFoundry.CpuUtilizationMetric

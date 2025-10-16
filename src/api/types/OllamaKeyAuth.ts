@@ -7,11 +7,6 @@
  * +icon=ollama
  */
 export interface OllamaKeyAuth {
-    /**
-     * +label=Custom Host
-     * +sort=100
-     * +usage=The custom host URL for Ollama API
-     * +message=Host URL must not be empty
-     */
+    /** The custom host URL for Ollama API */
     custom_host: string;
 }

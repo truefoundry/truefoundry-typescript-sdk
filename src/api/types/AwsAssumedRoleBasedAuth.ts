@@ -8,10 +8,6 @@
 export interface AwsAssumedRoleBasedAuth {
     /** +value=assumed-role-based */
     type: "assumed-role-based";
-    /**
-     * +label=AWS Assumed Role ARN
-     * +usage=ARN of the role you want to assume.
-     * +sort=100
-     */
+    /** ARN of the role you want to assume. */
     assumed_role_arn: string;
 }

@@ -11,27 +11,11 @@ import * as TrueFoundry from "../index.js";
 export interface MistralAiProviderAccount {
     /** +value=provider-account/mistral-ai */
     type: "provider-account/mistral-ai";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Mistral AI provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Mistral AI provider account */
     name: string;
     auth_data: TrueFoundry.MistralAiKeyAuth;
-    /**
-     * +label=Integrations
-     * +sort=300
-     * +usage=List of integrations that are associated with the Mistral AI provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Mistral AI provider account */
     integrations?: TrueFoundry.MistralAiIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=400
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

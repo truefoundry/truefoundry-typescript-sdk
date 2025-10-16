@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=AWS Account Auth Data
- * +usage=Authentication data for the AWS account
+ * Authentication data for the AWS account
  */
 export type AwsBedrockGuardrailConfigAuthData = TrueFoundry.AwsAccessKeyBasedAuth | TrueFoundry.AwsAssumedRoleBasedAuth;

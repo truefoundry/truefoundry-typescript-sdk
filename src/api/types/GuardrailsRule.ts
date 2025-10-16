@@ -8,26 +8,11 @@ import * as TrueFoundry from "../index.js";
  * +label=Guardrails Rule
  */
 export interface GuardrailsRule {
-    /**
-     * +usage=Unique identifier for the rule
-     * +uiProps={"descriptionInline":true}
-     * +sort=1
-     * +label=Rule ID
-     */
+    /** Unique identifier for the rule */
     id: string;
     when: TrueFoundry.GuardrailsWhen;
-    /**
-     * +usage=Guardrail selectors of the guardrails to apply to the input (format: groupName/guardrailName)
-     * +uiProps={"descriptionInline":true}
-     * +sort=3
-     * +label=Input Guardrails
-     */
+    /** Guardrail selectors of the guardrails to apply to the input (format: groupName/guardrailName) */
     input_guardrails: string[];
-    /**
-     * +usage=Guardrail selectors of the guardrails to apply to the output (format: groupName/guardrailName)
-     * +uiProps={"descriptionInline":true}
-     * +sort=4
-     * +label=Output Guardrails
-     */
+    /** Guardrail selectors of the guardrails to apply to the output (format: groupName/guardrailName) */
     output_guardrails: string[];
 }

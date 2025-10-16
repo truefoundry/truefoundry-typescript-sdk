@@ -5,10 +5,6 @@
 export interface FiddlerKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +uiType=Password
-     * +sort=100
-     * +usage=API key for the Fiddler account
-     */
+    /** API key for the Fiddler account */
     api_key: string;
 }

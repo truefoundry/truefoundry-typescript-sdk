@@ -5,8 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Policy Action
- * +usage=Defines if the policy validates or mutates resources. Validation policies check TrueFoundry manifests to ensure they meet conditions and can block deployments. Mutation policies modify Kubernetes manifests before they're applied to the cluster. See this [documentation](https://docs.truefoundry.com/docs/applying-custom-policies#applying-custom-policies) for more details.
- * +sort=4
+ * Defines if the policy validates or mutates resources. Validation policies check TrueFoundry manifests to ensure they meet conditions and can block deployments. Mutation policies modify Kubernetes manifests before they're applied to the cluster. See this [documentation](https://docs.truefoundry.com/docs/applying-custom-policies#applying-custom-policies) for more details.
  */
 export type PolicyManifestOperation = TrueFoundry.PolicyMutationOperation | TrueFoundry.PolicyValidationOperation;

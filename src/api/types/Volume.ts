@@ -7,11 +7,7 @@ import * as TrueFoundry from "../index.js";
 export interface Volume {
     /** +value=volume */
     type: "volume";
-    /**
-     * +sort=1
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +usage=Name of the Volume. This will be set as the volume name.
-     */
+    /** Name of the Volume. This will be set as the volume name. */
     name: string;
     /**
      * +sort=2
@@ -20,10 +16,6 @@ export interface Volume {
      */
     config: TrueFoundry.VolumeConfig;
     volume_browser?: TrueFoundry.VolumeBrowser;
-    /**
-     * +label=Workspace FQN
-     * +docs=Fully qualified name of the workspace
-     * +uiType=Hidden
-     */
+    /** Fully qualified name of the workspace */
     workspace_fqn?: string;
 }

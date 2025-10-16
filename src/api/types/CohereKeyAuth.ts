@@ -9,12 +9,6 @@
 export interface CohereKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +sort=100
-     * +usage=The API key for Cohere authentication
-     * +message=API key must not be empty
-     * +uiType=Password
-     */
+    /** The API key for Cohere authentication */
     api_key: string;
 }

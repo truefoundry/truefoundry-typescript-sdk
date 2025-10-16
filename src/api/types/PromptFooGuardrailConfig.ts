@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=https://assets.production.truefoundry.com/promptfoo.svg
  */
 export interface PromptFooGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden

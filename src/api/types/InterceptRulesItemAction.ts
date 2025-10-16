@@ -5,7 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Action to take on succesful match
- * +label=Action
+ * Action to take on succesful match
  */
 export type InterceptRulesItemAction = TrueFoundry.ForwardAction | TrueFoundry.MirrorAction;

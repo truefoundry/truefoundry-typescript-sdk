@@ -5,10 +5,6 @@
 export interface CustomBearerAuth {
     /** +value=bearer-auth */
     type: "bearer-auth";
-    /**
-     * +label=Bearer Token
-     * +usage=The bearer token for the custom bearer authentication.
-     * +sort=100
-     */
+    /** The bearer token for the custom bearer authentication. */
     bearer_token: string;
 }

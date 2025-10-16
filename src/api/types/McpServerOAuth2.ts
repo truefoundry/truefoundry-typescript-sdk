@@ -8,50 +8,18 @@ import * as TrueFoundry from "../index.js";
  * +label=OAuth2
  */
 export interface McpServerOAuth2 {
-    /**
-     * +value=oauth2
-     * +label=OAuth2
-     * +sort=100
-     * +usage=OAuth2 authentication
-     */
+    /** OAuth2 authentication */
     type: "oauth2";
-    /**
-     * Required when DCR is disabled
-     * +label=Client ID
-     * +usage=client ID for OAuth2 or the TrueFoundry secret FQN containing the client ID.
-     * +sort=200
-     * +uiType=Password
-     */
+    /** client ID for OAuth2 or the TrueFoundry secret FQN containing the client ID. */
     client_id: string;
-    /**
-     * +label=Client Secret
-     * +usage=Client secret or the TrueFoundry secret FQN containing the client secret for OAuth2.
-     * +sort=300
-     * +uiType=Password
-     */
+    /** Client secret or the TrueFoundry secret FQN containing the client secret for OAuth2. */
     client_secret?: string;
-    /**
-     * +label=Authorization URL
-     * +usage=URL for the authorization request
-     * +sort=400
-     */
+    /** URL for the authorization request */
     authorization_url: string;
-    /**
-     * +label=Token URL
-     * +usage=The endpoint to exchange auth code for tokens.
-     * +sort=500
-     */
+    /** The endpoint to exchange auth code for tokens. */
     token_url: string;
-    /**
-     * +label=Scopes
-     * +usage=List of scopes to request from the OAuth2 provider.
-     * +sort=600
-     */
+    /** List of scopes to request from the OAuth2 provider. */
     scopes: string[];
-    /**
-     * +label=JWT Source
-     * +usage=Source of the JWT token to be used for verification.
-     * +sort=700
-     */
+    /** Source of the JWT token to be used for verification. */
     jwt_source: TrueFoundry.McpServerOAuth2JwtSource;
 }

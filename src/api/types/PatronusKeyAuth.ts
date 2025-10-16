@@ -5,10 +5,6 @@
 export interface PatronusKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +uiType=Password
-     * +sort=100
-     * +usage=API key for the Patronus account
-     */
+    /** API key for the Patronus account */
     api_key: string;
 }

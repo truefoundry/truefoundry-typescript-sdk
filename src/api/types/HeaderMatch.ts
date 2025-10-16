@@ -5,14 +5,8 @@
 export interface HeaderMatch {
     /** +value=header */
     type: "header";
-    /**
-     * +docs=Header name to match on
-     * +label=Name
-     */
+    /** Header name to match on */
     name: string;
-    /**
-     * +docs=Header value to match on
-     * +label=Value
-     */
+    /** Header value to match on */
     exact_match: string;
 }

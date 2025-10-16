@@ -9,56 +9,24 @@ import * as TrueFoundry from "../index.js";
  * +icon=azure
  */
 export interface AzureContentSafetyGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-content-safety
      */
     type: "integration/guardrail-config/azure-content-safety";
-    /**
-     * +label=Resource Name
-     * +usage=The resource name where API is deployed.
-     * +sort=100
-     */
+    /** The resource name where API is deployed. */
     resource_name: string;
-    /**
-     * +label=API Version
-     * +usage=API version for the Content Safety API
-     * +sort=200
-     */
+    /** API version for the Content Safety API */
     api_version: string;
-    /**
-     * +label=Custom Host
-     * +usage=Custom host for the PII detection API
-     * +sort=300
-     * +uiType=Hidden
-     */
+    /** Custom host for the PII detection API */
     custom_host?: string;
-    /**
-     * +label=Blocklist Names
-     * +usage=Array of blocklist names to check against
-     * +sort=400
-     */
+    /** Array of blocklist names to check against */
     blocklist_names?: string[];
-    /**
-     * +label=Severity
-     * +usage=Severity threshold for the Content Safety API
-     * +sort=500
-     */
+    /** Severity threshold for the Content Safety API */
     severity_threshold: number;
-    /**
-     * +label=Categories
-     * +usage=Categories to check against
-     * +uiType=Select
-     * +sort=600
-     */
+    /** Categories to check against */
     categories: TrueFoundry.AzureContentSafetyCategory[];
     auth_data: TrueFoundry.AzureKeyAuth;
 }

@@ -9,13 +9,7 @@ import * as TrueFoundry from "../index.js";
  * +icon=https://assets.production.truefoundry.com/patronus.svg
  */
 export interface PatronusGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
@@ -23,17 +17,8 @@ export interface PatronusGuardrailConfig {
      */
     type: "integration/guardrail-config/patronus";
     auth_data: TrueFoundry.PatronusKeyAuth;
-    /**
-     * +label=Target
-     * +usage=The type of request to use for the Patronus Guardrail.
-     * +sort=100
-     * +uiType=Select
-     */
+    /** The type of request to use for the Patronus Guardrail. */
     target: TrueFoundry.PatronusGuardrailConfigTarget;
-    /**
-     * +label=Evaluators
-     * +usage=The evaluators to use for the Patronus Guardrail.
-     * +sort=200
-     */
+    /** The evaluators to use for the Patronus Guardrail. */
     evaluators: TrueFoundry.PatronusEvaluator[];
 }

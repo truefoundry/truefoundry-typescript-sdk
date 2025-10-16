@@ -9,62 +9,26 @@ import * as TrueFoundry from "../index.js";
  * +icon=azure
  */
 export interface AzurePiiGuardrailConfig {
-    /**
-     * +label=Name
-     * +sort=50
-     * +usage=The name of the Guardrail Config.
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Guardrail Config. */
     name: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-pii
      */
     type: "integration/guardrail-config/azure-pii";
-    /**
-     * +label=Resource Name
-     * +usage=The resource name where API is deployed.
-     * +sort=50
-     */
+    /** The resource name where API is deployed. */
     resource_name: string;
-    /**
-     * +label=API Version
-     * +usage=API version for the Content Safety API
-     * +sort=100
-     */
+    /** API version for the Content Safety API */
     api_version: string;
-    /**
-     * +label=Custom Host
-     * +usage=Custom host for the PII detection API
-     * +sort=200
-     * +uiType=Hidden
-     */
+    /** Custom host for the PII detection API */
     custom_host?: string;
-    /**
-     * +label=Domain
-     * +usage=Domain for PII detection
-     * +sort=400
-     */
+    /** Domain for PII detection */
     domain: TrueFoundry.AzurePiiGuardrailConfigDomain;
-    /**
-     * +label=PII Categories
-     * +usage=Categories of PII to detect.
-     * +sort=500
-     * +uiType=MultiSelectPills
-     */
+    /** Categories of PII to detect. */
     pii_categories: TrueFoundry.AzurePiiCategory[];
-    /**
-     * +label=Model Version
-     * +usage=Version of the PII detection model to use
-     * +sort=600
-     */
+    /** Version of the PII detection model to use */
     model_version: string;
-    /**
-     * +label=Language Code
-     * +usage=Language code for PII detection
-     * +sort=700
-     */
+    /** Language code for PII detection */
     language: string;
     auth_data: TrueFoundry.AzureKeyAuth;
 }

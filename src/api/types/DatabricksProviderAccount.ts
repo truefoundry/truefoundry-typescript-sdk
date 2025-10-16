@@ -11,39 +11,14 @@ import * as TrueFoundry from "../index.js";
 export interface DatabricksProviderAccount {
     /** +value=provider-account/databricks */
     type: "provider-account/databricks";
-    /**
-     * +label=Name
-     * +sort=100
-     * +usage=The name of the Databricks provider account
-     * +message=3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number
-     * +uiProps={"disableEdit":true}
-     */
+    /** The name of the Databricks provider account */
     name: string;
-    /**
-     * +label=Auth Data
-     * +sort=300
-     * +usage=Databricks authentication credentials
-     */
+    /** Databricks authentication credentials */
     auth_data: TrueFoundry.DatabricksProviderAccountAuthData;
-    /**
-     * +label=Base URL
-     * +sort=400
-     * +usage=The base URL of your Databricks workspace
-     * +message=Base URL must not be empty
-     */
+    /** The base URL of your Databricks workspace */
     base_url: string;
-    /**
-     * +label=Integrations
-     * +sort=500
-     * +usage=List of integrations that are associated with the Databricks provider account
-     * +uiType=IntegrationsGroup
-     */
+    /** List of integrations that are associated with the Databricks provider account */
     integrations: TrueFoundry.DatabricksIntegrations[];
-    /**
-     * +label=Collaborators
-     * +sort=200
-     * +usage=List of users who have access to this provider account
-     * +uiType=Collaborators
-     */
+    /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
 }

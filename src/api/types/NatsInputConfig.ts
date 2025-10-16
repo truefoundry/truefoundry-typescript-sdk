@@ -5,49 +5,22 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes the configuration for the input NATS worker
- * +label=NATS
+ * Describes the configuration for the input NATS worker
  */
 export interface NatsInputConfig {
     /** +value=nats */
     type: "nats";
-    /**
-     * +label=NATS URL
-     * +usage=Input NATS URL
-     * +sort=1
-     */
+    /** Input NATS URL */
     nats_url: string;
-    /**
-     * +label=Stream Name
-     * +usage=Name of the NATS stream
-     * +sort=2
-     */
+    /** Name of the NATS stream */
     stream_name: string;
-    /**
-     * +label=Root Subject
-     * +usage=Root subject of input NATS
-     * +message=Input NATS root subject should only contain alphanumeric letters, dashes(-), and periods(.)
-     * +sort=3
-     */
+    /** Root subject of input NATS */
     root_subject: string;
-    /**
-     * +label=Consumer Name
-     * +usage=Consumer name of input NATS
-     * +message=Consumer name should only contain alphanumeric letters, dashes(-), and underscores(_)
-     * +sort=4
-     */
+    /** Consumer name of input NATS */
     consumer_name: string;
-    /**
-     * +label=Wait Time Seconds
-     * +usage=Wait timeout for long polling.
-     * +sort=5
-     */
+    /** Wait timeout for long polling. */
     wait_time_seconds: number;
-    /**
-     * +label=NATS metrics URL
-     * +usage=URL for the NATS metrics endpoint. It is compulsory if you want to use NATS autoscaling.
-     * +message=NATS Metrics URL should be a valid HTTP/HTTPS URL
-     */
+    /** URL for the NATS metrics endpoint. It is compulsory if you want to use NATS autoscaling. */
     nats_metrics_url?: string;
     auth?: TrueFoundry.NatsUserPasswordAuth;
 }

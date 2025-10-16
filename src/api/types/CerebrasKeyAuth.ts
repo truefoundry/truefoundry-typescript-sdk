@@ -5,12 +5,6 @@
 export interface CerebrasKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /**
-     * +label=API Key
-     * +sort=100
-     * +usage=The API key for Cerebras authentication
-     * +message=API key must not be empty
-     * +uiType=Password
-     */
+    /** The API key for Cerebras authentication */
     api_key: string;
 }

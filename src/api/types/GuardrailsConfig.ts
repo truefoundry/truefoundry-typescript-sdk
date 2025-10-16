@@ -8,23 +8,13 @@ import * as TrueFoundry from "../index.js";
  * +label=Guardrails Configuration
  */
 export interface GuardrailsConfig {
-    /**
-     * +usage=Name of the guardrails configuration
-     * +uiProps={"descriptionInline":true}
-     * +sort=1
-     * +label=Configuration Name
-     */
+    /** Name of the guardrails configuration */
     name: string;
     /**
      * +value=gateway-guardrails-config
      * +sort=2
      */
     type: "gateway-guardrails-config";
-    /**
-     * +usage=List of guardrail rules
-     * +uiProps={"descriptionInline":true}
-     * +sort=3
-     * +label=Guardrail Rules
-     */
+    /** List of guardrail rules */
     rules: TrueFoundry.GuardrailsRule[];
 }

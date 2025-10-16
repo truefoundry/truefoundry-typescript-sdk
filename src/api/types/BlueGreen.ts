@@ -3,21 +3,14 @@
  */
 
 /**
- * +docs=This strategy brings up the new release completely before switching the complete load to the new release.
+ * This strategy brings up the new release completely before switching the complete load to the new release.
  * This minimizes the time that two versions are serving traffic at the same time.
- * +label=Blue Green strategy
  */
 export interface BlueGreen {
     /** +value=blue_green */
     type: "blue_green";
-    /**
-     * +docs=Promote the new release to handle the complete traffic. A manual promotion would be needed if this is disabled
-     * +label=Auto-promotion
-     */
+    /** Promote the new release to handle the complete traffic. A manual promotion would be needed if this is disabled */
     enable_auto_promotion?: boolean;
-    /**
-     * +docs=Promote the new release to handle the complete traffic after waiting for these many seconds
-     * +label=Auto-promotion seconds
-     */
+    /** Promote the new release to handle the complete traffic after waiting for these many seconds */
     auto_promotion_seconds?: number;
 }

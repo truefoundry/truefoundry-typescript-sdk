@@ -5,9 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Specify whether you want to deploy a Docker image or build and deploy from source code
- * +label=Deploy a Docker image or build and deploy from source code
- * +icon=fa-solid fa-cloud-arrow-up:#21B6A8
- * +sort=200
+ * Specify whether you want to deploy a Docker image or build and deploy from source code
  */
 export type ContainerTaskConfigImage = TrueFoundry.Build | TrueFoundry.Image;

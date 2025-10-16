@@ -11,33 +11,13 @@ import * as TrueFoundry from "../index.js";
 export interface McpServerIntegration {
     /** +value=integration/mcp-server/remote */
     type: "integration/mcp-server/remote";
-    /**
-     * +label=Name
-     * +usage=The name of the MCP Server.
-     * +sort=100
-     */
+    /** The name of the MCP Server. */
     name: string;
-    /**
-     * +label=Description
-     * +usage=Provide a brief description of the purpose of this MCP Server.
-     * +uiType=TextArea
-     * +message=1 to 1000 characters long, may contain any character except newlines
-     * +sort=200
-     * +uiProps={"descriptionInline":true}
-     */
+    /** Provide a brief description of the purpose of this MCP Server. */
     description: string;
-    /**
-     * +label=URL
-     * +usage=The endpoint URL for the MCP Server. The system will first try a connection using streamable-http transport on this URL. If that fails, it will attempt a connection using SSE transport on <url>/sse.
-     * +sort=300
-     */
+    /** The endpoint URL for the MCP Server. The system will first try a connection using streamable-http transport on this URL. If that fails, it will attempt a connection using SSE transport on <url>/sse. */
     url: string;
     auth_data?: TrueFoundry.McpServerAuth;
-    /**
-     * +label=Access Control
-     * +usage=List of teams/users who can use this MCP server.
-     * +sort=500
-     * +uiType=AuthorizedSubjects
-     */
+    /** List of teams/users who can use this MCP server. */
     authorized_subjects?: string[];
 }

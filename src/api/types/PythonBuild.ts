@@ -5,75 +5,45 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +docs=Describes that we are using python to build a container image with a specific python version and pip packages installed.
- * +label=Python Code (I don't have Dockerfile)
- * +icon=fa-brands fa-python:#306998
+ * Describes that we are using python to build a container image with a specific python version and pip packages installed.
  */
 export interface PythonBuild {
     /** +value=tfy-python-buildpack */
     type: "tfy-python-buildpack";
-    /**
-     * +label=Python version
-     * +usage=Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python)
-     * +message=Please enter a valid Python version tag
-     * +sort=10002
-     */
+    /** Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python) */
     python_version?: string;
-    /**
-     * +label=Path to build context
-     * +usage=Build path relative to project root path.
-     * +sort=10000
-     */
+    /** Build path relative to project root path. */
     build_context_path: string;
     /**
+     * Path to `requirements.txt` relative to
      * `Path to build context`
-     * +label=Path to requirements
-     * +usage=Path to `requirements.txt` relative to
-     * `Path to build context`
-     * +uiType=Hidden
-     * +sort=10004
      */
     requirements_path?: string;
     /**
-     * +label=Pip packages to install
-     * +usage=Define pip package requirements.
+     * Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
-     * +placeholder=Enter a pip package name E.g. fastapi>=0.90,<1.0
-     * +uiType=Hidden
      */
     pip_packages?: string[];
-    /**
-     * +label=Python dependencies
-     * +usage=Python dependencies to install
-     * +sort=10004
-     */
+    /** Python dependencies to install */
     python_dependencies?: TrueFoundry.PythonBuildPythonDependencies;
     /**
-     * +label=List of Debian packages to install.
-     * +usage=Debian packages to install via `apt get`.
+     * Debian packages to install via `apt get`.
      * In Python/YAML E.g. ["git", "ffmpeg", "htop"]
-     * +placeholder=Enter a debian package name E.g. ffmpeg
      */
     apt_packages?: string[];
     /**
-     * Command will be set as the Entrypoint of the generated
-     * image.
-     * +label=Command
-     * +usage=Command to run when the container starts.
+     * Command to run when the container starts.
      * Command will be set as the Entrypoint of the generated image.
      * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
      * E.g. `python main.py --learning_rate {{learning_rate}}`
-     * +sort=10001
      */
     command: TrueFoundry.PythonBuildCommand;
     /**
-     * +label=CUDA Version
-     * +usage=Version of CUDA Toolkit and CUDNN to install in the image
+     * Version of CUDA Toolkit and CUDNN to install in the image
      * These combinations are based off of publically available docker images on docker hub
      * You can also specify a valid tag of the form {cuda_version_number}-cudnn{cudnn_version_number}-{runtime|devel}-ubuntu{ubuntu_version}
      * Refer https://hub.docker.com/r/nvidia/cuda/tags for valid set of values
      * Note: We use deadsnakes ubuntu ppa to add Python that currently supports only Ubuntu 18.04, 20.04 and 22.04
-     * +sort=10003
      */
     cuda_version?: string;
 }

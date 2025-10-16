@@ -6,10 +6,6 @@
  * +label=Validate
  */
 export interface PolicyValidationOperation {
-    /**
-     * +label=Action Type
-     * +usage=Mutates or Validates Resources
-     * +value=validate
-     */
+    /** Mutates or Validates Resources */
     type: "validate";
 }

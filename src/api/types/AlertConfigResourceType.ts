@@ -3,9 +3,7 @@
  */
 
 /**
- * +label=Resource Type
- * +usage=The type of resource this alert config belongs to. Can be either an application or a cluster.
- * +uiType=Hidden
+ * The type of resource this alert config belongs to. Can be either an application or a cluster.
  */
 export type AlertConfigResourceType = "application" | "cluster";
 export const AlertConfigResourceType = {

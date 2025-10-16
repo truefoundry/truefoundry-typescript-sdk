@@ -5,9 +5,7 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * +label=Deployment Configuration
- * +usage=Configuration details for the Azure AI deployment
- * +sort=400
+ * Configuration details for the Azure AI deployment
  */
 export type AzureAiInferenceModelDeploymentDetails =
     | TrueFoundry.AzureAiManagedDeployment

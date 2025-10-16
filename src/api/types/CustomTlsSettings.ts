@@ -3,20 +3,11 @@
  */
 
 /**
- * +label=TLS Settings
- * +usage=Configure TLS settings for secure connections with custom CA certificates.
+ * Configure TLS settings for secure connections with custom CA certificates.
  */
 export interface CustomTlsSettings {
-    /**
-     * +label=Reject Unauthorized
-     * +usage=When set to true, it will reject any connection which is not authorized with the list of supplied CAs.
-     * +uiType=Switch
-     */
+    /** When set to true, it will reject any connection which is not authorized with the list of supplied CAs. */
     reject_unauthorized: boolean;
-    /**
-     * +label=Custom CA Certificates
-     * +usage=Add custom CA certificates to use for TLS verification.
-     * +uiType=CodeEditor
-     */
+    /** Add custom CA certificates to use for TLS verification. */
     ca_cert?: string;
 }
