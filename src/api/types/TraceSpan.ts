@@ -5,20 +5,34 @@
 import * as TrueFoundry from "../index.js";
 
 export interface TraceSpan {
+    /** Unique identifier for the span within the trace. */
     spanId: string;
+    /** Unique identifier for the trace that contains this span. */
     traceId: string;
+    /** Identifier of the parent span in the trace hierarchy. */
     parentSpanId: string;
+    /** Name of the service that generated this span. */
     serviceName: string;
+    /** Name of the span */
     spanName: string;
+    /** Type of span (e.g., CLIENT, SERVER, INTERNAL, PRODUCER, CONSUMER). */
     spanKind: string;
+    /** Name of the instrumentation scope that created this span. */
     scopeName: string;
+    /** Version of the instrumentation scope that created this span. */
     scopeVersion: string;
     /** Timestamp in ISO 8601 format (e.g., 2025-03-12T00:00:09.872Z). */
     timestamp: string;
-    duration: number;
+    /** Duration of the span in nanoseconds. */
+    durationNs: number;
+    /** Status code of the span (e.g., OK, ERROR, UNSET). */
     statusCode: string;
+    /** Human-readable status message describing the span result. */
     statusMessage: string;
+    /** Key-value pairs containing additional metadata about the span. */
     spanAttributes: Record<string, unknown>;
+    /** Array of events that occurred during the span execution. */
     events: Record<string, unknown>[];
+    /** Subject (user or virtualaccount) that created this span. */
     createdBySubject: TrueFoundry.Subject;
 }
