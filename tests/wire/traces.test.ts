@@ -22,7 +22,7 @@ describe("Traces", () => {
                     scopeName: "scopeName",
                     scopeVersion: "scopeVersion",
                     timestamp: "timestamp",
-                    duration: 1.1,
+                    durationNs: 1.1,
                     statusCode: "statusCode",
                     statusMessage: "statusMessage",
                     spanAttributes: { key: "value" },
@@ -53,7 +53,7 @@ describe("Traces", () => {
                     scopeName: "scopeName",
                     scopeVersion: "scopeVersion",
                     timestamp: "timestamp",
-                    duration: 1.1,
+                    durationNs: 1.1,
                     statusCode: "statusCode",
                     statusMessage: "statusMessage",
                     spanAttributes: {
