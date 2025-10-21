@@ -5,9 +5,10 @@
 /**
  * Subject type
  */
-export type SubjectType = "user" | "team" | "serviceaccount";
+export type SubjectType = "user" | "team" | "serviceaccount" | "virtualaccount";
 export const SubjectType = {
     User: "user",
     Team: "team",
     Serviceaccount: "serviceaccount",
+    Virtualaccount: "virtualaccount",
 } as const;
