@@ -7,9 +7,9 @@ This library provides convenient access to the TrueFoundry API.
 
 > [!tip]
 > You can ask questions about this SDK using DeepWiki
->
 > - Python: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-python-sdk)
 > - TypeScript: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-typescript-sdk)
+
 
 ## Installation
 
@@ -29,7 +29,7 @@ Instantiate and use the client with the following:
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.applications.list({
+const pageableResponse = await client.applications.list({
     limit: 10,
     offset: 0,
     applicationId: "applicationId",
@@ -46,9 +46,9 @@ const response = await client.applications.list({
     deviceTypeFilter: "cpu",
     lastDeployedBySubjects: "lastDeployedBySubjects",
     lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true,
+    isRecommendationPresentAndVisible: true
 });
-for await (const item of response) {
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
@@ -70,11 +70,14 @@ let page = await client.applications.list({
     deviceTypeFilter: "cpu",
     lastDeployedBySubjects: "lastDeployedBySubjects",
     lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true,
+    isRecommendationPresentAndVisible: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
 ## Request And Response Types
@@ -118,14 +121,14 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.users.list({
+const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
     query: "query",
     showInvalidUsers: true,
-    includeVirtualAccounts: "includeVirtualAccounts",
+    includeVirtualAccounts: "includeVirtualAccounts"
 });
-for await (const item of response) {
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
@@ -135,11 +138,14 @@ let page = await client.users.list({
     offset: 0,
     query: "query",
     showInvalidUsers: true,
-    includeVirtualAccounts: "includeVirtualAccounts",
+    includeVirtualAccounts: "includeVirtualAccounts"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
 ## Advanced
@@ -224,7 +230,10 @@ console.log(rawResponse.headers['X-My-Header']);
 
 ### Runtime Compatibility
 
+
 The SDK works in the following runtimes:
+
+
 
 - Node.js 18+
 - Vercel

@@ -1,1 +1,1 @@
-export { type ArtifactVersionsListRequest } from "./ArtifactVersionsListRequest.js";
+export type { ArtifactVersionsListRequest } from "./ArtifactVersionsListRequest.js";

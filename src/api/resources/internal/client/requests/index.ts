@@ -1,1 +1,1 @@
-export { type InternalGetIdFromFqnRequest } from "./InternalGetIdFromFqnRequest.js";
+export type { InternalGetIdFromFqnRequest } from "./InternalGetIdFromFqnRequest.js";

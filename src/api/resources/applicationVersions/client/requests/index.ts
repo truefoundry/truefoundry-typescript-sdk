@@ -1,1 +1,1 @@
-export { type ApplicationVersionsListRequest } from "./ApplicationVersionsListRequest.js";
+export type { ApplicationVersionsListRequest } from "./ApplicationVersionsListRequest.js";
