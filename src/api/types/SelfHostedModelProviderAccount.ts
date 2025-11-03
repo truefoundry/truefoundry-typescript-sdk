@@ -16,4 +16,5 @@ export interface SelfHostedModelProviderAccount {
     integrations: TrueFoundry.SelfHostedModelIntegrations[];
     /** Collaborators */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

@@ -14,8 +14,10 @@ export interface McpServerIntegration {
     name: string;
     /** Provide a brief description of the purpose of this MCP Server. */
     description: string;
-    /** The endpoint URL for the MCP Server. The system will first try a connection using streamable-http transport on this URL. If that fails, it will attempt a connection using SSE transport on <url>/sse. */
+    /** The endpoint URL for the MCP Server. */
     url: string;
+    /** The transport protocol to use for communication with the MCP Server. */
+    transport: TrueFoundry.McpServerIntegrationTransport;
     auth_data?: TrueFoundry.McpServerAuth;
     /** List of teams/users who can use this MCP server. */
     authorized_subjects?: string[];

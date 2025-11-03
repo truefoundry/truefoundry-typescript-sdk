@@ -16,7 +16,8 @@ export interface AwsBedrockProviderAccount {
     /** Authentication data for the AWS account */
     auth_data?: TrueFoundry.AwsBedrockProviderAccountAuthData;
     /** List of integrations that are associated with the AWS Bedrock provider account */
-    integrations: TrueFoundry.BedrockModelV2[];
+    integrations: TrueFoundry.BedrockModel[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

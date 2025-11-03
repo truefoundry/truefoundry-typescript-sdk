@@ -8,18 +8,15 @@ import * as TrueFoundry from "../index.js";
  * Azure OpenAI Model
  */
 export interface AzureOpenAiModel {
-    /** Display Name - 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
+    /** +value=integration/model/azure-openai */
+    type: "integration/model/azure-openai";
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** This is the name of the deployment */
+    /** The model deployment name created in your Azure OpenAI resource (e.g., gpt-4-deployment, gpt-35-turbo-deployment). This is NOT the base model name but the deployment name you configured in Azure. */
     model_id: string;
-    /** +value=integration/model/azure */
-    type: "integration/model/azure";
-    auth_data: TrueFoundry.AzureKeyAuth;
-    /** Azure OpenAI Service endpoint */
-    azure_endpoint: string;
-    /** +sort=100 */
+    /** The Azure OpenAI API version to use */
     api_version: string;
-    /** Specify the type of the model */
+    /** Specify the type of the Azure OpenAI model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */

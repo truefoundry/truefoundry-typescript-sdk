@@ -24,6 +24,7 @@ describe("TrueFoundryClient", () => {
                 description: "description",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
+                ownedBy: { account: "account" },
             },
             action: "CREATE",
             data: { key: "value" },
@@ -62,6 +63,9 @@ describe("TrueFoundryClient", () => {
                         role_id: "role_id",
                     },
                 ],
+                ownedBy: {
+                    account: "account",
+                },
             },
             action: "CREATE",
             data: {

@@ -25,6 +25,7 @@ describe("VirtualAccounts", () => {
                             { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                         ],
                     },
+                    jwtId: "jwtId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
@@ -39,7 +40,9 @@ describe("VirtualAccounts", () => {
                             updatedAt: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    accountId: "accountId",
                     createdBy: "createdBy",
+                    nextScheduledRotation: "nextScheduledRotation",
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -70,6 +73,7 @@ describe("VirtualAccounts", () => {
                             },
                         ],
                     },
+                    jwtId: "jwtId",
                     createdBySubject: {
                         subjectId: "subjectId",
                         subjectType: "user",
@@ -87,7 +91,9 @@ describe("VirtualAccounts", () => {
                             updatedAt: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    accountId: "accountId",
                     createdBy: "createdBy",
+                    nextScheduledRotation: "nextScheduledRotation",
                 },
             ],
             pagination: {
@@ -126,17 +132,18 @@ describe("VirtualAccounts", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    ownedBy: { team: "team" },
+                    expiration_date: "expiration_date",
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
-                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     notification_target: {
                         type: "email",
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
+                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
+                    ownedBy: { team: "team" },
                 },
+                jwtId: "jwtId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -156,7 +163,9 @@ describe("VirtualAccounts", () => {
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
                 ],
+                accountId: "accountId",
                 createdBy: "createdBy",
+                nextScheduledRotation: "nextScheduledRotation",
             },
             token: "token",
         };
@@ -191,7 +200,6 @@ describe("VirtualAccounts", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: "expiration_date",
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -199,23 +207,25 @@ describe("VirtualAccounts", () => {
                             role_id: "role_id",
                         },
                     ],
-                    ownedBy: {
-                        team: "team",
-                    },
+                    expiration_date: "expiration_date",
                     auto_rotate: {
                         auto_rotate_interval: 1,
                         grace_period: 1,
-                    },
-                    secret_store_config: {
-                        integration_fqn: "integration_fqn",
-                        secret_path: "secret_path",
                     },
                     notification_target: {
                         type: "email",
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
+                    secret_store_config: {
+                        integration_fqn: "integration_fqn",
+                        secret_path: "secret_path",
+                    },
+                    ownedBy: {
+                        team: "team",
+                    },
                 },
+                jwtId: "jwtId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -235,7 +245,9 @@ describe("VirtualAccounts", () => {
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
                 ],
+                accountId: "accountId",
                 createdBy: "createdBy",
+                nextScheduledRotation: "nextScheduledRotation",
             },
             token: "token",
         });
@@ -248,15 +260,15 @@ describe("VirtualAccounts", () => {
             manifest: {
                 name: "name",
                 type: "virtual-account",
-                expiration_date: undefined,
                 permissions: [
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                 ],
-                ownedBy: undefined,
+                expiration_date: undefined,
                 auto_rotate: undefined,
-                secret_store_config: undefined,
                 notification_target: undefined,
+                secret_store_config: undefined,
+                ownedBy: undefined,
             },
             dryRun: undefined,
         };
@@ -275,7 +287,6 @@ describe("VirtualAccounts", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: undefined,
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -288,10 +299,11 @@ describe("VirtualAccounts", () => {
                             role_id: "role_id",
                         },
                     ],
-                    ownedBy: undefined,
+                    expiration_date: undefined,
                     auto_rotate: undefined,
-                    secret_store_config: undefined,
                     notification_target: undefined,
+                    secret_store_config: undefined,
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -305,15 +317,15 @@ describe("VirtualAccounts", () => {
             manifest: {
                 name: "name",
                 type: "virtual-account",
-                expiration_date: undefined,
                 permissions: [
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                 ],
-                ownedBy: undefined,
+                expiration_date: undefined,
                 auto_rotate: undefined,
-                secret_store_config: undefined,
                 notification_target: undefined,
+                secret_store_config: undefined,
+                ownedBy: undefined,
             },
             dryRun: undefined,
         };
@@ -332,7 +344,6 @@ describe("VirtualAccounts", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: undefined,
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -345,10 +356,11 @@ describe("VirtualAccounts", () => {
                             role_id: "role_id",
                         },
                     ],
-                    ownedBy: undefined,
+                    expiration_date: undefined,
                     auto_rotate: undefined,
-                    secret_store_config: undefined,
                     notification_target: undefined,
+                    secret_store_config: undefined,
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -368,17 +380,18 @@ describe("VirtualAccounts", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    ownedBy: { team: "team" },
+                    expiration_date: "expiration_date",
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
-                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     notification_target: {
                         type: "email",
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
+                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
+                    ownedBy: { team: "team" },
                 },
+                jwtId: "jwtId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -398,7 +411,9 @@ describe("VirtualAccounts", () => {
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
                 ],
+                accountId: "accountId",
                 createdBy: "createdBy",
+                nextScheduledRotation: "nextScheduledRotation",
             },
             token: "token",
         };
@@ -420,7 +435,6 @@ describe("VirtualAccounts", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: "expiration_date",
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -428,23 +442,25 @@ describe("VirtualAccounts", () => {
                             role_id: "role_id",
                         },
                     ],
-                    ownedBy: {
-                        team: "team",
-                    },
+                    expiration_date: "expiration_date",
                     auto_rotate: {
                         auto_rotate_interval: 1,
                         grace_period: 1,
-                    },
-                    secret_store_config: {
-                        integration_fqn: "integration_fqn",
-                        secret_path: "secret_path",
                     },
                     notification_target: {
                         type: "email",
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
+                    secret_store_config: {
+                        integration_fqn: "integration_fqn",
+                        secret_path: "secret_path",
+                    },
+                    ownedBy: {
+                        team: "team",
+                    },
                 },
+                jwtId: "jwtId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -464,7 +480,9 @@ describe("VirtualAccounts", () => {
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
                 ],
+                accountId: "accountId",
                 createdBy: "createdBy",
+                nextScheduledRotation: "nextScheduledRotation",
             },
             token: "token",
         });
@@ -540,5 +558,95 @@ describe("VirtualAccounts", () => {
         expect(response).toEqual({
             token: "token",
         });
+    });
+
+    test("sync_to_secret_store (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { syncTokenInSecretStoreInfo: { updatedAt: "updatedAt", error: "error" } };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/virtual-accounts/id/sync-to-secret-store")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.virtualAccounts.syncToSecretStore("id");
+        expect(response).toEqual({
+            syncTokenInSecretStoreInfo: {
+                updatedAt: "updatedAt",
+                error: "error",
+            },
+        });
+    });
+
+    test("sync_to_secret_store (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/virtual-accounts/id/sync-to-secret-store")
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.syncToSecretStore("id");
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("sync_to_secret_store (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/virtual-accounts/id/sync-to-secret-store")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.syncToSecretStore("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("regenerate_token", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInDays: 30 };
+        const rawResponseBody = { token: "token" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/virtual-accounts/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.virtualAccounts.regenerateToken("id", {
+            gracePeriodInDays: 30,
+        });
+        expect(response).toEqual({
+            token: "token",
+        });
+    });
+
+    test("delete_jwt", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().delete("/api/svc/v1/virtual-accounts/id/jwt/jwtId").respondWith().statusCode(200).build();
+
+        const response = await client.virtualAccounts.deleteJwt("id", "jwtId");
+        expect(response).toEqual(undefined);
     });
 });

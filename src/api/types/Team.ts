@@ -9,6 +9,7 @@ export interface Team {
     teamName: string;
     description: string;
     tenantName: string;
+    accountId?: string;
     createdBySubject: TrueFoundry.Subject;
     members?: string[];
     createdAt: string;

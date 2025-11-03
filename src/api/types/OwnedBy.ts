@@ -3,9 +3,9 @@
  */
 
 /**
- * Name of the owner who owns the virtual account
+ * Names of the owners that own this resource
  */
 export interface OwnedBy {
-    /** The name of the team who owns the virtual account */
-    team: string;
+    /** The name of the account that owns this resource */
+    account: string;
 }

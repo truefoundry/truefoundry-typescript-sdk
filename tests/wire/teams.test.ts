@@ -18,6 +18,7 @@ describe("Teams", () => {
                     teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
+                    accountId: "accountId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     members: ["members"],
                     createdAt: "2024-01-15T09:30:00Z",
@@ -42,6 +43,7 @@ describe("Teams", () => {
                     teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
+                    accountId: "accountId",
                     createdBySubject: {
                         subjectId: "subjectId",
                         subjectType: "user",
@@ -84,6 +86,7 @@ describe("Teams", () => {
                 teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -93,7 +96,13 @@ describe("Teams", () => {
                 members: ["members"],
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                manifest: { type: "team", name: "name", managers: ["managers"], members: ["members"] },
+                manifest: {
+                    type: "team",
+                    name: "name",
+                    managers: ["managers"],
+                    members: ["members"],
+                    ownedBy: { account: "account" },
+                },
             },
         };
         server
@@ -118,6 +127,7 @@ describe("Teams", () => {
                 teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -132,6 +142,9 @@ describe("Teams", () => {
                     name: "name",
                     managers: ["managers"],
                     members: ["members"],
+                    ownedBy: {
+                        account: "account",
+                    },
                 },
             },
         });
@@ -141,7 +154,13 @@ describe("Teams", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: { type: "team", name: "name", managers: undefined, members: ["members", "members"] },
+            manifest: {
+                type: "team",
+                name: "name",
+                managers: undefined,
+                members: ["members", "members"],
+                ownedBy: undefined,
+            },
             dryRun: undefined,
         };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
@@ -161,6 +180,7 @@ describe("Teams", () => {
                     name: "name",
                     managers: undefined,
                     members: ["members", "members"],
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -171,7 +191,13 @@ describe("Teams", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: { type: "team", name: "name", managers: undefined, members: ["members", "members"] },
+            manifest: {
+                type: "team",
+                name: "name",
+                managers: undefined,
+                members: ["members", "members"],
+                ownedBy: undefined,
+            },
             dryRun: undefined,
         };
         const rawResponseBody = { key: "value" };
@@ -191,6 +217,7 @@ describe("Teams", () => {
                     name: "name",
                     managers: undefined,
                     members: ["members", "members"],
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -207,6 +234,7 @@ describe("Teams", () => {
                 teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -216,7 +244,13 @@ describe("Teams", () => {
                 members: ["members"],
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                manifest: { type: "team", name: "name", managers: ["managers"], members: ["members"] },
+                manifest: {
+                    type: "team",
+                    name: "name",
+                    managers: ["managers"],
+                    members: ["members"],
+                    ownedBy: { account: "account" },
+                },
             },
         };
         server
@@ -234,6 +268,7 @@ describe("Teams", () => {
                 teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -248,6 +283,9 @@ describe("Teams", () => {
                     name: "name",
                     managers: ["managers"],
                     members: ["members"],
+                    ownedBy: {
+                        account: "account",
+                    },
                 },
             },
         });

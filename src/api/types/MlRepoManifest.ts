@@ -17,4 +17,5 @@ export interface MlRepoManifest {
     storage_integration_fqn: string;
     /** Users and Teams that have access to MLRepo */
     collaborators: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

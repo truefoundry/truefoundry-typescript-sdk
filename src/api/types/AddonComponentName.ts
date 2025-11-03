@@ -15,7 +15,6 @@ export type AddonComponentName =
     | "KARPENTER"
     | "KARPENTER_CONFIG"
     | "PROMETHEUS"
-    | "LOKI"
     | "METRICS_SERVER"
     | "KUBECOST"
     | "KEDA"
@@ -43,7 +42,6 @@ export const AddonComponentName = {
     Karpenter: "KARPENTER",
     KarpenterConfig: "KARPENTER_CONFIG",
     Prometheus: "PROMETHEUS",
-    Loki: "LOKI",
     MetricsServer: "METRICS_SERVER",
     Kubecost: "KUBECOST",
     Keda: "KEDA",

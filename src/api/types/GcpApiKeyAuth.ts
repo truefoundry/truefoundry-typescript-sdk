@@ -3,11 +3,11 @@
  */
 
 /**
- * GCP API Key Auth
+ * Google Cloud API Key Auth
  */
 export interface GcpApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /** API Key */
+    /** The API key for Google Cloud authentication */
     apiKey: string;
 }

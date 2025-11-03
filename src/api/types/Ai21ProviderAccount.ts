@@ -17,4 +17,5 @@ export interface Ai21ProviderAccount {
     integrations?: TrueFoundry.Ai21Integrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

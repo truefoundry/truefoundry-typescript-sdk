@@ -16,7 +16,7 @@ export interface PatronusGuardrailConfig {
      */
     type: "integration/guardrail-config/patronus";
     auth_data: TrueFoundry.PatronusKeyAuth;
-    /** The type of request to use for the Patronus Guardrail. */
+    /** Where to apply evaluation: request (evaluate user input) or response (evaluate model response) */
     target: TrueFoundry.PatronusGuardrailConfigTarget;
     /** The evaluators to use for the Patronus Guardrail. */
     evaluators: TrueFoundry.PatronusEvaluator[];

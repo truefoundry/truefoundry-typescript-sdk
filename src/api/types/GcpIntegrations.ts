@@ -8,6 +8,4 @@ export type GcpIntegrations =
     | TrueFoundry.GcpGcr
     | TrueFoundry.GcpGcs
     | TrueFoundry.GcpGsm
-    | TrueFoundry.GcpGkeIntegration
-    | TrueFoundry.VertexModel
-    | TrueFoundry.GoogleModel;
+    | TrueFoundry.GcpGkeIntegration;

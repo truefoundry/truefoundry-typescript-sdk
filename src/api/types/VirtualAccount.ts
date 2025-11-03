@@ -10,10 +10,13 @@ export interface VirtualAccount {
     type: string;
     tenantName: string;
     manifest?: TrueFoundry.VirtualAccountManifest;
+    jwtId?: string;
     createdBySubject: TrueFoundry.Subject;
     createdAt: string;
     updatedAt: string;
     isExpired?: boolean;
     jwts?: TrueFoundry.Jwt[];
+    accountId?: string;
     createdBy?: string;
+    nextScheduledRotation?: string;
 }

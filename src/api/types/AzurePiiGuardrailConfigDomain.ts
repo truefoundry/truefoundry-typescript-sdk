@@ -3,7 +3,7 @@
  */
 
 /**
- * Domain for PII detection
+ * Specialized domain for PII detection. Use healthcare for PHI (Protected Health Information) or none for general text
  */
 export type AzurePiiGuardrailConfigDomain = "none" | "healthcare";
 export const AzurePiiGuardrailConfigDomain = {

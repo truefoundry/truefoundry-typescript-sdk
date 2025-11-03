@@ -90,6 +90,7 @@ describe("Users", () => {
             skipIfUserExists: undefined,
             dryRun: undefined,
             acceptInviteClientURL: undefined,
+            accountId: undefined,
         };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
         server
@@ -108,6 +109,7 @@ describe("Users", () => {
                 skipIfUserExists: undefined,
                 dryRun: undefined,
                 acceptInviteClientURL: undefined,
+                accountId: undefined,
             });
         }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
@@ -121,6 +123,7 @@ describe("Users", () => {
             skipIfUserExists: undefined,
             dryRun: undefined,
             acceptInviteClientURL: undefined,
+            accountId: undefined,
         };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
         server
@@ -139,6 +142,7 @@ describe("Users", () => {
                 skipIfUserExists: undefined,
                 dryRun: undefined,
                 acceptInviteClientURL: undefined,
+                accountId: undefined,
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
     });
@@ -152,6 +156,7 @@ describe("Users", () => {
             skipIfUserExists: undefined,
             dryRun: undefined,
             acceptInviteClientURL: undefined,
+            accountId: undefined,
         };
         const rawResponseBody = { key: "value" };
         server
@@ -170,6 +175,7 @@ describe("Users", () => {
                 skipIfUserExists: undefined,
                 dryRun: undefined,
                 acceptInviteClientURL: undefined,
+                accountId: undefined,
             });
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
@@ -441,7 +447,7 @@ describe("Users", () => {
     test("invite_user (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
+        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email", accountId: undefined };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
         server
             .mockEndpoint()
@@ -456,6 +462,7 @@ describe("Users", () => {
             return await client.users.inviteUser({
                 acceptInviteClientUrl: "acceptInviteClientUrl",
                 email: "email",
+                accountId: undefined,
             });
         }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
@@ -463,7 +470,7 @@ describe("Users", () => {
     test("invite_user (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
+        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email", accountId: undefined };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
         server
             .mockEndpoint()
@@ -478,6 +485,7 @@ describe("Users", () => {
             return await client.users.inviteUser({
                 acceptInviteClientUrl: "acceptInviteClientUrl",
                 email: "email",
+                accountId: undefined,
             });
         }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
@@ -485,7 +493,7 @@ describe("Users", () => {
     test("invite_user (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
+        const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email", accountId: undefined };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
         server
             .mockEndpoint()
@@ -500,6 +508,7 @@ describe("Users", () => {
             return await client.users.inviteUser({
                 acceptInviteClientUrl: "acceptInviteClientUrl",
                 email: "email",
+                accountId: undefined,
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
     });
@@ -732,6 +741,7 @@ describe("Users", () => {
                     teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
+                    accountId: "accountId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     members: ["members"],
                     createdAt: "2024-01-15T09:30:00Z",
@@ -756,6 +766,7 @@ describe("Users", () => {
                     teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
+                    accountId: "accountId",
                     createdBySubject: {
                         subjectId: "subjectId",
                         subjectType: "user",

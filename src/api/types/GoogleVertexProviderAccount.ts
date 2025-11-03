@@ -17,7 +17,8 @@ export interface GoogleVertexProviderAccount {
     region: TrueFoundry.GcpRegion;
     auth_data?: TrueFoundry.GcpKeyFileAuth;
     /** List of integrations that are associated with the Google Vertex provider account */
-    integrations: TrueFoundry.VertexModelV2[];
+    integrations: TrueFoundry.VertexModel[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

@@ -460,6 +460,240 @@ export class VirtualAccounts {
         }
     }
 
+    /**
+     * Syncs the virtual account token to the configured secret store. Returns the updated JWT with sync metadata including timestamp and error (if any).
+     *
+     * @param {string} id - serviceaccount id
+     * @param {VirtualAccounts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.virtualAccounts.syncToSecretStore("id")
+     */
+    public syncToSecretStore(
+        id: string,
+        requestOptions?: VirtualAccounts.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.SyncVirtualAccountTokenResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__syncToSecretStore(id, requestOptions));
+    }
+
+    private async __syncToSecretStore(
+        id: string,
+        requestOptions?: VirtualAccounts.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.SyncVirtualAccountTokenResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/virtual-accounts/${encodeURIComponent(id)}/sync-to-secret-store`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.SyncVirtualAccountTokenResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/virtual-accounts/{id}/sync-to-secret-store.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Regenerate token for a virtual account by id. The old token will remain valid for the specified grace period.
+     *
+     * @param {string} id - serviceaccount id
+     * @param {TrueFoundry.RegenerateVirtualAccountTokenRequest} request
+     * @param {VirtualAccounts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.virtualAccounts.regenerateToken("id", {
+     *         gracePeriodInDays: 30
+     *     })
+     */
+    public regenerateToken(
+        id: string,
+        request: TrueFoundry.RegenerateVirtualAccountTokenRequest,
+        requestOptions?: VirtualAccounts.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetTokenForVirtualAccountResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__regenerateToken(id, request, requestOptions));
+    }
+
+    private async __regenerateToken(
+        id: string,
+        request: TrueFoundry.RegenerateVirtualAccountTokenRequest,
+        requestOptions?: VirtualAccounts.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetTokenForVirtualAccountResponse>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/virtual-accounts/${encodeURIComponent(id)}/regenerate-token`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GetTokenForVirtualAccountResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling POST /api/svc/v1/virtual-accounts/{id}/regenerate-token.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
+    /**
+     * Delete a JWT for a virtual account by id
+     *
+     * @param {string} id - virtual account id
+     * @param {string} jwtId - JWT id
+     * @param {VirtualAccounts.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.virtualAccounts.deleteJwt("id", "jwtId")
+     */
+    public deleteJwt(
+        id: string,
+        jwtId: string,
+        requestOptions?: VirtualAccounts.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__deleteJwt(id, jwtId, requestOptions));
+    }
+
+    private async __deleteJwt(
+        id: string,
+        jwtId: string,
+        requestOptions?: VirtualAccounts.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/virtual-accounts/${encodeURIComponent(id)}/jwt/${encodeURIComponent(jwtId)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
+            maxRetries: requestOptions?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        switch (_response.error.reason) {
+            case "non-json":
+                throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.rawBody,
+                    rawResponse: _response.rawResponse,
+                });
+            case "timeout":
+                throw new errors.TrueFoundryTimeoutError(
+                    "Timeout exceeded when calling DELETE /api/svc/v1/virtual-accounts/{id}/jwt/{jwtId}.",
+                );
+            case "unknown":
+                throw new errors.TrueFoundryError({
+                    message: _response.error.errorMessage,
+                    rawResponse: _response.rawResponse,
+                });
+        }
+    }
+
     protected async _getAuthorizationHeader(): Promise<string> {
         const bearer = (await core.Supplier.get(this._options.apiKey)) ?? process?.env["TFY_API_KEY"];
         if (bearer == null) {

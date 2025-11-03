@@ -8,8 +8,5 @@ export type AzureIntegrations =
     | TrueFoundry.AzureAksIntegration
     | TrueFoundry.AzureContainerRegistry
     | TrueFoundry.AzureBlobStorage
-    | TrueFoundry.AzureOpenAiModel
     | TrueFoundry.AzureVault
-    | TrueFoundry.AzureReposIntegration
-    | TrueFoundry.AzureAiInferenceModel
-    | TrueFoundry.AzureFoundryModel;
+    | TrueFoundry.AzureReposIntegration;

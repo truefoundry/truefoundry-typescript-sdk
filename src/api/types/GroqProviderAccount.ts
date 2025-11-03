@@ -14,7 +14,8 @@ export interface GroqProviderAccount {
     name: string;
     auth_data: TrueFoundry.GroqKeyAuth;
     /** List of integrations that are associated with the Groq provider account */
-    integrations?: TrueFoundry.GroqIntegrations[];
+    integrations: TrueFoundry.GroqIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

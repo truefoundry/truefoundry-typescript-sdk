@@ -23,7 +23,7 @@ export interface QuerySpansRequest {
     /** Array of parent span IDs to filter by */
     parentSpanIds?: string[];
     /** Array of subject types to filter by */
-    createdBySubjectTypes?: TrueFoundry.TracesSubjectType[];
+    createdBySubjectTypes?: TrueFoundry.SubjectType[];
     /** Array of subject slugs to filter by */
     createdBySubjectSlugs?: string[];
     /** Array of application names to filter by */
@@ -32,8 +32,10 @@ export interface QuerySpansRequest {
     limit?: number;
     /** Sort direction for results based on time. Defaults to descending (latest first) */
     sortDirection?: TrueFoundry.SortDirection;
-    /** Cursor token for pagination. This is an opaque string that should be passed as-is from the previous response */
+    /** An opaque string that should be passed as-is from previous response for fetching the next page. Pass `$response.pagination.nextPageToken` from previous response for fetching the next page. */
     pageToken?: string;
     /** Tracing project FQN (e.g., truefoundry:tracing-project:tfy-default) */
     tracingProjectFqn: string;
+    /** Array of filters */
+    filters?: TrueFoundry.QuerySpansRequestFiltersItem[];
 }

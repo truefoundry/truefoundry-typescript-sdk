@@ -10,6 +10,7 @@ export interface Cluster {
     name: string;
     manifest: TrueFoundry.ClusterManifest;
     tenantName: string;
+    accountId?: string;
     createdBySubject?: TrueFoundry.Subject;
     createdAt: string;
     updatedAt: string;

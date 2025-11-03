@@ -43,4 +43,5 @@ export interface ClusterManifest {
     node_label_keys?: TrueFoundry.ClusterManifestNodeLabelKeys;
     /** Collaborators who can access this cluster */
     collaborators: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

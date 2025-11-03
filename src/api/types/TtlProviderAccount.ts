@@ -14,4 +14,5 @@ export interface TtlProviderAccount {
     name: string;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.TtlIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

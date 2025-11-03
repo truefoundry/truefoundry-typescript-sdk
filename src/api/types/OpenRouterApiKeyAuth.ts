@@ -8,6 +8,6 @@
 export interface OpenRouterApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /** Your OpenRouter API key for authentication */
+    /** The API key for OpenRouter authentication */
     api_key: string;
 }

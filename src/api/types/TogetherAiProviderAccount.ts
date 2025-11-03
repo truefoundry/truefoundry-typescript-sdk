@@ -14,7 +14,8 @@ export interface TogetherAiProviderAccount {
     name: string;
     auth_data: TrueFoundry.TogetherAiKeyAuth;
     /** List of integrations that are associated with the Together AI provider account */
-    integrations?: TrueFoundry.TogetherAiIntegrations[];
+    integrations: TrueFoundry.TogetherAiIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

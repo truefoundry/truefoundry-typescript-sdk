@@ -8,17 +8,15 @@ import * as TrueFoundry from "../index.js";
  * Bedrock Model
  */
 export interface BedrockModel {
-    /** Display Name - 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** +sort=2 */
+    /** The AWS Bedrock model identifier or inference profile. Can be a foundation model ID (e.g., anthropic.claude-3-5-sonnet-20240620-v1:0, amazon.titan-text-express-v1), an inference profile ID (e.g., us.anthropic.claude-3-5-sonnet-20240620-v1:0), or an inference profile ARN (e.g., arn:aws:bedrock:us-east-1:123456789012:inference-profile/my-profile). */
     model_id: string;
-    /** +value=integration/model/aws */
-    type: "integration/model/aws";
-    /** Auth Data */
-    auth_data?: TrueFoundry.BedrockModelAuthData;
-    region: TrueFoundry.AwsRegion;
-    /** Specify the type of the model */
+    /** +value=integration/model/bedrock */
+    type: "integration/model/bedrock";
+    /** Specify the type of the Bedrock model */
     model_types: TrueFoundry.ModelType[];
+    region?: TrueFoundry.AwsRegion;
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];

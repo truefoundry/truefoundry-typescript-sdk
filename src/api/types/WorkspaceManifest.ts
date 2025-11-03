@@ -21,4 +21,5 @@ export interface WorkspaceManifest {
     collaborators?: TrueFoundry.Collaborator[];
     /** Permissions */
     permissions?: TrueFoundry.Permissions[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

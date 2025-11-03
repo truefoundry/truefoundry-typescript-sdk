@@ -27,6 +27,7 @@ describe("MlRepos", () => {
                     description: "description",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [{ subject: "subject", role_id: "role_id" }],
+                    ownedBy: { account: "account" },
                 },
                 created_by_subject: {
                     subjectId: "subjectId",
@@ -35,6 +36,7 @@ describe("MlRepos", () => {
                     subjectDisplayName: "subjectDisplayName",
                 },
                 created_at: "2024-01-15T09:30:00Z",
+                account_id: "account_id",
                 id: "420",
                 num_runs: 10,
                 artifact_type_counts: { key: 1 },
@@ -77,6 +79,9 @@ describe("MlRepos", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: {
+                        account: "account",
+                    },
                 },
                 created_by_subject: {
                     subjectId: "subjectId",
@@ -85,6 +90,7 @@ describe("MlRepos", () => {
                     subjectDisplayName: "subjectDisplayName",
                 },
                 created_at: "2024-01-15T09:30:00Z",
+                account_id: "account_id",
                 id: "420",
                 num_runs: 10,
                 artifact_type_counts: {
@@ -108,6 +114,7 @@ describe("MlRepos", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
         };
         const rawResponseBody = { key: "value" };
@@ -137,6 +144,7 @@ describe("MlRepos", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
             });
         }).rejects.toThrow(TrueFoundry.BadRequestError);
@@ -155,6 +163,7 @@ describe("MlRepos", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
         };
         const rawResponseBody = { key: "value" };
@@ -184,6 +193,7 @@ describe("MlRepos", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
             });
         }).rejects.toThrow(TrueFoundry.NotFoundError);
@@ -202,6 +212,7 @@ describe("MlRepos", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
@@ -231,6 +242,7 @@ describe("MlRepos", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
@@ -249,6 +261,7 @@ describe("MlRepos", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
         };
         const rawResponseBody = { key: "value" };
@@ -278,6 +291,7 @@ describe("MlRepos", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
             });
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
@@ -296,6 +310,7 @@ describe("MlRepos", () => {
                     description: "description",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [{ subject: "subject", role_id: "role_id" }],
+                    ownedBy: { account: "account" },
                 },
                 created_by_subject: {
                     subjectId: "subjectId",
@@ -304,6 +319,7 @@ describe("MlRepos", () => {
                     subjectDisplayName: "subjectDisplayName",
                 },
                 created_at: "2024-01-15T09:30:00Z",
+                account_id: "account_id",
                 id: "420",
                 num_runs: 10,
                 artifact_type_counts: { key: 1 },
@@ -333,6 +349,9 @@ describe("MlRepos", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: {
+                        account: "account",
+                    },
                 },
                 created_by_subject: {
                     subjectId: "subjectId",
@@ -341,6 +360,7 @@ describe("MlRepos", () => {
                     subjectDisplayName: "subjectDisplayName",
                 },
                 created_at: "2024-01-15T09:30:00Z",
+                account_id: "account_id",
                 id: "420",
                 num_runs: 10,
                 artifact_type_counts: {
@@ -420,6 +440,7 @@ describe("MlRepos", () => {
                     },
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     created_at: "2024-01-15T09:30:00Z",
+                    account_id: "account_id",
                     id: "420",
                     num_runs: 10,
                     artifact_type_counts: { key: 1 },
@@ -456,6 +477,7 @@ describe("MlRepos", () => {
                         subjectType: "user",
                     },
                     created_at: "2024-01-15T09:30:00Z",
+                    account_id: "account_id",
                     id: "420",
                     num_runs: 10,
                     artifact_type_counts: {

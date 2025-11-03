@@ -7,11 +7,13 @@ export type AiGatewayGetGatewayConfigRequestType =
     | "gateway-fallback-config"
     | "gateway-load-balancing-config"
     | "gateway-guardrails-config"
-    | "gateway-budget-config";
+    | "gateway-budget-config"
+    | "gateway-otel-config";
 export const AiGatewayGetGatewayConfigRequestType = {
     GatewayRateLimitingConfig: "gateway-rate-limiting-config",
     GatewayFallbackConfig: "gateway-fallback-config",
     GatewayLoadBalancingConfig: "gateway-load-balancing-config",
     GatewayGuardrailsConfig: "gateway-guardrails-config",
     GatewayBudgetConfig: "gateway-budget-config",
+    GatewayOtelConfig: "gateway-otel-config",
 } as const;

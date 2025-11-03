@@ -6,7 +6,6 @@ import * as TrueFoundry from "../index.js";
 
 export type CustomIntegrations =
     | TrueFoundry.CustomUsernamePasswordArtifactsRegistry
-    | TrueFoundry.CustomModel
     | TrueFoundry.EmailNotificationChannel
     | TrueFoundry.CustomHelmRepo
     | TrueFoundry.CustomBlobStorage

@@ -16,7 +16,8 @@ export interface AzureOpenAiProviderAccount {
     azure_endpoint: string;
     auth_data: TrueFoundry.AzureKeyAuth;
     /** List of integrations that are associated with the Azure OpenAI provider account */
-    integrations: TrueFoundry.AzureOpenAiModelV2[];
+    integrations: TrueFoundry.AzureOpenAiModel[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

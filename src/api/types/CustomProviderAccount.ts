@@ -15,4 +15,5 @@ export interface CustomProviderAccount {
     auth_data?: TrueFoundry.CustomBasicAuth;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.CustomIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

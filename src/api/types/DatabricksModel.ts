@@ -10,9 +10,9 @@ import * as TrueFoundry from "../index.js";
 export interface DatabricksModel {
     /** +value=integration/model/databricks */
     type: "integration/model/databricks";
-    /** Name to identify this Databricks model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The name of the Databricks model to use */
+    /** The serving endpoint name configured in your Databricks workspace. This is the endpoint you created in Databricks Model Serving, not the underlying model name. */
     model_id: string;
     /** Specify the type of the Databricks model */
     model_types: TrueFoundry.ModelType[];

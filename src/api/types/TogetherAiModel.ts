@@ -10,9 +10,9 @@ import * as TrueFoundry from "../index.js";
 export interface TogetherAiModel {
     /** +value=integration/model/together-ai */
     type: "integration/model/together-ai";
-    /** Name to identify this Together AI model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The name of the Together AI model to use */
+    /** The Together AI model identifier (e.g., deepseek-ai/DeepSeek-R1, moonshotai/Kimi-K2-Instruct-0905). This is the model name from Together AI's model catalog. */
     model_id: string;
     /** Specify the type of the Together AI model */
     model_types: TrueFoundry.ModelType[];

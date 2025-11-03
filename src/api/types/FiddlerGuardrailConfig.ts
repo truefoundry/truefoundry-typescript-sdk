@@ -17,6 +17,6 @@ export interface FiddlerGuardrailConfig {
     type: "integration/guardrail-config/fiddler";
     auth_data: TrueFoundry.FiddlerKeyAuth;
     guard_type: TrueFoundry.FiddlerGuardType;
-    /** Threshold for the guardrail. */
+    /** Confidence threshold (0.0-1.0) for flagging content. Content scoring above the threshold will be flagged */
     threshold?: number;
 }

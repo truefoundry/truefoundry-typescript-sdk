@@ -16,4 +16,5 @@ export interface McpServerProviderAccount {
     collaborators: TrueFoundry.Collaborator[];
     /** List of MCP Servers, which are part of this MCP Server Group. */
     integrations: TrueFoundry.McpServerIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

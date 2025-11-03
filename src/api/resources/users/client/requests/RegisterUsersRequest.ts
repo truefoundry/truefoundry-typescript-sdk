@@ -19,4 +19,6 @@ export interface RegisterUsersRequest {
     dryRun?: boolean;
     /** Url to redirect when invite is accepted */
     acceptInviteClientURL?: string;
+    /** Account ID to add the user to */
+    accountId?: string;
 }

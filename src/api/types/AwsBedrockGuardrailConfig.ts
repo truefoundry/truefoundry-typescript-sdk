@@ -22,9 +22,9 @@ export interface AwsBedrockGuardrailConfig {
     operation: TrueFoundry.AwsBedrockGuardrailConfigOperation;
     /** Authentication data for the AWS account */
     auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
-    /** The ID of the Guardrail to use. */
+    /** The unique identifier of the Bedrock Guardrail created in AWS console */
     guardrail_id: string;
-    /** The version of the Guardrail to use. */
+    /** Version number of the guardrail to use (e.g., 2 for version 2) */
     guardrail_version: string;
     region: TrueFoundry.AwsRegion;
 }

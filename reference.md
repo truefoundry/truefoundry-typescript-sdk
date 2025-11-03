@@ -1841,6 +1841,213 @@ await client.virtualAccounts.getToken("id");
 </dl>
 </details>
 
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">syncToSecretStore</a>(id) -> TrueFoundry.SyncVirtualAccountTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Syncs the virtual account token to the configured secret store. Returns the updated JWT with sync metadata including timestamp and error (if any).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.virtualAccounts.syncToSecretStore("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — serviceaccount id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VirtualAccounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">regenerateToken</a>(id, { ...params }) -> TrueFoundry.GetTokenForVirtualAccountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Regenerate token for a virtual account by id. The old token will remain valid for the specified grace period.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.virtualAccounts.regenerateToken("id", {
+    gracePeriodInDays: 30,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — serviceaccount id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.RegenerateVirtualAccountTokenRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VirtualAccounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">deleteJwt</a>(id, jwtId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a JWT for a virtual account by id
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.virtualAccounts.deleteJwt("id", "jwtId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — virtual account id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**jwtId:** `string` — JWT id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VirtualAccounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Secrets
 
 <details><summary><code>client.secrets.<a href="/src/api/resources/secrets/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.Secret></code></summary>

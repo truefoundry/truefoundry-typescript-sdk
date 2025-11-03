@@ -15,17 +15,17 @@ export interface AzureContentSafetyGuardrailConfig {
      * +value=integration/guardrail-config/azure-content-safety
      */
     type: "integration/guardrail-config/azure-content-safety";
-    /** The resource name where API is deployed. */
+    /** Name of your Azure Content Safety resource where the service is deployed (e.g., my-content-safety) */
     resource_name: string;
     /** API version for the Content Safety API */
     api_version: string;
-    /** Custom host for the PII detection API */
+    /** Custom endpoint URL for the Content Safety API (optional, uses default Azure endpoint if not specified) */
     custom_host?: string;
-    /** Array of blocklist names to check against */
+    /** Names of custom blocklists created in Azure Content Safety to check text against. Leave empty if not using custom blocklists */
     blocklist_names?: string[];
-    /** Severity threshold for the Content Safety API */
+    /** Minimum severity level (0-6) to flag content. Higher values are more restrictive. 0=Safe, 2=Low risk, 4=Medium risk, 6=High risk */
     severity_threshold: number;
-    /** Categories to check against */
+    /** Types of harmful content to detect: Hate (hate speech), SelfHarm (self-injury), Sexual (sexual content), Violence (violent content) */
     categories: TrueFoundry.AzureContentSafetyCategory[];
     auth_data: TrueFoundry.AzureKeyAuth;
 }

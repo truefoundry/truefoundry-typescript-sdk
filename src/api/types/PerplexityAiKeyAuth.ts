@@ -8,6 +8,6 @@
 export interface PerplexityAiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /** Your Perplexity AI API key for authentication */
+    /** The API key for Perplexity AI authentication */
     api_key: string;
 }

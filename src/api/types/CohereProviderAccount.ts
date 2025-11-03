@@ -17,4 +17,5 @@ export interface CohereProviderAccount {
     integrations?: TrueFoundry.CohereIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

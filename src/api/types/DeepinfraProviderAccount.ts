@@ -17,4 +17,5 @@ export interface DeepinfraProviderAccount {
     integrations?: TrueFoundry.DeepinfraIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }
