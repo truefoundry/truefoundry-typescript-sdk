@@ -37,5 +37,5 @@ export interface QuerySpansRequest {
     /** Tracing project FQN (e.g., truefoundry:tracing-project:tfy-default) */
     tracingProjectFqn: string;
     /** Array of filters */
-    filters?: Record<string, unknown>[];
+    filters?: TrueFoundry.QuerySpansRequestFiltersItem[];
 }
