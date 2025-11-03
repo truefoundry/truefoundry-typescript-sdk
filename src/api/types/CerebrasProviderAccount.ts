@@ -17,4 +17,5 @@ export interface CerebrasProviderAccount {
     integrations?: TrueFoundry.CerebrasIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

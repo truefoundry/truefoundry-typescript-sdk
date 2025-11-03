@@ -21,6 +21,6 @@ export interface OpenAiModerationsGuardrailConfig {
     auth_data: TrueFoundry.OpenaiApiKeyAuth;
     /** The model to use for the OpenAI Moderation API. */
     model: string;
-    /** The thresholds for the OpenAI Moderation API. */
+    /** Confidence thresholds (0.0-1.0) for each content category. Content scoring above the threshold will be flagged. Lower values are more strict */
     category_thresholds?: Record<string, TrueFoundry.OpenAiModerationsGuardrailConfigCategoryThresholdsValue>;
 }

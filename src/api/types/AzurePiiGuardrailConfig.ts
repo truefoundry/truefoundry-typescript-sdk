@@ -15,19 +15,19 @@ export interface AzurePiiGuardrailConfig {
      * +value=integration/guardrail-config/azure-pii
      */
     type: "integration/guardrail-config/azure-pii";
-    /** The resource name where API is deployed. */
+    /** Name of your Azure AI Language resource where the PII detection service is deployed (e.g., my-language-resource) */
     resource_name: string;
-    /** API version for the Content Safety API */
+    /** API version for the PII detection API */
     api_version: string;
-    /** Custom host for the PII detection API */
+    /** Custom endpoint URL for the PII detection API (optional, uses default Azure endpoint if not specified) */
     custom_host?: string;
-    /** Domain for PII detection */
+    /** Specialized domain for PII detection. Use healthcare for PHI (Protected Health Information) or none for general text */
     domain: TrueFoundry.AzurePiiGuardrailConfigDomain;
     /** Categories of PII to detect. */
     pii_categories: TrueFoundry.AzurePiiCategory[];
-    /** Version of the PII detection model to use */
+    /** Version of the PII detection model to use, use latest for the newest model or specify a specific version for consistency */
     model_version: string;
-    /** Language code for PII detection */
+    /** Language code for PII detection (e.g., en for English) */
     language: string;
     auth_data: TrueFoundry.AzureKeyAuth;
 }

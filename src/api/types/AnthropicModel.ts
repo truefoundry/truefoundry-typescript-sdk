@@ -8,9 +8,9 @@ import * as TrueFoundry from "../index.js";
  * Anthropic Model
  */
 export interface AnthropicModel {
-    /** Name to identify this Anthropic model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The unique identifier for the Anthropic model */
+    /** The Anthropic model identifier (e.g., claude-3-5-sonnet-20241022, claude-3-opus-20240229, claude-3-haiku-20240307). This is the standard model name from Anthropic's API documentation. */
     model_id: string;
     /** +value=integration/model/anthropic */
     type: "integration/model/anthropic";

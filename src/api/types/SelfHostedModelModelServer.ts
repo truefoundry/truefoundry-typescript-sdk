@@ -7,16 +7,16 @@
  */
 export type SelfHostedModelModelServer =
     | "openai-compatible"
-    | "vllm-openai"
-    | "tei"
-    | "infinity"
+    | "cohere-rerank-v2"
     | "nemo-retriever"
-    | "cohere-rerank-v2";
+    | "infinity"
+    | "tei"
+    | "vllm-openai";
 export const SelfHostedModelModelServer = {
     OpenaiCompatible: "openai-compatible",
-    VllmOpenai: "vllm-openai",
-    Tei: "tei",
-    Infinity: "infinity",
-    NemoRetriever: "nemo-retriever",
     CohereRerankV2: "cohere-rerank-v2",
+    NemoRetriever: "nemo-retriever",
+    Infinity: "infinity",
+    Tei: "tei",
+    VllmOpenai: "vllm-openai",
 } as const;

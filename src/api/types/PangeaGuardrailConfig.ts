@@ -19,7 +19,7 @@ export interface PangeaGuardrailConfig {
     guard_type: TrueFoundry.PangeaGuardType;
     /** Domain of the cloud provider and region where your Pangea project is configured. Example: if endpoint is: https://<service_name>.aws.us-west-2.pangea.cloud/v1/text/guard, the input should be: aws.us-west-2.pangea.cloud */
     domain: string;
-    /** Recipe key of a configuration of data types and settings defined in the Pangea User Console. It specifies the rules that are to be applied to the text, such as defang malicious URLs. */
+    /** Recipe key from Pangea console defining security rules and data types to apply */
     recipe?: string;
     /** Overrides for the Pangea account */
     overrides?: Record<string, string>;

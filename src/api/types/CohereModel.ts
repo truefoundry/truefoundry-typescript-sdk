@@ -10,9 +10,9 @@ import * as TrueFoundry from "../index.js";
 export interface CohereModel {
     /** +value=integration/model/cohere */
     type: "integration/model/cohere";
-    /** Name to identify this Cohere model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The name of the Cohere model to use */
+    /** The Cohere model identifier (e.g., command-a-03-2025, command-r-03-2024, command-r-03-2024). This is the standard model id from Cohere's model catalog. */
     model_id: string;
     /** Specify the type of the Cohere model */
     model_types: TrueFoundry.ModelType[];

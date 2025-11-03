@@ -14,7 +14,8 @@ export interface PalmProviderAccount {
     name: string;
     auth_data: TrueFoundry.PalmKeyAuth;
     /** List of integrations that are associated with the PaLM provider account */
-    integrations?: TrueFoundry.PalmIntegrations[];
+    integrations: TrueFoundry.PalmIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

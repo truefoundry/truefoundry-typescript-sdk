@@ -3,7 +3,7 @@
  */
 
 /**
- * The type of request to use for the Patronus Guardrail.
+ * Where to apply evaluation: request (evaluate user input) or response (evaluate model response)
  */
 export type PatronusGuardrailConfigTarget = "response" | "request";
 export const PatronusGuardrailConfigTarget = {

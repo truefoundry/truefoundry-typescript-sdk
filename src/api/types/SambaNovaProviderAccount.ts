@@ -14,7 +14,8 @@ export interface SambaNovaProviderAccount {
     name: string;
     auth_data: TrueFoundry.SambaNovaKeyAuth;
     /** List of integrations that are associated with the SambaNova provider account */
-    integrations?: TrueFoundry.SambaNovaIntegrations[];
+    integrations: TrueFoundry.SambaNovaIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

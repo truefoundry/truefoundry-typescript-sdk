@@ -14,7 +14,8 @@ export interface NomicProviderAccount {
     name: string;
     auth_data: TrueFoundry.NomicKeyAuth;
     /** List of integrations that are associated with the Nomic provider account */
-    integrations?: TrueFoundry.NomicIntegrations[];
+    integrations: TrueFoundry.NomicIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

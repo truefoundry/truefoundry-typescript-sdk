@@ -13,4 +13,6 @@ export interface CreatePersonalAccessTokenRequest {
     name: string;
     /** Expiration date in ISO format (e.g. 2025-08-01T12:00) */
     expirationDate?: string;
+    /** Account name that owns this PAT */
+    accountName?: string;
 }

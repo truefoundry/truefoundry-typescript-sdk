@@ -8,9 +8,9 @@ import * as TrueFoundry from "../index.js";
  * Sagemaker Model
  */
 export interface SagemakerModel {
-    /** Name to identify this Sagemaker model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The unique identifier for the Sagemaker model */
+    /** The SageMaker endpoint name you created for your model deployment. This is the name of the inference endpoint in AWS SageMaker, not the model name. */
     model_id: string;
     /** +value=integration/model/sagemaker */
     type: "integration/model/sagemaker";

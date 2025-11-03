@@ -6,7 +6,7 @@ import * as TrueFoundry from "../index.js";
 
 export type GatewayConfig =
     | TrueFoundry.RateLimitConfig
-    | TrueFoundry.FallbackConfig
     | TrueFoundry.LoadBalancingConfig
     | TrueFoundry.GuardrailsConfig
-    | TrueFoundry.BudgetConfig;
+    | TrueFoundry.BudgetConfig
+    | TrueFoundry.GatewayOtelConfig;

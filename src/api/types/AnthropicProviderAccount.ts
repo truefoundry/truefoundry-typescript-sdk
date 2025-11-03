@@ -17,4 +17,5 @@ export interface AnthropicProviderAccount {
     integrations?: TrueFoundry.AnthropicIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

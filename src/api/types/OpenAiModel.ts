@@ -10,9 +10,9 @@ import * as TrueFoundry from "../index.js";
 export interface OpenAiModel {
     /** +value=integration/model/openai */
     type: "integration/model/openai";
-    /** Name to identify this OpenAI model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The name of the OpenAI model to use */
+    /** The OpenAI model identifier (e.g., gpt-4o, gpt-4-turbo, gpt-3.5-turbo, o1-mini). This is the standard model name from OpenAI's API documentation. */
     model_id: string;
     /** Specify the type of the OpenAI model */
     model_types: TrueFoundry.ModelType[];

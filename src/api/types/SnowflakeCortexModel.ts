@@ -4,17 +4,14 @@
 
 import * as TrueFoundry from "../index.js";
 
-/**
- * Gemini Model
- */
-export interface GeminiModelV2 {
-    /** +value=integration/model/gemini */
-    type: "integration/model/gemini";
-    /** Name to identify this Gemini model in the UI */
+export interface SnowflakeCortexModel {
+    /** +value=integration/model/snowflake-cortex */
+    type: "integration/model/snowflake-cortex";
+    /** Name to identify this Snowflake Cortex model in the UI */
     name: string;
-    /** The unique identifier for the Gemini model */
+    /** ID of the Snowflake Cortex model to use */
     model_id: string;
-    /** Specify the type of the Gemini model (e.g., chat, text, etc.) */
+    /** Specify the type of the Snowflake Cortex model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */

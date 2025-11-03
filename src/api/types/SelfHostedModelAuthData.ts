@@ -5,6 +5,6 @@
 import * as TrueFoundry from "../index.js";
 
 /**
- * SelfHostedModel authentication data for the integration.
+ * Self Hosted Model authentication data for the integration.
  */
 export type SelfHostedModelAuthData = TrueFoundry.CustomBasicAuth | TrueFoundry.CustomBearerAuth;

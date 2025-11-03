@@ -16,4 +16,5 @@ export interface AzureProviderAccount {
     subscription_id?: string;
     /** List of integrations that are associated with the Azure provider account. */
     integrations: TrueFoundry.AzureIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

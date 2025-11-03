@@ -19,4 +19,5 @@ export interface GuardrailConfigGroup {
     collaborators?: TrueFoundry.Collaborator[];
     /** List of Guardrail Configs, which are part of this Guardrail Config Group. */
     integrations: TrueFoundry.GuardrailConfigIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

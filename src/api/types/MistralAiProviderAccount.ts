@@ -14,7 +14,8 @@ export interface MistralAiProviderAccount {
     name: string;
     auth_data: TrueFoundry.MistralAiKeyAuth;
     /** List of integrations that are associated with the Mistral AI provider account */
-    integrations?: TrueFoundry.MistralAiIntegrations[];
+    integrations: TrueFoundry.MistralAiIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

@@ -14,7 +14,8 @@ export interface GoogleGeminiProviderAccount {
     name: string;
     auth_data: TrueFoundry.GcpApiKeyAuth;
     /** List of integrations that are associated with the Google Gemini provider account */
-    integrations: TrueFoundry.GeminiModelV2[];
+    integrations: TrueFoundry.GeminiModel[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

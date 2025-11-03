@@ -10,11 +10,11 @@ import * as TrueFoundry from "../index.js";
 export interface SelfHostedModel {
     /** +value=integration/model/self-hosted-model */
     type: "integration/model/self-hosted-model";
-    /** 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
+    /** A descriptive name to identify this self-hosted model in the UI */
     name: string;
     /** The name of the hosted model */
     hosted_model_name: string;
-    /** enter valid https/http URL that should not end with trailing slash */
+    /** The URL where the model is hosted */
     url: string;
     /** The type of model server being used */
     model_server: TrueFoundry.SelfHostedModelModelServer;
@@ -23,9 +23,9 @@ export interface SelfHostedModel {
     /** Specify the type of the model */
     model_types: TrueFoundry.ModelType[];
     tls_settings?: TrueFoundry.CustomTlsSettings;
-    /** SelfHostedModel authentication data for the integration. */
+    /** Self Hosted Model authentication data for the integration. */
     auth_data?: TrueFoundry.SelfHostedModelAuthData;
-    /** SelfHostedModel headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}` */
+    /** Self Hosted Model headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}` */
     headers?: Record<string, string>;
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */

@@ -8,15 +8,15 @@ import * as TrueFoundry from "../index.js";
  * Vertex Model
  */
 export interface VertexModel {
-    /** Display Name - 2 to 62 characters long alphanumeric word, may contain - or . in between, cannot start with a number */
+    /** +value=integration/model/vertex */
+    type: "integration/model/vertex";
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** +sort=2 */
+    /** The Google Vertex AI model identifier (e.g., gemini-2.5-pro, anthropic/claude-sonnet-4-5@20250929). This is the model version name from Vertex AI's model catalog. */
     model_id: string;
-    /** +value=integration/model/gcp/vertex */
-    type: "integration/model/gcp/vertex";
-    /** Specify the type of the model */
-    model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.GcpRegion;
+    /** Specify the type of the Vertex AI model (e.g., chat, text, etc.) */
+    model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];

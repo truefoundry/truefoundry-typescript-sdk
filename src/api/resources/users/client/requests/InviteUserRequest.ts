@@ -14,4 +14,6 @@ export interface InviteUserRequest {
     acceptInviteClientUrl: string;
     /** Email of user */
     email: string;
+    /** Account ID to add the user to */
+    accountId?: string;
 }

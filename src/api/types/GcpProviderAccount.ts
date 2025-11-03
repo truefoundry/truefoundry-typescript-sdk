@@ -18,4 +18,5 @@ export interface GcpProviderAccount {
     auth_data?: TrueFoundry.GcpProviderAccountAuthData;
     /** List of integrations that are associated with the GCP provider account. */
     integrations: TrueFoundry.GcpIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

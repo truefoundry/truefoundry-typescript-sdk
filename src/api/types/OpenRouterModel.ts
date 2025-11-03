@@ -10,9 +10,9 @@ import * as TrueFoundry from "../index.js";
 export interface OpenRouterModel {
     /** +value=integration/model/openrouter */
     type: "integration/model/openrouter";
-    /** Name to identify this OpenRouter model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** The name of the OpenRouter model to use */
+    /** The OpenRouter model identifier (e.g., anthropic/claude-3-haiku, openai/gpt-4o-mini). This is the model name from OpenRouter's model catalog. */
     model_id: string;
     /** Specify the type of the OpenRouter model */
     model_types: TrueFoundry.ModelType[];

@@ -18,4 +18,5 @@ export interface AwsProviderAccount {
     auth_data?: TrueFoundry.AwsProviderAccountAuthData;
     /** List of integrations that are associated with the AWS provider account. */
     integrations: TrueFoundry.AwsIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

@@ -10,11 +10,12 @@ import * as TrueFoundry from "../index.js";
 export interface DockerhubProviderAccount {
     /** +value=provider-account/dockerhub */
     type: "provider-account/dockerhub";
-    /** 3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
+    /** 3 to 36 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     /** Account Name */
     account_name?: string;
     auth_data?: TrueFoundry.DockerhubBasicAuth;
     /** +uiType=IntegrationsGroup */
     integrations: TrueFoundry.DockerhubIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

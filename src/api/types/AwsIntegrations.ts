@@ -9,5 +9,4 @@ export type AwsIntegrations =
     | TrueFoundry.AwsS3
     | TrueFoundry.AwsParameterStore
     | TrueFoundry.AwsSecretsManager
-    | TrueFoundry.AwsEksIntegration
-    | TrueFoundry.BedrockModel;
+    | TrueFoundry.AwsEksIntegration;

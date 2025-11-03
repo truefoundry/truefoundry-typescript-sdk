@@ -14,7 +14,8 @@ export interface PerplexityAiProviderAccount {
     name: string;
     auth_data: TrueFoundry.PerplexityAiKeyAuth;
     /** List of integrations that are associated with the Perplexity AI provider account */
-    integrations?: TrueFoundry.PerplexityIntegrations[];
+    integrations: TrueFoundry.PerplexityIntegrations[];
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

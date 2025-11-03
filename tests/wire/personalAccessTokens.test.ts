@@ -25,6 +25,7 @@ describe("PersonalAccessTokens", () => {
                             { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                         ],
                     },
+                    jwtId: "jwtId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
@@ -39,7 +40,9 @@ describe("PersonalAccessTokens", () => {
                             updatedAt: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    accountId: "accountId",
                     createdBy: "createdBy",
+                    nextScheduledRotation: "nextScheduledRotation",
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -70,6 +73,7 @@ describe("PersonalAccessTokens", () => {
                             },
                         ],
                     },
+                    jwtId: "jwtId",
                     createdBySubject: {
                         subjectId: "subjectId",
                         subjectType: "user",
@@ -87,7 +91,9 @@ describe("PersonalAccessTokens", () => {
                             updatedAt: "2024-01-15T09:30:00Z",
                         },
                     ],
+                    accountId: "accountId",
                     createdBy: "createdBy",
+                    nextScheduledRotation: "nextScheduledRotation",
                 },
             ],
             pagination: {
@@ -132,7 +138,7 @@ describe("PersonalAccessTokens", () => {
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name", expirationDate: undefined };
+        const rawRequestBody = { name: "name", expirationDate: undefined, accountName: undefined };
         const rawResponseBody = { key: "value" };
         server
             .mockEndpoint()
@@ -147,6 +153,7 @@ describe("PersonalAccessTokens", () => {
             return await client.personalAccessTokens.create({
                 name: "name",
                 expirationDate: undefined,
+                accountName: undefined,
             });
         }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
@@ -154,7 +161,7 @@ describe("PersonalAccessTokens", () => {
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name", expirationDate: undefined };
+        const rawRequestBody = { name: "name", expirationDate: undefined, accountName: undefined };
         const rawResponseBody = { statusCode: 1, message: "message", code: undefined, details: undefined };
         server
             .mockEndpoint()
@@ -169,6 +176,7 @@ describe("PersonalAccessTokens", () => {
             return await client.personalAccessTokens.create({
                 name: "name",
                 expirationDate: undefined,
+                accountName: undefined,
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
     });
@@ -262,17 +270,18 @@ describe("PersonalAccessTokens", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: "expiration_date",
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    ownedBy: { team: "team" },
+                    expiration_date: "expiration_date",
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
-                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     notification_target: {
                         type: "email",
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
+                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
+                    ownedBy: { team: "team" },
                 },
+                jwtId: "jwtId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -292,7 +301,9 @@ describe("PersonalAccessTokens", () => {
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
                 ],
+                accountId: "accountId",
                 createdBy: "createdBy",
+                nextScheduledRotation: "nextScheduledRotation",
             },
             token: "token",
             created: true,
@@ -315,7 +326,6 @@ describe("PersonalAccessTokens", () => {
                 manifest: {
                     name: "name",
                     type: "virtual-account",
-                    expiration_date: "expiration_date",
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -323,23 +333,25 @@ describe("PersonalAccessTokens", () => {
                             role_id: "role_id",
                         },
                     ],
-                    ownedBy: {
-                        team: "team",
-                    },
+                    expiration_date: "expiration_date",
                     auto_rotate: {
                         auto_rotate_interval: 1,
                         grace_period: 1,
-                    },
-                    secret_store_config: {
-                        integration_fqn: "integration_fqn",
-                        secret_path: "secret_path",
                     },
                     notification_target: {
                         type: "email",
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
+                    secret_store_config: {
+                        integration_fqn: "integration_fqn",
+                        secret_path: "secret_path",
+                    },
+                    ownedBy: {
+                        team: "team",
+                    },
                 },
+                jwtId: "jwtId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -359,7 +371,9 @@ describe("PersonalAccessTokens", () => {
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
                 ],
+                accountId: "accountId",
                 createdBy: "createdBy",
+                nextScheduledRotation: "nextScheduledRotation",
             },
             token: "token",
             created: true,

@@ -14,4 +14,5 @@ export interface SlackProviderAccount {
     name: string;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.SlackIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

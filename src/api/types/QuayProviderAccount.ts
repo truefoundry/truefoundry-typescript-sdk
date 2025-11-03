@@ -17,4 +17,5 @@ export interface QuayProviderAccount {
     auth_data?: TrueFoundry.QuayBasicAuth;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.QuayIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

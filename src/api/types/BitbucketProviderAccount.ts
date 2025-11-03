@@ -14,4 +14,5 @@ export interface BitbucketProviderAccount {
     name: string;
     /** +uiType=IntegrationsGroup */
     integrations: TrueFoundry.BitbucketIntegration[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

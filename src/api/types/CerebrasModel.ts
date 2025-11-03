@@ -7,9 +7,9 @@ import * as TrueFoundry from "../index.js";
 export interface CerebrasModel {
     /** +value=integration/model/cerebras */
     type: "integration/model/cerebras";
-    /** Name to identify this Cerebras model in the UI */
+    /** A descriptive name to identify this model integration in the UI */
     name: string;
-    /** ID of the Cerebras model to use */
+    /** The Cerebras model identifier (e.g., llama-4-scout-17b-16e-instruct, llama3.1-70b). This is the standard model name from Cerebras's API documentation. */
     model_id: string;
     /** Specify the type of the Cerebras model */
     model_types: TrueFoundry.ModelType[];

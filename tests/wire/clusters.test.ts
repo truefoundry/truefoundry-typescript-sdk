@@ -25,6 +25,7 @@ describe("Clusters", () => {
                         collaborators: [{ subject: "subject", role_id: "role_id" }],
                     },
                     tenantName: "tenantName",
+                    accountId: "accountId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
@@ -60,6 +61,7 @@ describe("Clusters", () => {
                         ],
                     },
                     tenantName: "tenantName",
+                    accountId: "accountId",
                     createdBySubject: {
                         subjectId: "subjectId",
                         subjectType: "user",
@@ -135,8 +137,10 @@ describe("Clusters", () => {
                     supported_nodepools: [{ name: "name" }],
                     node_label_keys: { nodepool_selector_label: "nodepool_selector_label" },
                     collaborators: [{ subject: "subject", role_id: "role_id" }],
+                    ownedBy: { account: "account" },
                 },
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -205,8 +209,12 @@ describe("Clusters", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: {
+                        account: "account",
+                    },
                 },
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -243,6 +251,7 @@ describe("Clusters", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
             dryRun: undefined,
         };
@@ -283,6 +292,7 @@ describe("Clusters", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -312,6 +322,7 @@ describe("Clusters", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
             dryRun: undefined,
         };
@@ -352,6 +363,7 @@ describe("Clusters", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -381,6 +393,7 @@ describe("Clusters", () => {
                     { subject: "subject", role_id: "role_id" },
                     { subject: "subject", role_id: "role_id" },
                 ],
+                ownedBy: undefined,
             },
             dryRun: undefined,
         };
@@ -421,6 +434,7 @@ describe("Clusters", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: undefined,
                 },
                 dryRun: undefined,
             });
@@ -450,8 +464,10 @@ describe("Clusters", () => {
                     supported_nodepools: [{ name: "name" }],
                     node_label_keys: { nodepool_selector_label: "nodepool_selector_label" },
                     collaborators: [{ subject: "subject", role_id: "role_id" }],
+                    ownedBy: { account: "account" },
                 },
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -506,8 +522,12 @@ describe("Clusters", () => {
                             role_id: "role_id",
                         },
                     ],
+                    ownedBy: {
+                        account: "account",
+                    },
                 },
                 tenantName: "tenantName",
+                accountId: "accountId",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",

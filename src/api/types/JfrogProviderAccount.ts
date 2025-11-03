@@ -17,4 +17,5 @@ export interface JfrogProviderAccount {
     auth_data?: TrueFoundry.JfrogBasicAuth;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.JFrogIntegrations[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

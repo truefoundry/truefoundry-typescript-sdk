@@ -10,7 +10,7 @@ import * as TrueFoundry from "../index.js";
 export interface VirtualMcpServerSource {
     /** Name of the source MCP server within this group (use {provider_account_name}/{integration_name} format). */
     name: string;
-    /** List of tools to enable from this source server. Leave empty to enable all tools. */
+    /** List of tools to enable from this source server. */
     enabled_tools?: string[];
     auth_data?: TrueFoundry.McpServerHeaderOverrideAuth;
 }
