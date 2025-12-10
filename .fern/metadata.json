@@ -1,0 +1,23 @@
+{
+    "cliVersion": "3.5.0",
+    "generatorName": "fernapi/fern-typescript-node-sdk",
+    "generatorVersion": "3.39.0",
+    "generatorConfig": {
+        "allowExtraFields": true,
+        "allowCustomFetcher": true,
+        "enableInlineTypes": false,
+        "fetchSupport": "native",
+        "fileResponseType": "binary-response",
+        "formDataSupport": "Node18",
+        "includeApiReference": true,
+        "inlineFileProperties": true,
+        "inlinePathParameters": true,
+        "namespaceExport": "TrueFoundry",
+        "noSerdeLayer": true,
+        "omitUndefined": true,
+        "retainOriginalCasing": true,
+        "skipResponseValidation": true,
+        "streamType": "web",
+        "useDefaultRequestParameterValues": true
+    }
+}

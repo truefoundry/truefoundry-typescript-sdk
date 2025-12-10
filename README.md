@@ -7,9 +7,28 @@ This library provides convenient access to the TrueFoundry API.
 
 > [!tip]
 > You can ask questions about this SDK using DeepWiki
->
 > - Python: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-python-sdk)
 > - TypeScript: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-typescript-sdk)
+
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Request and Response Types](#request-and-response-types)
+- [Exception Handling](#exception-handling)
+- [Pagination](#pagination)
+- [Advanced](#advanced)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Aborting Requests](#aborting-requests)
+  - [Access Raw Response Data](#access-raw-response-data)
+  - [Logging](#logging)
+  - [Runtime Compatibility](#runtime-compatibility)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -29,7 +48,7 @@ Instantiate and use the client with the following:
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.applications.list({
+const pageableResponse = await client.applications.list({
     limit: 10,
     offset: 0,
     applicationId: "applicationId",
@@ -46,9 +65,9 @@ const response = await client.applications.list({
     deviceTypeFilter: "cpu",
     lastDeployedBySubjects: "lastDeployedBySubjects",
     lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true,
+    isRecommendationPresentAndVisible: true
 });
-for await (const item of response) {
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
@@ -70,14 +89,17 @@ let page = await client.applications.list({
     deviceTypeFilter: "cpu",
     lastDeployedBySubjects: "lastDeployedBySubjects",
     lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true,
+    isRecommendationPresentAndVisible: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
-## Request And Response Types
+## Request and Response Types
 
 The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
 following namespace:
@@ -118,14 +140,14 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.users.list({
+const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
     query: "query",
     showInvalidUsers: true,
-    includeVirtualAccounts: "includeVirtualAccounts",
+    includeVirtualAccounts: "includeVirtualAccounts"
 });
-for await (const item of response) {
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
@@ -135,11 +157,14 @@ let page = await client.users.list({
     offset: 0,
     query: "query",
     showInvalidUsers: true,
-    includeVirtualAccounts: "includeVirtualAccounts",
+    includeVirtualAccounts: "includeVirtualAccounts"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
 ## Advanced
@@ -149,6 +174,15 @@ while (page.hasNextPage()) {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
+import { TrueFoundryClient } from "truefoundry-sdk";
+
+const client = new TrueFoundryClient({
+    ...
+    headers: {
+        'X-Custom-Header': 'custom value'
+    }
+});
+
 const response = await client.applications.list(..., {
     headers: {
         'X-Custom-Header': 'custom value'
@@ -222,9 +256,75 @@ console.log(data);
 console.log(rawResponse.headers['X-My-Header']);
 ```
 
+### Logging
+
+The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
+
+```typescript
+import { TrueFoundryClient, logging } from "truefoundry-sdk";
+
+const client = new TrueFoundryClient({
+    ...
+    logging: {
+        level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
+        logger: new logging.ConsoleLogger(), // defaults to ConsoleLogger
+        silent: false, // defaults to true, set to false to enable logging
+    }
+});
+```
+The `logging` object can have the following properties:
+- `level`: The log level to use. Defaults to `logging.LogLevel.Info`.
+- `logger`: The logger to use. Defaults to a `logging.ConsoleLogger`.
+- `silent`: Whether to silence the logger. Defaults to `true`.
+
+The `level` property can be one of the following values:
+- `logging.LogLevel.Debug`
+- `logging.LogLevel.Info`
+- `logging.LogLevel.Warn`
+- `logging.LogLevel.Error`
+
+To provide a custom logger, you can pass in an object that implements the `logging.ILogger` interface.
+
+<details>
+<summary>Custom logger examples</summary>
+
+Here's an example using the popular `winston` logging library.
+```ts
+import winston from 'winston';
+
+const winstonLogger = winston.createLogger({...});
+
+const logger: logging.ILogger = {
+    debug: (msg, ...args) => winstonLogger.debug(msg, ...args),
+    info: (msg, ...args) => winstonLogger.info(msg, ...args),
+    warn: (msg, ...args) => winstonLogger.warn(msg, ...args),
+    error: (msg, ...args) => winstonLogger.error(msg, ...args),
+};
+```
+
+Here's an example using the popular `pino` logging library.
+
+```ts
+import pino from 'pino';
+
+const pinoLogger = pino({...});
+
+const logger: logging.ILogger = {
+  debug: (msg, ...args) => pinoLogger.debug(args, msg),
+  info: (msg, ...args) => pinoLogger.info(args, msg),
+  warn: (msg, ...args) => pinoLogger.warn(args, msg),
+  error: (msg, ...args) => pinoLogger.error(args, msg),
+};
+```
+</details>
+
+
 ### Runtime Compatibility
 
+
 The SDK works in the following runtimes:
+
+
 
 - Node.js 18+
 - Vercel

@@ -1,1 +1,1 @@
-export { type QuerySpansRequest } from "./QuerySpansRequest.js";
+export type { QuerySpansRequest } from "./QuerySpansRequest.js";

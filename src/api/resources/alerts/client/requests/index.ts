@@ -1,1 +1,1 @@
-export { type AlertsListRequest } from "./AlertsListRequest.js";
+export type { AlertsListRequest } from "./AlertsListRequest.js";
