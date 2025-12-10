@@ -31,7 +31,7 @@ async function getByFqn<T, R = unknown>(client: HasAsyncListMethod<T, R>, fqn: s
     return result;
 }
 
-export class WrappedApplications extends ApplicationsClient {
+export class WrappedApplicationsClient extends ApplicationsClient {
     /**
      * Get application API
      *
@@ -51,7 +51,7 @@ export class WrappedApplications extends ApplicationsClient {
     }
 }
 
-export class WrappedArtifacts extends ArtifactsClient {
+export class WrappedArtifactsClient extends ArtifactsClient {
     /**
      * Get artifact API
      *
@@ -71,7 +71,7 @@ export class WrappedArtifacts extends ArtifactsClient {
     }
 }
 
-export class WrappedArtifactVersions extends ArtifactVersionsClient {
+export class WrappedArtifactVersionsClient extends ArtifactVersionsClient {
     /**
      * Get artifact version API
      *
@@ -91,7 +91,7 @@ export class WrappedArtifactVersions extends ArtifactVersionsClient {
     }
 }
 
-export class WrappedDataDirectories extends DataDirectoriesClient {
+export class WrappedDataDirectoriesClient extends DataDirectoriesClient {
     /**
      * Get data directory API
      *
@@ -111,7 +111,7 @@ export class WrappedDataDirectories extends DataDirectoriesClient {
     }
 }
 
-export class WrappedModels extends ModelsClient {
+export class WrappedModelsClient extends ModelsClient {
     /**
      * Get model API
      *
@@ -131,7 +131,7 @@ export class WrappedModels extends ModelsClient {
     }
 }
 
-export class WrappedModelVersions extends ModelVersionsClient {
+export class WrappedModelVersionsClient extends ModelVersionsClient {
     /**
      * Get model version API
      *
@@ -151,7 +151,7 @@ export class WrappedModelVersions extends ModelVersionsClient {
     }
 }
 
-export class WrappedPrompts extends PromptsClient {
+export class WrappedPromptsClient extends PromptsClient {
     /**
      * Get prompt API
      *
@@ -171,7 +171,7 @@ export class WrappedPrompts extends PromptsClient {
     }
 }
 
-export class WrappedPromptVersions extends PromptVersionsClient {
+export class WrappedPromptVersionsClient extends PromptVersionsClient {
     /**
      * Get prompt version API
      *
@@ -191,7 +191,7 @@ export class WrappedPromptVersions extends PromptVersionsClient {
     }
 }
 
-export class WrappedSecretGroups extends SecretGroupsClient {
+export class WrappedSecretGroupsClient extends SecretGroupsClient {
     /**
      * Get secret group API
      *
@@ -211,7 +211,7 @@ export class WrappedSecretGroups extends SecretGroupsClient {
     }
 }
 
-export class WrappedWorkspaces extends WorkspacesClient {
+export class WrappedWorkspacesClient extends WorkspacesClient {
     /**
      * Get workspace API
      *
