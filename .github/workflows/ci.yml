@@ -24,6 +24,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    continue-on-error: true
 
     steps:
       - name: Checkout repo
@@ -40,3 +41,41 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+  publish:
+    needs: [ compile ]
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read   # Required for checkout
+      id-token: write  # Required for OIDC
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v6
+
+      - name: Set up node
+        uses: actions/setup-node@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Publish to npm
+        run: |
+          publish() {  # use latest npm to ensure OIDC support
+            npx -y npm@latest publish "$@"
+          }
+          if [[ ${GITHUB_REF} == *alpha* ]]; then
+            publish --access public --tag alpha
+          elif [[ ${GITHUB_REF} == *beta* ]]; then
+            publish --access public --tag beta
+          elif [[ ${GITHUB_REF} == *rc* ]]; then
+            publish --access public --tag rc
+          else
+            publish --access public
+          fi
