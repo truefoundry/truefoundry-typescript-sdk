@@ -9,6 +9,7 @@ describe("SecretsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
+        const rawRequestBodyWithOffset = { offset: 1 };
         const rawResponseBody = {
             data: [
                 {
@@ -27,10 +28,20 @@ describe("SecretsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+        // Register the specific handler first (with offset, strict matching)
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBodyWithOffset, false)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+        // Then register the general handler (without offset, allows extra fields)
+        server
+            .mockEndpoint({ once: false })
+            .post("/api/svc/v1/secrets")
+            .jsonBody(rawRequestBody, true)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)

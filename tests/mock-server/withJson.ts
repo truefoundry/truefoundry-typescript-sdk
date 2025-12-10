@@ -7,7 +7,7 @@ import { fromJson, toJson } from "../../src/core/json";
  * @param expectedBody - The exact body object to match against
  * @param resolver - Response resolver to execute if body matches
  */
-export function withJson(expectedBody: unknown, resolver: HttpResponseResolver): HttpResponseResolver {
+export function withJson(expectedBody: unknown, resolver: HttpResponseResolver, allowExtraFields: boolean = true): HttpResponseResolver {
     return async (args) => {
         const { request } = args;
 
@@ -27,7 +27,7 @@ export function withJson(expectedBody: unknown, resolver: HttpResponseResolver):
             return passthrough();
         }
 
-        const mismatches = findMismatches(actualBody, expectedBody);
+        const mismatches = findMismatches(actualBody, expectedBody, allowExtraFields);
         if (Object.keys(mismatches).filter((key) => !key.startsWith("pagination.")).length > 0) {
             console.error("JSON body mismatch:", toJson(mismatches, undefined, 2));
             return passthrough();
@@ -37,7 +37,7 @@ export function withJson(expectedBody: unknown, resolver: HttpResponseResolver):
     };
 }
 
-function findMismatches(actual: any, expected: any): Record<string, { actual: any; expected: any }> {
+function findMismatches(actual: any, expected: any, allowExtraFields: boolean = false): Record<string, { actual: any; expected: any }> {
     const mismatches: Record<string, { actual: any; expected: any }> = {};
 
     if (typeof actual !== typeof expected) {
@@ -64,7 +64,7 @@ function findMismatches(actual: any, expected: any): Record<string, { actual: an
 
         const arrayMismatches: Record<string, { actual: any; expected: any }> = {};
         for (let i = 0; i < actual.length; i++) {
-            const itemMismatches = findMismatches(actual[i], expected[i]);
+            const itemMismatches = findMismatches(actual[i], expected[i], allowExtraFields);
             if (Object.keys(itemMismatches).length > 0) {
                 for (const [mismatchKey, mismatchValue] of Object.entries(itemMismatches)) {
                     arrayMismatches[`[${i}]${mismatchKey === "value" ? "" : `.${mismatchKey}`}`] = mismatchValue;
@@ -84,7 +84,10 @@ function findMismatches(actual: any, expected: any): Record<string, { actual: an
             if (actual[key] === undefined) {
                 continue; // Skip undefined values in actual
             }
-            mismatches[key] = { actual: actual[key], expected: undefined };
+            // Allow extra fields in actual body if allowExtraFields is true
+            if (!allowExtraFields) {
+                mismatches[key] = { actual: actual[key], expected: undefined };
+            }
         } else if (!actualKeys.includes(key)) {
             if (expected[key] === undefined) {
                 continue; // Skip undefined values in expected
@@ -96,7 +99,7 @@ function findMismatches(actual: any, expected: any): Record<string, { actual: an
             typeof expected[key] === "object" &&
             expected[key] !== null
         ) {
-            const nestedMismatches = findMismatches(actual[key], expected[key]);
+            const nestedMismatches = findMismatches(actual[key], expected[key], allowExtraFields);
             if (Object.keys(nestedMismatches).length > 0) {
                 for (const [nestedKey, nestedValue] of Object.entries(nestedMismatches)) {
                     mismatches[`${key}${nestedKey === "value" ? "" : `.${nestedKey}`}`] = nestedValue;

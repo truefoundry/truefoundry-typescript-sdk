@@ -129,11 +129,11 @@ class RequestBuilder implements MethodStage, RequestHeadersStage, RequestBodySta
         return this;
     }
 
-    jsonBody(body: unknown): ResponseStage {
+    jsonBody(body: unknown, allowExtraFields: boolean = true): ResponseStage {
         if (body === undefined) {
             throw new Error("Undefined is not valid JSON. Do not call jsonBody if you want an empty body.");
         }
-        this.predicates.push((resolver) => withJson(body, resolver));
+        this.predicates.push((resolver) => withJson(body, resolver, allowExtraFields));
         return this;
     }
 

@@ -363,6 +363,7 @@ describe("DataDirectoriesClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id" };
+        const rawRequestBodyWithToken = { id: "id", pageToken: "nextPageToken" };
         const rawResponseBody = {
             data: [
                 {
@@ -375,10 +376,20 @@ describe("DataDirectoriesClient", () => {
             ],
             pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
         };
+        // Register the specific handler first (with pageToken, strict matching)
         server
             .mockEndpoint({ once: false })
             .post("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBodyWithToken, false)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+        // Then register the general handler (without pageToken, allows extra fields)
+        server
+            .mockEndpoint({ once: false })
+            .post("/api/ml/v1/data-directories/files")
+            .jsonBody(rawRequestBody, true)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)

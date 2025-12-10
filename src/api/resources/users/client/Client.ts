@@ -103,7 +103,13 @@ export class UsersClient {
         return new core.Page<TrueFoundry.User, TrueFoundry.ListUsersResponse>({
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            hasNextPage: (response) => {
+                const pagination = response?.pagination;
+                if (!pagination) return false;
+                const currentOffset = pagination.offset ?? 0;
+                const dataLength = (response?.data ?? []).length;
+                return currentOffset + dataLength < pagination.total;
+            },
             getItems: (response) => response?.data ?? [],
             loadPage: (response) => {
                 _offset += response?.data != null ? response.data.length : 1;
