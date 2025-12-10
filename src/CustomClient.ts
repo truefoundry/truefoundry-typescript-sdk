@@ -1,14 +1,14 @@
 import {
-    WrappedApplications,
-    WrappedArtifacts,
-    WrappedArtifactVersions,
-    WrappedDataDirectories,
-    WrappedModels,
-    WrappedModelVersions,
-    WrappedPrompts,
-    WrappedPromptVersions,
-    WrappedSecretGroups,
-    WrappedWorkspaces,
+    WrappedApplicationsClient,
+    WrappedArtifactsClient,
+    WrappedArtifactVersionsClient,
+    WrappedDataDirectoriesClient,
+    WrappedModelsClient,
+    WrappedModelVersionsClient,
+    WrappedPromptsClient,
+    WrappedPromptVersionsClient,
+    WrappedSecretGroupsClient,
+    WrappedWorkspacesClient,
 } from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
 import * as core from "./core";
@@ -19,62 +19,60 @@ export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Opt
 }
 
 export class TrueFoundryClient extends BaseTrueFoundryClient {
-    protected readonly _options: BaseTrueFoundryClient.Options;
-    protected _applications: WrappedApplications | undefined;
-    protected _artifacts: WrappedArtifacts | undefined;
-    protected _artifactVersions: WrappedArtifactVersions | undefined;
-    protected _dataDirectories: WrappedDataDirectories | undefined;
-    protected _models: WrappedModels | undefined;
-    protected _modelVersions: WrappedModelVersions | undefined;
-    protected _prompts: WrappedPrompts | undefined;
-    protected _promptVersions: WrappedPromptVersions | undefined;
-    protected _secretGroups: WrappedSecretGroups | undefined;
-    protected _workspaces: WrappedWorkspaces | undefined;
+    protected _applications: WrappedApplicationsClient | undefined;
+    protected _artifacts: WrappedArtifactsClient | undefined;
+    protected _artifactVersions: WrappedArtifactVersionsClient | undefined;
+    protected _dataDirectories: WrappedDataDirectoriesClient | undefined;
+    protected _models: WrappedModelsClient | undefined;
+    protected _modelVersions: WrappedModelVersionsClient | undefined;
+    protected _prompts: WrappedPromptsClient | undefined;
+    protected _promptVersions: WrappedPromptVersionsClient | undefined;
+    protected _secretGroups: WrappedSecretGroupsClient | undefined;
+    protected _workspaces: WrappedWorkspacesClient | undefined;
 
     constructor(_options: TrueFoundryClientOptions) {
-        const options = { ..._options, environment: _options.environment ?? '' }
+        const options = { ..._options, environment: _options.environment ?? '' } as BaseTrueFoundryClient.Options;
         super(options);
-        this._options = options;
     }
 
-    public get applications(): WrappedApplications {
-        return (this._applications ??= new WrappedApplications(this._options));
+    public get applications(): WrappedApplicationsClient {
+        return (this._applications ??= new WrappedApplicationsClient(this._options));
     }
 
-    public get artifacts(): WrappedArtifacts {
-        return (this._artifacts ??= new WrappedArtifacts(this._options));
+    public get artifacts(): WrappedArtifactsClient {
+        return (this._artifacts ??= new WrappedArtifactsClient(this._options));
     }
 
-    public get artifactVersions(): WrappedArtifactVersions {
-        return (this._artifactVersions ??= new WrappedArtifactVersions(this._options));
+    public get artifactVersions(): WrappedArtifactVersionsClient {
+        return (this._artifactVersions ??= new WrappedArtifactVersionsClient(this._options));
     }
 
-    public get dataDirectories(): WrappedDataDirectories {
-        return (this._dataDirectories ??= new WrappedDataDirectories(this._options));
+    public get dataDirectories(): WrappedDataDirectoriesClient {
+        return (this._dataDirectories ??= new WrappedDataDirectoriesClient(this._options));
     }
 
-    public get models(): WrappedModels {
-        return (this._models ??= new WrappedModels(this._options));
+    public get models(): WrappedModelsClient {
+        return (this._models ??= new WrappedModelsClient(this._options));
     }
 
-    public get modelVersions(): WrappedModelVersions {
-        return (this._modelVersions ??= new WrappedModelVersions(this._options));
+    public get modelVersions(): WrappedModelVersionsClient {
+        return (this._modelVersions ??= new WrappedModelVersionsClient(this._options));
     }
 
-    public get prompts(): WrappedPrompts {
-        return (this._prompts ??= new WrappedPrompts(this._options));
+    public get prompts(): WrappedPromptsClient {
+        return (this._prompts ??= new WrappedPromptsClient(this._options));
     }
 
-    public get promptVersions(): WrappedPromptVersions {
-        return (this._promptVersions ??= new WrappedPromptVersions(this._options));
+    public get promptVersions(): WrappedPromptVersionsClient {
+        return (this._promptVersions ??= new WrappedPromptVersionsClient(this._options));
     }
 
-    public get secretGroups(): WrappedSecretGroups {
-        return (this._secretGroups ??= new WrappedSecretGroups(this._options));
+    public get secretGroups(): WrappedSecretGroupsClient {
+        return (this._secretGroups ??= new WrappedSecretGroupsClient(this._options));
     }
 
-    public get workspaces(): WrappedWorkspaces {
-        return (this._workspaces ??= new WrappedWorkspaces(this._options));
+    public get workspaces(): WrappedWorkspacesClient {
+        return (this._workspaces ??= new WrappedWorkspacesClient(this._options));
     }
 }
 
