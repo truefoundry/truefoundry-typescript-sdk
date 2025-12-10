@@ -2,6 +2,10 @@ name: ci
 
 on: [push]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   compile:
     runs-on: ubuntu-latest
@@ -41,7 +45,6 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
-
       - name: Publish to npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
@@ -49,8 +52,8 @@ jobs:
             npm publish --access public --tag alpha
           elif [[ ${GITHUB_REF} == *beta* ]]; then
             npm publish --access public --tag beta
+          elif [[ ${GITHUB_REF} == *rc* ]]; then
+            npm publish --access public --tag rc
           else
             npm publish --access public
           fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
