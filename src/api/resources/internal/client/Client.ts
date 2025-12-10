@@ -10,6 +10,7 @@ import * as TrueFoundry from "../../../index.js";
 import { AiGatewayClient } from "../resources/aiGateway/client/Client.js";
 import { ApplicationsClient } from "../resources/applications/client/Client.js";
 import { ArtifactVersionsClient } from "../resources/artifactVersions/client/Client.js";
+import { BuildLogsClient } from "../resources/buildLogs/client/Client.js";
 import { ClustersClient } from "../resources/clusters/client/Client.js";
 import { DeploymentsClient } from "../resources/deployments/client/Client.js";
 import { DockerRegistriesClient } from "../resources/dockerRegistries/client/Client.js";
@@ -36,6 +37,7 @@ export class InternalClient {
     protected _vcs: VcsClient | undefined;
     protected _dockerRegistries: DockerRegistriesClient | undefined;
     protected _workflows: WorkflowsClient | undefined;
+    protected _buildLogs: BuildLogsClient | undefined;
     protected _artifactVersions: ArtifactVersionsClient | undefined;
     protected _ml: MlClient | undefined;
 
@@ -77,6 +79,10 @@ export class InternalClient {
 
     public get workflows(): WorkflowsClient {
         return (this._workflows ??= new WorkflowsClient(this._options));
+    }
+
+    public get buildLogs(): BuildLogsClient {
+        return (this._buildLogs ??= new BuildLogsClient(this._options));
     }
 
     public get artifactVersions(): ArtifactVersionsClient {

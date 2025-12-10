@@ -4,6 +4,8 @@ export * from "./applications/client/requests/index.js";
 export * as applications from "./applications/index.js";
 export * from "./artifactVersions/client/requests/index.js";
 export * as artifactVersions from "./artifactVersions/index.js";
+export * from "./buildLogs/client/requests/index.js";
+export * as buildLogs from "./buildLogs/index.js";
 export * as clusters from "./clusters/index.js";
 export * from "./deployments/client/requests/index.js";
 export * as deployments from "./deployments/index.js";

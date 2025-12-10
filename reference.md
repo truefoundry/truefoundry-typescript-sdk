@@ -8716,6 +8716,84 @@ await client.internal.workflows.executeWorkflow("applicationId");
 </dl>
 </details>
 
+## Internal BuildLogs
+<details><summary><code>client.internal.buildLogs.<a href="/src/api/resources/internal/resources/buildLogs/client/Client.ts">get</a>(pipelineRunName, { ...params }) -> TrueFoundry.LogsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get logs for a given pipeline run by its name, with optional filters and time range.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.buildLogs.get("pipelineRunName", {
+    startTs: "1635467890123456789",
+    endTs: "1635467891123456789",
+    limit: "limit",
+    direction: "direction",
+    numLogsToIgnore: 1.1
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**pipelineRunName:** `string` — PipelineRun Name
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.internal.BuildLogsGetRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `BuildLogsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Internal ArtifactVersions
 <details><summary><code>client.internal.artifactVersions.<a href="/src/api/resources/internal/resources/artifactVersions/client/Client.ts">list</a>({ ...params }) -> core.Page<TrueFoundry.InternalListArtifactVersionsResponseDataItem, TrueFoundry.InternalListArtifactVersionsResponse></code></summary>
 <dl>
