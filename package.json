@@ -1,6 +1,6 @@
 {
     "name": "truefoundry-sdk",
-    "version": "0.0.0",
+    "version": "0.1.15",
     "private": false,
     "repository": "github:truefoundry/truefoundry-typescript-sdk",
     "type": "commonjs",
