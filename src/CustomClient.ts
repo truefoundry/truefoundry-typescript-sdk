@@ -19,7 +19,6 @@ export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Opt
 }
 
 export class TrueFoundryClient extends BaseTrueFoundryClient {
-    protected readonly _options: BaseTrueFoundryClient.Options;
     protected _applications: WrappedApplications | undefined;
     protected _artifacts: WrappedArtifacts | undefined;
     protected _artifactVersions: WrappedArtifactVersions | undefined;
@@ -32,9 +31,8 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected _workspaces: WrappedWorkspaces | undefined;
 
     constructor(_options: TrueFoundryClientOptions) {
-        const options = { ..._options, environment: _options.environment ?? '' }
+        const options = { ..._options, environment: _options.environment ?? '' } as BaseTrueFoundryClient.Options;
         super(options);
-        this._options = options;
     }
 
     public get applications(): WrappedApplications {
