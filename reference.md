@@ -1,4 +1,77 @@
 # Reference
+<details><summary><code>client.<a href="/src/Client.ts">apply</a>({ ...params }) -> TrueFoundry.TrueFoundryApplyResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a given manifest to create or update resources of specific types, such as provider-account, cluster, workspace, or ml-repo.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.apply({
+    manifest: {
+        type: "ml-repo",
+        name: "name",
+        storage_integration_fqn: "storage_integration_fqn",
+        collaborators: [{
+                subject: "subject",
+                role_id: "role_id"
+            }]
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.TrueFoundryApplyRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TrueFoundryClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.<a href="/src/Client.ts">delete</a>({ ...params }) -> void</code></summary>
 <dl>
 <dd>
@@ -72,7 +145,6 @@ await client.delete({
 </dl>
 </details>
 
-## 
 ## Internal
 <details><summary><code>client.internal.<a href="/src/api/resources/internal/client/Client.ts">getIdFromFqn</a>(type, { ...params }) -> Record<string, unknown></code></summary>
 <dl>
