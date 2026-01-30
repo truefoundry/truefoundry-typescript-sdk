@@ -44,19 +44,12 @@ export class SecretGroupsClient {
                 request: TrueFoundry.SecretGroupsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListSecretGroupResponse>> => {
                 const { limit = 100, offset = 0, fqn, search } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
-                if (search != null) {
-                    _queryParams.search = search;
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    fqn,
+                    search,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

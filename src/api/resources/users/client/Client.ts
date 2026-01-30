@@ -45,22 +45,13 @@ export class UsersClient {
                 request: TrueFoundry.UsersListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => {
                 const { limit = 100, offset = 0, query, showInvalidUsers, includeVirtualAccounts } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (query != null) {
-                    _queryParams.query = query;
-                }
-                if (showInvalidUsers != null) {
-                    _queryParams.showInvalidUsers = showInvalidUsers.toString();
-                }
-                if (includeVirtualAccounts != null) {
-                    _queryParams.includeVirtualAccounts = includeVirtualAccounts;
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    query,
+                    showInvalidUsers,
+                    includeVirtualAccounts,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

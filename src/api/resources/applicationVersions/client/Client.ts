@@ -49,19 +49,12 @@ export class ApplicationVersionsClient {
                 request: TrueFoundry.ApplicationVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListApplicationDeploymentsResponse>> => {
                 const { limit = 100, offset = 0, version, deploymentId } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (version != null) {
-                    _queryParams.version = version;
-                }
-                if (deploymentId != null) {
-                    _queryParams.deploymentId = deploymentId;
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    version,
+                    deploymentId,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

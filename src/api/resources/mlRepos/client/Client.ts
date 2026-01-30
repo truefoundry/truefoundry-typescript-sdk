@@ -286,16 +286,11 @@ export class MlReposClient {
                 request: TrueFoundry.MlReposListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => {
                 const { name, limit = 100, offset = 0 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (name != null) {
-                    _queryParams.name = name;
-                }
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    name,
+                    limit,
+                    offset,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

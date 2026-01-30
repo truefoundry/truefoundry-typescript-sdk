@@ -33,7 +33,7 @@ describe("TracesClient", () => {
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/spans/query")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBody, { ignoredFields: ["pageToken"] })
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)

@@ -183,28 +183,15 @@ export class ModelsClient {
                     run_id: runId,
                     include_empty_models: includeEmptyModels = true,
                 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
-                if (mlRepoId != null) {
-                    _queryParams.ml_repo_id = mlRepoId;
-                }
-                if (name != null) {
-                    _queryParams.name = name;
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (runId != null) {
-                    _queryParams.run_id = runId;
-                }
-                if (includeEmptyModels != null) {
-                    _queryParams.include_empty_models = includeEmptyModels.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    fqn,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    offset,
+                    limit,
+                    run_id: runId,
+                    include_empty_models: includeEmptyModels,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

@@ -55,21 +55,13 @@ export class MetricsClient {
         requestOptions?: MetricsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetChartsResponse>> {
         const { applicationId, startTs, endTs, filterEntity, filterQuery } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.applicationId = applicationId;
-        if (startTs != null) {
-            _queryParams.startTs = startTs;
-        }
-
-        if (endTs != null) {
-            _queryParams.endTs = endTs;
-        }
-
-        _queryParams.filterEntity = filterEntity;
-        if (filterQuery != null) {
-            _queryParams.filterQuery = filterQuery;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            applicationId,
+            startTs,
+            endTs,
+            filterEntity,
+            filterQuery,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
