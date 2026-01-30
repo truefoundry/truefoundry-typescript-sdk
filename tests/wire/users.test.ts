@@ -646,67 +646,6 @@ describe("UsersClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("update_profile_picture (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { downloadPath: "downloadPath" };
-
-        server
-            .mockEndpoint()
-            .patch("/api/svc/v1/users/profile-picture")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .build();
-
-        const response = await client.users.updateProfilePicture({
-            downloadPath: "downloadPath",
-        });
-        expect(response).toEqual(undefined);
-    });
-
-    test("update_profile_picture (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { downloadPath: "downloadPath" };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .patch("/api/svc/v1/users/profile-picture")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.users.updateProfilePicture({
-                downloadPath: "downloadPath",
-            });
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
-    });
-
-    test("update_profile_picture (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { downloadPath: "downloadPath" };
-        const rawResponseBody = { key: "value" };
-        server
-            .mockEndpoint()
-            .patch("/api/svc/v1/users/profile-picture")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.users.updateProfilePicture({
-                downloadPath: "downloadPath",
-            });
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-
     test("change_password", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
