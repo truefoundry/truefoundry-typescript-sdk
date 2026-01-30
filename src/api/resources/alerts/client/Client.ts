@@ -51,27 +51,13 @@ export class AlertsClient {
         requestOptions?: AlertsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetAlertsResponse>> {
         const { startTs, endTs, clusterId, applicationId, alertStatus } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (startTs != null) {
-            _queryParams.startTs = startTs;
-        }
-
-        if (endTs != null) {
-            _queryParams.endTs = endTs;
-        }
-
-        if (clusterId != null) {
-            _queryParams.clusterId = clusterId;
-        }
-
-        if (applicationId != null) {
-            _queryParams.applicationId = applicationId;
-        }
-
-        if (alertStatus != null) {
-            _queryParams.alertStatus = alertStatus;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            startTs,
+            endTs,
+            clusterId,
+            applicationId,
+            alertStatus: alertStatus != null ? alertStatus : undefined,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

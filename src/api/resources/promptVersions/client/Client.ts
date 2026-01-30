@@ -276,31 +276,16 @@ export class PromptVersionsClient {
                     offset = 0,
                     limit = 100,
                 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (tag != null) {
-                    _queryParams.tag = tag;
-                }
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
-                if (promptId != null) {
-                    _queryParams.prompt_id = promptId;
-                }
-                if (mlRepoId != null) {
-                    _queryParams.ml_repo_id = mlRepoId;
-                }
-                if (name != null) {
-                    _queryParams.name = name;
-                }
-                if (version != null) {
-                    _queryParams.version = version.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    tag,
+                    fqn,
+                    prompt_id: promptId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                    offset,
+                    limit,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

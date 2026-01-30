@@ -14,7 +14,7 @@ import type * as TrueFoundry from "../../../../index.js";
  */
 export interface ApplyTeamRequest {
     /** Team manifest */
-    manifest: TrueFoundry.ApplyTeamRequestManifest;
+    manifest: TrueFoundry.TeamManifest;
     /** Dry run */
     dryRun?: boolean;
 }

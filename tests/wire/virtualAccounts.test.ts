@@ -41,6 +41,7 @@ describe("VirtualAccountsClient", () => {
                     accountId: "accountId",
                     metadata: { key: "value" },
                     roleIds: ["roleIds"],
+                    rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -96,6 +97,13 @@ describe("VirtualAccountsClient", () => {
                         key: "value",
                     },
                     roleIds: ["roleIds"],
+                    rolesWithResource: [
+                        {
+                            roleId: "roleId",
+                            resourceType: "role",
+                            resourceId: "resourceId",
+                        },
+                    ],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -109,6 +117,7 @@ describe("VirtualAccountsClient", () => {
         const page = await client.virtualAccounts.list({
             limit: 10,
             offset: 0,
+            nameSearchQuery: "nameSearchQuery",
         });
 
         expect(expected.data).toEqual(page.data);
@@ -170,6 +179,7 @@ describe("VirtualAccountsClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
+                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -256,6 +266,13 @@ describe("VirtualAccountsClient", () => {
                     key: "value",
                 },
                 roleIds: ["roleIds"],
+                rolesWithResource: [
+                    {
+                        roleId: "roleId",
+                        resourceType: "role",
+                        resourceId: "resourceId",
+                    },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -400,6 +417,7 @@ describe("VirtualAccountsClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
+                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -473,6 +491,13 @@ describe("VirtualAccountsClient", () => {
                     key: "value",
                 },
                 roleIds: ["roleIds"],
+                rolesWithResource: [
+                    {
+                        roleId: "roleId",
+                        resourceType: "role",
+                        resourceId: "resourceId",
+                    },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },

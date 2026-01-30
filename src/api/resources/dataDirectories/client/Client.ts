@@ -135,11 +135,9 @@ export class DataDirectoriesClient {
         requestOptions?: DataDirectoriesClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
         const { delete_contents: deleteContents = false } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (deleteContents != null) {
-            _queryParams.delete_contents = deleteContents.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            delete_contents: deleteContents,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -226,22 +224,13 @@ export class DataDirectoriesClient {
                 request: TrueFoundry.DataDirectoriesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListDataDirectoriesResponse>> => {
                 const { fqn, ml_repo_id: mlRepoId, name, limit = 100, offset = 0 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
-                if (mlRepoId != null) {
-                    _queryParams.ml_repo_id = mlRepoId;
-                }
-                if (name != null) {
-                    _queryParams.name = name;
-                }
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    fqn,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    limit,
+                    offset,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

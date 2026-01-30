@@ -33,4 +33,6 @@ export interface TraceSpan {
     events: Record<string, unknown>[];
     /** Subject (user or virtualaccount) that created this span. */
     createdBySubject: TrueFoundry.Subject;
+    /** Gateway feedbacks associated with this span (if any). */
+    feedbacks?: unknown[][];
 }

@@ -43,16 +43,11 @@ export class TeamsClient {
                 request: TrueFoundry.TeamsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => {
                 const { limit = 100, offset = 0, type: type_ } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (type_ != null) {
-                    _queryParams.type = type_;
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    type: type_ != null ? type_ : undefined,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

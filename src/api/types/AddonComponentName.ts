@@ -27,5 +27,6 @@ export const AddonComponentName = {
     TfyPrometheusConfig: "TFY_PROMETHEUS_CONFIG",
     SparkOperator: "SPARK_OPERATOR",
     TfyLogs: "TFY_LOGS",
+    TfyCertManagerConfig: "TFY_CERT_MANAGER_CONFIG",
 } as const;
 export type AddonComponentName = (typeof AddonComponentName)[keyof typeof AddonComponentName];

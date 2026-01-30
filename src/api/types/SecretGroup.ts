@@ -11,6 +11,7 @@ export interface SecretGroup {
     associatedSecrets: TrueFoundry.Secret[];
     integrationId?: string;
     manifest?: Record<string, unknown>;
+    accountId: string;
     createdAt: string;
     updatedAt: string;
     createdBy?: string;

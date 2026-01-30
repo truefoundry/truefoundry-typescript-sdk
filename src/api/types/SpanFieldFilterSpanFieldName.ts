@@ -14,6 +14,7 @@ export const SpanFieldFilterSpanFieldName = {
     Tag: "tag",
     ScopeName: "scopeName",
     Environment: "environment",
+    Feedbacks: "feedbacks",
 } as const;
 export type SpanFieldFilterSpanFieldName =
     (typeof SpanFieldFilterSpanFieldName)[keyof typeof SpanFieldFilterSpanFieldName];

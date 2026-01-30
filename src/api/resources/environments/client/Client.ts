@@ -42,13 +42,10 @@ export class EnvironmentsClient {
                 request: TrueFoundry.EnvironmentsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListEnvironmentsResponse>> => {
                 const { limit = 100, offset = 0 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

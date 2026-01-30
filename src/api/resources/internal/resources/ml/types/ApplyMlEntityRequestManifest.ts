@@ -6,5 +6,4 @@ export type ApplyMlEntityRequestManifest =
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
     | TrueFoundry.ArtifactManifest
-    | TrueFoundry.DataDirectoryManifest
-    | TrueFoundry.TracingProjectManifest;
+    | TrueFoundry.DataDirectoryManifest;

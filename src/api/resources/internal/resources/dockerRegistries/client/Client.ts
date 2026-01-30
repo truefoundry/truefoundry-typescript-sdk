@@ -123,15 +123,10 @@ export class DockerRegistriesClient {
         requestOptions?: DockerRegistriesClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.internal.DockerRegistriesGetCredentialsResponse>> {
         const { fqn, clusterId } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (fqn != null) {
-            _queryParams.fqn = fqn;
-        }
-
-        if (clusterId != null) {
-            _queryParams.clusterId = clusterId;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            fqn,
+            clusterId,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

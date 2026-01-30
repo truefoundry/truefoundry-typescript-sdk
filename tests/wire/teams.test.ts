@@ -22,6 +22,7 @@ describe("TeamsClient", () => {
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
                     manifest: { type: "team", name: "name", members: ["members"] },
+                    isEditable: true,
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -54,6 +55,7 @@ describe("TeamsClient", () => {
                         name: "name",
                         members: ["members"],
                     },
+                    isEditable: true,
                 },
             ],
             pagination: {
@@ -101,6 +103,8 @@ describe("TeamsClient", () => {
                     members: ["members"],
                     ownedBy: { account: "account" },
                 },
+                metadata: { createdByScim: true },
+                isEditable: true,
             },
         };
         server
@@ -144,6 +148,10 @@ describe("TeamsClient", () => {
                         account: "account",
                     },
                 },
+                metadata: {
+                    createdByScim: true,
+                },
+                isEditable: true,
             },
         });
     });
@@ -225,6 +233,8 @@ describe("TeamsClient", () => {
                     members: ["members"],
                     ownedBy: { account: "account" },
                 },
+                metadata: { createdByScim: true },
+                isEditable: true,
             },
         };
         server
@@ -261,6 +271,10 @@ describe("TeamsClient", () => {
                         account: "account",
                     },
                 },
+                metadata: {
+                    createdByScim: true,
+                },
+                isEditable: true,
             },
         });
     });

@@ -2,6 +2,9 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +discriminator=type
+ */
 export type GuardrailConfigIntegrations =
     | TrueFoundry.OpenAiModerationsGuardrailConfig
     | TrueFoundry.AwsBedrockGuardrailConfig
@@ -13,4 +16,7 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.PromptFooGuardrailConfig
     | TrueFoundry.FiddlerGuardrailConfig
     | TrueFoundry.PangeaGuardrailConfig
-    | TrueFoundry.PatronusGuardrailConfig;
+    | TrueFoundry.PatronusGuardrailConfig
+    | TrueFoundry.SecretDetectionGuardrailConfig
+    | TrueFoundry.CodeSafetyLinterGuardrailConfig
+    | TrueFoundry.SqlSanitizerGuardrailConfig;

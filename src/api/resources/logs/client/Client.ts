@@ -79,79 +79,25 @@ export class LogsClient {
             searchType,
             searchOperator,
         } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (startTs != null) {
-            _queryParams.startTs = startTs.toString();
-        }
-
-        if (endTs != null) {
-            _queryParams.endTs = endTs.toString();
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit.toString();
-        }
-
-        if (direction != null) {
-            _queryParams.direction = direction;
-        }
-
-        if (numLogsToIgnore != null) {
-            _queryParams.numLogsToIgnore = numLogsToIgnore.toString();
-        }
-
-        if (applicationId != null) {
-            _queryParams.applicationId = applicationId;
-        }
-
-        if (applicationFqn != null) {
-            _queryParams.applicationFqn = applicationFqn;
-        }
-
-        if (deploymentId != null) {
-            _queryParams.deploymentId = deploymentId;
-        }
-
-        if (jobRunName != null) {
-            _queryParams.jobRunName = jobRunName;
-        }
-
-        if (podName != null) {
-            _queryParams.podName = podName;
-        }
-
-        if (containerName != null) {
-            _queryParams.containerName = containerName;
-        }
-
-        if (podNames != null) {
-            if (Array.isArray(podNames)) {
-                _queryParams.podNames = podNames.map((item) => item);
-            } else {
-                _queryParams.podNames = podNames;
-            }
-        }
-
-        if (podNamesRegex != null) {
-            _queryParams.podNamesRegex = podNamesRegex;
-        }
-
-        if (searchFilters != null) {
-            _queryParams.searchFilters = searchFilters;
-        }
-
-        if (searchString != null) {
-            _queryParams.searchString = searchString;
-        }
-
-        if (searchType != null) {
-            _queryParams.searchType = searchType;
-        }
-
-        if (searchOperator != null) {
-            _queryParams.searchOperator = searchOperator;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            startTs,
+            endTs,
+            limit,
+            direction: direction != null ? direction : undefined,
+            numLogsToIgnore,
+            applicationId,
+            applicationFqn,
+            deploymentId,
+            jobRunName,
+            podName,
+            containerName,
+            podNames,
+            podNamesRegex,
+            searchFilters,
+            searchString,
+            searchType: searchType != null ? searchType : undefined,
+            searchOperator: searchOperator != null ? searchOperator : undefined,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

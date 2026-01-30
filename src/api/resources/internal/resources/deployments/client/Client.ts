@@ -260,22 +260,14 @@ export class DeploymentsClient {
         requestOptions?: DeploymentsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetSuggestedDeploymentEndpointResponse>> {
         const { applicationType, applicationName, workspaceId, baseDomain, port, preferWildcard = false } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.applicationType = applicationType;
-        _queryParams.applicationName = applicationName;
-        _queryParams.workspaceId = workspaceId;
-        if (baseDomain != null) {
-            _queryParams.baseDomain = baseDomain;
-        }
-
-        if (port != null) {
-            _queryParams.port = port;
-        }
-
-        if (preferWildcard != null) {
-            _queryParams.preferWildcard = preferWildcard.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            applicationType,
+            applicationName,
+            workspaceId,
+            baseDomain,
+            port,
+            preferWildcard,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

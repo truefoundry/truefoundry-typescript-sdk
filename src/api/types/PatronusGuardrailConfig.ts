@@ -8,16 +8,16 @@ import type * as TrueFoundry from "../index.js";
 export interface PatronusGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/patronus
      */
     type: "integration/guardrail-config/patronus";
     /** The operation type for this guardrail. Patronus guardrails can only be used for validation. */
-    operation?: "validate";
+    operation: "validate";
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     auth_data: TrueFoundry.PatronusKeyAuth;
-    /** Where to apply evaluation: request (evaluate user input) or response (evaluate model response) */
-    target: TrueFoundry.PatronusGuardrailConfigTarget;
-    /** The evaluators to use for the Patronus Guardrail. */
-    evaluators: TrueFoundry.PatronusEvaluator[];
+    config: TrueFoundry.PatronusGuardrailConfigConfig;
 }

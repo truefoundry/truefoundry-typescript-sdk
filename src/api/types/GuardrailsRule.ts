@@ -10,7 +10,11 @@ export interface GuardrailsRule {
     id: string;
     when: TrueFoundry.GuardrailsWhen;
     /** Guardrail selectors of the guardrails to apply to the input (format: groupName/guardrailName) */
-    input_guardrails: string[];
+    llm_input_guardrails: string[];
     /** Guardrail selectors of the guardrails to apply to the output (format: groupName/guardrailName) */
-    output_guardrails: string[];
+    llm_output_guardrails: string[];
+    /** Guardrail selectors of the guardrails to apply to the MCP tool pre invoke (format: groupName/guardrailName) */
+    mcp_tool_pre_invoke_guardrails: string[];
+    /** Guardrail selectors of the guardrails to apply to the MCP tool post invoke (format: groupName/guardrailName) */
+    mcp_tool_post_invoke_guardrails: string[];
 }

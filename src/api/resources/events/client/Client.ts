@@ -52,35 +52,14 @@ export class EventsClient {
         requestOptions?: EventsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetEventsResponse>> {
         const { startTs, endTs, applicationId, applicationFqn, podNames, jobRunName } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (startTs != null) {
-            _queryParams.startTs = startTs;
-        }
-
-        if (endTs != null) {
-            _queryParams.endTs = endTs;
-        }
-
-        if (applicationId != null) {
-            _queryParams.applicationId = applicationId;
-        }
-
-        if (applicationFqn != null) {
-            _queryParams.applicationFqn = applicationFqn;
-        }
-
-        if (podNames != null) {
-            if (Array.isArray(podNames)) {
-                _queryParams.podNames = podNames.map((item) => item);
-            } else {
-                _queryParams.podNames = podNames;
-            }
-        }
-
-        if (jobRunName != null) {
-            _queryParams.jobRunName = jobRunName;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            startTs,
+            endTs,
+            applicationId,
+            applicationFqn,
+            podNames,
+            jobRunName,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

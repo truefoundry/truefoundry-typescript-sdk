@@ -122,8 +122,9 @@ export class InternalClient {
         requestOptions?: InternalClient.RequestOptions,
     ): Promise<core.WithRawResponse<Record<string, unknown>>> {
         const { fqn } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.fqn = fqn;
+        const _queryParams: Record<string, unknown> = {
+            fqn,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

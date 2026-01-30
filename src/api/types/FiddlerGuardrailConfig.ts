@@ -8,15 +8,16 @@ import type * as TrueFoundry from "../index.js";
 export interface FiddlerGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/fiddler
      */
     type: "integration/guardrail-config/fiddler";
-    auth_data: TrueFoundry.FiddlerKeyAuth;
-    guard_type: TrueFoundry.FiddlerGuardType;
     /** The operation type for this guardrail. Fiddler guardrails can only be used for validation. */
-    operation?: "validate";
-    /** Confidence threshold (0.0-1.0) for flagging content. Content scoring above the threshold will be flagged */
-    threshold?: number;
+    operation: "validate";
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
+    auth_data: TrueFoundry.FiddlerKeyAuth;
+    config: TrueFoundry.FiddlerGuardrailConfigConfig;
 }

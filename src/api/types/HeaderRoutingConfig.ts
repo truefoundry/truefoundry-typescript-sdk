@@ -4,6 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 /**
  * this union is mainly for gateway to parse the load balancing config from request header
+ * +discriminator=type
  */
 export type HeaderRoutingConfig =
     | TrueFoundry.WeightBasedLoadBalancing

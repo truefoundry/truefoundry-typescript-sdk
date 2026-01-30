@@ -77,58 +77,25 @@ export class ApplicationsClient {
                     lifecycleStage,
                     isRecommendationPresentAndVisible,
                 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (applicationId != null) {
-                    _queryParams.applicationId = applicationId;
-                }
-                if (workspaceId != null) {
-                    _queryParams.workspaceId = workspaceId;
-                }
-                if (applicationName != null) {
-                    _queryParams.applicationName = applicationName;
-                }
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
-                if (workspaceFqn != null) {
-                    _queryParams.workspaceFqn = workspaceFqn;
-                }
-                if (applicationType != null) {
-                    _queryParams.applicationType = applicationType;
-                }
-                if (nameSearchQuery != null) {
-                    _queryParams.nameSearchQuery = nameSearchQuery;
-                }
-                if (environmentId != null) {
-                    _queryParams.environmentId = environmentId;
-                }
-                if (clusterId != null) {
-                    _queryParams.clusterId = clusterId;
-                }
-                if (applicationSetId != null) {
-                    _queryParams.applicationSetId = applicationSetId;
-                }
-                if (paused != null) {
-                    _queryParams.paused = paused.toString();
-                }
-                if (deviceTypeFilter != null) {
-                    _queryParams.deviceTypeFilter = deviceTypeFilter;
-                }
-                if (lastDeployedBySubjects != null) {
-                    _queryParams.lastDeployedBySubjects = lastDeployedBySubjects;
-                }
-                if (lifecycleStage != null) {
-                    _queryParams.lifecycleStage = lifecycleStage;
-                }
-                if (isRecommendationPresentAndVisible != null) {
-                    _queryParams.isRecommendationPresentAndVisible = isRecommendationPresentAndVisible.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    applicationId,
+                    workspaceId,
+                    applicationName,
+                    fqn,
+                    workspaceFqn,
+                    applicationType,
+                    nameSearchQuery,
+                    environmentId,
+                    clusterId,
+                    applicationSetId,
+                    paused,
+                    deviceTypeFilter: deviceTypeFilter != null ? deviceTypeFilter : undefined,
+                    lastDeployedBySubjects,
+                    lifecycleStage: lifecycleStage != null ? lifecycleStage : undefined,
+                    isRecommendationPresentAndVisible,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

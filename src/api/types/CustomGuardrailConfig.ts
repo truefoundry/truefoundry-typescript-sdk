@@ -8,6 +8,8 @@ import type * as TrueFoundry from "../index.js";
 export interface CustomGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/custom
@@ -18,14 +20,12 @@ export interface CustomGuardrailConfig {
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
      */
     operation: TrueFoundry.CustomGuardrailConfigOperation;
+    /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
+    priority?: number;
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     /** Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails. */
     target: TrueFoundry.CustomGuardrailConfigTarget;
-    /** The URL of the Guardrail to send a post request to. */
-    url: string;
     /** Authentication data for the Guardrail Server. */
     auth_data?: TrueFoundry.CustomGuardrailConfigAuthData;
-    /** Headers for the Guardrail Server. Forwarded to the Guardrail Server as is. For example: `{"Authorization": "APIKey <token>"}` */
-    headers?: Record<string, string>;
-    /** The config for the Guardrail Server. This is a JSON object that will be sent as a config to Guardrail Server along with the request. */
-    config: Record<string, unknown>;
+    config: TrueFoundry.CustomGuardrailConfigConfig;
 }

@@ -378,7 +378,7 @@ describe("DataDirectoriesClient", () => {
         server
             .mockEndpoint({ once: false })
             .post("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBody, { ignoredFields: ["pageToken"] })
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -416,9 +416,9 @@ describe("DataDirectoriesClient", () => {
         const rawRequestBody = { id: "id" };
         const rawResponseBody = { key: "value" };
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .post("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBody, { ignoredFields: ["pageToken"] })
             .respondWith()
             .statusCode(422)
             .jsonBody(rawResponseBody)

@@ -6,5 +6,4 @@ export type ApplyMlEntityResponseData =
     | TrueFoundry.ModelVersion
     | TrueFoundry.PromptVersion
     | TrueFoundry.ArtifactVersion
-    | TrueFoundry.DataDirectory
-    | TrueFoundry.TracingProject;
+    | TrueFoundry.DataDirectory;

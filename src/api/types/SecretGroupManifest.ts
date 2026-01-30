@@ -11,4 +11,5 @@ export interface SecretGroupManifest {
     integration_fqn: string;
     /** Users and Teams that have access to Secret Group */
     collaborators: TrueFoundry.Collaborator[];
+    ownedBy?: TrueFoundry.OwnedBy;
 }

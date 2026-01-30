@@ -11,8 +11,10 @@ export const GatewayRequestMetadataFilterOperator = {
     NotIn: "NOT_IN",
     StringContains: "STRING_CONTAINS",
     StringStartsWith: "STRING_STARTS_WITH",
+    StringEndsWith: "STRING_ENDS_WITH",
     ArrayHasAny: "ARRAY_HAS_ANY",
     ArrayHasNone: "ARRAY_HAS_NONE",
+    Present: "PRESENT",
 } as const;
 export type GatewayRequestMetadataFilterOperator =
     (typeof GatewayRequestMetadataFilterOperator)[keyof typeof GatewayRequestMetadataFilterOperator];

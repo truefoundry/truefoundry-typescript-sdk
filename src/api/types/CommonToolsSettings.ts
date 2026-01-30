@@ -17,15 +17,15 @@ export interface CommonToolsSettings {
      */
     code_executor: boolean;
     /**
+     * Enable sandbox executor tool
+     * Allows model to execute shell command in an isolated stateful sandbox environment.
+     */
+    sandbox_exec: boolean;
+    /**
      * Enable sequential thinking tool
      * Allows model to reason step-by-step to solve complex problems.
      */
     sequential_thinking: boolean;
-    /**
-     * Enable vision OCR tool
-     * Allows model to extract text from images or PDFs.
-     */
-    vision_ocr: boolean;
     /**
      * Enable web scraping tool.
      * Allows model to scrape content from web pages with intelligent format selection for structured or unstructured data.

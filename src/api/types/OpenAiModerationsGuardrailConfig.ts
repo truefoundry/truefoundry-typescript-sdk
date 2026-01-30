@@ -8,19 +8,17 @@ import type * as TrueFoundry from "../index.js";
 export interface OpenAiModerationsGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +value=integration/guardrail-config/openai-moderations
      * +sort=50
      * +uiType=Hidden
      */
     type: "integration/guardrail-config/openai-moderations";
-    /** Optional custom base URL for OpenAI API. If not provided, the default base URL will be used. */
-    base_url?: string;
     /** The operation type for this guardrail. OpenAI Moderation guardrails can only be used for validation. */
-    operation?: "validate";
+    operation: "validate";
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     auth_data: TrueFoundry.OpenaiApiKeyAuth;
-    /** The model to use for the OpenAI Moderation API. */
-    model: string;
-    /** Confidence thresholds (0.0-1.0) for each content category. Content scoring above the threshold will be flagged. Lower values are more strict */
-    category_thresholds?: Record<string, TrueFoundry.OpenAiModerationsGuardrailConfigCategoryThresholdsValue>;
+    config: TrueFoundry.OpenAiModerationsGuardrailConfigConfig;
 }

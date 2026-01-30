@@ -6,7 +6,6 @@ import type * as TrueFoundry from "../index.js";
  * Structured JSON response format with schema validation
  */
 export interface JsonSchemaResponseFormat {
-    /** Type of response format */
     type: "json_schema";
     json_schema: TrueFoundry.JsonSchema;
 }

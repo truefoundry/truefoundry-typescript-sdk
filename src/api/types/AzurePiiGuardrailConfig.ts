@@ -8,26 +8,18 @@ import type * as TrueFoundry from "../index.js";
 export interface AzurePiiGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-pii
      */
     type: "integration/guardrail-config/azure-pii";
-    /** Name of your Azure AI Language resource where the PII detection service is deployed (e.g., my-language-resource) */
-    resource_name: string;
-    /** API version for the PII detection API */
-    api_version: string;
-    /** Custom endpoint URL for the PII detection API (optional, uses default Azure endpoint if not specified) */
-    custom_host?: string;
     /** The operation type for this guardrail. Azure PII guardrails can only be used for mutate. */
-    operation?: "mutate";
-    /** Specialized domain for PII detection. Use healthcare for PHI (Protected Health Information) or none for general text */
-    domain: TrueFoundry.AzurePiiGuardrailConfigDomain;
-    /** Categories of PII to detect. */
-    pii_categories: TrueFoundry.AzurePiiCategory[];
-    /** Version of the PII detection model to use, use latest for the newest model or specify a specific version for consistency */
-    model_version: string;
-    /** Language code for PII detection (e.g., en for English) */
-    language: string;
+    operation: "mutate";
+    /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
+    priority?: number;
     auth_data: TrueFoundry.AzureKeyAuth;
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
+    config: TrueFoundry.AzurePiiGuardrailConfigConfig;
 }

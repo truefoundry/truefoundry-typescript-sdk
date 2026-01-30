@@ -3,22 +3,23 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Azure Foundry Model
+ * Azure AI Foundry Model
  */
 export interface AzureFoundryModel {
     /** +value=integration/model/azure-foundry */
     type: "integration/model/azure-foundry";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
-    auth_data: TrueFoundry.AzureKeyAuth;
+    /** Azure AI Foundry authentication credentials */
+    auth_data: TrueFoundry.AzureFoundryModelAuthData;
     /** Types of models supported by this Azure AI Foundry deployment */
     model_types: TrueFoundry.ModelType[];
     /** The model deployment name created in your Azure AI Foundry project. This is the deployment name you configured in Azure AI Foundry, not the base model name. */
     model_id: string;
-    /** The Azure AI Foundry endpoint URL */
+    /** The Azure AI Foundry endpoint URL. Should look like https://{deployment}.{region}.models.ai.azure.com */
     azure_endpoint: string;
     /** The API version for the Azure Foundry model */
-    api_version: string;
+    api_version?: string;
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];

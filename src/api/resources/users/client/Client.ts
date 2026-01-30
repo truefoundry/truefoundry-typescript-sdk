@@ -45,22 +45,13 @@ export class UsersClient {
                 request: TrueFoundry.UsersListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => {
                 const { limit = 100, offset = 0, query, showInvalidUsers, includeVirtualAccounts } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (query != null) {
-                    _queryParams.query = query;
-                }
-                if (showInvalidUsers != null) {
-                    _queryParams.showInvalidUsers = showInvalidUsers.toString();
-                }
-                if (includeVirtualAccounts != null) {
-                    _queryParams.includeVirtualAccounts = includeVirtualAccounts;
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    query,
+                    showInvalidUsers,
+                    includeVirtualAccounts,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,
@@ -646,6 +637,82 @@ export class UsersClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PATCH", "/api/svc/v1/users/activate");
+    }
+
+    /**
+     * Update the profile picture URL for the authenticated user
+     *
+     * @param {TrueFoundry.UpdateUserProfilePictureRequestDto} request
+     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.updateProfilePicture({
+     *         downloadPath: "downloadPath"
+     *     })
+     */
+    public updateProfilePicture(
+        request: TrueFoundry.UpdateUserProfilePictureRequestDto,
+        requestOptions?: UsersClient.RequestOptions,
+    ): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__updateProfilePicture(request, requestOptions));
+    }
+
+    private async __updateProfilePicture(
+        request: TrueFoundry.UpdateUserProfilePictureRequestDto,
+        requestOptions?: UsersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/users/profile-picture",
+            ),
+            method: "PATCH",
+            headers: _headers,
+            contentType: "application/json",
+            queryParameters: requestOptions?.queryParams,
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "PATCH",
+            "/api/svc/v1/users/profile-picture",
+        );
     }
 
     /**

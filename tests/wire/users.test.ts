@@ -18,7 +18,9 @@ describe("UsersClient", () => {
                     metadata: {},
                     roles: ["roles"],
                     rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                    accounts: [{ accountId: "accountId", name: "name" }],
                     active: true,
+                    isEditable: true,
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
                 },
@@ -48,7 +50,14 @@ describe("UsersClient", () => {
                             resourceId: "resourceId",
                         },
                     ],
+                    accounts: [
+                        {
+                            accountId: "accountId",
+                            name: "name",
+                        },
+                    ],
                     active: true,
+                    isEditable: true,
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
                 },
@@ -255,6 +264,7 @@ describe("UsersClient", () => {
                 metadata: {
                     sub: "sub",
                     imageURL: "imageURL",
+                    pictureDownloadPath: "pictureDownloadPath",
                     displayName: "displayName",
                     userObject: { key: "value" },
                     inviteAccepted: true,
@@ -264,10 +274,14 @@ describe("UsersClient", () => {
                     tenantRoleManagedBy: "manual",
                     ssoName: "ssoName",
                     isPrimarySSO: true,
+                    scimUserObject: { key: "value" },
+                    createdByScim: true,
                 },
                 roles: ["roles"],
                 rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                accounts: [{ accountId: "accountId", name: "name" }],
                 active: true,
+                isEditable: true,
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
             },
@@ -289,6 +303,7 @@ describe("UsersClient", () => {
                 metadata: {
                     sub: "sub",
                     imageURL: "imageURL",
+                    pictureDownloadPath: "pictureDownloadPath",
                     displayName: "displayName",
                     userObject: {
                         key: "value",
@@ -302,6 +317,10 @@ describe("UsersClient", () => {
                     tenantRoleManagedBy: "manual",
                     ssoName: "ssoName",
                     isPrimarySSO: true,
+                    scimUserObject: {
+                        key: "value",
+                    },
+                    createdByScim: true,
                 },
                 roles: ["roles"],
                 rolesWithResource: [
@@ -311,7 +330,14 @@ describe("UsersClient", () => {
                         resourceId: "resourceId",
                     },
                 ],
+                accounts: [
+                    {
+                        accountId: "accountId",
+                        name: "name",
+                    },
+                ],
                 active: true,
+                isEditable: true,
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
             },
@@ -620,6 +646,67 @@ describe("UsersClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
+    test("update_profile_picture (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { downloadPath: "downloadPath" };
+
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/profile-picture")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .build();
+
+        const response = await client.users.updateProfilePicture({
+            downloadPath: "downloadPath",
+        });
+        expect(response).toEqual(undefined);
+    });
+
+    test("update_profile_picture (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { downloadPath: "downloadPath" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/profile-picture")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.updateProfilePicture({
+                downloadPath: "downloadPath",
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("update_profile_picture (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { downloadPath: "downloadPath" };
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .patch("/api/svc/v1/users/profile-picture")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.updateProfilePicture({
+                downloadPath: "downloadPath",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
     test("change_password", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -730,6 +817,7 @@ describe("UsersClient", () => {
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
                     manifest: { type: "team", name: "name", members: ["members"] },
+                    isEditable: true,
                 },
             ],
         };
@@ -762,6 +850,7 @@ describe("UsersClient", () => {
                         name: "name",
                         members: ["members"],
                     },
+                    isEditable: true,
                 },
             ],
         });

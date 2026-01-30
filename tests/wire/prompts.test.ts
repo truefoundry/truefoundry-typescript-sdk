@@ -329,9 +329,12 @@ describe("PromptsClient", () => {
                         type: "weight-based-routing",
                         load_balance_targets: [{ target: "target", weight: 1 }],
                     },
+                    cache_config: { type: "semantic", similarity_threshold: 1.1, ttl: 1.1 },
                     tool_call_to_mcp_mapping: {
                         key: { mcp_server_integration_id: "mcp_server_integration_id", tool_name: "tool_name" },
                     },
+                    logging_config: { enabled: true },
+                    sub_agents: [{ name: "name" }],
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
@@ -427,12 +430,25 @@ describe("PromptsClient", () => {
                             },
                         ],
                     },
+                    cache_config: {
+                        type: "semantic",
+                        similarity_threshold: 1.1,
+                        ttl: 1.1,
+                    },
                     tool_call_to_mcp_mapping: {
                         key: {
                             mcp_server_integration_id: "mcp_server_integration_id",
                             tool_name: "tool_name",
                         },
                     },
+                    logging_config: {
+                        enabled: true,
+                    },
+                    sub_agents: [
+                        {
+                            name: "name",
+                        },
+                    ],
                 },
                 usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",

@@ -8,19 +8,18 @@ import type * as TrueFoundry from "../index.js";
 export interface PangeaGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/pangea
      */
     type: "integration/guardrail-config/pangea";
-    auth_data: TrueFoundry.PangeaKeyAuth;
-    guard_type: TrueFoundry.PangeaGuardType;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. */
-    operation?: TrueFoundry.PangeaGuardrailConfigOperation;
-    /** Domain of the cloud provider and region where your Pangea project is configured. Example: if endpoint is: https://<service_name>.aws.us-west-2.pangea.cloud/v1/text/guard, the input should be: aws.us-west-2.pangea.cloud */
-    domain: string;
-    /** Recipe key from Pangea console defining security rules and data types to apply */
-    recipe?: string;
-    /** Overrides for the Pangea account */
-    overrides?: Record<string, string>;
+    operation: TrueFoundry.PangeaGuardrailConfigOperation;
+    /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
+    priority?: number;
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
+    auth_data: TrueFoundry.PangeaKeyAuth;
+    config: TrueFoundry.PangeaGuardrailConfigConfig;
 }

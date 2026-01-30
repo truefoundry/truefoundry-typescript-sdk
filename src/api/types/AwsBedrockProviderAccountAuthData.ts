@@ -7,4 +7,5 @@ import type * as TrueFoundry from "../index.js";
  */
 export type AwsBedrockProviderAccountAuthData =
     | TrueFoundry.AwsAccessKeyBasedAuth
-    | TrueFoundry.AwsBedrockAssumedRoleBasedAuth;
+    | TrueFoundry.AwsBedrockAssumedRoleBasedAuth
+    | TrueFoundry.AwsBedrockApiKeyAuth;

@@ -8,24 +8,16 @@ import type * as TrueFoundry from "../index.js";
 export interface AzureContentSafetyGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-content-safety
      */
     type: "integration/guardrail-config/azure-content-safety";
-    /** Name of your Azure Content Safety resource where the service is deployed (e.g., my-content-safety) */
-    resource_name: string;
-    /** API version for the Content Safety API */
-    api_version: string;
-    /** Custom endpoint URL for the Content Safety API (optional, uses default Azure endpoint if not specified) */
-    custom_host?: string;
     /** The operation type for this guardrail. Azure Content Safety guardrails can only be used for validation. */
-    operation?: "validate";
-    /** Names of custom blocklists created in Azure Content Safety to check text against. Leave empty if not using custom blocklists */
-    blocklist_names?: string[];
-    /** Minimum severity level (0-6) to flag content. Higher values are more restrictive. 0=Safe, 2=Low risk, 4=Medium risk, 6=High risk */
-    severity_threshold: number;
-    /** Types of harmful content to detect: Hate (hate speech), SelfHarm (self-injury), Sexual (sexual content), Violence (violent content) */
-    categories: TrueFoundry.AzureContentSafetyCategory[];
+    operation: "validate";
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     auth_data: TrueFoundry.AzureKeyAuth;
+    config: TrueFoundry.AzureContentSafetyGuardrailConfigConfig;
 }

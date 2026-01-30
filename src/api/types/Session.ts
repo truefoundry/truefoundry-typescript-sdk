@@ -12,9 +12,11 @@ export interface Session {
     subjectType: TrueFoundry.SubjectType;
     tenantName?: string;
     roles: string[];
-    teams: string[];
-    accounts: string[];
+    teams: TrueFoundry.SessionTeam[];
+    accounts: TrueFoundry.SessionAccount[];
     metadata?: TrueFoundry.UserMetadata;
+    isBillingEnabled?: boolean;
     serviceAccountMetadata?: Record<string, unknown>;
     account?: TrueFoundry.Account;
+    rootAccount?: TrueFoundry.Account;
 }

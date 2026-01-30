@@ -8,8 +8,10 @@ export interface User {
     tenantName: string;
     metadata: TrueFoundry.UserMetadata;
     roles?: string[];
-    rolesWithResource?: TrueFoundry.UserRoleWithResource[];
+    rolesWithResource?: TrueFoundry.RoleWithResource[];
+    accounts?: TrueFoundry.AccountInfo[];
     active: boolean;
+    isEditable: boolean;
     createdAt: string;
     updatedAt: string;
 }

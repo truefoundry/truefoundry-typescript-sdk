@@ -8,16 +8,16 @@ import type * as TrueFoundry from "../index.js";
 export interface PaloAltoPrismaAirsGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/palo-alto-prisma-airs
      */
     type: "integration/guardrail-config/palo-alto-prisma-airs";
-    /** The profile name associated with this Guardrail Config. */
-    profile_name: string;
     /** The operation type for this guardrail. Palo Alto Prisma AIRS guardrails can only be used for validation. */
-    operation?: "validate";
-    /** Execution mode for the guardrail. Sync waits for the guardrail check to complete before proceeding. Async triggers the check without waiting. Defaults to sync. */
-    mode?: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigMode;
+    operation: "validate";
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     auth_data: TrueFoundry.PaloAltoPrismaAirsKeyAuth;
+    config: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigConfig;
 }

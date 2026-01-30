@@ -30,7 +30,8 @@ export class VirtualAccountsClient {
      * @example
      *     await client.virtualAccounts.list({
      *         limit: 10,
-     *         offset: 0
+     *         offset: 0,
+     *         nameSearchQuery: "nameSearchQuery"
      *     })
      */
     public async list(
@@ -41,14 +42,12 @@ export class VirtualAccountsClient {
             async (
                 request: TrueFoundry.VirtualAccountsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListVirtualAccountResponse>> => {
-                const { limit = 100, offset = 0 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
+                const { limit = 100, offset = 0, nameSearchQuery } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    nameSearchQuery,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,
