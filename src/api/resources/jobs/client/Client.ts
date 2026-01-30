@@ -60,43 +60,16 @@ export class JobsClient {
                     status,
                     versionNumbers,
                 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (searchPrefix != null) {
-                    _queryParams.searchPrefix = searchPrefix;
-                }
-                if (sortBy != null) {
-                    _queryParams.sortBy = sortBy;
-                }
-                if (order != null) {
-                    _queryParams.order = order;
-                }
-                if (triggeredBy != null) {
-                    if (Array.isArray(triggeredBy)) {
-                        _queryParams.triggeredBy = triggeredBy.map((item) => item);
-                    } else {
-                        _queryParams.triggeredBy = triggeredBy;
-                    }
-                }
-                if (status != null) {
-                    if (Array.isArray(status)) {
-                        _queryParams.status = status.map((item) => item);
-                    } else {
-                        _queryParams.status = status;
-                    }
-                }
-                if (versionNumbers != null) {
-                    if (Array.isArray(versionNumbers)) {
-                        _queryParams.versionNumbers = versionNumbers.map((item) => item.toString());
-                    } else {
-                        _queryParams.versionNumbers = versionNumbers.toString();
-                    }
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    searchPrefix,
+                    sortBy: sortBy != null ? sortBy : undefined,
+                    order: order != null ? order : undefined,
+                    triggeredBy,
+                    status: Array.isArray(status) ? status.map((item) => item) : status != null ? status : undefined,
+                    versionNumbers,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,
@@ -438,9 +411,10 @@ export class JobsClient {
         requestOptions?: JobsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.TerminateJobResponse>> {
         const { deploymentId, jobRunName } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        _queryParams.deploymentId = deploymentId;
-        _queryParams.jobRunName = jobRunName;
+        const _queryParams: Record<string, unknown> = {
+            deploymentId,
+            jobRunName,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

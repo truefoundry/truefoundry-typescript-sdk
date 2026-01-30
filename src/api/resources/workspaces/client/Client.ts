@@ -45,22 +45,13 @@ export class WorkspacesClient {
                 request: TrueFoundry.WorkspacesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => {
                 const { limit = 100, offset = 0, clusterId, name, fqn } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (clusterId != null) {
-                    _queryParams.clusterId = clusterId;
-                }
-                if (name != null) {
-                    _queryParams.name = name;
-                }
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    clusterId,
+                    name,
+                    fqn,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

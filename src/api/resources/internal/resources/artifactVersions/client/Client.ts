@@ -70,51 +70,20 @@ export class ArtifactVersionsClient {
                     include_internal_metadata: includeInternalMetadata = false,
                     include_model_versions: includeModelVersions = false,
                 } = request;
-                const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-                if (tag != null) {
-                    _queryParams.tag = tag;
-                }
-                if (fqn != null) {
-                    _queryParams.fqn = fqn;
-                }
-                if (artifactId != null) {
-                    _queryParams.artifact_id = artifactId;
-                }
-                if (mlRepoId != null) {
-                    _queryParams.ml_repo_id = mlRepoId;
-                }
-                if (name != null) {
-                    _queryParams.name = name;
-                }
-                if (version != null) {
-                    _queryParams.version = version.toString();
-                }
-                if (runIds != null) {
-                    if (Array.isArray(runIds)) {
-                        _queryParams.run_ids = runIds.map((item) => item);
-                    } else {
-                        _queryParams.run_ids = runIds;
-                    }
-                }
-                if (runSteps != null) {
-                    if (Array.isArray(runSteps)) {
-                        _queryParams.run_steps = runSteps.map((item) => item.toString());
-                    } else {
-                        _queryParams.run_steps = runSteps.toString();
-                    }
-                }
-                if (offset != null) {
-                    _queryParams.offset = offset.toString();
-                }
-                if (limit != null) {
-                    _queryParams.limit = limit.toString();
-                }
-                if (includeInternalMetadata != null) {
-                    _queryParams.include_internal_metadata = includeInternalMetadata.toString();
-                }
-                if (includeModelVersions != null) {
-                    _queryParams.include_model_versions = includeModelVersions.toString();
-                }
+                const _queryParams: Record<string, unknown> = {
+                    tag,
+                    fqn,
+                    artifact_id: artifactId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    offset,
+                    limit,
+                    include_internal_metadata: includeInternalMetadata,
+                    include_model_versions: includeModelVersions,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,

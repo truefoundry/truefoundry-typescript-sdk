@@ -53,31 +53,14 @@ export class BuildLogsClient {
         requestOptions?: BuildLogsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.LogsResponse>> {
         const { startTs, endTs, limit, direction, filterQuery, numLogsToIgnore } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (startTs != null) {
-            _queryParams.startTs = startTs;
-        }
-
-        if (endTs != null) {
-            _queryParams.endTs = endTs;
-        }
-
-        if (limit != null) {
-            _queryParams.limit = limit;
-        }
-
-        if (direction != null) {
-            _queryParams.direction = direction;
-        }
-
-        if (filterQuery != null) {
-            _queryParams.filterQuery = filterQuery;
-        }
-
-        if (numLogsToIgnore != null) {
-            _queryParams.numLogsToIgnore = numLogsToIgnore.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            startTs,
+            endTs,
+            limit,
+            direction,
+            filterQuery,
+            numLogsToIgnore,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,

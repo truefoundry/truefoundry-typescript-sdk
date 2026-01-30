@@ -30,7 +30,7 @@ describe("SecretsClient", () => {
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -82,7 +82,7 @@ describe("SecretsClient", () => {
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
             .respondWith()
             .statusCode(403)
             .jsonBody(rawResponseBody)
@@ -101,7 +101,7 @@ describe("SecretsClient", () => {
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody)
+            .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)

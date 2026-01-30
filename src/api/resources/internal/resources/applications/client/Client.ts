@@ -50,11 +50,9 @@ export class ApplicationsClient {
         requestOptions?: ApplicationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
         const { full = false } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (full != null) {
-            _queryParams.full = full.toString();
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            full,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -133,11 +131,9 @@ export class ApplicationsClient {
         requestOptions?: ApplicationsClient.RequestOptions,
     ): Promise<core.WithRawResponse<Record<string, number>>> {
         const { podTemplateHashes } = request;
-        const _queryParams: Record<string, string | string[] | object | object[] | null> = {};
-        if (podTemplateHashes != null) {
-            _queryParams.podTemplateHashes = podTemplateHashes;
-        }
-
+        const _queryParams: Record<string, unknown> = {
+            podTemplateHashes,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
