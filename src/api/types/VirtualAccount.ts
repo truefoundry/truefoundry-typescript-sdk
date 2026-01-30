@@ -14,9 +14,10 @@ export interface VirtualAccount {
     updatedAt: string;
     isExpired?: boolean;
     jwts?: TrueFoundry.Jwt[];
-    accountId?: string;
+    accountId: string;
     metadata?: Record<string, unknown>;
     roleIds?: string[];
+    rolesWithResource?: TrueFoundry.RoleWithResource[];
     createdBy?: string;
     nextScheduledRotation?: string;
 }

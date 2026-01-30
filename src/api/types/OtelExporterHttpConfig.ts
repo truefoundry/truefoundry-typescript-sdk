@@ -18,4 +18,6 @@ export interface OtelExporterHttpConfig {
     additional_resource_attributes?: Record<string, string>;
     /** Enable to prevent forwarding the LLM or MCP request and response body in exported traces. The following span attributes are dropped: tfy.input, tfy.output, tfy.input_short_hand */
     exclude_request_data?: boolean;
+    /** Export spans only when they match all of the following filters. Only matching on spanAttributes with string values in supported. */
+    when?: TrueFoundry.OtelExporterSpanAttributeFilter[];
 }

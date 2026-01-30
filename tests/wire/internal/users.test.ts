@@ -18,11 +18,12 @@ describe("UsersClient", () => {
             subjectType: "user",
             tenantName: "tenantName",
             roles: ["roles"],
-            teams: ["teams"],
-            accounts: ["accounts"],
+            teams: [{ name: "name", id: "id" }],
+            accounts: [{ name: "name", id: "id" }],
             metadata: {
                 sub: "sub",
                 imageURL: "imageURL",
+                pictureDownloadPath: "pictureDownloadPath",
                 displayName: "displayName",
                 userObject: { key: "value" },
                 inviteAccepted: true,
@@ -32,12 +33,32 @@ describe("UsersClient", () => {
                 tenantRoleManagedBy: "manual",
                 ssoName: "ssoName",
                 isPrimarySSO: true,
+                scimUserObject: { key: "value" },
+                createdByScim: true,
             },
+            isBillingEnabled: true,
             serviceAccountMetadata: { key: "value" },
             account: {
                 id: "id",
                 name: "name",
                 tenantName: "tenantName",
+                fqn: "fqn",
+                manifest: { key: "value" },
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                },
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
+                isEditable: true,
+            },
+            rootAccount: {
+                id: "id",
+                name: "name",
+                tenantName: "tenantName",
+                fqn: "fqn",
                 manifest: { key: "value" },
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -69,11 +90,22 @@ describe("UsersClient", () => {
             subjectType: "user",
             tenantName: "tenantName",
             roles: ["roles"],
-            teams: ["teams"],
-            accounts: ["accounts"],
+            teams: [
+                {
+                    name: "name",
+                    id: "id",
+                },
+            ],
+            accounts: [
+                {
+                    name: "name",
+                    id: "id",
+                },
+            ],
             metadata: {
                 sub: "sub",
                 imageURL: "imageURL",
+                pictureDownloadPath: "pictureDownloadPath",
                 displayName: "displayName",
                 userObject: {
                     key: "value",
@@ -87,7 +119,12 @@ describe("UsersClient", () => {
                 tenantRoleManagedBy: "manual",
                 ssoName: "ssoName",
                 isPrimarySSO: true,
+                scimUserObject: {
+                    key: "value",
+                },
+                createdByScim: true,
             },
+            isBillingEnabled: true,
             serviceAccountMetadata: {
                 key: "value",
             },
@@ -95,6 +132,25 @@ describe("UsersClient", () => {
                 id: "id",
                 name: "name",
                 tenantName: "tenantName",
+                fqn: "fqn",
+                manifest: {
+                    key: "value",
+                },
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                },
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
+                isEditable: true,
+            },
+            rootAccount: {
+                id: "id",
+                name: "name",
+                tenantName: "tenantName",
+                fqn: "fqn",
                 manifest: {
                     key: "value",
                 },

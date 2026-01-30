@@ -10,7 +10,7 @@ export interface DockerhubBasicAuth {
     username: string;
     /**
      * +sort=200
-     * +uiType=Password
+     * +uiType=SecretSelect
      */
     password: string;
 }

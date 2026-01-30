@@ -3,5 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface FlyteTaskCustom {
+    /** +discriminator=type */
     truefoundry: TrueFoundry.FlyteTaskCustomTruefoundry;
 }

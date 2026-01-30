@@ -6,6 +6,7 @@ export interface Account {
     id?: string;
     name?: string;
     tenantName: string;
+    fqn: string;
     /** Account manifest */
     manifest: Record<string, unknown>;
     createdBySubject: TrueFoundry.Subject;

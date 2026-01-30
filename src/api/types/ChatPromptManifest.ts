@@ -32,6 +32,11 @@ export interface ChatPromptManifest {
     response_format?: TrueFoundry.ChatPromptManifestResponseFormat;
     /** Configuration for routing requests to different model targets */
     routing_config?: TrueFoundry.ChatPromptManifestRoutingConfig;
+    /** Cache configuration for the chat prompt */
+    cache_config?: TrueFoundry.ChatPromptManifestCacheConfig;
     /** Mapping of tool calls to MCP server integration IDs and tool names */
     tool_call_to_mcp_mapping?: Record<string, TrueFoundry.McpServerToolDetails>;
+    logging_config?: TrueFoundry.LoggingConfig;
+    /** Sub agents to be used in the chat prompt */
+    sub_agents?: TrueFoundry.SubAgent[];
 }

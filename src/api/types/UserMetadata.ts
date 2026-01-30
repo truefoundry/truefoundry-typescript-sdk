@@ -5,6 +5,7 @@ import type * as TrueFoundry from "../index.js";
 export interface UserMetadata {
     sub?: string;
     imageURL?: string;
+    pictureDownloadPath?: string;
     displayName?: string;
     userObject?: Record<string, unknown>;
     inviteAccepted?: boolean;
@@ -14,4 +15,6 @@ export interface UserMetadata {
     tenantRoleManagedBy?: TrueFoundry.UserMetadataTenantRoleManagedBy;
     ssoName?: string;
     isPrimarySSO?: boolean;
+    scimUserObject?: Record<string, unknown>;
+    createdByScim?: boolean;
 }

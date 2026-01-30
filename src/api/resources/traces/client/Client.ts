@@ -27,8 +27,7 @@ export class TracesClient {
      *
      * @example
      *     await client.traces.querySpans({
-     *         startTime: "startTime",
-     *         tracingProjectFqn: "tracingProjectFqn"
+     *         startTime: "startTime"
      *     })
      */
     public async querySpans(

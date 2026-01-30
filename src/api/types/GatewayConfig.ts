@@ -2,9 +2,17 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +discriminator=type
+ */
 export type GatewayConfig =
     | TrueFoundry.RateLimitConfig
     | TrueFoundry.LoadBalancingConfig
     | TrueFoundry.GuardrailsConfig
     | TrueFoundry.BudgetConfig
-    | TrueFoundry.GatewayOtelConfig;
+    | TrueFoundry.GatewayOtelConfig
+    | TrueFoundry.GatewayMetadataConfig
+    | TrueFoundry.GatewayLoggingConfig
+    | TrueFoundry.GlobalSettings
+    | TrueFoundry.GatewayDataAccessConfig
+    | TrueFoundry.GatewayDataRoutingConfig;

@@ -7,7 +7,7 @@ describe("TracesClient", () => {
     test("query_spans", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { startTime: "startTime", tracingProjectFqn: "tracingProjectFqn" };
+        const rawRequestBody = { startTime: "startTime" };
         const rawResponseBody = {
             data: [
                 {
@@ -26,6 +26,7 @@ describe("TracesClient", () => {
                     spanAttributes: { key: "value" },
                     events: [{ key: "value" }],
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    feedbacks: [[]],
                 },
             ],
             pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
@@ -66,6 +67,7 @@ describe("TracesClient", () => {
                         subjectId: "subjectId",
                         subjectType: "user",
                     },
+                    feedbacks: [[]],
                 },
             ],
             pagination: {
@@ -76,7 +78,6 @@ describe("TracesClient", () => {
         };
         const page = await client.traces.querySpans({
             startTime: "startTime",
-            tracingProjectFqn: "tracingProjectFqn",
         });
 
         expect(expected.data).toEqual(page.data);

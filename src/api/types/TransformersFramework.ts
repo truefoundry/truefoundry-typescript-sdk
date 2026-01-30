@@ -3,7 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface TransformersFramework {
-    /** Type of the framework */
     type: "transformers";
     /** Name of the library for the framework */
     library_name?: TrueFoundry.LibraryName;

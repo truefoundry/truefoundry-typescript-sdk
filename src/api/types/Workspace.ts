@@ -13,7 +13,7 @@ export interface Workspace {
     updatedAt: string;
     environmentId?: string;
     manifest: TrueFoundry.WorkspaceManifest;
-    accountId?: string;
+    accountId: string;
     isSystemWs?: boolean;
     createdBy?: string;
 }

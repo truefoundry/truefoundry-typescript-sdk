@@ -2,4 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +discriminator=type
+ */
 export type McpServerIntegrations = TrueFoundry.McpServerIntegration | TrueFoundry.VirtualMcpServerIntegration;

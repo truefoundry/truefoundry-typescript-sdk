@@ -8,12 +8,17 @@ import type * as TrueFoundry from "../index.js";
 export interface PromptFooGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/promptfoo
      */
     type: "integration/guardrail-config/promptfoo";
-    guard_type: TrueFoundry.PromptFooGuardType;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. */
-    operation?: TrueFoundry.PromptFooGuardrailConfigOperation;
+    operation: TrueFoundry.PromptFooGuardrailConfigOperation;
+    /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
+    priority?: number;
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
+    config: TrueFoundry.PromptFooGuardrailConfigConfig;
 }

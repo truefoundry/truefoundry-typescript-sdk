@@ -5,8 +5,7 @@ import type * as TrueFoundry from "../../../../index.js";
 /**
  * @example
  *     {
- *         startTime: "startTime",
- *         tracingProjectFqn: "tracingProjectFqn"
+ *         startTime: "startTime"
  *     }
  */
 export interface QuerySpansRequest {
@@ -33,7 +32,11 @@ export interface QuerySpansRequest {
     /** An opaque string that should be passed as-is from previous response for fetching the next page. Pass `$response.pagination.nextPageToken` from previous response for fetching the next page. */
     pageToken?: string;
     /** Tracing project FQN (e.g., truefoundry:tracing-project:tfy-default) */
-    tracingProjectFqn: string;
+    tracingProjectFqn?: string;
+    /** Data Routing Destination. One of tracingProjectFqn or dataRoutingDestination is required. */
+    dataRoutingDestination?: string;
     /** Array of filters */
     filters?: TrueFoundry.QuerySpansRequestFiltersItem[];
+    /** When true, feedback data is included in the response. When false, feedback data is excluded (returns empty array). */
+    includeFeedbacks?: boolean;
 }

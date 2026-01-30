@@ -9,7 +9,7 @@ export interface MlRepo {
     created_by_subject: TrueFoundry.Subject;
     /** Created At */
     created_at: string;
-    account_id?: string;
+    account_id: string;
     /** Experiment Id */
     id: string;
     /** Number of runs */

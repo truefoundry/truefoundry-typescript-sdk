@@ -8,6 +8,8 @@ import type * as TrueFoundry from "../index.js";
 export interface AwsBedrockGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/aws-bedrock
@@ -18,11 +20,10 @@ export interface AwsBedrockGuardrailConfig {
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
      */
     operation: TrueFoundry.AwsBedrockGuardrailConfigOperation;
+    /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
+    priority?: number;
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     /** Authentication data for the AWS account */
     auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
-    /** The unique identifier of the Bedrock Guardrail created in AWS console */
-    guardrail_id: string;
-    /** Version number of the guardrail to use (e.g., 2 for version 2) */
-    guardrail_version: string;
-    region: TrueFoundry.AwsRegion;
+    config: TrueFoundry.AwsBedrockGuardrailConfigConfig;
 }

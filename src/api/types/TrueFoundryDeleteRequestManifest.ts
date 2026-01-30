@@ -33,4 +33,7 @@ export type TrueFoundryDeleteRequestManifest =
     | TrueFoundry.VirtualAccountManifest
     | TrueFoundry.CommonToolsSettings
     | TrueFoundry.AiFeaturesSettings
-    | TrueFoundry.SecretGroupManifest;
+    | TrueFoundry.SecretGroupManifest
+    | TrueFoundry.AgentManifest
+    | TrueFoundry.EnvironmentManifest
+    | TrueFoundry.TracingProjectManifest;

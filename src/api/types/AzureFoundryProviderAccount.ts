@@ -3,12 +3,12 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Azure Foundry Provider Account
+ * Azure AI Foundry Provider Account
  */
 export interface AzureFoundryProviderAccount {
     /** +value=provider-account/azure-foundry */
     type: "provider-account/azure-foundry";
-    /** The name of the Azure Foundry provider account */
+    /** The name of the Azure AI Foundry provider account */
     name: string;
     /** List of integrations that are associated with the Azure Foundry provider account */
     integrations: TrueFoundry.AzureFoundryModel[];

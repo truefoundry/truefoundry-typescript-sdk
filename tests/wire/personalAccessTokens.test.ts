@@ -41,6 +41,7 @@ describe("PersonalAccessTokensClient", () => {
                     accountId: "accountId",
                     metadata: { key: "value" },
                     roleIds: ["roleIds"],
+                    rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -96,6 +97,13 @@ describe("PersonalAccessTokensClient", () => {
                         key: "value",
                     },
                     roleIds: ["roleIds"],
+                    rolesWithResource: [
+                        {
+                            roleId: "roleId",
+                            resourceType: "role",
+                            resourceId: "resourceId",
+                        },
+                    ],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -304,6 +312,7 @@ describe("PersonalAccessTokensClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
+                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -378,6 +387,13 @@ describe("PersonalAccessTokensClient", () => {
                     key: "value",
                 },
                 roleIds: ["roleIds"],
+                rolesWithResource: [
+                    {
+                        roleId: "roleId",
+                        resourceType: "role",
+                        resourceId: "resourceId",
+                    },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },

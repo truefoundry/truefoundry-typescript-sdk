@@ -2,6 +2,9 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +discriminator=type
+ */
 export type LoadBalancingRule =
     | TrueFoundry.WeightBasedLoadBalancingRule
     | TrueFoundry.LatencyBasedLoadBalancingRule

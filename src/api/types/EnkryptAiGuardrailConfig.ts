@@ -8,6 +8,8 @@ import type * as TrueFoundry from "../index.js";
 export interface EnkryptAiGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
+    /** Optional description for this Guardrail Config. */
+    description?: string;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/enkrypt-ai
@@ -18,7 +20,9 @@ export interface EnkryptAiGuardrailConfig {
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
      */
     operation: TrueFoundry.EnkryptAiGuardrailConfigOperation;
-    /** The name of the guardrail to use for the Enkrypt AI Guardrail. */
-    guardrail_name: string;
+    /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
+    priority?: number;
+    enforcing_strategy: TrueFoundry.EnforcingStrategy;
     auth_data: TrueFoundry.EnkryptAiKeyAuth;
+    config: TrueFoundry.EnkryptAiGuardrailConfigConfig;
 }

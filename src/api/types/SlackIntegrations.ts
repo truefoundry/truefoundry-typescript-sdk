@@ -2,4 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +discriminator=type
+ */
 export type SlackIntegrations = TrueFoundry.SlackWebhookIntegration | TrueFoundry.SlackBotIntegration;

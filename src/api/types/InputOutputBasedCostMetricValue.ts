@@ -7,4 +7,12 @@ export interface InputOutputBasedCostMetricValue {
     output: TrueFoundry.NonNegativeFloat;
     cache_read?: TrueFoundry.NonNegativeFloat;
     cache_write?: TrueFoundry.NonNegativeFloat;
+    /** Optional volume-based pricing tiers for input tokens. Tokens up to the first tier use base rate above. */
+    input_tiers?: TrueFoundry.PrivatePricingTier[];
+    /** Optional volume-based pricing tiers for output tokens. Tokens up to the first tier use base rate above. */
+    output_tiers?: TrueFoundry.PrivatePricingTier[];
+    /** Optional volume-based pricing tiers for cache read tokens. Tokens up to the first tier use base rate above. */
+    cache_read_tiers?: TrueFoundry.PrivatePricingTier[];
+    /** Optional volume-based pricing tiers for cache write tokens. Tokens up to the first tier use base rate above. */
+    cache_write_tiers?: TrueFoundry.PrivatePricingTier[];
 }
