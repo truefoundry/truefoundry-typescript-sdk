@@ -3,7 +3,32 @@
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Ftruefoundry%2Ftruefoundry-typescript-sdk)
 [![npm shield](https://img.shields.io/npm/v/truefoundry-sdk)](https://www.npmjs.com/package/truefoundry-sdk)
 
-The Truefoundry TypeScript library provides convenient access to the Truefoundry API from TypeScript.
+This library provides convenient access to the TrueFoundry API.
+
+> [!tip]
+> You can ask questions about this SDK using DeepWiki
+> - Python: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-python-sdk)
+> - TypeScript: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/truefoundry/truefoundry-typescript-sdk)
+
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Reference](#reference)
+- [Usage](#usage)
+- [Request and Response Types](#request-and-response-types)
+- [Exception Handling](#exception-handling)
+- [Pagination](#pagination)
+- [Advanced](#advanced)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query String Parameters](#additional-query-string-parameters)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Aborting Requests](#aborting-requests)
+  - [Access Raw Response Data](#access-raw-response-data)
+  - [Logging](#logging)
+  - [Runtime Compatibility](#runtime-compatibility)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -13,7 +38,7 @@ npm i -s truefoundry-sdk
 
 ## Reference
 
-A full reference for this library is available [here](./reference.md).
+A full reference for this library is available [here](https://github.com/truefoundry/truefoundry-typescript-sdk/blob/HEAD/./reference.md).
 
 ## Usage
 
@@ -23,13 +48,58 @@ Instantiate and use the client with the following:
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-await client.v1.users.inviteUser({
-    acceptInviteClientUrl: "<control plane url>/invite-accept",
-    email: "email",
+const pageableResponse = await client.applications.list({
+    limit: 10,
+    offset: 0,
+    applicationId: "applicationId",
+    workspaceId: "workspaceId",
+    applicationName: "applicationName",
+    fqn: "fqn",
+    workspaceFqn: "workspaceFqn",
+    applicationType: "applicationType",
+    nameSearchQuery: "nameSearchQuery",
+    environmentId: "environmentId",
+    clusterId: "clusterId",
+    applicationSetId: "applicationSetId",
+    paused: true,
+    deviceTypeFilter: "cpu",
+    lastDeployedBySubjects: "lastDeployedBySubjects",
+    lifecycleStage: "active",
+    isRecommendationPresentAndVisible: true
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.applications.list({
+    limit: 10,
+    offset: 0,
+    applicationId: "applicationId",
+    workspaceId: "workspaceId",
+    applicationName: "applicationName",
+    fqn: "fqn",
+    workspaceFqn: "workspaceFqn",
+    applicationType: "applicationType",
+    nameSearchQuery: "nameSearchQuery",
+    environmentId: "environmentId",
+    clusterId: "clusterId",
+    applicationSetId: "applicationSetId",
+    paused: true,
+    deviceTypeFilter: "cpu",
+    lastDeployedBySubjects: "lastDeployedBySubjects",
+    lifecycleStage: "active",
+    isRecommendationPresentAndVisible: true
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
-## Request And Response Types
+## Request and Response Types
 
 The SDK exports all request and response types as TypeScript interfaces. Simply import them with the
 following namespace:
@@ -37,7 +107,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.UsersListRequest = {
+const request: TrueFoundry.InternalGetIdFromFqnRequest = {
     ...
 };
 ```
@@ -51,12 +121,13 @@ will be thrown.
 import { TrueFoundryError } from "truefoundry-sdk";
 
 try {
-    await client.v1.users.inviteUser(...);
+    await client.applications.list(...);
 } catch (err) {
     if (err instanceof TrueFoundryError) {
         console.log(err.statusCode);
         console.log(err.message);
         console.log(err.body);
+        console.log(err.rawResponse);
     }
 }
 ```
@@ -69,22 +140,31 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 import { TrueFoundryClient } from "truefoundry-sdk";
 
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
-const response = await client.v1.users.list({
+const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
+    query: "query",
+    showInvalidUsers: true,
+    includeVirtualAccounts: "includeVirtualAccounts"
 });
-for await (const item of response) {
+for await (const item of pageableResponse) {
     console.log(item);
 }
 
 // Or you can manually iterate page-by-page
-const page = await client.v1.users.list({
+let page = await client.users.list({
     limit: 10,
     offset: 0,
+    query: "query",
+    showInvalidUsers: true,
+    includeVirtualAccounts: "includeVirtualAccounts"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
 }
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
 ## Advanced
@@ -94,9 +174,30 @@ while (page.hasNextPage()) {
 If you would like to send additional headers as part of the request, use the `headers` request option.
 
 ```typescript
-const response = await client.v1.users.inviteUser(..., {
+import { TrueFoundryClient } from "truefoundry-sdk";
+
+const client = new TrueFoundryClient({
+    ...
     headers: {
         'X-Custom-Header': 'custom value'
+    }
+});
+
+const response = await client.applications.list(..., {
+    headers: {
+        'X-Custom-Header': 'custom value'
+    }
+});
+```
+
+### Additional Query String Parameters
+
+If you would like to send additional query string parameters as part of the request, use the `queryParams` request option.
+
+```typescript
+const response = await client.applications.list(..., {
+    queryParams: {
+        'customQueryParamKey': 'custom query param value'
     }
 });
 ```
@@ -116,7 +217,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `maxRetries` request option to configure this behavior.
 
 ```typescript
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.applications.list(..., {
     maxRetries: 0 // override maxRetries at the request level
 });
 ```
@@ -126,7 +227,7 @@ const response = await client.v1.users.inviteUser(..., {
 The SDK defaults to a 60 second timeout. Use the `timeoutInSeconds` option to configure this behavior.
 
 ```typescript
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.applications.list(..., {
     timeoutInSeconds: 30 // override timeout to 30s
 });
 ```
@@ -137,16 +238,93 @@ The SDK allows users to abort requests at any point by passing in an abort signa
 
 ```typescript
 const controller = new AbortController();
-const response = await client.v1.users.inviteUser(..., {
+const response = await client.applications.list(..., {
     abortSignal: controller.signal
 });
 controller.abort(); // aborts the request
 ```
 
+### Access Raw Response Data
+
+The SDK provides access to raw response data, including headers, through the `.withRawResponse()` method.
+The `.withRawResponse()` method returns a promise that results to an object with a `data` and a `rawResponse` property.
+
+```typescript
+const { data, rawResponse } = await client.applications.list(...).withRawResponse();
+
+console.log(data);
+console.log(rawResponse.headers['X-My-Header']);
+```
+
+### Logging
+
+The SDK supports logging. You can configure the logger by passing in a `logging` object to the client options.
+
+```typescript
+import { TrueFoundryClient, logging } from "truefoundry-sdk";
+
+const client = new TrueFoundryClient({
+    ...
+    logging: {
+        level: logging.LogLevel.Debug, // defaults to logging.LogLevel.Info
+        logger: new logging.ConsoleLogger(), // defaults to ConsoleLogger
+        silent: false, // defaults to true, set to false to enable logging
+    }
+});
+```
+The `logging` object can have the following properties:
+- `level`: The log level to use. Defaults to `logging.LogLevel.Info`.
+- `logger`: The logger to use. Defaults to a `logging.ConsoleLogger`.
+- `silent`: Whether to silence the logger. Defaults to `true`.
+
+The `level` property can be one of the following values:
+- `logging.LogLevel.Debug`
+- `logging.LogLevel.Info`
+- `logging.LogLevel.Warn`
+- `logging.LogLevel.Error`
+
+To provide a custom logger, you can pass in an object that implements the `logging.ILogger` interface.
+
+<details>
+<summary>Custom logger examples</summary>
+
+Here's an example using the popular `winston` logging library.
+```ts
+import winston from 'winston';
+
+const winstonLogger = winston.createLogger({...});
+
+const logger: logging.ILogger = {
+    debug: (msg, ...args) => winstonLogger.debug(msg, ...args),
+    info: (msg, ...args) => winstonLogger.info(msg, ...args),
+    warn: (msg, ...args) => winstonLogger.warn(msg, ...args),
+    error: (msg, ...args) => winstonLogger.error(msg, ...args),
+};
+```
+
+Here's an example using the popular `pino` logging library.
+
+```ts
+import pino from 'pino';
+
+const pinoLogger = pino({...});
+
+const logger: logging.ILogger = {
+  debug: (msg, ...args) => pinoLogger.debug(args, msg),
+  info: (msg, ...args) => pinoLogger.info(args, msg),
+  warn: (msg, ...args) => pinoLogger.warn(args, msg),
+  error: (msg, ...args) => pinoLogger.error(args, msg),
+};
+```
+</details>
+
+
 ### Runtime Compatibility
 
-The SDK defaults to `node-fetch` but will use the global fetch client if present. The SDK works in the following
-runtimes:
+
+The SDK works in the following runtimes:
+
+
 
 - Node.js 18+
 - Vercel
@@ -157,7 +335,7 @@ runtimes:
 
 ### Customizing Fetch Client
 
-The SDK provides a way for your to customize the underlying HTTP client / Fetch function. If you're running in an
+The SDK provides a way for you to customize the underlying HTTP client / Fetch function. If you're running in an
 unsupported environment, this provides a way for you to break glass and ensure the SDK works.
 
 ```typescript

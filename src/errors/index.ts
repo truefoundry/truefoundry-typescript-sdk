@@ -1,2 +1,2 @@
-export { TrueFoundryError } from "./TrueFoundryError";
-export { TrueFoundryTimeoutError } from "./TrueFoundryTimeoutError";
+export { TrueFoundryError } from "./TrueFoundryError.js";
+export { TrueFoundryTimeoutError } from "./TrueFoundryTimeoutError.js";

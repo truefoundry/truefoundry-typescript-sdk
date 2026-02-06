@@ -1,2 +1,2 @@
-export { Page } from "./Page";
-export { Pageable } from "./Pageable";
+export { CustomPager, createCustomPager } from "./CustomPager.js";
+export { Page } from "./Page.js";
