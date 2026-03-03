@@ -13,7 +13,6 @@ describe("EnvironmentsClient", () => {
             data: [
                 {
                     id: "id",
-                    name: "name",
                     priority: 1.1,
                     color: {},
                     tenantName: "tenantName",
@@ -38,7 +37,6 @@ describe("EnvironmentsClient", () => {
             data: [
                 {
                     id: "id",
-                    name: "name",
                     priority: 1.1,
                     color: {},
                     tenantName: "tenantName",
@@ -84,7 +82,6 @@ describe("EnvironmentsClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                name: "name",
                 priority: 1.1,
                 color: {
                     colorHex: "colorHex",
@@ -126,7 +123,6 @@ describe("EnvironmentsClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                name: "name",
                 priority: 1.1,
                 color: {
                     colorHex: "colorHex",
@@ -191,7 +187,6 @@ describe("EnvironmentsClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                name: "name",
                 priority: 1.1,
                 color: {
                     colorHex: "colorHex",
@@ -224,7 +219,6 @@ describe("EnvironmentsClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                name: "name",
                 priority: 1.1,
                 color: {
                     colorHex: "colorHex",

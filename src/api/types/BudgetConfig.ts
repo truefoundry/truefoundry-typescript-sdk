@@ -6,8 +6,6 @@ import type * as TrueFoundry from "../index.js";
  * Budget Configuration
  */
 export interface BudgetConfig {
-    /** Name of the budget configuration */
-    name: string;
     /**
      * +value=gateway-budget-config
      * +sort=2

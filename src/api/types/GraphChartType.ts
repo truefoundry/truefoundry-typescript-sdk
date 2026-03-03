@@ -10,5 +10,6 @@ export const GraphChartType = {
     HorizontalBar: "horizontal_bar",
     HorizontalStackedBar: "horizontal_stacked_bar",
     HorizontalBoxPlot: "horizontal_box_plot",
+    BarList: "bar_list",
 } as const;
 export type GraphChartType = (typeof GraphChartType)[keyof typeof GraphChartType];

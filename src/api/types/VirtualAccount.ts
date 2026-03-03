@@ -4,7 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export interface VirtualAccount {
     id: string;
-    name: string;
     type: string;
     tenantName: string;
     manifest?: TrueFoundry.VirtualAccountManifest;

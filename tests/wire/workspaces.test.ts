@@ -14,7 +14,6 @@ describe("WorkspacesClient", () => {
                 {
                     id: "id",
                     fqn: "fqn",
-                    name: "name",
                     tenantName: "tenantName",
                     clusterId: "clusterId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
@@ -42,7 +41,6 @@ describe("WorkspacesClient", () => {
                 {
                     id: "id",
                     fqn: "fqn",
-                    name: "name",
                     tenantName: "tenantName",
                     clusterId: "clusterId",
                     createdBySubject: {
@@ -90,7 +88,6 @@ describe("WorkspacesClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 clusterId: "clusterId",
                 createdBySubject: {
@@ -138,7 +135,6 @@ describe("WorkspacesClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 clusterId: "clusterId",
                 createdBySubject: {
@@ -293,7 +289,6 @@ describe("WorkspacesClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 clusterId: "clusterId",
                 createdBySubject: {
@@ -334,7 +329,6 @@ describe("WorkspacesClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 clusterId: "clusterId",
                 createdBySubject: {
@@ -407,7 +401,6 @@ describe("WorkspacesClient", () => {
             workspace: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 clusterId: "clusterId",
                 createdBySubject: {
@@ -449,7 +442,6 @@ describe("WorkspacesClient", () => {
             workspace: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 clusterId: "clusterId",
                 createdBySubject: {

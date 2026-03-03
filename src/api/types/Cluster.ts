@@ -5,7 +5,6 @@ import type * as TrueFoundry from "../index.js";
 export interface Cluster {
     id: string;
     fqn: string;
-    name: string;
     manifest: TrueFoundry.ClusterManifest;
     tenantName: string;
     accountId: string;

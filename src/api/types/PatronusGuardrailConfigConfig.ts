@@ -2,9 +2,13 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface PatronusGuardrailConfigConfig {
     /** Where to apply evaluation: request (evaluate user input) or response (evaluate model response) */
     target: TrueFoundry.PatronusGuardrailConfigConfigTarget;
-    /** The evaluators to use for the Patronus Guardrail. */
+    /** Patronus evaluators guard against GenAI failures by checking for evaluation criteria, refer to [docs](https://docs.patronus.ai/docs/evaluators/reference_guide) */
     evaluators: TrueFoundry.PatronusEvaluator[];
 }

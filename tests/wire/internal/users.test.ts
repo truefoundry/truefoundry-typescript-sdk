@@ -40,7 +40,6 @@ describe("UsersClient", () => {
             serviceAccountMetadata: { key: "value" },
             account: {
                 id: "id",
-                name: "name",
                 tenantName: "tenantName",
                 fqn: "fqn",
                 manifest: { key: "value" },
@@ -56,7 +55,6 @@ describe("UsersClient", () => {
             },
             rootAccount: {
                 id: "id",
-                name: "name",
                 tenantName: "tenantName",
                 fqn: "fqn",
                 manifest: { key: "value" },
@@ -70,6 +68,7 @@ describe("UsersClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
                 isEditable: true,
             },
+            effectiveUserId: "effectiveUserId",
         };
         server
             .mockEndpoint()
@@ -130,7 +129,6 @@ describe("UsersClient", () => {
             },
             account: {
                 id: "id",
-                name: "name",
                 tenantName: "tenantName",
                 fqn: "fqn",
                 manifest: {
@@ -148,7 +146,6 @@ describe("UsersClient", () => {
             },
             rootAccount: {
                 id: "id",
-                name: "name",
                 tenantName: "tenantName",
                 fqn: "fqn",
                 manifest: {
@@ -164,6 +161,7 @@ describe("UsersClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
                 isEditable: true,
             },
+            effectiveUserId: "effectiveUserId",
         });
     });
 });

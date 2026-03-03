@@ -32,7 +32,6 @@ export const RoleWithResourceResourceType = {
     Agent: "agent",
     AgentApp: "agent-app",
     GatewayInstallation: "gateway-installation",
-    GatewayDataset: "gateway-dataset",
     VirtualAccount: "virtual-account",
     SsoBasedIdentity: "sso-based-identity",
     ExternalIdentity: "external-identity",

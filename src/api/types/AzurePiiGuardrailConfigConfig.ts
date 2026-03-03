@@ -2,6 +2,10 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface AzurePiiGuardrailConfigConfig {
     /** Name of your Azure AI Language resource where the PII detection service is deployed (e.g., my-language-resource) */
     resource_name: string;
@@ -9,7 +13,7 @@ export interface AzurePiiGuardrailConfigConfig {
     api_version: string;
     /** Custom endpoint URL for the PII detection API (optional, uses default Azure endpoint if not specified) */
     custom_host?: string;
-    /** Specialized domain for PII detection. Use healthcare for PHI (Protected Health Information) or none for general text */
+    /** Specialized domain for PII detection. Use phi for PHI (Protected Health Information) or none for general text */
     domain: TrueFoundry.AzurePiiGuardrailConfigConfigDomain;
     /** Categories of PII to detect. */
     pii_categories: TrueFoundry.AzurePiiCategory[];

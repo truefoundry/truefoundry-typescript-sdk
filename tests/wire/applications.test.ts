@@ -965,6 +965,368 @@ describe("ApplicationsClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
+    test("redeploy (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                id: "id",
+                version: 1.1,
+                fqn: "fqn",
+                applicationId: "applicationId",
+                manifest: {
+                    name: "name",
+                    image: {
+                        type: "build",
+                        build_source: { type: "remote", remote_uri: "remote_uri" },
+                        build_spec: {
+                            type: "dockerfile",
+                            dockerfile_path: "dockerfile_path",
+                            build_context_path: "build_context_path",
+                        },
+                    },
+                    artifacts_download: {
+                        artifacts: [
+                            {
+                                type: "truefoundry-artifact",
+                                artifact_version_fqn: "artifact_version_fqn",
+                                download_path_env_variable: "download_path_env_variable",
+                            },
+                        ],
+                    },
+                    resources: {
+                        cpu_request: 1.1,
+                        cpu_limit: 1.1,
+                        memory_request: 1,
+                        memory_limit: 1,
+                        ephemeral_storage_request: 1,
+                        ephemeral_storage_limit: 1,
+                    },
+                    ports: [{ port: 1, protocol: "TCP", expose: true }],
+                    service_account: "service_account",
+                    mounts: [{ type: "secret", mount_path: "mount_path", secret_fqn: "secret_fqn" }],
+                    labels: { key: "value" },
+                    liveness_probe: { config: { type: "http", path: "path", port: 1 } },
+                    readiness_probe: { config: { type: "http", path: "path", port: 1 } },
+                    startup_probe: { config: { type: "http", path: "path", port: 1 } },
+                    workspace_fqn: "workspace_fqn",
+                    type: "service",
+                    replicas: 1.1,
+                    auto_shutdown: { wait_time: 1 },
+                    allow_interception: true,
+                    rollout_strategy: {
+                        type: "rolling_update",
+                        max_unavailable_percentage: 1,
+                        max_surge_percentage: 1,
+                    },
+                },
+                application: {
+                    id: "id",
+                    fqn: "fqn",
+                    name: "name",
+                    type: "async-service",
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    tenantName: "tenantName",
+                    lifecycleStage: "active",
+                    workspaceId: "workspaceId",
+                    lastVersion: 1,
+                    activeVersion: 1,
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    recommendations: [
+                        {
+                            recommendationData: { key: "value" },
+                            recommendationType: "recommendationType",
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    alerts: [
+                        {
+                            name: "name",
+                            timestamps: ["2024-01-15T09:30:00Z"],
+                            startTime: "2024-01-15T09:30:00Z",
+                            clusterId: "clusterId",
+                            fingerprint: "fingerprint",
+                        },
+                    ],
+                    alertsSummary: { key: "value" },
+                    applicationDebugInfos: [{ applicationId: "applicationId", debugInfo: { key: "value" } }],
+                    potentialProblems: [{ name: "name", description: "description" }],
+                    autopilot: { key: "value" },
+                    workspaceFqn: "workspaceFqn",
+                    createdBy: "createdBy",
+                    activeDeploymentId: "activeDeploymentId",
+                    lastDeploymentId: "lastDeploymentId",
+                },
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                },
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
+                deploymentBuilds: [{ name: "name", status: 20 }],
+                deploymentStatuses: [{}],
+                currentStatusId: "currentStatusId",
+                currentStatus: {
+                    id: "id",
+                    deploymentId: "deploymentId",
+                    status: "INITIALIZED",
+                    state: { key: "value" },
+                    transition: "BUILDING",
+                    message: "message",
+                    retryCount: 1.1,
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                },
+                appliedRecommendations: [
+                    {
+                        recommendationData: { key: "value" },
+                        recommendationType: "recommendationType",
+                        expiryTimestamp: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                createdBy: "createdBy",
+            },
+        };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/apps/id/deployments/deploymentId/redeploy")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.applications.redeploy("id", "deploymentId");
+        expect(response).toEqual({
+            data: {
+                id: "id",
+                version: 1.1,
+                fqn: "fqn",
+                applicationId: "applicationId",
+                manifest: {
+                    name: "name",
+                    image: {
+                        type: "build",
+                        build_source: {
+                            type: "remote",
+                            remote_uri: "remote_uri",
+                        },
+                        build_spec: {
+                            type: "dockerfile",
+                            dockerfile_path: "dockerfile_path",
+                            build_context_path: "build_context_path",
+                        },
+                    },
+                    artifacts_download: {
+                        artifacts: [
+                            {
+                                type: "truefoundry-artifact",
+                                artifact_version_fqn: "artifact_version_fqn",
+                                download_path_env_variable: "download_path_env_variable",
+                            },
+                        ],
+                    },
+                    resources: {
+                        cpu_request: 1.1,
+                        cpu_limit: 1.1,
+                        memory_request: 1,
+                        memory_limit: 1,
+                        ephemeral_storage_request: 1,
+                        ephemeral_storage_limit: 1,
+                    },
+                    ports: [
+                        {
+                            port: 1,
+                            protocol: "TCP",
+                            expose: true,
+                        },
+                    ],
+                    service_account: "service_account",
+                    mounts: [
+                        {
+                            type: "secret",
+                            mount_path: "mount_path",
+                            secret_fqn: "secret_fqn",
+                        },
+                    ],
+                    labels: {
+                        key: "value",
+                    },
+                    liveness_probe: {
+                        config: {
+                            type: "http",
+                            path: "path",
+                            port: 1,
+                        },
+                    },
+                    readiness_probe: {
+                        config: {
+                            type: "http",
+                            path: "path",
+                            port: 1,
+                        },
+                    },
+                    startup_probe: {
+                        config: {
+                            type: "http",
+                            path: "path",
+                            port: 1,
+                        },
+                    },
+                    workspace_fqn: "workspace_fqn",
+                    type: "service",
+                    replicas: 1.1,
+                    auto_shutdown: {
+                        wait_time: 1,
+                    },
+                    allow_interception: true,
+                    rollout_strategy: {
+                        type: "rolling_update",
+                        max_unavailable_percentage: 1,
+                        max_surge_percentage: 1,
+                    },
+                },
+                application: {
+                    id: "id",
+                    fqn: "fqn",
+                    name: "name",
+                    type: "async-service",
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
+                    },
+                    tenantName: "tenantName",
+                    lifecycleStage: "active",
+                    workspaceId: "workspaceId",
+                    lastVersion: 1,
+                    activeVersion: 1,
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    recommendations: [
+                        {
+                            recommendationData: {
+                                key: "value",
+                            },
+                            recommendationType: "recommendationType",
+                            expiryTimestamp: "2024-01-15T09:30:00Z",
+                        },
+                    ],
+                    alerts: [
+                        {
+                            name: "name",
+                            timestamps: ["2024-01-15T09:30:00Z"],
+                            startTime: "2024-01-15T09:30:00Z",
+                            clusterId: "clusterId",
+                            fingerprint: "fingerprint",
+                        },
+                    ],
+                    alertsSummary: {
+                        key: "value",
+                    },
+                    applicationDebugInfos: [
+                        {
+                            applicationId: "applicationId",
+                            debugInfo: {
+                                key: "value",
+                            },
+                        },
+                    ],
+                    potentialProblems: [
+                        {
+                            name: "name",
+                            description: "description",
+                        },
+                    ],
+                    autopilot: {
+                        key: "value",
+                    },
+                    workspaceFqn: "workspaceFqn",
+                    createdBy: "createdBy",
+                    activeDeploymentId: "activeDeploymentId",
+                    lastDeploymentId: "lastDeploymentId",
+                },
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                },
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
+                deploymentBuilds: [
+                    {
+                        name: "name",
+                        status: 20,
+                    },
+                ],
+                deploymentStatuses: [{}],
+                currentStatusId: "currentStatusId",
+                currentStatus: {
+                    id: "id",
+                    deploymentId: "deploymentId",
+                    status: "INITIALIZED",
+                    state: {
+                        key: "value",
+                    },
+                    transition: "BUILDING",
+                    message: "message",
+                    retryCount: 1.1,
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                },
+                appliedRecommendations: [
+                    {
+                        recommendationData: {
+                            key: "value",
+                        },
+                        recommendationType: "recommendationType",
+                        expiryTimestamp: "2024-01-15T09:30:00Z",
+                    },
+                ],
+                createdBy: "createdBy",
+            },
+        });
+    });
+
+    test("redeploy (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/apps/id/deployments/deploymentId/redeploy")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.applications.redeploy("id", "deploymentId");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("redeploy (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/apps/id/deployments/deploymentId/redeploy")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.applications.redeploy("id", "deploymentId");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
     test("scale_to_zero (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });

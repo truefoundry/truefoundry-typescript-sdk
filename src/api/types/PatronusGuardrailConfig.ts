@@ -15,9 +15,13 @@ export interface PatronusGuardrailConfig {
      * +value=integration/guardrail-config/patronus
      */
     type: "integration/guardrail-config/patronus";
+    auth_data: TrueFoundry.PatronusKeyAuth;
     /** The operation type for this guardrail. Patronus guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
-    auth_data: TrueFoundry.PatronusKeyAuth;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.PatronusGuardrailConfigConfig;
 }

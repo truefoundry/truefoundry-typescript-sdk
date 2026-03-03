@@ -5,7 +5,6 @@ import type * as TrueFoundry from "../index.js";
 export interface Workspace {
     id: string;
     fqn: string;
-    name: string;
     tenantName: string;
     clusterId: string;
     createdBySubject: TrueFoundry.Subject;

@@ -6,8 +6,7 @@
  *         limit: 10,
  *         offset: 0,
  *         query: "query",
- *         showInvalidUsers: true,
- *         includeVirtualAccounts: "includeVirtualAccounts"
+ *         showInvalidUsers: true
  *     }
  */
 export interface UsersListRequest {
@@ -18,6 +17,4 @@ export interface UsersListRequest {
     query?: string;
     /** Show Deactivated users */
     showInvalidUsers?: boolean;
-    /** Include virtual accounts */
-    includeVirtualAccounts?: string;
 }

@@ -13,7 +13,6 @@ describe("VirtualAccountsClient", () => {
             data: [
                 {
                     id: "id",
-                    name: "name",
                     type: "type",
                     tenantName: "tenantName",
                     manifest: {
@@ -60,7 +59,6 @@ describe("VirtualAccountsClient", () => {
             data: [
                 {
                     id: "id",
-                    name: "name",
                     type: "type",
                     tenantName: "tenantName",
                     manifest: {
@@ -139,7 +137,6 @@ describe("VirtualAccountsClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                name: "name",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -210,7 +207,6 @@ describe("VirtualAccountsClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                name: "name",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -377,7 +373,6 @@ describe("VirtualAccountsClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                name: "name",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -435,7 +430,6 @@ describe("VirtualAccountsClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                name: "name",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {

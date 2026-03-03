@@ -13,7 +13,6 @@ describe("PersonalAccessTokensClient", () => {
             data: [
                 {
                     id: "id",
-                    name: "name",
                     type: "type",
                     tenantName: "tenantName",
                     manifest: {
@@ -60,7 +59,6 @@ describe("PersonalAccessTokensClient", () => {
             data: [
                 {
                     id: "id",
-                    name: "name",
                     type: "type",
                     tenantName: "tenantName",
                     manifest: {
@@ -272,7 +270,6 @@ describe("PersonalAccessTokensClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                name: "name",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -331,7 +328,6 @@ describe("PersonalAccessTokensClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                name: "name",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {

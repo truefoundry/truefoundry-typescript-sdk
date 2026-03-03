@@ -2,6 +2,10 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface PromptFooGuardrailConfigConfig {
     guard_type: TrueFoundry.PromptFooGuardType;
 }

@@ -15,6 +15,8 @@ export interface CustomGuardrailConfig {
      * +value=integration/guardrail-config/custom
      */
     type: "integration/guardrail-config/custom";
+    /** Authentication data for the Guardrail Server. */
+    auth_data?: TrueFoundry.CustomGuardrailConfigAuthData;
     /**
      * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
@@ -25,7 +27,9 @@ export interface CustomGuardrailConfig {
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
     /** Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails. */
     target: TrueFoundry.CustomGuardrailConfigTarget;
-    /** Authentication data for the Guardrail Server. */
-    auth_data?: TrueFoundry.CustomGuardrailConfigAuthData;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.CustomGuardrailConfigConfig;
 }

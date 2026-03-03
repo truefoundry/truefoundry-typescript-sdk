@@ -2,6 +2,10 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface OpenAiModerationsGuardrailConfigConfig {
     /** The model to use for the OpenAI Moderation API. */
     model: string;

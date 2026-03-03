@@ -37,5 +37,7 @@ export const AwsRegion = {
     UsGovWest1: "us-gov-west-1",
     UsWest1: "us-west-1",
     UsWest2: "us-west-2",
+    ApSoutheast6: "ap-southeast-6",
+    ApEast2: "ap-east-2",
 } as const;
 export type AwsRegion = (typeof AwsRegion)[keyof typeof AwsRegion];

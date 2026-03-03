@@ -385,6 +385,86 @@ export class ApplicationsClient {
     }
 
     /**
+     * Creates a new deployment with the same manifest as the given deployment.
+     *
+     * @param {string} id - Application id of the application
+     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.applications.redeploy("id", "deploymentId")
+     */
+    public redeploy(
+        id: string,
+        deploymentId: string,
+        requestOptions?: ApplicationsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetApplicationDeploymentResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__redeploy(id, deploymentId, requestOptions));
+    }
+
+    private async __redeploy(
+        id: string,
+        deploymentId: string,
+        requestOptions?: ApplicationsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetApplicationDeploymentResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/apps/${core.url.encodePathParam(id)}/deployments/${core.url.encodePathParam(deploymentId)}/redeploy`,
+            ),
+            method: "POST",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GetApplicationDeploymentResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/apps/{id}/deployments/{deploymentId}/redeploy",
+        );
+    }
+
+    /**
      * Pause a running application by scaling to 0 replicas
      *
      * @param {string} id - Id of the application

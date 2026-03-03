@@ -32,8 +32,7 @@ export class UsersClient {
      *         limit: 10,
      *         offset: 0,
      *         query: "query",
-     *         showInvalidUsers: true,
-     *         includeVirtualAccounts: "includeVirtualAccounts"
+     *         showInvalidUsers: true
      *     })
      */
     public async list(
@@ -44,13 +43,12 @@ export class UsersClient {
             async (
                 request: TrueFoundry.UsersListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => {
-                const { limit = 100, offset = 0, query, showInvalidUsers, includeVirtualAccounts } = request;
+                const { limit = 100, offset = 0, query, showInvalidUsers } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     query,
                     showInvalidUsers,
-                    includeVirtualAccounts,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

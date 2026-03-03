@@ -2,6 +2,10 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface AzureContentSafetyGuardrailConfigConfig {
     /** Name of your Azure Content Safety resource where the service is deployed (e.g., my-content-safety) */
     resource_name: string;

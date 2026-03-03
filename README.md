@@ -144,8 +144,7 @@ const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
     query: "query",
-    showInvalidUsers: true,
-    includeVirtualAccounts: "includeVirtualAccounts"
+    showInvalidUsers: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -156,8 +155,7 @@ let page = await client.users.list({
     limit: 10,
     offset: 0,
     query: "query",
-    showInvalidUsers: true,
-    includeVirtualAccounts: "includeVirtualAccounts"
+    showInvalidUsers: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();

@@ -15,6 +15,7 @@ export const SpanAttributeFilterOperator = {
     ArrayHasAny: "ARRAY_HAS_ANY",
     ArrayHasNone: "ARRAY_HAS_NONE",
     Present: "PRESENT",
+    IsNull: "IS_NULL",
 } as const;
 export type SpanAttributeFilterOperator =
     (typeof SpanAttributeFilterOperator)[keyof typeof SpanAttributeFilterOperator];

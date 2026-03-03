@@ -73,7 +73,6 @@ describe("UsersClient", () => {
             offset: 0,
             query: "query",
             showInvalidUsers: true,
-            includeVirtualAccounts: "includeVirtualAccounts",
         });
 
         expect(expected.data).toEqual(page.data);
@@ -747,7 +746,6 @@ describe("UsersClient", () => {
             data: [
                 {
                     id: "id",
-                    teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
                     accountId: "accountId",
@@ -773,7 +771,6 @@ describe("UsersClient", () => {
             data: [
                 {
                     id: "id",
-                    teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
                     accountId: "accountId",

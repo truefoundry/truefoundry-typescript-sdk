@@ -2,6 +2,10 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface PaloAltoPrismaAirsGuardrailConfigConfig {
     /** Optional override for the base URL for Palo Alto Prisma AIRS. Defaults to https://service.api.aisecurity.paloaltonetworks.com/v1/ if not provided. */
     base_url?: string;

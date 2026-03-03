@@ -2,6 +2,10 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * +uiType=Ignore
+ * +uiProps={"forwardJsonKey": true}
+ */
 export interface AwsBedrockGuardrailConfigConfig {
     /** The unique identifier of the Bedrock Guardrail created in AWS console */
     guardrail_id: string;

@@ -4,7 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Team {
     id: string;
-    teamName: string;
     description: string;
     tenantName: string;
     accountId: string;

@@ -178,6 +178,7 @@ export class SecretsClient {
      * Deletes a secret and its versions along with its values.
      *
      * @param {string} id - Secret Id of the secret.
+     * @param {TrueFoundry.SecretsDeleteRequest} request
      * @param {SecretsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -185,16 +186,27 @@ export class SecretsClient {
      * @throws {@link TrueFoundry.FailedDependencyError}
      *
      * @example
-     *     await client.secrets.delete("id")
+     *     await client.secrets.delete("id", {
+     *         forceDelete: true
+     *     })
      */
-    public delete(id: string, requestOptions?: SecretsClient.RequestOptions): core.HttpResponsePromise<number> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    public delete(
+        id: string,
+        request: TrueFoundry.SecretsDeleteRequest = {},
+        requestOptions?: SecretsClient.RequestOptions,
+    ): core.HttpResponsePromise<number> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
     private async __delete(
         id: string,
+        request: TrueFoundry.SecretsDeleteRequest = {},
         requestOptions?: SecretsClient.RequestOptions,
     ): Promise<core.WithRawResponse<number>> {
+        const { forceDelete } = request;
+        const _queryParams: Record<string, unknown> = {
+            forceDelete,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -209,7 +221,7 @@ export class SecretsClient {
             ),
             method: "DELETE",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
