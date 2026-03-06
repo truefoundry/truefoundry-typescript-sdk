@@ -10,7 +10,7 @@ export interface AzureCertificateAuth {
     tenant_id: string;
     /** The Azure AD application (client) ID for service principal authentication */
     client_id: string;
-    /** The certificate in PEM format */
+    /** Certificate in PEM format (e.g., -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----) */
     certificate: string;
     /** The base64url-encoded SHA-1 thumbprint of the certificate (x5t claim) */
     certificate_thumbprint: string;

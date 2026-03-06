@@ -12,7 +12,11 @@ export interface HashicorpVaultIntegration {
     name: string;
     /** The URL of the HashiCorp Vault server (e.g., https://vault.example.com:8200). */
     vault_url: string;
+    /** Mount path of the KV v2 engine vault to use for secrets. The default value is tfy-secrets */
+    kv_mount_path?: string;
     auth_data: TrueFoundry.HashicorpTokenAuth;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[];
+    /** Namespace for vault operations, used for multi-tenancy in HashiCorp Vault Enterprise. Optional for open source Vault. */
+    namespace?: string;
 }

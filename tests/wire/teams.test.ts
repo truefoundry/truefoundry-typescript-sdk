@@ -13,7 +13,6 @@ describe("TeamsClient", () => {
             data: [
                 {
                     id: "id",
-                    teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
                     accountId: "accountId",
@@ -39,7 +38,6 @@ describe("TeamsClient", () => {
             data: [
                 {
                     id: "id",
-                    teamName: "teamName",
                     description: "description",
                     tenantName: "tenantName",
                     accountId: "accountId",
@@ -83,7 +81,6 @@ describe("TeamsClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
                 accountId: "accountId",
@@ -126,7 +123,6 @@ describe("TeamsClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
                 accountId: "accountId",
@@ -213,7 +209,6 @@ describe("TeamsClient", () => {
         const rawResponseBody = {
             data: {
                 id: "id",
-                teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
                 accountId: "accountId",
@@ -249,7 +244,6 @@ describe("TeamsClient", () => {
         expect(response).toEqual({
             data: {
                 id: "id",
-                teamName: "teamName",
                 description: "description",
                 tenantName: "tenantName",
                 accountId: "accountId",

@@ -14,7 +14,6 @@ describe("ClustersClient", () => {
                 {
                     id: "id",
                     fqn: "fqn",
-                    name: "name",
                     manifest: {
                         type: "cluster",
                         name: "name",
@@ -45,7 +44,6 @@ describe("ClustersClient", () => {
                 {
                     id: "id",
                     fqn: "fqn",
-                    name: "name",
                     manifest: {
                         type: "cluster",
                         name: "name",
@@ -120,7 +118,6 @@ describe("ClustersClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 manifest: {
                     type: "cluster",
                     name: "name",
@@ -177,7 +174,6 @@ describe("ClustersClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 manifest: {
                     type: "cluster",
                     name: "name",
@@ -375,7 +371,6 @@ describe("ClustersClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 manifest: {
                     type: "cluster",
                     name: "name",
@@ -418,7 +413,6 @@ describe("ClustersClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 manifest: {
                     type: "cluster",
                     name: "name",

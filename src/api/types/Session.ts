@@ -19,4 +19,5 @@ export interface Session {
     serviceAccountMetadata?: Record<string, unknown>;
     account?: TrueFoundry.Account;
     rootAccount?: TrueFoundry.Account;
+    effectiveUserId: string;
 }

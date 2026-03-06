@@ -15,11 +15,16 @@ export interface AzurePiiGuardrailConfig {
      * +value=integration/guardrail-config/azure-pii
      */
     type: "integration/guardrail-config/azure-pii";
-    /** The operation type for this guardrail. Azure PII guardrails can only be used for mutate. */
-    operation: "mutate";
+    /** Authentication data for the Azure account */
+    auth_data: TrueFoundry.AzurePiiGuardrailConfigAuthData;
+    /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. Validate guardrails are run in parallel while mutate guardrails are run sequentially. */
+    operation: TrueFoundry.AzurePiiGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
     priority?: number;
-    auth_data: TrueFoundry.AzureKeyAuth;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.AzurePiiGuardrailConfigConfig;
 }

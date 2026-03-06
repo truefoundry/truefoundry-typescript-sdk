@@ -47,13 +47,13 @@ export class TrueFoundryClient {
     protected _personalAccessTokens: PersonalAccessTokensClient | undefined;
     protected _virtualAccounts: VirtualAccountsClient | undefined;
     protected _clusters: ClustersClient | undefined;
+    protected _environments: EnvironmentsClient | undefined;
     protected _applications: ApplicationsClient | undefined;
     protected _applicationVersions: ApplicationVersionsClient | undefined;
     protected _jobs: JobsClient | undefined;
     protected _workspaces: WorkspacesClient | undefined;
     protected _secrets: SecretsClient | undefined;
     protected _secretGroups: SecretGroupsClient | undefined;
-    protected _environments: EnvironmentsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _alerts: AlertsClient | undefined;
     protected _logs: LogsClient | undefined;
@@ -95,6 +95,10 @@ export class TrueFoundryClient {
         return (this._clusters ??= new ClustersClient(this._options));
     }
 
+    public get environments(): EnvironmentsClient {
+        return (this._environments ??= new EnvironmentsClient(this._options));
+    }
+
     public get applications(): ApplicationsClient {
         return (this._applications ??= new ApplicationsClient(this._options));
     }
@@ -117,10 +121,6 @@ export class TrueFoundryClient {
 
     public get secretGroups(): SecretGroupsClient {
         return (this._secretGroups ??= new SecretGroupsClient(this._options));
-    }
-
-    public get environments(): EnvironmentsClient {
-        return (this._environments ??= new EnvironmentsClient(this._options));
     }
 
     public get events(): EventsClient {

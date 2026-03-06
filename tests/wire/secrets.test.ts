@@ -221,7 +221,9 @@ describe("SecretsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.secrets.delete("id");
+        const response = await client.secrets.delete("id", {
+            forceDelete: true,
+        });
         expect(response).toEqual(1.1);
     });
 

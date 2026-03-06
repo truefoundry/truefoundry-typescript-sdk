@@ -15,11 +15,15 @@ export interface PangeaGuardrailConfig {
      * +value=integration/guardrail-config/pangea
      */
     type: "integration/guardrail-config/pangea";
+    auth_data: TrueFoundry.PangeaKeyAuth;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. */
     operation: TrueFoundry.PangeaGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
     priority?: number;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
-    auth_data: TrueFoundry.PangeaKeyAuth;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.PangeaGuardrailConfigConfig;
 }

@@ -15,6 +15,7 @@ export interface EnkryptAiGuardrailConfig {
      * +value=integration/guardrail-config/enkrypt-ai
      */
     type: "integration/guardrail-config/enkrypt-ai";
+    auth_data: TrueFoundry.EnkryptAiKeyAuth;
     /**
      * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
@@ -23,6 +24,9 @@ export interface EnkryptAiGuardrailConfig {
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
     priority?: number;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
-    auth_data: TrueFoundry.EnkryptAiKeyAuth;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.EnkryptAiGuardrailConfigConfig;
 }

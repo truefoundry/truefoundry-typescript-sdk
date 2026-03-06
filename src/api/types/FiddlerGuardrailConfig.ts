@@ -15,9 +15,13 @@ export interface FiddlerGuardrailConfig {
      * +value=integration/guardrail-config/fiddler
      */
     type: "integration/guardrail-config/fiddler";
+    auth_data: TrueFoundry.FiddlerKeyAuth;
     /** The operation type for this guardrail. Fiddler guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
-    auth_data: TrueFoundry.FiddlerKeyAuth;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.FiddlerGuardrailConfigConfig;
 }

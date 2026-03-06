@@ -6,8 +6,6 @@ import type * as TrueFoundry from "../index.js";
  * Guardrails Configuration
  */
 export interface GuardrailsConfig {
-    /** Name of the guardrails configuration */
-    name: string;
     /**
      * +value=gateway-guardrails-config
      * +sort=2

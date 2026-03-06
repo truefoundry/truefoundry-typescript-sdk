@@ -14,6 +14,12 @@ export interface AzureOpenAiModel {
     model_id: string;
     /** The Azure OpenAI API version to use */
     api_version: string;
+    /** The foundation model identifier (e.g., gpt-4o-2024-11-20) */
+    foundation_model?: string;
+    /** Global: worldwide processing, Data Zone: US/EU processing only */
+    deployment_type?: TrueFoundry.AzureOpenAiModelDeploymentType;
+    /** The Azure region for data-zone deployments */
+    region?: TrueFoundry.AzureOpenAiModelRegion;
     /** Specify the type of the Azure OpenAI model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric;

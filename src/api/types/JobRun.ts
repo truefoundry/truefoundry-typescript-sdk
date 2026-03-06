@@ -3,6 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface JobRun {
+    /** JobRun ID */
+    id: string;
     /** JobRun Name */
     name: string;
     /** Application Name */
@@ -31,4 +33,10 @@ export interface JobRun {
     exitCode?: number;
     /** Spark UI Url */
     sparkUi?: string;
+    /** Application ID */
+    applicationId?: string;
+    /** Deployment ID */
+    deploymentId?: string;
+    /** Tenant Name */
+    tenantName?: string;
 }

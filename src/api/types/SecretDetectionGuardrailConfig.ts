@@ -20,5 +20,9 @@ export interface SecretDetectionGuardrailConfig {
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
     priority?: number;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.SecretDetectionGuardrailConfigConfig;
 }

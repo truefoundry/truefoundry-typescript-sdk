@@ -20,4 +20,6 @@ export interface DockerFileBuild {
     command?: TrueFoundry.DockerFileBuildCommand;
     /** Build arguments to pass to docker build */
     build_args?: Record<string, string>;
+    /** Build secrets you can use in run statements inside dockerfile like RUN --mount=type=secret,id=pip_index_url ... you can learn more about build secrets here https://www.truefoundry.com/docs/docker-build-secrets */
+    build_secrets?: TrueFoundry.BuildSecret[];
 }

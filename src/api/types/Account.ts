@@ -4,7 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Account {
     id?: string;
-    name?: string;
     tenantName: string;
     fqn: string;
     /** Account manifest */

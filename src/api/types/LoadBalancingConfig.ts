@@ -6,8 +6,6 @@ import type * as TrueFoundry from "../index.js";
  * Load Balancing Configuration
  */
 export interface LoadBalancingConfig {
-    /** Name of the load balancing configuration */
-    name: string;
     /**
      * +value=gateway-load-balancing-config
      * +sort=2

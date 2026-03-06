@@ -5,7 +5,6 @@ import type * as TrueFoundry from "../index.js";
 export interface SecretGroup {
     id?: string;
     fqn?: string;
-    name: string;
     tenantName: string;
     createdBySubject: TrueFoundry.Subject;
     associatedSecrets: TrueFoundry.Secret[];

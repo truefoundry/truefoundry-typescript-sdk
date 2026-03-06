@@ -15,9 +15,13 @@ export interface PaloAltoPrismaAirsGuardrailConfig {
      * +value=integration/guardrail-config/palo-alto-prisma-airs
      */
     type: "integration/guardrail-config/palo-alto-prisma-airs";
+    auth_data: TrueFoundry.PaloAltoPrismaAirsKeyAuth;
     /** The operation type for this guardrail. Palo Alto Prisma AIRS guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
-    auth_data: TrueFoundry.PaloAltoPrismaAirsKeyAuth;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigConfig;
 }

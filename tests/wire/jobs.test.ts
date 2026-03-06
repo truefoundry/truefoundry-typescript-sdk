@@ -12,6 +12,7 @@ describe("JobsClient", () => {
         const rawResponseBody = {
             data: [
                 {
+                    id: "id",
                     name: "name",
                     applicationName: "applicationName",
                     deploymentVersion: "deploymentVersion",
@@ -26,6 +27,9 @@ describe("JobsClient", () => {
                     triggeredBySubject: { subjectId: "subjectId", subjectType: "user" },
                     exitCode: 1,
                     sparkUi: "sparkUi",
+                    applicationId: "applicationId",
+                    deploymentId: "deploymentId",
+                    tenantName: "tenantName",
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -41,6 +45,7 @@ describe("JobsClient", () => {
         const expected = {
             data: [
                 {
+                    id: "id",
                     name: "name",
                     applicationName: "applicationName",
                     deploymentVersion: "deploymentVersion",
@@ -58,6 +63,9 @@ describe("JobsClient", () => {
                     },
                     exitCode: 1,
                     sparkUi: "sparkUi",
+                    applicationId: "applicationId",
+                    deploymentId: "deploymentId",
+                    tenantName: "tenantName",
                 },
             ],
             pagination: {
@@ -140,6 +148,7 @@ describe("JobsClient", () => {
 
         const rawResponseBody = {
             data: {
+                id: "id",
                 name: "name",
                 applicationName: "applicationName",
                 deploymentVersion: "deploymentVersion",
@@ -159,6 +168,9 @@ describe("JobsClient", () => {
                 },
                 exitCode: 1,
                 sparkUi: "sparkUi",
+                applicationId: "applicationId",
+                deploymentId: "deploymentId",
+                tenantName: "tenantName",
             },
         };
         server
@@ -172,6 +184,7 @@ describe("JobsClient", () => {
         const response = await client.jobs.getRun("jobId", "jobRunName");
         expect(response).toEqual({
             data: {
+                id: "id",
                 name: "name",
                 applicationName: "applicationName",
                 deploymentVersion: "deploymentVersion",
@@ -191,6 +204,9 @@ describe("JobsClient", () => {
                 },
                 exitCode: 1,
                 sparkUi: "sparkUi",
+                applicationId: "applicationId",
+                deploymentId: "deploymentId",
+                tenantName: "tenantName",
             },
         });
     });
@@ -312,6 +328,7 @@ describe("JobsClient", () => {
             message: "message",
             jobRunName: "jobRunName",
             data: {
+                id: "id",
                 name: "name",
                 applicationName: "applicationName",
                 deploymentVersion: "deploymentVersion",
@@ -331,6 +348,9 @@ describe("JobsClient", () => {
                 },
                 exitCode: 1,
                 sparkUi: "sparkUi",
+                applicationId: "applicationId",
+                deploymentId: "deploymentId",
+                tenantName: "tenantName",
             },
         };
         server
@@ -347,6 +367,7 @@ describe("JobsClient", () => {
             message: "message",
             jobRunName: "jobRunName",
             data: {
+                id: "id",
                 name: "name",
                 applicationName: "applicationName",
                 deploymentVersion: "deploymentVersion",
@@ -366,6 +387,9 @@ describe("JobsClient", () => {
                 },
                 exitCode: 1,
                 sparkUi: "sparkUi",
+                applicationId: "applicationId",
+                deploymentId: "deploymentId",
+                tenantName: "tenantName",
             },
         });
     });

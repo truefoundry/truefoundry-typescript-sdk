@@ -15,6 +15,8 @@ export interface AwsBedrockGuardrailConfig {
      * +value=integration/guardrail-config/aws-bedrock
      */
     type: "integration/guardrail-config/aws-bedrock";
+    /** Authentication data for the AWS account */
+    auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
     /**
      * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
@@ -23,7 +25,9 @@ export interface AwsBedrockGuardrailConfig {
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
     priority?: number;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
-    /** Authentication data for the AWS account */
-    auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData;
+    /**
+     * +uiType=Ignore
+     * +uiProps={"forwardJsonKey": true}
+     */
     config: TrueFoundry.AwsBedrockGuardrailConfigConfig;
 }

@@ -11,6 +11,7 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.CustomGuardrailConfig
     | TrueFoundry.AzurePiiGuardrailConfig
     | TrueFoundry.AzureContentSafetyGuardrailConfig
+    | TrueFoundry.AzurePromptShieldGuardrailConfig
     | TrueFoundry.EnkryptAiGuardrailConfig
     | TrueFoundry.PaloAltoPrismaAirsGuardrailConfig
     | TrueFoundry.PromptFooGuardrailConfig
@@ -19,4 +20,12 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.PatronusGuardrailConfig
     | TrueFoundry.SecretDetectionGuardrailConfig
     | TrueFoundry.CodeSafetyLinterGuardrailConfig
-    | TrueFoundry.SqlSanitizerGuardrailConfig;
+    | TrueFoundry.SqlSanitizerGuardrailConfig
+    | TrueFoundry.RegexGuardrailConfig
+    | TrueFoundry.TfyContentModerationGuardrailConfig
+    | TrueFoundry.TfyPiiGuardrailConfig
+    | TrueFoundry.TfyPromptInjectionGuardrailConfig
+    | TrueFoundry.CedarGuardrailConfig
+    | TrueFoundry.OpaGuardrailConfig
+    | TrueFoundry.GoogleModelArmorGuardrailConfig
+    | TrueFoundry.GraySwanCygnalGuardrailConfig;

@@ -14,7 +14,6 @@ describe("SecretGroupsClient", () => {
                 {
                     id: "id",
                     fqn: "fqn",
-                    name: "name",
                     tenantName: "tenantName",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     associatedSecrets: [{ id: "id", fqn: "fqn", name: "name", secretGroupId: "secretGroupId" }],
@@ -41,7 +40,6 @@ describe("SecretGroupsClient", () => {
                 {
                     id: "id",
                     fqn: "fqn",
-                    name: "name",
                     tenantName: "tenantName",
                     createdBySubject: {
                         subjectId: "subjectId",
@@ -96,7 +94,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -136,7 +133,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -257,7 +253,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -300,7 +295,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -561,7 +555,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -591,7 +584,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -663,7 +655,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",
@@ -700,7 +691,6 @@ describe("SecretGroupsClient", () => {
             data: {
                 id: "id",
                 fqn: "fqn",
-                name: "name",
                 tenantName: "tenantName",
                 createdBySubject: {
                     subjectId: "subjectId",

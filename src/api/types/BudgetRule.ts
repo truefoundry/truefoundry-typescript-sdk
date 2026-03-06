@@ -15,4 +15,6 @@ export interface BudgetRule {
     /** Create separate budget rules for each unique value of the selected entity. For example, if "user" is selected, a separate budget rule will be created for each unique user making requests. Options: user, virtualaccount, model, or a metadata key (e.g., metadata.appId). */
     budget_applies_per?: string[];
     alerts?: TrueFoundry.BudgetAlert;
+    /** When enabled, requests exceeding the budget are tracked but not blocked */
+    audit_mode?: boolean;
 }
