@@ -1,10 +1,9 @@
-export * as TrueFoundry from "./api";
-export { TrueFoundryError, TrueFoundryTimeoutError } from "./errors";
-export { TrueFoundryClient } from "./CustomClient";
+export { AgentClient, AgentClientError } from "./AgentClient.js";
+export type { AgentClientOptions, StreamOptions } from "./AgentClient.js";
 
-export { AgentClient, AgentClientError, isInlineAgentRunInput, isNamedAgentRunInput } from "./agent/index";
+export { isInlineAgentRunInput, isNamedAgentRunInput } from "./types.js";
+
 export type {
-    AgentClientOptions,
     AgentAssistantMessage,
     AgentExecutionCreated,
     AgentExecutionDone,
@@ -21,12 +20,24 @@ export type {
     AgentSandboxCreated,
     AgentToolResponseDelta,
     CompletionUsage,
+    ExtendedToolCall,
+    ExtendedToolCallFunction,
     FinishReason,
     InlineAgentRunInput,
+    MCPInitializationInfo,
+    MCPOAuthLoginUrl,
     MCPServerRequest,
+    MCPToolCallInfo,
+    MCPToolSettings,
     ModelParams,
     NamedAgentRunInput,
+    RedactedThinkingBlock,
     ResponseCreated,
     ResponseError,
-    StreamOptions,
-} from "./agent/index";
+    SandboxConfig,
+    SubAgentRequest,
+    ThinkingBlock,
+    ToolCallDelta,
+    ToolCallFunction,
+    UserMessageInput,
+} from "./types.js";
