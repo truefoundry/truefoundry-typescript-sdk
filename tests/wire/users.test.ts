@@ -27,6 +27,7 @@ describe("UsersClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/users")
@@ -35,39 +36,7 @@ describe("UsersClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    email: "email",
-                    tenantName: "tenantName",
-                    metadata: {},
-                    roles: ["roles"],
-                    rolesWithResource: [
-                        {
-                            roleId: "roleId",
-                            resourceType: "role",
-                            resourceId: "resourceId",
-                        },
-                    ],
-                    accounts: [
-                        {
-                            accountId: "accountId",
-                            name: "name",
-                        },
-                    ],
-                    active: true,
-                    isEditable: true,
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.users.list({
             limit: 10,
             offset: 0,
@@ -86,6 +55,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/register")
@@ -98,7 +68,7 @@ describe("UsersClient", () => {
         const response = await client.users.preRegisterUsers({
             email: "email",
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("pre_register_users (2)", async () => {
@@ -106,6 +76,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/register")
@@ -127,6 +98,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/register")
@@ -148,6 +120,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/register")
@@ -169,6 +142,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", roles: ["roles"] };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/roles")
@@ -182,7 +156,7 @@ describe("UsersClient", () => {
             email: "email",
             roles: ["roles"],
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("update_roles (2)", async () => {
@@ -190,6 +164,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/roles")
@@ -212,6 +187,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/roles")
@@ -234,6 +210,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/roles")
@@ -285,6 +262,7 @@ describe("UsersClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id")
@@ -294,53 +272,7 @@ describe("UsersClient", () => {
             .build();
 
         const response = await client.users.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                email: "email",
-                tenantName: "tenantName",
-                metadata: {
-                    sub: "sub",
-                    imageURL: "imageURL",
-                    pictureDownloadPath: "pictureDownloadPath",
-                    displayName: "displayName",
-                    userObject: {
-                        key: "value",
-                    },
-                    inviteAccepted: true,
-                    registeredInIdp: true,
-                    preference: {
-                        key: "value",
-                    },
-                    groups: ["groups"],
-                    tenantRoleManagedBy: "manual",
-                    ssoName: "ssoName",
-                    isPrimarySSO: true,
-                    scimUserObject: {
-                        key: "value",
-                    },
-                    createdByScim: true,
-                },
-                roles: ["roles"],
-                rolesWithResource: [
-                    {
-                        roleId: "roleId",
-                        resourceType: "role",
-                        resourceId: "resourceId",
-                    },
-                ],
-                accounts: [
-                    {
-                        accountId: "accountId",
-                        name: "name",
-                    },
-                ],
-                active: true,
-                isEditable: true,
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -348,6 +280,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id")
@@ -366,6 +299,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/users/id")
@@ -374,8 +308,10 @@ describe("UsersClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.users.delete("id");
-        expect(response).toEqual({});
+        const response = await client.users.delete("id", {
+            tenantName: "tenantName",
+        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -383,6 +319,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/users/id")
@@ -401,6 +338,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/users/id")
@@ -419,6 +357,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/users/id")
@@ -437,6 +376,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { acceptInviteClientUrl: "<control plane url>/invite-accept", email: "email" };
         const rawResponseBody = { link: "link" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/invite")
@@ -450,9 +390,7 @@ describe("UsersClient", () => {
             acceptInviteClientUrl: "<control plane url>/invite-accept",
             email: "email",
         });
-        expect(response).toEqual({
-            link: "link",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("invite_user (2)", async () => {
@@ -460,6 +398,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/invite")
@@ -482,6 +421,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/invite")
@@ -504,6 +444,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { acceptInviteClientUrl: "acceptInviteClientUrl", email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/invite")
@@ -526,6 +467,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/deactivate")
@@ -538,7 +480,7 @@ describe("UsersClient", () => {
         const response = await client.users.deactivate({
             email: "email",
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("deactivate (2)", async () => {
@@ -546,6 +488,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/deactivate")
@@ -567,6 +510,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/deactivate")
@@ -588,6 +532,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/activate")
@@ -600,7 +545,7 @@ describe("UsersClient", () => {
         const response = await client.users.activate({
             email: "email",
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("activate (2)", async () => {
@@ -608,6 +553,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/activate")
@@ -629,6 +575,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .patch("/api/svc/v1/users/activate")
@@ -650,6 +597,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { loginId: "loginId", newPassword: "newPassword", oldPassword: "oldPassword" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/users/change-password")
@@ -664,7 +612,7 @@ describe("UsersClient", () => {
             newPassword: "newPassword",
             oldPassword: "oldPassword",
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_resources (1)", async () => {
@@ -681,6 +629,7 @@ describe("UsersClient", () => {
                 },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id/resources")
@@ -690,16 +639,7 @@ describe("UsersClient", () => {
             .build();
 
         const response = await client.users.getResources("id");
-        expect(response).toEqual({
-            data: [
-                {
-                    resourceType: "resourceType",
-                    resourceId: "resourceId",
-                    roleId: "roleId",
-                    resourceName: "resourceName",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_resources (2)", async () => {
@@ -707,6 +647,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id/resources")
@@ -725,6 +666,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id/resources")
@@ -738,26 +680,81 @@ describe("UsersClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("get_teams (1)", async () => {
+    test("get_permissions (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
-                    description: "description",
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    members: ["members"],
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    manifest: { type: "team", name: "name", members: ["members"] },
-                    isEditable: true,
+                    resourceType: "resourceType",
+                    resourceId: "resourceId",
+                    resourceName: "resourceName",
+                    resourceFqn: "resourceFqn",
+                    roleId: "roleId",
+                    roleName: "roleName",
+                    subjectId: "subjectId",
+                    subjectType: "subjectType",
                 },
             ],
         };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/permissions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.users.getPermissions("id");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("get_permissions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/permissions")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.getPermissions("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get_permissions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/users/id/permissions")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.users.getPermissions("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("get_teams (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { data: [{ teamName: "teamName", roles: ["roles"] }] };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id/teams")
@@ -767,29 +764,7 @@ describe("UsersClient", () => {
             .build();
 
         const response = await client.users.getTeams("id");
-        expect(response).toEqual({
-            data: [
-                {
-                    id: "id",
-                    description: "description",
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    members: ["members"],
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        type: "team",
-                        name: "name",
-                        members: ["members"],
-                    },
-                    isEditable: true,
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_teams (2)", async () => {
@@ -797,6 +772,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id/teams")
@@ -815,6 +791,7 @@ describe("UsersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/id/teams")

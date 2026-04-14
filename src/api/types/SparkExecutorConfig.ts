@@ -8,5 +8,5 @@ import type * as TrueFoundry from "../index.js";
 export interface SparkExecutorConfig {
     /** Executor Instances */
     instances: TrueFoundry.SparkExecutorConfigInstances;
-    resources?: TrueFoundry.Resources;
+    resources?: TrueFoundry.Resources | undefined;
 }

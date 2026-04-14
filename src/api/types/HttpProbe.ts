@@ -12,7 +12,7 @@ export interface HttpProbe {
     /** Listening port for the health check endpoint */
     port: number;
     /** Host name to connect to, defaults to the pod IP */
-    host?: string;
+    host?: string | undefined;
     /** Scheme to use for connecting to the host */
-    scheme?: string;
+    scheme?: string | undefined;
 }

@@ -316,4 +316,81 @@ export class TeamsClient {
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/svc/v1/teams/{id}");
     }
+
+    /**
+     * Get all role bindings associated with a team.
+     *
+     * @param {string} id - Team Id
+     * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.teams.getPermissions("id")
+     */
+    public getPermissions(
+        id: string,
+        requestOptions?: TeamsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetTeamPermissionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getPermissions(id, requestOptions));
+    }
+
+    private async __getPermissions(
+        id: string,
+        requestOptions?: TeamsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetTeamPermissionsResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/teams/${core.url.encodePathParam(id)}/permissions`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GetTeamPermissionsResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/api/svc/v1/teams/{id}/permissions",
+        );
+    }
 }

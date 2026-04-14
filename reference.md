@@ -499,7 +499,7 @@ await client.users.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteUserResponse</code></summary>
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">delete</a>(id, { ...params }) -> TrueFoundry.DeleteUserResponse</code></summary>
 <dl>
 <dd>
 
@@ -526,7 +526,9 @@ Delete user if they are not a collaborator in any resource and not part of any t
 <dd>
 
 ```typescript
-await client.users.delete("id");
+await client.users.delete("id", {
+    tenantName: "tenantName"
+});
 
 ```
 </dd>
@@ -543,6 +545,14 @@ await client.users.delete("id");
 <dd>
 
 **id:** `string` — User Id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.UsersDeleteRequest` 
     
 </dd>
 </dl>
@@ -888,6 +898,69 @@ await client.users.getResources("id");
 </dl>
 </details>
 
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getPermissions</a>(id) -> TrueFoundry.GetUserPermissionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all role bindings associated with a user, including team-inherited bindings.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getPermissions("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — User Id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getTeams</a>(id) -> TrueFoundry.GetUserTeamsResponse</code></summary>
 <dl>
 <dd>
@@ -900,7 +973,7 @@ await client.users.getResources("id");
 <dl>
 <dd>
 
-Get all manual teams associated with a user.
+Get all teams associated with a user, including their role in each team.
 </dd>
 </dl>
 </dd>
@@ -1230,6 +1303,69 @@ await client.teams.delete("id");
 </dl>
 </details>
 
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">getPermissions</a>(id) -> TrueFoundry.GetTeamPermissionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all role bindings associated with a team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.teams.getPermissions("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Team Id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TeamsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PersonalAccessTokens
 <details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.VirtualAccount, TrueFoundry.ListPersonalAccessTokenResponse&gt;</code></summary>
 <dl>
@@ -1260,7 +1396,8 @@ List Personal Access Tokens created by the user in the current tenant.
 ```typescript
 const pageableResponse = await client.personalAccessTokens.list({
     limit: 10,
-    offset: 0
+    offset: 0,
+    nameSearchQuery: "nameSearchQuery"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -1269,7 +1406,8 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.personalAccessTokens.list({
     limit: 10,
-    offset: 0
+    offset: 0,
+    nameSearchQuery: "nameSearchQuery"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -1599,7 +1737,9 @@ List virtual accounts for the tenant.
 const pageableResponse = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
-    nameSearchQuery: "nameSearchQuery"
+    nameSearchQuery: "nameSearchQuery",
+    isExpired: true,
+    filter: "filter"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -1609,7 +1749,9 @@ for await (const item of pageableResponse) {
 let page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
-    nameSearchQuery: "nameSearchQuery"
+    nameSearchQuery: "nameSearchQuery",
+    isExpired: true,
+    filter: "filter"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -2529,285 +2671,6 @@ await client.clusters.isConnected("id");
 <dd>
 
 **requestOptions:** `ClustersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Environments
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const pageableResponse = await client.environments.list({
-    limit: 10,
-    offset: 0
-});
-for await (const item of pageableResponse) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-let page = await client.environments.list({
-    limit: 10,
-    offset: 0
-});
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-
-// You can also access the underlying response
-const response = page.response;
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.EnvironmentsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetEnvironmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new Environment or updates an existing Environment.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.environments.createOrUpdate({
-    manifest: {
-        type: "environment",
-        name: "name",
-        color: {},
-        isProduction: true,
-        optimizeFor: "COST"
-    }
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">get</a>(id) -> TrueFoundry.GetEnvironmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get Environment associated with the provided id.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.environments.get("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Environment id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">delete</a>(id) -> boolean</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete Environment associated with the provided id.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.environments.delete("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Environment id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -3924,6 +3787,285 @@ await client.jobs.terminate({
 </dl>
 </details>
 
+## Environments
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.environments.list({
+    limit: 10,
+    offset: 0
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.environments.list({
+    limit: 10,
+    offset: 0
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.EnvironmentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetEnvironmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new Environment or updates an existing Environment.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.environments.createOrUpdate({
+    manifest: {
+        type: "environment",
+        name: "name",
+        color: {},
+        isProduction: true,
+        optimizeFor: "COST"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">get</a>(id) -> TrueFoundry.GetEnvironmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get Environment associated with the provided id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.environments.get("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Environment id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">delete</a>(id) -> boolean</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete Environment associated with the provided id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.environments.delete("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Environment id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Workspaces
 <details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
 <dl>
@@ -3937,7 +4079,7 @@ await client.jobs.terminate({
 <dl>
 <dd>
 
-List workspaces associated with the user. Optional filters include clusterId, fqn, and workspace name. Pagination is available based on query parameters.
+List workspaces associated with the user. Optional filters include clusterId, fqn, and workspace name.
 </dd>
 </dl>
 </dd>
@@ -3957,7 +4099,8 @@ const pageableResponse = await client.workspaces.list({
     offset: 0,
     clusterId: "clusterId",
     name: "name",
-    fqn: "fqn"
+    fqn: "fqn",
+    includeCluster: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -3969,7 +4112,8 @@ let page = await client.workspaces.list({
     offset: 0,
     clusterId: "clusterId",
     name: "name",
-    fqn: "fqn"
+    fqn: "fqn",
+    includeCluster: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4061,7 +4205,92 @@ await client.workspaces.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.WorkspaceRequest` 
+**request:** `TrueFoundry.CreateOrUpdateWorkspaceRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">search</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List workspaces the user can read with optional structured `filter` (name, id, environmentId, cluster_fqn) and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.workspaces.search({
+    limit: 10,
+    offset: 0,
+    filter: "filter",
+    includeCluster: true
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.workspaces.search({
+    limit: 10,
+    offset: 0,
+    filter: "filter",
+    includeCluster: true
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.WorkspacesSearchRequest` 
     
 </dd>
 </dl>
@@ -5158,13 +5387,7 @@ await client.mlRepos.createOrUpdate({
 <dl>
 <dd>
 
-Get a ml repo by id
-Args:
-    id: Unique identifier of the ml repo to get
-    user_info: Authenticated user information
-
-Returns:
-    GetMLRepoResponse: The ml repo
+Get an ML Repo by its ID.
 </dd>
 </dl>
 </dd>
@@ -5227,13 +5450,7 @@ await client.mlRepos.get("id");
 <dl>
 <dd>
 
-Delete a ml repo
-Args:
-    id: Unique identifier of the ml repo to delete
-    user_info: Authenticated user information
-
-Returns:
-    EmptyResponse: Empty response indicating successful deletion
+Delete an ML Repo by its ID.
 </dd>
 </dl>
 </dd>
@@ -5296,13 +5513,7 @@ await client.mlRepos.delete("id");
 <dl>
 <dd>
 
-List ml repos
-Args:
-    filters: Filters for the ml repos
-    user_info: Authenticated user information
-
-Returns:
-    ListMLReposResponse: List of ml repos
+List ML Repos with optional filtering by name.
 </dd>
 </dl>
 </dd>
@@ -5444,6 +5655,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get an artifact by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5493,6 +5718,20 @@ await client.artifacts.get("id");
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an artifact by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5541,6 +5780,20 @@ await client.artifacts.delete("id");
 <details><summary><code>client.artifacts.<a href="/src/api/resources/artifacts/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Artifact, TrueFoundry.ListArtifactsResponse&gt;</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List artifacts with optional filtering by FQN, ML Repo, name, or run ID.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -5619,6 +5872,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update an artifact version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5681,6 +5948,20 @@ await client.artifacts.createOrUpdate({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a prompt by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5730,6 +6011,20 @@ await client.prompts.get("id");
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a prompt by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5778,6 +6073,20 @@ await client.prompts.delete("id");
 <details><summary><code>client.prompts.<a href="/src/api/resources/prompts/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Prompt, TrueFoundry.ListPromptsResponse&gt;</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List prompts with optional filtering by FQN, ML Repo, or name.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -5854,6 +6163,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update a prompt version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5917,6 +6240,20 @@ await client.prompts.createOrUpdate({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a model by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -5966,6 +6303,20 @@ await client.models.get("id");
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a model by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -6014,6 +6365,20 @@ await client.models.delete("id");
 <details><summary><code>client.models.<a href="/src/api/resources/models/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Model, TrueFoundry.ListModelsResponse&gt;</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List models with optional filtering by FQN, ML Repo, name, or run ID.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -6092,6 +6457,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update a model version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -6154,6 +6533,20 @@ await client.models.createOrUpdate({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply tags to an artifact version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -6214,7 +6607,7 @@ await client.artifactVersions.applyTags({
 <dl>
 <dd>
 
-Get artifact version API
+Get an artifact version by its ID.
 </dd>
 </dl>
 </dd>
@@ -6277,7 +6670,7 @@ await client.artifactVersions.get("id");
 <dl>
 <dd>
 
-Delete artifact versions API
+Delete an artifact version by its ID.
 </dd>
 </dl>
 </dd>
@@ -6340,7 +6733,7 @@ await client.artifactVersions.delete("id");
 <dl>
 <dd>
 
-List artifact version API
+List artifact versions with optional filtering by tag, FQN, artifact ID, ML Repo, name, version, run IDs, or run steps.
 </dd>
 </dl>
 </dd>
@@ -6427,6 +6820,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get pre-signed URLs for reading or writing files in an artifact version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -6480,6 +6887,20 @@ await client.artifactVersions.getSignedUrls({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a multipart upload for large files in an artifact version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -6532,6 +6953,20 @@ await client.artifactVersions.createMultiPartUpload({
 <details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">stage</a>({ ...params }) -> TrueFoundry.StageArtifactResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Stage an artifact version for upload, returning storage location and version ID.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -6593,6 +7028,20 @@ await client.artifactVersions.stage({
 <details><summary><code>client.artifactVersions.<a href="/src/api/resources/artifactVersions/client/Client.ts">listFiles</a>({ ...params }) -> core.Page&lt;TrueFoundry.FileInfo, TrueFoundry.ListFilesResponse&gt;</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List files and directories in an artifact version.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -6659,6 +7108,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Mark a staged artifact version as failed.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -6710,6 +7173,20 @@ await client.artifactVersions.markStageFailure({
 <details><summary><code>client.modelVersions.<a href="/src/api/resources/modelVersions/client/Client.ts">applyTags</a>({ ...params }) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply tags to a model version.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -6771,7 +7248,7 @@ await client.modelVersions.applyTags({
 <dl>
 <dd>
 
-Get model version API
+Get a model version by its ID.
 </dd>
 </dl>
 </dd>
@@ -6834,7 +7311,7 @@ await client.modelVersions.get("id");
 <dl>
 <dd>
 
-Delete model versions API
+Delete a model version by its ID.
 </dd>
 </dl>
 </dd>
@@ -6897,7 +7374,7 @@ await client.modelVersions.delete("id");
 <dl>
 <dd>
 
-List model version API
+List model versions with optional filtering by tag, FQN, model ID, ML Repo, name, version, run IDs, or run steps.
 </dd>
 </dl>
 </dd>
@@ -6985,6 +7462,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply tags to a prompt version.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -7045,7 +7536,7 @@ await client.promptVersions.applyTags({
 <dl>
 <dd>
 
-Get prompt version API
+Get a prompt version by its ID.
 </dd>
 </dl>
 </dd>
@@ -7108,7 +7599,7 @@ await client.promptVersions.get("id");
 <dl>
 <dd>
 
-Delete prompt versions API
+Delete a prompt version by its ID.
 </dd>
 </dl>
 </dd>
@@ -7171,7 +7662,7 @@ await client.promptVersions.delete("id");
 <dl>
 <dd>
 
-List prompt version API
+List prompt versions with optional filtering by tag, FQN, prompt ID, ML Repo, name, or version.
 </dd>
 </dl>
 </dd>
@@ -7252,6 +7743,488 @@ const response = page.response;
 </dl>
 </details>
 
+## AgentSkills
+<details><summary><code>client.agentSkills.<a href="/src/api/resources/agentSkills/client/Client.ts">get</a>(agent_skill_id) -> TrueFoundry.GetAgentSkillResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get an agent skill artifact by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentSkills.get("agent_skill_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_skill_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentSkills.<a href="/src/api/resources/agentSkills/client/Client.ts">delete</a>(agent_skill_id) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an agent skill artifact by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentSkills.delete("agent_skill_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_skill_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentSkills.<a href="/src/api/resources/agentSkills/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.AgentSkill, TrueFoundry.ListAgentSkillsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List agent skills with optional filtering by FQN, ML Repo, or name. When present, `latest_version.manifest.source` is `blob-storage` with `description` only; use GET agent skill version for full SKILL.md (inline `source` with `skill_md`).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.agentSkills.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+    include_empty_agent_skills: true
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.agentSkills.list({
+    fqn: "fqn",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    offset: 1,
+    limit: 1,
+    include_empty_agent_skills: true
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.AgentSkillsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentSkills.<a href="/src/api/resources/agentSkills/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetAgentSkillVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update an agent skill version from a manifest.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentSkills.createOrUpdate({
+    manifest: {
+        name: "name",
+        metadata: {
+            "key": "value"
+        },
+        ml_repo: "ml_repo",
+        type: "agent_skill",
+        source: {
+            type: "inline",
+            skill_md: "skill_md"
+        }
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.ApplyAgentSkillRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## AgentSkillVersions
+<details><summary><code>client.agentSkillVersions.<a href="/src/api/resources/agentSkillVersions/client/Client.ts">get</a>(agent_skill_version_id) -> TrueFoundry.GetAgentSkillVersionResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentSkillVersions.get("agent_skill_version_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_skill_version_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillVersionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentSkillVersions.<a href="/src/api/resources/agentSkillVersions/client/Client.ts">delete</a>(agent_skill_version_id) -> TrueFoundry.EmptyResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agentSkillVersions.delete("agent_skill_version_id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**agent_skill_version_id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillVersionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agentSkillVersions.<a href="/src/api/resources/agentSkillVersions/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.AgentSkillVersion, TrueFoundry.ListAgentSkillVersionsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List agent skill versions. Each manifest has `source.type` `blob-storage` and `description` only; use GET for full SKILL.md content.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.agentSkillVersions.list({
+    fqn: "fqn",
+    agent_skill_id: "agent_skill_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.agentSkillVersions.list({
+    fqn: "fqn",
+    agent_skill_id: "agent_skill_id",
+    ml_repo_id: "ml_repo_id",
+    name: "name",
+    version: 1,
+    offset: 1,
+    limit: 1
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.AgentSkillVersionsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentSkillVersionsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## DataDirectories
 <details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">get</a>(id) -> TrueFoundry.GetDataDirectoryResponse</code></summary>
 <dl>
@@ -7266,13 +8239,6 @@ const response = page.response;
 <dd>
 
 Get a data directory by its ID.
-
-Args:
-    id (str): The ID of the data directory to retrieve
-    user_info: Current authenticated user info
-
-Returns:
-    DataDirectoryResponse: Response containing the retrieved data directory
 </dd>
 </dl>
 </dd>
@@ -7335,15 +8301,7 @@ await client.dataDirectories.get("id");
 <dl>
 <dd>
 
-Delete a data directory and optionally its contents.
-
-Args:
-    id: Unique identifier of the data directory to delete
-    delete_contents: If True, also deletes the data directory's contents
-    user_info: Authenticated user information
-
-Returns:
-    EmptyResponse: Empty response indicating successful deletion
+Delete a data directory, optionally including its contents.
 </dd>
 </dl>
 </dd>
@@ -7416,18 +8374,7 @@ await client.dataDirectories.delete("id", {
 <dl>
 <dd>
 
-List all data directories with optional filtering and pagination.
-
-Args:
-    filters: Query parameters for filtering and pagination
-        - ml_repo_id: Filter data directories by ml repo ID
-        - name: Optional filter data directories by name
-        - limit: Optional maximum number of data directories to return
-        - offset: Optional number of data directories to skip
-    user_info: Authenticated user information
-
-Returns:
-    ListDataDirectoriesResponse: List of data directories and pagination info
+List data directories with optional filtering by FQN, ML Repo, or name.
 </dd>
 </dl>
 </dd>
@@ -7506,6 +8453,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update a data directory.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -7575,14 +8536,7 @@ await client.dataDirectories.createOrUpdate({
 <dl>
 <dd>
 
-List files in a dataset.
-
-Args:
-    request_dto: Request containing dataset ID, path, page token and limit
-    user_info: Authenticated user information
-
-Returns:
-    ListFilesResponse: Response containing files and pagination info
+List files and directories in a data directory.
 </dd>
 </dl>
 </dd>
@@ -7661,14 +8615,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Delete files from the dataset.
-
-Args:
-    request_dto: Request containing dataset ID and paths
-    user_info: Authenticated user information
-
-Returns:
-    EmptyResponse: Empty response indicating successful deletion
+Delete files from a data directory.
 </dd>
 </dl>
 </dd>
@@ -7734,14 +8681,7 @@ await client.dataDirectories.deleteFiles({
 <dl>
 <dd>
 
-Get signed URLs for a dataset.
-
-Args:
-    request_dto: Request containing dataset ID, paths and operation
-    user_info: Authenticated user information
-
-Returns:
-    GetSignedURLsResponse: Response containing signed URLs
+Get pre-signed URLs for reading or writing files in a data directory.
 </dd>
 </dl>
 </dd>
@@ -7808,14 +8748,7 @@ await client.dataDirectories.getSignedUrls({
 <dl>
 <dd>
 
-Create a multipart upload for a dataset
-
-Args:
-    request_dto: Request containing dataset ID, path and number of parts
-    user_info: Authenticated user information
-
-Returns:
-    MultiPartUploadResponse: Response containing multipart upload info
+Create a multipart upload for large files in a data directory.
 </dd>
 </dl>
 </dd>
@@ -8662,7 +9595,7 @@ await client.internal.vcs.getAuthenticatedUrl({
 </details>
 
 ## Internal DockerRegistries
-<details><summary><code>client.internal.dockerRegistries.<a href="/src/api/resources/internal/resources/dockerRegistries/client/Client.ts">createRepository</a>({ ...params }) -> TrueFoundry.DockerRegistriesCreateRepositoryResponse</code></summary>
+<details><summary><code>client.internal.dockerRegistries.<a href="/src/api/resources/internal/resources/dockerRegistries/client/Client.ts">createRepository</a>({ ...params }) -> TrueFoundry.CreateDockerRepositoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -8729,7 +9662,7 @@ await client.internal.dockerRegistries.createRepository({
 </dl>
 </details>
 
-<details><summary><code>client.internal.dockerRegistries.<a href="/src/api/resources/internal/resources/dockerRegistries/client/Client.ts">getCredentials</a>({ ...params }) -> TrueFoundry.DockerRegistriesGetCredentialsResponse</code></summary>
+<details><summary><code>client.internal.dockerRegistries.<a href="/src/api/resources/internal/resources/dockerRegistries/client/Client.ts">getCredentials</a>({ ...params }) -> TrueFoundry.GetDockerRegistryCredentialsResponse</code></summary>
 <dl>
 <dd>
 
@@ -8958,7 +9891,7 @@ await client.internal.buildLogs.get("pipelineRunName", {
 <dl>
 <dd>
 
-List artifact version API
+List artifact versions with internal metadata, optionally including model versions.
 </dd>
 </dl>
 </dd>
@@ -9048,6 +9981,20 @@ const response = page.response;
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or update an ML entity (model, prompt, artifact, or data directory).
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -9109,6 +10056,20 @@ await client.internal.ml.apply({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an ML entity (model, prompt, artifact, agent skill, data directory, or ML Repo) by manifest.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -9165,3 +10126,4 @@ await client.internal.ml.delete({
 </dd>
 </dl>
 </details>
+

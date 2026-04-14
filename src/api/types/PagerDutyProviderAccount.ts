@@ -12,5 +12,5 @@ export interface PagerDutyProviderAccount {
     name: string;
     /** List of integrations that are associated with the PagerDuty provider account */
     integrations: TrueFoundry.PagerDutyIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

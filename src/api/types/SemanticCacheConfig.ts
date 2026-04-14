@@ -8,7 +8,7 @@ export interface SemanticCacheConfig {
     /** Similarity threshold for semantic matching (between 0 and 1) */
     similarity_threshold: number;
     /** Cache namespace (defaults to 'default' if not provided) */
-    namespace?: string;
+    namespace?: string | undefined;
     /** Time-to-live for cached entries in seconds (max 3 days) */
     ttl: number;
 }

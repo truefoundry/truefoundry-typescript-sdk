@@ -5,4 +5,5 @@ import type * as TrueFoundry from "../index.js";
 export type BaseArtifactVersionManifest =
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.ArtifactManifest;
+    | TrueFoundry.ArtifactManifest
+    | TrueFoundry.AgentSkillManifest;

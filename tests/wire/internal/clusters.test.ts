@@ -10,6 +10,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { state: { key: "value" } };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/autoprovisioning-state")
@@ -19,11 +20,7 @@ describe("ClustersClient", () => {
             .build();
 
         const response = await client.internal.clusters.getAutoprovisioningState("id");
-        expect(response).toEqual({
-            state: {
-                key: "value",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_autoprovisioning_state (2)", async () => {
@@ -31,6 +28,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/autoprovisioning-state")

@@ -4,7 +4,7 @@ export interface CronMetric {
     /** +value=cron */
     type: "cron";
     /** Desired number of replicas during the given interval. Default value is max_replicas. */
-    desired_replicas?: number;
+    desired_replicas?: number | undefined;
     /**
      * Cron expression indicating the start of the cron schedule.
      * ```

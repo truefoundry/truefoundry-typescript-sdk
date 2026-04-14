@@ -2,5 +2,5 @@
 
 export interface ClustersDeleteResponse {
     /** Success message */
-    message?: string;
+    message?: string | undefined;
 }

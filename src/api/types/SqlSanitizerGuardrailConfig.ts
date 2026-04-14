@@ -9,7 +9,7 @@ export interface SqlSanitizerGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
-    description?: string;
+    description?: string | undefined;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/sql-sanitizer
@@ -18,7 +18,7 @@ export interface SqlSanitizerGuardrailConfig {
     /** Validate (detect and block) or Mutate (detect, sanitize comments, and continue). */
     operation: TrueFoundry.SqlSanitizerGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
-    priority?: number;
+    priority?: number | undefined;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
     config: TrueFoundry.SqlSanitizerGuardrailConfigConfig;
 }

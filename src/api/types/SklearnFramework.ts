@@ -5,7 +5,7 @@ import type * as TrueFoundry from "../index.js";
 export interface SklearnFramework {
     type: "sklearn";
     /** Relative path to the model file in the model version contents */
-    model_filepath?: string;
-    serialization_format?: TrueFoundry.SklearnSerializationFormat;
-    model_schema?: TrueFoundry.SklearnModelSchema;
+    model_filepath?: string | undefined;
+    serialization_format?: TrueFoundry.SklearnSerializationFormat | undefined;
+    model_schema?: TrueFoundry.SklearnModelSchema | undefined;
 }

@@ -12,8 +12,8 @@ export interface Ai21ProviderAccount {
     name: string;
     auth_data: TrueFoundry.Ai21KeyAuth;
     /** List of integrations that are associated with the AI21 provider account */
-    integrations?: TrueFoundry.Ai21Integrations[];
+    integrations?: TrueFoundry.Ai21Integrations[] | undefined;
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

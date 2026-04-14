@@ -11,9 +11,9 @@ export interface QuayProviderAccount {
     /** The name of the provider account. */
     name: string;
     /** The name of the account on Quay. */
-    account_name?: string;
-    auth_data?: TrueFoundry.QuayBasicAuth;
+    account_name?: string | undefined;
+    auth_data?: TrueFoundry.QuayBasicAuth | undefined;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.QuayIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

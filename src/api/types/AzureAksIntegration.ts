@@ -14,7 +14,7 @@ export interface AzureAksIntegration {
     resource_group: string;
     /** Name of the cluster given in the cloud account. */
     cluster_name: string;
-    auth_data?: TrueFoundry.AzureOAuth;
+    auth_data?: TrueFoundry.AzureOAuth | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

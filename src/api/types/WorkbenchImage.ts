@@ -14,10 +14,10 @@ export interface WorkbenchImage {
      * The build script to run when building the image.
      * This will be executed as the last step in the docker build process as the root user (RUN DEBIAN_FRONTEND=noninteractive bash -ex build_script.sh)
      */
-    build_script?: string;
+    build_script?: string | undefined;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
 }

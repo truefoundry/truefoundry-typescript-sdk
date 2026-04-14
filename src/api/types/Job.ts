@@ -15,27 +15,27 @@ export interface Job {
     /** Specify the trigger */
     trigger: TrueFoundry.JobTrigger;
     /** Trigger the job after deploy immediately */
-    trigger_on_deploy?: boolean;
+    trigger_on_deploy?: boolean | undefined;
     /** Configure params and pass it to create different job runs */
-    params?: TrueFoundry.Param[];
+    params?: TrueFoundry.Param[] | undefined;
     /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string | undefined>;
-    resources?: TrueFoundry.Resources;
+    env?: Record<string, string> | undefined;
+    resources?: TrueFoundry.Resources | undefined;
     /** Configure alerts to be sent when the job starts/fails/completes */
-    alerts?: TrueFoundry.JobAlert[];
+    alerts?: TrueFoundry.JobAlert[] | undefined;
     /** Specify the maximum number of attempts to retry a job before it is marked as failed. */
-    retries?: number;
+    retries?: number | undefined;
     /** Job timeout in seconds. */
-    timeout?: number;
+    timeout?: number | undefined;
     /** Number of runs that can run concurrently */
-    concurrency_limit?: number;
+    concurrency_limit?: number | undefined;
     /** +sort=1000 */
-    service_account?: string;
+    service_account?: string | undefined;
     /** Configure data to be mounted to job pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
-    mounts?: TrueFoundry.JobMountsItem[];
+    mounts?: TrueFoundry.JobMountsItem[] | undefined;
     /** Labels */
-    labels?: Record<string, string>;
-    kustomize?: TrueFoundry.Kustomize;
+    labels?: Record<string, string> | undefined;
+    kustomize?: TrueFoundry.Kustomize | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
 }

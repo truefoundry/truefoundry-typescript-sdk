@@ -10,5 +10,5 @@ export interface CanaryStep {
      * Duration for which to pause the release. The release process will wait for these seconds before proceeding to the next step.
      * If this is not set, the step will pause indefinitely on this step
      */
-    pause_duration?: number;
+    pause_duration?: number | undefined;
 }

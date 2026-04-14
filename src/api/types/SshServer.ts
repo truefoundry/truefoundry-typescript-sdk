@@ -16,5 +16,5 @@ export interface SshServer extends TrueFoundry.BaseWorkbenchInput {
      */
     ssh_public_key: string;
     /** Stop the SSH Server instance after this much time in minutes of inactivity. The instance is considered active if there is at least one active SSH connection (a client connected to the SSH server), or if a background job is running using tmux or screen, or if the pod has restarted. */
-    cull_timeout?: number;
+    cull_timeout?: number | undefined;
 }

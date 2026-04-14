@@ -10,6 +10,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { artifact_version_id: "artifact_version_id", tags: ["tags"] };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/artifact-versions/tags")
@@ -23,7 +24,7 @@ describe("ArtifactVersionsClient", () => {
             artifact_version_id: "artifact_version_id",
             tags: ["tags"],
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("apply_tags (2)", async () => {
@@ -31,6 +32,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { artifact_version_id: "artifact_version_id", tags: ["tags", "tags"] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/artifact-versions/tags")
@@ -61,27 +63,32 @@ describe("ArtifactVersionsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 manifest: {
                     name: "name",
-                    description: "description",
                     metadata: { key: "value" },
-                    version_alias: "version_alias",
                     ml_repo: "ml_repo",
                     version: 1,
                     type: "artifact-version",
+                    description: "description",
+                    version_alias: "version_alias",
                     source: { type: "truefoundry" },
                     step: 1,
                     run_id: "run_id",
                 },
-                usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
                 tags: ["tags"],
+                version_alias: "version_alias",
+                usage_code_snippet: "usage_code_snippet",
                 artifact_id: "artifact_id",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/artifact-versions/id")
@@ -91,40 +98,7 @@ describe("ArtifactVersionsClient", () => {
             .build();
 
         const response = await client.artifactVersions.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    name: "name",
-                    description: "description",
-                    metadata: {
-                        key: "value",
-                    },
-                    version_alias: "version_alias",
-                    ml_repo: "ml_repo",
-                    version: 1,
-                    type: "artifact-version",
-                    source: {
-                        type: "truefoundry",
-                    },
-                    step: 1,
-                    run_id: "run_id",
-                },
-                usage_code_snippet: "usage_code_snippet",
-                ml_repo_id: "ml_repo_id",
-                tags: ["tags"],
-                artifact_id: "artifact_id",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -132,6 +106,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/artifact-versions/id")
@@ -150,6 +125,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/artifact-versions/id")
@@ -159,7 +135,7 @@ describe("ArtifactVersionsClient", () => {
             .build();
 
         const response = await client.artifactVersions.delete("id");
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -167,6 +143,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/artifact-versions/id")
@@ -199,14 +176,16 @@ describe("ArtifactVersionsClient", () => {
                         type: "artifact-version",
                         source: { type: "truefoundry" },
                     },
-                    usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
                     tags: ["tags"],
+                    version_alias: "version_alias",
+                    usage_code_snippet: "usage_code_snippet",
                     artifact_id: "artifact_id",
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/artifact-versions")
@@ -215,40 +194,7 @@ describe("ArtifactVersionsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        name: "name",
-                        metadata: {
-                            key: "value",
-                        },
-                        ml_repo: "ml_repo",
-                        type: "artifact-version",
-                        source: {
-                            type: "truefoundry",
-                        },
-                    },
-                    usage_code_snippet: "usage_code_snippet",
-                    ml_repo_id: "ml_repo_id",
-                    tags: ["tags"],
-                    artifact_id: "artifact_id",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.artifactVersions.list({
             tag: "tag",
             fqn: "fqn",
@@ -272,6 +218,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/artifact-versions")
@@ -290,6 +237,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths"], operation: "READ" };
         const rawResponseBody = { data: [{ path: "path", signed_url: "signed_url" }] };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/signed-urls")
@@ -304,14 +252,7 @@ describe("ArtifactVersionsClient", () => {
             paths: ["paths"],
             operation: "READ",
         });
-        expect(response).toEqual({
-            data: [
-                {
-                    path: "path",
-                    signed_url: "signed_url",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_signed_urls (2)", async () => {
@@ -319,6 +260,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths", "paths"], operation: "READ" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/signed-urls")
@@ -350,6 +292,7 @@ describe("ArtifactVersionsClient", () => {
                 finalize_signed_url: { path: "path", signed_url: "signed_url" },
             },
         };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/signed-urls/multipart")
@@ -364,23 +307,7 @@ describe("ArtifactVersionsClient", () => {
             path: "path",
             num_parts: 1,
         });
-        expect(response).toEqual({
-            data: {
-                storage_provider: "S3_COMPATIBLE",
-                part_signed_urls: [
-                    {
-                        path: "path",
-                        signed_url: "signed_url",
-                    },
-                ],
-                s3_compatible_upload_id: "s3_compatible_upload_id",
-                azure_blob_block_ids: ["azure_blob_block_ids"],
-                finalize_signed_url: {
-                    path: "path",
-                    signed_url: "signed_url",
-                },
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_multi_part_upload (2)", async () => {
@@ -388,6 +315,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", path: "path", num_parts: 1 };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/signed-urls/multipart")
@@ -419,6 +347,7 @@ describe("ArtifactVersionsClient", () => {
             },
         };
         const rawResponseBody = { id: "id", storage_root: "storage_root", artifact_id: "artifact_id" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/stage")
@@ -441,11 +370,7 @@ describe("ArtifactVersionsClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            id: "id",
-            storage_root: "storage_root",
-            artifact_id: "artifact_id",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("stage (2)", async () => {
@@ -461,6 +386,7 @@ describe("ArtifactVersionsClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/stage")
@@ -505,6 +431,7 @@ describe("ArtifactVersionsClient", () => {
             ],
             pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
         };
+
         server
             .mockEndpoint({ once: false })
             .post("/api/ml/v1/artifact-versions/files")
@@ -514,22 +441,7 @@ describe("ArtifactVersionsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    path: "path",
-                    is_dir: true,
-                    file_size: 1,
-                    signed_url: "signed_url",
-                    last_modified: "2024-01-15T09:30:00Z",
-                },
-            ],
-            pagination: {
-                limit: 10,
-                nextPageToken: "nextPageToken",
-                previousPageToken: "previousPageToken",
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.artifactVersions.listFiles({
             id: "id",
         });
@@ -545,6 +457,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/files")
@@ -566,6 +479,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id" };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/mark-stage-failure")
@@ -578,7 +492,7 @@ describe("ArtifactVersionsClient", () => {
         const response = await client.artifactVersions.markStageFailure({
             id: "id",
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("mark_stage_failure (2)", async () => {
@@ -586,6 +500,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/artifact-versions/mark-stage-failure")

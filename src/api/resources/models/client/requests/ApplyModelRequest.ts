@@ -19,5 +19,6 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface ApplyModelRequest {
+    /** Manifest containing metadata for the model to apply */
     manifest: TrueFoundry.ModelManifest;
 }

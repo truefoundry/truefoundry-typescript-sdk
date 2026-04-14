@@ -6,17 +6,17 @@ export interface VirtualAccount {
     id: string;
     type: string;
     tenantName: string;
-    manifest?: TrueFoundry.VirtualAccountManifest;
-    jwtId?: string;
+    manifest?: TrueFoundry.VirtualAccountManifest | undefined;
+    jwtId?: string | undefined;
     createdBySubject: TrueFoundry.Subject;
     createdAt: string;
     updatedAt: string;
-    isExpired?: boolean;
-    jwts?: TrueFoundry.Jwt[];
+    isExpired?: boolean | undefined;
+    jwts?: TrueFoundry.Jwt[] | undefined;
     accountId: string;
-    metadata?: Record<string, unknown>;
-    roleIds?: string[];
-    rolesWithResource?: TrueFoundry.RoleWithResource[];
-    createdBy?: string;
-    nextScheduledRotation?: string;
+    metadata?: Record<string, unknown> | undefined;
+    roleIds?: string[] | undefined;
+    rolesWithResource?: TrueFoundry.RoleWithResource[] | undefined;
+    createdBy?: string | undefined;
+    nextScheduledRotation?: string | undefined;
 }

@@ -4,15 +4,18 @@
  * Describes the configuration for the docker build for a task
  */
 export interface TaskDockerFileBuild {
-    /** +value=dockerfile */
+    /**
+     * +uiType=Hidden
+     * +value=dockerfile
+     */
     type: "task-dockerfile-build";
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
     /** The file path of the Dockerfile relative to project root path. */
     dockerfile_path: string;
     /** Build arguments to pass to docker build */
-    build_args?: Record<string, string>;
+    build_args?: Record<string, string> | undefined;
 }

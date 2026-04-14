@@ -27,6 +27,7 @@ describe("TrueFoundryClient", () => {
             action: "CREATE",
             data: { key: "value" },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/apply")
@@ -49,27 +50,7 @@ describe("TrueFoundryClient", () => {
                 ],
             },
         });
-        expect(response).toEqual({
-            existingManifest: {
-                type: "ml-repo",
-                name: "name",
-                description: "description",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        role_id: "role_id",
-                    },
-                ],
-                ownedBy: {
-                    account: "account",
-                },
-            },
-            action: "CREATE",
-            data: {
-                key: "value",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete", async () => {

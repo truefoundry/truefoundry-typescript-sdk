@@ -11,9 +11,9 @@ export interface DockerhubProviderAccount {
     /** 3 to 36 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     /** Account Name */
-    account_name?: string;
-    auth_data?: TrueFoundry.DockerhubBasicAuth;
+    account_name?: string | undefined;
+    auth_data?: TrueFoundry.DockerhubBasicAuth | undefined;
     /** +uiType=IntegrationsGroup */
     integrations: TrueFoundry.DockerhubIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

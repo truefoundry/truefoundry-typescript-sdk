@@ -11,5 +11,5 @@ export interface SystemMessage {
     /** Text content for the system message */
     content: TrueFoundry.SystemMessageContent;
     /** Name of the system */
-    name?: string;
+    name?: string | undefined;
 }

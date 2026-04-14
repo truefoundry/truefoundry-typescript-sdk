@@ -32,6 +32,9 @@ describe("MlReposClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 account_id: "account_id",
@@ -41,6 +44,7 @@ describe("MlReposClient", () => {
                 datasets_count: 10,
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/ml-repos")
@@ -63,40 +67,7 @@ describe("MlReposClient", () => {
                 ],
             },
         });
-        expect(response).toEqual({
-            data: {
-                tenant_name: "truefoundry",
-                manifest: {
-                    type: "ml-repo",
-                    name: "name",
-                    description: "description",
-                    storage_integration_fqn: "storage_integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                account_id: "account_id",
-                id: "420",
-                num_runs: 10,
-                artifact_type_counts: {
-                    key: 1,
-                },
-                datasets_count: 10,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -114,6 +85,7 @@ describe("MlReposClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/ml-repos")
@@ -159,6 +131,7 @@ describe("MlReposClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/ml-repos")
@@ -204,6 +177,7 @@ describe("MlReposClient", () => {
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/ml-repos")
@@ -249,6 +223,7 @@ describe("MlReposClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/ml-repos")
@@ -299,6 +274,9 @@ describe("MlReposClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 account_id: "account_id",
@@ -308,6 +286,7 @@ describe("MlReposClient", () => {
                 datasets_count: 10,
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/ml-repos/id")
@@ -317,40 +296,7 @@ describe("MlReposClient", () => {
             .build();
 
         const response = await client.mlRepos.get("id");
-        expect(response).toEqual({
-            data: {
-                tenant_name: "truefoundry",
-                manifest: {
-                    type: "ml-repo",
-                    name: "name",
-                    description: "description",
-                    storage_integration_fqn: "storage_integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                account_id: "account_id",
-                id: "420",
-                num_runs: 10,
-                artifact_type_counts: {
-                    key: 1,
-                },
-                datasets_count: 10,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -358,6 +304,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/ml-repos/id")
@@ -376,6 +323,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/ml-repos/id")
@@ -385,7 +333,7 @@ describe("MlReposClient", () => {
             .build();
 
         const response = await client.mlRepos.delete("id");
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -393,6 +341,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/ml-repos/id")
@@ -431,6 +380,7 @@ describe("MlReposClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/ml-repos")
@@ -439,41 +389,7 @@ describe("MlReposClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    tenant_name: "truefoundry",
-                    manifest: {
-                        type: "ml-repo",
-                        name: "name",
-                        storage_integration_fqn: "storage_integration_fqn",
-                        collaborators: [
-                            {
-                                subject: "subject",
-                                role_id: "role_id",
-                            },
-                        ],
-                    },
-                    created_by_subject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    created_at: "2024-01-15T09:30:00Z",
-                    account_id: "account_id",
-                    id: "420",
-                    num_runs: 10,
-                    artifact_type_counts: {
-                        key: 1,
-                    },
-                    datasets_count: 10,
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.mlRepos.list({
             name: "name",
             limit: 1,
@@ -491,6 +407,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/ml-repos")

@@ -12,10 +12,10 @@ export interface OpenaiProviderAccount {
     name: string;
     auth_data: TrueFoundry.OpenaiApiKeyAuth;
     /** Optional custom base URL for OpenAI API */
-    base_url?: string;
+    base_url?: string | undefined;
     /** List of integrations that are associated with the OpenAI provider account */
     integrations: TrueFoundry.OpenAiIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

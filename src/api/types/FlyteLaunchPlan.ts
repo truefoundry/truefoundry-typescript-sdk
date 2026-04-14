@@ -5,5 +5,5 @@ import type * as TrueFoundry from "../index.js";
 export interface FlyteLaunchPlan {
     id: TrueFoundry.FlyteLaunchPlanId;
     spec: TrueFoundry.FlyteLaunchPlanSpec;
-    closure?: unknown;
+    closure?: unknown | undefined;
 }

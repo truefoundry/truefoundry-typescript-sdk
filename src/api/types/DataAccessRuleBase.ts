@@ -9,9 +9,9 @@ export interface DataAccessRuleBase {
     /** Unique identifier for the rule */
     id: string;
     /** Description of the rule */
-    description?: string;
+    description?: string | undefined;
     /** Whether this rule is enabled */
-    enabled?: boolean;
+    enabled?: boolean | undefined;
     /** List of subjects that this rule applies to (users, teams, roles) */
     subjects: string[];
     /** List of data types that this rule applies to */

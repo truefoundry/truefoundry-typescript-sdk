@@ -22,6 +22,8 @@ export class PromptsClient {
     }
 
     /**
+     * Get a prompt by its ID.
+     *
      * @param {string} id
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -86,6 +88,8 @@ export class PromptsClient {
     }
 
     /**
+     * Delete a prompt by its ID.
+     *
      * @param {string} id
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -150,6 +154,8 @@ export class PromptsClient {
     }
 
     /**
+     * List prompts with optional filtering by FQN, ML Repo, or name.
+     *
      * @param {TrueFoundry.PromptsListRequest} request
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -249,6 +255,8 @@ export class PromptsClient {
     }
 
     /**
+     * Create or update a prompt version.
+     *
      * @param {TrueFoundry.ApplyPromptRequest} request
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

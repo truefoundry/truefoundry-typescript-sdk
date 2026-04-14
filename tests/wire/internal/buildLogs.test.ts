@@ -14,6 +14,7 @@ describe("BuildLogsClient", () => {
                 { job_name: "job_name", log: "log", stream: "stream", time: "time", containerName: "containerName" },
             ],
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/build-logs/pipelineRunName")
@@ -29,17 +30,7 @@ describe("BuildLogsClient", () => {
             direction: "direction",
             numLogsToIgnore: 1.1,
         });
-        expect(response).toEqual({
-            logs: [
-                {
-                    job_name: "job_name",
-                    log: "log",
-                    stream: "stream",
-                    time: "time",
-                    containerName: "containerName",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -47,6 +38,7 @@ describe("BuildLogsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/build-logs/pipelineRunName")

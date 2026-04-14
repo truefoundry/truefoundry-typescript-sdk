@@ -10,7 +10,7 @@ export interface AsyncService extends TrueFoundry.BaseService {
     type: "async-service";
     /** Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing. */
     replicas: TrueFoundry.AsyncServiceReplicas;
-    rollout_strategy?: TrueFoundry.Rolling;
+    rollout_strategy?: TrueFoundry.Rolling | undefined;
     worker_config: TrueFoundry.WorkerConfig;
-    sidecar?: TrueFoundry.AsyncProcessorSidecar;
+    sidecar?: TrueFoundry.AsyncProcessorSidecar | undefined;
 }

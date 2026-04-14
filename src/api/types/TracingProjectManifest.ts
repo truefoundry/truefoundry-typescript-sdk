@@ -12,7 +12,7 @@ export interface TracingProjectManifest {
     name: string;
     storage: TrueFoundry.TracingProjectStorageConfig;
     /** Description for the Tracing Project. */
-    description?: string;
+    description?: string | undefined;
     /** Users and Teams that have access to Tracing Project */
     collaborators: TrueFoundry.Collaborator[];
     /**
@@ -21,6 +21,6 @@ export interface TracingProjectManifest {
      * When not set, traces are retained indefinitely.
      * Note: Metrics will be retained regardless of this setting.
      */
-    traces_retention_duration_days?: number;
-    ownedBy?: TrueFoundry.OwnedBy;
+    traces_retention_duration_days?: number | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

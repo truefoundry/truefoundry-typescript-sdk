@@ -13,6 +13,7 @@ describe("MetricsClient", () => {
             step: "step",
             graphs: [{ name: "name", description: "description", chart: "chart", chartType: "line", params: "params" }],
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/metrics/workspaceId/charts")
@@ -28,18 +29,7 @@ describe("MetricsClient", () => {
             filterEntity: "application",
             filterQuery: "filterQuery",
         });
-        expect(response).toEqual({
-            step: "step",
-            graphs: [
-                {
-                    name: "name",
-                    description: "description",
-                    chart: "chart",
-                    chartType: "line",
-                    params: "params",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_charts (2)", async () => {
@@ -47,6 +37,7 @@ describe("MetricsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/metrics/workspaceId/charts")
@@ -68,6 +59,7 @@ describe("MetricsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/metrics/workspaceId/charts")
@@ -89,6 +81,7 @@ describe("MetricsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/metrics/workspaceId/charts")

@@ -4,7 +4,8 @@
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         nameSearchQuery: "nameSearchQuery"
  *     }
  */
 export interface PersonalAccessTokensListRequest {
@@ -12,4 +13,6 @@ export interface PersonalAccessTokensListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Return personal access tokens with names that contain this string */
+    nameSearchQuery?: string;
 }

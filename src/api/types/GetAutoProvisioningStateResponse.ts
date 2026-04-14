@@ -2,5 +2,5 @@
 
 export interface GetAutoProvisioningStateResponse {
     /** State of auto-provisioning for the cluster. */
-    state?: Record<string, unknown>;
+    state?: Record<string, unknown> | undefined;
 }

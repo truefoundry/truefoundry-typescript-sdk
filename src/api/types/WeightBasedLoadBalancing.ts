@@ -9,4 +9,5 @@ export interface WeightBasedLoadBalancing {
     type: "weight-based-routing";
     /** List of targets for load balancing with weights */
     load_balance_targets: TrueFoundry.LoadBalanceTarget[];
+    sticky_routing?: TrueFoundry.StickyRouting | undefined;
 }

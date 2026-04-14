@@ -8,6 +8,8 @@
  *     }
  */
 export interface DeleteFilesRequest {
+    /** ID of the artifact version to delete files from */
     id: string;
+    /** List of relative file paths within the artifact version to delete */
     paths: string[];
 }

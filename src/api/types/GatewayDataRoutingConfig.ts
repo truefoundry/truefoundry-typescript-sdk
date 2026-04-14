@@ -9,6 +9,6 @@ export interface GatewayDataRoutingConfig {
     /** Type of configuration */
     type: "gateway-data-routing-config";
     /** List of conditional routing destinations */
-    destinations?: TrueFoundry.GatewayDataRoutingConfigDestination[];
+    destinations?: TrueFoundry.GatewayDataRoutingConfigDestination[] | undefined;
     default: TrueFoundry.GatewayDataRoutingConfigDestinationStorage;
 }

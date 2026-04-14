@@ -12,10 +12,16 @@
  *     }
  */
 export interface PromptsListRequest {
+    /** Fully qualified name to filter prompts by (format: 'chat_prompt:{tenant_name}/{ml_repo_name}/{prompt_name}') */
     fqn?: string;
+    /** ID of the ML Repo to filter prompts by */
     ml_repo_id?: string;
+    /** Name of the prompt to filter by */
     name?: string;
+    /** Number of prompts to skip for pagination */
     offset?: number;
+    /** Maximum number of prompts to return */
     limit?: number;
+    /** Whether to include prompts that have no versions */
     include_empty_prompts?: boolean;
 }

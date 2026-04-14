@@ -9,4 +9,6 @@
 export interface DeactivateUserRequest {
     /** Email of the user */
     email: string;
+    /** Tenant name */
+    tenantName?: string;
 }

@@ -9,7 +9,7 @@ export interface SecretDetectionGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
-    description?: string;
+    description?: string | undefined;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/secret-detection
@@ -18,11 +18,11 @@ export interface SecretDetectionGuardrailConfig {
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. Validate guardrails are run in parallel while mutate guardrails are run sequentially. */
     operation: TrueFoundry.SecretDetectionGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
-    priority?: number;
+    priority?: number | undefined;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
     /**
      * +uiType=Ignore
      * +uiProps={"forwardJsonKey": true}
      */
-    config: TrueFoundry.SecretDetectionGuardrailConfigConfig;
+    config?: TrueFoundry.SecretDetectionGuardrailConfigConfig | undefined;
 }

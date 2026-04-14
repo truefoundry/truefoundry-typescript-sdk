@@ -2,9 +2,9 @@
 
 export interface TokenPagination {
     /** Number of items per page */
-    limit?: number;
+    limit?: number | undefined;
     /** Base64 encoded token for the next page */
-    nextPageToken?: string;
+    nextPageToken?: string | undefined;
     /** Base64 encoded token for the previous page */
-    previousPageToken?: string;
+    previousPageToken?: string | undefined;
 }

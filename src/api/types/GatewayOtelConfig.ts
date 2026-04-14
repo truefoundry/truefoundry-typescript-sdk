@@ -8,6 +8,8 @@ export interface GatewayOtelConfig {
      * +sort=1
      */
     type: "gateway-otel-config";
-    /** Set this configuration to export LLM gateway OTEL traces to an external platform. Note that we only export OTEL traces via this configuration, this does not include OTEL metrics. */
-    otel_traces_exporter_config?: TrueFoundry.GatewayOtelConfigOtelTracesExporterConfig;
+    /** Set this configuration to export LLM gateway OTEL traces to an external platform. Note that we only export OTEL traces via this configuration. */
+    otel_traces_exporter_config?: TrueFoundry.GatewayOtelConfigOtelTracesExporterConfig | undefined;
+    /** Set this configuration to export LLM gateway OTEL metrics to an external platform. Note that we only export OTEL metrics via this configuration. */
+    otel_metrics_exporter_config?: TrueFoundry.GatewayOtelConfigOtelMetricsExporterConfig | undefined;
 }

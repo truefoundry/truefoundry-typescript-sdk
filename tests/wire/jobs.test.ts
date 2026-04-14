@@ -34,6 +34,7 @@ describe("JobsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/jobs/jobId/runs")
@@ -42,38 +43,7 @@ describe("JobsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    name: "name",
-                    applicationName: "applicationName",
-                    deploymentVersion: "deploymentVersion",
-                    createdAt: 1.1,
-                    endTime: 1.1,
-                    duration: 1,
-                    command: "command",
-                    totalRetries: 1,
-                    error: "error",
-                    status: "CREATED",
-                    triggeredBy: "triggeredBy",
-                    triggeredBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    exitCode: 1,
-                    sparkUi: "sparkUi",
-                    applicationId: "applicationId",
-                    deploymentId: "deploymentId",
-                    tenantName: "tenantName",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.jobs.listRuns("jobId", {
             limit: 10,
             offset: 0,
@@ -93,6 +63,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/jobs/jobId/runs")
@@ -111,6 +82,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/jobs/jobId/runs")
@@ -129,6 +101,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/jobs/jobId/runs")
@@ -165,6 +138,9 @@ describe("JobsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 exitCode: 1,
                 sparkUi: "sparkUi",
@@ -173,6 +149,7 @@ describe("JobsClient", () => {
                 tenantName: "tenantName",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -182,33 +159,7 @@ describe("JobsClient", () => {
             .build();
 
         const response = await client.jobs.getRun("jobId", "jobRunName");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                name: "name",
-                applicationName: "applicationName",
-                deploymentVersion: "deploymentVersion",
-                createdAt: 1.1,
-                endTime: 1.1,
-                duration: 1,
-                command: "command",
-                totalRetries: 1,
-                error: "error",
-                status: "CREATED",
-                triggeredBy: "triggeredBy",
-                triggeredBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                exitCode: 1,
-                sparkUi: "sparkUi",
-                applicationId: "applicationId",
-                deploymentId: "deploymentId",
-                tenantName: "tenantName",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_run (2)", async () => {
@@ -216,6 +167,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -234,6 +186,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -252,6 +205,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -261,9 +215,7 @@ describe("JobsClient", () => {
             .build();
 
         const response = await client.jobs.deleteRun("jobId", "jobRunName");
-        expect(response).toEqual({
-            message: "message",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete_run (2)", async () => {
@@ -271,6 +223,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -289,6 +242,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -307,6 +261,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
@@ -345,6 +300,9 @@ describe("JobsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 exitCode: 1,
                 sparkUi: "sparkUi",
@@ -353,6 +311,7 @@ describe("JobsClient", () => {
                 tenantName: "tenantName",
             },
         };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/trigger")
@@ -363,35 +322,7 @@ describe("JobsClient", () => {
             .build();
 
         const response = await client.jobs.trigger();
-        expect(response).toEqual({
-            message: "message",
-            jobRunName: "jobRunName",
-            data: {
-                id: "id",
-                name: "name",
-                applicationName: "applicationName",
-                deploymentVersion: "deploymentVersion",
-                createdAt: 1.1,
-                endTime: 1.1,
-                duration: 1,
-                command: "command",
-                totalRetries: 1,
-                error: "error",
-                status: "CREATED",
-                triggeredBy: "triggeredBy",
-                triggeredBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                exitCode: 1,
-                sparkUi: "sparkUi",
-                applicationId: "applicationId",
-                deploymentId: "deploymentId",
-                tenantName: "tenantName",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("trigger (2)", async () => {
@@ -399,6 +330,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/trigger")
@@ -418,6 +350,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/trigger")
@@ -437,6 +370,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/trigger")
@@ -456,6 +390,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/trigger")
@@ -475,6 +410,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { message: "message", jobRunStatus: "CREATED" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/terminate")
@@ -487,10 +423,7 @@ describe("JobsClient", () => {
             deploymentId: "deploymentId",
             jobRunName: "jobRunName",
         });
-        expect(response).toEqual({
-            message: "message",
-            jobRunStatus: "CREATED",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("terminate (2)", async () => {
@@ -498,6 +431,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/terminate")
@@ -519,6 +453,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/terminate")
@@ -540,6 +475,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/terminate")
@@ -561,6 +497,7 @@ describe("JobsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/jobs/terminate")

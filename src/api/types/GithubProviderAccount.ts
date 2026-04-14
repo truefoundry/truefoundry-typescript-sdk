@@ -12,5 +12,5 @@ export interface GithubProviderAccount {
     name: string;
     /** +uiType=IntegrationsGroup */
     integrations: TrueFoundry.GithubIntegration[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

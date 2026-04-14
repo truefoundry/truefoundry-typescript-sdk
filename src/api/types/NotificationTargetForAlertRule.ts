@@ -5,4 +5,8 @@ import type * as TrueFoundry from "../index.js";
 /**
  * +discriminator=type
  */
-export type NotificationTargetForAlertRule = TrueFoundry.Email | TrueFoundry.SlackBot | TrueFoundry.PagerDuty;
+export type NotificationTargetForAlertRule =
+    | TrueFoundry.Email
+    | TrueFoundry.SlackWebhook
+    | TrueFoundry.SlackBot
+    | TrueFoundry.PagerDuty;

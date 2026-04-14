@@ -19,5 +19,6 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface ApplyDataDirectoryRequest {
+    /** Manifest containing metadata for the data directory to apply */
     manifest: TrueFoundry.DataDirectoryManifest;
 }

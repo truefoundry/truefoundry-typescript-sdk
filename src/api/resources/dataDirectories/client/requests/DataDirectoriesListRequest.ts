@@ -11,9 +11,14 @@
  *     }
  */
 export interface DataDirectoriesListRequest {
+    /** Fully qualified name to filter data directories by */
     fqn?: string;
+    /** ID of the ML Repo to filter data directories by */
     ml_repo_id?: string;
+    /** Name of the data directory to filter by */
     name?: string;
+    /** Maximum number of data directories to return */
     limit?: number;
+    /** Number of data directories to skip for pagination */
     offset?: number;
 }

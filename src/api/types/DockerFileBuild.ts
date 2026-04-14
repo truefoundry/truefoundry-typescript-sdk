@@ -17,9 +17,9 @@ export interface DockerFileBuild {
      * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
      * E.g. `python main.py --learning_rate {{learning_rate}}`
      */
-    command?: TrueFoundry.DockerFileBuildCommand;
+    command?: TrueFoundry.DockerFileBuildCommand | undefined;
     /** Build arguments to pass to docker build */
-    build_args?: Record<string, string>;
+    build_args?: Record<string, string> | undefined;
     /** Build secrets you can use in run statements inside dockerfile like RUN --mount=type=secret,id=pip_index_url ... you can learn more about build secrets here https://www.truefoundry.com/docs/docker-build-secrets */
-    build_secrets?: TrueFoundry.BuildSecret[];
+    build_secrets?: TrueFoundry.BuildSecret[] | undefined;
 }

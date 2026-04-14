@@ -10,7 +10,7 @@ export interface GcpGsm {
     type: "integration/secret-store/gcp/gsm";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    auth_data?: TrueFoundry.GcpKeyFileAuth;
+    auth_data?: TrueFoundry.GcpKeyFileAuth | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

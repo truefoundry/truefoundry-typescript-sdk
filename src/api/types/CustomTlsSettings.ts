@@ -7,5 +7,5 @@ export interface CustomTlsSettings {
     /** When set to true, it will reject any connection which is not authorized with the list of supplied CAs. */
     reject_unauthorized: boolean;
     /** Add custom CA certificates to use for TLS verification. */
-    ca_cert?: string;
+    ca_cert?: string | undefined;
 }

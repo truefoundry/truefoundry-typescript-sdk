@@ -8,11 +8,11 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GraySwanCygnalGuardrailConfigConfig {
     /** Optional override for the Cygnal monitor endpoint. Defaults to https://api.grayswan.ai/cygnal/monitor if not provided. */
-    base_url?: string;
+    base_url?: string | undefined;
     /** Custom policy IDs to use for monitoring. Rules from all policies are merged in order, with earlier policies taking precedence. If not provided, the default Basic Content Safety policy is applied, refer to [Docs](https://docs.grayswan.ai/cygnal/monitor-requests) */
-    policy_ids?: string[];
+    policy_ids?: string[] | undefined;
     /** Custom rule definitions for monitoring. Each key is a rule name and its value is the rule description, refer to [Docs](https://docs.grayswan.ai/cygnal/monitor-requests) */
-    rules?: Record<string, string>;
+    rules?: Record<string, string> | undefined;
     /** Controls whether Cygnal uses internal reasoning steps before determining if content violates policy. "off" is fastest, "hybrid" adds moderate reasoning, "thinking" performs guided reasoning for highest quality. */
     reasoning_mode: TrueFoundry.GraySwanCygnalGuardrailConfigConfigReasoningMode;
 }

@@ -3,5 +3,5 @@
 export interface PresignedUrlObject {
     uri: string;
     url: string;
-    headers?: Record<string, unknown>;
+    headers?: Record<string, unknown> | undefined;
 }

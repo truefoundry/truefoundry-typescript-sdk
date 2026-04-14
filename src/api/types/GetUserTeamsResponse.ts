@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetUserTeamsResponse {
-    /** Teams where user is a member */
-    data: TrueFoundry.Team[];
+    /** Teams where user is a member, with their role */
+    data: TrueFoundry.UserTeamInfo[];
 }

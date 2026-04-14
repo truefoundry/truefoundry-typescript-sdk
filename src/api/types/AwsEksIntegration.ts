@@ -14,7 +14,7 @@ export interface AwsEksIntegration {
     /** Name of the cluster given in the cloud account. */
     cluster_name: string;
     /** Custom authentication data for the integration. */
-    auth_data?: TrueFoundry.AwsEksIntegrationAuthData;
+    auth_data?: TrueFoundry.AwsEksIntegrationAuthData | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

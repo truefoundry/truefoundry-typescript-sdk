@@ -4,8 +4,8 @@ export interface AgentSkill {
     id: string;
     name: string;
     description: string;
-    tags?: string[];
-    examples?: string[];
-    inputModes?: string[];
-    outputModes?: string[];
+    tags?: string[] | undefined;
+    examples?: string[] | undefined;
+    inputModes?: string[] | undefined;
+    outputModes?: string[] | undefined;
 }

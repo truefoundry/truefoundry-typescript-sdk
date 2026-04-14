@@ -8,20 +8,22 @@ import type * as TrueFoundry from "../index.js";
 export interface McpServerOAuth2 {
     /** OAuth2 authentication */
     type: "oauth2";
+    /** The OAuth2 grant type to use for authentication. */
+    grant_type: TrueFoundry.McpServerOAuth2GrantType;
     /** URL for the authorization request */
-    authorization_url: string;
+    authorization_url?: string | undefined;
     /** The endpoint to exchange auth code for tokens. */
     token_url: string;
     /** client ID for OAuth2 or the TrueFoundry secret FQN containing the client ID. */
-    client_id?: string;
+    client_id?: string | undefined;
     /** Client secret or the TrueFoundry secret FQN containing the client secret for OAuth2. */
-    client_secret?: string;
+    client_secret?: string | undefined;
     /** URL for dynamic client registration (RFC 7591). If provided, client credentials will be obtained automatically using the Dynamic Client Registration (DCR) process. */
-    registration_url?: string;
+    registration_url?: string | undefined;
     /** List of supported PKCE code challenge methods (S256 only) */
-    code_challenge_methods_supported?: "S256"[];
+    code_challenge_methods_supported?: "S256"[] | undefined;
     /** Source of the JWT token to be used for verification. */
     jwt_source: TrueFoundry.McpServerOAuth2JwtSource;
     /** List of scopes to request from the OAuth2 provider. */
-    scopes?: string[];
+    scopes?: string[] | undefined;
 }

@@ -15,15 +15,26 @@
  *     }
  */
 export interface ModelVersionsListRequest {
+    /** Tag to filter model versions by */
     tag?: string;
+    /** Fully qualified name to filter model versions by (format: 'model:{tenant_name}/{ml_repo_name}/{model_name}' or 'model:{tenant_name}/{ml_repo_name}/{model_name}:{version}') */
     fqn?: string;
+    /** ID of the model to filter versions by */
     model_id?: string;
+    /** ID of the ML Repo to filter model versions by */
     ml_repo_id?: string;
+    /** Name of the model to filter versions by */
     name?: string;
+    /** Version number (positive integer) or 'latest' to filter by specific version */
     version?: number;
+    /** List of run IDs to filter model versions by */
     run_ids?: string | string[];
+    /** List of run step numbers to filter model versions by */
     run_steps?: number | number[];
+    /** Number of model versions to skip for pagination */
     offset?: number;
+    /** Maximum number of model versions to return */
     limit?: number;
+    /** Whether to include internal metadata in the response */
     include_internal_metadata?: boolean;
 }

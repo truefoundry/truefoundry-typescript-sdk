@@ -20,6 +20,9 @@ describe("DataDirectoriesClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -34,6 +37,7 @@ describe("DataDirectoriesClient", () => {
                 usage_code_snippet: "usage_code_snippet",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/data-directories/id")
@@ -43,35 +47,7 @@ describe("DataDirectoriesClient", () => {
             .build();
 
         const response = await client.dataDirectories.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                ml_repo_id: "ml_repo_id",
-                name: "name",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "data-dir",
-                    name: "name",
-                    ml_repo: "ml_repo",
-                    description: "description",
-                    metadata: {
-                        key: "value",
-                    },
-                    source: {
-                        type: "truefoundry",
-                    },
-                },
-                usage_code_snippet: "usage_code_snippet",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -79,6 +55,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/data-directories/id")
@@ -97,6 +74,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/data-directories/id")
@@ -108,7 +86,7 @@ describe("DataDirectoriesClient", () => {
         const response = await client.dataDirectories.delete("id", {
             delete_contents: true,
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -116,6 +94,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/data-directories/id")
@@ -155,6 +134,7 @@ describe("DataDirectoriesClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/data-directories")
@@ -163,39 +143,7 @@ describe("DataDirectoriesClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    ml_repo_id: "ml_repo_id",
-                    name: "name",
-                    fqn: "fqn",
-                    created_by_subject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        type: "data-dir",
-                        name: "name",
-                        ml_repo: "ml_repo",
-                        metadata: {
-                            key: "value",
-                        },
-                        source: {
-                            type: "truefoundry",
-                        },
-                    },
-                    usage_code_snippet: "usage_code_snippet",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.dataDirectories.list({
             fqn: "fqn",
             ml_repo_id: "ml_repo_id",
@@ -215,6 +163,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/data-directories")
@@ -251,6 +200,9 @@ describe("DataDirectoriesClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
@@ -265,6 +217,7 @@ describe("DataDirectoriesClient", () => {
                 usage_code_snippet: "usage_code_snippet",
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/data-directories")
@@ -287,35 +240,7 @@ describe("DataDirectoriesClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                ml_repo_id: "ml_repo_id",
-                name: "name",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "data-dir",
-                    name: "name",
-                    ml_repo: "ml_repo",
-                    description: "description",
-                    metadata: {
-                        key: "value",
-                    },
-                    source: {
-                        type: "truefoundry",
-                    },
-                },
-                usage_code_snippet: "usage_code_snippet",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -331,6 +256,7 @@ describe("DataDirectoriesClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/data-directories")
@@ -375,6 +301,7 @@ describe("DataDirectoriesClient", () => {
             ],
             pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
         };
+
         server
             .mockEndpoint({ once: false })
             .post("/api/ml/v1/data-directories/files")
@@ -384,22 +311,7 @@ describe("DataDirectoriesClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    path: "path",
-                    is_dir: true,
-                    file_size: 1,
-                    signed_url: "signed_url",
-                    last_modified: "2024-01-15T09:30:00Z",
-                },
-            ],
-            pagination: {
-                limit: 10,
-                nextPageToken: "nextPageToken",
-                previousPageToken: "previousPageToken",
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.dataDirectories.listFiles({
             id: "id",
         });
@@ -415,6 +327,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/data-directories/files")
@@ -436,6 +349,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths"] };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/data-directories/files")
@@ -449,7 +363,7 @@ describe("DataDirectoriesClient", () => {
             id: "id",
             paths: ["paths"],
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete_files (2)", async () => {
@@ -457,6 +371,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths", "paths"] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/data-directories/files")
@@ -479,6 +394,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths"], operation: "READ" };
         const rawResponseBody = { data: [{ path: "path", signed_url: "signed_url" }] };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/data-directories/signed-urls")
@@ -493,14 +409,7 @@ describe("DataDirectoriesClient", () => {
             paths: ["paths"],
             operation: "READ",
         });
-        expect(response).toEqual({
-            data: [
-                {
-                    path: "path",
-                    signed_url: "signed_url",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_signed_urls (2)", async () => {
@@ -508,6 +417,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", paths: ["paths", "paths"], operation: "READ" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/data-directories/signed-urls")
@@ -539,6 +449,7 @@ describe("DataDirectoriesClient", () => {
                 finalize_signed_url: { path: "path", signed_url: "signed_url" },
             },
         };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/data-directories/signed-urls/multipart")
@@ -553,23 +464,7 @@ describe("DataDirectoriesClient", () => {
             path: "path",
             num_parts: 1,
         });
-        expect(response).toEqual({
-            data: {
-                storage_provider: "S3_COMPATIBLE",
-                part_signed_urls: [
-                    {
-                        path: "path",
-                        signed_url: "signed_url",
-                    },
-                ],
-                s3_compatible_upload_id: "s3_compatible_upload_id",
-                azure_blob_block_ids: ["azure_blob_block_ids"],
-                finalize_signed_url: {
-                    path: "path",
-                    signed_url: "signed_url",
-                },
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_multipart_upload (2)", async () => {
@@ -577,6 +472,7 @@ describe("DataDirectoriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { id: "id", path: "path", num_parts: 1 };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/data-directories/signed-urls/multipart")

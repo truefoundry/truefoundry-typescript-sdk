@@ -5,7 +5,7 @@
  */
 export interface Guardrails {
     /** List of guardrail names to apply to user input messages before processing. */
-    input_guardrails?: string[];
+    input_guardrails?: string[] | undefined;
     /** List of guardrail names to apply to AI response messages before returning to user. */
-    output_guardrails?: string[];
+    output_guardrails?: string[] | undefined;
 }

@@ -14,7 +14,7 @@ export interface DatabricksModel {
     model_id: string;
     /** Specify the type of the Databricks model */
     model_types: TrueFoundry.ModelType[];
-    cost?: TrueFoundry.ModelCostMetric;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

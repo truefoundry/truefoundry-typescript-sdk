@@ -13,11 +13,18 @@
  *     }
  */
 export interface ModelsListRequest {
+    /** Fully qualified name to filter models by (format: 'model:{tenant_name}/{ml_repo_name}/{model_name}') */
     fqn?: string;
+    /** ID of the ML Repo to filter models by */
     ml_repo_id?: string;
+    /** Name of the model to filter by */
     name?: string;
+    /** Number of models to skip for pagination */
     offset?: number;
+    /** Maximum number of models to return */
     limit?: number;
+    /** ID of the run to filter models by */
     run_id?: string;
+    /** Whether to include models that have no versions */
     include_empty_models?: boolean;
 }

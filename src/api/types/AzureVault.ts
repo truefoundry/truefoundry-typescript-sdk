@@ -10,9 +10,9 @@ export interface AzureVault {
     type: "integration/secret-store/azure/vault";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    auth_data?: TrueFoundry.AzureOAuth;
+    auth_data?: TrueFoundry.AzureOAuth | undefined;
     /** Name of key vault name. */
     key_vault_name: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

@@ -9,13 +9,13 @@ export interface OpaGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
-    description?: string;
+    description?: string | undefined;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/opa
      */
     type: "integration/guardrail-config/opa";
-    auth_data?: TrueFoundry.OpaAuth;
+    auth_data?: TrueFoundry.OpaAuth | undefined;
     /** The operation type for this guardrail. OPA guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;

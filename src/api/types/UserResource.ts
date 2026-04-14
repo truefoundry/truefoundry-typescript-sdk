@@ -8,5 +8,5 @@ export interface UserResource {
     /** Role ID */
     roleId: string;
     /** Resource Name (if available) */
-    resourceName?: string;
+    resourceName?: string | undefined;
 }

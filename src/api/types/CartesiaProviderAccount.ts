@@ -11,13 +11,13 @@ export interface CartesiaProviderAccount {
     /** The name of the Cartesia provider account */
     name: string;
     /** Optional custom base URL for Cartesia API */
-    base_url?: string;
+    base_url?: string | undefined;
     /** The Cartesia API version header. Must be set to a supported API version. */
     cartesia_version: TrueFoundry.CartesiaProviderAccountCartesiaVersion;
     auth_data: TrueFoundry.CartesiaApiKeyAuth;
     /** List of integrations that are associated with the Cartesia provider account */
     integrations: TrueFoundry.CartesiaModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

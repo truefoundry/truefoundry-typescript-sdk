@@ -12,7 +12,7 @@ export interface AzureContainerRegistry {
     name: string;
     /** The URL of the registry. */
     registry_url: string;
-    auth_data?: TrueFoundry.AzureBasicAuth;
+    auth_data?: TrueFoundry.AzureBasicAuth | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

@@ -13,11 +13,18 @@
  *     }
  */
 export interface ArtifactsListRequest {
+    /** Fully qualified name to filter artifacts by (format: '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}') */
     fqn?: string;
+    /** ID of the ML Repo to filter artifacts by */
     ml_repo_id?: string;
+    /** Name of the artifact to filter by */
     name?: string;
+    /** Number of artifacts to skip for pagination */
     offset?: number;
+    /** Maximum number of artifacts to return */
     limit?: number;
+    /** ID of the run to filter artifacts by */
     run_id?: string;
+    /** Whether to include artifacts that have no versions */
     include_empty_artifacts?: boolean;
 }

@@ -17,6 +17,6 @@ export interface KafkaInputConfig {
     /** TLS configuration for SASL authentication */
     tls: boolean;
     /** Wait timeout for long polling. */
-    wait_time_seconds?: number;
-    auth?: TrueFoundry.KafkaSaslAuth;
+    wait_time_seconds?: number | undefined;
+    auth?: TrueFoundry.KafkaSaslAuth | undefined;
 }

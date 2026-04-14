@@ -7,7 +7,8 @@
  *         offset: 0,
  *         clusterId: "clusterId",
  *         name: "name",
- *         fqn: "fqn"
+ *         fqn: "fqn",
+ *         includeCluster: true
  *     }
  */
 export interface WorkspacesListRequest {
@@ -21,4 +22,6 @@ export interface WorkspacesListRequest {
     name?: string;
     /** Workspace FQN */
     fqn?: string;
+    /** When true, each workspace includes cluster information */
+    includeCluster?: boolean;
 }

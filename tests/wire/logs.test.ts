@@ -14,6 +14,7 @@ describe("LogsClient", () => {
                 { job_name: "job_name", log: "log", stream: "stream", time: "time", containerName: "containerName" },
             ],
         };
+
         server.mockEndpoint().get("/api/svc/v1/logs").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.logs.get({
@@ -34,17 +35,7 @@ describe("LogsClient", () => {
             searchType: "regex",
             searchOperator: "equal",
         });
-        expect(response).toEqual({
-            data: [
-                {
-                    job_name: "job_name",
-                    log: "log",
-                    stream: "stream",
-                    time: "time",
-                    containerName: "containerName",
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -52,6 +43,7 @@ describe("LogsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/api/svc/v1/logs").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

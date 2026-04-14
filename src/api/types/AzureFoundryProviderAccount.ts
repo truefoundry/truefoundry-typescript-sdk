@@ -13,6 +13,6 @@ export interface AzureFoundryProviderAccount {
     /** List of integrations that are associated with the Azure Foundry provider account */
     integrations: TrueFoundry.AzureFoundryModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

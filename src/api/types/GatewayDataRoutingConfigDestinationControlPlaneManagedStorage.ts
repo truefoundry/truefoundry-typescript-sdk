@@ -9,5 +9,5 @@ export interface GatewayDataRoutingConfigDestinationControlPlaneManagedStorage {
     /** Type of storage configuration */
     type: "controlplane-managed";
     /** Specifies the region where control plane–managed storage is located. */
-    region?: TrueFoundry.GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion;
+    region?: TrueFoundry.GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion | undefined;
 }

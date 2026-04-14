@@ -28,6 +28,7 @@ describe("WorkspacesClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/workspaces")
@@ -36,42 +37,14 @@ describe("WorkspacesClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    tenantName: "tenantName",
-                    clusterId: "clusterId",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    environmentId: "environmentId",
-                    manifest: {
-                        type: "workspace",
-                        cluster_fqn: "cluster_fqn",
-                        name: "name",
-                    },
-                    accountId: "accountId",
-                    isSystemWs: true,
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.workspaces.list({
             limit: 10,
             offset: 0,
             clusterId: "clusterId",
             name: "name",
             fqn: "fqn",
+            includeCluster: true,
         });
 
         expect(expected.data).toEqual(page.data);
@@ -95,6 +68,9 @@ describe("WorkspacesClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -115,6 +91,7 @@ describe("WorkspacesClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/workspaces")
@@ -131,54 +108,7 @@ describe("WorkspacesClient", () => {
                 name: "name",
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                clusterId: "clusterId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "environmentId",
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                    environment_name: "environment_name",
-                    labels: {
-                        key: "value",
-                    },
-                    annotations: {
-                        key: "value",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    permissions: [
-                        {
-                            resource_fqn: "resource_fqn",
-                            resource_type: "resource_type",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                accountId: "accountId",
-                isSystemWs: true,
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -186,6 +116,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/workspaces")
@@ -211,6 +142,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/workspaces")
@@ -236,6 +168,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/workspaces")
@@ -261,6 +194,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/workspaces")
@@ -281,6 +215,52 @@ describe("WorkspacesClient", () => {
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 
+    test("search", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    fqn: "fqn",
+                    tenantName: "tenantName",
+                    clusterId: "clusterId",
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                    environmentId: "environmentId",
+                    manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
+                    accountId: "accountId",
+                    isSystemWs: true,
+                    createdBy: "createdBy",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/workspaces/search")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.workspaces.search({
+            limit: 10,
+            offset: 0,
+            filter: "filter",
+            includeCluster: true,
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -296,6 +276,9 @@ describe("WorkspacesClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -316,6 +299,7 @@ describe("WorkspacesClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/workspaces/id")
@@ -325,54 +309,7 @@ describe("WorkspacesClient", () => {
             .build();
 
         const response = await client.workspaces.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                clusterId: "clusterId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "environmentId",
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                    environment_name: "environment_name",
-                    labels: {
-                        key: "value",
-                    },
-                    annotations: {
-                        key: "value",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    permissions: [
-                        {
-                            resource_fqn: "resource_fqn",
-                            resource_type: "resource_type",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                accountId: "accountId",
-                isSystemWs: true,
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -380,6 +317,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/workspaces/id")
@@ -408,6 +346,9 @@ describe("WorkspacesClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -429,6 +370,7 @@ describe("WorkspacesClient", () => {
             },
             message: "message",
         };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/workspaces/id")
@@ -438,55 +380,7 @@ describe("WorkspacesClient", () => {
             .build();
 
         const response = await client.workspaces.delete("id");
-        expect(response).toEqual({
-            workspace: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                clusterId: "clusterId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "environmentId",
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                    environment_name: "environment_name",
-                    labels: {
-                        key: "value",
-                    },
-                    annotations: {
-                        key: "value",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    permissions: [
-                        {
-                            resource_fqn: "resource_fqn",
-                            resource_type: "resource_type",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                accountId: "accountId",
-                isSystemWs: true,
-                createdBy: "createdBy",
-            },
-            message: "message",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -494,6 +388,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/workspaces/id")
@@ -512,6 +407,7 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/workspaces/id")

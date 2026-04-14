@@ -3,5 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ApplyMlEntityResponse {
+    /** The created or updated ML entity (model version, prompt version, agent skill version, artifact version, or data directory) */
     data: TrueFoundry.ApplyMlEntityResponseData;
 }

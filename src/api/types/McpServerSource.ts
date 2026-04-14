@@ -9,6 +9,6 @@ export interface McpServerSource {
     /** Name of the MCP server */
     name: string;
     /** List of tools to enable from this source server. */
-    enabled_tools?: string[];
-    auth_data?: TrueFoundry.McpServerHeaderOverrideAuth;
+    enabled_tools?: string[] | undefined;
+    auth_data?: TrueFoundry.McpServerHeaderOverrideAuth | undefined;
 }

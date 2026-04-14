@@ -14,5 +14,5 @@ export interface KafkaOutputConfig {
     topic_name: string;
     /** TLS configuration for SASL authentication */
     tls: boolean;
-    auth?: TrueFoundry.KafkaSaslAuth;
+    auth?: TrueFoundry.KafkaSaslAuth | undefined;
 }

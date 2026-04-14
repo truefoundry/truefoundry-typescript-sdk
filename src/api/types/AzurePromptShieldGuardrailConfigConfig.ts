@@ -10,5 +10,5 @@ export interface AzurePromptShieldGuardrailConfigConfig {
     /** API version for the Prompt Shield API */
     api_version: string;
     /** Custom endpoint URL for the Prompt Shield API (optional, uses default Azure endpoint if not specified) */
-    custom_host?: string;
+    custom_host?: string | undefined;
 }

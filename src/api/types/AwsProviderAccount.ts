@@ -13,8 +13,8 @@ export interface AwsProviderAccount {
     /** The AWS account ID. */
     aws_account_id: string;
     /** Authentication data for the AWS account. */
-    auth_data?: TrueFoundry.AwsProviderAccountAuthData;
+    auth_data?: TrueFoundry.AwsProviderAccountAuthData | undefined;
     /** List of integrations that are associated with the AWS provider account. */
     integrations: TrueFoundry.AwsIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

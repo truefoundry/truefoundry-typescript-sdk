@@ -24,9 +24,10 @@ describe("ArtifactVersionsClient", () => {
                         type: "artifact-version",
                         source: { type: "truefoundry" },
                     },
-                    usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
                     tags: ["tags"],
+                    version_alias: "version_alias",
+                    usage_code_snippet: "usage_code_snippet",
                     artifact_id: "artifact_id",
                     artifact_fqn: "artifact_fqn",
                     artifact_size: 1,
@@ -34,6 +35,7 @@ describe("ArtifactVersionsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/x/artifact-versions")
@@ -42,42 +44,7 @@ describe("ArtifactVersionsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        name: "name",
-                        metadata: {
-                            key: "value",
-                        },
-                        ml_repo: "ml_repo",
-                        type: "artifact-version",
-                        source: {
-                            type: "truefoundry",
-                        },
-                    },
-                    usage_code_snippet: "usage_code_snippet",
-                    ml_repo_id: "ml_repo_id",
-                    tags: ["tags"],
-                    artifact_id: "artifact_id",
-                    artifact_fqn: "artifact_fqn",
-                    artifact_size: 1,
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.internal.artifactVersions.list({
             tag: "tag",
             fqn: "fqn",
@@ -102,6 +69,7 @@ describe("ArtifactVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/x/artifact-versions")

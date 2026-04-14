@@ -7,5 +7,5 @@ export interface CustomRegexPattern {
     /** A custom regex pattern to match against content (e.g., "\\b\\d{3}-\\d{2}-\\d{4}\\b" for SSN) */
     pattern: string;
     /** Text to use when redacting matched content (only applicable in mutate mode). Defaults to '[REDACTED]'. */
-    redaction_text?: string;
+    redaction_text?: string | undefined;
 }

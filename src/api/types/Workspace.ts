@@ -10,9 +10,9 @@ export interface Workspace {
     createdBySubject: TrueFoundry.Subject;
     createdAt: string;
     updatedAt: string;
-    environmentId?: string;
+    environmentId?: string | undefined;
     manifest: TrueFoundry.WorkspaceManifest;
     accountId: string;
-    isSystemWs?: boolean;
-    createdBy?: string;
+    isSystemWs?: boolean | undefined;
+    createdBy?: string | undefined;
 }

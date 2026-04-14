@@ -12,10 +12,10 @@ export interface ElevenLabsProviderAccount {
     name: string;
     auth_data: TrueFoundry.ElevenLabsApiKeyAuth;
     /** Optional custom base URL for ElevenLabs API */
-    base_url?: string;
+    base_url?: string | undefined;
     /** List of integrations that are associated with the ElevenLabs provider account */
     integrations: TrueFoundry.ElevenLabsModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

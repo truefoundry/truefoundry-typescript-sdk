@@ -12,5 +12,6 @@ export const ModelType = {
     TextToSpeech: "text_to_speech",
     Moderation: "moderation",
     Image: "image",
+    Responses: "responses",
 } as const;
 export type ModelType = (typeof ModelType)[keyof typeof ModelType];

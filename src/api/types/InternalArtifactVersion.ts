@@ -2,17 +2,34 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Tags, optional version alias, and SDK usage snippet (models, prompts, generic artifacts).
+ */
 export interface InternalArtifactVersion {
+    /** Unique identifier for the artifact version */
     id: string;
+    /** Fully qualified name of the artifact version in the format '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}' */
     fqn: string;
+    /** Subject (user, team, or service account) that created this artifact version */
     created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
+    /** Timestamp when the artifact version was created */
+    created_at?: string | undefined;
+    /** Timestamp when the artifact version was last updated */
+    updated_at?: string | undefined;
+    /** Manifest containing metadata for a generic artifact version */
     manifest: TrueFoundry.ArtifactManifest;
-    usage_code_snippet?: string;
+    /** ID of the ML Repo that this artifact version belongs to */
     ml_repo_id: string;
-    tags?: string[];
+    /** List of tags associated with this artifact version for filtering and organization */
+    tags?: string[] | undefined;
+    /** Optional human-readable version alias (e.g. v1.0.0) */
+    version_alias?: string | undefined;
+    /** Code snippet demonstrating how to use this artifact version */
+    usage_code_snippet?: string | undefined;
+    /** ID of the parent artifact that this version belongs to */
     artifact_id: string;
+    /** Fully qualified name of the parent artifact (internal use only) */
     artifact_fqn: string;
-    artifact_size?: number;
+    /** Total size of the artifact version in bytes (internal use only) */
+    artifact_size?: number | undefined;
 }

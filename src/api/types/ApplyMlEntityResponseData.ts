@@ -2,8 +2,12 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * The created or updated ML entity (model version, prompt version, agent skill version, artifact version, or data directory)
+ */
 export type ApplyMlEntityResponseData =
     | TrueFoundry.ModelVersion
     | TrueFoundry.PromptVersion
+    | TrueFoundry.AgentSkillVersion
     | TrueFoundry.ArtifactVersion
     | TrueFoundry.DataDirectory;

@@ -3,5 +3,5 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface HttpValidationError {
-    detail?: TrueFoundry.ValidationError[];
+    detail?: TrueFoundry.ValidationError[] | undefined;
 }

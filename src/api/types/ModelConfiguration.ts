@@ -11,7 +11,7 @@ export interface ModelConfiguration {
     /** Name of the model to be used for generations. This model should be available in the provider */
     model: string;
     /** Parameters to pass to the model when generating */
-    parameters?: TrueFoundry.Parameters;
+    parameters?: TrueFoundry.Parameters | undefined;
     /** Arbitrary extra parameters to pass to the model when generating */
-    extra_parameters?: Record<string, unknown>;
+    extra_parameters?: Record<string, unknown> | undefined;
 }

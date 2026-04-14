@@ -4,5 +4,5 @@ export interface SyncTokenInSecretStoreInfo {
     /** ISO timestamp of when the token was synced */
     updatedAt: string;
     /** Error message if sync failed */
-    error?: string;
+    error?: string | undefined;
 }

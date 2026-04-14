@@ -14,7 +14,7 @@ export interface AwsS3 {
     storage_root: string;
     region: TrueFoundry.AwsRegion;
     /** Custom authentication data for the integration. */
-    auth_data?: TrueFoundry.AwsS3AuthData;
+    auth_data?: TrueFoundry.AwsS3AuthData | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

@@ -7,7 +7,7 @@ export interface AwsInferentia {
      * Name of the AWS Inferentia Accccelerator. One of [INF1, INF2].
      * This field is required for Node Selector and can be ignored in Nodepool Selector.
      */
-    name?: string;
+    name?: string | undefined;
     /** Count of Inferentia accelerator chips to provide to the application */
     count: number;
 }

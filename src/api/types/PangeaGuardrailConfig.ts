@@ -9,7 +9,7 @@ export interface PangeaGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
-    description?: string;
+    description?: string | undefined;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/pangea
@@ -19,7 +19,7 @@ export interface PangeaGuardrailConfig {
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. */
     operation: TrueFoundry.PangeaGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
-    priority?: number;
+    priority?: number | undefined;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
     /**
      * +uiType=Ignore

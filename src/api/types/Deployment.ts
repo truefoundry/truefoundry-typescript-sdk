@@ -3,20 +3,20 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Deployment {
-    id?: string;
-    version?: number;
-    fqn?: string;
-    applicationId?: string;
+    id?: string | undefined;
+    version?: number | undefined;
+    fqn?: string | undefined;
+    applicationId?: string | undefined;
     manifest: TrueFoundry.DeploymentManifest;
-    application?: TrueFoundry.Application;
+    application?: TrueFoundry.Application | undefined;
     createdBySubject: TrueFoundry.Subject;
-    createdAt?: string;
-    updatedAt?: string;
-    deploymentBuilds?: TrueFoundry.BuildInfo[];
-    deploymentStatuses?: TrueFoundry.DeploymentStatus[];
-    currentStatusId?: string;
-    currentStatus?: TrueFoundry.DeploymentStatus;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
+    deploymentBuilds?: TrueFoundry.BuildInfo[] | undefined;
+    deploymentStatuses?: TrueFoundry.DeploymentStatus[] | undefined;
+    currentStatusId?: string | undefined;
+    currentStatus?: TrueFoundry.DeploymentStatus | undefined;
     /** Applied recommendations for this deployment */
-    appliedRecommendations?: TrueFoundry.Recommendation[];
-    createdBy?: string;
+    appliedRecommendations?: TrueFoundry.Recommendation[] | undefined;
+    createdBy?: string | undefined;
 }

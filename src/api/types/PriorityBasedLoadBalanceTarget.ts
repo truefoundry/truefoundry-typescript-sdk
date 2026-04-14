@@ -7,12 +7,15 @@ export interface PriorityBasedLoadBalanceTarget {
     target: string;
     /** Priority for the target, Lower the number, higher the priority (0 is the highest priority) */
     priority: number;
-    sla_cutoff?: TrueFoundry.SlaCutoff;
-    retry_config?: TrueFoundry.RetryConfig;
+    sla_cutoff?: TrueFoundry.SlaCutoff | undefined;
+    retry_config?: TrueFoundry.RetryConfig | undefined;
     /** Status Codes for which the request will fallback to other targets. If the status code is not present in fallback_status_codes, it fails immediately. */
-    fallback_status_codes?: string[];
+    fallback_status_codes?: string[] | undefined;
     /** Whether this target is a fallback candidate.  If set to false, this model will not be considered as a fallback option for targets of this load-balance-rule */
-    fallback_candidate?: boolean;
+    fallback_candidate?: boolean | undefined;
     /** Optional parameters to override in the request */
-    override_params?: Record<string, unknown>;
+    override_params?: Record<string, unknown> | undefined;
+    headers_override?: TrueFoundry.HeadersOverride | undefined;
+    /** Optional metadata key-value pairs that must match incoming request metadata headers for this target to be considered for routing. */
+    metadata_match?: Record<string, string> | undefined;
 }

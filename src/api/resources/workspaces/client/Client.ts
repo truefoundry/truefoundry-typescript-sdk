@@ -22,7 +22,7 @@ export class WorkspacesClient {
     }
 
     /**
-     * List workspaces associated with the user. Optional filters include clusterId, fqn, and workspace name. Pagination is available based on query parameters.
+     * List workspaces associated with the user. Optional filters include clusterId, fqn, and workspace name.
      *
      * @param {TrueFoundry.WorkspacesListRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -33,7 +33,8 @@ export class WorkspacesClient {
      *         offset: 0,
      *         clusterId: "clusterId",
      *         name: "name",
-     *         fqn: "fqn"
+     *         fqn: "fqn",
+     *         includeCluster: true
      *     })
      */
     public async list(
@@ -44,13 +45,14 @@ export class WorkspacesClient {
             async (
                 request: TrueFoundry.WorkspacesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => {
-                const { limit = 100, offset = 0, clusterId, name, fqn } = request;
+                const { limit = 100, offset = 0, clusterId, name, fqn, includeCluster } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     clusterId,
                     name,
                     fqn,
+                    includeCluster,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -111,7 +113,7 @@ export class WorkspacesClient {
     /**
      * Creates a new workspace or updates an existing one based on the provided manifest.
      *
-     * @param {TrueFoundry.WorkspaceRequest} request
+     * @param {TrueFoundry.CreateOrUpdateWorkspaceRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -129,14 +131,14 @@ export class WorkspacesClient {
      *     })
      */
     public createOrUpdate(
-        request: TrueFoundry.WorkspaceRequest,
+        request: TrueFoundry.CreateOrUpdateWorkspaceRequest,
         requestOptions?: WorkspacesClient.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.GetWorkspaceResponse> {
         return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
     }
 
     private async __createOrUpdate(
-        request: TrueFoundry.WorkspaceRequest,
+        request: TrueFoundry.CreateOrUpdateWorkspaceRequest,
         requestOptions?: WorkspacesClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetWorkspaceResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -193,6 +195,91 @@ export class WorkspacesClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/svc/v1/workspaces");
+    }
+
+    /**
+     * List workspaces the user can read with optional structured `filter` (name, id, environmentId, cluster_fqn) and pagination.
+     *
+     * @param {TrueFoundry.WorkspacesSearchRequest} request
+     * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.workspaces.search({
+     *         limit: 10,
+     *         offset: 0,
+     *         filter: "filter",
+     *         includeCluster: true
+     *     })
+     */
+    public async search(
+        request: TrueFoundry.WorkspacesSearchRequest = {},
+        requestOptions?: WorkspacesClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.WorkspacesSearchRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => {
+                const { limit = 100, offset = 0, filter, includeCluster } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    filter,
+                    includeCluster,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/workspaces/search",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListWorkspacesResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/api/svc/v1/workspaces/search",
+                );
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
     }
 
     /**

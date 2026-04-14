@@ -11,7 +11,6 @@ export * from "./deployments/client/requests/index.js";
 export * as deployments from "./deployments/index.js";
 export * from "./dockerRegistries/client/requests/index.js";
 export * as dockerRegistries from "./dockerRegistries/index.js";
-export * from "./dockerRegistries/types/index.js";
 export * from "./metrics/client/requests/index.js";
 export * as metrics from "./metrics/index.js";
 export * from "./metrics/types/index.js";

@@ -6,7 +6,7 @@ export interface WorkerConfig {
     /** Input Config */
     input_config: TrueFoundry.WorkerConfigInputConfig;
     /** Output Config */
-    output_config?: TrueFoundry.WorkerConfigOutputConfig;
+    output_config?: TrueFoundry.WorkerConfigOutputConfig | undefined;
     /** Number of concurrent workers to spawn for the processor */
     num_concurrent_workers: number;
 }

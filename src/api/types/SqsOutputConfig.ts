@@ -12,5 +12,5 @@ export interface SqsOutputConfig {
     queue_url: string;
     /** AWS Region Name */
     region_name: string;
-    auth?: TrueFoundry.AwsAccessKeyAuth;
+    auth?: TrueFoundry.AwsAccessKeyAuth | undefined;
 }

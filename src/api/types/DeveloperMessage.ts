@@ -11,5 +11,5 @@ export interface DeveloperMessage {
     /** The contents of the developer message. */
     content: TrueFoundry.DeveloperMessageContent;
     /** An optional name for the participant. */
-    name?: string;
+    name?: string | undefined;
 }

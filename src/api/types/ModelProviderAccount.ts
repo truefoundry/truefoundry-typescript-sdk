@@ -26,6 +26,7 @@ export type ModelProviderAccount =
     | TrueFoundry.OpenRouterProviderAccount
     | TrueFoundry.SambaNovaProviderAccount
     | TrueFoundry.XaiProviderAccount
+    | TrueFoundry.BasetenProviderAccount
     | TrueFoundry.AwsSagemakerProviderAccount
     | TrueFoundry.CerebrasProviderAccount
     | TrueFoundry.SnowflakeCortexProviderAccount

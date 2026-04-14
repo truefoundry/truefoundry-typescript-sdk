@@ -5,5 +5,5 @@
  */
 export interface Nodepool {
     name: string;
-    description?: string;
+    description?: string | undefined;
 }

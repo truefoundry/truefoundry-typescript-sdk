@@ -5,9 +5,9 @@
  */
 export interface RateLimitWhen {
     /** List of subjects that this rule applies to */
-    subjects?: string[];
+    subjects?: string[] | undefined;
     /** List of models that this rule applies to */
-    models?: string[];
+    models?: string[] | undefined;
     /** Metadata key-value pairs that this rule applies to */
-    metadata?: Record<string, string>;
+    metadata?: Record<string, string> | undefined;
 }

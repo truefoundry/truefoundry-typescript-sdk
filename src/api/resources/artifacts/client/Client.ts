@@ -22,6 +22,8 @@ export class ArtifactsClient {
     }
 
     /**
+     * Get an artifact by its ID.
+     *
      * @param {string} id
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -86,6 +88,8 @@ export class ArtifactsClient {
     }
 
     /**
+     * Delete an artifact by its ID.
+     *
      * @param {string} id
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -150,6 +154,8 @@ export class ArtifactsClient {
     }
 
     /**
+     * List artifacts with optional filtering by FQN, ML Repo, name, or run ID.
+     *
      * @param {TrueFoundry.ArtifactsListRequest} request
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -252,6 +258,8 @@ export class ArtifactsClient {
     }
 
     /**
+     * Create or update an artifact version.
+     *
      * @param {TrueFoundry.ApplyArtifactRequest} request
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

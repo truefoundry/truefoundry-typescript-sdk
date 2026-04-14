@@ -113,13 +113,7 @@ export class MlReposClient {
     }
 
     /**
-     * Get a ml repo by id
-     * Args:
-     *     id: Unique identifier of the ml repo to get
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     GetMLRepoResponse: The ml repo
+     * Get an ML Repo by its ID.
      *
      * @param {string} id
      * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -185,13 +179,7 @@ export class MlReposClient {
     }
 
     /**
-     * Delete a ml repo
-     * Args:
-     *     id: Unique identifier of the ml repo to delete
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     EmptyResponse: Empty response indicating successful deletion
+     * Delete an ML Repo by its ID.
      *
      * @param {string} id
      * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -257,13 +245,7 @@ export class MlReposClient {
     }
 
     /**
-     * List ml repos
-     * Args:
-     *     filters: Filters for the ml repos
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     ListMLReposResponse: List of ml repos
+     * List ML Repos with optional filtering by name.
      *
      * @param {TrueFoundry.MlReposListRequest} request
      * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.

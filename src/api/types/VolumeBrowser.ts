@@ -7,10 +7,10 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface VolumeBrowser {
     /** Username for logging in the volume browser. */
-    username?: string;
+    username?: string | undefined;
     /** TFY Secret containing the password for logging in the volume browser. */
-    password_secret_fqn?: string;
+    password_secret_fqn?: string | undefined;
     endpoint: TrueFoundry.Endpoint;
     /** Kubernetes Service account name for the volume browser. */
-    service_account?: string;
+    service_account?: string | undefined;
 }

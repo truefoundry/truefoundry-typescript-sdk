@@ -13,14 +13,14 @@ export interface BaseWorkbenchInput {
     name: string;
     /** Size of the home directory for the workbench (Persistent Storage) */
     home_directory_size: number;
-    resources?: TrueFoundry.Resources;
+    resources?: TrueFoundry.Resources | undefined;
     /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/environment-variables-and-secrets-jobs) */
-    env?: Record<string, string | undefined>;
+    env?: Record<string, string> | undefined;
     /** Configure data to be mounted to workbench pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
-    mounts?: TrueFoundry.BaseWorkbenchInputMountsItem[];
+    mounts?: TrueFoundry.BaseWorkbenchInputMountsItem[] | undefined;
     /** +sort=10113 */
-    service_account?: string;
-    kustomize?: TrueFoundry.Kustomize;
+    service_account?: string | undefined;
+    kustomize?: TrueFoundry.Kustomize | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
 }

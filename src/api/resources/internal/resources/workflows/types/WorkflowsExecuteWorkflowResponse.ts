@@ -2,5 +2,5 @@
 
 export interface WorkflowsExecuteWorkflowResponse {
     /** The name of the execution */
-    executionName?: string;
+    executionName?: string | undefined;
 }

@@ -4,24 +4,26 @@ import type * as TrueFoundry from "../index.js";
 
 export interface AddonComponent {
     name: TrueFoundry.AddonComponentName;
-    appName?: string;
-    namespace?: string;
-    applicationId?: string;
-    description?: string;
-    path?: string;
-    addonFolder?: string;
-    installed?: boolean;
-    status?: TrueFoundry.AddonComponentStatus;
-    version?: string;
-    manifest?: Record<string, unknown>;
-    installationSource?: string;
-    unsupportedClusterTypes?: TrueFoundry.ClusterType[];
-    required?: boolean;
-    knownCRDs?: string[];
-    source?: TrueFoundry.AddOnComponentSource;
-    upgrades?: TrueFoundry.UpgradeData;
-    labels?: string[];
+    appName?: string | undefined;
+    namespace?: string | undefined;
+    applicationId?: string | undefined;
+    description?: string | undefined;
+    path?: string | undefined;
+    addonFolder?: string | undefined;
+    installed?: boolean | undefined;
+    status?: TrueFoundry.AddonComponentStatus | undefined;
+    version?: string | undefined;
+    manifest?: Record<string, unknown> | undefined;
+    installationSource?: string | undefined;
+    unsupportedClusterTypes?: TrueFoundry.ClusterType[] | undefined;
+    required?: boolean | undefined;
+    knownCRDs?: string[] | undefined;
+    source?: TrueFoundry.AddOnComponentSource | undefined;
+    upgrades?: TrueFoundry.UpgradeData | undefined;
+    labels?: string[] | undefined;
     /** Recommendations */
-    recommendations?: TrueFoundry.Recommendation[];
-    workspaceId?: string;
+    recommendations?: TrueFoundry.Recommendation[] | undefined;
+    workspaceId?: string | undefined;
+    /** Addon metadata. autopilotEnabled is true when the backing addon application has autopilot enabled; otherwise false. */
+    metadata?: Record<string, unknown> | undefined;
 }

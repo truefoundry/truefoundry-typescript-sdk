@@ -4,5 +4,5 @@ import type * as TrueFoundry from "../index.js";
 
 export interface FlyteTask {
     template: TrueFoundry.FlyteTaskTemplate;
-    description?: unknown;
+    description?: unknown | undefined;
 }

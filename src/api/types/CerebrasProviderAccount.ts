@@ -12,8 +12,8 @@ export interface CerebrasProviderAccount {
     name: string;
     auth_data: TrueFoundry.CerebrasKeyAuth;
     /** List of integrations that are associated with the Cerebras provider account */
-    integrations?: TrueFoundry.CerebrasIntegrations[];
+    integrations?: TrueFoundry.CerebrasIntegrations[] | undefined;
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

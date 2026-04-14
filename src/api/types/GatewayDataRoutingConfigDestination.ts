@@ -11,7 +11,7 @@ export interface GatewayDataRoutingConfigDestination extends TrueFoundry.Gateway
     /** Whether this destination is enabled */
     enabled: boolean;
     /** Description of the destination */
-    description?: string;
+    description?: string | undefined;
     /** Conditions that must be met to use this destination */
     when: TrueFoundry.GatewayDataRoutingConfigDestinationCondition[];
 }

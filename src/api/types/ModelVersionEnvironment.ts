@@ -5,7 +5,7 @@
  */
 export interface ModelVersionEnvironment {
     /** Python version to use when running the model */
-    python_version?: string;
+    python_version?: string | undefined;
     /** pip dependencies needed for running the model */
-    pip_packages?: string[];
+    pip_packages?: string[] | undefined;
 }

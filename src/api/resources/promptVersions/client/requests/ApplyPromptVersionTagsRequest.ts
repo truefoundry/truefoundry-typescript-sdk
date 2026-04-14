@@ -8,7 +8,10 @@
  *     }
  */
 export interface ApplyPromptVersionTagsRequest {
+    /** ID of the prompt version to apply tags to */
     prompt_version_id: string;
+    /** List of tags to apply to the prompt version */
     tags: string[];
+    /** Whether to overwrite existing tags if they conflict */
     force?: boolean;
 }

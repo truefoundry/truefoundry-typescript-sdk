@@ -14,6 +14,6 @@ export interface GroqProviderAccount {
     /** List of integrations that are associated with the Groq provider account */
     integrations: TrueFoundry.GroqIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

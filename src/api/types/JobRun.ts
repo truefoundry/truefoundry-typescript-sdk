@@ -14,29 +14,29 @@ export interface JobRun {
     /** Created At */
     createdAt: number;
     /** End Time of JobRun */
-    endTime?: number;
+    endTime?: number | undefined;
     /** Duration of JobRun */
-    duration?: number;
+    duration?: number | undefined;
     /** Command */
     command: string;
     /** Total Retries */
     totalRetries: number;
     /** Error */
-    error?: string;
+    error?: string | undefined;
     /** Status of JobRun */
     status: TrueFoundry.JobRunStatus;
     /** Triggered By */
-    triggeredBy?: string;
+    triggeredBy?: string | undefined;
     /** Triggered By Subject */
-    triggeredBySubject?: TrueFoundry.Subject;
+    triggeredBySubject?: TrueFoundry.Subject | undefined;
     /** Exit Code */
-    exitCode?: number;
+    exitCode?: number | undefined;
     /** Spark UI Url */
-    sparkUi?: string;
+    sparkUi?: string | undefined;
     /** Application ID */
-    applicationId?: string;
+    applicationId?: string | undefined;
     /** Deployment ID */
-    deploymentId?: string;
+    deploymentId?: string | undefined;
     /** Tenant Name */
-    tenantName?: string;
+    tenantName?: string | undefined;
 }

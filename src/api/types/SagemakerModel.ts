@@ -14,8 +14,8 @@ export interface SagemakerModel {
     type: "integration/model/sagemaker";
     /** Specify the type of the Sagemaker model */
     model_types: TrueFoundry.ModelType[];
-    region?: TrueFoundry.AwsRegion;
-    cost?: TrueFoundry.ModelCostMetric;
+    region?: TrueFoundry.AwsRegion | undefined;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

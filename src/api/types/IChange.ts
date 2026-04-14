@@ -5,7 +5,7 @@ import type * as TrueFoundry from "../index.js";
 export interface IChange {
     type: TrueFoundry.IChangeOperation;
     key: string;
-    value?: Record<string, unknown>;
-    oldValue?: Record<string, unknown>;
-    changes?: TrueFoundry.IChange[];
+    value?: Record<string, unknown> | undefined;
+    oldValue?: Record<string, unknown> | undefined;
+    changes?: TrueFoundry.IChange[] | undefined;
 }

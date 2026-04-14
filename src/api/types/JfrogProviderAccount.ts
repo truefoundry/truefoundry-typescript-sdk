@@ -11,9 +11,9 @@ export interface JfrogProviderAccount {
     /** The name of the provider account. */
     name: string;
     /** The name of the JFrog account. */
-    account_name?: string;
-    auth_data?: TrueFoundry.JfrogBasicAuth;
+    account_name?: string | undefined;
+    auth_data?: TrueFoundry.JfrogBasicAuth | undefined;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.JFrogIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

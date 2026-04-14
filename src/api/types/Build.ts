@@ -12,7 +12,7 @@ export interface Build {
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
     /** Source code location. */
     build_source: TrueFoundry.BuildBuildSource;
     /** Instructions to build a container image out of the build source */

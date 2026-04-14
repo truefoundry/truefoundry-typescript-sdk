@@ -2,5 +2,5 @@
 
 export interface SlaCutoff {
     /** Time per output token threshold in milliseconds. If time per output token exceeds this value, the target will be marked as unhealthy */
-    time_per_output_token_ms?: number;
+    time_per_output_token_ms?: number | undefined;
 }

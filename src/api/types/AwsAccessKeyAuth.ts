@@ -6,5 +6,5 @@ export interface AwsAccessKeyAuth {
     /** AWS Secret Access Key for the user to authenticate with */
     aws_secret_access_key: string;
     /** AWS Session Token, only required when using temporary credentials */
-    aws_session_token?: string;
+    aws_session_token?: string | undefined;
 }

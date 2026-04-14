@@ -13,8 +13,8 @@ export interface MlRepo {
     /** Experiment Id */
     id: string;
     /** Number of runs */
-    num_runs?: number;
-    artifact_type_counts?: Record<string, number>;
+    num_runs?: number | undefined;
+    artifact_type_counts?: Record<string, number> | undefined;
     /** Number of datasets */
-    datasets_count?: number;
+    datasets_count?: number | undefined;
 }

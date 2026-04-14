@@ -11,7 +11,7 @@ export interface GlobalSettings {
      * +sort=2
      */
     type: "gateway-global-settings";
-    retry_settings?: TrueFoundry.RetryConfig;
-    logging_settings?: TrueFoundry.LoggingMode;
-    semantic_cache_settings?: TrueFoundry.SemanticCacheSettings;
+    retry_settings?: TrueFoundry.RetryConfig | undefined;
+    logging_settings?: TrueFoundry.LoggingMode | undefined;
+    semantic_cache_settings?: TrueFoundry.SemanticCacheSettings | undefined;
 }

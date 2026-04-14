@@ -12,8 +12,8 @@ export interface XaiProviderAccount {
     name: string;
     auth_data: TrueFoundry.XaiKeyAuth;
     /** List of integrations that are associated with the xAI provider account */
-    integrations?: TrueFoundry.XaiIntegrations[];
+    integrations?: TrueFoundry.XaiIntegrations[] | undefined;
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

@@ -14,12 +14,20 @@
  *     }
  */
 export interface PromptVersionsListRequest {
+    /** Tag to filter prompt versions by */
     tag?: string;
+    /** Fully qualified name to filter prompt versions by (format: 'chat_prompt:{tenant_name}/{ml_repo_name}/{prompt_name}' or 'chat_prompt:{tenant_name}/{ml_repo_name}/{prompt_name}:{version}') */
     fqn?: string;
+    /** ID of the prompt to filter versions by */
     prompt_id?: string;
+    /** ID of the ML Repo to filter prompt versions by */
     ml_repo_id?: string;
+    /** Name of the prompt to filter versions by */
     name?: string;
+    /** Version number (positive integer) or 'latest' to filter by specific version */
     version?: number;
+    /** Number of prompt versions to skip for pagination */
     offset?: number;
+    /** Maximum number of prompt versions to return */
     limit?: number;
 }

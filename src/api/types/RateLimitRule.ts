@@ -13,5 +13,5 @@ export interface RateLimitRule {
     limit_to: number;
     unit: TrueFoundry.RateLimitUnit;
     /** Create separate rate limiting rules for each unique value of the selected entity. For example, if "user" is selected, a separate rate limit rule will be created for each unique user making requests. Options: user, virtualaccount, model, or a metadata key (e.g., metadata.appId). */
-    rate_limit_applies_per?: string[];
+    rate_limit_applies_per?: string[] | undefined;
 }

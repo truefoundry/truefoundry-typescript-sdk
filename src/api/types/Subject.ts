@@ -8,7 +8,12 @@ export interface Subject {
     /** Subject type */
     subjectType: TrueFoundry.SubjectType;
     /** Subject slug */
-    subjectSlug?: string;
+    subjectSlug?: string | undefined;
     /** Subject display name */
-    subjectDisplayName?: string;
+    subjectDisplayName?: string | undefined;
+    /** Subject PAT name */
+    subjectPatName?: string | undefined;
+    subjectControllerName?: string | undefined;
+    /** External identity slug (external_identity_id:sub:email) */
+    subjectExternalIdentitySlug?: string | undefined;
 }

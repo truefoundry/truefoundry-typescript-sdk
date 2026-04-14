@@ -2,7 +2,7 @@
 
 export interface Kustomize {
     /** Content of kustomization.yaml to perform kustomize operation. Please do not include the `resources` section. It is filled in automatically */
-    patch?: Record<string, unknown>;
+    patch?: Record<string, unknown> | undefined;
     /** Additional kubernetes manifests to be included in the application */
-    additions?: Record<string, unknown>[];
+    additions?: Record<string, unknown>[] | undefined;
 }

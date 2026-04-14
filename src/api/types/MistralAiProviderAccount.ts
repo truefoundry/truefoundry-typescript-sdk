@@ -14,6 +14,6 @@ export interface MistralAiProviderAccount {
     /** List of integrations that are associated with the Mistral AI provider account */
     integrations: TrueFoundry.MistralAiIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

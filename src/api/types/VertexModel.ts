@@ -12,10 +12,10 @@ export interface VertexModel {
     name: string;
     /** The Google Vertex AI model identifier (e.g., gemini-2.5-pro, anthropic/claude-sonnet-4-5@20250929). This is the model version name from Vertex AI's model catalog. */
     model_id: string;
-    region?: TrueFoundry.GcpRegion;
+    region?: TrueFoundry.GcpRegion | undefined;
     /** Specify the type of the Vertex AI model (e.g., chat, text, etc.) */
     model_types: TrueFoundry.ModelType[];
-    cost?: TrueFoundry.ModelCostMetric;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

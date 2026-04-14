@@ -27,6 +27,7 @@ describe("SecretGroupsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/secret-groups")
@@ -35,40 +36,7 @@ describe("SecretGroupsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    tenantName: "tenantName",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    associatedSecrets: [
-                        {
-                            id: "id",
-                            fqn: "fqn",
-                            name: "name",
-                            secretGroupId: "secretGroupId",
-                        },
-                    ],
-                    integrationId: "integrationId",
-                    manifest: {
-                        key: "value",
-                    },
-                    accountId: "accountId",
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.secretGroups.list({
             limit: 10,
             offset: 0,
@@ -100,6 +68,9 @@ describe("SecretGroupsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 associatedSecrets: [{ id: "id", fqn: "fqn", name: "name", secretGroupId: "secretGroupId" }],
                 integrationId: "integrationId",
@@ -110,6 +81,7 @@ describe("SecretGroupsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/secret-groups")
@@ -129,35 +101,7 @@ describe("SecretGroupsClient", () => {
                 },
             ],
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                associatedSecrets: [
-                    {
-                        id: "id",
-                        fqn: "fqn",
-                        name: "name",
-                        secretGroupId: "secretGroupId",
-                    },
-                ],
-                integrationId: "integrationId",
-                manifest: {
-                    key: "value",
-                },
-                accountId: "accountId",
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create (2)", async () => {
@@ -172,6 +116,7 @@ describe("SecretGroupsClient", () => {
             ],
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/secret-groups")
@@ -211,6 +156,7 @@ describe("SecretGroupsClient", () => {
             ],
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/secret-groups")
@@ -259,6 +205,9 @@ describe("SecretGroupsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 associatedSecrets: [{ id: "id", fqn: "fqn", name: "name", secretGroupId: "secretGroupId" }],
                 integrationId: "integrationId",
@@ -269,6 +218,7 @@ describe("SecretGroupsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups")
@@ -291,35 +241,7 @@ describe("SecretGroupsClient", () => {
                 ],
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                associatedSecrets: [
-                    {
-                        id: "id",
-                        fqn: "fqn",
-                        name: "name",
-                        secretGroupId: "secretGroupId",
-                    },
-                ],
-                integrationId: "integrationId",
-                manifest: {
-                    key: "value",
-                },
-                accountId: "accountId",
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -337,6 +259,7 @@ describe("SecretGroupsClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups")
@@ -382,6 +305,7 @@ describe("SecretGroupsClient", () => {
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups")
@@ -427,6 +351,7 @@ describe("SecretGroupsClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups")
@@ -472,6 +397,7 @@ describe("SecretGroupsClient", () => {
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups")
@@ -517,6 +443,7 @@ describe("SecretGroupsClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups")
@@ -561,6 +488,9 @@ describe("SecretGroupsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 associatedSecrets: [{ id: "id", fqn: "fqn", name: "name", secretGroupId: "secretGroupId" }],
                 integrationId: "integrationId",
@@ -571,6 +501,7 @@ describe("SecretGroupsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/secret-groups/id")
@@ -580,35 +511,7 @@ describe("SecretGroupsClient", () => {
             .build();
 
         const response = await client.secretGroups.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                associatedSecrets: [
-                    {
-                        id: "id",
-                        fqn: "fqn",
-                        name: "name",
-                        secretGroupId: "secretGroupId",
-                    },
-                ],
-                integrationId: "integrationId",
-                manifest: {
-                    key: "value",
-                },
-                accountId: "accountId",
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -616,6 +519,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/secret-groups/id")
@@ -634,6 +538,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/secret-groups/id")
@@ -661,6 +566,9 @@ describe("SecretGroupsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 associatedSecrets: [{ id: "id", fqn: "fqn", name: "name", secretGroupId: "secretGroupId" }],
                 integrationId: "integrationId",
@@ -671,6 +579,7 @@ describe("SecretGroupsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups/id")
@@ -687,35 +596,7 @@ describe("SecretGroupsClient", () => {
                 },
             ],
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                associatedSecrets: [
-                    {
-                        id: "id",
-                        fqn: "fqn",
-                        name: "name",
-                        secretGroupId: "secretGroupId",
-                    },
-                ],
-                integrationId: "integrationId",
-                manifest: {
-                    key: "value",
-                },
-                accountId: "accountId",
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("update (2)", async () => {
@@ -723,6 +604,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { secrets: [{ key: "key" }, { key: "key" }] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups/id")
@@ -751,6 +633,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { secrets: [{ key: "key" }, { key: "key" }] };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups/id")
@@ -779,6 +662,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { secrets: [{ key: "key" }, { key: "key" }] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups/id")
@@ -807,6 +691,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { secrets: [{ key: "key" }, { key: "key" }] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/secret-groups/id")
@@ -835,6 +720,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secret-groups/id")
@@ -844,7 +730,7 @@ describe("SecretGroupsClient", () => {
             .build();
 
         const response = await client.secretGroups.delete("id");
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -852,6 +738,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secret-groups/id")
@@ -870,6 +757,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secret-groups/id")

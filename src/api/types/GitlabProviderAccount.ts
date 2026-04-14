@@ -12,5 +12,5 @@ export interface GitlabProviderAccount {
     name: string;
     /** +uiType=IntegrationsGroup */
     integrations: TrueFoundry.GitlabIntegration[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

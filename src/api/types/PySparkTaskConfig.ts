@@ -9,11 +9,11 @@ export interface PySparkTaskConfig {
     driver_config: TrueFoundry.SparkDriverConfig;
     executor_config: TrueFoundry.SparkExecutorConfig;
     /** Extra configuration properties to be passed to the spark job. [Docs](https://spark.apache.org/docs/latest/configuration.html) */
-    spark_conf?: Record<string, unknown>;
+    spark_conf?: Record<string, string> | undefined;
     /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string | undefined>;
+    env?: Record<string, string> | undefined;
     /** Configure data to be mounted to Workflow pod(s) as a volume. */
-    mounts?: TrueFoundry.VolumeMount[];
+    mounts?: TrueFoundry.VolumeMount[] | undefined;
     /** Service Account */
-    service_account?: string;
+    service_account?: string | undefined;
 }

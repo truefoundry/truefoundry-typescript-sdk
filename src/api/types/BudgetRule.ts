@@ -13,8 +13,8 @@ export interface BudgetRule {
     limit_to: number;
     unit: TrueFoundry.BudgetLimitUnit;
     /** Create separate budget rules for each unique value of the selected entity. For example, if "user" is selected, a separate budget rule will be created for each unique user making requests. Options: user, virtualaccount, model, or a metadata key (e.g., metadata.appId). */
-    budget_applies_per?: string[];
-    alerts?: TrueFoundry.BudgetAlert;
+    budget_applies_per?: string[] | undefined;
+    alerts?: TrueFoundry.BudgetAlert | undefined;
     /** When enabled, requests exceeding the budget are tracked but not blocked */
-    audit_mode?: boolean;
+    audit_mode?: boolean | undefined;
 }

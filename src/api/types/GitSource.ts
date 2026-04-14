@@ -11,5 +11,5 @@ export interface GitSource {
     /** The commit SHA. */
     ref: string;
     /** Selecting branch will select latest commit SHA of the branch. */
-    branch_name?: string;
+    branch_name?: string | undefined;
 }

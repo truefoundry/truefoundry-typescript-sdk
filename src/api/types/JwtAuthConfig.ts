@@ -14,12 +14,12 @@ export interface JwtAuthConfig {
      */
     integration_fqn: string;
     /** Enable login for the service */
-    enable_login?: boolean;
+    enable_login?: boolean | undefined;
     /** List of key-value pairs of claims to verify in the JWT token */
-    claims?: TrueFoundry.JwtAuthConfigClaimsItem[];
+    claims?: TrueFoundry.JwtAuthConfigClaimsItem[] | undefined;
     /**
      * List of paths that will bypass auth.
      * needs to start with a forward slash(/) and should not contain wildcards(*)
      */
-    bypass_auth_paths?: string[];
+    bypass_auth_paths?: string[] | undefined;
 }

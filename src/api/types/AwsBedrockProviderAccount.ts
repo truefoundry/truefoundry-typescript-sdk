@@ -12,10 +12,10 @@ export interface AwsBedrockProviderAccount {
     name: string;
     region: TrueFoundry.AwsRegion;
     /** Authentication data for the AWS account */
-    auth_data?: TrueFoundry.AwsBedrockProviderAccountAuthData;
+    auth_data?: TrueFoundry.AwsBedrockProviderAccountAuthData | undefined;
     /** List of integrations that are associated with the AWS Bedrock provider account */
     integrations: TrueFoundry.BedrockModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

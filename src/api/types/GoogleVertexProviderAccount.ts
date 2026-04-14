@@ -13,10 +13,10 @@ export interface GoogleVertexProviderAccount {
     /** The Google Cloud project ID where Vertex AI is enabled */
     project_id: string;
     region: TrueFoundry.GcpRegion;
-    auth_data?: TrueFoundry.VertexKeyFileAuth;
+    auth_data?: TrueFoundry.VertexKeyFileAuth | undefined;
     /** List of integrations that are associated with the Google Vertex provider account */
     integrations: TrueFoundry.VertexModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

@@ -10,8 +10,8 @@ export interface CustomProviderAccount {
     type: "provider-account/custom";
     /** The name of the provider account. */
     name: string;
-    auth_data?: TrueFoundry.CustomBasicAuth;
+    auth_data?: TrueFoundry.CustomBasicAuth | undefined;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.CustomIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

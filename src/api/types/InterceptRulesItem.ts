@@ -5,7 +5,7 @@ import type * as TrueFoundry from "../index.js";
 export interface InterceptRulesItem {
     /** Port of service to be intercepted */
     port: number;
-    match?: TrueFoundry.HeaderMatch;
+    match?: TrueFoundry.HeaderMatch | undefined;
     /** Action to take on succesful match */
     action: TrueFoundry.InterceptRulesItemAction;
 }

@@ -3,10 +3,10 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface UpgradeData {
-    diff?: TrueFoundry.IChange[];
-    currentManifest?: TrueFoundry.Helm;
-    desiredManifest?: TrueFoundry.Helm;
-    upgradePossible?: boolean;
-    conflictFields?: string[];
-    hasConflict?: boolean;
+    diff?: TrueFoundry.IChange[] | undefined;
+    currentManifest?: TrueFoundry.Helm | undefined;
+    desiredManifest?: TrueFoundry.Helm | undefined;
+    upgradePossible?: boolean | undefined;
+    conflictFields?: string[] | undefined;
+    hasConflict?: boolean | undefined;
 }

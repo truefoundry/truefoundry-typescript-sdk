@@ -9,7 +9,10 @@
  *     }
  */
 export interface MlReposListRequest {
+    /** Name of the ML Repo to filter by */
     name?: string;
+    /** Maximum number of ML Repos to return */
     limit?: number;
+    /** Number of ML Repos to skip for pagination */
     offset?: number;
 }

@@ -7,4 +7,4 @@ import type * as TrueFoundry from "../index.js";
  */
 export type AwsSagemakerProviderAccountAuthData =
     | TrueFoundry.AwsAccessKeyBasedAuth
-    | TrueFoundry.AwsBedrockAssumedRoleBasedAuth;
+    | TrueFoundry.SagemakerAssumedRoleBasedAuth;

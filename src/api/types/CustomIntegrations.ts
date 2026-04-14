@@ -10,4 +10,5 @@ export type CustomIntegrations =
     | TrueFoundry.EmailNotificationChannel
     | TrueFoundry.CustomHelmRepo
     | TrueFoundry.CustomBlobStorage
-    | TrueFoundry.CustomJwtAuthIntegration;
+    | TrueFoundry.CustomJwtAuthIntegration
+    | TrueFoundry.GenericSecretStoreIntegration;

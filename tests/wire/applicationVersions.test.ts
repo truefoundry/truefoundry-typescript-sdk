@@ -54,6 +54,7 @@ describe("ApplicationVersionsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/apps/id/deployments")
@@ -62,79 +63,7 @@ describe("ApplicationVersionsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    version: 1.1,
-                    fqn: "fqn",
-                    applicationId: "applicationId",
-                    manifest: {
-                        name: "name",
-                        image: {
-                            type: "build",
-                            build_source: {
-                                type: "remote",
-                                remote_uri: "remote_uri",
-                            },
-                            build_spec: {
-                                type: "dockerfile",
-                                dockerfile_path: "dockerfile_path",
-                                build_context_path: "build_context_path",
-                            },
-                        },
-                        ports: [
-                            {
-                                port: 1,
-                                protocol: "TCP",
-                                expose: true,
-                            },
-                        ],
-                        type: "service",
-                        replicas: 1.1,
-                    },
-                    application: {
-                        createdBySubject: {
-                            subjectId: "subjectId",
-                            subjectType: "user",
-                        },
-                        lifecycleStage: "active",
-                        autopilot: {
-                            key: "value",
-                        },
-                    },
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    deploymentBuilds: [
-                        {
-                            name: "name",
-                            status: 20,
-                        },
-                    ],
-                    deploymentStatuses: [{}],
-                    currentStatusId: "currentStatusId",
-                    appliedRecommendations: [
-                        {
-                            recommendationData: {
-                                key: "value",
-                            },
-                            recommendationType: "recommendationType",
-                            expiryTimestamp: "2024-01-15T09:30:00Z",
-                        },
-                    ],
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.applicationVersions.list("id", {
             limit: 10,
             offset: 0,
@@ -153,6 +82,7 @@ describe("ApplicationVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/apps/id/deployments")
@@ -171,6 +101,7 @@ describe("ApplicationVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/apps/id/deployments")
@@ -260,18 +191,10 @@ describe("ApplicationVersionsClient", () => {
                             expiryTimestamp: "2024-01-15T09:30:00Z",
                         },
                     ],
-                    alerts: [
-                        {
-                            name: "name",
-                            timestamps: ["2024-01-15T09:30:00Z"],
-                            startTime: "2024-01-15T09:30:00Z",
-                            clusterId: "clusterId",
-                            fingerprint: "fingerprint",
-                        },
-                    ],
+                    alerts: [[]],
                     alertsSummary: { key: "value" },
-                    applicationDebugInfos: [{ applicationId: "applicationId", debugInfo: { key: "value" } }],
-                    potentialProblems: [{ name: "name", description: "description" }],
+                    applicationDebugInfos: [[]],
+                    potentialProblems: [[]],
                     autopilot: { key: "value" },
                     workspaceFqn: "workspaceFqn",
                     createdBy: "createdBy",
@@ -283,6 +206,9 @@ describe("ApplicationVersionsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -310,6 +236,7 @@ describe("ApplicationVersionsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId")
@@ -319,195 +246,7 @@ describe("ApplicationVersionsClient", () => {
             .build();
 
         const response = await client.applicationVersions.get("id", "deploymentId");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                version: 1.1,
-                fqn: "fqn",
-                applicationId: "applicationId",
-                manifest: {
-                    name: "name",
-                    image: {
-                        type: "build",
-                        build_source: {
-                            type: "remote",
-                            remote_uri: "remote_uri",
-                        },
-                        build_spec: {
-                            type: "dockerfile",
-                            dockerfile_path: "dockerfile_path",
-                            build_context_path: "build_context_path",
-                        },
-                    },
-                    artifacts_download: {
-                        artifacts: [
-                            {
-                                type: "truefoundry-artifact",
-                                artifact_version_fqn: "artifact_version_fqn",
-                                download_path_env_variable: "download_path_env_variable",
-                            },
-                        ],
-                    },
-                    resources: {
-                        cpu_request: 1.1,
-                        cpu_limit: 1.1,
-                        memory_request: 1,
-                        memory_limit: 1,
-                        ephemeral_storage_request: 1,
-                        ephemeral_storage_limit: 1,
-                    },
-                    ports: [
-                        {
-                            port: 1,
-                            protocol: "TCP",
-                            expose: true,
-                        },
-                    ],
-                    service_account: "service_account",
-                    mounts: [
-                        {
-                            type: "secret",
-                            mount_path: "mount_path",
-                            secret_fqn: "secret_fqn",
-                        },
-                    ],
-                    labels: {
-                        key: "value",
-                    },
-                    liveness_probe: {
-                        config: {
-                            type: "http",
-                            path: "path",
-                            port: 1,
-                        },
-                    },
-                    readiness_probe: {
-                        config: {
-                            type: "http",
-                            path: "path",
-                            port: 1,
-                        },
-                    },
-                    startup_probe: {
-                        config: {
-                            type: "http",
-                            path: "path",
-                            port: 1,
-                        },
-                    },
-                    workspace_fqn: "workspace_fqn",
-                    type: "service",
-                    replicas: 1.1,
-                    auto_shutdown: {
-                        wait_time: 1,
-                    },
-                    allow_interception: true,
-                    rollout_strategy: {
-                        type: "rolling_update",
-                        max_unavailable_percentage: 1,
-                        max_surge_percentage: 1,
-                    },
-                },
-                application: {
-                    id: "id",
-                    fqn: "fqn",
-                    name: "name",
-                    type: "async-service",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    tenantName: "tenantName",
-                    lifecycleStage: "active",
-                    workspaceId: "workspaceId",
-                    lastVersion: 1,
-                    activeVersion: 1,
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    recommendations: [
-                        {
-                            recommendationData: {
-                                key: "value",
-                            },
-                            recommendationType: "recommendationType",
-                            expiryTimestamp: "2024-01-15T09:30:00Z",
-                        },
-                    ],
-                    alerts: [
-                        {
-                            name: "name",
-                            timestamps: ["2024-01-15T09:30:00Z"],
-                            startTime: "2024-01-15T09:30:00Z",
-                            clusterId: "clusterId",
-                            fingerprint: "fingerprint",
-                        },
-                    ],
-                    alertsSummary: {
-                        key: "value",
-                    },
-                    applicationDebugInfos: [
-                        {
-                            applicationId: "applicationId",
-                            debugInfo: {
-                                key: "value",
-                            },
-                        },
-                    ],
-                    potentialProblems: [
-                        {
-                            name: "name",
-                            description: "description",
-                        },
-                    ],
-                    autopilot: {
-                        key: "value",
-                    },
-                    workspaceFqn: "workspaceFqn",
-                    createdBy: "createdBy",
-                    activeDeploymentId: "activeDeploymentId",
-                    lastDeploymentId: "lastDeploymentId",
-                },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                deploymentBuilds: [
-                    {
-                        name: "name",
-                        status: 20,
-                    },
-                ],
-                deploymentStatuses: [{}],
-                currentStatusId: "currentStatusId",
-                currentStatus: {
-                    id: "id",
-                    deploymentId: "deploymentId",
-                    status: "INITIALIZED",
-                    state: {
-                        key: "value",
-                    },
-                    transition: "BUILDING",
-                    message: "message",
-                    retryCount: 1.1,
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                },
-                appliedRecommendations: [
-                    {
-                        recommendationData: {
-                            key: "value",
-                        },
-                        recommendationType: "recommendationType",
-                        expiryTimestamp: "2024-01-15T09:30:00Z",
-                    },
-                ],
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -515,6 +254,7 @@ describe("ApplicationVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId")
@@ -533,6 +273,7 @@ describe("ApplicationVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId")

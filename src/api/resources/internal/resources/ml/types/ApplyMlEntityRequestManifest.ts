@@ -2,8 +2,12 @@
 
 import type * as TrueFoundry from "../../../../../index.js";
 
+/**
+ * Manifest containing metadata for the ML entity to apply (model, prompt, artifact, agent skill, or data directory)
+ */
 export type ApplyMlEntityRequestManifest =
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
     | TrueFoundry.ArtifactManifest
+    | TrueFoundry.AgentSkillManifest
     | TrueFoundry.DataDirectoryManifest;

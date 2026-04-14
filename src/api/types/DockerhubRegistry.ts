@@ -12,7 +12,7 @@ export interface DockerhubRegistry {
     name: string;
     /** Registry URL */
     registry_url: string;
-    auth_data?: TrueFoundry.DockerhubBasicAuth;
+    auth_data?: TrueFoundry.DockerhubBasicAuth | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

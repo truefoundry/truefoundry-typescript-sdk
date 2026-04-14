@@ -12,10 +12,10 @@ export interface DeepgramProviderAccount {
     name: string;
     auth_data: TrueFoundry.DeepgramApiKeyAuth;
     /** Optional custom base URL for Deepgram API */
-    base_url?: string;
+    base_url?: string | undefined;
     /** List of integrations that are associated with the Deepgram provider account */
     integrations: TrueFoundry.DeepgramModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

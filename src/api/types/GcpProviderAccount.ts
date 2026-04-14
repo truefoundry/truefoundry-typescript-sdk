@@ -11,9 +11,9 @@ export interface GcpProviderAccount {
     /** The name of the GCP provider account. */
     name: string;
     /** The project id of the GCP account. */
-    project_id?: string;
-    auth_data?: TrueFoundry.GcpKeyFileAuth;
+    project_id?: string | undefined;
+    auth_data?: TrueFoundry.GcpKeyFileAuth | undefined;
     /** List of integrations that are associated with the GCP provider account. */
     integrations: TrueFoundry.GcpIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

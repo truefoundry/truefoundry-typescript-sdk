@@ -14,8 +14,8 @@ export interface BedrockModel {
     type: "integration/model/bedrock";
     /** Specify the type of the Bedrock model */
     model_types: TrueFoundry.ModelType[];
-    region?: TrueFoundry.AwsRegion;
-    cost?: TrueFoundry.ModelCostMetric;
+    region?: TrueFoundry.AwsRegion | undefined;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

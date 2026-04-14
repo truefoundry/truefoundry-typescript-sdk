@@ -18,5 +18,5 @@ export interface SparkImage {
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
 }

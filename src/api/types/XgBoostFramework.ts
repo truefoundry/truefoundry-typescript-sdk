@@ -4,8 +4,8 @@ import type * as TrueFoundry from "../index.js";
 
 export interface XgBoostFramework {
     type: "xgboost";
-    serialization_format?: TrueFoundry.XgBoostSerializationFormat;
+    serialization_format?: TrueFoundry.XgBoostSerializationFormat | undefined;
     /** Relative path to the model file in the model version contents */
-    model_filepath?: string;
-    model_schema?: TrueFoundry.XgBoostModelSchema;
+    model_filepath?: string | undefined;
+    model_schema?: TrueFoundry.XgBoostModelSchema | undefined;
 }

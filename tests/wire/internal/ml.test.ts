@@ -26,30 +26,35 @@ describe("MlClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 manifest: {
                     name: "name",
-                    description: "description",
                     metadata: { key: "value" },
-                    version_alias: "version_alias",
                     ml_repo: "ml_repo",
                     version: 1,
                     type: "model-version",
+                    description: "description",
+                    version_alias: "version_alias",
                     source: { type: "truefoundry" },
                     framework: { type: "transformers" },
                     step: 1,
                     run_id: "run_id",
                 },
-                usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
                 tags: ["tags"],
+                version_alias: "version_alias",
+                usage_code_snippet: "usage_code_snippet",
                 model_id: "model_id",
                 metrics: [{ key: "key" }],
                 deployable: true,
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/apply")
@@ -72,49 +77,7 @@ describe("MlClient", () => {
                 },
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    name: "name",
-                    description: "description",
-                    metadata: {
-                        key: "value",
-                    },
-                    version_alias: "version_alias",
-                    ml_repo: "ml_repo",
-                    version: 1,
-                    type: "model-version",
-                    source: {
-                        type: "truefoundry",
-                    },
-                    framework: {
-                        type: "transformers",
-                    },
-                    step: 1,
-                    run_id: "run_id",
-                },
-                usage_code_snippet: "usage_code_snippet",
-                ml_repo_id: "ml_repo_id",
-                tags: ["tags"],
-                model_id: "model_id",
-                metrics: [
-                    {
-                        key: "key",
-                    },
-                ],
-                deployable: true,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("apply (2)", async () => {
@@ -130,6 +93,7 @@ describe("MlClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/apply")
@@ -171,6 +135,7 @@ describe("MlClient", () => {
             },
         };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/delete")
@@ -193,7 +158,7 @@ describe("MlClient", () => {
                 },
             },
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -209,6 +174,7 @@ describe("MlClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/ml/v1/delete")

@@ -12,7 +12,7 @@ export interface GcpGcs {
     name: string;
     /** The Google Cloud Storage path in the format 'gs://<bucket-name>/<optional-path-prefix>'. Example: 'gs://mybucket' or 'gs://mybucket/artifacts/production'. */
     storage_root: string;
-    auth_data?: TrueFoundry.GcpKeyFileAuth;
+    auth_data?: TrueFoundry.GcpKeyFileAuth | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }
