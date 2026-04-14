@@ -19,13 +19,13 @@ export interface Application {
     /** Recommendations for this application */
     recommendations?: TrueFoundry.Recommendation[] | undefined;
     /** Alerts for this application */
-    alerts?: unknown[][] | undefined;
+    alerts?: TrueFoundry.Alert[] | undefined;
     /** Summary of alerts for this application */
     alertsSummary?: Record<string, unknown> | undefined;
     /** Debug infos for this application */
-    applicationDebugInfos?: unknown[][] | undefined;
+    applicationDebugInfos?: TrueFoundry.ApplicationDebugInfo[] | undefined;
     /** Potential problems with the application */
-    potentialProblems?: unknown[][] | undefined;
+    potentialProblems?: TrueFoundry.ApplicationProblem[] | undefined;
     autopilot: Record<string, unknown>;
     workspaceFqn?: string | undefined;
     createdBy?: string | undefined;
