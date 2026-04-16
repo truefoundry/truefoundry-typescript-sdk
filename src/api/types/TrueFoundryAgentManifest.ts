@@ -15,6 +15,8 @@ export interface TrueFoundryAgentManifest {
     model: string;
     /** Model parameters (default and extra). Keys are param names, values are float, int, bool, or string. */
     model_params?: TrueFoundry.TrueFoundryAgentManifestModelParams | undefined;
+    /** List of agent skills to attach to this agent */
+    skills?: TrueFoundry.TrueFoundryAgentSkill[] | undefined;
     /** List of MCP servers with name, enable_all_tools, and optional tools filter */
     mcp_servers?: TrueFoundry.TrueFoundryAgentMcpServer[] | undefined;
     /** System instruction or prompt for the agent */
