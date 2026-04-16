@@ -16,7 +16,7 @@ export interface VirtualMcpServerManifest {
     servers: TrueFoundry.McpServerSource[];
     /** Users and Teams that have access to this Virtual MCP Server */
     collaborators: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
     /** Key-value pairs to categorize this Virtual MCP Server (e.g., by owner or environment). */
-    tags?: Record<string, unknown>;
+    tags?: Record<string, unknown> | undefined;
 }

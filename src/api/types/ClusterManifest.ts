@@ -15,31 +15,31 @@ export interface ClusterManifest {
      * One or more base URLs, which can be either a wildcard domain (resulting in app URLs like `<app-name>-<workspace-name>.<base-domain-URL>`) or a non-wildcard domain (resulting in app URLs like `<base-domain-URL>/<app-name>-<workspace-name>`)
      * > Read more about routing [here](https://docs.truefoundry.com/docs/routing) and about 'A' record and domain mapping [here](https://docs.truefoundry.com/docs/setting-up-domain)
      */
-    base_domains?: string[];
+    base_domains?: string[] | undefined;
     /** Monitoring */
-    monitoring?: TrueFoundry.ClusterManifestMonitoring;
+    monitoring?: TrueFoundry.ClusterManifestMonitoring | undefined;
     /** Cluster Default Registry */
-    default_registry_fqn?: string;
+    default_registry_fqn?: string | undefined;
     /** Workbench Config */
-    workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig;
-    spark_config?: TrueFoundry.SparkConfig;
-    ingress_controller_config?: TrueFoundry.IngressControllerConfig;
+    workbench_config?: TrueFoundry.ClusterManifestWorkbenchConfig | undefined;
+    spark_config?: TrueFoundry.SparkConfig | undefined;
+    ingress_controller_config?: TrueFoundry.IngressControllerConfig | undefined;
     /** Cluster Integration FQN */
-    cluster_integration_fqn?: string;
+    cluster_integration_fqn?: string | undefined;
     /** Workflow Storage Integration */
-    workflow_storage_integration_fqn?: string;
+    workflow_storage_integration_fqn?: string | undefined;
     /**
      * Add nodepools that are already created in your cluster.
      * When deploying, applications can choose to schedule from these nodepools.
      */
-    supported_nodepools?: TrueFoundry.Nodepool[];
+    supported_nodepools?: TrueFoundry.Nodepool[] | undefined;
     /**
      * The node label keys that this cluster supports.
      * Note: You will additionally need to add `truefoundry.com/gpu_type` label for GPU-supported node pools.
      * For more information, check out [this documentation](https://docs.truefoundry.com/docs/generic-control-plane#configuring-node-pools-for-truefoundry).
      */
-    node_label_keys?: TrueFoundry.ClusterManifestNodeLabelKeys;
+    node_label_keys?: TrueFoundry.ClusterManifestNodeLabelKeys | undefined;
     /** Collaborators who can access this cluster */
     collaborators: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

@@ -6,9 +6,9 @@ import type * as TrueFoundry from "../index.js";
  * Parameters to pass to the model when generating
  */
 export interface Parameters {
-    max_tokens?: number;
-    temperature?: number;
-    top_k?: number;
-    top_p?: number;
-    stop?: TrueFoundry.ParametersStop;
+    max_tokens?: number | undefined;
+    temperature?: number | undefined;
+    top_k?: number | undefined;
+    top_p?: number | undefined;
+    stop?: TrueFoundry.ParametersStop | undefined;
 }

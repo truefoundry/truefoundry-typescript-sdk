@@ -6,37 +6,37 @@ import type * as TrueFoundry from "../index.js";
  * Chat Prompt manifest.
  */
 export interface ChatPromptManifest {
-    /** Name of the entity */
+    /** Name of the prompt (alphanumeric characters, hyphens, and underscores only, max 256 characters) */
     name: string;
-    description?: string;
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
-    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
-    version_alias?: string;
-    /** Name of the ML Repo */
+    /** Name of the ML Repo that this prompt belongs to (must start and end with alphanumeric, 2-100 characters) */
     ml_repo: string;
     /** Version of the entity */
-    version?: number;
+    version?: number | undefined;
     type: "chat_prompt";
+    description?: string | undefined;
+    /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
+    version_alias?: string | undefined;
     /** List of messages in the chat conversation, must be non-empty */
     messages: TrueFoundry.ChatPromptManifestMessagesItem[];
     /** Variables referenced in messages and that can be replaced when running generation */
-    variables?: Record<string, string>;
-    model_configuration?: TrueFoundry.ModelConfiguration;
+    variables?: Record<string, string> | undefined;
+    model_configuration?: TrueFoundry.ModelConfiguration | undefined;
     /** List of tools to be used in the chat prompt */
-    tools?: TrueFoundry.ToolSchema[];
+    tools?: TrueFoundry.ToolSchema[] | undefined;
     /** A list of MCP servers FQNs or URLs and their tools */
-    mcp_servers?: TrueFoundry.ChatPromptManifestMcpServersItem[];
-    guardrails?: TrueFoundry.Guardrails;
+    mcp_servers?: TrueFoundry.ChatPromptManifestMcpServersItem[] | undefined;
+    guardrails?: TrueFoundry.Guardrails | undefined;
     /** Response format configuration for structured outputs */
-    response_format?: TrueFoundry.ChatPromptManifestResponseFormat;
+    response_format?: TrueFoundry.ChatPromptManifestResponseFormat | undefined;
     /** Configuration for routing requests to different model targets */
-    routing_config?: TrueFoundry.ChatPromptManifestRoutingConfig;
+    routing_config?: TrueFoundry.ChatPromptManifestRoutingConfig | undefined;
     /** Cache configuration for the chat prompt */
-    cache_config?: TrueFoundry.ChatPromptManifestCacheConfig;
+    cache_config?: TrueFoundry.ChatPromptManifestCacheConfig | undefined;
     /** Mapping of tool calls to MCP server integration IDs and tool names */
-    tool_call_to_mcp_mapping?: Record<string, TrueFoundry.McpServerToolDetails>;
-    logging_config?: TrueFoundry.LoggingConfig;
+    tool_call_to_mcp_mapping?: Record<string, TrueFoundry.McpServerToolDetails> | undefined;
+    logging_config?: TrueFoundry.LoggingConfig | undefined;
     /** Sub agents to be used in the chat prompt */
-    sub_agents?: TrueFoundry.SubAgent[];
+    sub_agents?: TrueFoundry.SubAgent[] | undefined;
 }

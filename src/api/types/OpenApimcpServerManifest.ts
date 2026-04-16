@@ -15,15 +15,15 @@ export interface OpenApimcpServerManifest {
     /** The base URL where API requests will be sent. This should be the root endpoint of your API server, without any path suffix. */
     url: string;
     openapi_spec_source: TrueFoundry.OpenApiSpecSource;
-    tls_settings?: TrueFoundry.CustomTlsSettings;
+    tls_settings?: TrueFoundry.CustomTlsSettings | undefined;
     /** When enabled, all tools from the OpenAPI spec will be available (up to 30 tools). Disable to select specific tools. */
-    enable_all_tools?: boolean;
+    enable_all_tools?: boolean | undefined;
     /** The tools to customize from the OpenAPI Server. */
-    tool_settings?: TrueFoundry.OpenApimcpToolSetting[];
-    auth_data?: TrueFoundry.McpServerAuth;
+    tool_settings?: TrueFoundry.OpenApimcpToolSetting[] | undefined;
+    auth_data?: TrueFoundry.McpServerAuth | undefined;
     /** Users and Teams that have access to this OpenAPI Server */
     collaborators: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
     /** Key-value pairs to categorize this OpenAPI MCP Server (e.g., by owner or environment). */
-    tags?: Record<string, unknown>;
+    tags?: Record<string, unknown> | undefined;
 }

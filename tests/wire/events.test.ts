@@ -25,6 +25,7 @@ describe("EventsClient", () => {
                 },
             ],
         };
+
         server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.events.get({
@@ -34,27 +35,7 @@ describe("EventsClient", () => {
             applicationFqn: "applicationFqn",
             jobRunName: "jobRunName",
         });
-        expect(response).toEqual({
-            data: [
-                {
-                    name: "name",
-                    firstTimestamp: "firstTimestamp",
-                    lastTimestamp: "lastTimestamp",
-                    involvedObject: {
-                        kind: "kind",
-                        name: "name",
-                    },
-                    type: "type",
-                    count: 1,
-                    reason: "reason",
-                    message: "message",
-                    namespace: "namespace",
-                    chart: {
-                        category: "ContainerTerminated",
-                    },
-                },
-            ],
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -62,6 +43,7 @@ describe("EventsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -74,6 +56,7 @@ describe("EventsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -86,6 +69,7 @@ describe("EventsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

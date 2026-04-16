@@ -12,10 +12,10 @@ export interface AwsSagemakerProviderAccount {
     name: string;
     region: TrueFoundry.AwsRegion;
     /** Authentication data for the AWS account */
-    auth_data?: TrueFoundry.AwsSagemakerProviderAccountAuthData;
+    auth_data?: TrueFoundry.AwsSagemakerProviderAccountAuthData | undefined;
     /** List of integrations that are associated with the Sagemaker provider account */
     integrations: TrueFoundry.SagemakerModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

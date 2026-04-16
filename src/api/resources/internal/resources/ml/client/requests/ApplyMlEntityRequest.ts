@@ -19,5 +19,6 @@ import type * as TrueFoundry from "../../../../../../index.js";
  *     }
  */
 export interface ApplyMlEntityRequest {
+    /** Manifest containing metadata for the ML entity to apply (model, prompt, artifact, agent skill, or data directory) */
     manifest: TrueFoundry.internal.ApplyMlEntityRequestManifest;
 }

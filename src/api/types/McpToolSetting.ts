@@ -7,7 +7,7 @@ export interface McpToolSetting {
     /** The unique name of the tool. */
     name: string;
     /** Describe what this tool does. This helps AI models understand when to use it. */
-    description?: string;
+    description?: string | undefined;
     /** Allows to disable the tool. */
-    disabled?: boolean;
+    disabled?: boolean | undefined;
 }

@@ -7,11 +7,11 @@ export interface Secret {
     fqn: string;
     name: string;
     secretGroupId: string;
-    value?: string;
-    createdBySubject?: TrueFoundry.Subject;
-    createdAt?: string;
-    updatedAt?: string;
-    secretVersions?: TrueFoundry.SecretVersion[];
-    activeDeploymentsCount?: number;
-    createdBy?: string;
+    value?: string | undefined;
+    createdBySubject?: TrueFoundry.Subject | undefined;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
+    secretVersions?: TrueFoundry.SecretVersion[] | undefined;
+    activeDeploymentsCount?: number | undefined;
+    createdBy?: string | undefined;
 }

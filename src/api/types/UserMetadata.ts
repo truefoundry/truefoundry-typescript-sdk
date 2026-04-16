@@ -3,18 +3,18 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface UserMetadata {
-    sub?: string;
-    imageURL?: string;
-    pictureDownloadPath?: string;
-    displayName?: string;
-    userObject?: Record<string, unknown>;
-    inviteAccepted?: boolean;
-    registeredInIdp?: boolean;
-    preference?: Record<string, unknown>;
-    groups?: string[];
-    tenantRoleManagedBy?: TrueFoundry.UserMetadataTenantRoleManagedBy;
-    ssoName?: string;
-    isPrimarySSO?: boolean;
-    scimUserObject?: Record<string, unknown>;
-    createdByScim?: boolean;
+    sub?: string | undefined;
+    imageURL?: string | undefined;
+    pictureDownloadPath?: string | undefined;
+    displayName?: string | undefined;
+    userObject?: Record<string, unknown> | undefined;
+    inviteAccepted?: boolean | undefined;
+    registeredInIdp?: boolean | undefined;
+    preference?: Record<string, unknown> | undefined;
+    groups?: string[] | undefined;
+    tenantRoleManagedBy?: TrueFoundry.UserMetadataTenantRoleManagedBy | undefined;
+    ssoName?: string | undefined;
+    isPrimarySSO?: boolean | undefined;
+    scimUserObject?: Record<string, unknown> | undefined;
+    createdByScim?: boolean | undefined;
 }

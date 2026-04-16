@@ -20,5 +20,6 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface ApplyPromptRequest {
+    /** Manifest containing metadata for the prompt to apply */
     manifest: TrueFoundry.ChatPromptManifest;
 }

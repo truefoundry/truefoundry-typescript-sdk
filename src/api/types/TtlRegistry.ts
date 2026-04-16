@@ -11,5 +11,5 @@ export interface TtlRegistry {
     /** The URL of the registry. */
     registry_url: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

@@ -13,5 +13,5 @@ export interface Notebook extends TrueFoundry.BaseWorkbenchInput {
      * Stop the notebook instance after this much time in minutes of inactivity.
      * The notebook instance will be stopped even if the notebook is open in your browser, but nothing is running on the notebook.
      */
-    cull_timeout?: number;
+    cull_timeout?: number | undefined;
 }

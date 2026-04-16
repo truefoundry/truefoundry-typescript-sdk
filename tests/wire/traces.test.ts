@@ -31,6 +31,7 @@ describe("TracesClient", () => {
             ],
             pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
         };
+
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/spans/query")
@@ -40,42 +41,7 @@ describe("TracesClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    spanId: "spanId",
-                    traceId: "traceId",
-                    parentSpanId: "parentSpanId",
-                    serviceName: "serviceName",
-                    spanName: "spanName",
-                    spanKind: "spanKind",
-                    scopeName: "scopeName",
-                    scopeVersion: "scopeVersion",
-                    timestamp: "timestamp",
-                    durationNs: 1.1,
-                    statusCode: "statusCode",
-                    statusMessage: "statusMessage",
-                    spanAttributes: {
-                        key: "value",
-                    },
-                    events: [
-                        {
-                            key: "value",
-                        },
-                    ],
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    feedbacks: [[]],
-                },
-            ],
-            pagination: {
-                limit: 10,
-                nextPageToken: "nextPageToken",
-                previousPageToken: "previousPageToken",
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.traces.querySpans({
             startTime: "startTime",
         });

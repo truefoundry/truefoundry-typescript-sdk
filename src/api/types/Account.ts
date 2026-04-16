@@ -3,13 +3,13 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Account {
-    id?: string;
+    id?: string | undefined;
     tenantName: string;
     fqn: string;
     /** Account manifest */
     manifest: Record<string, unknown>;
     createdBySubject: TrueFoundry.Subject;
-    createdAt?: string;
-    updatedAt?: string;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
     isEditable: boolean;
 }

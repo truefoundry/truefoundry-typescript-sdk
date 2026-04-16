@@ -19,5 +19,6 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface ApplyArtifactRequest {
+    /** Manifest containing metadata for the artifact to apply */
     manifest: TrueFoundry.ArtifactManifest;
 }

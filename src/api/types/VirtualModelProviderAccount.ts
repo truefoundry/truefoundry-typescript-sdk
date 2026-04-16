@@ -13,6 +13,6 @@ export interface VirtualModelProviderAccount {
     /** List of virtual models in this group */
     integrations: TrueFoundry.VirtualModel[];
     /** List of users who have access to this Virtual Model Provider Group */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

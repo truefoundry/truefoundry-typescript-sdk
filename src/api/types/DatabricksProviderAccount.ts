@@ -17,6 +17,6 @@ export interface DatabricksProviderAccount {
     /** List of integrations that are associated with the Databricks provider account */
     integrations: TrueFoundry.DatabricksIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

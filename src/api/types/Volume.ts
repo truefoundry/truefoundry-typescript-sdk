@@ -9,7 +9,7 @@ export interface Volume {
     name: string;
     /** Volume Config - Volume Configuration, can be either Dynamically provisioned or statically provisioned. */
     config: TrueFoundry.VolumeConfig;
-    volume_browser?: TrueFoundry.VolumeBrowser;
+    volume_browser?: TrueFoundry.VolumeBrowser | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
 }

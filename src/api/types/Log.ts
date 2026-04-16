@@ -2,7 +2,7 @@
 
 export interface Log {
     /** Job Name */
-    job_name?: string;
+    job_name?: string | undefined;
     /** Log Content */
     log: string;
     /** Log Stream */
@@ -10,5 +10,5 @@ export interface Log {
     /** Log Time */
     time: string;
     /** Container Name */
-    containerName?: string;
+    containerName?: string | undefined;
 }

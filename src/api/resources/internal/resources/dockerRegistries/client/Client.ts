@@ -39,14 +39,14 @@ export class DockerRegistriesClient {
     public createRepository(
         request: TrueFoundry.internal.CreateDockerRepositoryRequest,
         requestOptions?: DockerRegistriesClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.internal.DockerRegistriesCreateRepositoryResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.CreateDockerRepositoryResponse> {
         return core.HttpResponsePromise.fromPromise(this.__createRepository(request, requestOptions));
     }
 
     private async __createRepository(
         request: TrueFoundry.internal.CreateDockerRepositoryRequest,
         requestOptions?: DockerRegistriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.internal.DockerRegistriesCreateRepositoryResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.CreateDockerRepositoryResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -73,7 +73,7 @@ export class DockerRegistriesClient {
         });
         if (_response.ok) {
             return {
-                data: _response.body as TrueFoundry.internal.DockerRegistriesCreateRepositoryResponse,
+                data: _response.body as TrueFoundry.CreateDockerRepositoryResponse,
                 rawResponse: _response.rawResponse,
             };
         }
@@ -114,14 +114,14 @@ export class DockerRegistriesClient {
     public getCredentials(
         request: TrueFoundry.internal.DockerRegistriesGetCredentialsRequest = {},
         requestOptions?: DockerRegistriesClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.internal.DockerRegistriesGetCredentialsResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.GetDockerRegistryCredentialsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getCredentials(request, requestOptions));
     }
 
     private async __getCredentials(
         request: TrueFoundry.internal.DockerRegistriesGetCredentialsRequest = {},
         requestOptions?: DockerRegistriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.internal.DockerRegistriesGetCredentialsResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.GetDockerRegistryCredentialsResponse>> {
         const { fqn, clusterId } = request;
         const _queryParams: Record<string, unknown> = {
             fqn,
@@ -150,7 +150,7 @@ export class DockerRegistriesClient {
         });
         if (_response.ok) {
             return {
-                data: _response.body as TrueFoundry.internal.DockerRegistriesGetCredentialsResponse,
+                data: _response.body as TrueFoundry.GetDockerRegistryCredentialsResponse,
                 rawResponse: _response.rawResponse,
             };
         }

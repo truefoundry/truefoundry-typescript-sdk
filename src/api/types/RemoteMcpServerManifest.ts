@@ -14,13 +14,13 @@ export interface RemoteMcpServerManifest {
     description: string;
     /** The endpoint URL for the MCP Server. */
     url: string;
-    tls_settings?: TrueFoundry.CustomTlsSettings;
+    tls_settings?: TrueFoundry.CustomTlsSettings | undefined;
     /** Customize tool descriptions or enable/disable specific tools from the MCP Server. */
-    tool_settings?: TrueFoundry.McpToolSetting[];
-    auth_data?: TrueFoundry.McpServerAuth;
+    tool_settings?: TrueFoundry.McpToolSetting[] | undefined;
+    auth_data?: TrueFoundry.McpServerAuth | undefined;
     /** Users and Teams that have access to this MCP Server */
     collaborators: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
     /** Key-value pairs to categorize this MCP Server (e.g., by owner or environment). */
-    tags?: Record<string, unknown>;
+    tags?: Record<string, unknown> | undefined;
 }

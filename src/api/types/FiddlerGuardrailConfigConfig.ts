@@ -9,5 +9,5 @@ import type * as TrueFoundry from "../index.js";
 export interface FiddlerGuardrailConfigConfig {
     guard_type: TrueFoundry.FiddlerGuardType;
     /** Confidence threshold (0.0-1.0) for flagging content. Content scoring above the threshold will be flagged */
-    threshold?: number;
+    threshold?: number | undefined;
 }

@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../../../index.js";
 
 export interface WorkspacesDeleteResponse {
-    workspace?: TrueFoundry.Workspace;
+    workspace?: TrueFoundry.Workspace | undefined;
     /** Destroyed the workspace */
-    message?: string;
+    message?: string | undefined;
 }

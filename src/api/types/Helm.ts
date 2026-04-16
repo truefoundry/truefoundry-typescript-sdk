@@ -8,13 +8,13 @@ export interface Helm {
     /** Name of the Helm deployment. This will be set as the release name of the chart you are deploying. */
     name: string;
     /** Add labels to base argo app */
-    labels?: Record<string, string>;
+    labels?: Record<string, string> | undefined;
     /** Source helm repository */
     source: TrueFoundry.HelmSource;
     /** Values file as block file */
-    values?: Record<string, unknown>;
-    kustomize?: TrueFoundry.Kustomize;
-    ignoreDifferences?: Record<string, unknown>[];
+    values?: Record<string, unknown> | undefined;
+    kustomize?: TrueFoundry.Kustomize | undefined;
+    ignoreDifferences?: Record<string, unknown>[] | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
 }

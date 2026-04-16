@@ -5,10 +5,10 @@ import type * as TrueFoundry from "../index.js";
 export interface SecretVersion {
     id: string;
     fqn: string;
-    value?: string;
-    version?: number;
-    secret?: TrueFoundry.Secret;
-    secretId?: string;
-    createdAt?: string;
-    updatedAt?: string;
+    value?: string | undefined;
+    version?: number | undefined;
+    secret?: TrueFoundry.Secret | undefined;
+    secretId?: string | undefined;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
 }

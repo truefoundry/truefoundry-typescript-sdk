@@ -10,6 +10,7 @@ describe("InternalClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/fqn/type")
@@ -21,9 +22,7 @@ describe("InternalClient", () => {
         const response = await client.internal.getIdFromFqn("type", {
             fqn: "fqn",
         });
-        expect(response).toEqual({
-            key: "value",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_id_from_fqn (2)", async () => {
@@ -31,6 +30,7 @@ describe("InternalClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/fqn/type")
@@ -51,6 +51,7 @@ describe("InternalClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/fqn/type")

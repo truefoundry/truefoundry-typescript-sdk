@@ -7,5 +7,6 @@ export const ArtifactType = {
     Plot: "plot",
     Image: "image",
     ChatPrompt: "chat_prompt",
+    AgentSkill: "agent_skill",
 } as const;
 export type ArtifactType = (typeof ArtifactType)[keyof typeof ArtifactType];

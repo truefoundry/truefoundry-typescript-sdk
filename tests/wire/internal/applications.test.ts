@@ -22,6 +22,7 @@ describe("ApplicationsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/apps/id/rollout/promote")
@@ -40,6 +41,7 @@ describe("ApplicationsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/apps/id/rollout/promote")
@@ -58,6 +60,7 @@ describe("ApplicationsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: 1.1 };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/pod-template-hash-deployment-version-map")
@@ -69,9 +72,7 @@ describe("ApplicationsClient", () => {
         const response = await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
             podTemplateHashes: "podTemplateHashes",
         });
-        expect(response).toEqual({
-            key: 1.1,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_pod_template_hash_to_deployment_version (2)", async () => {
@@ -79,6 +80,7 @@ describe("ApplicationsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/pod-template-hash-deployment-version-map")

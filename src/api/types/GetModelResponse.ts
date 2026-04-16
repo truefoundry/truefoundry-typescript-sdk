@@ -3,5 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetModelResponse {
+    /** The model data */
     data: TrueFoundry.Model;
 }

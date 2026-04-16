@@ -16,16 +16,28 @@
  *     }
  */
 export interface ArtifactVersionsListRequest {
+    /** Tag to filter artifact versions by */
     tag?: string;
+    /** Fully qualified name to filter artifact versions by (format: '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}' or '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}') */
     fqn?: string;
+    /** ID of the artifact to filter versions by */
     artifact_id?: string;
+    /** ID of the ML Repo to filter artifact versions by */
     ml_repo_id?: string;
+    /** Name of the artifact to filter versions by */
     name?: string;
+    /** Version number (positive integer) or 'latest' to filter by specific version */
     version?: number;
+    /** List of run IDs to filter artifact versions by */
     run_ids?: string | string[];
+    /** List of run step numbers to filter artifact versions by */
     run_steps?: number | number[];
+    /** Number of artifact versions to skip for pagination */
     offset?: number;
+    /** Maximum number of artifact versions to return */
     limit?: number;
+    /** Whether to include internal metadata in the response */
     include_internal_metadata?: boolean;
+    /** Whether to include model versions in the results (internal use only) */
     include_model_versions?: boolean;
 }

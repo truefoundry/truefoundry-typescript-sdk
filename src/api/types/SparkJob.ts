@@ -17,15 +17,15 @@ export interface SparkJob {
     driver_config: TrueFoundry.SparkDriverConfig;
     executor_config: TrueFoundry.SparkExecutorConfig;
     /** Configure environment variables to be injected in the service either as plain text. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, unknown>;
+    env?: Record<string, unknown> | undefined;
     /** Extra configuration properties to be passed to the spark job. [Docs](https://spark.apache.org/docs/latest/configuration.html) */
-    spark_conf?: Record<string, unknown>;
+    spark_conf?: Record<string, string> | undefined;
     /** Configure volumes to be mounted to driver and executors. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-job) */
-    mounts?: TrueFoundry.VolumeMount[];
+    mounts?: TrueFoundry.VolumeMount[] | undefined;
     /** Specify the maximum number of attempts to retry a job before it is marked as failed. */
-    retries?: number;
+    retries?: number | undefined;
     /** Service Account */
-    service_account?: string;
+    service_account?: string | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
 }

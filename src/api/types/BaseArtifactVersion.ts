@@ -2,14 +2,21 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Shared artifact-version fields (identity, manifest union, ML repo).
+ */
 export interface BaseArtifactVersion {
+    /** Unique identifier for the artifact version */
     id: string;
+    /** Fully qualified name of the artifact version in the format '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}' */
     fqn: string;
+    /** Subject (user, team, or service account) that created this artifact version */
     created_by_subject: TrueFoundry.Subject;
-    created_at?: string;
-    updated_at?: string;
-    manifest?: TrueFoundry.BaseArtifactVersionManifest;
-    usage_code_snippet?: string;
+    /** Timestamp when the artifact version was created */
+    created_at?: string | undefined;
+    /** Timestamp when the artifact version was last updated */
+    updated_at?: string | undefined;
+    manifest?: TrueFoundry.BaseArtifactVersionManifest | undefined;
+    /** ID of the ML Repo that this artifact version belongs to */
     ml_repo_id: string;
-    tags?: string[];
 }

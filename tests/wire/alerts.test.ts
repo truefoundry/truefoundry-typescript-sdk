@@ -22,6 +22,7 @@ describe("AlertsClient", () => {
                 ],
             },
         };
+
         server.mockEndpoint().get("/api/svc/v1/alerts").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.alerts.list({
@@ -31,19 +32,7 @@ describe("AlertsClient", () => {
             applicationId: "applicationId",
             alertStatus: "firing",
         });
-        expect(response).toEqual({
-            data: {
-                key: [
-                    {
-                        name: "name",
-                        timestamps: ["2024-01-15T09:30:00Z"],
-                        startTime: "2024-01-15T09:30:00Z",
-                        clusterId: "clusterId",
-                        fingerprint: "fingerprint",
-                    },
-                ],
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("list (2)", async () => {
@@ -51,6 +40,7 @@ describe("AlertsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server.mockEndpoint().get("/api/svc/v1/alerts").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
@@ -63,6 +53,7 @@ describe("AlertsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server.mockEndpoint().get("/api/svc/v1/alerts").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
 
         await expect(async () => {

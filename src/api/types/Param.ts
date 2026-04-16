@@ -6,8 +6,8 @@ export interface Param {
     /** Name of the param */
     name: string;
     /** Description of param */
-    description?: string;
+    description?: string | undefined;
     /** Default value or placeholder */
-    default?: string;
-    param_type?: TrueFoundry.ParamParamType;
+    default?: string | undefined;
+    param_type?: TrueFoundry.ParamParamType | undefined;
 }

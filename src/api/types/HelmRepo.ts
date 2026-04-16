@@ -9,7 +9,7 @@ export interface HelmRepo {
      * FQN of the helm repo integration. If you can't find your integration here,
      * add it through the [Integrations](/integrations) page
      */
-    integration_fqn?: string;
+    integration_fqn?: string | undefined;
     /** The helm chart name */
     chart: string;
     /** Helm chart version */

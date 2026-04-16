@@ -9,5 +9,5 @@ export interface ImageContentPartImageUrl {
     /** Image URL linking to the image */
     url: TrueFoundry.ImageContentPartImageUrlUrl;
     /** Details */
-    detail?: string;
+    detail?: string | undefined;
 }

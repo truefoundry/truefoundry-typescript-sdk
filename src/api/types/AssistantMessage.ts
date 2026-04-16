@@ -9,9 +9,9 @@ export interface AssistantMessage {
     /** Role of the message */
     role: "assistant";
     /** Text content for the assistant message */
-    content?: TrueFoundry.AssistantMessageContent;
+    content?: TrueFoundry.AssistantMessageContent | undefined;
     /** List of tool calls made by the assistant */
-    tool_calls?: TrueFoundry.ToolCall[];
+    tool_calls?: TrueFoundry.ToolCall[] | undefined;
     /** Name of the assistant this message is from */
-    name?: string;
+    name?: string | undefined;
 }

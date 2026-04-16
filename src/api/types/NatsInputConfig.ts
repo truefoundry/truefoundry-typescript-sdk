@@ -19,6 +19,6 @@ export interface NatsInputConfig {
     /** Wait timeout for long polling. */
     wait_time_seconds: number;
     /** URL for the NATS metrics endpoint. It is compulsory if you want to use NATS autoscaling. */
-    nats_metrics_url?: string;
-    auth?: TrueFoundry.NatsUserPasswordAuth;
+    nats_metrics_url?: string | undefined;
+    auth?: TrueFoundry.NatsUserPasswordAuth | undefined;
 }

@@ -11,13 +11,13 @@ export interface ApplicationSet {
     /** Name of the application set. */
     name: string;
     /** Array of components with their specifications. */
-    components?: TrueFoundry.ApplicationSetComponentsItem[];
+    components?: TrueFoundry.ApplicationSetComponentsItem[] | undefined;
     /** Template to be used for the application set. */
-    template?: string;
+    template?: string | undefined;
     /** Values to be used to render components for the application set. */
-    values?: Record<string, unknown>;
+    values?: Record<string, unknown> | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
     /** Flag to indicate if the template manifest should be converted to TrueFoundry manifest */
-    convert_template_manifest?: boolean;
+    convert_template_manifest?: boolean | undefined;
 }

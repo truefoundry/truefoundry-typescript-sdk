@@ -22,6 +22,8 @@ export class ModelVersionsClient {
     }
 
     /**
+     * Apply tags to a model version.
+     *
      * @param {TrueFoundry.ApplyModelVersionTagsRequest} request
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -97,7 +99,7 @@ export class ModelVersionsClient {
     }
 
     /**
-     * Get model version API
+     * Get a model version by its ID.
      *
      * @param {string} id
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -168,7 +170,7 @@ export class ModelVersionsClient {
     }
 
     /**
-     * Delete model versions API
+     * Delete a model version by its ID.
      *
      * @param {string} id
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -239,7 +241,7 @@ export class ModelVersionsClient {
     }
 
     /**
-     * List model version API
+     * List model versions with optional filtering by tag, FQN, model ID, ML Repo, name, version, run IDs, or run steps.
      *
      * @param {TrueFoundry.ModelVersionsListRequest} request
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.

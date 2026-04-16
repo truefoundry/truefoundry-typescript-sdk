@@ -7,5 +7,5 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsBedrockAssumedRoleBasedAuth extends TrueFoundry.AwsAssumedRoleBasedAuth {
     /** Optional external ID to use when assuming the role. This provides an added layer of security by ensuring only parties with the correct external ID can assume the role. */
-    external_id?: string;
+    external_id?: string | undefined;
 }

@@ -3,13 +3,22 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface DataDirectory {
+    /** Unique identifier for the data directory */
     id: string;
+    /** ID of the ML Repo that this data directory belongs to */
     ml_repo_id: string;
+    /** Name of the data directory */
     name: string;
+    /** Fully qualified name of the data directory */
     fqn: string;
+    /** Subject (user, team, or service account) that created this data directory */
     created_by_subject: TrueFoundry.Subject;
+    /** Timestamp when the data directory was created */
     created_at: string;
+    /** Timestamp when the data directory was last updated */
     updated_at: string;
+    /** Manifest containing metadata for the data directory */
     manifest: TrueFoundry.DataDirectoryManifest;
-    usage_code_snippet?: string;
+    /** Code snippet demonstrating how to use this data directory */
+    usage_code_snippet?: string | undefined;
 }

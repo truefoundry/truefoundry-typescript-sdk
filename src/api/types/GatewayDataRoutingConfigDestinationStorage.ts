@@ -6,5 +6,5 @@ export interface GatewayDataRoutingConfigDestinationStorage {
     /** Storage configuration for traces and spans */
     storage: TrueFoundry.GatewayDataRoutingConfigDestinationStorageStorage;
     /** Number of days to retain traces (this does not affect metrics storage) */
-    traces_retention_period_days?: number;
+    traces_retention_period_days?: number | undefined;
 }

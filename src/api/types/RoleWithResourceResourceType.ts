@@ -20,6 +20,7 @@ export const RoleWithResourceResourceType = {
     ServiceAccount: "service-account",
     LlmGateway: "llm-gateway",
     Policy: "policy",
+    RoleBinding: "role-binding",
     Settings: "settings",
     ProviderAccount: "provider-account",
     User: "user",

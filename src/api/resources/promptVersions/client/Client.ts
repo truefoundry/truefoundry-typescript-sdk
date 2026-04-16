@@ -22,6 +22,8 @@ export class PromptVersionsClient {
     }
 
     /**
+     * Apply tags to a prompt version.
+     *
      * @param {TrueFoundry.ApplyPromptVersionTagsRequest} request
      * @param {PromptVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -97,7 +99,7 @@ export class PromptVersionsClient {
     }
 
     /**
-     * Get prompt version API
+     * Get a prompt version by its ID.
      *
      * @param {string} id
      * @param {PromptVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -168,7 +170,7 @@ export class PromptVersionsClient {
     }
 
     /**
-     * Delete prompt versions API
+     * Delete a prompt version by its ID.
      *
      * @param {string} id
      * @param {PromptVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -239,7 +241,7 @@ export class PromptVersionsClient {
     }
 
     /**
-     * List prompt version API
+     * List prompt versions with optional filtering by tag, FQN, prompt ID, ML Repo, name, or version.
      *
      * @param {TrueFoundry.PromptVersionsListRequest} request
      * @param {PromptVersionsClient.RequestOptions} requestOptions - Request-specific configuration.

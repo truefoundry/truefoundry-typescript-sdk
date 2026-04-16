@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Set this configuration to export LLM gateway OTEL traces to an external platform. Note that we only export OTEL traces via this configuration, this does not include OTEL metrics.
+ * Set this configuration to export LLM gateway OTEL traces to an external platform. Note that we only export OTEL traces via this configuration.
  */
 export type GatewayOtelConfigOtelTracesExporterConfig =
-    | TrueFoundry.OtelExporterHttpConfig
-    | TrueFoundry.OtelExporterGrpcConfig;
+    | TrueFoundry.OtelTracesExporterHttpConfig
+    | TrueFoundry.OtelTracesExporterGrpcConfig;

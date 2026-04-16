@@ -13,7 +13,7 @@ export interface WebhookIntegration {
     /** The URL of the webhook endpoint */
     webhook_url: string;
     /** Authentication configuration for the webhook */
-    auth_data?: TrueFoundry.WebhookIntegrationAuthData;
+    auth_data?: TrueFoundry.WebhookIntegrationAuthData | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

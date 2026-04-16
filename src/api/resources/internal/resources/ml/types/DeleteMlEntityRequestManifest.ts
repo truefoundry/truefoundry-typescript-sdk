@@ -2,9 +2,13 @@
 
 import type * as TrueFoundry from "../../../../../index.js";
 
+/**
+ * Manifest identifying the ML entity to delete (model, prompt, artifact, agent skill, data directory, or ML Repo)
+ */
 export type DeleteMlEntityRequestManifest =
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
     | TrueFoundry.ArtifactManifest
+    | TrueFoundry.AgentSkillManifest
     | TrueFoundry.DataDirectoryManifest
     | TrueFoundry.MlRepoManifest;

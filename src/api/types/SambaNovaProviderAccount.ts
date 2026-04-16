@@ -14,6 +14,6 @@ export interface SambaNovaProviderAccount {
     /** List of integrations that are associated with the SambaNova provider account */
     integrations: TrueFoundry.SambaNovaIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

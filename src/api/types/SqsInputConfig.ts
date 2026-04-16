@@ -16,5 +16,5 @@ export interface SqsInputConfig {
     visibility_timeout: number;
     /** Wait timeout for long polling. For more information, see [here](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-short-and-long-polling.html) */
     wait_time_seconds: number;
-    auth?: TrueFoundry.AwsAccessKeyAuth;
+    auth?: TrueFoundry.AwsAccessKeyAuth | undefined;
 }

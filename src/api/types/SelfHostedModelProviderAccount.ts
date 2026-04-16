@@ -13,6 +13,6 @@ export interface SelfHostedModelProviderAccount {
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.SelfHostedModelIntegrations[];
     /** Collaborators */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

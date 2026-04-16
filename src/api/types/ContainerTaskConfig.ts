@@ -8,10 +8,10 @@ export interface ContainerTaskConfig {
     /** Specify whether you want to deploy a Docker image or build and deploy from source code */
     image: TrueFoundry.ContainerTaskConfigImage;
     /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string | undefined>;
-    resources?: TrueFoundry.Resources;
+    env?: Record<string, string> | undefined;
+    resources?: TrueFoundry.Resources | undefined;
     /** Configure data to be mounted to Workflow pod(s) as a volume. */
-    mounts?: TrueFoundry.ContainerTaskConfigMountsItem[];
+    mounts?: TrueFoundry.ContainerTaskConfigMountsItem[] | undefined;
     /** Service Account */
-    service_account?: string;
+    service_account?: string | undefined;
 }

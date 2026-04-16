@@ -14,8 +14,8 @@ export interface GuardrailConfigGroup {
     /** The name of the Guardrail Config Group. */
     name: string;
     /** List of users who have access to this Guardrail Config Group. */
-    collaborators?: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
     /** List of Guardrail Configs, which are part of this Guardrail Config Group. */
     integrations: TrueFoundry.GuardrailConfigIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

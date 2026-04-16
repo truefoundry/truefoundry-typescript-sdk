@@ -24,13 +24,6 @@ export class DataDirectoriesClient {
     /**
      * Get a data directory by its ID.
      *
-     * Args:
-     *     id (str): The ID of the data directory to retrieve
-     *     user_info: Current authenticated user info
-     *
-     * Returns:
-     *     DataDirectoryResponse: Response containing the retrieved data directory
-     *
      * @param {string} id
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -100,15 +93,7 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * Delete a data directory and optionally its contents.
-     *
-     * Args:
-     *     id: Unique identifier of the data directory to delete
-     *     delete_contents: If True, also deletes the data directory's contents
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     EmptyResponse: Empty response indicating successful deletion
+     * Delete a data directory, optionally including its contents.
      *
      * @param {string} id
      * @param {TrueFoundry.DataDirectoriesDeleteRequest} request
@@ -188,18 +173,7 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * List all data directories with optional filtering and pagination.
-     *
-     * Args:
-     *     filters: Query parameters for filtering and pagination
-     *         - ml_repo_id: Filter data directories by ml repo ID
-     *         - name: Optional filter data directories by name
-     *         - limit: Optional maximum number of data directories to return
-     *         - offset: Optional number of data directories to skip
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     ListDataDirectoriesResponse: List of data directories and pagination info
+     * List data directories with optional filtering by FQN, ML Repo, or name.
      *
      * @param {TrueFoundry.DataDirectoriesListRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -296,6 +270,8 @@ export class DataDirectoriesClient {
     }
 
     /**
+     * Create or update a data directory.
+     *
      * @param {TrueFoundry.ApplyDataDirectoryRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -375,14 +351,7 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * List files in a dataset.
-     *
-     * Args:
-     *     request_dto: Request containing dataset ID, path, page token and limit
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     ListFilesResponse: Response containing files and pagination info
+     * List files and directories in a data directory.
      *
      * @param {TrueFoundry.ListFilesRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -470,14 +439,7 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * Delete files from the dataset.
-     *
-     * Args:
-     *     request_dto: Request containing dataset ID and paths
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     EmptyResponse: Empty response indicating successful deletion
+     * Delete files from a data directory.
      *
      * @param {TrueFoundry.DeleteFilesRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -554,14 +516,7 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * Get signed URLs for a dataset.
-     *
-     * Args:
-     *     request_dto: Request containing dataset ID, paths and operation
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     GetSignedURLsResponse: Response containing signed URLs
+     * Get pre-signed URLs for reading or writing files in a data directory.
      *
      * @param {TrueFoundry.GetSignedUrLsRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -639,14 +594,7 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * Create a multipart upload for a dataset
-     *
-     * Args:
-     *     request_dto: Request containing dataset ID, path and number of parts
-     *     user_info: Authenticated user information
-     *
-     * Returns:
-     *     MultiPartUploadResponse: Response containing multipart upload info
+     * Create a multipart upload for large files in a data directory.
      *
      * @param {TrueFoundry.CreateMultiPartUploadRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.

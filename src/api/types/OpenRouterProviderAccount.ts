@@ -14,6 +14,6 @@ export interface OpenRouterProviderAccount {
     /** List of integrations that are associated with the OpenRouter provider account */
     integrations: TrueFoundry.OpenRouterIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

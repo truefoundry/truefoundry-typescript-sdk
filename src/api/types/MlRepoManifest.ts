@@ -10,10 +10,10 @@ export interface MlRepoManifest {
     /** Name of the ML Repo. */
     name: string;
     /** Description for the ML Repo. */
-    description?: string;
+    description?: string | undefined;
     /** Storage Integration to store artifacts and models. A storage integration represents a connected blob storage like AWS S3 / Azure Blob Storage / Google Cloud Storage. */
     storage_integration_fqn: string;
     /** Users and Teams that have access to MLRepo */
     collaborators: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

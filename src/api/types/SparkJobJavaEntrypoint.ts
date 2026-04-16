@@ -11,5 +11,5 @@ export interface SparkJobJavaEntrypoint {
     /** The main class to be executed by the spark job. */
     main_class: string;
     /** Arguments to be passed to the main application file. */
-    arguments?: string;
+    arguments?: string | undefined;
 }

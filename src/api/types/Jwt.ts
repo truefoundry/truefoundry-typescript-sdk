@@ -4,7 +4,7 @@ export interface Jwt {
     id: string;
     subjectType: string;
     subjectId: string;
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | undefined;
     expiry: string;
     createdAt: string;
     updatedAt: string;

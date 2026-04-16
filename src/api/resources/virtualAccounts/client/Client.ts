@@ -31,7 +31,9 @@ export class VirtualAccountsClient {
      *     await client.virtualAccounts.list({
      *         limit: 10,
      *         offset: 0,
-     *         nameSearchQuery: "nameSearchQuery"
+     *         nameSearchQuery: "nameSearchQuery",
+     *         isExpired: true,
+     *         filter: "filter"
      *     })
      */
     public async list(
@@ -42,11 +44,14 @@ export class VirtualAccountsClient {
             async (
                 request: TrueFoundry.VirtualAccountsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListVirtualAccountResponse>> => {
-                const { limit = 100, offset = 0, nameSearchQuery } = request;
+                const { limit = 100, offset = 0, nameSearchQuery, ownedByTeams, isExpired, filter } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     nameSearchQuery,
+                    ownedByTeams,
+                    isExpired,
+                    filter,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

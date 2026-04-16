@@ -12,7 +12,7 @@ export interface AzureBlobStorage {
     name: string;
     /** The full Azure Blob Storage URL in the format 'https://<storage-account-name>.blob.core.windows.net/<container-name>/<optional-path-prefix>'. Example: 'https://mystorageaccount.blob.core.windows.net/mycontainer' or 'https://mystorageaccount.blob.core.windows.net/mycontainer/artifacts/production'. */
     storage_root: string;
-    auth_data?: TrueFoundry.AzureConnectionStringAuth;
+    auth_data?: TrueFoundry.AzureConnectionStringAuth | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

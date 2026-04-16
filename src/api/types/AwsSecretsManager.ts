@@ -12,7 +12,9 @@ export interface AwsSecretsManager {
     name: string;
     region: TrueFoundry.AwsRegion;
     /** Custom authentication data for the integration. */
-    auth_data?: TrueFoundry.AwsSecretsManagerAuthData;
+    auth_data?: TrueFoundry.AwsSecretsManagerAuthData | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
+    /** The ARN of the KMS key to use for encryption. */
+    kms_arn?: string | undefined;
 }

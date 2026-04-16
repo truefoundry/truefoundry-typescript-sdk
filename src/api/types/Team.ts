@@ -8,10 +8,10 @@ export interface Team {
     tenantName: string;
     accountId: string;
     createdBySubject: TrueFoundry.Subject;
-    members?: string[];
+    members?: string[] | undefined;
     createdAt: string;
     updatedAt: string;
     manifest: TrueFoundry.TeamManifest;
-    metadata?: TrueFoundry.TeamMetadata;
+    metadata?: TrueFoundry.TeamMetadata | undefined;
     isEditable: boolean;
 }

@@ -3,10 +3,10 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ApplicationDebugInfo {
-    id?: string;
+    id?: string | undefined;
     applicationId: string;
-    application?: TrueFoundry.Application;
+    application?: TrueFoundry.Application | undefined;
     debugInfo: Record<string, unknown>;
-    createdAt?: string;
-    updatedAt?: string;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
 }

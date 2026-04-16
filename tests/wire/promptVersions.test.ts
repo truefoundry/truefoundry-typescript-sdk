@@ -10,6 +10,7 @@ describe("PromptVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { prompt_version_id: "prompt_version_id", tags: ["tags"] };
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/prompt-versions/tags")
@@ -23,7 +24,7 @@ describe("PromptVersionsClient", () => {
             prompt_version_id: "prompt_version_id",
             tags: ["tags"],
         });
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("apply_tags (2)", async () => {
@@ -31,6 +32,7 @@ describe("PromptVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { prompt_version_id: "prompt_version_id", tags: ["tags", "tags"] };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/ml/v1/prompt-versions/tags")
@@ -61,17 +63,20 @@ describe("PromptVersionsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 manifest: {
                     name: "name",
-                    description: "description",
                     metadata: { key: "value" },
-                    version_alias: "version_alias",
                     ml_repo: "ml_repo",
                     version: 1,
                     type: "chat_prompt",
+                    description: "description",
+                    version_alias: "version_alias",
                     messages: [{ role: "system", content: "content" }],
                     variables: { key: "value" },
                     model_configuration: { provider: "provider", model: "model" },
@@ -91,13 +96,15 @@ describe("PromptVersionsClient", () => {
                     logging_config: { enabled: true },
                     sub_agents: [{ name: "name" }],
                 },
-                usage_code_snippet: "usage_code_snippet",
                 ml_repo_id: "ml_repo_id",
                 tags: ["tags"],
+                version_alias: "version_alias",
+                usage_code_snippet: "usage_code_snippet",
                 usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
                 prompt_id: "prompt_id",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/prompt-versions/id")
@@ -107,101 +114,7 @@ describe("PromptVersionsClient", () => {
             .build();
 
         const response = await client.promptVersions.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    name: "name",
-                    description: "description",
-                    metadata: {
-                        key: "value",
-                    },
-                    version_alias: "version_alias",
-                    ml_repo: "ml_repo",
-                    version: 1,
-                    type: "chat_prompt",
-                    messages: [
-                        {
-                            role: "system",
-                            content: "content",
-                        },
-                    ],
-                    variables: {
-                        key: "value",
-                    },
-                    model_configuration: {
-                        provider: "provider",
-                        model: "model",
-                    },
-                    tools: [
-                        {
-                            type: "function",
-                            function: {
-                                name: "name",
-                            },
-                        },
-                    ],
-                    mcp_servers: [
-                        {
-                            type: "mcp-server-fqn",
-                            integration_fqn: "integration_fqn",
-                            enable_all_tools: true,
-                        },
-                    ],
-                    response_format: {
-                        type: "json_object",
-                    },
-                    routing_config: {
-                        type: "weight-based-routing",
-                        load_balance_targets: [
-                            {
-                                target: "target",
-                                weight: 1,
-                            },
-                        ],
-                    },
-                    cache_config: {
-                        type: "semantic",
-                        similarity_threshold: 1.1,
-                        ttl: 1.1,
-                    },
-                    tool_call_to_mcp_mapping: {
-                        key: {
-                            mcp_server_integration_id: "mcp_server_integration_id",
-                            tool_name: "tool_name",
-                        },
-                    },
-                    logging_config: {
-                        enabled: true,
-                    },
-                    sub_agents: [
-                        {
-                            name: "name",
-                        },
-                    ],
-                },
-                usage_code_snippet: "usage_code_snippet",
-                ml_repo_id: "ml_repo_id",
-                tags: ["tags"],
-                usage_code_snippets: [
-                    {
-                        display_name: "display_name",
-                        language: "language",
-                        code: "code",
-                    },
-                ],
-                prompt_id: "prompt_id",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -209,6 +122,7 @@ describe("PromptVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/ml/v1/prompt-versions/id")
@@ -227,6 +141,7 @@ describe("PromptVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/prompt-versions/id")
@@ -236,7 +151,7 @@ describe("PromptVersionsClient", () => {
             .build();
 
         const response = await client.promptVersions.delete("id");
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -244,6 +159,7 @@ describe("PromptVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/ml/v1/prompt-versions/id")
@@ -276,15 +192,17 @@ describe("PromptVersionsClient", () => {
                         type: "chat_prompt",
                         messages: [{ role: "system", content: "content" }],
                     },
-                    usage_code_snippet: "usage_code_snippet",
                     ml_repo_id: "ml_repo_id",
                     tags: ["tags"],
+                    version_alias: "version_alias",
+                    usage_code_snippet: "usage_code_snippet",
                     usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
                     prompt_id: "prompt_id",
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/prompt-versions")
@@ -293,50 +211,7 @@ describe("PromptVersionsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        name: "name",
-                        metadata: {
-                            key: "value",
-                        },
-                        ml_repo: "ml_repo",
-                        type: "chat_prompt",
-                        messages: [
-                            {
-                                role: "system",
-                                content: "content",
-                            },
-                        ],
-                    },
-                    usage_code_snippet: "usage_code_snippet",
-                    ml_repo_id: "ml_repo_id",
-                    tags: ["tags"],
-                    usage_code_snippets: [
-                        {
-                            display_name: "display_name",
-                            language: "language",
-                            code: "code",
-                        },
-                    ],
-                    prompt_id: "prompt_id",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.promptVersions.list({
             tag: "tag",
             fqn: "fqn",
@@ -359,6 +234,7 @@ describe("PromptVersionsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/ml/v1/prompt-versions")

@@ -9,6 +9,7 @@ describe("VcsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { repoURL: "repoURL" };
         const rawResponseBody = { exists: true, id: "id" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/vcs/repository/details")
@@ -21,10 +22,7 @@ describe("VcsClient", () => {
         const response = await client.internal.vcs.getRepositoryDetails({
             repoURL: "repoURL",
         });
-        expect(response).toEqual({
-            exists: true,
-            id: "id",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_authenticated_url", async () => {
@@ -32,6 +30,7 @@ describe("VcsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { repoURL: "repoURL" };
         const rawResponseBody = { authenticatedURL: "authenticatedURL" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/vcs/repository/authenticated-url")
@@ -44,8 +43,6 @@ describe("VcsClient", () => {
         const response = await client.internal.vcs.getAuthenticatedUrl({
             repoURL: "repoURL",
         });
-        expect(response).toEqual({
-            authenticatedURL: "authenticatedURL",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

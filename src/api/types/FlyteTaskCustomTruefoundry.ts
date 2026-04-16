@@ -8,4 +8,5 @@ import type * as TrueFoundry from "../index.js";
 export type FlyteTaskCustomTruefoundry =
     | TrueFoundry.PythonTaskConfig
     | TrueFoundry.ContainerTaskConfig
-    | TrueFoundry.PySparkTaskConfig;
+    | TrueFoundry.PySparkTaskConfig
+    | TrueFoundry.DatabricksJobTaskConfig;

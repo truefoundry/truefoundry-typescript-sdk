@@ -26,6 +26,7 @@ describe("TeamsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/teams/user")
@@ -34,34 +35,7 @@ describe("TeamsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    description: "description",
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    members: ["members"],
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        type: "team",
-                        name: "name",
-                        members: ["members"],
-                    },
-                    isEditable: true,
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.teams.list({
             limit: 10,
             offset: 0,
@@ -89,6 +63,9 @@ describe("TeamsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 members: ["members"],
                 createdAt: "2024-01-15T09:30:00Z",
@@ -99,11 +76,13 @@ describe("TeamsClient", () => {
                     managers: ["managers"],
                     members: ["members"],
                     ownedBy: { account: "account" },
+                    tags: { key: "value" },
                 },
                 metadata: { createdByScim: true },
                 isEditable: true,
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/teams")
@@ -120,36 +99,7 @@ describe("TeamsClient", () => {
                 members: ["members"],
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                description: "description",
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                members: ["members"],
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "team",
-                    name: "name",
-                    managers: ["managers"],
-                    members: ["members"],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                metadata: {
-                    createdByScim: true,
-                },
-                isEditable: true,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -157,6 +107,7 @@ describe("TeamsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members", "members"] } };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/teams")
@@ -182,6 +133,7 @@ describe("TeamsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members", "members"] } };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/teams")
@@ -217,6 +169,9 @@ describe("TeamsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 members: ["members"],
                 createdAt: "2024-01-15T09:30:00Z",
@@ -227,11 +182,13 @@ describe("TeamsClient", () => {
                     managers: ["managers"],
                     members: ["members"],
                     ownedBy: { account: "account" },
+                    tags: { key: "value" },
                 },
                 metadata: { createdByScim: true },
                 isEditable: true,
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/teams/id")
@@ -241,36 +198,7 @@ describe("TeamsClient", () => {
             .build();
 
         const response = await client.teams.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                description: "description",
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                members: ["members"],
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "team",
-                    name: "name",
-                    managers: ["managers"],
-                    members: ["members"],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                metadata: {
-                    createdByScim: true,
-                },
-                isEditable: true,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -278,6 +206,7 @@ describe("TeamsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/teams/id")
@@ -296,6 +225,7 @@ describe("TeamsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {};
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/teams/id")
@@ -305,7 +235,7 @@ describe("TeamsClient", () => {
             .build();
 
         const response = await client.teams.delete("id");
-        expect(response).toEqual({});
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -313,6 +243,7 @@ describe("TeamsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/teams/id")
@@ -331,6 +262,7 @@ describe("TeamsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/teams/id")
@@ -342,5 +274,74 @@ describe("TeamsClient", () => {
         await expect(async () => {
             return await client.teams.delete("id");
         }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("get_permissions (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    resourceType: "resourceType",
+                    resourceId: "resourceId",
+                    resourceName: "resourceName",
+                    resourceFqn: "resourceFqn",
+                    roleId: "roleId",
+                    roleName: "roleName",
+                    subjectId: "subjectId",
+                    subjectType: "subjectType",
+                },
+            ],
+        };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/teams/id/permissions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.teams.getPermissions("id");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("get_permissions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/teams/id/permissions")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.getPermissions("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("get_permissions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/teams/id/permissions")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.getPermissions("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

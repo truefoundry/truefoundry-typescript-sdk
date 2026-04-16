@@ -3,11 +3,11 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GatewayConfiguration {
-    id?: string;
+    id?: string | undefined;
     tenantName: string;
     type: string;
     manifest: TrueFoundry.Config;
     createdBySubject: TrueFoundry.Subject;
-    createdAt?: string;
-    updatedAt?: string;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
 }

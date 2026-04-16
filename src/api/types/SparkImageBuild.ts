@@ -12,7 +12,7 @@ export interface SparkImageBuild {
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
     /** Fetch source code */
     build_source: TrueFoundry.SparkImageBuildBuildSource;
     build_spec: TrueFoundry.SparkBuild;

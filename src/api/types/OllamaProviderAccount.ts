@@ -14,6 +14,6 @@ export interface OllamaProviderAccount {
     /** List of integrations that are associated with the Ollama provider account */
     integrations: TrueFoundry.OllamaIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

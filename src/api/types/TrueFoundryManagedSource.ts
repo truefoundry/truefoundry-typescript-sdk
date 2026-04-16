@@ -2,5 +2,5 @@
 
 export interface TrueFoundryManagedSource {
     type: "truefoundry";
-    uri?: string;
+    uri?: string | undefined;
 }

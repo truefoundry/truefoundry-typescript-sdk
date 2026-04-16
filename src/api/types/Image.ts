@@ -18,11 +18,11 @@ export interface Image {
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
     /**
      * Override the command to run when container starts.
      * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
      * E.g. `python main.py --learning_rate {{learning_rate}}`
      */
-    command?: TrueFoundry.ImageCommand;
+    command?: TrueFoundry.ImageCommand | undefined;
 }

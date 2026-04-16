@@ -22,6 +22,8 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * Apply tags to an artifact version.
+     *
      * @param {TrueFoundry.ApplyArtifactVersionTagsRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -97,7 +99,7 @@ export class ArtifactVersionsClient {
     }
 
     /**
-     * Get artifact version API
+     * Get an artifact version by its ID.
      *
      * @param {string} id
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -171,7 +173,7 @@ export class ArtifactVersionsClient {
     }
 
     /**
-     * Delete artifact versions API
+     * Delete an artifact version by its ID.
      *
      * @param {string} id
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -242,7 +244,7 @@ export class ArtifactVersionsClient {
     }
 
     /**
-     * List artifact version API
+     * List artifact versions with optional filtering by tag, FQN, artifact ID, ML Repo, name, version, run IDs, or run steps.
      *
      * @param {TrueFoundry.ArtifactVersionsListRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -361,6 +363,8 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * Get pre-signed URLs for reading or writing files in an artifact version.
+     *
      * @param {TrueFoundry.GetSignedUrLsRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -437,6 +441,8 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * Create a multipart upload for large files in an artifact version.
+     *
      * @param {TrueFoundry.CreateMultiPartUploadRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -513,6 +519,8 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * Stage an artifact version for upload, returning storage location and version ID.
+     *
      * @param {TrueFoundry.StageArtifactRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -597,6 +605,8 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * List files and directories in an artifact version.
+     *
      * @param {TrueFoundry.ListFilesRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -683,6 +693,8 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * Mark a staged artifact version as failed.
+     *
      * @param {TrueFoundry.MarkStageArtifactFailureRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

@@ -18,18 +18,18 @@ export interface Port {
      * If you are running a gRPC server, select the `grpc` option.
      * This is only applicable if `expose=true`.
      */
-    app_protocol?: TrueFoundry.PortAppProtocol;
+    app_protocol?: TrueFoundry.PortAppProtocol | undefined;
     /** Host e.g. ai.example.com, app.truefoundry.com */
-    host?: string;
+    host?: string | undefined;
     /** Path e.g. /v1/api/ml/, /v2/docs/ */
-    path?: string;
+    path?: string | undefined;
     /**
      * Rewrite the path prefix to a different path.
      * If `path` is `/v1/api` and `rewrite_path_to` is `/api`. The URI in the HTTP request `http://0.0.0.0:8080/v1/api/houses` will be rewritten to `http://0.0.0.0:8080/api/houses` before the request is forwarded your service.
      * Defaults to `/`.
      * This is only applicable if `path` is given.
      */
-    rewrite_path_to?: string;
+    rewrite_path_to?: string | undefined;
     /** Authentication method for inbound traffic */
-    auth?: TrueFoundry.PortAuth;
+    auth?: TrueFoundry.PortAuth | undefined;
 }

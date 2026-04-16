@@ -3,6 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListDataDirectoriesResponse {
+    /** List of data directories matching the query */
     data: TrueFoundry.DataDirectory[];
+    /** Pagination information including total count, offset, and limit */
     pagination: TrueFoundry.Pagination;
 }

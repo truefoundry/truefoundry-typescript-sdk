@@ -6,5 +6,5 @@ export interface BuildSecret {
     /** The value of the build secret. */
     value: string;
     /** The name of the environment variable to inject the secret into. */
-    env?: string;
+    env?: string | undefined;
 }

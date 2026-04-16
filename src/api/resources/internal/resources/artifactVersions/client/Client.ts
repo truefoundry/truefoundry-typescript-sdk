@@ -22,7 +22,7 @@ export class ArtifactVersionsClient {
     }
 
     /**
-     * List artifact version API
+     * List artifact versions with internal metadata, optionally including model versions.
      *
      * @param {TrueFoundry.internal.ArtifactVersionsListRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.

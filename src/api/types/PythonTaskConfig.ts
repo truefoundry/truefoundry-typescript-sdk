@@ -11,10 +11,10 @@ export interface PythonTaskConfig {
     /** Specify the image spec for the task */
     image: TrueFoundry.PythonTaskConfigImage;
     /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string | undefined>;
-    resources?: TrueFoundry.Resources;
+    env?: Record<string, string> | undefined;
+    resources?: TrueFoundry.Resources | undefined;
     /** Configure data to be mounted to Workflow pod(s) as a volume. */
-    mounts?: TrueFoundry.PythonTaskConfigMountsItem[];
+    mounts?: TrueFoundry.PythonTaskConfigMountsItem[] | undefined;
     /** Service Account */
-    service_account?: string;
+    service_account?: string | undefined;
 }

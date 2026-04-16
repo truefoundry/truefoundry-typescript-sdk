@@ -25,6 +25,7 @@ describe("EnvironmentsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/environments")
@@ -33,35 +34,7 @@ describe("EnvironmentsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    priority: 1.1,
-                    color: {},
-                    tenantName: "tenantName",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    isProduction: true,
-                    optimizeFor: "COST",
-                    manifest: {
-                        type: "environment",
-                        name: "name",
-                        color: {},
-                        isProduction: true,
-                        optimizeFor: "COST",
-                    },
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.environments.list({
             limit: 10,
             offset: 0,
@@ -95,6 +68,9 @@ describe("EnvironmentsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 isProduction: true,
                 optimizeFor: "COST",
@@ -102,6 +78,7 @@ describe("EnvironmentsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/environments")
@@ -120,35 +97,7 @@ describe("EnvironmentsClient", () => {
                 optimizeFor: "COST",
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                priority: 1.1,
-                color: {
-                    colorHex: "colorHex",
-                    backgroundColorHex: "backgroundColorHex",
-                    color: "color",
-                    backgroundColor: "backgroundColor",
-                },
-                tenantName: "tenantName",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                isProduction: true,
-                optimizeFor: "COST",
-                manifest: {
-                    type: "environment",
-                    name: "name",
-                    color: {},
-                    isProduction: true,
-                    optimizeFor: "COST",
-                },
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -158,6 +107,7 @@ describe("EnvironmentsClient", () => {
             manifest: { type: "environment", name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/environments")
@@ -200,6 +150,9 @@ describe("EnvironmentsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 isProduction: true,
                 optimizeFor: "COST",
@@ -207,6 +160,7 @@ describe("EnvironmentsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/environments/id")
@@ -216,35 +170,7 @@ describe("EnvironmentsClient", () => {
             .build();
 
         const response = await client.environments.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                priority: 1.1,
-                color: {
-                    colorHex: "colorHex",
-                    backgroundColorHex: "backgroundColorHex",
-                    color: "color",
-                    backgroundColor: "backgroundColor",
-                },
-                tenantName: "tenantName",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                isProduction: true,
-                optimizeFor: "COST",
-                manifest: {
-                    type: "environment",
-                    name: "name",
-                    color: {},
-                    isProduction: true,
-                    optimizeFor: "COST",
-                },
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (1)", async () => {
@@ -252,6 +178,7 @@ describe("EnvironmentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = true;
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/environments/id")
@@ -261,7 +188,7 @@ describe("EnvironmentsClient", () => {
             .build();
 
         const response = await client.environments.delete("id");
-        expect(response).toEqual(true);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -269,6 +196,7 @@ describe("EnvironmentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/environments/id")
@@ -287,6 +215,7 @@ describe("EnvironmentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/environments/id")

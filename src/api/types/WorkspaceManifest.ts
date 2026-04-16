@@ -10,14 +10,14 @@ export interface WorkspaceManifest {
     /** Name - 3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     /** Tag the environment like dev, staging or production. You will need to [create environments](https://docs.truefoundry.com/docs/key-concepts#creating-environments) if you don't have already. */
-    environment_name?: string;
+    environment_name?: string | undefined;
     /** +sort=700 */
-    labels?: Record<string, string>;
+    labels?: Record<string, string> | undefined;
     /** +sort=750 */
-    annotations?: Record<string, string>;
+    annotations?: Record<string, string> | undefined;
     /** Collaborators */
-    collaborators?: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
     /** Permissions */
-    permissions?: TrueFoundry.Permissions[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    permissions?: TrueFoundry.Permissions[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

@@ -6,7 +6,7 @@ export interface GetSuggestedDeploymentEndpointResponse {
     /** Host name */
     host: string;
     /** Path */
-    path?: string;
+    path?: string | undefined;
     /** Gateway configuration */
-    gateway?: TrueFoundry.ClusterGateway;
+    gateway?: TrueFoundry.ClusterGateway | undefined;
 }

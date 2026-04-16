@@ -48,6 +48,9 @@ describe("UsersClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -63,6 +66,9 @@ describe("UsersClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -70,6 +76,7 @@ describe("UsersClient", () => {
             },
             effectiveUserId: "effectiveUserId",
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/users/info")
@@ -79,89 +86,6 @@ describe("UsersClient", () => {
             .build();
 
         const response = await client.internal.users.getInfo();
-        expect(response).toEqual({
-            id: "id",
-            userName: "userName",
-            subjectSlug: "subjectSlug",
-            subjectControllerName: "subjectControllerName",
-            subjectPatName: "subjectPatName",
-            email: "email",
-            subjectType: "user",
-            tenantName: "tenantName",
-            roles: ["roles"],
-            teams: [
-                {
-                    name: "name",
-                    id: "id",
-                },
-            ],
-            accounts: [
-                {
-                    name: "name",
-                    id: "id",
-                },
-            ],
-            metadata: {
-                sub: "sub",
-                imageURL: "imageURL",
-                pictureDownloadPath: "pictureDownloadPath",
-                displayName: "displayName",
-                userObject: {
-                    key: "value",
-                },
-                inviteAccepted: true,
-                registeredInIdp: true,
-                preference: {
-                    key: "value",
-                },
-                groups: ["groups"],
-                tenantRoleManagedBy: "manual",
-                ssoName: "ssoName",
-                isPrimarySSO: true,
-                scimUserObject: {
-                    key: "value",
-                },
-                createdByScim: true,
-            },
-            isBillingEnabled: true,
-            serviceAccountMetadata: {
-                key: "value",
-            },
-            account: {
-                id: "id",
-                tenantName: "tenantName",
-                fqn: "fqn",
-                manifest: {
-                    key: "value",
-                },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                isEditable: true,
-            },
-            rootAccount: {
-                id: "id",
-                tenantName: "tenantName",
-                fqn: "fqn",
-                manifest: {
-                    key: "value",
-                },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                isEditable: true,
-            },
-            effectiveUserId: "effectiveUserId",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

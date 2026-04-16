@@ -4,30 +4,33 @@
  * Describes the configuration for the python build for a task
  */
 export interface TaskPythonBuild {
-    /** +value=task-python-build */
+    /**
+     * +uiType=Hidden
+     * +value=task-python-build
+     */
     type: "task-python-build";
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string;
+    docker_registry?: string | undefined;
     /** Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python) */
-    python_version?: string;
+    python_version?: string | undefined;
     /**
      * Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirements_path?: string;
+    requirements_path?: string | undefined;
     /**
      * Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
      */
-    pip_packages?: string[];
+    pip_packages?: string[] | undefined;
     /**
      * Debian packages to install via `apt get`.
      * In Python/YAML E.g. ["git", "ffmpeg", "htop"]
      */
-    apt_packages?: string[];
+    apt_packages?: string[] | undefined;
     /**
      * Version of CUDA Toolkit and CUDNN to install in the image
      * These combinations are based off of publically available docker images on docker hub
@@ -35,5 +38,5 @@ export interface TaskPythonBuild {
      * Refer https://hub.docker.com/r/nvidia/cuda/tags for valid set of values
      * Note: We use deadsnakes ubuntu ppa to add Python that currently supports only Ubuntu 18.04, 20.04 and 22.04
      */
-    cuda_version?: string;
+    cuda_version?: string | undefined;
 }

@@ -9,7 +9,7 @@ export interface BaseOAuth2Login {
     /** client ID for OAuth2. */
     client_id: string;
     /** Client secret or the TrueFoundry secret containing the client secret for OAuth2. */
-    client_secret?: string;
+    client_secret?: string | undefined;
     /** URL for the authorization request */
     authorization_url: string;
     /** The endpoint to exchange auth code for tokens. */

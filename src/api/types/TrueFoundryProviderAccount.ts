@@ -11,6 +11,6 @@ export interface TrueFoundryProviderAccount {
     /** The name of the provider account. */
     name: string;
     /** List of integrations that are associated with the provider account. */
-    integrations?: TrueFoundry.TrueFoundryIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    integrations?: TrueFoundry.TrueFoundryIntegrations[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

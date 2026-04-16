@@ -7,5 +7,5 @@ export interface LoggingConfig {
     /** Whether logging is enabled for the chat prompt */
     enabled: boolean;
     /** The FQN of the tracing project where the logs will be stored */
-    tracing_project_fqn?: string;
+    tracing_project_fqn?: string | undefined;
 }

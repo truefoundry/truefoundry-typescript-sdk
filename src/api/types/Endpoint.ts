@@ -4,5 +4,5 @@ export interface Endpoint {
     /** Host e.g. ai.example.com, app.truefoundry.com */
     host: string;
     /** Path e.g. /v1/api/ml/, /v2/docs/ */
-    path?: string;
+    path?: string | undefined;
 }

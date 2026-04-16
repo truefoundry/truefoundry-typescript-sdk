@@ -2,4 +2,7 @@
 
 import type * as TrueFoundry from "../../../index.js";
 
+/**
+ * Manifest containing metadata for the artifact to be staged (model or generic artifact)
+ */
 export type StageArtifactRequestManifest = TrueFoundry.ModelManifest | TrueFoundry.ArtifactManifest;

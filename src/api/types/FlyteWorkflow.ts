@@ -4,5 +4,5 @@ import type * as TrueFoundry from "../index.js";
 
 export interface FlyteWorkflow {
     template: TrueFoundry.FlyteWorkflowTemplate;
-    description?: unknown;
+    description?: unknown | undefined;
 }

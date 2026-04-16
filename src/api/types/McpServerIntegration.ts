@@ -16,7 +16,7 @@ export interface McpServerIntegration {
     url: string;
     /** The transport protocol to use for communication with the MCP Server. */
     transport: TrueFoundry.McpServerIntegrationTransport;
-    auth_data?: TrueFoundry.McpServerAuth;
+    auth_data?: TrueFoundry.McpServerAuth | undefined;
     /** List of teams/users who can use this MCP server. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

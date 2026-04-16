@@ -22,6 +22,8 @@ export class ModelsClient {
     }
 
     /**
+     * Get a model by its ID.
+     *
      * @param {string} id
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -86,6 +88,8 @@ export class ModelsClient {
     }
 
     /**
+     * Delete a model by its ID.
+     *
      * @param {string} id
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -150,6 +154,8 @@ export class ModelsClient {
     }
 
     /**
+     * List models with optional filtering by FQN, ML Repo, name, or run ID.
+     *
      * @param {TrueFoundry.ModelsListRequest} request
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -252,6 +258,8 @@ export class ModelsClient {
     }
 
     /**
+     * Create or update a model version.
+     *
      * @param {TrueFoundry.ApplyModelRequest} request
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

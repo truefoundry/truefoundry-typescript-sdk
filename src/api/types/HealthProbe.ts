@@ -9,13 +9,13 @@ import type * as TrueFoundry from "../index.js";
 export interface HealthProbe {
     config: TrueFoundry.HttpProbe;
     /** Time to wait after container has started before checking the endpoint */
-    initial_delay_seconds?: number;
+    initial_delay_seconds?: number | undefined;
     /** How often to check the endpoint */
-    period_seconds?: number;
+    period_seconds?: number | undefined;
     /** Time to wait for a response from the endpoint before considering it down */
-    timeout_seconds?: number;
+    timeout_seconds?: number | undefined;
     /** Number of successful responses from the endpoint before container is considered healthy */
-    success_threshold?: number;
+    success_threshold?: number | undefined;
     /** Number of consecutive failures before the container is considered down */
-    failure_threshold?: number;
+    failure_threshold?: number | undefined;
 }

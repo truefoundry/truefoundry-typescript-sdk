@@ -13,5 +13,5 @@ export interface GitHelmRepo {
      * Helm values files for overriding values in the helm chart.
      * The path is relative to the Path directory defined above
      */
-    value_files?: string[];
+    value_files?: string[] | undefined;
 }

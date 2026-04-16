@@ -27,6 +27,7 @@ describe("SecretsClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
@@ -36,36 +37,7 @@ describe("SecretsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    name: "name",
-                    secretGroupId: "secretGroupId",
-                    value: "value",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    secretVersions: [
-                        {
-                            id: "id",
-                            fqn: "fqn",
-                        },
-                    ],
-                    activeDeploymentsCount: 1,
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.secrets.list();
 
         expect(expected.data).toEqual(page.data);
@@ -79,6 +51,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
@@ -98,6 +71,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint({ once: false })
             .post("/api/svc/v1/secrets")
@@ -128,6 +102,9 @@ describe("SecretsClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
@@ -136,6 +113,7 @@ describe("SecretsClient", () => {
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/secrets/id")
@@ -145,31 +123,7 @@ describe("SecretsClient", () => {
             .build();
 
         const response = await client.secrets.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                name: "name",
-                secretGroupId: "secretGroupId",
-                value: "value",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                secretVersions: [
-                    {
-                        id: "id",
-                        fqn: "fqn",
-                    },
-                ],
-                activeDeploymentsCount: 1,
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -177,6 +131,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/secrets/id")
@@ -195,6 +150,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/secrets/id")
@@ -213,6 +169,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = 1.1;
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secrets/id")
@@ -224,7 +181,7 @@ describe("SecretsClient", () => {
         const response = await client.secrets.delete("id", {
             forceDelete: true,
         });
-        expect(response).toEqual(1.1);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -232,6 +189,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secrets/id")
@@ -250,6 +208,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secrets/id")
@@ -268,6 +227,7 @@ describe("SecretsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/secrets/id")

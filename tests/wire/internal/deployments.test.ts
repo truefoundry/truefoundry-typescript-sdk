@@ -22,6 +22,7 @@ describe("DeploymentsClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
             },
         ];
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId/statuses")
@@ -31,21 +32,7 @@ describe("DeploymentsClient", () => {
             .build();
 
         const response = await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
-        expect(response).toEqual([
-            {
-                id: "id",
-                deploymentId: "deploymentId",
-                status: "INITIALIZED",
-                state: {
-                    key: "value",
-                },
-                transition: "BUILDING",
-                message: "message",
-                retryCount: 1.1,
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_deployment_statuses (2)", async () => {
@@ -53,6 +40,7 @@ describe("DeploymentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId/statuses")
@@ -88,6 +76,7 @@ describe("DeploymentsClient", () => {
                 updatedAt: "2024-01-15T09:30:00Z",
             },
         ];
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId/builds")
@@ -97,29 +86,7 @@ describe("DeploymentsClient", () => {
             .build();
 
         const response = await client.internal.deployments.getBuilds("id", "deploymentId");
-        expect(response).toEqual([
-            {
-                id: "id",
-                deploymentId: "deploymentId",
-                componentName: "componentName",
-                build: {
-                    name: "name",
-                    status: 20,
-                },
-                buildId: "buildId",
-                imageUri: "imageUri",
-                name: "name",
-                status: "STARTED",
-                getLogsUrl: "getLogsUrl",
-                tailLogsUrl: "tailLogsUrl",
-                logsStartTs: "logsStartTs",
-                metadata: {
-                    key: "value",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-            },
-        ]);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_builds (2)", async () => {
@@ -127,6 +94,7 @@ describe("DeploymentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/apps/id/deployments/deploymentId/builds")
@@ -145,6 +113,7 @@ describe("DeploymentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { serviceName: "serviceName", workspaceFqn: "workspaceFqn" };
         const rawResponseBody = { uri: "uri", url: "url", headers: { key: "value" } };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/deployment/code-upload-url")
@@ -158,13 +127,7 @@ describe("DeploymentsClient", () => {
             serviceName: "serviceName",
             workspaceFqn: "workspaceFqn",
         });
-        expect(response).toEqual({
-            uri: "uri",
-            url: "url",
-            headers: {
-                key: "value",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_suggested_endpoint (1)", async () => {
@@ -176,6 +139,7 @@ describe("DeploymentsClient", () => {
             path: "path",
             gateway: { uid: "uid", name: "name", hosts: ["hosts"], isTieBreaker: true, selector: { key: "value" } },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/deployment/deployment-endpoint")
@@ -192,19 +156,7 @@ describe("DeploymentsClient", () => {
             port: "port",
             preferWildcard: true,
         });
-        expect(response).toEqual({
-            host: "host",
-            path: "path",
-            gateway: {
-                uid: "uid",
-                name: "name",
-                hosts: ["hosts"],
-                isTieBreaker: true,
-                selector: {
-                    key: "value",
-                },
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_suggested_endpoint (2)", async () => {
@@ -212,6 +164,7 @@ describe("DeploymentsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/deployment/deployment-endpoint")

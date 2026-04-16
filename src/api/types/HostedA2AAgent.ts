@@ -9,5 +9,5 @@ export interface HostedA2AAgent {
     /** Agent Card URL for the A2A Agent */
     agent_card_url: string;
     /** Headers to be sent with the request to the hosted A2A agent. Primarily used for authentication. */
-    headers?: Record<string, string>;
+    headers?: Record<string, string> | undefined;
 }

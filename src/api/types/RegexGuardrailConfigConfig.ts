@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  * +uiProps={"forwardJsonKey": true}
  */
 export interface RegexGuardrailConfigConfig {
-    preset_patterns?: TrueFoundry.PresetRegexPattern;
+    preset_patterns?: TrueFoundry.PresetRegexPattern | undefined;
     /** Enter your own regex patterns to match against content, each with its own redaction text (used in mutate mode). */
-    custom_patterns?: TrueFoundry.CustomRegexPattern[];
+    custom_patterns?: TrueFoundry.CustomRegexPattern[] | undefined;
 }

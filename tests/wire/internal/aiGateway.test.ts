@@ -18,10 +18,14 @@ describe("AiGatewayClient", () => {
                 subjectType: "user",
                 subjectSlug: "subjectSlug",
                 subjectDisplayName: "subjectDisplayName",
+                subjectPatName: "subjectPatName",
+                subjectControllerName: "subjectControllerName",
+                subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
             },
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/llm-gateway/config/gateway-rate-limiting-config")
@@ -31,19 +35,6 @@ describe("AiGatewayClient", () => {
             .build();
 
         const response = await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config");
-        expect(response).toEqual({
-            id: "id",
-            tenantName: "tenantName",
-            type: "type",
-            manifest: {},
-            createdBySubject: {
-                subjectId: "subjectId",
-                subjectType: "user",
-                subjectSlug: "subjectSlug",
-                subjectDisplayName: "subjectDisplayName",
-            },
-            createdAt: "2024-01-15T09:30:00Z",
-            updatedAt: "2024-01-15T09:30:00Z",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });

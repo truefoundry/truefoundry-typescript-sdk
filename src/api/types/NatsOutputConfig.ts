@@ -12,5 +12,5 @@ export interface NatsOutputConfig {
     nats_url: string;
     /** Root subject of output NATS */
     root_subject: string;
-    auth?: TrueFoundry.NatsUserPasswordAuth;
+    auth?: TrueFoundry.NatsUserPasswordAuth | undefined;
 }

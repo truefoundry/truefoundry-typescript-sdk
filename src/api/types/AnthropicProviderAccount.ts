@@ -12,8 +12,8 @@ export interface AnthropicProviderAccount {
     name: string;
     auth_data: TrueFoundry.AnthropicKeyAuth;
     /** List of integrations that are associated with the Anthropic provider account */
-    integrations?: TrueFoundry.AnthropicIntegrations[];
+    integrations?: TrueFoundry.AnthropicIntegrations[] | undefined;
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

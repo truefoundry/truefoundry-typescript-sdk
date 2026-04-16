@@ -17,7 +17,7 @@ export interface PolicyManifest {
     entities: TrueFoundry.PolicyEntityTypes[];
     /** Actions this policy applies to */
     actions: TrueFoundry.PolicyActions[];
-    filters?: TrueFoundry.PolicyFilters;
+    filters?: TrueFoundry.PolicyFilters | undefined;
     /** TypeScript code for Policy logic. To write and test your policy code, please refer to this [repository](https://github.com/truefoundry/tfy-typescript-policy) */
     code: string;
 }

@@ -8,9 +8,11 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PaloAltoPrismaAirsGuardrailConfigConfig {
     /** Optional override for the base URL for Palo Alto Prisma AIRS. Defaults to https://service.api.aisecurity.paloaltonetworks.com/v1/ if not provided. */
-    base_url?: string;
+    base_url?: string | undefined;
     /** The profile name associated with this Guardrail Config. */
     profile_name: string;
     /** Execution mode for the guardrail. Sync waits for the guardrail check to complete before proceeding. Async triggers the check without waiting. Defaults to sync. */
-    mode?: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigConfigMode;
+    mode?: TrueFoundry.PaloAltoPrismaAirsGuardrailConfigConfigMode | undefined;
+    /** Map Palo Alto AIRS metadata fields to TrueFoundry request metadata keys. Key is the Palo Alto AIRS metadata field name, value is the corresponding key from X-TFY-METADATA header on the TrueFoundry side. Example: {"app_user": "user_email", "ai_model": "model_name"}. Reserved AIRS keys: ai_model, app_user, app_name. [Docs](https://www.truefoundry.com/docs/ai-gateway/palo-alto-airs) */
+    metadata_key_mapping?: Record<string, string> | undefined;
 }

@@ -16,6 +16,6 @@ export interface SnowflakeCortexProviderAccount {
     /** List of integrations that are associated with the Snowflake Cortex provider account */
     integrations: TrueFoundry.SnowflakeCortexIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

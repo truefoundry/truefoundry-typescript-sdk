@@ -15,14 +15,12 @@ export interface AzureOpenAiModel {
     /** The Azure OpenAI API version to use */
     api_version: string;
     /** The foundation model identifier (e.g., gpt-4o-2024-11-20) */
-    foundation_model?: string;
-    /** Global: worldwide processing, Data Zone: US/EU processing only */
-    deployment_type?: TrueFoundry.AzureOpenAiModelDeploymentType;
-    /** The Azure region for data-zone deployments */
-    region?: TrueFoundry.AzureOpenAiModelRegion;
+    foundation_model?: string | undefined;
+    /** Global: worldwide processing; Data zone (US): US data zone processing; Data zone (EU): EU data zone processing; Standard: single-region processing */
+    deployment_type: TrueFoundry.AzureOpenAiModelDeploymentType;
     /** Specify the type of the Azure OpenAI model */
     model_types: TrueFoundry.ModelType[];
-    cost?: TrueFoundry.ModelCostMetric;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

@@ -7,13 +7,13 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface JobAlert {
     /** Specify the notification channel to send alerts to */
-    notification_channel?: string;
+    notification_channel?: string | undefined;
     /** List of recipients' email addresses if the notification channel is Email. */
-    to_emails?: string[];
-    notification_target?: TrueFoundry.NotificationTarget;
+    to_emails?: string[] | undefined;
+    notification_target?: TrueFoundry.NotificationTarget | undefined;
     /** Send an alert when the job starts */
-    on_start?: boolean;
-    on_completion?: boolean;
+    on_start?: boolean | undefined;
+    on_completion?: boolean | undefined;
     /** Send an alert when the job fails */
-    on_failure?: boolean;
+    on_failure?: boolean | undefined;
 }

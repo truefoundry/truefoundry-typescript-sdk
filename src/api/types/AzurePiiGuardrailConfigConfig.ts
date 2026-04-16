@@ -12,7 +12,7 @@ export interface AzurePiiGuardrailConfigConfig {
     /** API version for the PII detection API */
     api_version: string;
     /** Custom endpoint URL for the PII detection API (optional, uses default Azure endpoint if not specified) */
-    custom_host?: string;
+    custom_host?: string | undefined;
     /** Specialized domain for PII detection. Use phi for PHI (Protected Health Information) or none for general text */
     domain: TrueFoundry.AzurePiiGuardrailConfigConfigDomain;
     /** Categories of PII to detect. */

@@ -9,5 +9,5 @@ export interface AllDataAccessRule extends TrueFoundry.DataAccessRuleBase {
     /** Data access scope - access to all data with optional filters */
     scope: "all_data";
     /** Optional filters to restrict data access (only applicable for all_data scope) */
-    filters?: TrueFoundry.AllDataAccessRuleFiltersItem[];
+    filters?: TrueFoundry.AllDataAccessRuleFiltersItem[] | undefined;
 }

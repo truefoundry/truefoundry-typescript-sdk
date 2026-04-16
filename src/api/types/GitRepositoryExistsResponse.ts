@@ -4,5 +4,5 @@ export interface GitRepositoryExistsResponse {
     /** The flag if repository exists or not */
     exists: boolean;
     /** The integration id of the repository */
-    id?: string;
+    id?: string | undefined;
 }

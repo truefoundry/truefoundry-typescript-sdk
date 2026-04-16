@@ -1,3 +1,7 @@
+export * from "./agentSkills/client/requests/index.js";
+export * as agentSkills from "./agentSkills/index.js";
+export * from "./agentSkillVersions/client/requests/index.js";
+export * as agentSkillVersions from "./agentSkillVersions/index.js";
 export * from "./alerts/client/requests/index.js";
 export * as alerts from "./alerts/index.js";
 export * from "./applications/client/requests/index.js";

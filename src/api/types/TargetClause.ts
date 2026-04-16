@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface TargetClause {
-    mcpServers?: TrueFoundry.InNotInOperator;
-    mcpTools?: TrueFoundry.InNotInOperator;
-    model?: TrueFoundry.InNotInOperator;
+    mcpServers?: TrueFoundry.InNotInOperator | undefined;
+    mcpTools?: TrueFoundry.McpToolsOperator | undefined;
+    model?: TrueFoundry.InNotInOperator | undefined;
 }

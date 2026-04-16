@@ -14,7 +14,7 @@ export interface CustomJwtAuthIntegration {
     issuer: string;
     /** The JSON Web Key Set URI for JWT verification. */
     jwks_uri: string;
-    login_provider?: TrueFoundry.OAuth2LoginProvider;
+    login_provider?: TrueFoundry.OAuth2LoginProvider | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

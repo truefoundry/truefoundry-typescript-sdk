@@ -12,5 +12,5 @@ export interface WebhookProviderAccount {
     name: string;
     /** List of integrations that are associated with the provider account. */
     integrations: TrueFoundry.WebhookIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

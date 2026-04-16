@@ -7,9 +7,9 @@ export interface User {
     email: string;
     tenantName: string;
     metadata: TrueFoundry.UserMetadata;
-    roles?: string[];
-    rolesWithResource?: TrueFoundry.RoleWithResource[];
-    accounts?: TrueFoundry.AccountInfo[];
+    roles?: string[] | undefined;
+    rolesWithResource?: TrueFoundry.RoleWithResource[] | undefined;
+    accounts?: TrueFoundry.AccountInfo[] | undefined;
     active: boolean;
     isEditable: boolean;
     createdAt: string;

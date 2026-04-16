@@ -3,7 +3,7 @@
 export interface EventInvolvedObject {
     kind: string;
     name: string;
-    apiVersion?: string;
-    namespace?: string;
-    containerName?: string;
+    apiVersion?: string | undefined;
+    namespace?: string | undefined;
+    containerName?: string | undefined;
 }

@@ -6,9 +6,9 @@ import type * as TrueFoundry from "../index.js";
  * Describes the configuration for the workflow alerts
  */
 export interface WorkflowAlert {
-    notification_target?: TrueFoundry.NotificationTarget;
+    notification_target?: TrueFoundry.NotificationTarget | undefined;
     /** Send an alert when the job completes */
-    on_completion?: boolean;
+    on_completion?: boolean | undefined;
     /** Send an alert when the job fails */
-    on_failure?: boolean;
+    on_failure?: boolean | undefined;
 }

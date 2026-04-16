@@ -37,4 +37,5 @@ export type TrueFoundryDeleteRequestManifest =
     | TrueFoundry.AgentManifest
     | TrueFoundry.EnvironmentManifest
     | TrueFoundry.TracingProjectManifest
-    | TrueFoundry.McpServerManifest;
+    | TrueFoundry.McpServerManifest
+    | TrueFoundry.RoleBindingManifest;

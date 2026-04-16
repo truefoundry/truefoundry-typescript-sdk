@@ -10,21 +10,21 @@ export interface BaseService {
     name: string;
     /** Specify whether you want to deploy a Docker image or build and deploy from source code */
     image: TrueFoundry.BaseServiceImage;
-    artifacts_download?: TrueFoundry.ArtifactsDownload;
-    resources?: TrueFoundry.Resources;
+    artifacts_download?: TrueFoundry.ArtifactsDownload | undefined;
+    resources?: TrueFoundry.Resources | undefined;
     /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string | undefined>;
+    env?: Record<string, string> | undefined;
     /** Expose the deployment to make it accessible over the internet or keep it private. Implement authentication to restrict access. [Docs](https://docs.truefoundry.com/docs/define-ports-and-domains) */
     ports: TrueFoundry.Port[];
-    service_account?: string;
+    service_account?: string | undefined;
     /** Configure data to be mounted to service pod(s) as a string, secret or volume. [Docs](https://docs.truefoundry.com/docs/mounting-volumes-service) */
-    mounts?: TrueFoundry.BaseServiceMountsItem[];
+    mounts?: TrueFoundry.BaseServiceMountsItem[] | undefined;
     /** Labels */
-    labels?: Record<string, string>;
-    kustomize?: TrueFoundry.Kustomize;
-    liveness_probe?: TrueFoundry.HealthProbe;
-    readiness_probe?: TrueFoundry.HealthProbe;
-    startup_probe?: TrueFoundry.HealthProbe;
+    labels?: Record<string, string> | undefined;
+    kustomize?: TrueFoundry.Kustomize | undefined;
+    liveness_probe?: TrueFoundry.HealthProbe | undefined;
+    readiness_probe?: TrueFoundry.HealthProbe | undefined;
+    startup_probe?: TrueFoundry.HealthProbe | undefined;
     /** Fully qualified name of the workspace */
-    workspace_fqn?: string;
+    workspace_fqn?: string | undefined;
 }

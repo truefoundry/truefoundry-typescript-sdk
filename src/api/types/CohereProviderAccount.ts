@@ -12,8 +12,8 @@ export interface CohereProviderAccount {
     name: string;
     auth_data: TrueFoundry.CohereKeyAuth;
     /** List of integrations that are associated with the Cohere provider account */
-    integrations?: TrueFoundry.CohereIntegrations[];
+    integrations?: TrueFoundry.CohereIntegrations[] | undefined;
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

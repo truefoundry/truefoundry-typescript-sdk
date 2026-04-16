@@ -31,6 +31,7 @@ describe("ClustersClient", () => {
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/clusters")
@@ -39,40 +40,7 @@ describe("ClustersClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const expected = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    manifest: {
-                        type: "cluster",
-                        name: "name",
-                        cluster_type: "aws-eks",
-                        environment_names: ["environment_names"],
-                        collaborators: [
-                            {
-                                subject: "subject",
-                                role_id: "role_id",
-                            },
-                        ],
-                    },
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    createdBySubject: {
-                        subjectId: "subjectId",
-                        subjectType: "user",
-                    },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        };
+        const expected = rawResponseBody;
         const page = await client.clusters.list({
             limit: 10,
             offset: 0,
@@ -89,6 +57,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint({ once: false })
             .get("/api/svc/v1/clusters")
@@ -141,12 +110,16 @@ describe("ClustersClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/clusters")
@@ -170,56 +143,7 @@ describe("ClustersClient", () => {
                 ],
             },
         });
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names"],
-                    base_domains: ["base_domains"],
-                    default_registry_fqn: "default_registry_fqn",
-                    spark_config: {
-                        ui_base_domain: "ui_base_domain",
-                    },
-                    ingress_controller_config: {
-                        ingress_class_name: "ingress_class_name",
-                    },
-                    cluster_integration_fqn: "cluster_integration_fqn",
-                    workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
-                    supported_nodepools: [
-                        {
-                            name: "name",
-                        },
-                    ],
-                    node_label_keys: {
-                        nodepool_selector_label: "nodepool_selector_label",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_or_update (2)", async () => {
@@ -238,6 +162,7 @@ describe("ClustersClient", () => {
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/clusters")
@@ -285,6 +210,7 @@ describe("ClustersClient", () => {
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/clusters")
@@ -332,6 +258,7 @@ describe("ClustersClient", () => {
             },
         };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .put("/api/svc/v1/clusters")
@@ -394,12 +321,16 @@ describe("ClustersClient", () => {
                     subjectType: "user",
                     subjectSlug: "subjectSlug",
                     subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
                 createdBy: "createdBy",
             },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id")
@@ -409,56 +340,7 @@ describe("ClustersClient", () => {
             .build();
 
         const response = await client.clusters.get("id");
-        expect(response).toEqual({
-            data: {
-                id: "id",
-                fqn: "fqn",
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names"],
-                    base_domains: ["base_domains"],
-                    default_registry_fqn: "default_registry_fqn",
-                    spark_config: {
-                        ui_base_domain: "ui_base_domain",
-                    },
-                    ingress_controller_config: {
-                        ingress_class_name: "ingress_class_name",
-                    },
-                    cluster_integration_fqn: "cluster_integration_fqn",
-                    workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
-                    supported_nodepools: [
-                        {
-                            name: "name",
-                        },
-                    ],
-                    node_label_keys: {
-                        nodepool_selector_label: "nodepool_selector_label",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                    ownedBy: {
-                        account: "account",
-                    },
-                },
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get (2)", async () => {
@@ -466,6 +348,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id")
@@ -484,6 +367,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id")
@@ -502,6 +386,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/clusters/id")
@@ -511,9 +396,7 @@ describe("ClustersClient", () => {
             .build();
 
         const response = await client.clusters.delete("id");
-        expect(response).toEqual({
-            message: "message",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {
@@ -521,6 +404,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/clusters/id")
@@ -539,6 +423,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .delete("/api/svc/v1/clusters/id")
@@ -584,10 +469,12 @@ describe("ClustersClient", () => {
                         },
                     ],
                     workspaceId: "workspaceId",
+                    metadata: { key: "value" },
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
         };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/get-addons")
@@ -600,51 +487,7 @@ describe("ClustersClient", () => {
             limit: 10,
             offset: 0,
         });
-        expect(response).toEqual({
-            data: [
-                {
-                    name: "ARGOCD",
-                    appName: "appName",
-                    namespace: "namespace",
-                    applicationId: "applicationId",
-                    description: "description",
-                    path: "path",
-                    addonFolder: "addonFolder",
-                    installed: true,
-                    status: {
-                        installed: true,
-                    },
-                    version: "version",
-                    manifest: {
-                        key: "value",
-                    },
-                    installationSource: "installationSource",
-                    unsupportedClusterTypes: ["aws-eks"],
-                    required: true,
-                    knownCRDs: ["knownCRDs"],
-                    source: {
-                        repo_url: "repo_url",
-                        chart: "chart",
-                    },
-                    labels: ["labels"],
-                    recommendations: [
-                        {
-                            recommendationData: {
-                                key: "value",
-                            },
-                            recommendationType: "recommendationType",
-                            expiryTimestamp: "2024-01-15T09:30:00Z",
-                        },
-                    ],
-                    workspaceId: "workspaceId",
-                },
-            ],
-            pagination: {
-                total: 100,
-                offset: 0,
-                limit: 10,
-            },
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("get_addons (2)", async () => {
@@ -652,6 +495,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/get-addons")
@@ -670,6 +514,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/get-addons")
@@ -688,6 +533,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { isConnected: true };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/is-connected")
@@ -697,9 +543,7 @@ describe("ClustersClient", () => {
             .build();
 
         const response = await client.clusters.isConnected("id");
-        expect(response).toEqual({
-            isConnected: true,
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("is_connected (2)", async () => {
@@ -707,6 +551,7 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { statusCode: 1, message: "message" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/clusters/id/is-connected")

@@ -10,6 +10,7 @@ describe("WorkflowsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { executionName: "executionName" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/workflow/applicationId/executions")
@@ -20,9 +21,7 @@ describe("WorkflowsClient", () => {
             .build();
 
         const response = await client.internal.workflows.executeWorkflow("applicationId");
-        expect(response).toEqual({
-            executionName: "executionName",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("execute_workflow (2)", async () => {
@@ -30,6 +29,7 @@ describe("WorkflowsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/workflow/applicationId/executions")
@@ -49,6 +49,7 @@ describe("WorkflowsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {};
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/workflow/applicationId/executions")

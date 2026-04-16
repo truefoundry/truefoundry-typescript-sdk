@@ -332,6 +332,7 @@ export class UsersClient {
      * Delete user if they are not a collaborator in any resource and not part of any team other than everyone.
      *
      * @param {string} id - User Id
+     * @param {TrueFoundry.UsersDeleteRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -339,19 +340,27 @@ export class UsersClient {
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.users.delete("id")
+     *     await client.users.delete("id", {
+     *         tenantName: "tenantName"
+     *     })
      */
     public delete(
         id: string,
+        request: TrueFoundry.UsersDeleteRequest = {},
         requestOptions?: UsersClient.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.DeleteUserResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
     private async __delete(
         id: string,
+        request: TrueFoundry.UsersDeleteRequest = {},
         requestOptions?: UsersClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.DeleteUserResponse>> {
+        const { tenantName } = request;
+        const _queryParams: Record<string, unknown> = {
+            tenantName,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -366,7 +375,7 @@ export class UsersClient {
             ),
             method: "DELETE",
             headers: _headers,
-            queryParameters: requestOptions?.queryParams,
+            queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -780,7 +789,84 @@ export class UsersClient {
     }
 
     /**
-     * Get all manual teams associated with a user.
+     * Get all role bindings associated with a user, including team-inherited bindings.
+     *
+     * @param {string} id - User Id
+     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.getPermissions("id")
+     */
+    public getPermissions(
+        id: string,
+        requestOptions?: UsersClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetUserPermissionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getPermissions(id, requestOptions));
+    }
+
+    private async __getPermissions(
+        id: string,
+        requestOptions?: UsersClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetUserPermissionsResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/users/${core.url.encodePathParam(id)}/permissions`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryParameters: requestOptions?.queryParams,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GetUserPermissionsResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "GET",
+            "/api/svc/v1/users/{id}/permissions",
+        );
+    }
+
+    /**
+     * Get all teams associated with a user, including their role in each team.
      *
      * @param {string} id - User Id
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.

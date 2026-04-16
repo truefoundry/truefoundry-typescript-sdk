@@ -4,20 +4,20 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Session {
     id: string;
-    userName?: string;
+    userName?: string | undefined;
     subjectSlug: string;
-    subjectControllerName?: string;
-    subjectPatName?: string;
-    email?: string;
+    subjectControllerName?: string | undefined;
+    subjectPatName?: string | undefined;
+    email?: string | undefined;
     subjectType: TrueFoundry.SubjectType;
-    tenantName?: string;
+    tenantName?: string | undefined;
     roles: string[];
     teams: TrueFoundry.SessionTeam[];
     accounts: TrueFoundry.SessionAccount[];
-    metadata?: TrueFoundry.UserMetadata;
-    isBillingEnabled?: boolean;
-    serviceAccountMetadata?: Record<string, unknown>;
-    account?: TrueFoundry.Account;
-    rootAccount?: TrueFoundry.Account;
+    metadata?: TrueFoundry.UserMetadata | undefined;
+    isBillingEnabled?: boolean | undefined;
+    serviceAccountMetadata?: Record<string, unknown> | undefined;
+    account?: TrueFoundry.Account | undefined;
+    rootAccount?: TrueFoundry.Account | undefined;
     effectiveUserId: string;
 }

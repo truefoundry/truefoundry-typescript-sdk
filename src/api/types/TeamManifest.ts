@@ -8,8 +8,10 @@ export interface TeamManifest {
     /** Name of the Team */
     name: string;
     /** Emails of each of the user who can manage the members of the team. Any tenant admin is by default a team manager. */
-    managers?: string[];
+    managers?: string[] | undefined;
     /** Enter email of each of the user you want to add in the team. */
     members: string[];
-    ownedBy?: TrueFoundry.TeamOwnedBy;
+    ownedBy?: TrueFoundry.TeamOwnedBy | undefined;
+    /** Key-value pairs to categorize this Team (e.g., by owner or environment). */
+    tags?: Record<string, unknown> | undefined;
 }

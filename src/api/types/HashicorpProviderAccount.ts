@@ -12,5 +12,5 @@ export interface HashicorpProviderAccount {
     name: string;
     /** List of integrations that are associated with the HashiCorp Vault provider account. */
     integrations: TrueFoundry.HashicorpIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

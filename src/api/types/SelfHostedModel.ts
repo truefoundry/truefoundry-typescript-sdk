@@ -17,15 +17,15 @@ export interface SelfHostedModel {
     /** The type of model server being used */
     model_server: TrueFoundry.SelfHostedModelModelServer;
     /** +uiType=Hidden */
-    tfy_application_id?: string;
+    tfy_application_id?: string | undefined;
     /** Specify the type of the model */
     model_types: TrueFoundry.ModelType[];
-    tls_settings?: TrueFoundry.CustomTlsSettings;
+    tls_settings?: TrueFoundry.CustomTlsSettings | undefined;
     /** Self Hosted Model authentication data for the integration. */
-    auth_data?: TrueFoundry.SelfHostedModelAuthData;
+    auth_data?: TrueFoundry.SelfHostedModelAuthData | undefined;
     /** Self Hosted Model headers for the integration. Forwarded to the provider as is. For example: `{"Authorization": "APIKey <token>"}` */
-    headers?: Record<string, string>;
-    cost?: TrueFoundry.ModelCostMetric;
+    headers?: Record<string, string> | undefined;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

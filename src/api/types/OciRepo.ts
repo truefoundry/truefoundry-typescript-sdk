@@ -12,7 +12,7 @@ export interface OciRepo {
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations) page
      */
-    integration_fqn?: string;
+    integration_fqn?: string | undefined;
     /** Helm chart version */
     version: string;
 }

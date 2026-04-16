@@ -3,15 +3,15 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface SecretGroup {
-    id?: string;
-    fqn?: string;
+    id?: string | undefined;
+    fqn?: string | undefined;
     tenantName: string;
     createdBySubject: TrueFoundry.Subject;
     associatedSecrets: TrueFoundry.Secret[];
-    integrationId?: string;
-    manifest?: Record<string, unknown>;
+    integrationId?: string | undefined;
+    manifest?: Record<string, unknown> | undefined;
     accountId: string;
     createdAt: string;
     updatedAt: string;
-    createdBy?: string;
+    createdBy?: string | undefined;
 }

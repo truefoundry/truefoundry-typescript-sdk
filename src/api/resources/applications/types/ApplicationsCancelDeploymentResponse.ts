@@ -2,5 +2,5 @@
 
 export interface ApplicationsCancelDeploymentResponse {
     /** Deployment cancelled */
-    message?: string;
+    message?: string | undefined;
 }

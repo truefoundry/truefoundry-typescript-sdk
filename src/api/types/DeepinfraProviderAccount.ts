@@ -12,8 +12,8 @@ export interface DeepinfraProviderAccount {
     name: string;
     auth_data: TrueFoundry.DeepinfraKeyAuth;
     /** List of integrations that are associated with the DeepInfra provider account */
-    integrations?: TrueFoundry.DeepinfraIntegrations[];
+    integrations?: TrueFoundry.DeepinfraIntegrations[] | undefined;
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

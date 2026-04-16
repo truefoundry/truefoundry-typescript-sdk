@@ -8,5 +8,6 @@ export const PolicyEntityTypes = {
     SshServer: "ssh-server",
     Workflow: "workflow",
     Helm: "helm",
+    Volume: "volume",
 } as const;
 export type PolicyEntityTypes = (typeof PolicyEntityTypes)[keyof typeof PolicyEntityTypes];

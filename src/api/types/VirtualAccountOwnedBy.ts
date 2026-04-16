@@ -5,7 +5,7 @@
  */
 export interface VirtualAccountOwnedBy {
     /** The name of the account that owns this resource */
-    account?: string;
+    account?: string | undefined;
     /** The name of the team that owns this resource */
     team: string;
 }

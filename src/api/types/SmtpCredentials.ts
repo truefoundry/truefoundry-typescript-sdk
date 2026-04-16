@@ -12,9 +12,9 @@ export interface SmtpCredentials {
     /** The SMTP host of the email server. */
     host: string;
     /** The username for the SMTP server. */
-    username?: string;
+    username?: string | undefined;
     /** The password for the SMTP server. */
-    password?: string;
+    password?: string | undefined;
     /** The port of the SMTP server. */
     port: number;
     /** Whether to use TLS for the SMTP server. */

@@ -3,33 +3,33 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Application {
-    id?: string;
-    fqn?: string;
-    name?: string;
-    type?: TrueFoundry.ApplicationType;
+    id?: string | undefined;
+    fqn?: string | undefined;
+    name?: string | undefined;
+    type?: TrueFoundry.ApplicationType | undefined;
     createdBySubject: TrueFoundry.Subject;
-    tenantName?: string;
-    metadata?: TrueFoundry.ApplicationMetadata;
+    tenantName?: string | undefined;
+    metadata?: TrueFoundry.ApplicationMetadata | undefined;
     lifecycleStage: TrueFoundry.ApplicationLifecycleStage;
-    workspaceId?: string;
-    lastVersion?: number;
-    activeVersion?: number;
-    createdAt?: string;
-    updatedAt?: string;
+    workspaceId?: string | undefined;
+    lastVersion?: number | undefined;
+    activeVersion?: number | undefined;
+    createdAt?: string | undefined;
+    updatedAt?: string | undefined;
     /** Recommendations for this application */
-    recommendations?: TrueFoundry.Recommendation[];
+    recommendations?: TrueFoundry.Recommendation[] | undefined;
     /** Alerts for this application */
-    alerts?: TrueFoundry.Alert[];
+    alerts?: TrueFoundry.Alert[] | undefined;
     /** Summary of alerts for this application */
-    alertsSummary?: Record<string, unknown>;
+    alertsSummary?: Record<string, unknown> | undefined;
     /** Debug infos for this application */
-    applicationDebugInfos?: TrueFoundry.ApplicationDebugInfo[];
+    applicationDebugInfos?: TrueFoundry.ApplicationDebugInfo[] | undefined;
     /** Potential problems with the application */
-    potentialProblems?: TrueFoundry.ApplicationProblem[];
+    potentialProblems?: TrueFoundry.ApplicationProblem[] | undefined;
     autopilot: Record<string, unknown>;
-    workspaceFqn?: string;
-    createdBy?: string;
-    deployment?: TrueFoundry.Deployment;
-    activeDeploymentId?: string;
-    lastDeploymentId?: string;
+    workspaceFqn?: string | undefined;
+    createdBy?: string | undefined;
+    deployment?: TrueFoundry.Deployment | undefined;
+    activeDeploymentId?: string | undefined;
+    lastDeploymentId?: string | undefined;
 }

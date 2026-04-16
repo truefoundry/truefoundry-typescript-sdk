@@ -31,5 +31,5 @@ export interface Schedule {
      * Timezone against which the cron schedule will be calculated, e.g. "Asia/Tokyo". Default is machine's local time.
      * https://docs.truefoundry.com/docs/list-of-supported-timezones
      */
-    timezone?: string;
+    timezone?: string | undefined;
 }

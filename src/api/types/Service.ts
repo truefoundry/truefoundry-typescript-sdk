@@ -10,12 +10,12 @@ export interface Service extends TrueFoundry.BaseService {
     type: "service";
     /** Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing. */
     replicas: TrueFoundry.ServiceReplicas;
-    auto_shutdown?: TrueFoundry.Autoshutdown;
+    auto_shutdown?: TrueFoundry.Autoshutdown | undefined;
     /**
      * Whether to allow intercepts to be applied for this service.
      * This would inject an additional sidecar in each pod of the service. Not recommended on production
      */
-    allow_interception?: boolean;
+    allow_interception?: boolean | undefined;
     /** Strategy to dictate how a rollout should happen when a new release for this service is made [Docs](https://docs.truefoundry.com/docs/rollout-strategy) */
-    rollout_strategy?: TrueFoundry.ServiceRolloutStrategy;
+    rollout_strategy?: TrueFoundry.ServiceRolloutStrategy | undefined;
 }

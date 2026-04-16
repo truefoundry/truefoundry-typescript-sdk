@@ -5,4 +5,5 @@ import type * as TrueFoundry from "../index.js";
 export type McpServerManifest =
     | TrueFoundry.RemoteMcpServerManifest
     | TrueFoundry.VirtualMcpServerManifest
-    | TrueFoundry.OpenApimcpServerManifest;
+    | TrueFoundry.OpenApimcpServerManifest
+    | TrueFoundry.StdioMcpServerManifest;

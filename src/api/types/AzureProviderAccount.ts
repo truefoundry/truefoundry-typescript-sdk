@@ -11,8 +11,8 @@ export interface AzureProviderAccount {
     /** The name of the Azure provider account. */
     name: string;
     /** The ID of the target subscription. The value must be an UUID. */
-    subscription_id?: string;
+    subscription_id?: string | undefined;
     /** List of integrations that are associated with the Azure provider account. */
     integrations: TrueFoundry.AzureIntegrations[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

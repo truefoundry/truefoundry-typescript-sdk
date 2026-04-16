@@ -15,6 +15,6 @@ export interface ClouderaProviderAccount {
     /** List of integrations that are associated with the Cloudera provider account */
     integrations: TrueFoundry.ClouderaIntegrations[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

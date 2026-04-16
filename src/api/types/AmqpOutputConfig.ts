@@ -11,5 +11,5 @@ export interface AmqpOutputConfig {
     /** AMQP Routing Key to publish to. */
     routing_key: string;
     /** AMQP Exchange Name */
-    exchange_name?: string;
+    exchange_name?: string | undefined;
 }

@@ -44,9 +44,9 @@ export interface Resources {
      * If the overall usage goes above `resources.memory_limit` the user process may get killed.
      * Shared Memory Size cannot be more than the defined Memory Limit for the workload.
      */
-    shared_memory_size?: number;
+    shared_memory_size?: number | undefined;
     /** This field determines how the underlying node resource is to be utilized */
-    node?: TrueFoundry.ResourcesNode;
+    node?: TrueFoundry.ResourcesNode | undefined;
     /** Define custom device or accelerator requirements for your workload. We currently support NVIDIA GPUs, AWS Inferentia Accelerators, Single Host TPU Slices. */
-    devices?: TrueFoundry.ResourcesDevicesItem[];
+    devices?: TrueFoundry.ResourcesDevicesItem[] | undefined;
 }

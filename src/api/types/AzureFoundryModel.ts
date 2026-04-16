@@ -19,8 +19,8 @@ export interface AzureFoundryModel {
     /** The Azure AI Foundry endpoint URL. Should look like https://{deployment}.{region}.models.ai.azure.com */
     azure_endpoint: string;
     /** The API version for the Azure Foundry model */
-    api_version?: string;
-    cost?: TrueFoundry.ModelCostMetric;
+    api_version?: string | undefined;
+    cost?: TrueFoundry.ModelCostMetric | undefined;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

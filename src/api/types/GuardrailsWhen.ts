@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GuardrailsWhen {
-    target?: TrueFoundry.TargetConditionGroup;
-    subjects?: TrueFoundry.SubjectConditionGroup;
-    metadata?: Record<string, string>;
+    target?: TrueFoundry.TargetConditionGroup | undefined;
+    subjects?: TrueFoundry.SubjectConditionGroup | undefined;
+    metadata?: Record<string, string> | undefined;
 }

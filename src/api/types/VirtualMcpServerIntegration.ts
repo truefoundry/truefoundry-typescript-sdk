@@ -15,5 +15,5 @@ export interface VirtualMcpServerIntegration {
     /** List of source MCP servers to include in this virtual server. */
     servers: TrueFoundry.VirtualMcpServerSource[];
     /** List of teams/users who can use this MCP server. */
-    authorized_subjects?: string[];
+    authorized_subjects?: string[] | undefined;
 }

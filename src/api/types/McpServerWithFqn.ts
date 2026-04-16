@@ -13,5 +13,5 @@ export interface McpServerWithFqn {
     /** Whether to enable all tools from the MCP server */
     enable_all_tools: boolean;
     /** The tools to enable from the MCP server */
-    tools?: TrueFoundry.McpTool[];
+    tools?: TrueFoundry.McpTool[] | undefined;
 }

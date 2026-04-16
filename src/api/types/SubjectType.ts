@@ -6,5 +6,6 @@ export const SubjectType = {
     Serviceaccount: "serviceaccount",
     Virtualaccount: "virtualaccount",
     ExternalIdentity: "external-identity",
+    Role: "role",
 } as const;
 export type SubjectType = (typeof SubjectType)[keyof typeof SubjectType];

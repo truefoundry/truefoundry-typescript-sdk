@@ -4,9 +4,9 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Event {
     /** Name of the event */
-    name?: string;
+    name?: string | undefined;
     /** Timestamp when the event was first observed */
-    firstTimestamp?: string;
+    firstTimestamp?: string | undefined;
     /** Timestamp when the event was last observed */
     lastTimestamp: string;
     /** Details of the involved object */
@@ -20,7 +20,7 @@ export interface Event {
     /** Message describing the event */
     message: string;
     /** Namespace of the event */
-    namespace?: string;
+    namespace?: string | undefined;
     /** Chart of the event */
     chart: TrueFoundry.EventChart;
 }

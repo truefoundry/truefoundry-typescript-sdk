@@ -9,7 +9,7 @@ export interface EnkryptAiGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
-    description?: string;
+    description?: string | undefined;
     /**
      * +uiType=Hidden
      * +value=integration/guardrail-config/enkrypt-ai
@@ -22,7 +22,7 @@ export interface EnkryptAiGuardrailConfig {
      */
     operation: TrueFoundry.EnkryptAiGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
-    priority?: number;
+    priority?: number | undefined;
     enforcing_strategy: TrueFoundry.EnforcingStrategy;
     /**
      * +uiType=Ignore

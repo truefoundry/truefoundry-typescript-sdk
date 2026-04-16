@@ -17,6 +17,6 @@ export interface AzureOpenAiProviderAccount {
     /** List of integrations that are associated with the Azure OpenAI provider account */
     integrations: TrueFoundry.AzureOpenAiModel[];
     /** List of users who have access to this provider account */
-    collaborators?: TrueFoundry.Collaborator[];
-    ownedBy?: TrueFoundry.OwnedBy;
+    collaborators?: TrueFoundry.Collaborator[] | undefined;
+    ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

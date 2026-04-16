@@ -6,5 +6,5 @@ export interface GetVirtualAccountResponse {
     /** Virtual Account */
     data: TrueFoundry.VirtualAccount;
     /** Virtual Account token (present only when creating a virtual account) */
-    token?: string;
+    token?: string | undefined;
 }

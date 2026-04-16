@@ -14,5 +14,5 @@ export interface SparkBuild {
      * Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirements_path?: string;
+    requirements_path?: string | undefined;
 }

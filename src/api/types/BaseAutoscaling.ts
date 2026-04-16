@@ -6,5 +6,5 @@ export interface BaseAutoscaling {
     /** Maximum number of replicas allowed for the component. */
     max_replicas: number;
     /** This is the interval to check each trigger on. */
-    polling_interval?: number;
+    polling_interval?: number | undefined;
 }

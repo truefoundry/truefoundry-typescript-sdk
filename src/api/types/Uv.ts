@@ -8,7 +8,7 @@ export interface Uv {
     /** +value=uv */
     type: "uv";
     /** UV version to use */
-    uv_version?: string;
+    uv_version?: string | undefined;
     /** Sync options to pass to uv command */
-    sync_options?: string;
+    sync_options?: string | undefined;
 }

@@ -6,8 +6,8 @@ import type * as TrueFoundry from "../index.js";
  * Workbench Config
  */
 export interface ClusterManifestWorkbenchConfig {
-    notebook_config?: TrueFoundry.NotebookConfig;
-    ssh_server_config?: TrueFoundry.SshServerConfig;
+    notebook_config?: TrueFoundry.NotebookConfig | undefined;
+    ssh_server_config?: TrueFoundry.SshServerConfig | undefined;
     /** The default storage class for the home directory of workbench */
-    default_storage_class?: string;
+    default_storage_class?: string | undefined;
 }

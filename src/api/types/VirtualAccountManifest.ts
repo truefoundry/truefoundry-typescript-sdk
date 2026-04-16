@@ -10,9 +10,11 @@ export interface VirtualAccountManifest {
     /** Permissions */
     permissions: TrueFoundry.Permissions[];
     /** Expiration Date of the Virtual Account (should be in the format yyyy-mm-dd) */
-    expiration_date?: string;
-    auto_rotate?: TrueFoundry.AutoRotate;
-    notification_target?: TrueFoundry.NotificationTarget;
-    secret_store_config?: TrueFoundry.SecretStoreConfig;
-    ownedBy?: TrueFoundry.VirtualAccountOwnedBy;
+    expiration_date?: string | undefined;
+    auto_rotate?: TrueFoundry.AutoRotate | undefined;
+    notification_target?: TrueFoundry.NotificationTarget | undefined;
+    secret_store_config?: TrueFoundry.SecretStoreConfig | undefined;
+    ownedBy?: TrueFoundry.VirtualAccountOwnedBy | undefined;
+    /** Key-value pairs to categorize this Virtual Account (e.g., by owner or environment). */
+    tags?: Record<string, unknown> | undefined;
 }

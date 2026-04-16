@@ -8,7 +8,7 @@ export interface CustomGuardrailConfigConfig {
     /** The URL of the Guardrail to send a post request to. */
     url: string;
     /** Headers for the Guardrail Server. Forwarded to the Guardrail Server as is. For example: `{"Authorization": "APIKey <token>"}` */
-    headers?: Record<string, string>;
+    headers?: Record<string, string> | undefined;
     /** The config for the Guardrail Server. This is a JSON object that will be sent as a config to Guardrail Server along with the request. */
-    config?: Record<string, unknown>;
+    config?: Record<string, unknown> | undefined;
 }

@@ -5,11 +5,11 @@
  */
 export interface ClusterManifestMonitoring {
     /** Cluster Loki URL */
-    loki_url?: string;
+    loki_url?: string | undefined;
     /** Cluster VictoriaLogs URL */
-    victoria_logs_url?: string;
+    victoria_logs_url?: string | undefined;
     /** Cluster Prometheus URL */
-    prometheus_url?: string;
+    prometheus_url?: string | undefined;
     /** Cluster Kubecost URL */
-    kubecost_url?: string;
+    kubecost_url?: string | undefined;
 }

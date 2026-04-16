@@ -6,5 +6,5 @@
  */
 export interface SecretDetectionGuardrailConfigConfig {
     /** Text to use when redacting detected secrets in logs and error messages. Defaults to '[REDACTED]'.Only applicable in mutate mode. */
-    redaction_text?: string;
+    redaction_text?: string | undefined;
 }

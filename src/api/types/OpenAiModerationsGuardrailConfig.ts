@@ -9,7 +9,7 @@ export interface OpenAiModerationsGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
-    description?: string;
+    description?: string | undefined;
     /**
      * +value=integration/guardrail-config/openai-moderations
      * +sort=50

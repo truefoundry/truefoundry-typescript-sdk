@@ -16,7 +16,7 @@ export interface PrometheusAlertRule {
     for: number;
     severity: TrueFoundry.AlertSeverity;
     /** Description of the alert rule which will be displayed in the alert rule list. This can be used to provide more context about the alert rule. */
-    description?: string;
+    description?: string | undefined;
     /** When enabled, notifications will be sent to all configured target channels when the alert conditions are met. */
     notification_enabled: boolean;
 }

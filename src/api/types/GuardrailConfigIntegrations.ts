@@ -14,7 +14,6 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.AzurePromptShieldGuardrailConfig
     | TrueFoundry.EnkryptAiGuardrailConfig
     | TrueFoundry.PaloAltoPrismaAirsGuardrailConfig
-    | TrueFoundry.PromptFooGuardrailConfig
     | TrueFoundry.FiddlerGuardrailConfig
     | TrueFoundry.PangeaGuardrailConfig
     | TrueFoundry.PatronusGuardrailConfig
@@ -28,4 +27,6 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.CedarGuardrailConfig
     | TrueFoundry.OpaGuardrailConfig
     | TrueFoundry.GoogleModelArmorGuardrailConfig
-    | TrueFoundry.GraySwanCygnalGuardrailConfig;
+    | TrueFoundry.GraySwanCygnalGuardrailConfig
+    | TrueFoundry.AktoGuardrailConfig
+    | TrueFoundry.TrojAiGuardrailConfig;

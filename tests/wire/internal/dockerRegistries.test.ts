@@ -10,6 +10,7 @@ describe("DockerRegistriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
         const rawResponseBody = { repoName: "repoName" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/docker-registry/create-repo")
@@ -24,9 +25,7 @@ describe("DockerRegistriesClient", () => {
             applicationName: "applicationName",
             workspaceFqn: "workspaceFqn",
         });
-        expect(response).toEqual({
-            repoName: "repoName",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("create_repository (2)", async () => {
@@ -34,6 +33,7 @@ describe("DockerRegistriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
         const rawResponseBody = { key: "value" };
+
         server
             .mockEndpoint()
             .post("/api/svc/v1/docker-registry/create-repo")
@@ -57,6 +57,7 @@ describe("DockerRegistriesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = { fqn: "fqn", registryUrl: "registryUrl", username: "username", password: "password" };
+
         server
             .mockEndpoint()
             .get("/api/svc/v1/docker-registry/creds")
@@ -69,11 +70,6 @@ describe("DockerRegistriesClient", () => {
             fqn: "fqn",
             clusterId: "clusterId",
         });
-        expect(response).toEqual({
-            fqn: "fqn",
-            registryUrl: "registryUrl",
-            username: "username",
-            password: "password",
-        });
+        expect(response).toEqual(rawResponseBody);
     });
 });
