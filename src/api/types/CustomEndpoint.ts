@@ -12,8 +12,7 @@ export interface CustomEndpoint {
     name: string;
     /** The target base URL to proxy requests to (e.g., https://my-service.example.com/v1) */
     base_url: string;
-    /** Authentication credentials for the upstream endpoint. Overrides account-level auth if set. */
-    auth_data?: TrueFoundry.CustomEndpointAuthData | undefined;
+    auth_data?: TrueFoundry.CustomHeaderAuth | undefined;
     /** Custom headers forwarded to the upstream endpoint with every request. For example: `{"X-Custom-Header": "value"}` */
     headers?: Record<string, string> | undefined;
     tls_settings?: TrueFoundry.CustomTlsSettings | undefined;
