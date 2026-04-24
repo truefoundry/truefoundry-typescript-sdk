@@ -2,4 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export type AgentSkillManifestSource = TrueFoundry.AgentSkillSourceInline | TrueFoundry.AgentSkillSourceBlobStorage;
+export type AgentSkillManifestSource =
+    | TrueFoundry.AgentSkillSourceInline
+    | TrueFoundry.AgentSkillSourceBlobStorage
+    | TrueFoundry.AgentSkillSourceLocal;
