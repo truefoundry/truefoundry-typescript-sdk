@@ -10,8 +10,9 @@ export interface CustomEndpointProviderAccount {
     type: "provider-account/custom-endpoint";
     /** The name of the custom endpoint provider account. */
     name: string;
-    /** Default authentication data for all endpoints under this account. Can be overridden at the endpoint level. */
-    auth_data?: TrueFoundry.CustomEndpointProviderAccountAuthData | undefined;
+    /** The type of service behind this endpoint (used for tracking purposes) */
+    endpoint_type?: TrueFoundry.CustomEndpointProviderAccountEndpointType | undefined;
+    auth_data?: TrueFoundry.CustomHeaderAuth | undefined;
     /** List of endpoint integrations associated with this provider account. */
     integrations: TrueFoundry.CustomEndpointIntegrations[];
     /** Collaborators */
