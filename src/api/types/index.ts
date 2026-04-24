@@ -13,6 +13,7 @@ export * from "./AgentSkillManifest.js";
 export * from "./AgentSkillManifestSource.js";
 export * from "./AgentSkillSourceBlobStorage.js";
 export * from "./AgentSkillSourceInline.js";
+export * from "./AgentSkillSourceLocal.js";
 export * from "./AgentSkillVersion.js";
 export * from "./AgentSource.js";
 export * from "./Ai21Integrations.js";
