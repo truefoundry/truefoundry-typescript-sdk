@@ -7,4 +7,6 @@ export interface AgentSkillSourceBlobStorage {
     type: "blob-storage";
     /** 1–1024 chars. */
     description: string;
+    /** Storage URI of the blob storage object where the skill is stored. */
+    uri: string;
 }

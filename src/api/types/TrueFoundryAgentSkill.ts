@@ -3,6 +3,6 @@
 export interface TrueFoundryAgentSkill {
     /** Fully qualified name of the agent skill */
     fqn: string;
-    /** When true, the skill's markdown content is loaded into the agent context before the first turn */
-    eager?: boolean | undefined;
+    /** If true, the SKILL.md content is injected into the agent context. */
+    preload_skill_md: boolean;
 }

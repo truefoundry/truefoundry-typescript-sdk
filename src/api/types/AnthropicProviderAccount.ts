@@ -10,7 +10,7 @@ export interface AnthropicProviderAccount {
     type: "provider-account/anthropic";
     /** The name of the Anthropic provider account */
     name: string;
-    auth_data: TrueFoundry.AnthropicKeyAuth;
+    auth_data?: TrueFoundry.AnthropicKeyAuth | undefined;
     /** List of integrations that are associated with the Anthropic provider account */
     integrations?: TrueFoundry.AnthropicIntegrations[] | undefined;
     /** List of users who have access to this provider account */

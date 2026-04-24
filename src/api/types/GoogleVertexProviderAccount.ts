@@ -12,8 +12,9 @@ export interface GoogleVertexProviderAccount {
     name: string;
     /** The Google Cloud project ID where Vertex AI is enabled */
     project_id: string;
-    region: TrueFoundry.GcpRegion;
-    auth_data?: TrueFoundry.VertexKeyFileAuth | undefined;
+    region: TrueFoundry.VertexRegion;
+    /** Service account key JSON, or Workload Identity Federation file (workload-identity-federation-file) with external_account JSON (e.g. create-cred-config). https://docs.truefoundry.com/gateway/google-vertex */
+    auth_data?: TrueFoundry.GoogleVertexProviderAccountAuthData | undefined;
     /** List of integrations that are associated with the Google Vertex provider account */
     integrations: TrueFoundry.VertexModel[];
     /** List of users who have access to this provider account */
