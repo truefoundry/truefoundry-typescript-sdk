@@ -10,7 +10,7 @@ export interface Artifact {
     id: string;
     /** ID of the ML Repo that this artifact belongs to */
     ml_repo_id: string;
-    /** Type of the artifact (e.g., 'artifact', 'model', 'chat_prompt', 'agent_skill', 'plot', 'image') */
+    /** Type of the artifact (e.g., 'artifact', 'model', 'chat_prompt', 'agent-skill', 'plot', 'image') */
     type: TrueFoundry.ArtifactType;
     /** Name of the artifact (alphanumeric characters, hyphens, and underscores only, max 256 characters) */
     name: string;

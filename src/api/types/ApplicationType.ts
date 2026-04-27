@@ -7,6 +7,7 @@ export const ApplicationType = {
     SparkJob: "spark-job",
     Helm: "helm",
     Notebook: "notebook",
+    SparkNotebook: "spark-notebook",
     Codeserver: "codeserver",
     Rstudio: "rstudio",
     SshServer: "ssh-server",
