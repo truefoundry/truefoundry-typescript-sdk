@@ -3,17 +3,17 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Apply/API manifest: ML Repo and versioning; ``source`` is inline (apply) or blob-storage (stored).
+ * Apply/API agent-skill manifest; ``source`` is inline (apply) or blob-storage (stored).
  */
 export interface AgentSkillManifest {
     /** Name of the skill. */
     name: string;
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
-    /** Name of the ML Repo that this agent skill belongs to */
+    /** Name of the ML Repo */
     ml_repo: string;
     /** Version of the entity */
     version?: number | undefined;
-    type: "agent_skill";
+    type: "agent-skill";
     source: TrueFoundry.AgentSkillManifestSource;
 }

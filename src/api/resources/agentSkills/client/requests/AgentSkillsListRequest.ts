@@ -12,7 +12,7 @@
  *     }
  */
 export interface AgentSkillsListRequest {
-    /** Fully qualified name to filter agent skills by (format: 'agent_skill:{tenant}/{ml_repo}/{agent_skill_name}') */
+    /** Fully qualified name to filter agent skills by (format: 'agent-skill:{tenant}/{ml_repo}/{agent_skill_name}') */
     fqn?: string;
     /** ML Repo ID filter */
     ml_repo_id?: string;

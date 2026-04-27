@@ -7993,7 +7993,7 @@ await client.agentSkills.createOrUpdate({
             "key": "value"
         },
         ml_repo: "ml_repo",
-        type: "agent_skill",
+        type: "agent-skill",
         source: {
             type: "inline",
             skill_md: "skill_md"

@@ -159,7 +159,7 @@ describe("AgentSkillsClient", () => {
                 name: "name",
                 metadata: { key: "value" },
                 ml_repo: "ml_repo",
-                type: "agent_skill",
+                type: "agent-skill",
                 source: { type: "inline", skill_md: "skill_md" },
             },
         };
@@ -183,7 +183,7 @@ describe("AgentSkillsClient", () => {
                     metadata: { key: "value" },
                     ml_repo: "ml_repo",
                     version: 1,
-                    type: "agent_skill",
+                    type: "agent-skill",
                     source: { type: "inline", skill_md: "skill_md" },
                 },
                 ml_repo_id: "ml_repo_id",
@@ -207,7 +207,7 @@ describe("AgentSkillsClient", () => {
                     key: "value",
                 },
                 ml_repo: "ml_repo",
-                type: "agent_skill",
+                type: "agent-skill",
                 source: {
                     type: "inline",
                     skill_md: "skill_md",
@@ -225,7 +225,7 @@ describe("AgentSkillsClient", () => {
                 name: "x",
                 metadata: { metadata: { key: "value" } },
                 ml_repo: "ml_repo",
-                type: "agent_skill",
+                type: "agent-skill",
                 source: { type: "inline", skill_md: "x" },
             },
         };
@@ -250,7 +250,7 @@ describe("AgentSkillsClient", () => {
                         },
                     },
                     ml_repo: "ml_repo",
-                    type: "agent_skill",
+                    type: "agent-skill",
                     source: {
                         type: "inline",
                         skill_md: "x",
