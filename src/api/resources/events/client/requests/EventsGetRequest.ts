@@ -7,6 +7,7 @@
  *         endTs: "endTs",
  *         applicationId: "applicationId",
  *         applicationFqn: "applicationFqn",
+ *         podNames: ["podNames"],
  *         jobRunName: "jobRunName"
  *     }
  */

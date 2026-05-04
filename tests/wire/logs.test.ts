@@ -29,6 +29,7 @@ describe("LogsClient", () => {
             jobRunName: "jobRunName",
             podName: "podName",
             containerName: "containerName",
+            podNames: ["podNames"],
             podNamesRegex: "podNamesRegex",
             searchFilters: "searchFilters",
             searchString: "searchString",

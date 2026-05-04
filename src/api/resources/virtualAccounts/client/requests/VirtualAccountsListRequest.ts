@@ -6,6 +6,7 @@
  *         limit: 10,
  *         offset: 0,
  *         nameSearchQuery: "nameSearchQuery",
+ *         ownedByTeams: ["ownedByTeams"],
  *         isExpired: true,
  *         filter: "filter"
  *     }
