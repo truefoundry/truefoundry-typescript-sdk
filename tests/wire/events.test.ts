@@ -33,6 +33,7 @@ describe("EventsClient", () => {
             endTs: "endTs",
             applicationId: "applicationId",
             applicationFqn: "applicationFqn",
+            podNames: ["podNames"],
             jobRunName: "jobRunName",
         });
         expect(response).toEqual(rawResponseBody);

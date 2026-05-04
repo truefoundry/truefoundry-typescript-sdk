@@ -9,7 +9,10 @@ import type * as TrueFoundry from "../../../../index.js";
  *         offset: 0,
  *         searchPrefix: "searchPrefix",
  *         sortBy: "startTime",
- *         order: "asc"
+ *         order: "asc",
+ *         triggeredBy: ["triggeredBy"],
+ *         status: ["CREATED"],
+ *         versionNumbers: [1.1]
  *     }
  */
 export interface JobsListRunsRequest {

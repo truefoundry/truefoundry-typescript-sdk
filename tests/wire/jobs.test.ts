@@ -50,6 +50,9 @@ describe("JobsClient", () => {
             searchPrefix: "searchPrefix",
             sortBy: "startTime",
             order: "asc",
+            triggeredBy: ["triggeredBy"],
+            status: ["CREATED"],
+            versionNumbers: [1.1],
         });
 
         expect(expected.data).toEqual(page.data);

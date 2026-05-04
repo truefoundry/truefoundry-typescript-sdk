@@ -1738,6 +1738,7 @@ const pageableResponse = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
     nameSearchQuery: "nameSearchQuery",
+    ownedByTeams: ["ownedByTeams"],
     isExpired: true,
     filter: "filter"
 });
@@ -1750,6 +1751,7 @@ let page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
     nameSearchQuery: "nameSearchQuery",
+    ownedByTeams: ["ownedByTeams"],
     isExpired: true,
     filter: "filter"
 });
@@ -3453,7 +3455,10 @@ const pageableResponse = await client.jobs.listRuns("jobId", {
     offset: 0,
     searchPrefix: "searchPrefix",
     sortBy: "startTime",
-    order: "asc"
+    order: "asc",
+    triggeredBy: ["triggeredBy"],
+    status: ["CREATED"],
+    versionNumbers: [1.1]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -3465,7 +3470,10 @@ let page = await client.jobs.listRuns("jobId", {
     offset: 0,
     searchPrefix: "searchPrefix",
     sortBy: "startTime",
-    order: "asc"
+    order: "asc",
+    triggeredBy: ["triggeredBy"],
+    status: ["CREATED"],
+    versionNumbers: [1.1]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -5113,6 +5121,7 @@ await client.events.get({
     endTs: "endTs",
     applicationId: "applicationId",
     applicationFqn: "applicationFqn",
+    podNames: ["podNames"],
     jobRunName: "jobRunName"
 });
 
@@ -5260,6 +5269,7 @@ await client.logs.get({
     jobRunName: "jobRunName",
     podName: "podName",
     containerName: "containerName",
+    podNames: ["podNames"],
     podNamesRegex: "podNamesRegex",
     searchFilters: "searchFilters",
     searchString: "searchString",
@@ -6755,6 +6765,8 @@ const pageableResponse = await client.artifactVersions.list({
     ml_repo_id: "ml_repo_id",
     name: "name",
     version: 1,
+    run_ids: ["run_ids"],
+    run_steps: [1],
     offset: 1,
     limit: 1,
     include_internal_metadata: true
@@ -6771,6 +6783,8 @@ let page = await client.artifactVersions.list({
     ml_repo_id: "ml_repo_id",
     name: "name",
     version: 1,
+    run_ids: ["run_ids"],
+    run_steps: [1],
     offset: 1,
     limit: 1,
     include_internal_metadata: true
@@ -7396,6 +7410,8 @@ const pageableResponse = await client.modelVersions.list({
     ml_repo_id: "ml_repo_id",
     name: "name",
     version: 1,
+    run_ids: ["run_ids"],
+    run_steps: [1],
     offset: 1,
     limit: 1,
     include_internal_metadata: true
@@ -7412,6 +7428,8 @@ let page = await client.modelVersions.list({
     ml_repo_id: "ml_repo_id",
     name: "name",
     version: 1,
+    run_ids: ["run_ids"],
+    run_steps: [1],
     offset: 1,
     limit: 1,
     include_internal_metadata: true
@@ -9913,6 +9931,8 @@ const pageableResponse = await client.internal.artifactVersions.list({
     ml_repo_id: "ml_repo_id",
     name: "name",
     version: 1,
+    run_ids: ["run_ids"],
+    run_steps: [1],
     offset: 1,
     limit: 1,
     include_internal_metadata: true,
@@ -9930,6 +9950,8 @@ let page = await client.internal.artifactVersions.list({
     ml_repo_id: "ml_repo_id",
     name: "name",
     version: 1,
+    run_ids: ["run_ids"],
+    run_steps: [1],
     offset: 1,
     limit: 1,
     include_internal_metadata: true,

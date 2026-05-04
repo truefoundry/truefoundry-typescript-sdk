@@ -16,6 +16,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         jobRunName: "jobRunName",
  *         podName: "podName",
  *         containerName: "containerName",
+ *         podNames: ["podNames"],
  *         podNamesRegex: "podNamesRegex",
  *         searchFilters: "searchFilters",
  *         searchString: "searchString",
