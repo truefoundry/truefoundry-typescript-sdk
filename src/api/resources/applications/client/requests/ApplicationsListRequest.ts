@@ -39,7 +39,7 @@ export interface ApplicationsListRequest {
     fqn?: string;
     /** Fully qualified name (FQN) of the workspace */
     workspaceFqn?: string;
-    /** Type of application (comma separated for multiple). Allowed Values: async-service, service, job, spark-job, helm, notebook, spark-notebook, codeserver, rstudio, ssh-server, volume, application, application-set, intercept, workflow */
+    /** Type of application (comma separated for multiple). Allowed Values: async-service, service, job, spark-job, helm, notebook, codeserver, rstudio, ssh-server, volume, application, application-set, intercept, workflow */
     applicationType?: string;
     /** Search query for application name */
     nameSearchQuery?: string;

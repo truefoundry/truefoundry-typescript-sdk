@@ -2,6 +2,7 @@
 
 export const SpanFieldFilterOperator = {
     Equal: "EQUAL",
+    NotEqual: "NOT_EQUAL",
     GreaterThan: "GREATER_THAN",
     LessThan: "LESS_THAN",
     GreaterThanEqual: "GREATER_THAN_EQUAL",
@@ -10,8 +11,11 @@ export const SpanFieldFilterOperator = {
     In: "IN",
     NotIn: "NOT_IN",
     StringContains: "STRING_CONTAINS",
+    StringNotContains: "STRING_NOT_CONTAINS",
     StringStartsWith: "STRING_STARTS_WITH",
+    StringNotStartsWith: "STRING_NOT_STARTS_WITH",
     StringEndsWith: "STRING_ENDS_WITH",
+    StringNotEndsWith: "STRING_NOT_ENDS_WITH",
     ArrayHasAny: "ARRAY_HAS_ANY",
     ArrayHasNone: "ARRAY_HAS_NONE",
     Present: "PRESENT",

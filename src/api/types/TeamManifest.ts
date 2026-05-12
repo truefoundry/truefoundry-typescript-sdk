@@ -14,4 +14,6 @@ export interface TeamManifest {
     ownedBy?: TrueFoundry.TeamOwnedBy | undefined;
     /** Key-value pairs to categorize this Team (e.g., by owner or environment). */
     tags?: Record<string, unknown> | undefined;
+    /** Mappings from external identity provider claim value to this team */
+    identity_provider_mapping?: TrueFoundry.IdentityProviderMapping[] | undefined;
 }

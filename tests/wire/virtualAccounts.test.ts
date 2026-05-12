@@ -40,7 +40,9 @@ describe("VirtualAccountsClient", () => {
                     accountId: "accountId",
                     metadata: { key: "value" },
                     roleIds: ["roleIds"],
-                    rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                    rolesWithResource: [
+                        { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                    ],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -101,6 +103,7 @@ describe("VirtualAccountsClient", () => {
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
                 },
                 jwtId: "jwtId",
                 createdBySubject: {
@@ -128,7 +131,9 @@ describe("VirtualAccountsClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
-                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                rolesWithResource: [
+                    { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -275,6 +280,7 @@ describe("VirtualAccountsClient", () => {
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
                 },
                 jwtId: "jwtId",
                 createdBySubject: {
@@ -302,7 +308,9 @@ describe("VirtualAccountsClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
-                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                rolesWithResource: [
+                    { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },

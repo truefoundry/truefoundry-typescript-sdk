@@ -121,17 +121,6 @@
             },
             "default": "./dist/cjs/api/resources/jobs/exports.js"
         },
-        "./environments": {
-            "import": {
-                "types": "./dist/esm/api/resources/environments/exports.d.mts",
-                "default": "./dist/esm/api/resources/environments/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/environments/exports.d.ts",
-                "default": "./dist/cjs/api/resources/environments/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/environments/exports.js"
-        },
         "./workspaces": {
             "import": {
                 "types": "./dist/esm/api/resources/workspaces/exports.d.mts",
@@ -142,6 +131,17 @@
                 "default": "./dist/cjs/api/resources/workspaces/exports.js"
             },
             "default": "./dist/cjs/api/resources/workspaces/exports.js"
+        },
+        "./environments": {
+            "import": {
+                "types": "./dist/esm/api/resources/environments/exports.d.mts",
+                "default": "./dist/esm/api/resources/environments/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/environments/exports.d.ts",
+                "default": "./dist/cjs/api/resources/environments/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/environments/exports.js"
         },
         "./secrets": {
             "import": {

@@ -52,8 +52,8 @@ export class TrueFoundryClient {
     protected _applications: ApplicationsClient | undefined;
     protected _applicationVersions: ApplicationVersionsClient | undefined;
     protected _jobs: JobsClient | undefined;
-    protected _environments: EnvironmentsClient | undefined;
     protected _workspaces: WorkspacesClient | undefined;
+    protected _environments: EnvironmentsClient | undefined;
     protected _secrets: SecretsClient | undefined;
     protected _secretGroups: SecretGroupsClient | undefined;
     protected _events: EventsClient | undefined;
@@ -111,12 +111,12 @@ export class TrueFoundryClient {
         return (this._jobs ??= new JobsClient(this._options));
     }
 
-    public get environments(): EnvironmentsClient {
-        return (this._environments ??= new EnvironmentsClient(this._options));
-    }
-
     public get workspaces(): WorkspacesClient {
         return (this._workspaces ??= new WorkspacesClient(this._options));
+    }
+
+    public get environments(): EnvironmentsClient {
+        return (this._environments ??= new EnvironmentsClient(this._options));
     }
 
     public get secrets(): SecretsClient {

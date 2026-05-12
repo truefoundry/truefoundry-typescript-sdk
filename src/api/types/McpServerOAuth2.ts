@@ -26,4 +26,6 @@ export interface McpServerOAuth2 {
     jwt_source: TrueFoundry.McpServerOAuth2JwtSource;
     /** List of scopes to request from the OAuth2 provider. */
     scopes?: string[] | undefined;
+    /** Extra key/value pairs sent on every token endpoint request (e.g. Auth0 'audience'). */
+    additional_token_params?: Record<string, string> | undefined;
 }

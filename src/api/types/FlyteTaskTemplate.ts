@@ -2,7 +2,4 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export interface FlyteTaskTemplate {
-    id: TrueFoundry.FlyteTaskId;
-    custom: TrueFoundry.FlyteTaskCustom;
-}
+export type FlyteTaskTemplate = TrueFoundry.TruefoundryFlyteTaskTemplate | TrueFoundry.NativeSnowflakeFlyteTaskTemplate;

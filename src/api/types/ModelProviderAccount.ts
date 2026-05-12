@@ -33,5 +33,6 @@ export type ModelProviderAccount =
     | TrueFoundry.ElevenLabsProviderAccount
     | TrueFoundry.DeepgramProviderAccount
     | TrueFoundry.CartesiaProviderAccount
+    | TrueFoundry.SmallestAiProviderAccount
     | TrueFoundry.VirtualModelProviderAccount
     | TrueFoundry.CustomEndpointProviderAccount;

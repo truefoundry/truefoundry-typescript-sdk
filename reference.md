@@ -3795,285 +3795,6 @@ await client.jobs.terminate({
 </dl>
 </details>
 
-## Environments
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const pageableResponse = await client.environments.list({
-    limit: 10,
-    offset: 0
-});
-for await (const item of pageableResponse) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-let page = await client.environments.list({
-    limit: 10,
-    offset: 0
-});
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-
-// You can also access the underlying response
-const response = page.response;
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.EnvironmentsListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetEnvironmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new Environment or updates an existing Environment.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.environments.createOrUpdate({
-    manifest: {
-        type: "environment",
-        name: "name",
-        color: {},
-        isProduction: true,
-        optimizeFor: "COST"
-    }
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">get</a>(id) -> TrueFoundry.GetEnvironmentResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get Environment associated with the provided id.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.environments.get("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Environment id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">delete</a>(id) -> boolean</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete Environment associated with the provided id.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.environments.delete("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Environment id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Workspaces
 <details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
 <dl>
@@ -4435,6 +4156,285 @@ await client.workspaces.delete("id");
 <dd>
 
 **requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Environments
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.environments.list({
+    limit: 10,
+    offset: 0
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.environments.list({
+    limit: 10,
+    offset: 0
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.EnvironmentsListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetEnvironmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new Environment or updates an existing Environment.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.environments.createOrUpdate({
+    manifest: {
+        type: "environment",
+        name: "name",
+        color: {},
+        isProduction: true,
+        optimizeFor: "COST"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.CreateOrUpdateEnvironmentRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">get</a>(id) -> TrueFoundry.GetEnvironmentResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get Environment associated with the provided id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.environments.get("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Environment id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">delete</a>(id) -> boolean</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete Environment associated with the provided id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.environments.delete("id");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Environment id
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnvironmentsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -9936,7 +9936,8 @@ const pageableResponse = await client.internal.artifactVersions.list({
     offset: 1,
     limit: 1,
     include_internal_metadata: true,
-    include_model_versions: true
+    include_model_versions: true,
+    artifact_types: ["artifact"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9955,7 +9956,8 @@ let page = await client.internal.artifactVersions.list({
     offset: 1,
     limit: 1,
     include_internal_metadata: true,
-    include_model_versions: true
+    include_model_versions: true,
+    artifact_types: ["artifact"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();

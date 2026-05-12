@@ -22,6 +22,7 @@ describe("TeamsClient", () => {
                     updatedAt: "2024-01-15T09:30:00Z",
                     manifest: { type: "team", name: "name", members: ["members"] },
                     isEditable: true,
+                    roles: ["roles"],
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -77,9 +78,11 @@ describe("TeamsClient", () => {
                     members: ["members"],
                     ownedBy: { account: "account" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
                 },
                 metadata: { createdByScim: true },
                 isEditable: true,
+                roles: ["roles"],
             },
         };
 
@@ -183,9 +186,11 @@ describe("TeamsClient", () => {
                     members: ["members"],
                     ownedBy: { account: "account" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
                 },
                 metadata: { createdByScim: true },
                 isEditable: true,
+                roles: ["roles"],
             },
         };
 

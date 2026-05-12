@@ -8,6 +8,7 @@ export interface Session {
     subjectSlug: string;
     subjectControllerName?: string | undefined;
     subjectPatName?: string | undefined;
+    subjectExternalIdentitySlug?: string | undefined;
     email?: string | undefined;
     subjectType: TrueFoundry.SubjectType;
     tenantName?: string | undefined;

@@ -14,4 +14,5 @@ export interface Team {
     manifest: TrueFoundry.TeamManifest;
     metadata?: TrueFoundry.TeamMetadata | undefined;
     isEditable: boolean;
+    roles?: string[] | undefined;
 }

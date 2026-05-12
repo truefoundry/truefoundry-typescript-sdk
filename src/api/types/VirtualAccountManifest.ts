@@ -17,4 +17,6 @@ export interface VirtualAccountManifest {
     ownedBy?: TrueFoundry.VirtualAccountOwnedBy | undefined;
     /** Key-value pairs to categorize this Virtual Account (e.g., by owner or environment). */
     tags?: Record<string, unknown> | undefined;
+    /** Mappings from external identity provider claim value to this virtual account */
+    identity_provider_mapping?: TrueFoundry.IdentityProviderMapping[] | undefined;
 }
