@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetWorkspaceResponse {
-    /** Workspace */
+    /** The workspace object. */
     data: TrueFoundry.Workspace;
 }

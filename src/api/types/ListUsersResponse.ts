@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListUsersResponse {
-    /** Array of Users */
+    /** Array of users matching the query. */
     data: TrueFoundry.User[];
-    /** Pagination information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

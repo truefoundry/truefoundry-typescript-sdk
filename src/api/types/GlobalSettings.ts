@@ -14,4 +14,5 @@ export interface GlobalSettings {
     retry_settings?: TrueFoundry.RetryConfig | undefined;
     logging_settings?: TrueFoundry.LoggingMode | undefined;
     semantic_cache_settings?: TrueFoundry.SemanticCacheSettings | undefined;
+    guardrail_settings?: TrueFoundry.GuardrailSettings | undefined;
 }

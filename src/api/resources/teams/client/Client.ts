@@ -22,7 +22,7 @@ export class TeamsClient {
     }
 
     /**
-     * Retrieve all teams associated with the authenticated user. If the user is a tenant admin, returns all teams for the tenant. Pagination is available based on query parameters
+     * List teams accessible to the current user.
      *
      * @param {TrueFoundry.TeamsListRequest} request
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -31,22 +31,24 @@ export class TeamsClient {
      *     await client.teams.list({
      *         limit: 10,
      *         offset: 0,
-     *         type: "team"
+     *         type: "team",
+     *         attributes: ["attributes"]
      *     })
      */
     public async list(
         request: TrueFoundry.TeamsListRequest = {},
         requestOptions?: TeamsClient.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.Team, TrueFoundry.ListTeamsResponse>> {
+    ): Promise<core.Page<TrueFoundry.TeamDto, TrueFoundry.ListTeamsResponse>> {
         const list = core.HttpResponsePromise.interceptFunction(
             async (
                 request: TrueFoundry.TeamsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => {
-                const { limit = 100, offset = 0, type: type_ } = request;
+                const { limit = 100, offset = 0, type: type_, attributes } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     type: type_ != null ? type_ : undefined,
+                    attributes,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -96,7 +98,7 @@ export class TeamsClient {
         );
         let _offset = request?.offset != null ? request?.offset : 0;
         const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<TrueFoundry.Team, TrueFoundry.ListTeamsResponse>({
+        return new core.Page<TrueFoundry.TeamDto, TrueFoundry.ListTeamsResponse>({
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
@@ -109,7 +111,7 @@ export class TeamsClient {
     }
 
     /**
-     * Creates a new team or updates an existing team. It ensures that the team name is unique, valid, and that the team has at least one member. The members of the team are added or updated based on the provided emails.
+     * Create a new team or update an existing one using the provided TeamManifest. Matching is by name — if the name matches an existing team it is updated, otherwise a new one is created.
      *
      * @param {TrueFoundry.ApplyTeamRequest} request
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -190,15 +192,219 @@ export class TeamsClient {
     }
 
     /**
-     * Get Team associated with provided team id
+     * List users who are members of a team.
      *
-     * @param {string} id - Team Id
+     * @param {string} id - System-generated team ID.
+     * @param {TrueFoundry.TeamsListMembersRequest} request
+     * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
+     *         limit: 10,
+     *         offset: 0,
+     *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+     *     })
+     */
+    public async listMembers(
+        id: string,
+        request: TrueFoundry.TeamsListMembersRequest = {},
+        requestOptions?: TeamsClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamMembersResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.TeamsListMembersRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListTeamMembersResponse>> => {
+                const { limit = 100, offset = 0, filter } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    filter,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        `api/svc/v1/teams/${core.url.encodePathParam(id)}/members`,
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryString: core.url
+                        .queryBuilder()
+                        .addMany(_queryParams)
+                        .mergeAdditional(requestOptions?.queryParams)
+                        .build(),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListTeamMembersResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 403:
+                            throw new TrueFoundry.ForbiddenError(
+                                _response.error.body as TrueFoundry.HttpError,
+                                _response.rawResponse,
+                            );
+                        case 404:
+                            throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/api/svc/v1/teams/{id}/members",
+                );
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamMembersResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
+     * List users who hold the team-manager role on a team.
+     *
+     * @param {string} id - System-generated team ID.
+     * @param {TrueFoundry.TeamsListManagersRequest} request
+     * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
+     *         limit: 10,
+     *         offset: 0,
+     *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+     *     })
+     */
+    public async listManagers(
+        id: string,
+        request: TrueFoundry.TeamsListManagersRequest = {},
+        requestOptions?: TeamsClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamManagersResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.TeamsListManagersRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListTeamManagersResponse>> => {
+                const { limit = 100, offset = 0, filter } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    filter,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        `api/svc/v1/teams/${core.url.encodePathParam(id)}/managers`,
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryString: core.url
+                        .queryBuilder()
+                        .addMany(_queryParams)
+                        .mergeAdditional(requestOptions?.queryParams)
+                        .build(),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListTeamManagersResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    switch (_response.error.statusCode) {
+                        case 403:
+                            throw new TrueFoundry.ForbiddenError(
+                                _response.error.body as TrueFoundry.HttpError,
+                                _response.rawResponse,
+                            );
+                        case 404:
+                            throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                        default:
+                            throw new errors.TrueFoundryError({
+                                statusCode: _response.error.statusCode,
+                                body: _response.error.body,
+                                rawResponse: _response.rawResponse,
+                            });
+                    }
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/api/svc/v1/teams/{id}/managers",
+                );
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamManagersResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
+     * Get a single team by its ID.
+     *
+     * @param {string} id - System-generated team ID.
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.teams.get("id")
+     *     await client.teams.get("jqfwg345gi25n5ju2yz5iz6m")
      */
     public get(
         id: string,
@@ -253,16 +459,16 @@ export class TeamsClient {
     }
 
     /**
-     * Deletes the Team associated with the provided Id.
+     * Permanently delete the team with the given ID. This action is irreversible.
      *
-     * @param {string} id - Team Id
+     * @param {string} id - System-generated team ID.
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      * @throws {@link TrueFoundry.ConflictError}
      *
      * @example
-     *     await client.teams.delete("id")
+     *     await client.teams.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
     public delete(
         id: string,
@@ -324,14 +530,14 @@ export class TeamsClient {
     /**
      * Get all role bindings associated with a team.
      *
-     * @param {string} id - Team Id
+     * @param {string} id - System-generated team ID.
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.teams.getPermissions("id")
+     *     await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m")
      */
     public getPermissions(
         id: string,

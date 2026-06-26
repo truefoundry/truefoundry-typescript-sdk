@@ -9,7 +9,7 @@ describe("ApplicationsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        server.mockEndpoint().post("/api/svc/v1/apps/id/rollout/promote").respondWith().statusCode(200).build();
+        server.mockEndpoint().post("/api/svc/v1/x/apps/id/rollout/promote").respondWith().statusCode(200).build();
 
         const response = await client.internal.applications.promoteRollout("id", {
             full: true,
@@ -25,7 +25,7 @@ describe("ApplicationsClient", () => {
 
         server
             .mockEndpoint()
-            .post("/api/svc/v1/apps/id/rollout/promote")
+            .post("/api/svc/v1/x/apps/id/rollout/promote")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
@@ -44,7 +44,7 @@ describe("ApplicationsClient", () => {
 
         server
             .mockEndpoint()
-            .post("/api/svc/v1/apps/id/rollout/promote")
+            .post("/api/svc/v1/x/apps/id/rollout/promote")
             .respondWith()
             .statusCode(405)
             .jsonBody(rawResponseBody)
@@ -63,7 +63,7 @@ describe("ApplicationsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/pod-template-hash-deployment-version-map")
+            .get("/api/svc/v1/x/apps/id/pod-template-hash-deployment-version-map")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -83,7 +83,7 @@ describe("ApplicationsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/pod-template-hash-deployment-version-map")
+            .get("/api/svc/v1/x/apps/id/pod-template-hash-deployment-version-map")
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)

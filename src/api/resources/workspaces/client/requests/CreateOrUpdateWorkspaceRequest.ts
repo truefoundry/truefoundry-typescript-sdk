@@ -15,6 +15,6 @@ import type * as TrueFoundry from "../../../../index.js";
 export interface CreateOrUpdateWorkspaceRequest {
     /** Workspace manifest */
     manifest: TrueFoundry.WorkspaceManifest;
-    /** Dry run the request */
+    /** When true, validates the request without persisting changes. */
     dryRun?: boolean;
 }

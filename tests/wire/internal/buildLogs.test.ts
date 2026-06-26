@@ -11,13 +11,19 @@ describe("BuildLogsClient", () => {
 
         const rawResponseBody = {
             logs: [
-                { job_name: "job_name", log: "log", stream: "stream", time: "time", containerName: "containerName" },
+                {
+                    job_name: "job_name",
+                    log: "log",
+                    stream: "stdout",
+                    time: "1635467890123456789",
+                    containerName: "containerName",
+                },
             ],
         };
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/build-logs/pipelineRunName")
+            .get("/api/svc/v1/x/build-logs/pipelineRunName")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -28,6 +34,7 @@ describe("BuildLogsClient", () => {
             endTs: "1635467891123456789",
             limit: "limit",
             direction: "direction",
+            filterQuery: '{"matchString":"error","type":"substring","operator":"equal"}',
             numLogsToIgnore: 1.1,
         });
         expect(response).toEqual(rawResponseBody);
@@ -41,7 +48,7 @@ describe("BuildLogsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/build-logs/pipelineRunName")
+            .get("/api/svc/v1/x/build-logs/pipelineRunName")
             .respondWith()
             .statusCode(400)
             .jsonBody(rawResponseBody)

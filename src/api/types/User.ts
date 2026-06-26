@@ -3,6 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface User {
+    /** System-generated user ID. */
     id: string;
     email: string;
     tenantName: string;
@@ -14,4 +15,6 @@ export interface User {
     isEditable: boolean;
     createdAt: string;
     updatedAt: string;
+    /** Timestamp when the user last accessed the platform. */
+    lastAccessedAt?: string | undefined;
 }

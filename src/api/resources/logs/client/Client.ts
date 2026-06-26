@@ -22,7 +22,7 @@ export class LogsClient {
     }
 
     /**
-     * Fetch logs for various workload components, including Services, Jobs, Workflows, Job Runs, and Pods. Logs are filtered based on the provided query parameters.
+     * Get runtime logs (stdout/stderr) emitted by the pods of a deployed application.
      *
      * @param {TrueFoundry.LogsGetRequest} request
      * @param {LogsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -31,8 +31,8 @@ export class LogsClient {
      *
      * @example
      *     await client.logs.get({
-     *         startTs: 1000000,
-     *         endTs: 1000000,
+     *         startTs: "1779262323000000000",
+     *         endTs: "1779348723000000000",
      *         limit: 1,
      *         direction: "asc",
      *         numLogsToIgnore: 1,
@@ -44,7 +44,7 @@ export class LogsClient {
      *         containerName: "containerName",
      *         podNames: ["podNames"],
      *         podNamesRegex: "podNamesRegex",
-     *         searchFilters: "searchFilters",
+     *         searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
      *         searchString: "searchString",
      *         searchType: "regex",
      *         searchOperator: "equal"
@@ -64,7 +64,7 @@ export class LogsClient {
         const {
             startTs,
             endTs,
-            limit,
+            limit = 5000,
             direction,
             numLogsToIgnore,
             applicationId,

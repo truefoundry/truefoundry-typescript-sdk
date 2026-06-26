@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetApplicationDeploymentResponse {
-    /** Deployment */
+    /** Deployment details */
     data: TrueFoundry.Deployment;
 }

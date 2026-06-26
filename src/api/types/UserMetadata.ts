@@ -14,7 +14,6 @@ export interface UserMetadata {
     groups?: string[] | undefined;
     tenantRoleManagedBy?: TrueFoundry.UserMetadataTenantRoleManagedBy | undefined;
     ssoName?: string | undefined;
-    isPrimarySSO?: boolean | undefined;
     scimUserObject?: Record<string, unknown> | undefined;
     createdByScim?: boolean | undefined;
 }

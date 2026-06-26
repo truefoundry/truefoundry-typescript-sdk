@@ -3,19 +3,35 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface VirtualAccount {
+    /** System-generated virtual account ID. */
     id: string;
+    /** Type of service account. */
     type: string;
+    /** Tenant the virtual account belongs to. */
     tenantName: string;
+    /** The manifest defining name, permissions, ownership, and configuration. */
     manifest?: TrueFoundry.VirtualAccountManifest | undefined;
+    /** System-generated ID of the currently active JWT. */
     jwtId?: string | undefined;
+    /** The subject (user or service account) that created this virtual account. */
     createdBySubject: TrueFoundry.Subject;
+    /** Timestamp when the virtual account was created. */
     createdAt: string;
+    /** Timestamp when the virtual account was last updated. */
     updatedAt: string;
+    /** Timestamp when the virtual account was last used to authenticate. */
+    lastAccessedAt?: string | undefined;
+    /** Whether the virtual account token has expired. */
     isExpired?: boolean | undefined;
+    /** JWT tokens associated with this virtual account. */
     jwts?: TrueFoundry.Jwt[] | undefined;
+    /** ID of the account that owns this virtual account. */
     accountId: string;
+    /** Additional metadata for the virtual account. */
     metadata?: Record<string, unknown> | undefined;
+    /** Role IDs assigned to this virtual account. */
     roleIds?: string[] | undefined;
+    /** Roles with their associated resources. */
     rolesWithResource?: TrueFoundry.RoleWithResource[] | undefined;
     createdBy?: string | undefined;
     nextScheduledRotation?: string | undefined;

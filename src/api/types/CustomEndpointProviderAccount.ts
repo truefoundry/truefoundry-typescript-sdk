@@ -12,6 +12,10 @@ export interface CustomEndpointProviderAccount {
     name: string;
     /** The type of service behind this endpoint (used for tracking purposes) */
     endpoint_type?: TrueFoundry.CustomEndpointProviderAccountEndpointType | undefined;
+    /** How requests are routed across the endpoints in this account. When unset, each endpoint is reachable individually at /proxy-api/<account-name>/<endpoint-name>. Set to "weight" or "priority" to load balance across the endpoints, reachable at /proxy-api/<account-name>/<slug>/<upstream-path>. */
+    routing_type?: TrueFoundry.CustomEndpointProviderAccountRoutingType | undefined;
+    /** A unique identifier used to address the load-balanced endpoints of this account. When routing_type is "weight" or "priority", the load balancer is reachable at /proxy-api/<account-name>/<slug>/<upstream-path>, alongside the per-endpoint URLs. */
+    slug?: string | undefined;
     auth_data?: TrueFoundry.CustomHeaderAuth | undefined;
     /** List of endpoint integrations associated with this provider account. */
     integrations: TrueFoundry.CustomEndpointIntegrations[];

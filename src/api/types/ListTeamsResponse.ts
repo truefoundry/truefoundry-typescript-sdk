@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListTeamsResponse {
-    /** Teams */
-    data: TrueFoundry.Team[];
-    /** Pagination Information */
+    /** Array of teams matching the query. */
+    data: TrueFoundry.TeamDto[];
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

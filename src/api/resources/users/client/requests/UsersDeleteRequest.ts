@@ -7,6 +7,6 @@
  *     }
  */
 export interface UsersDeleteRequest {
-    /** Tenant name */
+    /** Tenant name override. Defaults to the caller's tenant when omitted. */
     tenantName?: string;
 }

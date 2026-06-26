@@ -42,6 +42,7 @@ describe("SecretGroupsClient", () => {
             offset: 0,
             fqn: "fqn",
             search: "search",
+            attributes: ["attributes"],
         });
 
         expect(expected.data).toEqual(page.data);
@@ -729,7 +730,9 @@ describe("SecretGroupsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.secretGroups.delete("id");
+        const response = await client.secretGroups.delete("id", {
+            forceDelete: true,
+        });
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -769,5 +772,24 @@ describe("SecretGroupsClient", () => {
         await expect(async () => {
             return await client.secretGroups.delete("id");
         }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/secret-groups/id")
+            .respondWith()
+            .statusCode(424)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.secretGroups.delete("id");
+        }).rejects.toThrow(TrueFoundry.FailedDependencyError);
     });
 });

@@ -12,7 +12,7 @@ describe("PersonalAccessTokensClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     type: "type",
                     tenantName: "tenantName",
                     manifest: {
@@ -26,6 +26,7 @@ describe("PersonalAccessTokensClient", () => {
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    lastAccessedAt: "2024-01-15T09:30:00Z",
                     isExpired: true,
                     jwts: [
                         {
@@ -33,6 +34,7 @@ describe("PersonalAccessTokensClient", () => {
                             subjectType: "subjectType",
                             subjectId: "subjectId",
                             expiry: "2024-01-15T09:30:00Z",
+                            tokenType: "jwt",
                             createdAt: "2024-01-15T09:30:00Z",
                             updatedAt: "2024-01-15T09:30:00Z",
                         },
@@ -40,7 +42,9 @@ describe("PersonalAccessTokensClient", () => {
                     accountId: "accountId",
                     metadata: { key: "value" },
                     roleIds: ["roleIds"],
-                    rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                    rolesWithResource: [
+                        { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                    ],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -60,7 +64,7 @@ describe("PersonalAccessTokensClient", () => {
         const page = await client.personalAccessTokens.list({
             limit: 10,
             offset: 0,
-            nameSearchQuery: "nameSearchQuery",
+            nameSearchQuery: "ci-token",
         });
 
         expect(expected.data).toEqual(page.data);
@@ -72,7 +76,7 @@ describe("PersonalAccessTokensClient", () => {
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { name: "name" };
+        const rawRequestBody = { name: "my-ci-token" };
         const rawResponseBody = { token: "token" };
 
         server
@@ -85,7 +89,7 @@ describe("PersonalAccessTokensClient", () => {
             .build();
 
         const response = await client.personalAccessTokens.create({
-            name: "name",
+            name: "my-ci-token",
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -137,7 +141,7 @@ describe("PersonalAccessTokensClient", () => {
     test("revokeAll (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { email: "email" };
+        const rawRequestBody = { email: "alice@example.com" };
         const rawResponseBody = {};
 
         server
@@ -150,7 +154,7 @@ describe("PersonalAccessTokensClient", () => {
             .build();
 
         const response = await client.personalAccessTokens.revokeAll({
-            email: "email",
+            email: "alice@example.com",
         });
         expect(response).toEqual(rawResponseBody);
     });
@@ -185,13 +189,13 @@ describe("PersonalAccessTokensClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/personal-access-tokens/id")
+            .delete("/api/svc/v1/personal-access-tokens/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.personalAccessTokens.delete("id");
+        const response = await client.personalAccessTokens.delete("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -220,7 +224,7 @@ describe("PersonalAccessTokensClient", () => {
 
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -237,6 +241,8 @@ describe("PersonalAccessTokensClient", () => {
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
+                    token_type: "jwt",
                 },
                 jwtId: "jwtId",
                 createdBySubject: {
@@ -250,6 +256,7 @@ describe("PersonalAccessTokensClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                lastAccessedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
                 jwts: [
                     {
@@ -257,6 +264,7 @@ describe("PersonalAccessTokensClient", () => {
                         subjectType: "subjectType",
                         subjectId: "subjectId",
                         expiry: "2024-01-15T09:30:00Z",
+                        tokenType: "jwt",
                         createdAt: "2024-01-15T09:30:00Z",
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
@@ -264,7 +272,9 @@ describe("PersonalAccessTokensClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
-                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                rolesWithResource: [
+                    { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -280,7 +290,9 @@ describe("PersonalAccessTokensClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.personalAccessTokens.get("name");
+        const response = await client.personalAccessTokens.get("name", {
+            teamName: "teamName",
+        });
         expect(response).toEqual(rawResponseBody);
     });
 

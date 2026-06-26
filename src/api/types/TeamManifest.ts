@@ -7,11 +7,17 @@ export interface TeamManifest {
     type: "team";
     /** Name of the Team */
     name: string;
+    /** A human-readable label for the team in the UI. If omitted, the team name is shown. */
+    displayName?: string | undefined;
+    /** A short description of the team and its purpose. */
+    description?: string | undefined;
     /** Emails of each of the user who can manage the members of the team. Any tenant admin is by default a team manager. */
     managers?: string[] | undefined;
-    /** Enter email of each of the user you want to add in the team. */
+    /** Enter email of each user to add to the team. Use an empty list for a team with no members yet. */
     members: string[];
     ownedBy?: TrueFoundry.TeamOwnedBy | undefined;
     /** Key-value pairs to categorize this Team (e.g., by owner or environment). */
     tags?: Record<string, unknown> | undefined;
+    /** Mappings from external identity provider claim value to this team */
+    identity_provider_mapping?: TrueFoundry.IdentityProviderMapping[] | undefined;
 }

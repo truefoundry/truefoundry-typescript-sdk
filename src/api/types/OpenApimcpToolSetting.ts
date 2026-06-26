@@ -14,4 +14,5 @@ export interface OpenApimcpToolSetting {
     name: string;
     /** Describe what this tool does. This helps AI models understand when to use it. */
     description: string;
+    annotations?: TrueFoundry.McpToolAnnotations | undefined;
 }

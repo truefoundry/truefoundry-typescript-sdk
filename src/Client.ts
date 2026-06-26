@@ -12,6 +12,7 @@ import { ClustersClient } from "./api/resources/clusters/client/Client.js";
 import { DataDirectoriesClient } from "./api/resources/dataDirectories/client/Client.js";
 import { EnvironmentsClient } from "./api/resources/environments/client/Client.js";
 import { EventsClient } from "./api/resources/events/client/Client.js";
+import { GatewayConfigsClient } from "./api/resources/gatewayConfigs/client/Client.js";
 import { InternalClient } from "./api/resources/internal/client/Client.js";
 import { JobsClient } from "./api/resources/jobs/client/Client.js";
 import { LogsClient } from "./api/resources/logs/client/Client.js";
@@ -21,6 +22,7 @@ import { ModelVersionsClient } from "./api/resources/modelVersions/client/Client
 import { PersonalAccessTokensClient } from "./api/resources/personalAccessTokens/client/Client.js";
 import { PromptsClient } from "./api/resources/prompts/client/Client.js";
 import { PromptVersionsClient } from "./api/resources/promptVersions/client/Client.js";
+import { RunsClient } from "./api/resources/runs/client/Client.js";
 import { SecretGroupsClient } from "./api/resources/secretGroups/client/Client.js";
 import { SecretsClient } from "./api/resources/secrets/client/Client.js";
 import { TeamsClient } from "./api/resources/teams/client/Client.js";
@@ -46,20 +48,22 @@ export class TrueFoundryClient {
     protected _internal: InternalClient | undefined;
     protected _users: UsersClient | undefined;
     protected _teams: TeamsClient | undefined;
+    protected _gatewayConfigs: GatewayConfigsClient | undefined;
     protected _personalAccessTokens: PersonalAccessTokensClient | undefined;
     protected _virtualAccounts: VirtualAccountsClient | undefined;
     protected _clusters: ClustersClient | undefined;
     protected _applications: ApplicationsClient | undefined;
     protected _applicationVersions: ApplicationVersionsClient | undefined;
     protected _jobs: JobsClient | undefined;
-    protected _environments: EnvironmentsClient | undefined;
     protected _workspaces: WorkspacesClient | undefined;
+    protected _environments: EnvironmentsClient | undefined;
     protected _secrets: SecretsClient | undefined;
     protected _secretGroups: SecretGroupsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _alerts: AlertsClient | undefined;
     protected _logs: LogsClient | undefined;
     protected _mlRepos: MlReposClient | undefined;
+    protected _runs: RunsClient | undefined;
     protected _traces: TracesClient | undefined;
     protected _artifacts: ArtifactsClient | undefined;
     protected _prompts: PromptsClient | undefined;
@@ -87,6 +91,10 @@ export class TrueFoundryClient {
         return (this._teams ??= new TeamsClient(this._options));
     }
 
+    public get gatewayConfigs(): GatewayConfigsClient {
+        return (this._gatewayConfigs ??= new GatewayConfigsClient(this._options));
+    }
+
     public get personalAccessTokens(): PersonalAccessTokensClient {
         return (this._personalAccessTokens ??= new PersonalAccessTokensClient(this._options));
     }
@@ -111,12 +119,12 @@ export class TrueFoundryClient {
         return (this._jobs ??= new JobsClient(this._options));
     }
 
-    public get environments(): EnvironmentsClient {
-        return (this._environments ??= new EnvironmentsClient(this._options));
-    }
-
     public get workspaces(): WorkspacesClient {
         return (this._workspaces ??= new WorkspacesClient(this._options));
+    }
+
+    public get environments(): EnvironmentsClient {
+        return (this._environments ??= new EnvironmentsClient(this._options));
     }
 
     public get secrets(): SecretsClient {
@@ -141,6 +149,10 @@ export class TrueFoundryClient {
 
     public get mlRepos(): MlReposClient {
         return (this._mlRepos ??= new MlReposClient(this._options));
+    }
+
+    public get runs(): RunsClient {
+        return (this._runs ??= new RunsClient(this._options));
     }
 
     public get traces(): TracesClient {
@@ -184,7 +196,7 @@ export class TrueFoundryClient {
     }
 
     /**
-     * Applies a given manifest to create or update resources of specific types, such as provider-account, cluster, workspace, or ml-repo.
+     * Apply a manifest to create or update a resource.
      *
      * @param {TrueFoundry.TrueFoundryApplyRequest} request
      * @param {TrueFoundryClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -253,7 +265,7 @@ export class TrueFoundryClient {
     }
 
     /**
-     * Deletes resources of specific types, such as provider-account, cluster, workspace, or application.
+     * Delete a resource identified by the provided manifest.
      *
      * @param {TrueFoundry.TrueFoundryDeleteRequest} request
      * @param {TrueFoundryClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -274,14 +286,14 @@ export class TrueFoundryClient {
     public delete(
         request: TrueFoundry.TrueFoundryDeleteRequest,
         requestOptions?: TrueFoundryClient.RequestOptions,
-    ): core.HttpResponsePromise<void> {
+    ): core.HttpResponsePromise<TrueFoundry.TrueFoundryDeleteResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(request, requestOptions));
     }
 
     private async __delete(
         request: TrueFoundry.TrueFoundryDeleteRequest,
         requestOptions?: TrueFoundryClient.RequestOptions,
-    ): Promise<core.WithRawResponse<void>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.TrueFoundryDeleteResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -307,7 +319,10 @@ export class TrueFoundryClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: undefined, rawResponse: _response.rawResponse };
+            return {
+                data: _response.body as TrueFoundry.TrueFoundryDeleteResponse,
+                rawResponse: _response.rawResponse,
+            };
         }
 
         if (_response.error.reason === "status-code") {

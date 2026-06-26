@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface JobRun {
-    /** JobRun ID */
+    /** System-generated job run ID. */
     id: string;
     /** JobRun Name */
     name: string;

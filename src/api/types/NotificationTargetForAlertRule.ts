@@ -9,4 +9,5 @@ export type NotificationTargetForAlertRule =
     | TrueFoundry.Email
     | TrueFoundry.SlackWebhook
     | TrueFoundry.SlackBot
-    | TrueFoundry.PagerDuty;
+    | TrueFoundry.PagerDuty
+    | TrueFoundry.MsTeamsWebhook;

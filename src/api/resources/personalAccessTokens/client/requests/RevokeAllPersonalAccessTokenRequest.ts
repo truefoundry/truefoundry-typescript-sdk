@@ -3,10 +3,10 @@
 /**
  * @example
  *     {
- *         email: "email"
+ *         email: "alice@example.com"
  *     }
  */
 export interface RevokeAllPersonalAccessTokenRequest {
-    /** Email of the user to revoke all Personal Access Tokens for */
+    /** Email of the user whose personal access tokens should be revoked. */
     email: string;
 }

@@ -22,7 +22,7 @@ export class ApplicationsClient {
     }
 
     /**
-     * Retrieves a list of all latest applications. Supports filtering by application ID, name, type, and other parameters. Pagination is available based on query parameters.
+     * List applications the caller can read.
      *
      * @param {TrueFoundry.ApplicationsListRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -38,7 +38,7 @@ export class ApplicationsClient {
      *         applicationName: "applicationName",
      *         fqn: "fqn",
      *         workspaceFqn: "workspaceFqn",
-     *         applicationType: "applicationType",
+     *         applicationType: "async-service",
      *         nameSearchQuery: "nameSearchQuery",
      *         environmentId: "environmentId",
      *         clusterId: "clusterId",
@@ -85,7 +85,7 @@ export class ApplicationsClient {
                     applicationName,
                     fqn,
                     workspaceFqn,
-                    applicationType,
+                    applicationType: applicationType != null ? applicationType : undefined,
                     nameSearchQuery,
                     environmentId,
                     clusterId,
@@ -160,7 +160,7 @@ export class ApplicationsClient {
     }
 
     /**
-     * Create a new Application Deployment based on the provided manifest.
+     * Deploy an application from a manifest. Create the application if it does not exist, otherwise create a new deployment version. Return the resulting deployment.
      *
      * @param {TrueFoundry.CreateDeploymentRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -248,9 +248,9 @@ export class ApplicationsClient {
     }
 
     /**
-     * Get Application associated with the provided application ID.
+     * Get a single application by its ID.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -317,9 +317,9 @@ export class ApplicationsClient {
     }
 
     /**
-     * Delete Application associated with the provided application ID.
+     * Permanently delete an application. This action cannot be undone.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -389,10 +389,10 @@ export class ApplicationsClient {
     }
 
     /**
-     * Creates a new deployment with the same manifest as the given deployment.
+     * Redeploy an application by creating a new deployment version using the same manifest as the specified deployment.
      *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {string} id - Unique identifier of the application
+     * @param {string} deploymentId - Unique identifier of the deployment
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -469,9 +469,9 @@ export class ApplicationsClient {
     }
 
     /**
-     * Pause a running application by scaling to 0 replicas
+     * Pause a running application.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -549,9 +549,9 @@ export class ApplicationsClient {
     }
 
     /**
-     * Resume a paused application by scaling back to the original number of replicas
+     * Resume a paused application.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -629,10 +629,10 @@ export class ApplicationsClient {
     }
 
     /**
-     * Cancel an ongoing deployment associated with the provided application ID and deployment ID.
+     * Cancel an in-progress deployment.
      *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {string} id - Unique identifier of the application
+     * @param {string} deploymentId - Unique identifier of the deployment
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}

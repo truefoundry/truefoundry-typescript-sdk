@@ -163,13 +163,13 @@ describe("EnvironmentsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/environments/id")
+            .get("/api/svc/v1/environments/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.environments.get("id");
+        const response = await client.environments.get("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -181,13 +181,13 @@ describe("EnvironmentsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/environments/id")
+            .delete("/api/svc/v1/environments/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.environments.delete("id");
+        const response = await client.environments.delete("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 

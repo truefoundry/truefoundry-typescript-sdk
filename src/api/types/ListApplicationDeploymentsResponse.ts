@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListApplicationDeploymentsResponse {
-    /** Array of Deployments */
+    /** List of deployments matching the query */
     data: TrueFoundry.Deployment[];
-    /** Pagination information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

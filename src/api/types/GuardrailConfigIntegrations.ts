@@ -15,7 +15,7 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.EnkryptAiGuardrailConfig
     | TrueFoundry.PaloAltoPrismaAirsGuardrailConfig
     | TrueFoundry.FiddlerGuardrailConfig
-    | TrueFoundry.PangeaGuardrailConfig
+    | TrueFoundry.CrowdStrikeAidrGuardrailConfig
     | TrueFoundry.PatronusGuardrailConfig
     | TrueFoundry.SecretDetectionGuardrailConfig
     | TrueFoundry.CodeSafetyLinterGuardrailConfig
@@ -24,6 +24,7 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.TfyContentModerationGuardrailConfig
     | TrueFoundry.TfyPiiGuardrailConfig
     | TrueFoundry.TfyPromptInjectionGuardrailConfig
+    | TrueFoundry.TfyMetadataGuardrailConfig
     | TrueFoundry.CedarGuardrailConfig
     | TrueFoundry.OpaGuardrailConfig
     | TrueFoundry.GoogleModelArmorGuardrailConfig

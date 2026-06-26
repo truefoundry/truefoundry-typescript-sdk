@@ -5,4 +5,8 @@ import type * as TrueFoundry from "../index.js";
 /**
  * Authentication data for the Azure account
  */
-export type AzurePiiGuardrailConfigAuthData = TrueFoundry.AzureKeyAuth | TrueFoundry.AzureCertificateAuth;
+export type AzurePiiGuardrailConfigAuthData =
+    | TrueFoundry.AzureKeyAuth
+    | TrueFoundry.AzureCertificateAuth
+    | TrueFoundry.AzureClientSecretAuth
+    | TrueFoundry.AzureWorkloadIdentityAuth;

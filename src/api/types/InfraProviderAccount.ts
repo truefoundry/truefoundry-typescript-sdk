@@ -18,4 +18,5 @@ export type InfraProviderAccount =
     | TrueFoundry.SlackProviderAccount
     | TrueFoundry.WebhookProviderAccount
     | TrueFoundry.PagerDutyProviderAccount
+    | TrueFoundry.MsTeamsProviderAccount
     | TrueFoundry.HashicorpProviderAccount;

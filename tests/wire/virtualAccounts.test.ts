@@ -12,7 +12,7 @@ describe("VirtualAccountsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     type: "type",
                     tenantName: "tenantName",
                     manifest: {
@@ -26,6 +26,7 @@ describe("VirtualAccountsClient", () => {
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
+                    lastAccessedAt: "2024-01-15T09:30:00Z",
                     isExpired: true,
                     jwts: [
                         {
@@ -33,6 +34,7 @@ describe("VirtualAccountsClient", () => {
                             subjectType: "subjectType",
                             subjectId: "subjectId",
                             expiry: "2024-01-15T09:30:00Z",
+                            tokenType: "jwt",
                             createdAt: "2024-01-15T09:30:00Z",
                             updatedAt: "2024-01-15T09:30:00Z",
                         },
@@ -40,7 +42,9 @@ describe("VirtualAccountsClient", () => {
                     accountId: "accountId",
                     metadata: { key: "value" },
                     roleIds: ["roleIds"],
-                    rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                    rolesWithResource: [
+                        { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                    ],
                     createdBy: "createdBy",
                     nextScheduledRotation: "nextScheduledRotation",
                 },
@@ -60,10 +64,10 @@ describe("VirtualAccountsClient", () => {
         const page = await client.virtualAccounts.list({
             limit: 10,
             offset: 0,
-            nameSearchQuery: "nameSearchQuery",
+            nameSearchQuery: "staging-bot",
             ownedByTeams: ["ownedByTeams"],
             isExpired: true,
-            filter: "filter",
+            filter: '{"type":"AND","children":[{"column":"name","op":"STRING_CONTAINS","value":"bot"}]}',
         });
 
         expect(expected.data).toEqual(page.data);
@@ -84,7 +88,7 @@ describe("VirtualAccountsClient", () => {
         };
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -101,6 +105,8 @@ describe("VirtualAccountsClient", () => {
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
+                    token_type: "jwt",
                 },
                 jwtId: "jwtId",
                 createdBySubject: {
@@ -114,6 +120,7 @@ describe("VirtualAccountsClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                lastAccessedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
                 jwts: [
                     {
@@ -121,6 +128,7 @@ describe("VirtualAccountsClient", () => {
                         subjectType: "subjectType",
                         subjectId: "subjectId",
                         expiry: "2024-01-15T09:30:00Z",
+                        tokenType: "jwt",
                         createdAt: "2024-01-15T09:30:00Z",
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
@@ -128,7 +136,9 @@ describe("VirtualAccountsClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
-                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                rolesWithResource: [
+                    { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -258,7 +268,7 @@ describe("VirtualAccountsClient", () => {
 
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 type: "type",
                 tenantName: "tenantName",
                 manifest: {
@@ -275,6 +285,8 @@ describe("VirtualAccountsClient", () => {
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
+                    token_type: "jwt",
                 },
                 jwtId: "jwtId",
                 createdBySubject: {
@@ -288,6 +300,7 @@ describe("VirtualAccountsClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
+                lastAccessedAt: "2024-01-15T09:30:00Z",
                 isExpired: true,
                 jwts: [
                     {
@@ -295,6 +308,7 @@ describe("VirtualAccountsClient", () => {
                         subjectType: "subjectType",
                         subjectId: "subjectId",
                         expiry: "2024-01-15T09:30:00Z",
+                        tokenType: "jwt",
                         createdAt: "2024-01-15T09:30:00Z",
                         updatedAt: "2024-01-15T09:30:00Z",
                     },
@@ -302,7 +316,9 @@ describe("VirtualAccountsClient", () => {
                 accountId: "accountId",
                 metadata: { key: "value" },
                 roleIds: ["roleIds"],
-                rolesWithResource: [{ roleId: "roleId", resourceType: "role", resourceId: "resourceId" }],
+                rolesWithResource: [
+                    { roleId: "roleId", resourceType: "role", resourceId: "resourceId", roleName: "roleName" },
+                ],
                 createdBy: "createdBy",
                 nextScheduledRotation: "nextScheduledRotation",
             },
@@ -311,13 +327,13 @@ describe("VirtualAccountsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/virtual-accounts/id")
+            .get("/api/svc/v1/virtual-accounts/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.virtualAccounts.get("id");
+        const response = await client.virtualAccounts.get("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -331,13 +347,13 @@ describe("VirtualAccountsClient", () => {
             .mockEndpoint()
             .get("/api/svc/v1/virtual-accounts/id")
             .respondWith()
-            .statusCode(400)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.virtualAccounts.get("id");
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -348,13 +364,13 @@ describe("VirtualAccountsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/virtual-accounts/id")
+            .delete("/api/svc/v1/virtual-accounts/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.virtualAccounts.delete("id");
+        const response = await client.virtualAccounts.delete("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -377,7 +393,7 @@ describe("VirtualAccountsClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("get_token", async () => {
+    test("get_token (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -385,14 +401,33 @@ describe("VirtualAccountsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/virtual-accounts/id/token")
+            .get("/api/svc/v1/virtual-accounts/jqfwg345gi25n5ju2yz5iz6m/token")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.virtualAccounts.getToken("id");
+        const response = await client.virtualAccounts.getToken("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("get_token (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/virtual-accounts/id/token")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.getToken("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("sync_to_secret_store (1)", async () => {
@@ -403,13 +438,13 @@ describe("VirtualAccountsClient", () => {
 
         server
             .mockEndpoint()
-            .post("/api/svc/v1/virtual-accounts/id/sync-to-secret-store")
+            .post("/api/svc/v1/virtual-accounts/jqfwg345gi25n5ju2yz5iz6m/sync-to-secret-store")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.virtualAccounts.syncToSecretStore("id");
+        const response = await client.virtualAccounts.syncToSecretStore("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -451,7 +486,7 @@ describe("VirtualAccountsClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("regenerate_token", async () => {
+    test("regenerate_token (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { gracePeriodInDays: 30 };
@@ -459,26 +494,53 @@ describe("VirtualAccountsClient", () => {
 
         server
             .mockEndpoint()
-            .post("/api/svc/v1/virtual-accounts/id/regenerate-token")
+            .post("/api/svc/v1/virtual-accounts/jqfwg345gi25n5ju2yz5iz6m/regenerate-token")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.virtualAccounts.regenerateToken("id", {
+        const response = await client.virtualAccounts.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
             gracePeriodInDays: 30,
         });
         expect(response).toEqual(rawResponseBody);
+    });
+
+    test("regenerate_token (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInDays: 365 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/virtual-accounts/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.virtualAccounts.regenerateToken("id", {
+                gracePeriodInDays: 365,
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("delete_jwt", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        server.mockEndpoint().delete("/api/svc/v1/virtual-accounts/id/jwt/jwtId").respondWith().statusCode(200).build();
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/virtual-accounts/jqfwg345gi25n5ju2yz5iz6m/jwt/jwt_abc123def456")
+            .respondWith()
+            .statusCode(200)
+            .build();
 
-        const response = await client.virtualAccounts.deleteJwt("id", "jwtId");
+        const response = await client.virtualAccounts.deleteJwt("jqfwg345gi25n5ju2yz5iz6m", "jwt_abc123def456");
         expect(response).toEqual(undefined);
     });
 });

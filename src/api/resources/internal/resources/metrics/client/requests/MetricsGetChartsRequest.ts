@@ -9,16 +9,18 @@ import type * as TrueFoundry from "../../../../../../index.js";
  *         startTs: "startTs",
  *         endTs: "endTs",
  *         filterEntity: "application",
- *         filterQuery: "filterQuery"
+ *         filterQuery: "{\"pod\":\"my-app-abc123-xyz\"}"
  *     }
  */
 export interface MetricsGetChartsRequest {
+    /** Unique identifier of the application. */
     applicationId: string;
-    /** Start Timestamp */
+    /** Start timestamp in milliseconds since epoch. Defaults to the application's last deployment creation time. */
     startTs?: string;
-    /** End Timestamp */
+    /** End timestamp in milliseconds since epoch. Defaults to the current time. */
     endTs?: string;
+    /** Scope of the chart bundle to return. */
     filterEntity: TrueFoundry.internal.MetricsGetChartsRequestFilterEntity;
-    /** Query params to filter metrics */
+    /** JSON-encoded filter required by certain scopes. */
     filterQuery?: string;
 }

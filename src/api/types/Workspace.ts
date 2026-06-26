@@ -3,15 +3,20 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Workspace {
+    /** System-generated workspace ID. */
     id: string;
+    /** Human-readable Fully Qualified Name of the workspace. */
     fqn: string;
     tenantName: string;
+    /** System-generated ID of the cluster this workspace belongs to. */
     clusterId: string;
     createdBySubject: TrueFoundry.Subject;
     createdAt: string;
     updatedAt: string;
+    /** System-generated ID of the environment this workspace belongs to. */
     environmentId?: string | undefined;
     manifest: TrueFoundry.WorkspaceManifest;
+    /** System-generated ID of the account. */
     accountId: string;
     isSystemWs?: boolean | undefined;
     createdBy?: string | undefined;

@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListPersonalAccessTokenResponse {
-    /** Array of Personal Access Tokens */
+    /** Array of personal access tokens matching the query. */
     data: TrueFoundry.VirtualAccount[];
-    /** Pagination Information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

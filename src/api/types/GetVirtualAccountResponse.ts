@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetVirtualAccountResponse {
-    /** Virtual Account */
+    /** The requested virtual account. */
     data: TrueFoundry.VirtualAccount;
-    /** Virtual Account token (present only when creating a virtual account) */
+    /** Authentication token for the virtual account. Present only on creation. */
     token?: string | undefined;
 }

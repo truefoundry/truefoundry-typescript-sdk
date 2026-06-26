@@ -5,4 +5,8 @@ import type * as TrueFoundry from "../index.js";
 /**
  * Azure OpenAI authentication credentials
  */
-export type AzureOpenAiProviderAccountAuthData = TrueFoundry.AzureKeyAuth | TrueFoundry.AzureCertificateAuth;
+export type AzureOpenAiProviderAccountAuthData =
+    | TrueFoundry.AzureKeyAuth
+    | TrueFoundry.AzureCertificateAuth
+    | TrueFoundry.AzureClientSecretAuth
+    | TrueFoundry.AzureWorkloadIdentityAuth;

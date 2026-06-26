@@ -6,4 +6,5 @@ export interface RoleWithResource {
     roleId: string;
     resourceType: TrueFoundry.RoleWithResourceResourceType;
     resourceId: string;
+    roleName: string;
 }

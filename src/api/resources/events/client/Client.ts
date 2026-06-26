@@ -22,7 +22,7 @@ export class EventsClient {
     }
 
     /**
-     * Get Events for Pod, Job Run, Application. The events are sourced from Kubernetes as well as events captured by truefoundry. Optional query parameters include startTs, endTs for filtering.
+     * Get events for an application, filtered by pod names, job run, or time range.
      *
      * @param {TrueFoundry.EventsGetRequest} request
      * @param {EventsClient.RequestOptions} requestOptions - Request-specific configuration.

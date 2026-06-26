@@ -17,8 +17,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface ApplyVirtualAccountRequest {
-    /** Virtual account manifest */
+    /** The virtual account manifest describing the virtual account to create or update. */
     manifest: TrueFoundry.VirtualAccountManifest;
-    /** Dry run */
+    /** When true, validate the request without persisting any changes. */
     dryRun?: boolean;
 }

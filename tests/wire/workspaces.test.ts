@@ -12,16 +12,16 @@ describe("WorkspacesClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     fqn: "fqn",
                     tenantName: "tenantName",
-                    clusterId: "clusterId",
+                    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    environmentId: "environmentId",
+                    environmentId: "jqfwg345gi25n5ju2yz5iz6m",
                     manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
-                    accountId: "accountId",
+                    accountId: "jqfwg345gi25n5ju2yz5iz6m",
                     isSystemWs: true,
                     createdBy: "createdBy",
                 },
@@ -41,10 +41,11 @@ describe("WorkspacesClient", () => {
         const page = await client.workspaces.list({
             limit: 10,
             offset: 0,
-            clusterId: "clusterId",
+            clusterId: "jqfwg345gi25n5ju2yz5iz6m",
             name: "name",
             fqn: "fqn",
             includeCluster: true,
+            attributes: ["attributes"],
         });
 
         expect(expected.data).toEqual(page.data);
@@ -59,10 +60,10 @@ describe("WorkspacesClient", () => {
         const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 fqn: "fqn",
                 tenantName: "tenantName",
-                clusterId: "clusterId",
+                clusterId: "jqfwg345gi25n5ju2yz5iz6m",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -74,7 +75,7 @@ describe("WorkspacesClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "environmentId",
+                environmentId: "jqfwg345gi25n5ju2yz5iz6m",
                 manifest: {
                     type: "workspace",
                     cluster_fqn: "cluster_fqn",
@@ -86,7 +87,7 @@ describe("WorkspacesClient", () => {
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     ownedBy: { account: "account" },
                 },
-                accountId: "accountId",
+                accountId: "jqfwg345gi25n5ju2yz5iz6m",
                 isSystemWs: true,
                 createdBy: "createdBy",
             },
@@ -222,16 +223,16 @@ describe("WorkspacesClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     fqn: "fqn",
                     tenantName: "tenantName",
-                    clusterId: "clusterId",
+                    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    environmentId: "environmentId",
+                    environmentId: "jqfwg345gi25n5ju2yz5iz6m",
                     manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
-                    accountId: "accountId",
+                    accountId: "jqfwg345gi25n5ju2yz5iz6m",
                     isSystemWs: true,
                     createdBy: "createdBy",
                 },
@@ -251,7 +252,7 @@ describe("WorkspacesClient", () => {
         const page = await client.workspaces.search({
             limit: 10,
             offset: 0,
-            filter: "filter",
+            filter: '[{"type":"name","operator":"STRING_CONTAINS","value":"prod"}]',
             includeCluster: true,
         });
 
@@ -267,10 +268,10 @@ describe("WorkspacesClient", () => {
 
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 fqn: "fqn",
                 tenantName: "tenantName",
-                clusterId: "clusterId",
+                clusterId: "jqfwg345gi25n5ju2yz5iz6m",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -282,7 +283,7 @@ describe("WorkspacesClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "environmentId",
+                environmentId: "jqfwg345gi25n5ju2yz5iz6m",
                 manifest: {
                     type: "workspace",
                     cluster_fqn: "cluster_fqn",
@@ -294,7 +295,7 @@ describe("WorkspacesClient", () => {
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     ownedBy: { account: "account" },
                 },
-                accountId: "accountId",
+                accountId: "jqfwg345gi25n5ju2yz5iz6m",
                 isSystemWs: true,
                 createdBy: "createdBy",
             },
@@ -302,13 +303,13 @@ describe("WorkspacesClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/workspaces/id")
+            .get("/api/svc/v1/workspaces/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.workspaces.get("id");
+        const response = await client.workspaces.get("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -336,11 +337,11 @@ describe("WorkspacesClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            workspace: {
-                id: "id",
+            data: {
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 fqn: "fqn",
                 tenantName: "tenantName",
-                clusterId: "clusterId",
+                clusterId: "jqfwg345gi25n5ju2yz5iz6m",
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -352,7 +353,7 @@ describe("WorkspacesClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "environmentId",
+                environmentId: "jqfwg345gi25n5ju2yz5iz6m",
                 manifest: {
                     type: "workspace",
                     cluster_fqn: "cluster_fqn",
@@ -364,7 +365,7 @@ describe("WorkspacesClient", () => {
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     ownedBy: { account: "account" },
                 },
-                accountId: "accountId",
+                accountId: "jqfwg345gi25n5ju2yz5iz6m",
                 isSystemWs: true,
                 createdBy: "createdBy",
             },
@@ -373,13 +374,13 @@ describe("WorkspacesClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/workspaces/id")
+            .delete("/api/svc/v1/workspaces/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.workspaces.delete("id");
+        const response = await client.workspaces.delete("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 

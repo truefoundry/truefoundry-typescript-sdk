@@ -22,9 +22,9 @@ export class ClustersClient {
     }
 
     /**
-     * Get the auto provisioning status for the provided cluster
+     * Get the auto-provisioning status for the specified cluster.
      *
-     * @param {string} id - Cluster id of the cluster
+     * @param {string} id - Unique identifier of the cluster.
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}
@@ -53,7 +53,7 @@ export class ClustersClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/clusters/${core.url.encodePathParam(id)}/autoprovisioning-state`,
+                `api/svc/v1/x/clusters/${core.url.encodePathParam(id)}/autoprovisioning-state`,
             ),
             method: "GET",
             headers: _headers,
@@ -91,7 +91,7 @@ export class ClustersClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/svc/v1/clusters/{id}/autoprovisioning-state",
+            "/api/svc/v1/x/clusters/{id}/autoprovisioning-state",
         );
     }
 }

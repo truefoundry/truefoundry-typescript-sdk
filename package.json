@@ -55,6 +55,17 @@
             },
             "default": "./dist/cjs/api/resources/teams/exports.js"
         },
+        "./gatewayConfigs": {
+            "import": {
+                "types": "./dist/esm/api/resources/gatewayConfigs/exports.d.mts",
+                "default": "./dist/esm/api/resources/gatewayConfigs/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/gatewayConfigs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/gatewayConfigs/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/gatewayConfigs/exports.js"
+        },
         "./personalAccessTokens": {
             "import": {
                 "types": "./dist/esm/api/resources/personalAccessTokens/exports.d.mts",
@@ -121,17 +132,6 @@
             },
             "default": "./dist/cjs/api/resources/jobs/exports.js"
         },
-        "./environments": {
-            "import": {
-                "types": "./dist/esm/api/resources/environments/exports.d.mts",
-                "default": "./dist/esm/api/resources/environments/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/environments/exports.d.ts",
-                "default": "./dist/cjs/api/resources/environments/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/environments/exports.js"
-        },
         "./workspaces": {
             "import": {
                 "types": "./dist/esm/api/resources/workspaces/exports.d.mts",
@@ -142,6 +142,17 @@
                 "default": "./dist/cjs/api/resources/workspaces/exports.js"
             },
             "default": "./dist/cjs/api/resources/workspaces/exports.js"
+        },
+        "./environments": {
+            "import": {
+                "types": "./dist/esm/api/resources/environments/exports.d.mts",
+                "default": "./dist/esm/api/resources/environments/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/environments/exports.d.ts",
+                "default": "./dist/cjs/api/resources/environments/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/environments/exports.js"
         },
         "./secrets": {
             "import": {
@@ -208,6 +219,17 @@
                 "default": "./dist/cjs/api/resources/mlRepos/exports.js"
             },
             "default": "./dist/cjs/api/resources/mlRepos/exports.js"
+        },
+        "./runs": {
+            "import": {
+                "types": "./dist/esm/api/resources/runs/exports.d.mts",
+                "default": "./dist/esm/api/resources/runs/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/runs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/runs/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/runs/exports.js"
         },
         "./traces": {
             "import": {
@@ -318,28 +340,6 @@
                 "default": "./dist/cjs/api/resources/dataDirectories/exports.js"
             },
             "default": "./dist/cjs/api/resources/dataDirectories/exports.js"
-        },
-        "./internal/users": {
-            "import": {
-                "types": "./dist/esm/api/resources/internal/resources/users/exports.d.mts",
-                "default": "./dist/esm/api/resources/internal/resources/users/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/internal/resources/users/exports.d.ts",
-                "default": "./dist/cjs/api/resources/internal/resources/users/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/internal/resources/users/exports.js"
-        },
-        "./internal/aiGateway": {
-            "import": {
-                "types": "./dist/esm/api/resources/internal/resources/aiGateway/exports.d.mts",
-                "default": "./dist/esm/api/resources/internal/resources/aiGateway/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/internal/resources/aiGateway/exports.d.ts",
-                "default": "./dist/cjs/api/resources/internal/resources/aiGateway/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/internal/resources/aiGateway/exports.js"
         },
         "./internal/clusters": {
             "import": {

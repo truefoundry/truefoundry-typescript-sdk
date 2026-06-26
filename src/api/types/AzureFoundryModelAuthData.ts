@@ -5,4 +5,8 @@ import type * as TrueFoundry from "../index.js";
 /**
  * Azure AI Foundry authentication credentials
  */
-export type AzureFoundryModelAuthData = TrueFoundry.AzureKeyAuth | TrueFoundry.AzureCertificateAuth;
+export type AzureFoundryModelAuthData =
+    | TrueFoundry.AzureKeyAuth
+    | TrueFoundry.AzureCertificateAuth
+    | TrueFoundry.AzureClientSecretAuth
+    | TrueFoundry.AzureWorkloadIdentityAuth;

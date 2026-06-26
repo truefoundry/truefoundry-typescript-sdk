@@ -15,8 +15,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface CreateOrUpdateEnvironmentRequest {
-    /** Environment Manifest */
+    /** Environment manifest. The environment is matched by `name` for upsert. */
     manifest: TrueFoundry.EnvironmentManifest;
-    /** Dry run */
+    /** When true, validates the manifest without persisting changes. */
     dryRun?: boolean;
 }

@@ -12,7 +12,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         applicationName: "applicationName",
  *         fqn: "fqn",
  *         workspaceFqn: "workspaceFqn",
- *         applicationType: "applicationType",
+ *         applicationType: "async-service",
  *         nameSearchQuery: "nameSearchQuery",
  *         environmentId: "environmentId",
  *         clusterId: "clusterId",
@@ -29,34 +29,34 @@ export interface ApplicationsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** Application id of the application */
+    /** Unique identifier of the application to filter by */
     applicationId?: string;
-    /** Workspace id of the application (comma separated for multiple) */
+    /** Workspace IDs to filter by (comma-separated) */
     workspaceId?: string;
-    /** Name of application */
+    /** Exact application name to filter by. Takes precedence over nameSearchQuery if both are provided. */
     applicationName?: string;
-    /** Fully qualified name (FQN) of the application */
+    /** FQN of the application to filter by. */
     fqn?: string;
-    /** Fully qualified name (FQN) of the workspace */
+    /** FQN of the workspace to filter by. */
     workspaceFqn?: string;
-    /** Type of application (comma separated for multiple). Allowed Values: async-service, service, job, spark-job, helm, notebook, spark-notebook, codeserver, rstudio, ssh-server, volume, application, application-set, intercept, workflow */
-    applicationType?: string;
-    /** Search query for application name */
+    /** Application type to filter by (comma-separated). */
+    applicationType?: TrueFoundry.ApplicationsListRequestApplicationType;
+    /** Substring search query for application name. Ignored if applicationName is also provided. */
     nameSearchQuery?: string;
-    /** Filter by Environment ids of the application (comma separated for multiple) */
+    /** Environment IDs to filter by (comma-separated) */
     environmentId?: string;
-    /** Filter by Cluster ids of the application (comma separated for multiple) */
+    /** Cluster IDs to filter by (comma-separated) */
     clusterId?: string;
-    /** Filter by Application Set id of the application */
+    /** Application set ID to filter by */
     applicationSetId?: string;
-    /** Filter by Application Paused status */
+    /** Filter by explicit pause state (true = paused, false = not paused). Does not account for autoshutdown. */
     paused?: boolean;
-    /** Filter by device type of the application. Allowed values: cpu, nvidia_gpu, aws_inferentia, nvidia_mig_gpu, nvidia_timeslicing_gpu, gcp_tpu */
+    /** Device type to filter by (comma-separated). */
     deviceTypeFilter?: TrueFoundry.ApplicationsListRequestDeviceTypeFilter;
-    /** Filter by last deployed by specific users */
+    /** Subject slugs of last deployers to filter by (comma-separated). Email for users (e.g. user@example.com), name for virtual accounts. */
     lastDeployedBySubjects?: string;
-    /** Filter by application lifecycle state */
+    /** Application lifecycle stage to filter by */
     lifecycleStage?: TrueFoundry.ApplicationsListRequestLifecycleStage;
-    /** Filter out applications with recommendations that are allowed to be shown */
+    /** Whether the application has visible recommendations */
     isRecommendationPresentAndVisible?: boolean;
 }

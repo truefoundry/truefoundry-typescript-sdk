@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetTeamResponse {
-    /** Teams */
+    /** The requested team. */
     data: TrueFoundry.Team;
 }

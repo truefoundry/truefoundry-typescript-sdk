@@ -4,4 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export type InternalListArtifactVersionsResponseDataItem =
     | TrueFoundry.InternalArtifactVersion
-    | TrueFoundry.InternalModelVersion;
+    | TrueFoundry.InternalModelVersion
+    | TrueFoundry.PromptVersion
+    | TrueFoundry.AgentSkillVersion;

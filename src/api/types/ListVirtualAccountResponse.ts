@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListVirtualAccountResponse {
-    /** Array of Virtual Accounts */
+    /** Array of virtual accounts matching the query. */
     data: TrueFoundry.VirtualAccount[];
-    /** Pagination Information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

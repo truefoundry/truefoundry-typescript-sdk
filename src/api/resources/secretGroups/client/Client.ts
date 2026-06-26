@@ -22,7 +22,7 @@ export class SecretGroupsClient {
     }
 
     /**
-     * List the secret groups associated with a user along with the associated secrets for each group. Filtered with the options passed in the query fields. Note: This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+     * List secret groups the caller has access to, along with associated secrets for each group. Secret values are not included in the response.
      *
      * @param {TrueFoundry.SecretGroupsListRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -32,7 +32,8 @@ export class SecretGroupsClient {
      *         limit: 10,
      *         offset: 0,
      *         fqn: "fqn",
-     *         search: "search"
+     *         search: "search",
+     *         attributes: ["attributes"]
      *     })
      */
     public async list(
@@ -43,12 +44,13 @@ export class SecretGroupsClient {
             async (
                 request: TrueFoundry.SecretGroupsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListSecretGroupResponse>> => {
-                const { limit = 100, offset = 0, fqn, search } = request;
+                const { limit = 100, offset = 0, fqn, search, attributes } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     fqn,
                     search,
+                    attributes,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -111,7 +113,7 @@ export class SecretGroupsClient {
     }
 
     /**
-     * Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+     * Create a secret group with initial secrets.
      *
      * @param {TrueFoundry.CreateSecretGroupRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -193,7 +195,7 @@ export class SecretGroupsClient {
     }
 
     /**
-     * Creates a new secret group or updates an existing one based on the provided manifest.
+     * Create a new secret group or update an existing one using the provided manifest. Matching is by name.
      *
      * @param {TrueFoundry.CreateOrUpdateSecretGroupRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -290,9 +292,9 @@ export class SecretGroupsClient {
     }
 
     /**
-     * Get Secret Group by id. This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+     * Get a secret group by ID.
      *
-     * @param {string} id - Secret Id of the secret group.
+     * @param {string} id - Unique identifier of the secret group.
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -364,9 +366,9 @@ export class SecretGroupsClient {
     }
 
     /**
-     * Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value and any omitted secrets are deleted. The returned updated secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+     * Update secrets in a secret group. A new version is created for each secret with a modified value. Omitted secrets are deleted. Secret values are not returned in the response.
      *
-     * @param {string} id - Secret Id of the secret group.
+     * @param {string} id - Unique identifier of the secret group.
      * @param {TrueFoundry.UpdateSecretGroupRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -457,28 +459,38 @@ export class SecretGroupsClient {
     }
 
     /**
-     * Deletes the secret group, its associated secrets and secret versions of those secrets.
+     * Delete the secret group and all its associated secrets and secret versions permanently.
      *
-     * @param {string} id - Secret Id of the secret group.
+     * @param {string} id - Unique identifier of the secret group.
+     * @param {TrueFoundry.SecretGroupsDeleteRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
      * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.FailedDependencyError}
      *
      * @example
-     *     await client.secretGroups.delete("id")
+     *     await client.secretGroups.delete("id", {
+     *         forceDelete: true
+     *     })
      */
     public delete(
         id: string,
+        request: TrueFoundry.SecretGroupsDeleteRequest = {},
         requestOptions?: SecretGroupsClient.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.DeleteSecretGroupResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
     private async __delete(
         id: string,
+        request: TrueFoundry.SecretGroupsDeleteRequest = {},
         requestOptions?: SecretGroupsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.DeleteSecretGroupResponse>> {
+        const { forceDelete } = request;
+        const _queryParams: Record<string, unknown> = {
+            forceDelete,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -493,7 +505,11 @@ export class SecretGroupsClient {
             ),
             method: "DELETE",
             headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -516,6 +532,11 @@ export class SecretGroupsClient {
                     );
                 case 404:
                     throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                case 424:
+                    throw new TrueFoundry.FailedDependencyError(
+                        _response.error.body as TrueFoundry.HttpError,
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

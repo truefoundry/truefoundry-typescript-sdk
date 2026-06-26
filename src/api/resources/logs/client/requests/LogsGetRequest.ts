@@ -5,8 +5,8 @@ import type * as TrueFoundry from "../../../../index.js";
 /**
  * @example
  *     {
- *         startTs: 1000000,
- *         endTs: 1000000,
+ *         startTs: "1779262323000000000",
+ *         endTs: "1779348723000000000",
  *         limit: 1,
  *         direction: "asc",
  *         numLogsToIgnore: 1,
@@ -18,7 +18,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         containerName: "containerName",
  *         podNames: ["podNames"],
  *         podNamesRegex: "podNamesRegex",
- *         searchFilters: "searchFilters",
+ *         searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
  *         searchString: "searchString",
  *         searchType: "regex",
  *         searchOperator: "equal"
@@ -26,37 +26,37 @@ import type * as TrueFoundry from "../../../../index.js";
  */
 export interface LogsGetRequest {
     /** Start timestamp for querying logs, in nanoseconds from the Unix epoch. */
-    startTs?: number;
+    startTs?: string;
     /** End timestamp for querying logs, in nanoseconds from the Unix epoch. */
-    endTs?: number;
-    /** Max number of log lines to fetch */
+    endTs?: string;
+    /** Maximum number of log lines to fetch. */
     limit?: number;
-    /** Direction of sorting logs. Can be `asc` or `desc` */
+    /** Direction of sorting logs by timestamp. */
     direction?: TrueFoundry.LogsSortingDirection;
-    /** Number of logs corresponding to the starting timestamp to be ignored. */
+    /** Number of log lines at the start timestamp to skip. */
     numLogsToIgnore?: number;
-    /** Application ID */
+    /** Unique identifier of the application. Either applicationId or applicationFqn must be provided. */
     applicationId?: string;
-    /** Application FQN */
+    /** FQN of the application. Either applicationId or applicationFqn must be provided. */
     applicationFqn?: string;
-    /** Deployment ID */
+    /** Unique identifier of the deployment. */
     deploymentId?: string;
-    /** Name of the Job Run for which to fetch logs. */
+    /** Name of the job run whose logs to fetch. */
     jobRunName?: string;
-    /** Name of Pod for which to fetch logs. */
+    /** Name of a single pod whose logs to fetch. Cannot be used together with podNames or podNamesRegex. */
     podName?: string;
-    /** Name of the Container for which to fetch logs. */
+    /** Name of the container whose logs to fetch. */
     containerName?: string;
-    /** List of pod names for which to fetch logs. */
+    /** List of pod names whose logs to fetch. Cannot be used together with podName or podNamesRegex. */
     podNames?: string | string[];
-    /** Regex pattern for pod names to fetch logs. */
+    /** Regex pattern matching pod names whose logs to fetch. Cannot be used together with podName or podNames. */
     podNamesRegex?: string;
-    /** JSON string containing array of search filters with string, type and operator */
+    /** JSON-encoded array of search filters; each item is `{ string, type, operator }`. Takes precedence over `searchString` when provided. */
     searchFilters?: string;
-    /** String that needs to be matched */
+    /** Substring or regex to match against log content. Used when `searchFilters` is not provided. */
     searchString?: string;
-    /** Query filter type, `regex` `substring` `ignore_case_substring` */
+    /** How `searchString` should be matched against log content. */
     searchType?: TrueFoundry.LogsSearchFilterType;
-    /** Comparison operator for filter. `equal` or `not_equal` */
+    /** Comparison operator applied to the `searchString` match. */
     searchOperator?: TrueFoundry.LogsSearchOperatorType;
 }

@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListWorkspacesResponse {
-    /** Array of Workspace */
+    /** List of workspaces matching the query criteria. */
     data: TrueFoundry.Workspace[];
-    /** Pagination information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

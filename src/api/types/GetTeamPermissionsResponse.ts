@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetTeamPermissionsResponse {
-    /** Role bindings for the team */
+    /** Role bindings associated with the team. */
     data: TrueFoundry.SubjectPermission[];
 }

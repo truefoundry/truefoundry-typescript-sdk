@@ -7,6 +7,6 @@
  *     }
  */
 export interface ApplicationsPromoteRolloutRequest {
-    /** Whether to promote a rollout to full */
+    /** Whether to promote the rollout to full traffic */
     full?: boolean;
 }

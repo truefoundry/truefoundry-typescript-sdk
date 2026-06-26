@@ -59,7 +59,7 @@ const pageableResponse = await client.applications.list({
     applicationName: "applicationName",
     fqn: "fqn",
     workspaceFqn: "workspaceFqn",
-    applicationType: "applicationType",
+    applicationType: "async-service",
     nameSearchQuery: "nameSearchQuery",
     environmentId: "environmentId",
     clusterId: "clusterId",
@@ -83,7 +83,7 @@ let page = await client.applications.list({
     applicationName: "applicationName",
     fqn: "fqn",
     workspaceFqn: "workspaceFqn",
-    applicationType: "applicationType",
+    applicationType: "async-service",
     nameSearchQuery: "nameSearchQuery",
     environmentId: "environmentId",
     clusterId: "clusterId",
@@ -146,7 +146,7 @@ const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YO
 const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "query",
+    query: "john@example.com",
     showInvalidUsers: true
 });
 for await (const item of pageableResponse) {
@@ -157,7 +157,7 @@ for await (const item of pageableResponse) {
 let page = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "query",
+    query: "john@example.com",
     showInvalidUsers: true
 });
 while (page.hasNextPage()) {

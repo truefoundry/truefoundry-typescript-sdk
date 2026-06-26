@@ -2,4 +2,5 @@
 
 export interface TeamMetadata {
     createdByScim?: boolean | undefined;
+    scimExternalId?: string | undefined;
 }

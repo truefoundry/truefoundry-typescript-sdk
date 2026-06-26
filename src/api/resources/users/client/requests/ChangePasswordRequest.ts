@@ -3,16 +3,16 @@
 /**
  * @example
  *     {
- *         loginId: "loginId",
+ *         loginId: "user@example.com",
  *         newPassword: "newPassword",
  *         oldPassword: "oldPassword"
  *     }
  */
 export interface ChangePasswordRequest {
-    /** login id of the user(email) */
+    /** Email address of the user changing their password. */
     loginId: string;
-    /** New password */
+    /** New password (minimum 8 characters). */
     newPassword: string;
-    /** Old password */
+    /** Current password of the user for verification. */
     oldPassword: string;
 }

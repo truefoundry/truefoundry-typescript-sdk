@@ -5,10 +5,10 @@
  *     {
  *         limit: 10,
  *         offset: 0,
- *         nameSearchQuery: "nameSearchQuery",
+ *         nameSearchQuery: "staging-bot",
  *         ownedByTeams: ["ownedByTeams"],
  *         isExpired: true,
- *         filter: "filter"
+ *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
  *     }
  */
 export interface VirtualAccountsListRequest {
@@ -16,12 +16,12 @@ export interface VirtualAccountsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** Return virtual accounts with names that contain this string */
+    /** Return virtual accounts with names that contain this string. */
     nameSearchQuery?: string;
-    /** Return virtual accounts owned by these teams */
+    /** Comma-separated team names. Return virtual accounts owned by these teams. */
     ownedByTeams?: string | string[];
-    /** Filter virtual accounts by expiration status. true = expired, false = not expired */
+    /** Filter by expiration status. `true` = expired only, `false` = not expired only. */
     isExpired?: boolean;
-    /** JSON string: structured filter tree (AND/OR groups, column leaves on `name`, json_map leaves on manifest.tags). */
+    /** JSON string: structured filter tree (AND/OR groups, column leaves on `name`, json_map leaves on `manifest.tags`). */
     filter?: string;
 }

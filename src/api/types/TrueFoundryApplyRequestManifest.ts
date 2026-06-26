@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * manifest of the resource to be created or updated
+ * Manifest of the resource to be created or updated
  */
 export type TrueFoundryApplyRequestManifest =
     | TrueFoundry.MlRepoManifest

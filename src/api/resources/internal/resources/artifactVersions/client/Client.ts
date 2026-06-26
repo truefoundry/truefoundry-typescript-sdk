@@ -42,7 +42,8 @@ export class ArtifactVersionsClient {
      *         offset: 1,
      *         limit: 1,
      *         include_internal_metadata: true,
-     *         include_model_versions: true
+     *         include_model_versions: true,
+     *         artifact_types: ["artifact"]
      *     })
      */
     public async list(
@@ -71,6 +72,7 @@ export class ArtifactVersionsClient {
                     limit = 100,
                     include_internal_metadata: includeInternalMetadata = false,
                     include_model_versions: includeModelVersions = false,
+                    artifact_types: artifactTypes,
                 } = request;
                 const _queryParams: Record<string, unknown> = {
                     tag,
@@ -85,6 +87,11 @@ export class ArtifactVersionsClient {
                     limit,
                     include_internal_metadata: includeInternalMetadata,
                     include_model_versions: includeModelVersions,
+                    artifact_types: Array.isArray(artifactTypes)
+                        ? artifactTypes.map((item) => item)
+                        : artifactTypes != null
+                          ? artifactTypes
+                          : undefined,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

@@ -7,7 +7,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *     {
  *         limit: 10,
  *         offset: 0,
- *         type: "team"
+ *         type: "team",
+ *         attributes: ["attributes"]
  *     }
  */
 export interface TeamsListRequest {
@@ -15,6 +16,8 @@ export interface TeamsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** Filter teams by type */
+    /** Filter teams by type. */
     type?: TrueFoundry.TeamsListRequestType;
+    /** Comma-separated list of attributes to return (e.g. `id,teamName`). When provided, only the specified fields are fetched. `id` is always included. */
+    attributes?: string | string[];
 }

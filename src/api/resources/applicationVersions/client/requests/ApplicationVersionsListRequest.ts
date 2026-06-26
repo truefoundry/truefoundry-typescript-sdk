@@ -14,8 +14,8 @@ export interface ApplicationVersionsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** Deployment version. Filter deployments by version. */
+    /** Deployment version to filter by */
     version?: string;
-    /** Deployment ID. Filter deployments by a specific ID. */
+    /** Deployment ID to filter by */
     deploymentId?: string;
 }

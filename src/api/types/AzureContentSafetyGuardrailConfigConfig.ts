@@ -15,7 +15,7 @@ export interface AzureContentSafetyGuardrailConfigConfig {
     custom_host?: string | undefined;
     /** Names of custom blocklists created in Azure Content Safety to check text against. Leave empty if not using custom blocklists */
     blocklist_names?: string[] | undefined;
-    /** Minimum severity level (0-6) to flag content. Higher values are more restrictive. 0=Safe, 2=Low risk, 4=Medium risk, 6=High risk */
+    /** Minimum severity level (0-6) to flag content. Lower values are more restrictive (more content is blocked). 0=Safe, 2=Low risk, 4=Medium risk, 6=High risk */
     severity_threshold: number;
     /** Types of harmful content to detect: Hate (hate speech), SelfHarm (self-injury), Sexual (sexual content), Violence (violent content) */
     categories: TrueFoundry.AzureContentSafetyCategory[];

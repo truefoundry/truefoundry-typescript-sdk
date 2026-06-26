@@ -5,7 +5,7 @@ import type * as TrueFoundry from "../index.js";
 /**
  * OAuth2
  */
-export interface McpServerOAuth2 {
+export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth0Settings {
     /** OAuth2 authentication */
     type: "oauth2";
     /** The OAuth2 grant type to use for authentication. */
@@ -20,10 +20,16 @@ export interface McpServerOAuth2 {
     client_secret?: string | undefined;
     /** URL for dynamic client registration (RFC 7591). If provided, client credentials will be obtained automatically using the Dynamic Client Registration (DCR) process. */
     registration_url?: string | undefined;
+    /** URL to fetch token expiry (RFC 7662) when the provider does not return expires_in (e.g. Salesforce). Requires client_id and client_secret. */
+    introspection_url?: string | undefined;
+    /** Select the OAuth provider when provider-specific configuration is required. */
+    provider?: "auth0" | undefined;
     /** List of supported PKCE code challenge methods (S256 only) */
     code_challenge_methods_supported?: "S256"[] | undefined;
     /** Source of the JWT token to be used for verification. */
     jwt_source: TrueFoundry.McpServerOAuth2JwtSource;
     /** List of scopes to request from the OAuth2 provider. */
     scopes?: string[] | undefined;
+    /** Extra key/value pairs sent on every token endpoint request (e.g. Auth0 'audience'). */
+    additional_token_params?: Record<string, string> | undefined;
 }

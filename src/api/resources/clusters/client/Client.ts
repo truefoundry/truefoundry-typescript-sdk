@@ -22,7 +22,7 @@ export class ClustersClient {
     }
 
     /**
-     * Retrieves a list of all latest Clusters. Pagination is available based on query parameters.
+     * List clusters the caller can read.
      *
      * @param {TrueFoundry.ClustersListRequest} request
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -32,7 +32,8 @@ export class ClustersClient {
      * @example
      *     await client.clusters.list({
      *         limit: 10,
-     *         offset: 0
+     *         offset: 0,
+     *         attributes: ["attributes"]
      *     })
      */
     public async list(
@@ -43,10 +44,11 @@ export class ClustersClient {
             async (
                 request: TrueFoundry.ClustersListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListClustersResponse>> => {
-                const { limit = 100, offset = 0 } = request;
+                const { limit = 100, offset = 0, attributes } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
+                    attributes,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -112,7 +114,7 @@ export class ClustersClient {
     }
 
     /**
-     * Create or Update cluster with provided manifest
+     * Create a new cluster or update an existing one using the provided `ClusterManifest`. Matching is by `name` — if a cluster with the same name exists it is updated, otherwise a new one is created.
      *
      * @param {TrueFoundry.CreateOrUpdateClusterRequest} request
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -204,9 +206,9 @@ export class ClustersClient {
     }
 
     /**
-     * Get cluster associated with provided id
+     * Get a single cluster by its ID.
      *
-     * @param {string} id - Cluster id of the cluster
+     * @param {string} id - Unique identifier of the cluster.
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}
@@ -273,9 +275,9 @@ export class ClustersClient {
     }
 
     /**
-     * Delete cluster associated with provided cluster id
+     * Permanently delete the cluster with the given ID. This action is irreversible.
      *
-     * @param {string} id - Cluster id of the cluster
+     * @param {string} id - Unique identifier of the cluster.
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}
@@ -287,14 +289,14 @@ export class ClustersClient {
     public delete(
         id: string,
         requestOptions?: ClustersClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.ClustersDeleteResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.DeleteClusterResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
     }
 
     private async __delete(
         id: string,
         requestOptions?: ClustersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.ClustersDeleteResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.DeleteClusterResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -317,7 +319,7 @@ export class ClustersClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as TrueFoundry.ClustersDeleteResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as TrueFoundry.DeleteClusterResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -342,9 +344,9 @@ export class ClustersClient {
     }
 
     /**
-     * List addons for the provided cluster. Pagination is available based on query parameters.
+     * List addons installed on the cluster.
      *
-     * @param {string} id - Cluster id of the cluster
+     * @param {string} id - Unique identifier of the cluster.
      * @param {TrueFoundry.ClustersGetAddonsRequest} request
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -354,7 +356,8 @@ export class ClustersClient {
      * @example
      *     await client.clusters.getAddons("id", {
      *         limit: 10,
-     *         offset: 0
+     *         offset: 0,
+     *         attributes: ["attributes"]
      *     })
      */
     public getAddons(
@@ -370,10 +373,11 @@ export class ClustersClient {
         request: TrueFoundry.ClustersGetAddonsRequest = {},
         requestOptions?: ClustersClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.ListClusterAddonsResponse>> {
-        const { limit = 100, offset = 0 } = request;
+        const { limit = 100, offset = 0, attributes } = request;
         const _queryParams: Record<string, unknown> = {
             limit,
             offset,
+            attributes,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -434,9 +438,9 @@ export class ClustersClient {
     }
 
     /**
-     * Get the status of provided cluster
+     * Get the connection status of the cluster agent to the control plane.
      *
-     * @param {string} id - Cluster id of the cluster
+     * @param {string} id - Unique identifier of the cluster.
      * @param {ClustersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}

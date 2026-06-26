@@ -5,10 +5,11 @@
  *     {
  *         limit: 10,
  *         offset: 0,
- *         clusterId: "clusterId",
+ *         clusterId: "jqfwg345gi25n5ju2yz5iz6m",
  *         name: "name",
  *         fqn: "fqn",
- *         includeCluster: true
+ *         includeCluster: true,
+ *         attributes: ["attributes"]
  *     }
  */
 export interface WorkspacesListRequest {
@@ -16,12 +17,14 @@ export interface WorkspacesListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** ClusterId of the Cluster */
+    /** System-generated cluster ID to filter by. */
     clusterId?: string;
-    /** Workspace Name */
+    /** Filter workspaces by exact name match. */
     name?: string;
-    /** Workspace FQN */
+    /** Human-readable Fully Qualified Name to filter by. */
     fqn?: string;
-    /** When true, each workspace includes cluster information */
+    /** When true, each workspace in the response includes summary information about its cluster. */
     includeCluster?: boolean;
+    /** Comma-separated list of attributes to return (e.g. id,name). When provided, only the specified fields are fetched. `id` is always included. */
+    attributes?: string | string[];
 }

@@ -1,5 +1,3 @@
-export * as aiGateway from "./aiGateway/index.js";
-export * from "./aiGateway/types/index.js";
 export * from "./applications/client/requests/index.js";
 export * as applications from "./applications/index.js";
 export * from "./artifactVersions/client/requests/index.js";
@@ -17,7 +15,6 @@ export * from "./metrics/types/index.js";
 export * from "./ml/client/requests/index.js";
 export * as ml from "./ml/index.js";
 export * from "./ml/types/index.js";
-export * as users from "./users/index.js";
 export * from "./vcs/client/requests/index.js";
 export * as vcs from "./vcs/index.js";
 export * from "./workflows/client/requests/index.js";

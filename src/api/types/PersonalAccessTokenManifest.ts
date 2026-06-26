@@ -11,5 +11,7 @@ export interface PersonalAccessTokenManifest {
     expiration_date?: string | undefined;
     /** The fully qualified name of the user */
     user_fqn: string;
-    ownedBy?: TrueFoundry.OwnedBy | undefined;
+    ownedBy?: TrueFoundry.VirtualAccountOwnedBy | undefined;
+    /** Format of the issued token. Leave empty to use the platform default. */
+    token_type?: TrueFoundry.PersonalAccessTokenManifestTokenType | undefined;
 }

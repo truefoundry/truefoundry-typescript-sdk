@@ -4,5 +4,5 @@ export interface TrueFoundryAgentSkill {
     /** Fully qualified name of the agent skill */
     fqn: string;
     /** If true, the SKILL.md content is injected into the agent context. */
-    preload_skill_md: boolean;
+    preload: boolean;
 }

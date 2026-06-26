@@ -31,6 +31,8 @@ describe("ArtifactVersionsClient", () => {
                     artifact_id: "artifact_id",
                     artifact_fqn: "artifact_fqn",
                     artifact_size: 1,
+                    artifact_metadata: { key: "value" },
+                    internal_metadata: { key: "value" },
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -58,6 +60,7 @@ describe("ArtifactVersionsClient", () => {
             limit: 1,
             include_internal_metadata: true,
             include_model_versions: true,
+            artifact_types: ["artifact"],
         });
 
         expect(expected.data).toEqual(page.data);

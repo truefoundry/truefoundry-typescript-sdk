@@ -13,14 +13,14 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface AlertsListRequest {
-    /** Start timestamp (ISO format) for querying events */
+    /** Start timestamp for filtering alerts (ISO 8601 format, UTC). Must be before endTs. */
     startTs?: string;
-    /** End timestamp (ISO format) for querying events */
+    /** End timestamp for filtering alerts (ISO 8601 format, UTC). Must be after startTs. */
     endTs?: string;
-    /** Cluster id */
+    /** Unique identifier of the cluster. */
     clusterId?: string;
-    /** Application id */
+    /** Unique identifier of the application. */
     applicationId?: string;
-    /** Alert status */
+    /** Filter by alert status. */
     alertStatus?: TrueFoundry.AlertStatus;
 }

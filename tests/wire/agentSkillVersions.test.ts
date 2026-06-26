@@ -34,6 +34,7 @@ describe("AgentSkillVersionsClient", () => {
                 },
                 ml_repo_id: "ml_repo_id",
                 agent_skill_id: "agent_skill_id",
+                usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
             },
         };
 
@@ -126,6 +127,7 @@ describe("AgentSkillVersionsClient", () => {
                     },
                     ml_repo_id: "ml_repo_id",
                     agent_skill_id: "agent_skill_id",
+                    usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },

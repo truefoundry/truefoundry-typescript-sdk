@@ -4,7 +4,8 @@
  * @example
  *     {
  *         limit: 10,
- *         offset: 0
+ *         offset: 0,
+ *         attributes: ["attributes"]
  *     }
  */
 export interface ClustersListRequest {
@@ -12,4 +13,6 @@ export interface ClustersListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Comma-separated list of attributes to return (e.g. id,name). When provided, only the specified fields are fetched. `id` is always included. */
+    attributes?: string | string[];
 }

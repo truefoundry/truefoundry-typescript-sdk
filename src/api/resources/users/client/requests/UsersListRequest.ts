@@ -5,7 +5,7 @@
  *     {
  *         limit: 10,
  *         offset: 0,
- *         query: "query",
+ *         query: "john@example.com",
  *         showInvalidUsers: true
  *     }
  */
@@ -14,7 +14,8 @@ export interface UsersListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Filter users by email substring match. */
     query?: string;
-    /** Show Deactivated users */
+    /** When true, includes deactivated users in the response. */
     showInvalidUsers?: boolean;
 }

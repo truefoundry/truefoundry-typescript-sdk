@@ -22,7 +22,7 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * List virtual accounts for the tenant.
+     * List virtual accounts accessible to the current user.
      *
      * @param {TrueFoundry.VirtualAccountsListRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -31,10 +31,10 @@ export class VirtualAccountsClient {
      *     await client.virtualAccounts.list({
      *         limit: 10,
      *         offset: 0,
-     *         nameSearchQuery: "nameSearchQuery",
+     *         nameSearchQuery: "staging-bot",
      *         ownedByTeams: ["ownedByTeams"],
      *         isExpired: true,
-     *         filter: "filter"
+     *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
      *     })
      */
     public async list(
@@ -115,7 +115,7 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Creates a new virtual account or updates an existing one based on the provided manifest.
+     * Create a new virtual account or update an existing one using the provided VirtualAccountManifest. Matching is by name — if the name matches an existing virtual account it is updated, otherwise a new one is created.
      *
      * @param {TrueFoundry.ApplyVirtualAccountRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -200,15 +200,15 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Get virtual account by id
+     * Get a single virtual account by its ID.
      *
-     * @param {string} id - serviceaccount id
+     * @param {string} id - System-generated service account ID.
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.virtualAccounts.get("id")
+     *     await client.virtualAccounts.get("jqfwg345gi25n5ju2yz5iz6m")
      */
     public get(
         id: string,
@@ -251,8 +251,8 @@ export class VirtualAccountsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 400:
-                    throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -271,15 +271,15 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Delete a virtual account associated with the provided virtual account id.
+     * Permanently delete the virtual account with the given ID. This action is irreversible.
      *
-     * @param {string} id - serviceaccount id
+     * @param {string} id - System-generated service account ID.
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.virtualAccounts.delete("id")
+     *     await client.virtualAccounts.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
     public delete(
         id: string,
@@ -342,13 +342,15 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Get token for a virtual account by id
+     * Retrieve the current authentication token for a virtual account by its ID.
      *
-     * @param {string} id - serviceaccount id
+     * @param {string} id - System-generated service account ID.
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
      * @example
-     *     await client.virtualAccounts.getToken("id")
+     *     await client.virtualAccounts.getToken("jqfwg345gi25n5ju2yz5iz6m")
      */
     public getToken(
         id: string,
@@ -390,11 +392,16 @@ export class VirtualAccountsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.TrueFoundryError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(
@@ -406,16 +413,16 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Syncs the virtual account token to the configured secret store. Returns the updated JWT with sync metadata including timestamp and error (if any).
+     * Sync the virtual account token to the configured secret store. Returns the sync metadata including timestamp and error (if any).
      *
-     * @param {string} id - serviceaccount id
+     * @param {string} id - System-generated service account ID.
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.virtualAccounts.syncToSecretStore("id")
+     *     await client.virtualAccounts.syncToSecretStore("jqfwg345gi25n5ju2yz5iz6m")
      */
     public syncToSecretStore(
         id: string,
@@ -480,14 +487,16 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Regenerate token for a virtual account by id. The old token will remain valid for the specified grace period.
+     * Regenerate the authentication token for a virtual account. The old token remains valid for the specified grace period.
      *
-     * @param {string} id - serviceaccount id
+     * @param {string} id - System-generated service account ID.
      * @param {TrueFoundry.RegenerateVirtualAccountTokenRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
      * @example
-     *     await client.virtualAccounts.regenerateToken("id", {
+     *     await client.virtualAccounts.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
      *         gracePeriodInDays: 30
      *     })
      */
@@ -536,11 +545,16 @@ export class VirtualAccountsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            throw new errors.TrueFoundryError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-                rawResponse: _response.rawResponse,
-            });
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
         }
 
         return handleNonStatusCodeError(
@@ -552,14 +566,14 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Delete a JWT for a virtual account by id
+     * Delete a specific JWT token belonging to a virtual account. The virtual account itself is not affected.
      *
-     * @param {string} id - virtual account id
-     * @param {string} jwtId - JWT id
+     * @param {string} id - System-generated virtual account ID that owns the JWT.
+     * @param {string} jwtId - System-generated JWT ID to delete.
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.virtualAccounts.deleteJwt("id", "jwtId")
+     *     await client.virtualAccounts.deleteJwt("jqfwg345gi25n5ju2yz5iz6m", "jwt_abc123def456")
      */
     public deleteJwt(
         id: string,

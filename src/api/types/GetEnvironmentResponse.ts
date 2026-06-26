@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetEnvironmentResponse {
-    /** Environment */
+    /** The environment object. */
     data: TrueFoundry.Environment;
 }

@@ -2,6 +2,9 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Deployment manifest defining the application configuration.
+ */
 export type DeploymentManifest =
     | TrueFoundry.Service
     | TrueFoundry.AsyncService

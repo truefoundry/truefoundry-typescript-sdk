@@ -87,7 +87,7 @@ describe("ModelVersionsClient", () => {
                 version_alias: "version_alias",
                 usage_code_snippet: "usage_code_snippet",
                 model_id: "model_id",
-                metrics: [{ key: "key" }],
+                metrics: [{ key: "key", value: 1.1, timestamp: 1.1, step: 1.1 }],
                 deployable: true,
             },
         };
@@ -184,7 +184,7 @@ describe("ModelVersionsClient", () => {
                     version_alias: "version_alias",
                     usage_code_snippet: "usage_code_snippet",
                     model_id: "model_id",
-                    metrics: [{ key: "key" }],
+                    metrics: [{ key: "key", value: 1.1, timestamp: 1.1, step: 1.1 }],
                     deployable: true,
                 },
             ],

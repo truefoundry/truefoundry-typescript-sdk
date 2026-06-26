@@ -22,7 +22,7 @@ export class MetricsClient {
     }
 
     /**
-     * List charts for a given Application based on parameters passed in the query.
+     * List metric charts available for an application.
      *
      * @param {string} workspaceId
      * @param {TrueFoundry.internal.MetricsGetChartsRequest} request
@@ -38,7 +38,7 @@ export class MetricsClient {
      *         startTs: "startTs",
      *         endTs: "endTs",
      *         filterEntity: "application",
-     *         filterQuery: "filterQuery"
+     *         filterQuery: "{\"pod\":\"my-app-abc123-xyz\"}"
      *     })
      */
     public getCharts(

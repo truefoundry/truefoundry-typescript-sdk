@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  * +uiProps={"forwardJsonKey": true}
  */
 export interface TfyContentModerationGuardrailConfigConfig {
-    /** Minimum severity level (0-6) to flag content. 0=Safe, 2=Low risk, 4=Medium risk, 6=High risk */
+    /** Minimum severity level (0-6) to flag content. Lower values are more restrictive (more content is blocked). 0=Safe, 2=Low risk, 4=Medium risk, 6=High risk */
     severity_threshold: number;
     /** Types of harmful content to detect: Hate (hate speech), SelfHarm (self-injury), Sexual (sexual content), Violence (violent content) */
     categories: TrueFoundry.AzureContentSafetyCategory[];

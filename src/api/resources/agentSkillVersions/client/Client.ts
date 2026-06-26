@@ -22,6 +22,8 @@ export class AgentSkillVersionsClient {
     }
 
     /**
+     * Get an agent skill version by its ID.
+     *
      * @param {string} agent_skill_version_id
      * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -94,6 +96,8 @@ export class AgentSkillVersionsClient {
     }
 
     /**
+     * Delete an agent skill version by its ID.
+     *
      * @param {string} agent_skill_version_id
      * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -163,7 +167,7 @@ export class AgentSkillVersionsClient {
     }
 
     /**
-     * List agent skill versions. Each manifest has `source.type` `blob-storage` and `description` only; use GET for full SKILL.md content.
+     * List agent skill versions with optional filtering by FQN, agent skill ID, ML Repo, name, or version.
      *
      * @param {TrueFoundry.AgentSkillVersionsListRequest} request
      * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.

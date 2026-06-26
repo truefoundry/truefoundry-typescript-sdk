@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Environment {
     id?: string | undefined;
-    priority: number;
+    priority?: number | undefined;
     color: TrueFoundry.EnvironmentColor;
     tenantName: string;
     createdBySubject: TrueFoundry.Subject;
