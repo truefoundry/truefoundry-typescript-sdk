@@ -2,5 +2,4 @@
 src/index.ts
 src/CustomClient.ts
 src/api/resources/_WrappedClients.ts
-src/agent/
 .github/workflows/ci.yml
