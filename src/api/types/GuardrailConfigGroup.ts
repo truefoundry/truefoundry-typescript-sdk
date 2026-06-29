@@ -10,7 +10,7 @@ export interface GuardrailConfigGroup {
      * +uiType=Hidden
      * +value=provider-account/guardrail-config-group
      */
-    type: "provider-account/guardrail-config-group";
+    type?: "provider-account/guardrail-config-group" | undefined;
     /** The name of the Guardrail Config Group. */
     name: string;
     /** List of users who have access to this Guardrail Config Group. */

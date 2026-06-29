@@ -2,7 +2,7 @@
 
 export interface CrowdStrikeAidrKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** Bearer token for the CrowdStrike AIDR account */
     api_key: string;
 }

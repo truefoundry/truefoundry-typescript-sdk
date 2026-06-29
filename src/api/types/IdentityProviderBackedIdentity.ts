@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface IdentityProviderBackedIdentity {
     /** +value=idp-backed */
-    type: "idp-backed";
+    type?: "idp-backed" | undefined;
     /** Mappings from external identity provider claim values to this agent identity */
     identity_provider_mapping: TrueFoundry.AgentIdentityProviderMapping[];
 }

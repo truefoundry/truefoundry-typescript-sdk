@@ -2,7 +2,7 @@
 
 export interface PatronusKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** API key for the Patronus account */
     api_key: string;
 }

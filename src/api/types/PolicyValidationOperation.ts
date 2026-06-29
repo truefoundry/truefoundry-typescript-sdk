@@ -5,5 +5,5 @@
  */
 export interface PolicyValidationOperation {
     /** Mutates or Validates Resources */
-    type: "validate";
+    type?: "validate" | undefined;
 }

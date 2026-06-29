@@ -3,16 +3,19 @@
 /**
  * @example
  *     {
+ *         limit: 10,
+ *         offset: 0,
  *         name: "name",
- *         limit: 1,
- *         offset: 1
+ *         attributes: ["attributes"]
  *     }
  */
 export interface MlReposListRequest {
-    /** Name of the ML Repo to filter by */
-    name?: string;
-    /** Maximum number of ML Repos to return */
+    /** Number of items per page */
     limit?: number;
-    /** Number of ML Repos to skip for pagination */
+    /** Number of items to skip */
     offset?: number;
+    /** ML Repo Name */
+    name?: string;
+    /** Comma-separated list of attributes to return (e.g. id,name). When provided, only the specified fields are fetched. `id` is always included. */
+    attributes?: string | string[];
 }

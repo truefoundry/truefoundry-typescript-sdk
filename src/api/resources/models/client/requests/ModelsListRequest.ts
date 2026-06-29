@@ -3,28 +3,23 @@
 /**
  * @example
  *     {
+ *         limit: 10,
+ *         offset: 0,
  *         fqn: "fqn",
  *         ml_repo_id: "ml_repo_id",
  *         name: "name",
- *         offset: 1,
- *         limit: 1,
  *         run_id: "run_id",
  *         include_empty_models: true
  *     }
  */
 export interface ModelsListRequest {
-    /** Fully qualified name to filter models by (format: 'model:{tenant_name}/{ml_repo_name}/{model_name}') */
-    fqn?: string;
-    /** ID of the ML Repo to filter models by */
-    ml_repo_id?: string;
-    /** Name of the model to filter by */
-    name?: string;
-    /** Number of models to skip for pagination */
-    offset?: number;
-    /** Maximum number of models to return */
+    /** Number of items per page */
     limit?: number;
-    /** ID of the run to filter models by */
+    /** Number of items to skip */
+    offset?: number;
+    fqn?: string;
+    ml_repo_id?: string;
+    name?: string;
     run_id?: string;
-    /** Whether to include models that have no versions */
     include_empty_models?: boolean;
 }

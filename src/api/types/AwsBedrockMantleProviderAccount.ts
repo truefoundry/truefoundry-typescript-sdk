@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsBedrockMantleProviderAccount {
     /** +value=provider-account/aws-bedrock-mantle */
-    type: "provider-account/aws-bedrock-mantle";
+    type?: "provider-account/aws-bedrock-mantle" | undefined;
     /** The name of the AWS Bedrock Mantle provider account */
     name: string;
     region: TrueFoundry.AwsRegion;

@@ -14,7 +14,7 @@ export interface TfyPiiGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/tfy-pii
      */
-    type: "integration/guardrail-config/tfy-pii";
+    type?: "integration/guardrail-config/tfy-pii" | undefined;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. Validate guardrails are run in parallel while mutate guardrails are run sequentially. */
     operation: TrueFoundry.TfyPiiGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PythonBuild {
     /** +value=tfy-python-buildpack */
-    type: "tfy-python-buildpack";
+    type?: "tfy-python-buildpack" | undefined;
     /** Python version to run your application. Should be one of the tags listed on [Official Python Docker Page](https://hub.docker.com/_/python) */
     python_version?: string | undefined;
     /** Build path relative to project root path. */

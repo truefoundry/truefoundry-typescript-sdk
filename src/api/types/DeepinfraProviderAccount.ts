@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DeepinfraProviderAccount {
     /** +value=provider-account/deepinfra */
-    type: "provider-account/deepinfra";
+    type?: "provider-account/deepinfra" | undefined;
     /** The name of the DeepInfra provider account */
     name: string;
     auth_data: TrueFoundry.DeepinfraKeyAuth;

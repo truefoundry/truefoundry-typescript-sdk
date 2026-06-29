@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BitbucketProviderAccount {
     /** +value=provider-account/bitbucket */
-    type: "provider-account/bitbucket";
+    type?: "provider-account/bitbucket" | undefined;
     /** +uiProps={"disableEdit":true} */
     name: string;
     /** +uiType=IntegrationsGroup */

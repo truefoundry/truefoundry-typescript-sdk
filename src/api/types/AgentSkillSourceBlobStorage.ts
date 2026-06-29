@@ -4,7 +4,8 @@
  * SKILL.md content stored on blob
  */
 export interface AgentSkillSourceBlobStorage {
-    type: "blob-storage";
+    /** Type */
+    type?: "blob-storage" | undefined;
     /** 1–1024 chars. */
     description: string;
     /** Storage URI of the blob storage object where the skill is stored. */

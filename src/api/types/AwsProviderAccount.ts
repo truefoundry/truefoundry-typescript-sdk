@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsProviderAccount {
     /** +value=provider-account/aws */
-    type: "provider-account/aws";
+    type?: "provider-account/aws" | undefined;
     /** The name of the AWS provider account. */
     name: string;
     /** The AWS account ID. */

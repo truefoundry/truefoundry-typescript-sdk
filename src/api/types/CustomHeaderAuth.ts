@@ -5,7 +5,7 @@
  */
 export interface CustomHeaderAuth {
     /** +value=header */
-    type: "header";
+    type?: "header" | undefined;
     /** Headers passed to the generic secret server with every request. */
     headers: Record<string, string>;
 }

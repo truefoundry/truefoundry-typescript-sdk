@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Volume {
     /** +value=volume */
-    type: "volume";
+    type?: "volume" | undefined;
     /** Name of the Volume. This will be set as the volume name. */
     name: string;
     /** Volume Config - Volume Configuration, can be either Dynamically provisioned or statically provisioned. */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SshServer extends TrueFoundry.BaseWorkbenchInput {
     /** +value=ssh-server */
-    type: "ssh-server";
+    type?: "ssh-server" | undefined;
     image: TrueFoundry.WorkbenchImage;
     /**
      * Add Your SSH Public Key, this will be used to authenticate you to the SSH Server.  \

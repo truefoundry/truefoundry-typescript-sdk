@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Image {
     /** +value=image */
-    type: "image";
+    type?: "image" | undefined;
     /**
      * The image URI. Specify the name of the image and the tag.
      * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).

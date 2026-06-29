@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface WaferModel {
     /** +value=integration/model/wafer */
-    type: "integration/model/wafer";
+    type?: "integration/model/wafer" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Wafer model identifier (e.g., deepseek-v4-pro, deepseek-v4-flash). See https://docs.wafer.ai/serverless for the public catalog. */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ApplicationSet {
     /** +value=application-set */
-    type: "application-set";
+    type?: "application-set" | undefined;
     /** Name of the application set. */
     name: string;
     /** Array of components with their specifications. */

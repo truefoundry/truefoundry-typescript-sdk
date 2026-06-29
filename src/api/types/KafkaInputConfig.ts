@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface KafkaInputConfig {
     /** +value=kafka */
-    type: "kafka";
+    type?: "kafka" | undefined;
     /** 'Kafka Bootstrap servers - Comma separated list of Kafka brokers "hostname:port" to connect to for bootstrap' */
     bootstrap_servers: string;
     /** Kafka topic to subscribe to */

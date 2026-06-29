@@ -5,5 +5,5 @@
  */
 export interface TracingProjectControlPlaneManagedStorage {
     /** Type of storage configuration */
-    type: "controlplane-managed";
+    type?: "controlplane-managed" | undefined;
 }

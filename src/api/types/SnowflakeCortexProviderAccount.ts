@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SnowflakeCortexProviderAccount {
     /** +value=provider-account/snowflake-cortex */
-    type: "provider-account/snowflake-cortex";
+    type?: "provider-account/snowflake-cortex" | undefined;
     /** The name of the Snowflake Cortex provider account */
     name: string;
     auth_data: TrueFoundry.SnowflakeCortexPatTokenAuth;

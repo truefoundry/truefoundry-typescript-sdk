@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Schedule {
     /** +value=scheduled */
-    type: "scheduled";
+    type?: "scheduled" | undefined;
     /**
      * Specify the schedule for this job to be run periodically in cron format.
      * ```

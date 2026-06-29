@@ -10,7 +10,7 @@ export interface TeamBudgetConfig {
      * +value=team-budget-config
      * +sort=1
      */
-    type: "team-budget-config";
+    type?: "team-budget-config" | undefined;
     /** Name of the team that owns this budget. RBAC is enforced on this value. */
     team_name: string;
     /** Unique name for this budget */

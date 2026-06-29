@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PalmModel {
     /** +value=integration/model/palm */
-    type: "integration/model/palm";
+    type?: "integration/model/palm" | undefined;
     /** Name to identify this PaLM model in the UI */
     name: string;
     /** The name of the PaLM model to use */

@@ -20,7 +20,7 @@ describe("WorkspacesClient", () => {
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
                     environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                    manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
+                    manifest: { cluster_fqn: "cluster_fqn", name: "name" },
                     accountId: "jqfwg345gi25n5ju2yz5iz6m",
                     isSystemWs: true,
                     createdBy: "createdBy",
@@ -57,7 +57,7 @@ describe("WorkspacesClient", () => {
     test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
+        const rawRequestBody = { manifest: { cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = {
             data: {
                 id: "jqfwg345gi25n5ju2yz5iz6m",
@@ -104,7 +104,6 @@ describe("WorkspacesClient", () => {
 
         const response = await client.workspaces.createOrUpdate({
             manifest: {
-                type: "workspace",
                 cluster_fqn: "cluster_fqn",
                 name: "name",
             },
@@ -115,7 +114,7 @@ describe("WorkspacesClient", () => {
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
+        const rawRequestBody = { manifest: { cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -130,7 +129,6 @@ describe("WorkspacesClient", () => {
         await expect(async () => {
             return await client.workspaces.createOrUpdate({
                 manifest: {
-                    type: "workspace",
                     cluster_fqn: "cluster_fqn",
                     name: "name",
                 },
@@ -141,7 +139,7 @@ describe("WorkspacesClient", () => {
     test("create_or_update (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
+        const rawRequestBody = { manifest: { cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -156,7 +154,6 @@ describe("WorkspacesClient", () => {
         await expect(async () => {
             return await client.workspaces.createOrUpdate({
                 manifest: {
-                    type: "workspace",
                     cluster_fqn: "cluster_fqn",
                     name: "name",
                 },
@@ -167,7 +164,7 @@ describe("WorkspacesClient", () => {
     test("create_or_update (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
+        const rawRequestBody = { manifest: { cluster_fqn: "cluster_fqn", name: "name" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -182,7 +179,6 @@ describe("WorkspacesClient", () => {
         await expect(async () => {
             return await client.workspaces.createOrUpdate({
                 manifest: {
-                    type: "workspace",
                     cluster_fqn: "cluster_fqn",
                     name: "name",
                 },
@@ -193,8 +189,8 @@ describe("WorkspacesClient", () => {
     test("create_or_update (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = { key: "value" };
+        const rawRequestBody = { manifest: { cluster_fqn: "cluster_fqn", name: "name" } };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -208,7 +204,6 @@ describe("WorkspacesClient", () => {
         await expect(async () => {
             return await client.workspaces.createOrUpdate({
                 manifest: {
-                    type: "workspace",
                     cluster_fqn: "cluster_fqn",
                     name: "name",
                 },
@@ -231,7 +226,7 @@ describe("WorkspacesClient", () => {
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
                     environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                    manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
+                    manifest: { cluster_fqn: "cluster_fqn", name: "name" },
                     accountId: "jqfwg345gi25n5ju2yz5iz6m",
                     isSystemWs: true,
                     createdBy: "createdBy",

@@ -3,7 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface LocalArtifactSource {
-    type: "local";
+    /** Type of the source */
+    type?: "local" | undefined;
     /** Array of ArtifactPath objects representing the source and destination paths */
     paths: TrueFoundry.ArtifactPath[];
 }

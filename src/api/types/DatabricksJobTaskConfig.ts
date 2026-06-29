@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DatabricksJobTaskConfig {
     /** +value=databricks-job-task-config */
-    type: "databricks-job-task-config";
+    type?: "databricks-job-task-config" | undefined;
     /** Specify the image spec for the task */
     image: TrueFoundry.DatabricksJobTaskConfigImage;
     /** Databricks workspace URL, e.g. https://<workspace>.cloud.databricks.com */

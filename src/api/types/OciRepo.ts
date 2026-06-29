@@ -5,7 +5,7 @@
  */
 export interface OciRepo {
     /** +value=oci-repo */
-    type: "oci-repo";
+    type?: "oci-repo" | undefined;
     /** OCI chart URL - Need to be a valid URL. */
     oci_chart_url: string;
     /**

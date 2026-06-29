@@ -4,6 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export interface PatronusToxicityEvaluator {
     /** The type of the evaluator to use for the Patronus Guardrail. */
-    type: "toxicity";
+    type?: "toxicity" | undefined;
     criteria: TrueFoundry.PatronusToxicityCriteria;
 }

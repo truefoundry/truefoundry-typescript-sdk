@@ -5,7 +5,7 @@
  */
 export interface JfrogBasicAuth {
     /** +value=basic-auth */
-    type: "basic-auth";
+    type?: "basic-auth" | undefined;
     /** The username for the basic authentication. */
     username: string;
     /** The password for the basic authentication. */

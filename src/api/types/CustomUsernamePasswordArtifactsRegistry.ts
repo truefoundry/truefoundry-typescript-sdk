@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomUsernamePasswordArtifactsRegistry {
     /** +value=integration/docker-registry/custom */
-    type: "integration/docker-registry/custom";
+    type?: "integration/docker-registry/custom" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */

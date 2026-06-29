@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Notebook extends TrueFoundry.BaseWorkbenchInput {
     /** +value=notebook */
-    type: "notebook";
+    type?: "notebook" | undefined;
     image: TrueFoundry.WorkbenchImage;
     /**
      * Stop the notebook instance after this much time in minutes of inactivity.

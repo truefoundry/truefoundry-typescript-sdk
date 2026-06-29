@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface JfrogProviderAccount {
     /** +value=provider-account/jfrog */
-    type: "provider-account/jfrog";
+    type?: "provider-account/jfrog" | undefined;
     /** The name of the provider account. */
     name: string;
     /** The name of the JFrog account. */

@@ -8,10 +8,7 @@
  *     }
  */
 export interface ApplyModelVersionTagsRequest {
-    /** ID of the model version to apply tags to */
     model_version_id: string;
-    /** List of tags to apply to the model version */
     tags: string[];
-    /** Whether to overwrite existing tags if they conflict */
     force?: boolean;
 }

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DeepgramProviderAccount {
     /** +value=provider-account/deepgram */
-    type: "provider-account/deepgram";
+    type?: "provider-account/deepgram" | undefined;
     /** The name of the Deepgram provider account */
     name: string;
     auth_data: TrueFoundry.DeepgramApiKeyAuth;

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GatewayDataRoutingConfigDestinationControlPlaneManagedStorage {
     /** Type of storage configuration */
-    type: "controlplane-managed";
+    type?: "controlplane-managed" | undefined;
     /** Specifies the region where control plane–managed storage is located. */
     region?: TrueFoundry.GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion | undefined;
 }

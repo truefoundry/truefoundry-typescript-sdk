@@ -5,7 +5,7 @@
  */
 export interface BasicAuthCreds {
     /** +value=basic_auth */
-    type: "basic_auth";
+    type?: "basic_auth" | undefined;
     /** Username for service auth - Username for the user to authenticate with */
     username: string;
     /** Password for service auth - Password for the user to authenticate with */

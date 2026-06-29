@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GoogleVertexProviderAccount {
     /** +value=provider-account/google-vertex */
-    type: "provider-account/google-vertex";
+    type?: "provider-account/google-vertex" | undefined;
     /** The name of the Google Vertex provider account */
     name: string;
     /** The Google Cloud project ID where Vertex AI is enabled */

@@ -5,7 +5,7 @@
  */
 export interface AiFeaturesSettings {
     /** +value=settings/ai-features */
-    type: "settings/ai-features";
+    type?: "settings/ai-features" | undefined;
     /**
      * Enable/Disable AI features.
      * Other fields only apply when this is true

@@ -9,7 +9,6 @@ describe("TrueFoundryClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
@@ -39,7 +38,6 @@ describe("TrueFoundryClient", () => {
 
         const response = await client.apply({
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -58,7 +56,6 @@ describe("TrueFoundryClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
@@ -77,7 +74,6 @@ describe("TrueFoundryClient", () => {
 
         const response = await client.delete({
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [

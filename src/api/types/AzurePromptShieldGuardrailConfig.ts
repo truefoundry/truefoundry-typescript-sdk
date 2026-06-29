@@ -14,7 +14,7 @@ export interface AzurePromptShieldGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-prompt-shield
      */
-    type: "integration/guardrail-config/azure-prompt-shield";
+    type?: "integration/guardrail-config/azure-prompt-shield" | undefined;
     /** Authentication data for the Azure account */
     auth_data: TrueFoundry.AzurePromptShieldGuardrailConfigAuthData;
     /** The operation type for this guardrail. Azure Prompt Shield guardrails can only be used for validation. */

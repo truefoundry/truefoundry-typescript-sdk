@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SambaNovaModel {
     /** +value=integration/model/sambanova */
-    type: "integration/model/sambanova";
+    type?: "integration/model/sambanova" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The SambaNova model identifier (e.g., DeepSeek-R1-0528, Meta-Llama-3.3-70B-Instruct). This is the standard Model ID from SambaNova's model catalog. */

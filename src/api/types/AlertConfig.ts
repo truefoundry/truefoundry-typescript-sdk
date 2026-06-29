@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface AlertConfig {
     /** Type */
-    type: "alert-config";
+    type?: "alert-config" | undefined;
     /** Name - 3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     resource: TrueFoundry.AlertConfigResource;

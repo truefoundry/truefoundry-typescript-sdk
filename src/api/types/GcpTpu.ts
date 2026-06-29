@@ -2,7 +2,7 @@
 
 export interface GcpTpu {
     /** +value=gcp_tpu */
-    type: "gcp_tpu";
+    type?: "gcp_tpu" | undefined;
     /**
      * Name of the TPU Type. One of
      *   - `tpu-v4-podslice` (TPU v4, ct4p)

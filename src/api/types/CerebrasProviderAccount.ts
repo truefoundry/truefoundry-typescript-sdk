@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CerebrasProviderAccount {
     /** +value=provider-account/cerebras */
-    type: "provider-account/cerebras";
+    type?: "provider-account/cerebras" | undefined;
     /** The name of the Cerebras provider account */
     name: string;
     auth_data: TrueFoundry.CerebrasKeyAuth;

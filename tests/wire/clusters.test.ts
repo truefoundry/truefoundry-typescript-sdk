@@ -15,7 +15,6 @@ describe("ClustersClient", () => {
                     id: "jqfwg345gi25n5ju2yz5iz6m",
                     fqn: "fqn",
                     manifest: {
-                        type: "cluster",
                         name: "name",
                         cluster_type: "aws-eks",
                         environment_names: ["environment_names"],
@@ -77,7 +76,6 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "cluster",
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names"],
@@ -132,7 +130,6 @@ describe("ClustersClient", () => {
 
         const response = await client.clusters.createOrUpdate({
             manifest: {
-                type: "cluster",
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names"],
@@ -152,7 +149,6 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "cluster",
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names", "environment_names"],
@@ -176,7 +172,6 @@ describe("ClustersClient", () => {
         await expect(async () => {
             return await client.clusters.createOrUpdate({
                 manifest: {
-                    type: "cluster",
                     name: "name",
                     cluster_type: "aws-eks",
                     environment_names: ["environment_names", "environment_names"],
@@ -200,7 +195,6 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "cluster",
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names", "environment_names"],
@@ -224,7 +218,6 @@ describe("ClustersClient", () => {
         await expect(async () => {
             return await client.clusters.createOrUpdate({
                 manifest: {
-                    type: "cluster",
                     name: "name",
                     cluster_type: "aws-eks",
                     environment_names: ["environment_names", "environment_names"],
@@ -248,7 +241,6 @@ describe("ClustersClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "cluster",
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names", "environment_names"],
@@ -258,7 +250,7 @@ describe("ClustersClient", () => {
                 ],
             },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -272,7 +264,6 @@ describe("ClustersClient", () => {
         await expect(async () => {
             return await client.clusters.createOrUpdate({
                 manifest: {
-                    type: "cluster",
                     name: "name",
                     cluster_type: "aws-eks",
                     environment_names: ["environment_names", "environment_names"],

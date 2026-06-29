@@ -5,6 +5,220 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("DataDirectoriesClient", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    ml_repo_id: "ml_repo_id",
+                    name: "name",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    manifest: { name: "name", ml_repo: "ml_repo", metadata: { key: "value" }, source: {} },
+                    usage_code_snippet: "usage_code_snippet",
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/data-directories")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.dataDirectories.list({
+            limit: 10,
+            offset: 0,
+            fqn: "fqn",
+            ml_repo_id: "ml_repo_id",
+            name: "name",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("create_or_update", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {
+            manifest: { name: "name", ml_repo: "ml_repo", metadata: { key: "value" }, source: {} },
+        };
+        const rawResponseBody = {
+            data: {
+                id: "id",
+                ml_repo_id: "ml_repo_id",
+                name: "name",
+                fqn: "fqn",
+                created_by_subject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
+                created_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+                manifest: {
+                    type: "data-dir",
+                    name: "name",
+                    ml_repo: "ml_repo",
+                    description: "description",
+                    metadata: { key: "value" },
+                    source: {},
+                },
+                usage_code_snippet: "usage_code_snippet",
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/data-directories")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.dataDirectories.createOrUpdate({
+            manifest: {
+                name: "name",
+                ml_repo: "ml_repo",
+                metadata: {
+                    key: "value",
+                },
+                source: {},
+            },
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("list_files", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id" };
+        const rawResponseBody = {
+            data: [
+                {
+                    path: "path",
+                    is_dir: true,
+                    file_size: 1.1,
+                    signed_url: "signed_url",
+                    last_modified: "2024-01-15T09:30:00Z",
+                },
+            ],
+            pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .post("/api/svc/v1/data-directories/files")
+            .jsonBody(rawRequestBody, { ignoredFields: ["pageToken"] })
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.dataDirectories.listFiles({
+            id: "id",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("delete_files", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", paths: ["paths"] };
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/data-directories/files")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.dataDirectories.deleteFiles({
+            id: "id",
+            paths: ["paths"],
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("create_multipart_upload", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", path: "path", num_parts: 1.1 };
+        const rawResponseBody = {
+            data: {
+                storage_provider: "S3_COMPATIBLE",
+                part_signed_urls: [{ path: "path", signed_url: "signed_url" }],
+                finalize_signed_url: { path: "path", signed_url: "signed_url" },
+                s3_compatible_upload_id: "s3_compatible_upload_id",
+                azure_blob_block_ids: ["azure_blob_block_ids"],
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/data-directories/signed-urls/multipart")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.dataDirectories.createMultipartUpload({
+            id: "id",
+            path: "path",
+            num_parts: 1.1,
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("get_signed_urls", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { id: "id", paths: ["paths"], operation: "READ" };
+        const rawResponseBody = { data: [{ path: "path", signed_url: "signed_url" }] };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/data-directories/signed-urls")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.dataDirectories.getSignedUrls({
+            id: "id",
+            paths: ["paths"],
+            operation: "READ",
+        });
+        expect(response).toEqual(rawResponseBody);
+    });
+
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -32,7 +246,7 @@ describe("DataDirectoriesClient", () => {
                     ml_repo: "ml_repo",
                     description: "description",
                     metadata: { key: "value" },
-                    source: { type: "truefoundry" },
+                    source: {},
                 },
                 usage_code_snippet: "usage_code_snippet",
             },
@@ -40,7 +254,7 @@ describe("DataDirectoriesClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/data-directories/id")
+            .get("/api/svc/v1/data-directories/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -58,15 +272,15 @@ describe("DataDirectoriesClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/data-directories/id")
+            .get("/api/svc/v1/data-directories/id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.dataDirectories.get("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -77,15 +291,13 @@ describe("DataDirectoriesClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/data-directories/id")
+            .delete("/api/svc/v1/data-directories/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.dataDirectories.delete("id", {
-            delete_contents: true,
-        });
+        const response = await client.dataDirectories.delete("id");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -97,397 +309,14 @@ describe("DataDirectoriesClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/data-directories/id")
+            .delete("/api/svc/v1/data-directories/id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.dataDirectories.delete("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("list (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "id",
-                    ml_repo_id: "ml_repo_id",
-                    name: "name",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        type: "data-dir",
-                        name: "name",
-                        ml_repo: "ml_repo",
-                        metadata: { key: "value" },
-                        source: { type: "truefoundry" },
-                    },
-                    usage_code_snippet: "usage_code_snippet",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/data-directories")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const expected = rawResponseBody;
-        const page = await client.dataDirectories.list({
-            fqn: "fqn",
-            ml_repo_id: "ml_repo_id",
-            name: "name",
-            limit: 1,
-            offset: 1,
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("list (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/data-directories")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.dataDirectories.list();
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("create_or_update (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "data-dir",
-                name: "name",
-                ml_repo: "ml_repo",
-                metadata: { key: "value" },
-                source: { type: "truefoundry" },
-            },
-        };
-        const rawResponseBody = {
-            data: {
-                id: "id",
-                ml_repo_id: "ml_repo_id",
-                name: "name",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "data-dir",
-                    name: "name",
-                    ml_repo: "ml_repo",
-                    description: "description",
-                    metadata: { key: "value" },
-                    source: { type: "truefoundry" },
-                },
-                usage_code_snippet: "usage_code_snippet",
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .put("/api/ml/v1/data-directories")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.dataDirectories.createOrUpdate({
-            manifest: {
-                type: "data-dir",
-                name: "name",
-                ml_repo: "ml_repo",
-                metadata: {
-                    key: "value",
-                },
-                source: {
-                    type: "truefoundry",
-                },
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("create_or_update (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "data-dir",
-                name: "name",
-                ml_repo: "ml_repo",
-                metadata: { metadata: { key: "value" } },
-                source: { type: "truefoundry" },
-            },
-        };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/api/ml/v1/data-directories")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.dataDirectories.createOrUpdate({
-                manifest: {
-                    type: "data-dir",
-                    name: "name",
-                    ml_repo: "ml_repo",
-                    metadata: {
-                        metadata: {
-                            key: "value",
-                        },
-                    },
-                    source: {
-                        type: "truefoundry",
-                    },
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("list_files (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id" };
-        const rawResponseBody = {
-            data: [
-                {
-                    path: "path",
-                    is_dir: true,
-                    file_size: 1,
-                    signed_url: "signed_url",
-                    last_modified: "2024-01-15T09:30:00Z",
-                },
-            ],
-            pagination: { limit: 10, nextPageToken: "nextPageToken", previousPageToken: "previousPageToken" },
-        };
-
-        server
-            .mockEndpoint({ once: false })
-            .post("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody, { ignoredFields: ["pageToken"] })
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const expected = rawResponseBody;
-        const page = await client.dataDirectories.listFiles({
-            id: "id",
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("list_files (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id" };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody, { ignoredFields: ["pageToken"] })
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.dataDirectories.listFiles({
-                id: "id",
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("delete_files (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id", paths: ["paths"] };
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .delete("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.dataDirectories.deleteFiles({
-            id: "id",
-            paths: ["paths"],
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("delete_files (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id", paths: ["paths", "paths"] };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/api/ml/v1/data-directories/files")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.dataDirectories.deleteFiles({
-                id: "id",
-                paths: ["paths", "paths"],
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("get_signed_urls (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id", paths: ["paths"], operation: "READ" };
-        const rawResponseBody = { data: [{ path: "path", signed_url: "signed_url" }] };
-
-        server
-            .mockEndpoint()
-            .post("/api/ml/v1/data-directories/signed-urls")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.dataDirectories.getSignedUrls({
-            id: "id",
-            paths: ["paths"],
-            operation: "READ",
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("get_signed_urls (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id", paths: ["paths", "paths"], operation: "READ" };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/api/ml/v1/data-directories/signed-urls")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.dataDirectories.getSignedUrls({
-                id: "id",
-                paths: ["paths", "paths"],
-                operation: "READ",
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("create_multipart_upload (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id", path: "path", num_parts: 1 };
-        const rawResponseBody = {
-            data: {
-                storage_provider: "S3_COMPATIBLE",
-                part_signed_urls: [{ path: "path", signed_url: "signed_url" }],
-                s3_compatible_upload_id: "s3_compatible_upload_id",
-                azure_blob_block_ids: ["azure_blob_block_ids"],
-                finalize_signed_url: { path: "path", signed_url: "signed_url" },
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .post("/api/ml/v1/data-directories/signed-urls/multipart")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.dataDirectories.createMultipartUpload({
-            id: "id",
-            path: "path",
-            num_parts: 1,
-        });
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("create_multipart_upload (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { id: "id", path: "path", num_parts: 1 };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .post("/api/ml/v1/data-directories/signed-urls/multipart")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.dataDirectories.createMultipartUpload({
-                id: "id",
-                path: "path",
-                num_parts: 1,
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

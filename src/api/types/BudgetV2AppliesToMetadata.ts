@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BudgetV2AppliesToMetadata {
     /** Applies To Type */
-    type: "metadata";
+    type?: "metadata" | undefined;
     /** Metadata key whose distinct values each get their own budget bucket */
     metadata: string;
     /** Optional per-metadata-value limit overrides */

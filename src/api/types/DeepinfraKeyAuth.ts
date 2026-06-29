@@ -5,7 +5,7 @@
  */
 export interface DeepinfraKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for DeepInfra authentication */
     api_key: string;
 }

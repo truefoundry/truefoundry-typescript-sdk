@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GenericSecretStoreIntegration {
     /** +value=integration/secret-store/custom/generic */
-    type: "integration/secret-store/custom/generic";
+    type?: "integration/secret-store/custom/generic" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** Base URL of the generic secret server. */

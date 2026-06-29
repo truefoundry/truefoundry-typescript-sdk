@@ -3,8 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListPromptVersionsResponse {
-    /** List of prompt versions matching the query */
     data: TrueFoundry.PromptVersion[];
-    /** Pagination information including total count, offset, and limit */
     pagination: TrueFoundry.Pagination;
 }

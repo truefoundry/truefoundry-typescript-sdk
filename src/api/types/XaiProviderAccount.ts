@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface XaiProviderAccount {
     /** +value=provider-account/xai */
-    type: "provider-account/xai";
+    type?: "provider-account/xai" | undefined;
     /** The name of the xAI provider account */
     name: string;
     auth_data: TrueFoundry.XaiKeyAuth;

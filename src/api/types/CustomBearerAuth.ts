@@ -5,7 +5,7 @@
  */
 export interface CustomBearerAuth {
     /** +value=bearer-auth */
-    type: "bearer-auth";
+    type?: "bearer-auth" | undefined;
     /** The bearer token for the custom bearer authentication. */
     bearer_token: string;
 }

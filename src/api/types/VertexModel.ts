@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface VertexModel {
     /** +value=integration/model/vertex */
-    type: "integration/model/vertex";
+    type?: "integration/model/vertex" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Google Vertex AI model identifier (e.g., gemini-2.5-pro, anthropic/claude-sonnet-4-5@20250929). This is the model version name from Vertex AI's model catalog. */

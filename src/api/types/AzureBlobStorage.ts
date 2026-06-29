@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureBlobStorage {
     /** +value=integration/blob-storage/azure/blob */
-    type: "integration/blob-storage/azure/blob";
+    type?: "integration/blob-storage/azure/blob" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The full Azure Blob Storage URL in the format 'https://<storage-account-name>.blob.core.windows.net/<container-name>/<optional-path-prefix>'. Example: 'https://mystorageaccount.blob.core.windows.net/mycontainer' or 'https://mystorageaccount.blob.core.windows.net/mycontainer/artifacts/production'. */

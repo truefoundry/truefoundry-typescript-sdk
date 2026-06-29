@@ -7,6 +7,6 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface RStudio extends TrueFoundry.BaseWorkbenchInput {
     /** +value=rstudio */
-    type: "rstudio";
+    type?: "rstudio" | undefined;
     image: TrueFoundry.WorkbenchImage;
 }

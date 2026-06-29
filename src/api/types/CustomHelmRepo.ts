@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomHelmRepo {
     /** +value=integration/helm-repo/custom */
-    type: "integration/helm-repo/custom";
+    type?: "integration/helm-repo/custom" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the Helm Repo. */

@@ -3,6 +3,5 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetArtifactVersionResponse {
-    /** The artifact version data */
     data: TrueFoundry.ArtifactVersion;
 }

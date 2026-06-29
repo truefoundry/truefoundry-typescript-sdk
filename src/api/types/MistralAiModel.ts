@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface MistralAiModel {
     /** +value=integration/model/mistral-ai */
-    type: "integration/model/mistral-ai";
+    type?: "integration/model/mistral-ai" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Mistral AI model identifier (e.g., mistral-medium-2312, ministral-8b-2410). This is the API Endpoint name from Mistral AI's model catalog. */

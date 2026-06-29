@@ -6,7 +6,6 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             type: "workspace",
  *             cluster_fqn: "cluster_fqn",
  *             name: "name"
  *         }

@@ -2,7 +2,7 @@
 
 export interface WebhookBasicAuth {
     /** +value=auth/webhook-basic */
-    type: "webhook-basic";
+    type?: "webhook-basic" | undefined;
     /** Basic auth username */
     username: string;
     /** Basic auth password */

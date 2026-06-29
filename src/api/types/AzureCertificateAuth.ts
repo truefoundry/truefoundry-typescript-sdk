@@ -5,7 +5,7 @@
  */
 export interface AzureCertificateAuth {
     /** +value=certificate */
-    type: "certificate";
+    type?: "certificate" | undefined;
     /** The Azure AD tenant ID where the application is registered */
     tenant_id: string;
     /** The Azure AD application (client) ID for service principal authentication */

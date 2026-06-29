@@ -5,5 +5,5 @@
  */
 export interface CustomFramework {
     /** Type */
-    type: "custom";
+    type?: "custom" | undefined;
 }

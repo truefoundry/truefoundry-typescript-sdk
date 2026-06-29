@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface PySparkTaskConfig {
     /** +value=pyspark-task-config */
-    type: "pyspark-task-config";
+    type?: "pyspark-task-config" | undefined;
     image: TrueFoundry.TaskPySparkBuild;
     driver_config: TrueFoundry.SparkDriverConfig;
     executor_config: TrueFoundry.SparkExecutorConfig;

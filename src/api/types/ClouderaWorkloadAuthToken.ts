@@ -5,7 +5,7 @@
  */
 export interface ClouderaWorkloadAuthToken {
     /** +value=workload-auth-token */
-    type: "workload-auth-token";
+    type?: "workload-auth-token" | undefined;
     /** The base URL for CDP API services */
     cdp_base_url: string;
     /** The access key ID for your Cloudera CDP workload authentication. */

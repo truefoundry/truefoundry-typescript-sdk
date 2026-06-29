@@ -3,23 +3,17 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Chat Prompt manifest.
+ * Fill in the information for opening a new chat prompt
  */
-export interface ChatPromptManifest {
-    /** Name of the prompt (alphanumeric characters, hyphens, and underscores only, max 256 characters) */
-    name: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Name of the ML Repo that this prompt belongs to (must start and end with alphanumeric, 2-100 characters) */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number | undefined;
-    type: "chat_prompt";
+export interface ChatPromptManifest extends TrueFoundry.BaseArtifactVersion {
+    /** Type of the prompt */
+    type?: "chat_prompt" | undefined;
+    /** Description */
     description?: string | undefined;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     version_alias?: string | undefined;
     /** List of messages in the chat conversation, must be non-empty */
-    messages: TrueFoundry.ChatPromptManifestMessagesItem[];
+    messages: TrueFoundry.ChatMessageTurn[];
     /** Variables referenced in messages and that can be replaced when running generation */
     variables?: Record<string, string> | undefined;
     model_configuration?: TrueFoundry.ModelConfiguration | undefined;

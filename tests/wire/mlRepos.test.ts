@@ -5,12 +5,152 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("MlReposClient", () => {
+    test("get (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: {
+                tenant_name: "truefoundry",
+                manifest: {
+                    type: "ml-repo",
+                    name: "name",
+                    description: "description",
+                    storage_integration_fqn: "storage_integration_fqn",
+                    collaborators: [{ subject: "subject", role_id: "role_id" }],
+                    ownedBy: { account: "account" },
+                },
+                created_by_subject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
+                created_at: "2024-01-15T09:30:00Z",
+                account_id: "account_id",
+                id: "420",
+                num_runs: 10,
+                artifact_type_counts: { key: 1 },
+                datasets_count: 10,
+                tracing_projects_count: 1,
+            },
+        };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/ml-repos/id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.mlRepos.get("id");
+        expect(response).toEqual(rawResponseBody);
+    });
+
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/ml-repos/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.mlRepos.get("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("delete (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        server.mockEndpoint().delete("/api/svc/v1/ml-repos/id").respondWith().statusCode(200).build();
+
+        const response = await client.mlRepos.delete("id");
+        expect(response).toEqual(undefined);
+    });
+
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/ml-repos/id")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.mlRepos.delete("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    tenant_name: "truefoundry",
+                    manifest: {
+                        name: "name",
+                        storage_integration_fqn: "storage_integration_fqn",
+                        collaborators: [{ subject: "subject", role_id: "role_id" }],
+                    },
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                    created_at: "2024-01-15T09:30:00Z",
+                    account_id: "account_id",
+                    id: "420",
+                    num_runs: 10,
+                    datasets_count: 10,
+                    tracing_projects_count: 1,
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/ml-repos")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.mlRepos.list({
+            limit: 10,
+            offset: 0,
+            name: "name",
+            attributes: ["attributes"],
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
     test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
@@ -42,6 +182,7 @@ describe("MlReposClient", () => {
                 num_runs: 10,
                 artifact_type_counts: { key: 1 },
                 datasets_count: 10,
+                tracing_projects_count: 1,
             },
         };
 
@@ -56,7 +197,6 @@ describe("MlReposClient", () => {
 
         const response = await client.mlRepos.createOrUpdate({
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -75,7 +215,6 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -98,7 +237,6 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
-                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -121,7 +259,6 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -144,7 +281,6 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
-                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -167,7 +303,6 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -190,7 +325,6 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
-                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -213,7 +347,6 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -222,7 +355,7 @@ describe("MlReposClient", () => {
                 ],
             },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -236,7 +369,6 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
-                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -251,172 +383,6 @@ describe("MlReposClient", () => {
                     ],
                 },
             });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("get (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                tenant_name: "truefoundry",
-                manifest: {
-                    type: "ml-repo",
-                    name: "name",
-                    description: "description",
-                    storage_integration_fqn: "storage_integration_fqn",
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
-                },
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                account_id: "account_id",
-                id: "420",
-                num_runs: 10,
-                artifact_type_counts: { key: 1 },
-                datasets_count: 10,
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .get("/api/ml/v1/ml-repos/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.mlRepos.get("id");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("get (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/api/ml/v1/ml-repos/id")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.mlRepos.get("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("delete (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .delete("/api/ml/v1/ml-repos/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.mlRepos.delete("id");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("delete (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/api/ml/v1/ml-repos/id")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.mlRepos.delete("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("list (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    tenant_name: "truefoundry",
-                    manifest: {
-                        type: "ml-repo",
-                        name: "name",
-                        storage_integration_fqn: "storage_integration_fqn",
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    },
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    created_at: "2024-01-15T09:30:00Z",
-                    account_id: "account_id",
-                    id: "420",
-                    num_runs: 10,
-                    datasets_count: 10,
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/ml-repos")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const expected = rawResponseBody;
-        const page = await client.mlRepos.list({
-            name: "name",
-            limit: 1,
-            offset: 1,
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("list (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/ml-repos")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.mlRepos.list();
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

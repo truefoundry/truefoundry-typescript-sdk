@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsS3 {
     /** +value=integration/blob-storage/aws/s3 */
-    type: "integration/blob-storage/aws/s3";
+    type?: "integration/blob-storage/aws/s3" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The S3 storage path in the format 's3://<bucket-name>/<optional-path-prefix>'. Works with S3-compatible storage providers like MinIO, Ceph, and DigitalOcean Spaces. Example: 's3://mybucket' or 's3://mybucket/artifacts/production'. */

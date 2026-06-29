@@ -11,7 +11,7 @@ export interface BedrockModel {
     /** The AWS Bedrock model identifier or inference profile. Can be a foundation model ID (e.g., anthropic.claude-3-5-sonnet-20240620-v1:0, amazon.titan-text-express-v1), an inference profile ID (e.g., us.anthropic.claude-3-5-sonnet-20240620-v1:0), or an inference profile ARN (e.g., arn:aws:bedrock:us-east-1:123456789012:inference-profile/my-profile). */
     model_id: string;
     /** +value=integration/model/bedrock */
-    type: "integration/model/bedrock";
+    type?: "integration/model/bedrock" | undefined;
     /** Specify the type of the Bedrock model */
     model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion | undefined;

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureAksIntegration {
     /** +value=integration/cluster/azure/aks */
-    type: "integration/cluster/azure/aks";
+    type?: "integration/cluster/azure/aks" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The resource group of the cluster in the cloud account. */

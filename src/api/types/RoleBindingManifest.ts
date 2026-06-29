@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface RoleBindingManifest {
     /** +value=role-binding */
-    type: "role-binding";
+    type?: "role-binding" | undefined;
     /** Unique name for this role binding. */
     name: string;
     /** One row per principal; set type and name (email, team name, virtual account name, or external identity name). */

@@ -2,32 +2,16 @@
 
 import type * as TrueFoundry from "../index.js";
 
-/**
- * Tags, optional version alias, and SDK usage snippet (models, prompts, generic artifacts).
- */
 export interface PromptVersion {
-    /** Unique identifier for the artifact version */
-    id: string;
-    /** Fully qualified name of the artifact version in the format '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}' */
-    fqn: string;
-    /** Subject (user, team, or service account) that created this artifact version */
-    created_by_subject: TrueFoundry.Subject;
-    /** Timestamp when the artifact version was created */
     created_at?: string | undefined;
-    /** Timestamp when the artifact version was last updated */
     updated_at?: string | undefined;
-    /** Manifest containing metadata specific to the chat prompt version */
     manifest: TrueFoundry.ChatPromptManifest;
-    /** ID of the ML Repo that this artifact version belongs to */
+    id: string;
+    fqn: string;
+    created_by_subject: TrueFoundry.Subject;
     ml_repo_id: string;
-    /** List of tags associated with this artifact version for filtering and organization */
-    tags?: string[] | undefined;
-    /** Optional human-readable version alias (e.g. v1.0.0) */
-    version_alias?: string | undefined;
-    /** Code snippet demonstrating how to use this artifact version */
     usage_code_snippet?: string | undefined;
-    /** List of code snippets demonstrating how to use this prompt version in different languages */
     usage_code_snippets?: TrueFoundry.UsageCodeSnippet[] | undefined;
-    /** ID of the parent prompt that this version belongs to */
+    tags?: string[] | undefined;
     prompt_id: string;
 }

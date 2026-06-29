@@ -6,7 +6,7 @@ export interface PersonalAccessTokenManifest {
     /** Personal Access Token Name */
     name: string;
     /** +value=pat */
-    type: "pat";
+    type?: "pat" | undefined;
     /** Expiration Date of the Personal Access Token (should be in the ISO 8601 format) */
     expiration_date?: string | undefined;
     /** The fully qualified name of the user */

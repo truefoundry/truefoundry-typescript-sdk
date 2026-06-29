@@ -126,7 +126,6 @@ export class ClustersClient {
      * @example
      *     await client.clusters.createOrUpdate({
      *         manifest: {
-     *             type: "cluster",
      *             name: "name",
      *             cluster_type: "aws-eks",
      *             environment_names: ["environment_names"],
@@ -190,7 +189,7 @@ export class ClustersClient {
                     );
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:

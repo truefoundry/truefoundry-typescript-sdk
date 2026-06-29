@@ -3,6 +3,5 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetAgentSkillVersionResponse {
-    /** The agent skill version data */
     data: TrueFoundry.AgentSkillVersion;
 }

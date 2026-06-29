@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PrometheusAlertRule {
     /** Type */
-    type: "prometheus-alert-rule";
+    type?: "prometheus-alert-rule" | undefined;
     /** Enter a unique, descriptive name for your Prometheus alert rule. Choose a name that clearly indicates the condition being monitored. Please note that reserved alert names for TrueFoundry managed alerts are not allowed. For checking the list of reserved alert names, please refer to the documentation. */
     name: string;
     /** Enter a valid PromQL expression that defines the condition for triggering this alert. The alert will fire when this expression evaluates to true for the duration specified in the duration to trigger alert field. */

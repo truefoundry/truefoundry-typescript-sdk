@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface XaiModel {
     /** +value=integration/model/xai */
-    type: "integration/model/xai";
+    type?: "integration/model/xai" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The xAI model identifier (e.g., grok-4-1-fast-reasoning, grok-4-1-fast-non-reasoning, grok-4). This is the model name from xAI's model catalog. */

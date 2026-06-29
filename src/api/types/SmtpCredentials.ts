@@ -8,7 +8,7 @@ export interface SmtpCredentials {
      * +value=smtp-credentials
      * +sort=250
      */
-    type: "smtp-credentials";
+    type?: "smtp-credentials" | undefined;
     /** The SMTP host of the email server. */
     host: string;
     /** The username for the SMTP server. */

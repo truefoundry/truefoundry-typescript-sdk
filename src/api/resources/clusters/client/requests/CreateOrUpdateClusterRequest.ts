@@ -6,7 +6,6 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             type: "cluster",
  *             name: "name",
  *             cluster_type: "aws-eks",
  *             environment_names: ["environment_names"],

@@ -5,7 +5,7 @@
  */
 export interface SparkJobPythonNotebookEntrypoint {
     /** +value=python-notebook */
-    type: "python-notebook";
+    type?: "python-notebook" | undefined;
     /** The main application file to be executed by the spark job. Relative path in case of git repository. */
     main_application_file: string;
 }

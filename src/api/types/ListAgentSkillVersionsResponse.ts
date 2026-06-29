@@ -3,8 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListAgentSkillVersionsResponse {
-    /** List of agent skill versions */
     data: TrueFoundry.AgentSkillVersion[];
-    /** Pagination information */
     pagination: TrueFoundry.Pagination;
 }

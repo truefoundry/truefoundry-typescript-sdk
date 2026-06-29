@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ClouderaProviderAccount {
     /** +value=provider-account/cloudera */
-    type: "provider-account/cloudera";
+    type?: "provider-account/cloudera" | undefined;
     /** The name of the Cloudera provider account */
     name: string;
     /** Cloudera authentication credentials */

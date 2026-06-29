@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SmallestAiModel {
     /** +value=integration/model/smallest-ai */
-    type: "integration/model/smallest-ai";
+    type?: "integration/model/smallest-ai" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Smallest AI model identifier (for example, lightning-v2, lightning-v3.1 for TTS, pulse for STT) */

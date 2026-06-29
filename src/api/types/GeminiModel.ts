@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GeminiModel {
     /** +value=integration/model/gemini */
-    type: "integration/model/gemini";
+    type?: "integration/model/gemini" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Google Gemini model identifier (e.g., gemini-2.0-flash, gemini-2.0-flash-lite-preview-02-05, gemini-2.0-flash-lite-preview-02-05). This is the standard model name from Google's Gemini API documentation. */

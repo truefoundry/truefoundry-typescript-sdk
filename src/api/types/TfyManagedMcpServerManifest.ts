@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface TfyManagedMcpServerManifest {
     /** +value=mcp-server/tfy-managed */
-    type: "mcp-server/tfy-managed";
+    type?: "mcp-server/tfy-managed" | undefined;
     /** The name of the MCP Server. */
     name: string;
     /** Provide a brief description of the purpose of this MCP Server. */

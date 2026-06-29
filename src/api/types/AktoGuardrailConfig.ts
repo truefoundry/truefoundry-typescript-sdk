@@ -14,7 +14,7 @@ export interface AktoGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/akto
      */
-    type: "integration/guardrail-config/akto";
+    type?: "integration/guardrail-config/akto" | undefined;
     auth_data: TrueFoundry.AktoTokenAuth;
     /** The operation type for this guardrail. Akto guardrails can only be used for validation. */
     operation: "validate";

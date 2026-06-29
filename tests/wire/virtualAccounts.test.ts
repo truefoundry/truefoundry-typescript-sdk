@@ -17,7 +17,6 @@ describe("VirtualAccountsClient", () => {
                     tenantName: "tenantName",
                     manifest: {
                         name: "name",
-                        type: "virtual-account",
                         permissions: [
                             { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                         ],
@@ -82,7 +81,6 @@ describe("VirtualAccountsClient", () => {
         const rawRequestBody = {
             manifest: {
                 name: "name",
-                type: "virtual-account",
                 permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
             },
         };
@@ -97,11 +95,7 @@ describe("VirtualAccountsClient", () => {
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     expiration_date: "expiration_date",
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
-                    notification_target: {
-                        type: "email",
-                        notification_channel: "notification_channel",
-                        to_emails: ["to_emails"],
-                    },
+                    notification_target: { notification_channel: "notification_channel", to_emails: ["to_emails"] },
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
@@ -157,7 +151,6 @@ describe("VirtualAccountsClient", () => {
         const response = await client.virtualAccounts.createOrUpdate({
             manifest: {
                 name: "name",
-                type: "virtual-account",
                 permissions: [
                     {
                         resource_fqn: "resource_fqn",
@@ -176,7 +169,6 @@ describe("VirtualAccountsClient", () => {
         const rawRequestBody = {
             manifest: {
                 name: "name",
-                type: "virtual-account",
                 permissions: [
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
@@ -198,7 +190,6 @@ describe("VirtualAccountsClient", () => {
             return await client.virtualAccounts.createOrUpdate({
                 manifest: {
                     name: "name",
-                    type: "virtual-account",
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -222,14 +213,13 @@ describe("VirtualAccountsClient", () => {
         const rawRequestBody = {
             manifest: {
                 name: "name",
-                type: "virtual-account",
                 permissions: [
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                     { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                 ],
             },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -244,7 +234,6 @@ describe("VirtualAccountsClient", () => {
             return await client.virtualAccounts.createOrUpdate({
                 manifest: {
                     name: "name",
-                    type: "virtual-account",
                     permissions: [
                         {
                             resource_fqn: "resource_fqn",
@@ -277,11 +266,7 @@ describe("VirtualAccountsClient", () => {
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     expiration_date: "expiration_date",
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
-                    notification_target: {
-                        type: "email",
-                        notification_channel: "notification_channel",
-                        to_emails: ["to_emails"],
-                    },
+                    notification_target: { notification_channel: "notification_channel", to_emails: ["to_emails"] },
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GithubIntegration {
     /** +value=integration/vcs/github */
-    type: "integration/vcs/github";
+    type?: "integration/vcs/github" | undefined;
     /** +sort=100 */
     name: string;
     /** Account Name */

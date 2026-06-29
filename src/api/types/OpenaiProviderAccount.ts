@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OpenaiProviderAccount {
     /** +value=provider-account/openai */
-    type: "provider-account/openai";
+    type?: "provider-account/openai" | undefined;
     /** The name of the OpenAI provider account */
     name: string;
     auth_data?: TrueFoundry.OpenaiApiKeyAuth | undefined;

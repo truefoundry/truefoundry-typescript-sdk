@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BasetenModel {
     /** +value=integration/model/baseten */
-    type: "integration/model/baseten";
+    type?: "integration/model/baseten" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Baseten model identifier. This is the model name from Baseten's model catalog. */

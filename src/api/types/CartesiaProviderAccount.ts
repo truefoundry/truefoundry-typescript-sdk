@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CartesiaProviderAccount {
     /** +value=provider-account/cartesia */
-    type: "provider-account/cartesia";
+    type?: "provider-account/cartesia" | undefined;
     /** The name of the Cartesia provider account */
     name: string;
     /** Optional custom base URL for Cartesia API */

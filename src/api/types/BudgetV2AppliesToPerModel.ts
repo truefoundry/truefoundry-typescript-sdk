@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BudgetV2AppliesToPerModel {
     /** Applies To Type */
-    type: "per-model";
+    type?: "per-model" | undefined;
     /** Optional per-model limit overrides */
     overrides?: TrueFoundry.BudgetV2PerModelOverride[] | undefined;
 }

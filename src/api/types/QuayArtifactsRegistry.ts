@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface QuayArtifactsRegistry {
     /** +value=integration/docker-registry/quay */
-    type: "integration/docker-registry/quay";
+    type?: "integration/docker-registry/quay" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */

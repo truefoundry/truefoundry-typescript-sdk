@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SlackBotIntegration {
     /** +value=integration/notification-channel/slack-bot */
-    type: "integration/notification-channel/slack-bot";
+    type?: "integration/notification-channel/slack-bot" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.SlackBotAuth;

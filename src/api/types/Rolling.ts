@@ -11,7 +11,7 @@
  */
 export interface Rolling {
     /** +value=rolling_update */
-    type: "rolling_update";
+    type?: "rolling_update" | undefined;
     /**
      * Percentage of total replicas that can be brought down at one time.
      * For a value of 25 when replicas are set to 12 this would mean minimum (25% of 12) = 3 pods might be unavailable during the deployment.

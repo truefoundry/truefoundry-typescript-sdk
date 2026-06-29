@@ -5,7 +5,7 @@
  */
 export interface CohereKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for Cohere authentication */
     api_key: string;
 }

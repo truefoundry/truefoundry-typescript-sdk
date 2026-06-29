@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureReposIntegration {
     /** +value=integration/vcs/azure */
-    type: "integration/vcs/azure";
+    type?: "integration/vcs/azure" | undefined;
     /** +sort=100 */
     name: string;
     /** Account Name */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface RemoteMcpServerManifest {
     /** +value=mcp-server/remote */
-    type: "mcp-server/remote";
+    type?: "mcp-server/remote" | undefined;
     /** The name of the MCP Server. */
     name: string;
     /** Provide a brief description of the purpose of this MCP Server. */

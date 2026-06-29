@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GcpGcr {
     /** +value=integration/docker-registry/gcp/gcr */
-    type: "integration/docker-registry/gcp/gcr";
+    type?: "integration/docker-registry/gcp/gcr" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */

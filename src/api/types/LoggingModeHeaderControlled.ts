@@ -5,7 +5,7 @@
  */
 export interface LoggingModeHeaderControlled {
     /** +value=header_controlled */
-    type: "header_controlled";
+    type?: "header_controlled" | undefined;
     /** Sets the default body logging behaviour when no header is present. Enabling it will log requests by default and clients can opt out. Disabling it will NOT log by default and clients can opt in to log requests. */
     log_body_by_default: boolean;
 }

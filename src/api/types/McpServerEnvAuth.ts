@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerEnvAuth {
     /** +value=env */
-    type: "env";
+    type?: "env" | undefined;
     /** Map each env variable to its value. For shared, enter the actual value. For individual, use a placeholder that will be filled in by each user (e.g. API_KEY {{API_KEY}}). */
     env: Record<string, string>;
     /** Level at which this authentication will be applied. Values: global (default), per_user */

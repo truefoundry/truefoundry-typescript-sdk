@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface TrueFoundryProviderAccount {
     /** +value=provider-account/truefoundry */
-    type: "provider-account/truefoundry";
+    type?: "provider-account/truefoundry" | undefined;
     /** The name of the provider account. */
     name: string;
     /** List of integrations that are associated with the provider account. */

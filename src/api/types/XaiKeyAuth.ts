@@ -5,7 +5,7 @@
  */
 export interface XaiKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for xAI authentication */
     api_key: string;
 }

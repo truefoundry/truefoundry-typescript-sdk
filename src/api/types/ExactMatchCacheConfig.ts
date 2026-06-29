@@ -4,7 +4,8 @@
  * Exact Match Cache Configuration
  */
 export interface ExactMatchCacheConfig {
-    type: "exact-match";
+    /** Cache type */
+    type?: "exact-match" | undefined;
     /** Cache namespace (defaults to 'default' if not provided) */
     namespace?: string | undefined;
     /** Time-to-live for cached entries in seconds (max 3 days) */

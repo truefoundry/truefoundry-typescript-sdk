@@ -5,7 +5,7 @@
  */
 export interface CartesiaApiKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for Cartesia authentication */
     api_key: string;
 }

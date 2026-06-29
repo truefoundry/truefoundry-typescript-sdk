@@ -22,12 +22,124 @@ export class ModelVersionsClient {
     }
 
     /**
+     * List model versions with optional filtering by tag, FQN, model ID, ML Repo, name, version, run IDs, or run steps.
+     *
+     * @param {TrueFoundry.ModelVersionsListRequest} request
+     * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.modelVersions.list({
+     *         limit: 10,
+     *         offset: 0,
+     *         tag: "tag",
+     *         fqn: "fqn",
+     *         model_id: "model_id",
+     *         ml_repo_id: "ml_repo_id",
+     *         name: "name",
+     *         run_ids: ["run_ids"],
+     *         run_steps: [1.1],
+     *         include_internal_metadata: true
+     *     })
+     */
+    public async list(
+        request: TrueFoundry.ModelVersionsListRequest = {},
+        requestOptions?: ModelVersionsClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.ModelVersion, TrueFoundry.ListModelVersionsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ModelVersionsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListModelVersionsResponse>> => {
+                const {
+                    limit = 100,
+                    offset = 0,
+                    tag,
+                    fqn,
+                    model_id: modelId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    include_internal_metadata: includeInternalMetadata = false,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    tag,
+                    fqn,
+                    model_id: modelId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    include_internal_metadata: includeInternalMetadata,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/model-versions",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryString: core.url
+                        .queryBuilder()
+                        .addMany(_queryParams)
+                        .mergeAdditional(requestOptions?.queryParams)
+                        .build(),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListModelVersionsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/api/svc/v1/model-versions",
+                );
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.ModelVersion, TrueFoundry.ListModelVersionsResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
      * Apply tags to a model version.
      *
      * @param {TrueFoundry.ApplyModelVersionTagsRequest} request
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.modelVersions.applyTags({
@@ -56,7 +168,7 @@ export class ModelVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/model-versions/tags",
+                "api/svc/v1/model-versions/tags",
             ),
             method: "PUT",
             headers: _headers,
@@ -75,36 +187,28 @@ export class ModelVersionsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "PUT",
-            "/api/ml/v1/model-versions/tags",
+            "/api/svc/v1/model-versions/tags",
         );
     }
 
     /**
      * Get a model version by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Model version ID
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.modelVersions.get("id")
@@ -130,7 +234,7 @@ export class ModelVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/model-versions/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/model-versions/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -147,11 +251,8 @@ export class ModelVersionsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -165,17 +266,17 @@ export class ModelVersionsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/ml/v1/model-versions/{id}",
+            "/api/svc/v1/model-versions/{id}",
         );
     }
 
     /**
      * Delete a model version by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Model version ID
      * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.modelVersions.delete("id")
@@ -201,7 +302,7 @@ export class ModelVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/model-versions/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/model-versions/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -218,11 +319,8 @@ export class ModelVersionsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -236,132 +334,7 @@ export class ModelVersionsClient {
             _response.error,
             _response.rawResponse,
             "DELETE",
-            "/api/ml/v1/model-versions/{id}",
+            "/api/svc/v1/model-versions/{id}",
         );
-    }
-
-    /**
-     * List model versions with optional filtering by tag, FQN, model ID, ML Repo, name, version, run IDs, or run steps.
-     *
-     * @param {TrueFoundry.ModelVersionsListRequest} request
-     * @param {ModelVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.modelVersions.list({
-     *         tag: "tag",
-     *         fqn: "fqn",
-     *         model_id: "model_id",
-     *         ml_repo_id: "ml_repo_id",
-     *         name: "name",
-     *         version: 1,
-     *         run_ids: ["run_ids"],
-     *         run_steps: [1],
-     *         offset: 1,
-     *         limit: 1,
-     *         include_internal_metadata: true
-     *     })
-     */
-    public async list(
-        request: TrueFoundry.ModelVersionsListRequest = {},
-        requestOptions?: ModelVersionsClient.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.ModelVersion, TrueFoundry.ListModelVersionsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: TrueFoundry.ModelVersionsListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListModelVersionsResponse>> => {
-                const {
-                    tag,
-                    fqn,
-                    model_id: modelId,
-                    ml_repo_id: mlRepoId,
-                    name,
-                    version,
-                    run_ids: runIds,
-                    run_steps: runSteps,
-                    offset = 0,
-                    limit = 100,
-                    include_internal_metadata: includeInternalMetadata = false,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    tag,
-                    fqn,
-                    model_id: modelId,
-                    ml_repo_id: mlRepoId,
-                    name,
-                    version,
-                    run_ids: runIds,
-                    run_steps: runSteps,
-                    offset,
-                    limit,
-                    include_internal_metadata: includeInternalMetadata,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/model-versions",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryString: core.url
-                        .queryBuilder()
-                        .addMany(_queryParams)
-                        .mergeAdditional(requestOptions?.queryParams)
-                        .build(),
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: _response.body as TrueFoundry.ListModelVersionsResponse,
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/api/ml/v1/model-versions",
-                );
-            },
-        );
-        let _offset = request?.offset != null ? request?.offset : 0;
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<TrueFoundry.ModelVersion, TrueFoundry.ListModelVersionsResponse>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
-        });
     }
 }

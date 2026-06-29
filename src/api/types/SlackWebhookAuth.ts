@@ -2,7 +2,7 @@
 
 export interface SlackWebhookAuth {
     /** +value=auth/slack-webhook */
-    type: "slack-webhook";
+    type?: "slack-webhook" | undefined;
     /** The URL of the slack webhook */
     webhook_url: string;
 }

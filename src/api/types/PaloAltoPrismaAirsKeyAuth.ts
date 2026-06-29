@@ -2,7 +2,7 @@
 
 export interface PaloAltoPrismaAirsKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** API key for the Palo Alto  Prisma AIRS account */
     api_key: string;
 }

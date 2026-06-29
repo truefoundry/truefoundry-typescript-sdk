@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerWithFqn {
     /** The FQN of the MCP server */
-    type: "mcp-server-fqn";
+    type?: "mcp-server-fqn" | undefined;
     /** The FQN of the MCP server */
     integration_fqn: string;
     /** Whether to enable all tools from the MCP server */

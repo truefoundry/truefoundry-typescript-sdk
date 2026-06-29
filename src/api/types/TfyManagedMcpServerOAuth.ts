@@ -5,7 +5,7 @@
  */
 export interface TfyManagedMcpServerOAuth {
     /** OAuth2 authentication */
-    type: "oauth2";
+    type?: "oauth2" | undefined;
     /** The OAuth2 grant type to use for authentication. */
     grant_type: "authorization_code";
 }

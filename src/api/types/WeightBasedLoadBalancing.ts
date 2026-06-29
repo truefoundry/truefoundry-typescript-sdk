@@ -6,7 +6,8 @@ import type * as TrueFoundry from "../index.js";
  * Weight-based Load Balancing
  */
 export interface WeightBasedLoadBalancing {
-    type: "weight-based-routing";
+    /** Routing Type */
+    type?: "weight-based-routing" | undefined;
     /** List of targets for load balancing with weights */
     load_balance_targets: TrueFoundry.LoadBalanceTarget[];
     sticky_routing?: TrueFoundry.StickyRouting | undefined;

@@ -2,7 +2,7 @@
 
 export interface SnowflakeCortexPatTokenAuth {
     /** +value=pat-token */
-    type: "pat-token";
+    type?: "pat-token" | undefined;
     /** PAT token for Snowflake Cortex authentication */
     pat_token: string;
 }

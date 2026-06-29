@@ -9,7 +9,7 @@ export interface VirtualModel {
     /** The name of the Virtual Model */
     name: string;
     /** +value=integration/model/virtual */
-    type: "integration/model/virtual";
+    type?: "integration/model/virtual" | undefined;
     /** Specify the type of the Virtual Model */
     model_types: TrueFoundry.VirtualModelModelType[];
     /** It should be a unique identifier for the virtual model. It is used to uniquely identify the virtual model. It can be used in place of virtualGroupName/virtualModelName. */

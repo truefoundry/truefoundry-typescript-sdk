@@ -3,10 +3,11 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Data Directory manifest.
+ * Data Directory
  */
 export interface DataDirectoryManifest {
-    type: "data-dir";
+    /** Type */
+    type?: "data-dir" | undefined;
     /** Name of the data directory */
     name: string;
     /** Name of the ML Repo to create the data directory under */
@@ -15,5 +16,6 @@ export interface DataDirectoryManifest {
     description?: string | undefined;
     /** Key Value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
+    /** Data Directory Source */
     source: TrueFoundry.DataDirectoryManifestSource;
 }

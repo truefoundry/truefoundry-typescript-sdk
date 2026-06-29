@@ -5,7 +5,7 @@
  */
 export interface OpenaiApiKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** Your OpenAI API key for authentication */
     api_key: string;
 }

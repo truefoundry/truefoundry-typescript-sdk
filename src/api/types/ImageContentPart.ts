@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ImageContentPart {
     /** Type of the content part */
-    type: "image_url";
+    type?: "image_url" | undefined;
     /** Image URL linking to the image */
     image_url: TrueFoundry.ImageContentPartImageUrl;
 }

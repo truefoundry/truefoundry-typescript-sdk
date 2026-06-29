@@ -6,7 +6,6 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             type: "ml-repo",
  *             name: "name",
  *             storage_integration_fqn: "storage_integration_fqn",
  *             collaborators: [{

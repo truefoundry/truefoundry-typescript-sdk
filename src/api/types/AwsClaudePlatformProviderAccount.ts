@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsClaudePlatformProviderAccount {
     /** +value=provider-account/aws-claude-platform */
-    type: "provider-account/aws-claude-platform";
+    type?: "provider-account/aws-claude-platform" | undefined;
     /** The name of the AWS Claude Platform provider account */
     name: string;
     /** Your Claude Platform on AWS workspace ID, in the format wrkspc_<alphanumeric>. */

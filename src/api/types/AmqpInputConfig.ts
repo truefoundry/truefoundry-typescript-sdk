@@ -5,7 +5,7 @@
  */
 export interface AmqpInputConfig {
     /** +value=amqp */
-    type: "amqp";
+    type?: "amqp" | undefined;
     /** AMQP Queue URL of Subscriber */
     url: string;
     /** AMQP Queue Name */

@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface TeamManifest {
     /** +value=team */
-    type: "team";
+    type?: "team" | undefined;
     /** Name of the Team */
     name: string;
     /** A human-readable label for the team in the UI. If omitted, the team name is shown. */

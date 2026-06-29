@@ -3,8 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListAgentSkillsResponse {
-    /** List of agent skills matching the query */
     data: TrueFoundry.AgentSkill[];
-    /** Pagination information */
     pagination: TrueFoundry.Pagination;
 }

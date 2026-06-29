@@ -6,7 +6,8 @@ import type * as TrueFoundry from "../index.js";
  * Priority-based Load Balancing
  */
 export interface PriorityBasedLoadBalancing {
-    type: "priority-based-routing";
+    /** Routing Type */
+    type?: "priority-based-routing" | undefined;
     /** List of targets for priority-based load balancing */
     load_balance_targets: TrueFoundry.PriorityBasedLoadBalanceTarget[];
 }

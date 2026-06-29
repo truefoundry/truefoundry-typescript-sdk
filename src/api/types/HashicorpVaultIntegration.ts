@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface HashicorpVaultIntegration {
     /** +value=integration/secret-store/hashicorp/vault */
-    type: "integration/secret-store/hashicorp/vault";
+    type?: "integration/secret-store/hashicorp/vault" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the HashiCorp Vault server (e.g., https://vault.example.com:8200). */

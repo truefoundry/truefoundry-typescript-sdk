@@ -5,6 +5,6 @@
  */
 export interface McpServerHeaderOverrideAuth {
     /** +value=header */
-    type: "header";
+    type?: "header" | undefined;
     headers: Record<string, string>;
 }

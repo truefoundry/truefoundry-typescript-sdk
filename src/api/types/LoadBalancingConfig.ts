@@ -10,7 +10,7 @@ export interface LoadBalancingConfig {
      * +value=gateway-load-balancing-config
      * +sort=2
      */
-    type: "gateway-load-balancing-config";
+    type?: "gateway-load-balancing-config" | undefined;
     /** List of load balancing rules */
     rules: TrueFoundry.LoadBalancingRule[];
 }

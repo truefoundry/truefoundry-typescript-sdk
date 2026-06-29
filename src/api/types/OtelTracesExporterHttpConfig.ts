@@ -9,5 +9,5 @@ export interface OtelTracesExporterHttpConfig
     extends TrueFoundry.OtelExporterHttpConfigBase,
         TrueFoundry.OtelTracesExporterCommonConfig {
     /** Configuration type */
-    type: "http";
+    type?: "http" | undefined;
 }

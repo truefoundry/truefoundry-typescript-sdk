@@ -5,7 +5,7 @@
  */
 export interface TrojAiClientIdAuth {
     /** +value=client-id */
-    type: "client-id";
+    type?: "client-id" | undefined;
     /** The client ID that identifies your TrojAI firewall policy (sent as x-eag-clientid header) */
     client_id: string;
 }

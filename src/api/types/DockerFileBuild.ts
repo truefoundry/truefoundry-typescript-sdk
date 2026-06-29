@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DockerFileBuild {
     /** +value=dockerfile */
-    type: "dockerfile";
+    type?: "dockerfile" | undefined;
     /** The file path of the Dockerfile relative to project root path. */
     dockerfile_path: string;
     /** Build context path for the Dockerfile relative to project root path. */

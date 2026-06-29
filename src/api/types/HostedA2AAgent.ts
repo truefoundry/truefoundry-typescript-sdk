@@ -5,7 +5,7 @@
  */
 export interface HostedA2AAgent {
     /** Type of agent source */
-    type: "hosted-a2a-agent";
+    type?: "hosted-a2a-agent" | undefined;
     /** Agent Card URL for the A2A Agent */
     agent_card_url: string;
     /** Headers to be sent with the request to the hosted A2A agent. Primarily used for authentication. */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ElevenLabsProviderAccount {
     /** +value=provider-account/elevenlabs */
-    type: "provider-account/elevenlabs";
+    type?: "provider-account/elevenlabs" | undefined;
     /** The name of the ElevenLabs provider account */
     name: string;
     auth_data: TrueFoundry.ElevenLabsApiKeyAuth;

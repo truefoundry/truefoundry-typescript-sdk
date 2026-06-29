@@ -3,6 +3,5 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface MultiPartUploadResponse {
-    /** Multipart upload information including signed URLs for each part */
     data: TrueFoundry.MultiPartUpload;
 }

@@ -14,7 +14,7 @@ export interface EnkryptAiGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/enkrypt-ai
      */
-    type: "integration/guardrail-config/enkrypt-ai";
+    type?: "integration/guardrail-config/enkrypt-ai" | undefined;
     auth_data: TrueFoundry.EnkryptAiKeyAuth;
     /**
      * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.

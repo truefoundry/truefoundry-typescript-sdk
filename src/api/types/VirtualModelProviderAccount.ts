@@ -9,7 +9,7 @@ export interface VirtualModelProviderAccount {
     /** The name of the Virtual Model Provider Group */
     name: string;
     /** +value=provider-account/virtual-model */
-    type: "provider-account/virtual-model";
+    type?: "provider-account/virtual-model" | undefined;
     /** List of virtual models in this group */
     integrations: TrueFoundry.VirtualModel[];
     /** List of users who have access to this Virtual Model Provider Group */

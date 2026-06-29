@@ -127,7 +127,6 @@ export class VirtualAccountsClient {
      *     await client.virtualAccounts.createOrUpdate({
      *         manifest: {
      *             name: "name",
-     *             type: "virtual-account",
      *             permissions: [{
      *                     resource_fqn: "resource_fqn",
      *                     resource_type: "resource_type",
@@ -184,7 +183,7 @@ export class VirtualAccountsClient {
                     throw new TrueFoundry.BadRequestError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:

@@ -6,19 +6,15 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             name: "name",
  *             metadata: {
  *                 "key": "value"
  *             },
- *             ml_repo: "ml_repo",
- *             type: "artifact-version",
- *             source: {
- *                 type: "truefoundry"
- *             }
+ *             source: {},
+ *             step: 1
  *         }
  *     }
  */
 export interface ApplyArtifactRequest {
-    /** Manifest containing metadata for the artifact to apply */
-    manifest: TrueFoundry.ArtifactManifest;
+    /** Manifest containing metadata for the artifact version to create or update */
+    manifest: TrueFoundry.ApplyArtifactRequestManifest;
 }

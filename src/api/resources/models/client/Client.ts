@@ -27,7 +27,7 @@ export class ModelsClient {
      * @param {string} id
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.models.get("id")
@@ -53,7 +53,7 @@ export class ModelsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/models/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/models/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -70,11 +70,8 @@ export class ModelsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -84,7 +81,7 @@ export class ModelsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/models/{id}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/models/{id}");
     }
 
     /**
@@ -93,7 +90,7 @@ export class ModelsClient {
      * @param {string} id
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.models.delete("id")
@@ -119,7 +116,7 @@ export class ModelsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/models/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/models/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -136,11 +133,8 @@ export class ModelsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -150,7 +144,7 @@ export class ModelsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/ml/v1/models/{id}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/svc/v1/models/{id}");
     }
 
     /**
@@ -159,15 +153,13 @@ export class ModelsClient {
      * @param {TrueFoundry.ModelsListRequest} request
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.models.list({
+     *         limit: 10,
+     *         offset: 0,
      *         fqn: "fqn",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         offset: 1,
-     *         limit: 1,
      *         run_id: "run_id",
      *         include_empty_models: true
      *     })
@@ -181,20 +173,20 @@ export class ModelsClient {
                 request: TrueFoundry.ModelsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListModelsResponse>> => {
                 const {
+                    limit = 100,
+                    offset = 0,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset = 0,
-                    limit = 100,
                     run_id: runId,
                     include_empty_models: includeEmptyModels = true,
                 } = request;
                 const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset,
-                    limit,
                     run_id: runId,
                     include_empty_models: includeEmptyModels,
                 };
@@ -208,7 +200,7 @@ export class ModelsClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/models",
+                        "api/svc/v1/models",
                     ),
                     method: "GET",
                     headers: _headers,
@@ -230,21 +222,13 @@ export class ModelsClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
-                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/models");
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/models");
             },
         );
         let _offset = request?.offset != null ? request?.offset : 0;
@@ -267,20 +251,14 @@ export class ModelsClient {
      * @param {TrueFoundry.ApplyModelRequest} request
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.models.createOrUpdate({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
-     *             type: "model-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
+     *             source: {},
+     *             step: 1
      *         }
      *     })
      */
@@ -305,7 +283,7 @@ export class ModelsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/model-versions",
+                "api/svc/v1/model-versions",
             ),
             method: "PUT",
             headers: _headers,
@@ -324,21 +302,13 @@ export class ModelsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/ml/v1/model-versions");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/svc/v1/model-versions");
     }
 }

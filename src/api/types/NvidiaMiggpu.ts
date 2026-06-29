@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface NvidiaMiggpu {
     /** +value=nvidia_mig_gpu */
-    type: "nvidia_mig_gpu";
+    type?: "nvidia_mig_gpu" | undefined;
     /**
      * Name of the Nvidia GPU. One of [P4, P100, V100, T4, A10G, A100_40GB, A100_80GB]
      * This field is required for Node Selector and can be ignored in Nodepool Selector.

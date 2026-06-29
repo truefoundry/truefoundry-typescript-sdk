@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomProviderAccount {
     /** +value=provider-account/custom */
-    type: "provider-account/custom";
+    type?: "provider-account/custom" | undefined;
     /** The name of the provider account. */
     name: string;
     auth_data?: TrueFoundry.CustomBasicAuth | undefined;

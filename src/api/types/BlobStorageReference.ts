@@ -6,9 +6,10 @@ import type * as TrueFoundry from "../index.js";
  * A reference to content offloaded to blob storage
  */
 export interface BlobStorageReference {
-    type: "blob-storage";
+    /** +value=blob-storage */
+    type?: "blob-storage" | undefined;
     /** Path to the content in blob storage */
     path: string;
     /** MIME type of the content */
-    mime_type: TrueFoundry.MimeType;
+    mime_type: TrueFoundry.BlobStorageReferenceMimeType;
 }

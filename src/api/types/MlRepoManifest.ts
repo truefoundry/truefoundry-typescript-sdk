@@ -6,7 +6,8 @@ import type * as TrueFoundry from "../index.js";
  * MLRepo is a repository ML training runs that log params, metrics, plots, images and versioned entities like artifacts, models, prompts, tools, agents
  */
 export interface MlRepoManifest {
-    type: "ml-repo";
+    /** +value=ml-repo */
+    type?: "ml-repo" | undefined;
     /** Name of the ML Repo. */
     name: string;
     /** Description for the ML Repo. */

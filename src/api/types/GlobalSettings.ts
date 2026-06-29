@@ -10,7 +10,7 @@ export interface GlobalSettings {
      * +value=gateway-global-settings
      * +sort=2
      */
-    type: "gateway-global-settings";
+    type?: "gateway-global-settings" | undefined;
     retry_settings?: TrueFoundry.RetryConfig | undefined;
     logging_settings?: TrueFoundry.LoggingMode | undefined;
     semantic_cache_settings?: TrueFoundry.SemanticCacheSettings | undefined;

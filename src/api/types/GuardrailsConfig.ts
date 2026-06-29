@@ -10,7 +10,7 @@ export interface GuardrailsConfig {
      * +value=gateway-guardrails-config
      * +sort=2
      */
-    type: "gateway-guardrails-config";
+    type?: "gateway-guardrails-config" | undefined;
     /** List of guardrail rules */
     rules: TrueFoundry.GuardrailsRule[];
 }

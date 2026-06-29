@@ -10,7 +10,7 @@ export interface BudgetConfig {
      * +value=gateway-budget-config
      * +sort=2
      */
-    type: "gateway-budget-config";
+    type?: "gateway-budget-config" | undefined;
     /** List of budget rules */
     rules: TrueFoundry.BudgetRule[];
 }

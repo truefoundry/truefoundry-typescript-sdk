@@ -2,7 +2,7 @@
 
 export interface HelmRepo {
     /** +value=helm-repo */
-    type: "helm-repo";
+    type?: "helm-repo" | undefined;
     /** Helm repository URL - Needs to be a valid URL. */
     repo_url: string;
     /**

@@ -8,7 +8,7 @@ export interface TaskPythonBuild {
      * +uiType=Hidden
      * +value=task-python-build
      */
-    type: "task-python-build";
+    type?: "task-python-build" | undefined;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page

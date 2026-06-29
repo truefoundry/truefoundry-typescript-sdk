@@ -2,7 +2,7 @@
 
 export interface PagerDuty {
     /** +value=pagerduty */
-    type: "pagerduty";
+    type?: "pagerduty" | undefined;
     /** Specify the notification channel to send alerts to */
     notification_channel: string;
 }

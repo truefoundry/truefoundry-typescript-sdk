@@ -8,7 +8,7 @@ export interface TaskDockerFileBuild {
      * +uiType=Hidden
      * +value=dockerfile
      */
-    type: "task-dockerfile-build";
+    type?: "task-dockerfile-build" | undefined;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page

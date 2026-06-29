@@ -4,6 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export interface PatronusPhiEvaluator {
     /** The type of the evaluator to use for the Patronus Guardrail. */
-    type: "phi";
+    type?: "phi" | undefined;
     criteria: TrueFoundry.PatronusPhiCriteria;
 }

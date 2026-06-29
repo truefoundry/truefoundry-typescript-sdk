@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BasetenProviderAccount {
     /** +value=provider-account/baseten */
-    type: "provider-account/baseten";
+    type?: "provider-account/baseten" | undefined;
     /** The name of the Baseten provider account */
     name: string;
     auth_data: TrueFoundry.BasetenKeyAuth;

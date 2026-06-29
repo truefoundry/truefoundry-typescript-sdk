@@ -10,7 +10,7 @@ export interface RateLimitConfig {
      * +value=gateway-rate-limiting-config
      * +sort=2
      */
-    type: "gateway-rate-limiting-config";
+    type?: "gateway-rate-limiting-config" | undefined;
     /** List of rate limit rules */
     rules: TrueFoundry.RateLimitRule[];
 }

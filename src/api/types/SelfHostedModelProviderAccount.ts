@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SelfHostedModelProviderAccount {
     /** +value=provider-account/self-hosted-model */
-    type: "provider-account/self-hosted-model";
+    type?: "provider-account/self-hosted-model" | undefined;
     /** The name of the provider account. */
     name: string;
     /** List of integrations that are associated with the provider account. */

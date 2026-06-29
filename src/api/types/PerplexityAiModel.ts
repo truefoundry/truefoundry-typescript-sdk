@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PerplexityAiModel {
     /** +value=integration/model/perplexity-ai */
-    type: "integration/model/perplexity-ai";
+    type?: "integration/model/perplexity-ai" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Perplexity AI model identifier (e.g., sonar-reasoning, sonar). This is the model name from Perplexity AI's API documentation. */

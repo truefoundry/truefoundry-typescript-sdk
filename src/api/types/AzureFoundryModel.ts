@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureFoundryModel {
     /** +value=integration/model/azure-foundry */
-    type: "integration/model/azure-foundry";
+    type?: "integration/model/azure-foundry" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** Azure AI Foundry authentication credentials */

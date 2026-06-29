@@ -6,7 +6,6 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             type: "secret-group",
  *             name: "name",
  *             integration_fqn: "integration_fqn",
  *             collaborators: [{

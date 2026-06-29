@@ -5,7 +5,7 @@
  */
 export interface Ai21KeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for AI21 authentication */
     api_key: string;
 }

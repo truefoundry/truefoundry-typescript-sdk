@@ -14,7 +14,7 @@ export interface SecretDetectionGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/secret-detection
      */
-    type: "integration/guardrail-config/secret-detection";
+    type?: "integration/guardrail-config/secret-detection" | undefined;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. Validate guardrails are run in parallel while mutate guardrails are run sequentially. */
     operation: TrueFoundry.SecretDetectionGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */

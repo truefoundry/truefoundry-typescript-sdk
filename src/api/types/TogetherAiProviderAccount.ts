@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface TogetherAiProviderAccount {
     /** +value=provider-account/together-ai */
-    type: "provider-account/together-ai";
+    type?: "provider-account/together-ai" | undefined;
     /** The name of the Together AI provider account */
     name: string;
     auth_data: TrueFoundry.TogetherAiKeyAuth;

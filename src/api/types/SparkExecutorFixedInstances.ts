@@ -5,7 +5,7 @@
  */
 export interface SparkExecutorFixedInstances {
     /** +value=fixed */
-    type: "fixed";
+    type?: "fixed" | undefined;
     /** Number of instances to start */
     count: number;
 }

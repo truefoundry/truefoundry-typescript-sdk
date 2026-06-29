@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface NatsInputConfig {
     /** +value=nats */
-    type: "nats";
+    type?: "nats" | undefined;
     /** Input NATS URL */
     nats_url: string;
     /** Name of the NATS stream */

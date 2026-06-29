@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface MsTeamsProviderAccount {
     /** +value=provider-account/ms-teams */
-    type: "provider-account/ms-teams";
+    type?: "provider-account/ms-teams" | undefined;
     /** The name of the MS Teams provider account */
     name: string;
     /** List of integrations that are associated with the MS Teams provider account */

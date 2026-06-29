@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ElevenLabsModel {
     /** +value=integration/model/elevenlabs */
-    type: "integration/model/elevenlabs";
+    type?: "integration/model/elevenlabs" | undefined;
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The ElevenLabs model identifier (for example, eleven_multilingual_v2, eleven_turbo_v2_5) */

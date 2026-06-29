@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PagerDutyIntegration {
     /** +value=integration/notification-channel/pagerduty */
-    type: "integration/notification-channel/pagerduty";
+    type?: "integration/notification-channel/pagerduty" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.PagerDutyIntegrationKeyAuth;

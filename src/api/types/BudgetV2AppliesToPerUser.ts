@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BudgetV2AppliesToPerUser {
     /** Applies To Type */
-    type: "per-user";
+    type?: "per-user" | undefined;
     /** Optional per-user limit overrides */
     overrides?: TrueFoundry.BudgetV2PerUserOverride[] | undefined;
 }

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface VertexWifFileAuth {
     /** +value=workload-identity-federation-file */
-    type: "workload-identity-federation-file";
+    type?: "workload-identity-federation-file" | undefined;
     /** JSON credential configuration for Workload Identity Federation (ADC type external_account), for example from gcloud iam workload-identity-pools create-cred-config. This is not a service account private key. Same field name as key-file auth (key_file_content); use auth_data.type workload-identity-federation-file vs key-file to distinguish. */
     key_file_content: TrueFoundry.VertexWifFileAuthKeyFileContent;
 }

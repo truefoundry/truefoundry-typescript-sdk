@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PythonTaskConfig {
     /** +value=python-task-config */
-    type: "python-task-config";
+    type?: "python-task-config" | undefined;
     /** Specify the image spec for the task */
     image: TrueFoundry.PythonTaskConfigImage;
     /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BudgetV2AppliesToPerVirtualAccount {
     /** Applies To Type */
-    type: "per-virtual-account";
+    type?: "per-virtual-account" | undefined;
     /** Optional per-virtual-account limit overrides */
     overrides?: TrueFoundry.BudgetV2PerVirtualAccountOverride[] | undefined;
 }

@@ -5,7 +5,7 @@
  */
 export interface Pip {
     /** +value=pip */
-    type: "pip";
+    type?: "pip" | undefined;
     /** Path to `requirements.txt` relative to `Path to build context` */
     requirements_path?: string | undefined;
     /**

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PerplexityAiProviderAccount {
     /** +value=provider-account/perplexity-ai */
-    type: "provider-account/perplexity-ai";
+    type?: "provider-account/perplexity-ai" | undefined;
     /** The name of the Perplexity AI provider account */
     name: string;
     auth_data: TrueFoundry.PerplexityAiKeyAuth;

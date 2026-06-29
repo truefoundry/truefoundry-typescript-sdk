@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomBlobStorage {
     /** +value=integration/blob-storage/custom */
-    type: "integration/blob-storage/custom";
+    type?: "integration/blob-storage/custom" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The endpoint of the storage provider. */

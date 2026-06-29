@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth0Settings {
     /** OAuth2 authentication */
-    type: "oauth2";
+    type?: "oauth2" | undefined;
     /** The OAuth2 grant type to use for authentication. */
     grant_type: TrueFoundry.McpServerOAuth2GrantType;
     /** URL for the authorization request */

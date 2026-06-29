@@ -5,12 +5,72 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("AgentSkillVersionsClient", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [
+                {
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    manifest: {
+                        name: "name",
+                        metadata: { key: "value" },
+                        ml_repo: "ml_repo",
+                        source: { skill_md: "skill_md" },
+                    },
+                    id: "id",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
+                    ml_repo_id: "ml_repo_id",
+                    agent_skill_id: "agent_skill_id",
+                    usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
+                },
+            ],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/agent-skill-versions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.agentSkillVersions.list({
+            limit: 10,
+            offset: 0,
+            fqn: "fqn",
+            agent_skill_id: "agent_skill_id",
+            ml_repo_id: "ml_repo_id",
+            name: "name",
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: {
+                created_at: "2024-01-15T09:30:00Z",
+                updated_at: "2024-01-15T09:30:00Z",
+                manifest: {
+                    name: "name",
+                    metadata: { key: "value" },
+                    ml_repo: "ml_repo",
+                    version: 1,
+                    type: "agent-skill",
+                    source: { skill_md: "skill_md" },
+                },
                 id: "id",
                 fqn: "fqn",
                 created_by_subject: {
@@ -22,16 +82,6 @@ describe("AgentSkillVersionsClient", () => {
                     subjectControllerName: "subjectControllerName",
                     subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    name: "name",
-                    metadata: { key: "value" },
-                    ml_repo: "ml_repo",
-                    version: 1,
-                    type: "agent-skill",
-                    source: { type: "inline", skill_md: "skill_md" },
-                },
                 ml_repo_id: "ml_repo_id",
                 agent_skill_id: "agent_skill_id",
                 usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
@@ -40,7 +90,7 @@ describe("AgentSkillVersionsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/agent-skill-versions/agent_skill_version_id")
+            .get("/api/svc/v1/agent-skill-versions/agent_skill_version_id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -58,15 +108,15 @@ describe("AgentSkillVersionsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/agent-skill-versions/agent_skill_version_id")
+            .get("/api/svc/v1/agent-skill-versions/agent_skill_version_id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.agentSkillVersions.get("agent_skill_version_id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -77,7 +127,7 @@ describe("AgentSkillVersionsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/agent-skill-versions/agent_skill_version_id")
+            .delete("/api/svc/v1/agent-skill-versions/agent_skill_version_id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -95,85 +145,14 @@ describe("AgentSkillVersionsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/agent-skill-versions/agent_skill_version_id")
+            .delete("/api/svc/v1/agent-skill-versions/agent_skill_version_id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.agentSkillVersions.delete("agent_skill_version_id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("list (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        name: "name",
-                        metadata: { key: "value" },
-                        ml_repo: "ml_repo",
-                        type: "agent-skill",
-                        source: { type: "inline", skill_md: "skill_md" },
-                    },
-                    ml_repo_id: "ml_repo_id",
-                    agent_skill_id: "agent_skill_id",
-                    usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/agent-skill-versions")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const expected = rawResponseBody;
-        const page = await client.agentSkillVersions.list({
-            fqn: "fqn",
-            agent_skill_id: "agent_skill_id",
-            ml_repo_id: "ml_repo_id",
-            name: "name",
-            version: 1,
-            offset: 1,
-            limit: 1,
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("list (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/agent-skill-versions")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agentSkillVersions.list();
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 });

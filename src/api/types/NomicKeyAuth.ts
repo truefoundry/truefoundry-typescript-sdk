@@ -5,7 +5,7 @@
  */
 export interface NomicKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for Nomic authentication */
     api_key: string;
 }

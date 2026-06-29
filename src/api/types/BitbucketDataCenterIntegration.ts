@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BitbucketDataCenterIntegration {
     /** +value=integration/vcs/bitbucket/data-center */
-    type: "integration/vcs/bitbucket/data-center";
+    type?: "integration/vcs/bitbucket/data-center" | undefined;
     /** +sort=100 */
     name: string;
     /** Account Name */

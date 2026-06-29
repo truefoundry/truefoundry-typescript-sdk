@@ -14,7 +14,7 @@ export interface GoogleModelArmorGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/google-model-armor
      */
-    type: "integration/guardrail-config/google-model-armor";
+    type?: "integration/guardrail-config/google-model-armor" | undefined;
     /** Authentication credentials for Google Cloud Model Armor */
     auth_data: TrueFoundry.GoogleModelArmorGuardrailConfigAuthData;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. */

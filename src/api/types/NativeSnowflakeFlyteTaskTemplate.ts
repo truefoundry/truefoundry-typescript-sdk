@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface NativeSnowflakeFlyteTaskTemplate {
     id: TrueFoundry.FlyteTaskId;
-    type: "snowflake";
+    type?: "snowflake" | undefined;
     config: TrueFoundry.SnowflakeConfig;
     sql: TrueFoundry.SnowflakeSql;
 }

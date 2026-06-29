@@ -4,7 +4,8 @@
  * SKILL.md for this version when using inline source.
  */
 export interface AgentSkillSourceInline {
-    type: "inline";
+    /** Type */
+    type?: "inline" | undefined;
     /** Main body of SKILL.md file. */
     skill_md: string;
 }

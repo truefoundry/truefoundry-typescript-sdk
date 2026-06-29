@@ -12,7 +12,7 @@ export interface GatewayLoggingConfig {
      * +value=gateway-logging-config
      * +sort=2
      */
-    type: "gateway-logging-config";
+    type?: "gateway-logging-config" | undefined;
     /** List of logging rules */
     rules: TrueFoundry.GatewayLoggingRule[];
 }

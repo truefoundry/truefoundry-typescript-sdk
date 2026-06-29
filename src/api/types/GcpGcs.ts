@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GcpGcs {
     /** +value=integration/blob-storage/gcp/gcs */
-    type: "integration/blob-storage/gcp/gcs";
+    type?: "integration/blob-storage/gcp/gcs" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The Google Cloud Storage path in the format 'gs://<bucket-name>/<optional-path-prefix>'. Example: 'gs://mybucket' or 'gs://mybucket/artifacts/production'. */

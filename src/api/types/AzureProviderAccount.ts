@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureProviderAccount {
     /** +value=provider-account/azure */
-    type: "provider-account/azure";
+    type?: "provider-account/azure" | undefined;
     /** The name of the Azure provider account. */
     name: string;
     /** The ID of the target subscription. The value must be an UUID. */

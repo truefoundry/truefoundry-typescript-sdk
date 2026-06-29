@@ -5,7 +5,7 @@
  */
 export interface AzureBasicAuth {
     /** +value=basic-auth */
-    type: "basic-auth";
+    type?: "basic-auth" | undefined;
     /** The username for the Azure managed identity. */
     username: string;
     /** The password for the Azure managed identity. */

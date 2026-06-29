@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Job {
     /** +value=job */
-    type: "job";
+    type?: "job" | undefined;
     /** Name of the job */
     name: string;
     /** Specify whether you want to deploy a Docker image or build and deploy from source code */

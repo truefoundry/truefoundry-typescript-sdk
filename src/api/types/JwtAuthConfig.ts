@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface JwtAuthConfig {
     /** +value=jwt_auth */
-    type: "jwt_auth";
+    type?: "jwt_auth" | undefined;
     /**
      * FQN of the JWT Auth integration. If you can't find your integration here,
      * add it through the [Integrations](/integrations) page

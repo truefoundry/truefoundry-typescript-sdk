@@ -5,7 +5,7 @@
  */
 export interface SparkJobScalaNotebookEntrypoint {
     /** +value=scala-notebook */
-    type: "scala-notebook";
+    type?: "scala-notebook" | undefined;
     /** The main application file to be executed by the spark job. Relative path in case of git repository. */
     main_application_file: string;
 }

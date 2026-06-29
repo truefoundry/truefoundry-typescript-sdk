@@ -5,5 +5,5 @@
  */
 export interface LoggingModeAlways {
     /** +value=always */
-    type: "always";
+    type?: "always" | undefined;
 }

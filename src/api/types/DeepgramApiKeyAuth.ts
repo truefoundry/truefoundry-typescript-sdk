@@ -5,7 +5,7 @@
  */
 export interface DeepgramApiKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** The API key for Deepgram authentication */
     api_key: string;
 }

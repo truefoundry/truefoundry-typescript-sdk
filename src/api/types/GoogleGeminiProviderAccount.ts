@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GoogleGeminiProviderAccount {
     /** +value=provider-account/google-gemini */
-    type: "provider-account/google-gemini";
+    type?: "provider-account/google-gemini" | undefined;
     /** The name of the Google Gemini provider account */
     name: string;
     auth_data: TrueFoundry.GcpApiKeyAuth;

@@ -14,7 +14,7 @@ export interface TfyMetadataGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/tfy-metadata
      */
-    type: "integration/guardrail-config/tfy-metadata";
+    type?: "integration/guardrail-config/tfy-metadata" | undefined;
     /** The operation type for this guardrail. Metadata Validation guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;

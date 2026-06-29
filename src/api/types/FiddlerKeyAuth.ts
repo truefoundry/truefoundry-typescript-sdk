@@ -2,7 +2,7 @@
 
 export interface FiddlerKeyAuth {
     /** +value=api-key */
-    type: "api-key";
+    type?: "api-key" | undefined;
     /** API key for the Fiddler account */
     api_key: string;
 }

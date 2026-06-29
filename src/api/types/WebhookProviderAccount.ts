@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface WebhookProviderAccount {
     /** +value=provider-account/webhook */
-    type: "provider-account/webhook";
+    type?: "provider-account/webhook" | undefined;
     /** The name of the provider account. */
     name: string;
     /** List of integrations that are associated with the provider account. */

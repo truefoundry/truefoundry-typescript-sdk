@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsSagemakerProviderAccount {
     /** +value=provider-account/aws-sagemaker */
-    type: "provider-account/aws-sagemaker";
+    type?: "provider-account/aws-sagemaker" | undefined;
     /** The name of the Sagemaker provider account */
     name: string;
     region: TrueFoundry.AwsRegion;

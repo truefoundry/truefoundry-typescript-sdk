@@ -22,12 +22,114 @@ export class AgentSkillVersionsClient {
     }
 
     /**
-     * Get an agent skill version by its ID.
+     * List agent skill versions with optional filtering by FQN, agent skill ID, ML Repo, name, or version.
      *
-     * @param {string} agent_skill_version_id
+     * @param {TrueFoundry.AgentSkillVersionsListRequest} request
      * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @example
+     *     await client.agentSkillVersions.list({
+     *         limit: 10,
+     *         offset: 0,
+     *         fqn: "fqn",
+     *         agent_skill_id: "agent_skill_id",
+     *         ml_repo_id: "ml_repo_id",
+     *         name: "name"
+     *     })
+     */
+    public async list(
+        request: TrueFoundry.AgentSkillVersionsListRequest = {},
+        requestOptions?: AgentSkillVersionsClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.AgentSkillVersion, TrueFoundry.ListAgentSkillVersionsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.AgentSkillVersionsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListAgentSkillVersionsResponse>> => {
+                const {
+                    limit = 100,
+                    offset = 0,
+                    fqn,
+                    agent_skill_id: agentSkillId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    fqn,
+                    agent_skill_id: agentSkillId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/agent-skill-versions",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryString: core.url
+                        .queryBuilder()
+                        .addMany(_queryParams)
+                        .mergeAdditional(requestOptions?.queryParams)
+                        .build(),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListAgentSkillVersionsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/api/svc/v1/agent-skill-versions",
+                );
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.AgentSkillVersion, TrueFoundry.ListAgentSkillVersionsResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
+     * Get an agent skill version by its ID.
+     *
+     * @param {string} agent_skill_version_id - Agent skill version ID
+     * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.agentSkillVersions.get("agent_skill_version_id")
@@ -53,7 +155,7 @@ export class AgentSkillVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/agent-skill-versions/${core.url.encodePathParam(agent_skill_version_id)}`,
+                `api/svc/v1/agent-skill-versions/${core.url.encodePathParam(agent_skill_version_id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -73,11 +175,8 @@ export class AgentSkillVersionsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -91,17 +190,17 @@ export class AgentSkillVersionsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/ml/v1/agent-skill-versions/{agent_skill_version_id}",
+            "/api/svc/v1/agent-skill-versions/{agent_skill_version_id}",
         );
     }
 
     /**
      * Delete an agent skill version by its ID.
      *
-     * @param {string} agent_skill_version_id
+     * @param {string} agent_skill_version_id - Agent skill version ID
      * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.agentSkillVersions.delete("agent_skill_version_id")
@@ -127,7 +226,7 @@ export class AgentSkillVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/agent-skill-versions/${core.url.encodePathParam(agent_skill_version_id)}`,
+                `api/svc/v1/agent-skill-versions/${core.url.encodePathParam(agent_skill_version_id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -144,11 +243,8 @@ export class AgentSkillVersionsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -162,120 +258,7 @@ export class AgentSkillVersionsClient {
             _response.error,
             _response.rawResponse,
             "DELETE",
-            "/api/ml/v1/agent-skill-versions/{agent_skill_version_id}",
+            "/api/svc/v1/agent-skill-versions/{agent_skill_version_id}",
         );
-    }
-
-    /**
-     * List agent skill versions with optional filtering by FQN, agent skill ID, ML Repo, name, or version.
-     *
-     * @param {TrueFoundry.AgentSkillVersionsListRequest} request
-     * @param {AgentSkillVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.agentSkillVersions.list({
-     *         fqn: "fqn",
-     *         agent_skill_id: "agent_skill_id",
-     *         ml_repo_id: "ml_repo_id",
-     *         name: "name",
-     *         version: 1,
-     *         offset: 1,
-     *         limit: 1
-     *     })
-     */
-    public async list(
-        request: TrueFoundry.AgentSkillVersionsListRequest = {},
-        requestOptions?: AgentSkillVersionsClient.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.AgentSkillVersion, TrueFoundry.ListAgentSkillVersionsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: TrueFoundry.AgentSkillVersionsListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListAgentSkillVersionsResponse>> => {
-                const {
-                    fqn,
-                    agent_skill_id: agentSkillId,
-                    ml_repo_id: mlRepoId,
-                    name,
-                    version,
-                    offset = 0,
-                    limit = 100,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    fqn,
-                    agent_skill_id: agentSkillId,
-                    ml_repo_id: mlRepoId,
-                    name,
-                    version,
-                    offset,
-                    limit,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/agent-skill-versions",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryString: core.url
-                        .queryBuilder()
-                        .addMany(_queryParams)
-                        .mergeAdditional(requestOptions?.queryParams)
-                        .build(),
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: _response.body as TrueFoundry.ListAgentSkillVersionsResponse,
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/api/ml/v1/agent-skill-versions",
-                );
-            },
-        );
-        let _offset = request?.offset != null ? request?.offset : 0;
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<TrueFoundry.AgentSkillVersion, TrueFoundry.ListAgentSkillVersionsResponse>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
-        });
     }
 }

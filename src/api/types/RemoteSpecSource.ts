@@ -5,7 +5,7 @@
  */
 export interface RemoteSpecSource {
     /** +value=remote */
-    type: "remote";
+    type?: "remote" | undefined;
     /** URL to fetch the OpenAPI specification (JSON or YAML format). */
     url: string;
 }

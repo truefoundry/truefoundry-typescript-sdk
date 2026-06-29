@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GoogleModelArmorKeyFileAuth {
     /** +value=key-file */
-    type: "key-file";
+    type?: "key-file" | undefined;
     /** The JSON content of your Google Cloud service account key file with Model Armor permissions */
     key_file_content: TrueFoundry.GoogleModelArmorKeyFileAuthKeyFileContent;
 }

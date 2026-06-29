@@ -22,6 +22,213 @@ export class MlReposClient {
     }
 
     /**
+     * Get an ML Repo by its ID.
+     *
+     * @param {string} id - ML Repo Id
+     * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.mlRepos.get("id")
+     */
+    public get(
+        id: string,
+        requestOptions?: MlReposClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetMlRepoResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: MlReposClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetMlRepoResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/ml-repos/${core.url.encodePathParam(id)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.GetMlRepoResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/ml-repos/{id}");
+    }
+
+    /**
+     * Delete an ML Repo by its ID.
+     *
+     * @param {string} id - ML Repo Id
+     * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.mlRepos.delete("id")
+     */
+    public delete(id: string, requestOptions?: MlReposClient.RequestOptions): core.HttpResponsePromise<void> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: MlReposClient.RequestOptions,
+    ): Promise<core.WithRawResponse<void>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/ml-repos/${core.url.encodePathParam(id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: undefined, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/svc/v1/ml-repos/{id}");
+    }
+
+    /**
+     * List ML Repos with optional filtering by name.
+     *
+     * @param {TrueFoundry.MlReposListRequest} request
+     * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.mlRepos.list({
+     *         limit: 10,
+     *         offset: 0,
+     *         name: "name",
+     *         attributes: ["attributes"]
+     *     })
+     */
+    public async list(
+        request: TrueFoundry.MlReposListRequest = {},
+        requestOptions?: MlReposClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.MlRepo, TrueFoundry.ListMlReposResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.MlReposListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => {
+                const { limit = 100, offset = 0, name, attributes } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    name,
+                    attributes,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/ml-repos",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryString: core.url
+                        .queryBuilder()
+                        .addMany(_queryParams)
+                        .mergeAdditional(requestOptions?.queryParams)
+                        .build(),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListMlReposResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/ml-repos");
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.MlRepo, TrueFoundry.ListMlReposResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
      * Creates or updates an MLRepo entity based on the provided manifest.
      *
      * @param {TrueFoundry.ApplyMlRepoRequest} request
@@ -35,7 +242,6 @@ export class MlReposClient {
      * @example
      *     await client.mlRepos.createOrUpdate({
      *         manifest: {
-     *             type: "ml-repo",
      *             name: "name",
      *             storage_integration_fqn: "storage_integration_fqn",
      *             collaborators: [{
@@ -97,7 +303,7 @@ export class MlReposClient {
                     );
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:
@@ -110,229 +316,5 @@ export class MlReposClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/svc/v1/ml-repos");
-    }
-
-    /**
-     * Get an ML Repo by its ID.
-     *
-     * @param {string} id
-     * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.mlRepos.get("id")
-     */
-    public get(
-        id: string,
-        requestOptions?: MlReposClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetMlRepoResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
-    }
-
-    private async __get(
-        id: string,
-        requestOptions?: MlReposClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetMlRepoResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/ml-repos/${core.url.encodePathParam(id)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetMlRepoResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/ml-repos/{id}");
-    }
-
-    /**
-     * Delete an ML Repo by its ID.
-     *
-     * @param {string} id
-     * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.mlRepos.delete("id")
-     */
-    public delete(
-        id: string,
-        requestOptions?: MlReposClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
-    }
-
-    private async __delete(
-        id: string,
-        requestOptions?: MlReposClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/ml-repos/${core.url.encodePathParam(id)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/ml/v1/ml-repos/{id}");
-    }
-
-    /**
-     * List ML Repos with optional filtering by name.
-     *
-     * @param {TrueFoundry.MlReposListRequest} request
-     * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.mlRepos.list({
-     *         name: "name",
-     *         limit: 1,
-     *         offset: 1
-     *     })
-     */
-    public async list(
-        request: TrueFoundry.MlReposListRequest = {},
-        requestOptions?: MlReposClient.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.MlRepo, TrueFoundry.ListMlReposResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: TrueFoundry.MlReposListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => {
-                const { name, limit = 100, offset = 0 } = request;
-                const _queryParams: Record<string, unknown> = {
-                    name,
-                    limit,
-                    offset,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/ml-repos",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryString: core.url
-                        .queryBuilder()
-                        .addMany(_queryParams)
-                        .mergeAdditional(requestOptions?.queryParams)
-                        .build(),
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: _response.body as TrueFoundry.ListMlReposResponse,
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
-                }
-                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/ml-repos");
-            },
-        );
-        let _offset = request?.offset != null ? request?.offset : 0;
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<TrueFoundry.MlRepo, TrueFoundry.ListMlReposResponse>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
-        });
     }
 }

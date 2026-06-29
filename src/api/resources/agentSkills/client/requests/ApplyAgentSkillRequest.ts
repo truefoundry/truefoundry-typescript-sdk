@@ -11,9 +11,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *                 "key": "value"
  *             },
  *             ml_repo: "ml_repo",
- *             type: "agent-skill",
  *             source: {
- *                 type: "inline",
  *                 skill_md: "skill_md"
  *             }
  *         }

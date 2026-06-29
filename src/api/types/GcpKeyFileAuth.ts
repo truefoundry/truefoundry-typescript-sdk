@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GcpKeyFileAuth {
     /** +value=key-file */
-    type: "key-file";
+    type?: "key-file" | undefined;
     /** Key File Content - Key file content must be valid JSON */
     key_file_content: TrueFoundry.GcpKeyFileAuthKeyFileContent;
 }

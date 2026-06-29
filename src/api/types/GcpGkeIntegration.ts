@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GcpGkeIntegration {
     /** +value=integration/cluster/gcp/gke-standard */
-    type: "integration/cluster/gcp/gke-standard";
+    type?: "integration/cluster/gcp/gke-standard" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     location: TrueFoundry.GcpRegion;

@@ -14,7 +14,7 @@ export interface AzurePiiGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-pii
      */
-    type: "integration/guardrail-config/azure-pii";
+    type?: "integration/guardrail-config/azure-pii" | undefined;
     /** Authentication data for the Azure account */
     auth_data: TrueFoundry.AzurePiiGuardrailConfigAuthData;
     /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. Validate guardrails are run in parallel while mutate guardrails are run sequentially. */

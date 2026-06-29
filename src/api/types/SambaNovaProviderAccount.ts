@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SambaNovaProviderAccount {
     /** +value=provider-account/sambanova */
-    type: "provider-account/sambanova";
+    type?: "provider-account/sambanova" | undefined;
     /** The name of the SambaNova provider account */
     name: string;
     auth_data: TrueFoundry.SambaNovaKeyAuth;

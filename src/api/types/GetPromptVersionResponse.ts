@@ -3,6 +3,5 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetPromptVersionResponse {
-    /** The prompt version data */
     data: TrueFoundry.PromptVersion;
 }

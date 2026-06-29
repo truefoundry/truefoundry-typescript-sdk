@@ -5,7 +5,7 @@
  */
 export interface HuggingfaceArtifactSource {
     /** +value=huggingface-hub */
-    type: "huggingface-hub";
+    type?: "huggingface-hub" | undefined;
     /** Model ID of the artifact to be downloaded */
     model_id: string;
     /** Revision of the artifact to be downloaded */

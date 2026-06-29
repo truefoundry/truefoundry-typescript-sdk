@@ -4,7 +4,8 @@
  * Load the skill from a local directory. The directory must include SKILL.md with valid YAML front matter.
  */
 export interface AgentSkillSourceLocal {
-    type: "local";
+    /** Type */
+    type?: "local" | undefined;
     /** Path to the skill root directory, including SKILL.md and related assets. */
     skill_dir: string;
 }

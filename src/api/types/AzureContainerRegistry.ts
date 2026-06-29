@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureContainerRegistry {
     /** +value=integration/docker-registry/azure/acr */
-    type: "integration/docker-registry/azure/acr";
+    type?: "integration/docker-registry/azure/acr" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */

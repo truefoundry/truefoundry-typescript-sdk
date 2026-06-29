@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface WebhookIntegration {
     /** +value=integration/gateway-request-logger/webhook */
-    type: "integration/gateway-request-logger/webhook";
+    type?: "integration/gateway-request-logger/webhook" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the webhook endpoint */

@@ -5,7 +5,7 @@
  */
 export interface AktoTokenAuth {
     /** +value=token */
-    type: "token";
+    type?: "token" | undefined;
     /** JWT token for authenticating with the Akto guardrails service */
     token: string;
 }

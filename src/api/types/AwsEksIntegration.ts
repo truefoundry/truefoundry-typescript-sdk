@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsEksIntegration {
     /** +value=integration/cluster/aws/eks */
-    type: "integration/cluster/aws/eks";
+    type?: "integration/cluster/aws/eks" | undefined;
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     region: TrueFoundry.AwsRegion;

@@ -5,7 +5,7 @@
  */
 export interface GitSource {
     /** +value=git */
-    type: "git";
+    type?: "git" | undefined;
     /** The repository URL. */
     repo_url: string;
     /** The commit SHA. */
