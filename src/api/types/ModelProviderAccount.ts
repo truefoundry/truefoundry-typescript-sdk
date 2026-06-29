@@ -29,6 +29,7 @@ export type ModelProviderAccount =
     | TrueFoundry.BasetenProviderAccount
     | TrueFoundry.AwsSagemakerProviderAccount
     | TrueFoundry.CerebrasProviderAccount
+    | TrueFoundry.WaferProviderAccount
     | TrueFoundry.SnowflakeCortexProviderAccount
     | TrueFoundry.ElevenLabsProviderAccount
     | TrueFoundry.DeepgramProviderAccount

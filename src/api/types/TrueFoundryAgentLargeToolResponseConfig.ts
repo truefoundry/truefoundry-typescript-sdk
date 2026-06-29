@@ -2,7 +2,4 @@
 
 export interface TrueFoundryAgentLargeToolResponseConfig {
     enabled: boolean;
-    individual_tool_response_token_threshold?: number | undefined;
-    total_tool_response_token_threshold?: number | undefined;
-    preview_number_of_characters?: number | undefined;
 }

@@ -8,6 +8,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         limit: 10,
  *         offset: 0,
  *         type: "team",
+ *         role: "manager",
  *         attributes: ["attributes"]
  *     }
  */
@@ -18,6 +19,8 @@ export interface TeamsListRequest {
     offset?: number;
     /** Filter teams by type. */
     type?: TrueFoundry.TeamsListRequestType;
+    /** Filter to teams where the caller holds this role. `manager` returns teams the caller can manage (team managers and admins). */
+    role?: "manager";
     /** Comma-separated list of attributes to return (e.g. `id,teamName`). When provided, only the specified fields are fetched. `id` is always included. */
     attributes?: string | string[];
 }

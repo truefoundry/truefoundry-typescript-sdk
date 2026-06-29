@@ -44,8 +44,6 @@ export * from "./prompts/client/requests/index.js";
 export * as prompts from "./prompts/index.js";
 export * from "./promptVersions/client/requests/index.js";
 export * as promptVersions from "./promptVersions/index.js";
-export * from "./runs/client/requests/index.js";
-export * as runs from "./runs/index.js";
 export * from "./secretGroups/client/requests/index.js";
 export * as secretGroups from "./secretGroups/index.js";
 export * from "./secrets/client/requests/index.js";

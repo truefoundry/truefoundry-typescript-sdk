@@ -45,6 +45,7 @@ describe("TeamsClient", () => {
             limit: 10,
             offset: 0,
             type: "team",
+            role: "manager",
             attributes: ["attributes"],
         });
 

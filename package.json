@@ -198,17 +198,6 @@
             },
             "default": "./dist/cjs/api/resources/alerts/exports.js"
         },
-        "./logs": {
-            "import": {
-                "types": "./dist/esm/api/resources/logs/exports.d.mts",
-                "default": "./dist/esm/api/resources/logs/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/logs/exports.d.ts",
-                "default": "./dist/cjs/api/resources/logs/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/logs/exports.js"
-        },
         "./mlRepos": {
             "import": {
                 "types": "./dist/esm/api/resources/mlRepos/exports.d.mts",
@@ -220,16 +209,16 @@
             },
             "default": "./dist/cjs/api/resources/mlRepos/exports.js"
         },
-        "./runs": {
+        "./logs": {
             "import": {
-                "types": "./dist/esm/api/resources/runs/exports.d.mts",
-                "default": "./dist/esm/api/resources/runs/exports.mjs"
+                "types": "./dist/esm/api/resources/logs/exports.d.mts",
+                "default": "./dist/esm/api/resources/logs/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/runs/exports.d.ts",
-                "default": "./dist/cjs/api/resources/runs/exports.js"
+                "types": "./dist/cjs/api/resources/logs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/logs/exports.js"
             },
-            "default": "./dist/cjs/api/resources/runs/exports.js"
+            "default": "./dist/cjs/api/resources/logs/exports.js"
         },
         "./traces": {
             "import": {

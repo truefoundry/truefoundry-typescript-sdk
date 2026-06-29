@@ -32,6 +32,7 @@ export class TeamsClient {
      *         limit: 10,
      *         offset: 0,
      *         type: "team",
+     *         role: "manager",
      *         attributes: ["attributes"]
      *     })
      */
@@ -43,11 +44,12 @@ export class TeamsClient {
             async (
                 request: TrueFoundry.TeamsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => {
-                const { limit = 100, offset = 0, type: type_, attributes } = request;
+                const { limit = 100, offset = 0, type: type_, role, attributes } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     type: type_ != null ? type_ : undefined,
+                    role: role != null ? role : undefined,
                     attributes,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();

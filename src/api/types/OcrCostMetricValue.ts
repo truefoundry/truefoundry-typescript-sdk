@@ -4,5 +4,5 @@ import type * as TrueFoundry from "../index.js";
 
 export interface OcrCostMetricValue {
     pages: TrueFoundry.NonNegativeFloat;
-    annotated_pages: TrueFoundry.NonNegativeFloat;
+    annotated_pages?: TrueFoundry.NonNegativeFloat | undefined;
 }
