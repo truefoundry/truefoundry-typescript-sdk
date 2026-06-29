@@ -11,9 +11,9 @@ import {
     WrappedWorkspacesClient,
 } from "./api/resources/_WrappedClients";
 import { TrueFoundryClient as BaseTrueFoundryClient } from "./Client";
-import * as core from "./core";
+import type * as core from "./core";
 
-export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Options, 'environment'> {
+export interface TrueFoundryClientOptions extends Omit<BaseTrueFoundryClient.Options, "environment"> {
     baseUrl: core.Supplier<string>;
     environment?: core.Supplier<string>;
 }
@@ -31,7 +31,7 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
     protected _workspaces: WrappedWorkspacesClient | undefined;
 
     constructor(_options: TrueFoundryClientOptions) {
-        const options = { ..._options, environment: _options.environment ?? '' } as BaseTrueFoundryClient.Options;
+        const options = { ..._options, environment: _options.environment ?? "" } as BaseTrueFoundryClient.Options;
         super(options);
     }
 
@@ -75,6 +75,3 @@ export class TrueFoundryClient extends BaseTrueFoundryClient {
         return (this._workspaces ??= new WrappedWorkspacesClient(this._options));
     }
 }
-
-
-

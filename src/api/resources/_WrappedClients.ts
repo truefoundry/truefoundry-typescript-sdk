@@ -1,4 +1,4 @@
-import * as core from "../../core";
+import type * as core from "../../core";
 import * as TrueFoundry from "../index";
 import { ApplicationsClient } from "./applications/client/Client";
 import { ArtifactsClient } from "./artifacts/client/Client";
@@ -12,7 +12,10 @@ import { SecretGroupsClient } from "./secretGroups/client/Client";
 import { WorkspacesClient } from "./workspaces/client/Client";
 
 interface HasAsyncListMethod<T, R = unknown> {
-    list(request: { fqn?: string; limit?: number; [key: string]: unknown }, requestOptions?: object): Promise<core.Page<T, R>>;
+    list(
+        request: { fqn?: string; limit?: number; [key: string]: unknown },
+        requestOptions?: object,
+    ): Promise<core.Page<T, R>>;
 }
 
 async function getByFqn<T, R = unknown>(client: HasAsyncListMethod<T, R>, fqn: string, requestOptions?: object) {
@@ -47,7 +50,7 @@ export class WrappedApplicationsClient extends ApplicationsClient {
         fqn: string,
         requestOptions?: ApplicationsClient.RequestOptions,
     ): Promise<TrueFoundry.GetApplicationResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -67,7 +70,7 @@ export class WrappedArtifactsClient extends ArtifactsClient {
         fqn: string,
         requestOptions?: ArtifactsClient.RequestOptions,
     ): Promise<TrueFoundry.GetArtifactResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -87,7 +90,7 @@ export class WrappedArtifactVersionsClient extends ArtifactVersionsClient {
         fqn: string,
         requestOptions?: ArtifactVersionsClient.RequestOptions,
     ): Promise<TrueFoundry.GetArtifactVersionResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -107,7 +110,7 @@ export class WrappedDataDirectoriesClient extends DataDirectoriesClient {
         fqn: string,
         requestOptions?: DataDirectoriesClient.RequestOptions,
     ): Promise<TrueFoundry.GetDataDirectoryResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -127,7 +130,7 @@ export class WrappedModelsClient extends ModelsClient {
         fqn: string,
         requestOptions?: ModelsClient.RequestOptions,
     ): Promise<TrueFoundry.GetModelResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -147,7 +150,7 @@ export class WrappedModelVersionsClient extends ModelVersionsClient {
         fqn: string,
         requestOptions?: ModelVersionsClient.RequestOptions,
     ): Promise<TrueFoundry.GetModelVersionResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -167,7 +170,7 @@ export class WrappedPromptsClient extends PromptsClient {
         fqn: string,
         requestOptions?: PromptsClient.RequestOptions,
     ): Promise<TrueFoundry.GetPromptResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -187,7 +190,7 @@ export class WrappedPromptVersionsClient extends PromptVersionsClient {
         fqn: string,
         requestOptions?: PromptVersionsClient.RequestOptions,
     ): Promise<TrueFoundry.GetPromptVersionResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -207,7 +210,7 @@ export class WrappedSecretGroupsClient extends SecretGroupsClient {
         fqn: string,
         requestOptions?: SecretGroupsClient.RequestOptions,
     ): Promise<TrueFoundry.GetSecretGroupResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
 
@@ -227,6 +230,6 @@ export class WrappedWorkspacesClient extends WorkspacesClient {
         fqn: string,
         requestOptions?: WorkspacesClient.RequestOptions,
     ): Promise<TrueFoundry.GetWorkspaceResponse> {
-        return { data: await getByFqn(this, fqn, requestOptions) }
+        return { data: await getByFqn(this, fqn, requestOptions) };
     }
 }
