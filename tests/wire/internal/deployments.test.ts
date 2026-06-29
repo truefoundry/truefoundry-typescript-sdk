@@ -25,7 +25,7 @@ describe("DeploymentsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId/statuses")
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/statuses")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -43,7 +43,7 @@ describe("DeploymentsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId/statuses")
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/statuses")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)
@@ -79,7 +79,7 @@ describe("DeploymentsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId/builds")
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/builds")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -97,7 +97,7 @@ describe("DeploymentsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId/builds")
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/builds")
             .respondWith()
             .statusCode(404)
             .jsonBody(rawResponseBody)

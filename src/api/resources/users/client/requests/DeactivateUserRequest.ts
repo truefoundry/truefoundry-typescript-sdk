@@ -3,12 +3,12 @@
 /**
  * @example
  *     {
- *         email: "email"
+ *         email: "user@example.com"
  *     }
  */
 export interface DeactivateUserRequest {
-    /** Email of the user */
+    /** Email of the user to deactivate. */
     email: string;
-    /** Tenant name */
+    /** Tenant name override. Defaults to the caller's tenant when omitted. */
     tenantName?: string;
 }

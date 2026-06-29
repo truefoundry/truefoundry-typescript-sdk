@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListApplicationsResponse {
-    /** Array of Applications */
+    /** List of applications matching the query */
     data: TrueFoundry.Application[];
-    /** Pagination information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

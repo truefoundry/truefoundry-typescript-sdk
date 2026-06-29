@@ -64,8 +64,16 @@ describe("TrueFoundryClient", () => {
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
             },
         };
+        const rawResponseBody = {};
 
-        server.mockEndpoint().post("/api/svc/v1/delete").jsonBody(rawRequestBody).respondWith().statusCode(200).build();
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/delete")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
         const response = await client.delete({
             manifest: {
@@ -80,6 +88,6 @@ describe("TrueFoundryClient", () => {
                 ],
             },
         });
-        expect(response).toEqual(undefined);
+        expect(response).toEqual(rawResponseBody);
     });
 });

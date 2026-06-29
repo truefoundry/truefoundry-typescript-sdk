@@ -11,6 +11,6 @@ export interface BitbucketProviderAccount {
     /** +uiProps={"disableEdit":true} */
     name: string;
     /** +uiType=IntegrationsGroup */
-    integrations: TrueFoundry.BitbucketIntegration[];
+    integrations: TrueFoundry.BitbucketIntegrations[];
     ownedBy?: TrueFoundry.OwnedBy | undefined;
 }

@@ -10,7 +10,7 @@ describe("MetricsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
-            step: "step",
+            step: "30s",
             graphs: [{ name: "name", description: "description", chart: "chart", chartType: "line", params: "params" }],
         };
 
@@ -27,7 +27,7 @@ describe("MetricsClient", () => {
             startTs: "startTs",
             endTs: "endTs",
             filterEntity: "application",
-            filterQuery: "filterQuery",
+            filterQuery: '{"pod":"my-app-abc123-xyz"}',
         });
         expect(response).toEqual(rawResponseBody);
     });

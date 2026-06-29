@@ -12,7 +12,7 @@ describe("TeamsClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     description: "description",
                     tenantName: "tenantName",
                     accountId: "accountId",
@@ -22,6 +22,11 @@ describe("TeamsClient", () => {
                     updatedAt: "2024-01-15T09:30:00Z",
                     manifest: { type: "team", name: "name", members: ["members"] },
                     isEditable: true,
+                    roles: ["roles"],
+                    topMembers: ["topMembers"],
+                    topManagers: ["topManagers"],
+                    totalMemberCount: 1.1,
+                    totalManagerCount: 1.1,
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -40,6 +45,8 @@ describe("TeamsClient", () => {
             limit: 10,
             offset: 0,
             type: "team",
+            role: "manager",
+            attributes: ["attributes"],
         });
 
         expect(expected.data).toEqual(page.data);
@@ -54,7 +61,7 @@ describe("TeamsClient", () => {
         const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members"] } };
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 description: "description",
                 tenantName: "tenantName",
                 accountId: "accountId",
@@ -73,13 +80,17 @@ describe("TeamsClient", () => {
                 manifest: {
                     type: "team",
                     name: "name",
+                    displayName: "displayName",
+                    description: "description",
                     managers: ["managers"],
                     members: ["members"],
                     ownedBy: { account: "account" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
                 },
-                metadata: { createdByScim: true },
+                metadata: { createdByScim: true, scimExternalId: "scimExternalId" },
                 isEditable: true,
+                roles: ["roles"],
             },
         };
 
@@ -154,13 +165,149 @@ describe("TeamsClient", () => {
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 
+    test("list_members (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [{ subjectId: "jqfwg345gi25n5ju2yz5iz6m", subjectSlug: "alice@example.com", subjectType: "user" }],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/members")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
+            limit: 10,
+            offset: 0,
+            filter: '{"type":"AND","children":[{"column":"email","op":"STRING_CONTAINS","value":"@example.com"}]}',
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list_members (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/teams/id/members")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.listMembers("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("list_members (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/teams/id/members")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.listMembers("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("list_managers (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            data: [{ subjectId: "jqfwg345gi25n5ju2yz5iz6m", subjectSlug: "alice@example.com", subjectType: "user" }],
+            pagination: { total: 100, offset: 0, limit: 10 },
+        };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/managers")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = rawResponseBody;
+        const page = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
+            limit: 10,
+            offset: 0,
+            filter: '{"type":"AND","children":[{"column":"email","op":"STRING_CONTAINS","value":"@example.com"}]}',
+        });
+
+        expect(expected.data).toEqual(page.data);
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.data).toEqual(nextPage.data);
+    });
+
+    test("list_managers (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/teams/id/managers")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.listManagers("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("list_managers (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/teams/id/managers")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.teams.listManagers("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 description: "description",
                 tenantName: "tenantName",
                 accountId: "accountId",
@@ -179,25 +326,29 @@ describe("TeamsClient", () => {
                 manifest: {
                     type: "team",
                     name: "name",
+                    displayName: "displayName",
+                    description: "description",
                     managers: ["managers"],
                     members: ["members"],
                     ownedBy: { account: "account" },
                     tags: { key: "value" },
+                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
                 },
-                metadata: { createdByScim: true },
+                metadata: { createdByScim: true, scimExternalId: "scimExternalId" },
                 isEditable: true,
+                roles: ["roles"],
             },
         };
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/id")
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.teams.get("id");
+        const response = await client.teams.get("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -228,13 +379,13 @@ describe("TeamsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/teams/id")
+            .delete("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.teams.delete("id");
+        const response = await client.teams.delete("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -297,13 +448,13 @@ describe("TeamsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/id/permissions")
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/permissions")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.teams.getPermissions("id");
+        const response = await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 

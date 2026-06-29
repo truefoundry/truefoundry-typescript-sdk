@@ -21,6 +21,8 @@ export interface RemoteMcpServerManifest {
     /** Users and Teams that have access to this MCP Server */
     collaborators: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy | undefined;
+    /** Additional HTTP headers sent on each request to the MCP server. If the same header is set in both `additional_headers` and `auth_data`, the `auth_data` value wins. */
+    additional_headers?: Record<string, unknown> | undefined;
     /** Key-value pairs to categorize this MCP Server (e.g., by owner or environment). */
     tags?: Record<string, unknown> | undefined;
 }

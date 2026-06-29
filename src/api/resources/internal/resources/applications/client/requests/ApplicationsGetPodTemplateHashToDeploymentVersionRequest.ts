@@ -7,6 +7,6 @@
  *     }
  */
 export interface ApplicationsGetPodTemplateHashToDeploymentVersionRequest {
-    /** Pod Template Hashes (comma separated for multiple) */
+    /** Pod template hashes to filter by (comma-separated) */
     podTemplateHashes?: string;
 }

@@ -17,7 +17,7 @@ export interface AzureOpenAiModel {
     /** The foundation model identifier (e.g., gpt-4o-2024-11-20) */
     foundation_model?: string | undefined;
     /** Global: worldwide processing; Data zone (US): US data zone processing; Data zone (EU): EU data zone processing; Standard: single-region processing */
-    deployment_type: TrueFoundry.AzureOpenAiModelDeploymentType;
+    deployment_type?: TrueFoundry.AzureOpenAiModelDeploymentType | undefined;
     /** Specify the type of the Azure OpenAI model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric | undefined;

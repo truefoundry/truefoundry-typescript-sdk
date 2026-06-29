@@ -22,7 +22,7 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * List Personal Access Tokens created by the user in the current tenant.
+     * List personal access tokens created by the current user.
      *
      * @param {TrueFoundry.PersonalAccessTokensListRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -31,7 +31,7 @@ export class PersonalAccessTokensClient {
      *     await client.personalAccessTokens.list({
      *         limit: 10,
      *         offset: 0,
-     *         nameSearchQuery: "nameSearchQuery"
+     *         nameSearchQuery: "ci-token"
      *     })
      */
     public async list(
@@ -109,7 +109,7 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * Create Personal Access Token
+     * Create a new personal access token for the current user.
      *
      * @param {TrueFoundry.CreatePersonalAccessTokenRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -119,7 +119,7 @@ export class PersonalAccessTokensClient {
      *
      * @example
      *     await client.personalAccessTokens.create({
-     *         name: "name"
+     *         name: "my-ci-token"
      *     })
      */
     public create(
@@ -191,7 +191,7 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * Revoke All Personal Access Tokens for the user with the given email
+     * Revoke all personal access tokens belonging to the user with the given email. Requires tenant admin.
      *
      * @param {TrueFoundry.RevokeAllPersonalAccessTokenRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -200,7 +200,7 @@ export class PersonalAccessTokensClient {
      *
      * @example
      *     await client.personalAccessTokens.revokeAll({
-     *         email: "email"
+     *         email: "alice@example.com"
      *     })
      */
     public revokeAll(
@@ -267,15 +267,15 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * Delete Personal Access Token associated with the provided serviceAccountId
+     * Permanently delete the personal access token with the given ID. This action is irreversible.
      *
-     * @param {string} id - serviceaccount id
+     * @param {string} id - System-generated service account ID.
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.personalAccessTokens.delete("id")
+     *     await client.personalAccessTokens.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
     public delete(
         id: string,
@@ -338,27 +338,36 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * Get an existing Personal Access Token by name, if it doesn't exist, it will create a new one and return the PAT data along with a fresh token.
+     * Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token.
      *
      * @param {string} name
+     * @param {TrueFoundry.PersonalAccessTokensGetRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
      *
      * @example
-     *     await client.personalAccessTokens.get("name")
+     *     await client.personalAccessTokens.get("name", {
+     *         teamName: "teamName"
+     *     })
      */
     public get(
         name: string,
+        request: TrueFoundry.PersonalAccessTokensGetRequest = {},
         requestOptions?: PersonalAccessTokensClient.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.GetOrCreatePersonalAccessTokenResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__get(name, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__get(name, request, requestOptions));
     }
 
     private async __get(
         name: string,
+        request: TrueFoundry.PersonalAccessTokensGetRequest = {},
         requestOptions?: PersonalAccessTokensClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GetOrCreatePersonalAccessTokenResponse>> {
+        const { teamName } = request;
+        const _queryParams: Record<string, unknown> = {
+            teamName,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -373,7 +382,11 @@ export class PersonalAccessTokensClient {
             ),
             method: "GET",
             headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

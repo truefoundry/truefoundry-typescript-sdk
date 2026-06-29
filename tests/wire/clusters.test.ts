@@ -12,7 +12,7 @@ describe("ClustersClient", () => {
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     fqn: "fqn",
                     manifest: {
                         type: "cluster",
@@ -44,6 +44,7 @@ describe("ClustersClient", () => {
         const page = await client.clusters.list({
             limit: 10,
             offset: 0,
+            attributes: ["attributes"],
         });
 
         expect(expected.data).toEqual(page.data);
@@ -85,7 +86,7 @@ describe("ClustersClient", () => {
         };
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 fqn: "fqn",
                 manifest: {
                     type: "cluster",
@@ -296,7 +297,7 @@ describe("ClustersClient", () => {
 
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 fqn: "fqn",
                 manifest: {
                     type: "cluster",
@@ -486,6 +487,7 @@ describe("ClustersClient", () => {
         const response = await client.clusters.getAddons("id", {
             limit: 10,
             offset: 0,
+            attributes: ["attributes"],
         });
         expect(response).toEqual(rawResponseBody);
     });

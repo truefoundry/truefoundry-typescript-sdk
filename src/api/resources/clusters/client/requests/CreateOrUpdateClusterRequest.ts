@@ -18,8 +18,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface CreateOrUpdateClusterRequest {
-    /** Cluster manifest */
+    /** Full cluster manifest. */
     manifest: TrueFoundry.ClusterManifest;
-    /** Dry run the cluster creation/update */
+    /** When true, validates the request without persisting changes. */
     dryRun?: boolean;
 }

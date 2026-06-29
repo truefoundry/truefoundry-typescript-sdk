@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * manifest of the resource to be deleted
+ * Manifest of the resource to be deleted
  */
 export type TrueFoundryDeleteRequestManifest =
     | TrueFoundry.MlRepoManifest
@@ -38,4 +38,5 @@ export type TrueFoundryDeleteRequestManifest =
     | TrueFoundry.EnvironmentManifest
     | TrueFoundry.TracingProjectManifest
     | TrueFoundry.McpServerManifest
-    | TrueFoundry.RoleBindingManifest;
+    | TrueFoundry.RoleBindingManifest
+    | TrueFoundry.AgentIdentityManifest;

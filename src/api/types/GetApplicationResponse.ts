@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetApplicationResponse {
-    /** Application */
+    /** Application details */
     data: TrueFoundry.Application;
 }

@@ -22,10 +22,10 @@ export class DeploymentsClient {
     }
 
     /**
-     * This endpoint returns all statuses for a specific deployment in a given application.
+     * Get all statuses for a specific deployment of an application.
      *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {string} id - Unique identifier of the application
+     * @param {string} deploymentId - Unique identifier of the deployment
      * @param {DeploymentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -56,7 +56,7 @@ export class DeploymentsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${core.url.encodePathParam(id)}/deployments/${core.url.encodePathParam(deploymentId)}/statuses`,
+                `api/svc/v1/x/apps/${core.url.encodePathParam(id)}/deployments/${core.url.encodePathParam(deploymentId)}/statuses`,
             ),
             method: "GET",
             headers: _headers,
@@ -88,15 +88,15 @@ export class DeploymentsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/svc/v1/apps/{id}/deployments/{deploymentId}/statuses",
+            "/api/svc/v1/x/apps/{id}/deployments/{deploymentId}/statuses",
         );
     }
 
     /**
-     * This endpoint returns all build details associated with a specific deployment in a given application.
+     * Get all builds associated with a specific deployment of an application.
      *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {string} id - Unique identifier of the application
+     * @param {string} deploymentId - Unique identifier of the deployment
      * @param {DeploymentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -127,7 +127,7 @@ export class DeploymentsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${core.url.encodePathParam(id)}/deployments/${core.url.encodePathParam(deploymentId)}/builds`,
+                `api/svc/v1/x/apps/${core.url.encodePathParam(id)}/deployments/${core.url.encodePathParam(deploymentId)}/builds`,
             ),
             method: "GET",
             headers: _headers,
@@ -159,7 +159,7 @@ export class DeploymentsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/svc/v1/apps/{id}/deployments/{deploymentId}/builds",
+            "/api/svc/v1/x/apps/{id}/deployments/{deploymentId}/builds",
         );
     }
 

@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetAlertsResponse {
-    /** Object containing alert data grouped by alert name */
+    /** Alerts grouped by alert name. */
     data: Record<string, TrueFoundry.Alert[]>;
 }

@@ -17,7 +17,7 @@ export interface InternalArtifactVersion {
     /** Timestamp when the artifact version was last updated */
     updated_at?: string | undefined;
     /** Manifest containing metadata for a generic artifact version */
-    manifest: TrueFoundry.ArtifactManifest;
+    manifest?: TrueFoundry.ArtifactManifest | undefined;
     /** ID of the ML Repo that this artifact version belongs to */
     ml_repo_id: string;
     /** List of tags associated with this artifact version for filtering and organization */
@@ -32,4 +32,8 @@ export interface InternalArtifactVersion {
     artifact_fqn: string;
     /** Total size of the artifact version in bytes (internal use only) */
     artifact_size?: number | undefined;
+    /** Metadata of the artifact version */
+    artifact_metadata?: Record<string, unknown> | undefined;
+    /** Internal metadata of the artifact version */
+    internal_metadata?: Record<string, unknown> | undefined;
 }

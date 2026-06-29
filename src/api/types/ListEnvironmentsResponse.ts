@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListEnvironmentsResponse {
-    /** Array of Environments */
+    /** List of environments for the tenant. */
     data: TrueFoundry.Environment[];
-    /** Pagination information */
+    /** Pagination metadata — `total`, `limit`, `offset`. */
     pagination: TrueFoundry.Pagination;
 }

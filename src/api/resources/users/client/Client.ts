@@ -22,7 +22,7 @@ export class UsersClient {
     }
 
     /**
-     * List all users of tenant filtered by query and showInvalidUsers. Pagination is available based on query parameters.
+     * List users in the current tenant.
      *
      * @param {TrueFoundry.UsersListRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -31,7 +31,7 @@ export class UsersClient {
      *     await client.users.list({
      *         limit: 10,
      *         offset: 0,
-     *         query: "query",
+     *         query: "john@example.com",
      *         showInvalidUsers: true
      *     })
      */
@@ -43,7 +43,7 @@ export class UsersClient {
             async (
                 request: TrueFoundry.UsersListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => {
-                const { limit = 100, offset = 0, query, showInvalidUsers } = request;
+                const { limit = 100, offset = 0, query, showInvalidUsers = false } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
@@ -106,7 +106,7 @@ export class UsersClient {
     }
 
     /**
-     * This endpoint allows tenant administrators to register users within their tenant.
+     * Pre-register a user in the current tenant. Optionally sends an invite email if the auth provider is managed by TrueFoundry.
      *
      * @param {TrueFoundry.RegisterUsersRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -117,7 +117,7 @@ export class UsersClient {
      *
      * @example
      *     await client.users.preRegisterUsers({
-     *         email: "email"
+     *         email: "user@example.com"
      *     })
      */
     public preRegisterUsers(
@@ -189,7 +189,7 @@ export class UsersClient {
     }
 
     /**
-     * This endpoint allows tenant administrators to update the roles of a user within their tenant.
+     * Update the role assigned to a user in the current tenant.
      *
      * @param {TrueFoundry.UpdateUserRolesRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -200,8 +200,8 @@ export class UsersClient {
      *
      * @example
      *     await client.users.updateRoles({
-     *         email: "email",
-     *         roles: ["roles"]
+     *         email: "user@example.com",
+     *         roles: ["tenant-admin"]
      *     })
      */
     public updateRoles(
@@ -270,15 +270,15 @@ export class UsersClient {
     }
 
     /**
-     * Get User associated with provided User id
+     * Get a single user by their ID.
      *
-     * @param {string} id - User Id
+     * @param {string} id - System-generated user ID.
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.users.get("id")
+     *     await client.users.get("jqfwg345gi25n5ju2yz5iz6m")
      */
     public get(
         id: string,
@@ -333,9 +333,9 @@ export class UsersClient {
     }
 
     /**
-     * Delete user if they are not a collaborator in any resource and not part of any team other than everyone.
+     * Permanently delete a user by ID. The user must not be a collaborator on any resource and must not belong to any team other than "everyone".
      *
-     * @param {string} id - User Id
+     * @param {string} id - System-generated user ID.
      * @param {TrueFoundry.UsersDeleteRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -344,7 +344,7 @@ export class UsersClient {
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.users.delete("id", {
+     *     await client.users.delete("jqfwg345gi25n5ju2yz5iz6m", {
      *         tenantName: "tenantName"
      *     })
      */
@@ -418,7 +418,7 @@ export class UsersClient {
     }
 
     /**
-     * Invite a user to the tenant
+     * Invite a new user to the current tenant by email. Only available when the auth provider is managed by TrueFoundry.
      *
      * @param {TrueFoundry.InviteUserRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -429,8 +429,8 @@ export class UsersClient {
      *
      * @example
      *     await client.users.inviteUser({
-     *         acceptInviteClientUrl: "<control plane url>/invite-accept",
-     *         email: "email"
+     *         acceptInviteClientUrl: "https://app.example.com/invite-accept",
+     *         email: "user@example.com"
      *     })
      */
     public inviteUser(
@@ -502,7 +502,7 @@ export class UsersClient {
     }
 
     /**
-     * Deactivate user associated with the provided email within the tenant.
+     * Deactivate a user by email in the current tenant. The user will no longer be able to log in.
      *
      * @param {TrueFoundry.DeactivateUserRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -512,7 +512,7 @@ export class UsersClient {
      *
      * @example
      *     await client.users.deactivate({
-     *         email: "email"
+     *         email: "user@example.com"
      *     })
      */
     public deactivate(
@@ -581,7 +581,7 @@ export class UsersClient {
     }
 
     /**
-     * Activate user associated with the provided email within the tenant.
+     * Re-activate a previously deactivated user by email in the current tenant.
      *
      * @param {TrueFoundry.ActivateUserRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -591,7 +591,7 @@ export class UsersClient {
      *
      * @example
      *     await client.users.activate({
-     *         email: "email"
+     *         email: "user@example.com"
      *     })
      */
     public activate(
@@ -655,14 +655,14 @@ export class UsersClient {
     }
 
     /**
-     * Change password for the authenticated user. Requires clientId and loginId in the request body.
+     * Change the password for the authenticated user.
      *
      * @param {TrueFoundry.ChangePasswordRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.users.changePassword({
-     *         loginId: "loginId",
+     *         loginId: "user@example.com",
      *         newPassword: "newPassword",
      *         oldPassword: "oldPassword"
      *     })
@@ -720,225 +720,5 @@ export class UsersClient {
             "POST",
             "/api/svc/v1/users/change-password",
         );
-    }
-
-    /**
-     * Get all resources associated with a user.
-     *
-     * @param {string} id - User Id
-     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.users.getResources("id")
-     */
-    public getResources(
-        id: string,
-        requestOptions?: UsersClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetUserResourcesResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getResources(id, requestOptions));
-    }
-
-    private async __getResources(
-        id: string,
-        requestOptions?: UsersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetUserResourcesResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/users/${core.url.encodePathParam(id)}/resources`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetUserResourcesResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/api/svc/v1/users/{id}/resources",
-        );
-    }
-
-    /**
-     * Get all role bindings associated with a user, including team-inherited bindings.
-     *
-     * @param {string} id - User Id
-     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.users.getPermissions("id")
-     */
-    public getPermissions(
-        id: string,
-        requestOptions?: UsersClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetUserPermissionsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getPermissions(id, requestOptions));
-    }
-
-    private async __getPermissions(
-        id: string,
-        requestOptions?: UsersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetUserPermissionsResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/users/${core.url.encodePathParam(id)}/permissions`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as TrueFoundry.GetUserPermissionsResponse,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/api/svc/v1/users/{id}/permissions",
-        );
-    }
-
-    /**
-     * Get all teams associated with a user, including their role in each team.
-     *
-     * @param {string} id - User Id
-     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.ForbiddenError}
-     * @throws {@link TrueFoundry.NotFoundError}
-     *
-     * @example
-     *     await client.users.getTeams("id")
-     */
-    public getTeams(
-        id: string,
-        requestOptions?: UsersClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetUserTeamsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__getTeams(id, requestOptions));
-    }
-
-    private async __getTeams(
-        id: string,
-        requestOptions?: UsersClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetUserTeamsResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/users/${core.url.encodePathParam(id)}/teams`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetUserTeamsResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 403:
-                    throw new TrueFoundry.ForbiddenError(
-                        _response.error.body as TrueFoundry.HttpError,
-                        _response.rawResponse,
-                    );
-                case 404:
-                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/users/{id}/teams");
     }
 }

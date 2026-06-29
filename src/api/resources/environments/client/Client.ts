@@ -22,7 +22,7 @@ export class EnvironmentsClient {
     }
 
     /**
-     * List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
+     * List environments the caller can read within the tenant.
      *
      * @param {TrueFoundry.EnvironmentsListRequest} request
      * @param {EnvironmentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -107,7 +107,7 @@ export class EnvironmentsClient {
     }
 
     /**
-     * Creates a new Environment or updates an existing Environment.
+     * Create a new environment or update an existing one using the provided `EnvironmentManifest`. Matching is by `name` — if an environment with the same name exists it is updated, otherwise a new one is created.
      *
      * @param {TrueFoundry.CreateOrUpdateEnvironmentRequest} request
      * @param {EnvironmentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -184,13 +184,13 @@ export class EnvironmentsClient {
     }
 
     /**
-     * Get Environment associated with the provided id.
+     * Get a single environment by its ID.
      *
-     * @param {string} id - Environment id
+     * @param {string} id - System-generated environment ID.
      * @param {EnvironmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.environments.get("id")
+     *     await client.environments.get("jqfwg345gi25n5ju2yz5iz6m")
      */
     public get(
         id: string,
@@ -240,16 +240,16 @@ export class EnvironmentsClient {
     }
 
     /**
-     * Delete Environment associated with the provided id.
+     * Permanently delete the environment with the given ID.
      *
-     * @param {string} id - Environment id
+     * @param {string} id - System-generated environment ID.
      * @param {EnvironmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      * @throws {@link TrueFoundry.ConflictError}
      *
      * @example
-     *     await client.environments.delete("id")
+     *     await client.environments.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
     public delete(id: string, requestOptions?: EnvironmentsClient.RequestOptions): core.HttpResponsePromise<boolean> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));

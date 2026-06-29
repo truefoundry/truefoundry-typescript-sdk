@@ -5,7 +5,7 @@
  *     {
  *         limit: 10,
  *         offset: 0,
- *         nameSearchQuery: "nameSearchQuery"
+ *         nameSearchQuery: "ci-token"
  *     }
  */
 export interface PersonalAccessTokensListRequest {
@@ -13,6 +13,6 @@ export interface PersonalAccessTokensListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** Return personal access tokens with names that contain this string */
+    /** Return personal access tokens whose name contains this substring. */
     nameSearchQuery?: string;
 }

@@ -22,7 +22,7 @@ export class AgentSkillsClient {
     }
 
     /**
-     * Get an agent skill artifact by its ID.
+     * Get an agent skill by its ID.
      *
      * @param {string} agent_skill_id
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -93,7 +93,7 @@ export class AgentSkillsClient {
     }
 
     /**
-     * Delete an agent skill artifact by its ID.
+     * Delete an agent skill by its ID.
      *
      * @param {string} agent_skill_id
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -164,7 +164,7 @@ export class AgentSkillsClient {
     }
 
     /**
-     * List agent skills with optional filtering by FQN, ML Repo, or name. When present, `latest_version.manifest.source` is `blob-storage` with `description` only; use GET agent skill version for full SKILL.md (inline `source` with `skill_md`).
+     * List agent skills with optional filtering by FQN, ML Repo, or name.
      *
      * @param {TrueFoundry.AgentSkillsListRequest} request
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -274,7 +274,7 @@ export class AgentSkillsClient {
     }
 
     /**
-     * Create or update an agent skill version from a manifest.
+     * Create or update an agent skill version.
      *
      * @param {TrueFoundry.ApplyAgentSkillRequest} request
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.

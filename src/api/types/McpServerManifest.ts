@@ -6,4 +6,5 @@ export type McpServerManifest =
     | TrueFoundry.RemoteMcpServerManifest
     | TrueFoundry.VirtualMcpServerManifest
     | TrueFoundry.OpenApimcpServerManifest
-    | TrueFoundry.StdioMcpServerManifest;
+    | TrueFoundry.StdioMcpServerManifest
+    | TrueFoundry.TfyManagedMcpServerManifest;

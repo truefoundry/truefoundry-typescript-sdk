@@ -5,4 +5,7 @@ import type * as TrueFoundry from "../index.js";
 export type ModelCostMetric =
     | TrueFoundry.PerThousandTokensCostMetric
     | TrueFoundry.PerThousandEmbeddingTokensCostMetric
+    | TrueFoundry.PerMillionCharactersCostMetric
+    | TrueFoundry.PerMinuteOfAudioCostMetric
+    | TrueFoundry.OcrCostMetric
     | TrueFoundry.PublicCostMetric;

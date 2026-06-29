@@ -5,6 +5,7 @@ export const BudgetLimitUnit = {
     CostPerDay: "cost_per_day",
     CostPerMonth: "cost_per_month",
     CostPerWeek: "cost_per_week",
+    CostPerQuarter: "cost_per_quarter",
     TokensPerDay: "tokens_per_day",
     TokensPerMonth: "tokens_per_month",
 } as const;

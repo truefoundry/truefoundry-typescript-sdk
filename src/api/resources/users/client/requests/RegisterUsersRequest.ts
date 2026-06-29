@@ -3,18 +3,18 @@
 /**
  * @example
  *     {
- *         email: "email"
+ *         email: "user@example.com"
  *     }
  */
 export interface RegisterUsersRequest {
-    /** Email of the user */
+    /** Email address of the user to register. */
     email: string;
-    /** Send invite email if user does not exist */
+    /** When true, sends an invite email to the user after registration. */
     sendInviteEmail?: boolean;
-    /** Fail if user exists */
+    /** When true, silently skips registration if the user already exists instead of returning an error. */
     skipIfUserExists?: boolean;
-    /** Dry run */
+    /** When true, validates the request without persisting changes. */
     dryRun?: boolean;
-    /** Url to redirect when invite is accepted */
+    /** URL the user is redirected to when they accept the invite. Required when sendInviteEmail is true. */
     acceptInviteClientURL?: string;
 }

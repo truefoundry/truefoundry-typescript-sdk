@@ -3,10 +3,10 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetOrCreatePersonalAccessTokenResponse {
-    /** Personal Access Token data */
+    /** The personal access token data. */
     data: TrueFoundry.VirtualAccount;
-    /** Personal Access Token */
+    /** The authentication token. Store this securely — it cannot be retrieved later. */
     token: string;
-    /** Whether the PAT was created (true) or already existed (false) */
+    /** Whether a new token was created (`true`) or an existing one was returned (`false`). */
     created: boolean;
 }

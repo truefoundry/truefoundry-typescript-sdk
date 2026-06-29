@@ -12,16 +12,16 @@
  *     }
  */
 export interface EventsGetRequest {
-    /** Start timestamp (ISO format) for querying events */
+    /** Start timestamp for filtering events (ISO 8601 format, UTC). Defaults to 24 hours before endTs. Must be less than or equal to endTs. */
     startTs?: string;
-    /** End timestamp (ISO format) for querying events */
+    /** End timestamp for filtering events (ISO 8601 format, UTC). Defaults to current time. Must be greater than or equal to startTs. */
     endTs?: string;
-    /** Application ID */
+    /** Unique identifier of the application. Either applicationId or applicationFqn must be provided. */
     applicationId?: string;
-    /** Application FQN */
+    /** Fully qualified name of the application. Either applicationId or applicationFqn must be provided. */
     applicationFqn?: string;
-    /** Name of the pods */
+    /** List of Kubernetes pod names to filter events. Cannot be provided together with jobRunName. */
     podNames?: string | string[];
-    /** Job run name */
+    /** Name of the TrueFoundry job run. Cannot be provided together with podNames. */
     jobRunName?: string;
 }

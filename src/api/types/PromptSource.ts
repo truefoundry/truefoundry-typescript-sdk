@@ -11,5 +11,5 @@ export interface PromptSource {
     /** Fully qualified name of the prompt version to use as the agent source */
     prompt_version_fqn: string;
     /** List of skills associated with the agent */
-    skills?: TrueFoundry.AgentSkill[] | undefined;
+    skills?: TrueFoundry.A2AAgentSkill[] | undefined;
 }

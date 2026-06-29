@@ -22,7 +22,7 @@ export class MlClient {
     }
 
     /**
-     * Create or update an ML entity (model, prompt, artifact, or data directory).
+     * Create or update an ML entity (model, prompt, artifact, agent skill, or data directory).
      *
      * @param {TrueFoundry.internal.ApplyMlEntityRequest} request
      * @param {MlClient.RequestOptions} requestOptions - Request-specific configuration.

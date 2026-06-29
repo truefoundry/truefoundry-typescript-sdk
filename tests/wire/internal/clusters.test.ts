@@ -13,7 +13,7 @@ describe("ClustersClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/autoprovisioning-state")
+            .get("/api/svc/v1/x/clusters/id/autoprovisioning-state")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -31,7 +31,7 @@ describe("ClustersClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/autoprovisioning-state")
+            .get("/api/svc/v1/x/clusters/id/autoprovisioning-state")
             .respondWith()
             .statusCode(401)
             .jsonBody(rawResponseBody)

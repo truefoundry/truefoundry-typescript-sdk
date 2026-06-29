@@ -24,7 +24,7 @@ export class ApplicationsClient {
     /**
      * Promote an application rollout for canary and blue-green.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {TrueFoundry.internal.ApplicationsPromoteRolloutRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -63,7 +63,7 @@ export class ApplicationsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${core.url.encodePathParam(id)}/rollout/promote`,
+                `api/svc/v1/x/apps/${core.url.encodePathParam(id)}/rollout/promote`,
             ),
             method: "POST",
             headers: _headers,
@@ -101,14 +101,14 @@ export class ApplicationsClient {
             _response.error,
             _response.rawResponse,
             "POST",
-            "/api/svc/v1/apps/{id}/rollout/promote",
+            "/api/svc/v1/x/apps/{id}/rollout/promote",
         );
     }
 
     /**
-     * This endpoint fetches the pod template hash to deployment version map for a specific application.
+     * Get the pod template hash to deployment version map for a specific application.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -148,7 +148,7 @@ export class ApplicationsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/apps/${core.url.encodePathParam(id)}/pod-template-hash-deployment-version-map`,
+                `api/svc/v1/x/apps/${core.url.encodePathParam(id)}/pod-template-hash-deployment-version-map`,
             ),
             method: "GET",
             headers: _headers,
@@ -184,7 +184,7 @@ export class ApplicationsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/svc/v1/apps/{id}/pod-template-hash-deployment-version-map",
+            "/api/svc/v1/x/apps/{id}/pod-template-hash-deployment-version-map",
         );
     }
 }

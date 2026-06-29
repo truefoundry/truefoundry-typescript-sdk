@@ -21,6 +21,8 @@ export interface StdioMcpServerManifest {
     command: string;
     /** Arguments passed to the stdio MCP server command. */
     args?: string[] | undefined;
+    /** Customize tool descriptions or enable/disable specific tools from the MCP Server. */
+    tool_settings?: TrueFoundry.McpToolSetting[] | undefined;
     auth_data?: TrueFoundry.McpServerEnvAuth | undefined;
     ownedBy?: TrueFoundry.OwnedBy | undefined;
     /** Key-value pairs to categorize this MCP Server (e.g., by owner or environment). */

@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListClusterAddonsResponse {
-    /** Array of Cluster Addons */
+    /** List of addons installed on the cluster. */
     data: TrueFoundry.AddonComponent[];
-    /** Pagination information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

@@ -6,5 +6,9 @@ export const VirtualModelModelType = {
     Embedding: "embedding",
     Rerank: "rerank",
     Moderation: "moderation",
+    AudioTranscription: "audio_transcription",
+    AudioTranslation: "audio_translation",
+    TextToSpeech: "text_to_speech",
+    Image: "image",
 } as const;
 export type VirtualModelModelType = (typeof VirtualModelModelType)[keyof typeof VirtualModelModelType];

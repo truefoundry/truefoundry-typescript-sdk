@@ -10,7 +10,7 @@ export interface OpenaiProviderAccount {
     type: "provider-account/openai";
     /** The name of the OpenAI provider account */
     name: string;
-    auth_data: TrueFoundry.OpenaiApiKeyAuth;
+    auth_data?: TrueFoundry.OpenaiApiKeyAuth | undefined;
     /** Optional custom base URL for OpenAI API */
     base_url?: string | undefined;
     /** List of integrations that are associated with the OpenAI provider account */
@@ -18,4 +18,6 @@ export interface OpenaiProviderAccount {
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[] | undefined;
     ownedBy?: TrueFoundry.OwnedBy | undefined;
+    /** Discount % applied to upstream list price for this provider account. */
+    discount_percent?: number | undefined;
 }

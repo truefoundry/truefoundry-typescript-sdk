@@ -16,6 +16,7 @@ export interface CustomEndpoint {
     /** Custom headers forwarded to the upstream endpoint with every request. For example: `{"X-Custom-Header": "value"}` */
     headers?: Record<string, string> | undefined;
     tls_settings?: TrueFoundry.CustomTlsSettings | undefined;
+    loadbalancing_config?: TrueFoundry.CustomEndpointTargetConfig | undefined;
     /** List of subjects that are authorized to access this endpoint. List of user fqn in format <user_type>:<username>. */
     authorized_subjects?: string[] | undefined;
 }

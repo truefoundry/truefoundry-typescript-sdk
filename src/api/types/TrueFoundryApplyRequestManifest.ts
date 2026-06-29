@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * manifest of the resource to be created or updated
+ * Manifest of the resource to be created or updated
  */
 export type TrueFoundryApplyRequestManifest =
     | TrueFoundry.MlRepoManifest
@@ -38,4 +38,5 @@ export type TrueFoundryApplyRequestManifest =
     | TrueFoundry.EnvironmentManifest
     | TrueFoundry.TracingProjectManifest
     | TrueFoundry.McpServerManifest
-    | TrueFoundry.RoleBindingManifest;
+    | TrueFoundry.RoleBindingManifest
+    | TrueFoundry.AgentIdentityManifest;

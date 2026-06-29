@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListClustersResponse {
-    /** Array of cluster */
+    /** List of clusters the caller has access to. */
     data: TrueFoundry.Cluster[];
-    /** Pagination information */
+    /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

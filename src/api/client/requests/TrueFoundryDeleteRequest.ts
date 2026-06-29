@@ -17,6 +17,6 @@ import type * as TrueFoundry from "../../index.js";
  *     }
  */
 export interface TrueFoundryDeleteRequest {
-    /** manifest of the resource to be deleted */
+    /** Manifest of the resource to be deleted */
     manifest: TrueFoundry.TrueFoundryDeleteRequestManifest;
 }

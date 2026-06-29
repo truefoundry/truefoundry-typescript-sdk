@@ -3,13 +3,13 @@
 /**
  * @example
  *     {
- *         acceptInviteClientUrl: "<control plane url>/invite-accept",
- *         email: "email"
+ *         acceptInviteClientUrl: "https://app.example.com/invite-accept",
+ *         email: "user@example.com"
  *     }
  */
 export interface InviteUserRequest {
-    /** Url to redirect when invite is accepted */
+    /** URL the user is redirected to when they accept the invite. */
     acceptInviteClientUrl: string;
-    /** Email of user */
+    /** Email address of the user to invite. */
     email: string;
 }

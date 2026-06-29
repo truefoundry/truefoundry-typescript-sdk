@@ -3,14 +3,14 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Graph {
-    /** Name */
+    /** Chart display name. */
     name: string;
-    /** Description */
+    /** Chart description. */
     description: string;
-    /** Chart name */
+    /** Chart identifier. */
     chart: string;
-    /** Chart type */
+    /** Chart visualisation type. */
     chartType: TrueFoundry.GraphChartType;
-    /** Chart params */
+    /** Opaque params string describing chart configuration to pass back to the corresponding chart data endpoint. */
     params: string;
 }

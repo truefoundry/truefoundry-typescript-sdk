@@ -18,4 +18,6 @@ export interface ElevenLabsProviderAccount {
     /** List of users who have access to this provider account */
     collaborators?: TrueFoundry.Collaborator[] | undefined;
     ownedBy?: TrueFoundry.OwnedBy | undefined;
+    /** Discount % applied to upstream list price for this provider account. */
+    discount_percent?: number | undefined;
 }

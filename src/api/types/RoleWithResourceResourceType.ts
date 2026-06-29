@@ -28,6 +28,7 @@ export const RoleWithResourceResourceType = {
     AlertRule: "alert-rule",
     GatewayConfig: "gateway-config",
     GatewayControls: "gateway-controls",
+    GatewayBudget: "gateway-budget",
     TracingProject: "tracing-project",
     TracingApplication: "tracing-application",
     Agent: "agent",
@@ -38,6 +39,7 @@ export const RoleWithResourceResourceType = {
     ExternalIdentity: "external-identity",
     McpServer: "mcp-server",
     ExternalIdentityProvider: "external-identity-provider",
+    AgentIdentity: "agent-identity",
 } as const;
 export type RoleWithResourceResourceType =
     (typeof RoleWithResourceResourceType)[keyof typeof RoleWithResourceResourceType];

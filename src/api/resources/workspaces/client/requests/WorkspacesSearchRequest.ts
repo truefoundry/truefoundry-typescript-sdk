@@ -5,7 +5,7 @@
  *     {
  *         limit: 10,
  *         offset: 0,
- *         filter: "filter",
+ *         filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
  *         includeCluster: true
  *     }
  */
@@ -14,8 +14,8 @@ export interface WorkspacesSearchRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** JSON string containing array of search filters with string, type and operator */
+    /** JSON-encoded filter string for structured search. Supported fields: name, id, environmentId, cluster_fqn. Supported operators: STRING_CONTAINS, STRING_STARTS_WITH, STRING_ENDS_WITH, EQUAL, IN, NOT_IN, IS_NULL. */
     filter?: string;
-    /** When true, each workspace includes cluster information */
+    /** When true, each workspace in the response includes summary information about its cluster. */
     includeCluster?: boolean;
 }

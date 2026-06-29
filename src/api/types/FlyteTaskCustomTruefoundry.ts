@@ -9,4 +9,5 @@ export type FlyteTaskCustomTruefoundry =
     | TrueFoundry.PythonTaskConfig
     | TrueFoundry.ContainerTaskConfig
     | TrueFoundry.PySparkTaskConfig
-    | TrueFoundry.DatabricksJobTaskConfig;
+    | TrueFoundry.DatabricksJobTaskConfig
+    | TrueFoundry.SnowflakeTaskConfig;

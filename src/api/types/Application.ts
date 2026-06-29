@@ -3,17 +3,30 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Application {
+    /** Unique identifier of the application */
     id?: string | undefined;
+    /** FQN of the application */
     fqn?: string | undefined;
+    /** Human-readable application name */
     name?: string | undefined;
+    /** Type of the application */
     type?: TrueFoundry.ApplicationType | undefined;
+    /** Subject (user or service account) that created this application */
     createdBySubject: TrueFoundry.Subject;
+    /** Tenant this application belongs to */
     tenantName?: string | undefined;
+    /** Application metadata including pause state and sync info */
     metadata?: TrueFoundry.ApplicationMetadata | undefined;
+    /** Current lifecycle stage of the application */
     lifecycleStage: TrueFoundry.ApplicationLifecycleStage;
+    /** Unique identifier of the workspace this application belongs to */
     workspaceId?: string | undefined;
+    /** Version number of the latest deployment */
     lastVersion?: number | undefined;
+    /** Version number of the currently active deployment */
     activeVersion?: number | undefined;
+    /** Unique identifier of the application set this application belongs to, if any */
+    applicationSetId?: string | undefined;
     createdAt?: string | undefined;
     updatedAt?: string | undefined;
     /** Recommendations for this application */

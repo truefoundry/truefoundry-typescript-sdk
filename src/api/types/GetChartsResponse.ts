@@ -3,7 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetChartsResponse {
-    /** Step size */
+    /** Prometheus duration string for the query step size applied to the returned charts. */
     step: string;
+    /** List of available charts. */
     graphs: TrueFoundry.Graph[];
 }

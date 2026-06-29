@@ -22,7 +22,7 @@ export class WorkspacesClient {
     }
 
     /**
-     * List workspaces associated with the user. Optional filters include clusterId, fqn, and workspace name.
+     * List workspaces the caller can read.
      *
      * @param {TrueFoundry.WorkspacesListRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -31,10 +31,11 @@ export class WorkspacesClient {
      *     await client.workspaces.list({
      *         limit: 10,
      *         offset: 0,
-     *         clusterId: "clusterId",
+     *         clusterId: "jqfwg345gi25n5ju2yz5iz6m",
      *         name: "name",
      *         fqn: "fqn",
-     *         includeCluster: true
+     *         includeCluster: true,
+     *         attributes: ["attributes"]
      *     })
      */
     public async list(
@@ -45,7 +46,7 @@ export class WorkspacesClient {
             async (
                 request: TrueFoundry.WorkspacesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => {
-                const { limit = 100, offset = 0, clusterId, name, fqn, includeCluster } = request;
+                const { limit = 100, offset = 0, clusterId, name, fqn, includeCluster, attributes } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
@@ -53,6 +54,7 @@ export class WorkspacesClient {
                     name,
                     fqn,
                     includeCluster,
+                    attributes,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -115,7 +117,7 @@ export class WorkspacesClient {
     }
 
     /**
-     * Creates a new workspace or updates an existing one based on the provided manifest.
+     * Create a new workspace or update an existing one using the provided WorkspaceManifest. Matching is by name and cluster — if both match an existing workspace it is updated, otherwise a new one is created.
      *
      * @param {TrueFoundry.CreateOrUpdateWorkspaceRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -202,7 +204,7 @@ export class WorkspacesClient {
     }
 
     /**
-     * List workspaces the user can read with optional structured `filter` (name, id, environmentId, cluster_fqn) and pagination.
+     * Search workspaces using a structured filter expression. Return a paginated list of workspaces matching the filter criteria.
      *
      * @param {TrueFoundry.WorkspacesSearchRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -211,7 +213,7 @@ export class WorkspacesClient {
      *     await client.workspaces.search({
      *         limit: 10,
      *         offset: 0,
-     *         filter: "filter",
+     *         filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
      *         includeCluster: true
      *     })
      */
@@ -291,15 +293,15 @@ export class WorkspacesClient {
     }
 
     /**
-     * Get workspace associated with provided workspace id
+     * Get a single workspace by its ID.
      *
-     * @param {string} id - Workspace id of the space
+     * @param {string} id - System-generated workspace ID.
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.workspaces.get("id")
+     *     await client.workspaces.get("jqfwg345gi25n5ju2yz5iz6m")
      */
     public get(
         id: string,
@@ -354,30 +356,28 @@ export class WorkspacesClient {
     }
 
     /**
-     * Deletes the workspace with the given workspace ID.
-     *     - Removes the associated namespace from the cluster.
-     *     - Deletes the corresponding authorization entry.
+     * Permanently delete the workspace with the given ID. This action is irreversible.
      *
-     * @param {string} id - Workspace id of the space
+     * @param {string} id - System-generated workspace ID.
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      * @throws {@link TrueFoundry.ExpectationFailedError}
      *
      * @example
-     *     await client.workspaces.delete("id")
+     *     await client.workspaces.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
     public delete(
         id: string,
         requestOptions?: WorkspacesClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.WorkspacesDeleteResponse> {
+    ): core.HttpResponsePromise<TrueFoundry.DeleteWorkspaceResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
     }
 
     private async __delete(
         id: string,
         requestOptions?: WorkspacesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.WorkspacesDeleteResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.DeleteWorkspaceResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -400,7 +400,7 @@ export class WorkspacesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as TrueFoundry.WorkspacesDeleteResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as TrueFoundry.DeleteWorkspaceResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

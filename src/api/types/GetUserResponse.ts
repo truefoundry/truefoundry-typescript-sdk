@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetUserResponse {
-    /** User */
+    /** The requested user. */
     data: TrueFoundry.User;
 }

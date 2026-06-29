@@ -11,7 +11,7 @@
 <dl>
 <dd>
 
-Applies a given manifest to create or update resources of specific types, such as provider-account, cluster, workspace, or ml-repo.
+Apply a manifest to create or update a resource.
 </dd>
 </dl>
 </dd>
@@ -72,7 +72,7 @@ await client.apply({
 </dl>
 </details>
 
-<details><summary><code>client.<a href="/src/Client.ts">delete</a>({ ...params }) -> void</code></summary>
+<details><summary><code>client.<a href="/src/Client.ts">delete</a>({ ...params }) -> TrueFoundry.TrueFoundryDeleteResponse</code></summary>
 <dl>
 <dd>
 
@@ -84,7 +84,7 @@ await client.apply({
 <dl>
 <dd>
 
-Deletes resources of specific types, such as provider-account, cluster, workspace, or application.
+Delete a resource identified by the provided manifest.
 </dd>
 </dl>
 </dd>
@@ -232,7 +232,7 @@ await client.internal.getIdFromFqn("type", {
 <dl>
 <dd>
 
-List all users of tenant filtered by query and showInvalidUsers. Pagination is available based on query parameters.
+List users in the current tenant.
 </dd>
 </dl>
 </dd>
@@ -250,7 +250,7 @@ List all users of tenant filtered by query and showInvalidUsers. Pagination is a
 const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "query",
+    query: "john@example.com",
     showInvalidUsers: true
 });
 for await (const item of pageableResponse) {
@@ -261,7 +261,7 @@ for await (const item of pageableResponse) {
 let page = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "query",
+    query: "john@example.com",
     showInvalidUsers: true
 });
 while (page.hasNextPage()) {
@@ -317,7 +317,7 @@ const response = page.response;
 <dl>
 <dd>
 
-This endpoint allows tenant administrators to register users within their tenant.
+Pre-register a user in the current tenant. Optionally sends an invite email if the auth provider is managed by TrueFoundry.
 </dd>
 </dl>
 </dd>
@@ -333,7 +333,7 @@ This endpoint allows tenant administrators to register users within their tenant
 
 ```typescript
 await client.users.preRegisterUsers({
-    email: "email"
+    email: "user@example.com"
 });
 
 ```
@@ -382,7 +382,7 @@ await client.users.preRegisterUsers({
 <dl>
 <dd>
 
-This endpoint allows tenant administrators to update the roles of a user within their tenant.
+Update the role assigned to a user in the current tenant.
 </dd>
 </dl>
 </dd>
@@ -398,8 +398,8 @@ This endpoint allows tenant administrators to update the roles of a user within 
 
 ```typescript
 await client.users.updateRoles({
-    email: "email",
-    roles: ["roles"]
+    email: "user@example.com",
+    roles: ["tenant-admin"]
 });
 
 ```
@@ -448,7 +448,7 @@ await client.users.updateRoles({
 <dl>
 <dd>
 
-Get User associated with provided User id
+Get a single user by their ID.
 </dd>
 </dl>
 </dd>
@@ -463,7 +463,7 @@ Get User associated with provided User id
 <dd>
 
 ```typescript
-await client.users.get("id");
+await client.users.get("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -479,7 +479,7 @@ await client.users.get("id");
 <dl>
 <dd>
 
-**id:** `string` — User Id
+**id:** `string` — System-generated user ID.
     
 </dd>
 </dl>
@@ -511,7 +511,7 @@ await client.users.get("id");
 <dl>
 <dd>
 
-Delete user if they are not a collaborator in any resource and not part of any team other than everyone.
+Permanently delete a user by ID. The user must not be a collaborator on any resource and must not belong to any team other than "everyone".
 </dd>
 </dl>
 </dd>
@@ -526,7 +526,7 @@ Delete user if they are not a collaborator in any resource and not part of any t
 <dd>
 
 ```typescript
-await client.users.delete("id", {
+await client.users.delete("jqfwg345gi25n5ju2yz5iz6m", {
     tenantName: "tenantName"
 });
 
@@ -544,7 +544,7 @@ await client.users.delete("id", {
 <dl>
 <dd>
 
-**id:** `string` — User Id
+**id:** `string` — System-generated user ID.
     
 </dd>
 </dl>
@@ -584,7 +584,7 @@ await client.users.delete("id", {
 <dl>
 <dd>
 
-Invite a user to the tenant
+Invite a new user to the current tenant by email. Only available when the auth provider is managed by TrueFoundry.
 </dd>
 </dl>
 </dd>
@@ -600,8 +600,8 @@ Invite a user to the tenant
 
 ```typescript
 await client.users.inviteUser({
-    acceptInviteClientUrl: "<control plane url>/invite-accept",
-    email: "email"
+    acceptInviteClientUrl: "https://app.example.com/invite-accept",
+    email: "user@example.com"
 });
 
 ```
@@ -650,7 +650,7 @@ await client.users.inviteUser({
 <dl>
 <dd>
 
-Deactivate user associated with the provided email within the tenant.
+Deactivate a user by email in the current tenant. The user will no longer be able to log in.
 </dd>
 </dl>
 </dd>
@@ -666,7 +666,7 @@ Deactivate user associated with the provided email within the tenant.
 
 ```typescript
 await client.users.deactivate({
-    email: "email"
+    email: "user@example.com"
 });
 
 ```
@@ -715,7 +715,7 @@ await client.users.deactivate({
 <dl>
 <dd>
 
-Activate user associated with the provided email within the tenant.
+Re-activate a previously deactivated user by email in the current tenant.
 </dd>
 </dl>
 </dd>
@@ -731,7 +731,7 @@ Activate user associated with the provided email within the tenant.
 
 ```typescript
 await client.users.activate({
-    email: "email"
+    email: "user@example.com"
 });
 
 ```
@@ -780,7 +780,7 @@ await client.users.activate({
 <dl>
 <dd>
 
-Change password for the authenticated user. Requires clientId and loginId in the request body.
+Change the password for the authenticated user.
 </dd>
 </dl>
 </dd>
@@ -796,7 +796,7 @@ Change password for the authenticated user. Requires clientId and loginId in the
 
 ```typescript
 await client.users.changePassword({
-    loginId: "loginId",
+    loginId: "user@example.com",
     newPassword: "newPassword",
     oldPassword: "oldPassword"
 });
@@ -835,197 +835,8 @@ await client.users.changePassword({
 </dl>
 </details>
 
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getResources</a>(id) -> TrueFoundry.GetUserResourcesResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all resources associated with a user.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.users.getResources("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — User Id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `UsersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getPermissions</a>(id) -> TrueFoundry.GetUserPermissionsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all role bindings associated with a user, including team-inherited bindings.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.users.getPermissions("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — User Id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `UsersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getTeams</a>(id) -> TrueFoundry.GetUserTeamsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get all teams associated with a user, including their role in each team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.users.getTeams("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — User Id
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `UsersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Teams
-<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Team, TrueFoundry.ListTeamsResponse&gt;</code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.TeamDto, TrueFoundry.ListTeamsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1037,7 +848,7 @@ await client.users.getTeams("id");
 <dl>
 <dd>
 
-Retrieve all teams associated with the authenticated user. If the user is a tenant admin, returns all teams for the tenant. Pagination is available based on query parameters
+List teams accessible to the current user.
 </dd>
 </dl>
 </dd>
@@ -1055,7 +866,9 @@ Retrieve all teams associated with the authenticated user. If the user is a tena
 const pageableResponse = await client.teams.list({
     limit: 10,
     offset: 0,
-    type: "team"
+    type: "team",
+    role: "manager",
+    attributes: ["attributes"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -1065,7 +878,9 @@ for await (const item of pageableResponse) {
 let page = await client.teams.list({
     limit: 10,
     offset: 0,
-    type: "team"
+    type: "team",
+    role: "manager",
+    attributes: ["attributes"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -1120,7 +935,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Creates a new team or updates an existing team. It ensures that the team name is unique, valid, and that the team has at least one member. The members of the team are added or updated based on the provided emails.
+Create a new team or update an existing one using the provided TeamManifest. Matching is by name — if the name matches an existing team it is updated, otherwise a new one is created.
 </dd>
 </dl>
 </dd>
@@ -1177,7 +992,7 @@ await client.teams.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">get</a>(id) -> TrueFoundry.GetTeamResponse</code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">listMembers</a>(id, { ...params }) -> core.Page&lt;TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamMembersResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1189,7 +1004,7 @@ await client.teams.createOrUpdate({
 <dl>
 <dd>
 
-Get Team associated with provided team id
+List users who are members of a team.
 </dd>
 </dl>
 </dd>
@@ -1204,7 +1019,27 @@ Get Team associated with provided team id
 <dd>
 
 ```typescript
-await client.teams.get("id");
+const pageableResponse = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
+    limit: 10,
+    offset: 0,
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
+    limit: 10,
+    offset: 0,
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 
 ```
 </dd>
@@ -1220,7 +1055,169 @@ await client.teams.get("id");
 <dl>
 <dd>
 
-**id:** `string` — Team Id
+**id:** `string` — System-generated team ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.TeamsListMembersRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TeamsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">listManagers</a>(id, { ...params }) -> core.Page&lt;TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamManagersResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List users who hold the team-manager role on a team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
+    limit: 10,
+    offset: 0,
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
+    limit: 10,
+    offset: 0,
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated team ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.TeamsListManagersRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `TeamsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">get</a>(id) -> TrueFoundry.GetTeamResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a single team by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.teams.get("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated team ID.
     
 </dd>
 </dl>
@@ -1252,7 +1249,7 @@ await client.teams.get("id");
 <dl>
 <dd>
 
-Deletes the Team associated with the provided Id.
+Permanently delete the team with the given ID. This action is irreversible.
 </dd>
 </dl>
 </dd>
@@ -1267,7 +1264,7 @@ Deletes the Team associated with the provided Id.
 <dd>
 
 ```typescript
-await client.teams.delete("id");
+await client.teams.delete("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -1283,7 +1280,7 @@ await client.teams.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — Team Id
+**id:** `string` — System-generated team ID.
     
 </dd>
 </dl>
@@ -1330,7 +1327,7 @@ Get all role bindings associated with a team.
 <dd>
 
 ```typescript
-await client.teams.getPermissions("id");
+await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -1346,7 +1343,7 @@ await client.teams.getPermissions("id");
 <dl>
 <dd>
 
-**id:** `string` — Team Id
+**id:** `string` — System-generated team ID.
     
 </dd>
 </dl>
@@ -1355,6 +1352,125 @@ await client.teams.getPermissions("id");
 <dd>
 
 **requestOptions:** `TeamsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## GatewayConfigs
+<details><summary><code>client.gatewayConfigs.<a href="/src/api/resources/gatewayConfigs/client/Client.ts">get</a>(type) -> TrueFoundry.GatewayConfiguration</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the AI Gateway configuration for the given type.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.gatewayConfigs.get("gateway-rate-limiting-config");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**type:** `TrueFoundry.GatewayConfigsGetRequestType` — The type of gateway configuration to retrieve or delete.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GatewayConfigsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.gatewayConfigs.<a href="/src/api/resources/gatewayConfigs/client/Client.ts">getBudgetUsage</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the current budget usage for every budget rule configured in the tenant.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.gatewayConfigs.getBudgetUsage();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `GatewayConfigsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -1379,7 +1495,7 @@ await client.teams.getPermissions("id");
 <dl>
 <dd>
 
-List Personal Access Tokens created by the user in the current tenant.
+List personal access tokens created by the current user.
 </dd>
 </dl>
 </dd>
@@ -1397,7 +1513,7 @@ List Personal Access Tokens created by the user in the current tenant.
 const pageableResponse = await client.personalAccessTokens.list({
     limit: 10,
     offset: 0,
-    nameSearchQuery: "nameSearchQuery"
+    nameSearchQuery: "ci-token"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -1407,7 +1523,7 @@ for await (const item of pageableResponse) {
 let page = await client.personalAccessTokens.list({
     limit: 10,
     offset: 0,
-    nameSearchQuery: "nameSearchQuery"
+    nameSearchQuery: "ci-token"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -1462,7 +1578,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create Personal Access Token
+Create a new personal access token for the current user.
 </dd>
 </dl>
 </dd>
@@ -1478,7 +1594,7 @@ Create Personal Access Token
 
 ```typescript
 await client.personalAccessTokens.create({
-    name: "name"
+    name: "my-ci-token"
 });
 
 ```
@@ -1527,7 +1643,7 @@ await client.personalAccessTokens.create({
 <dl>
 <dd>
 
-Revoke All Personal Access Tokens for the user with the given email
+Revoke all personal access tokens belonging to the user with the given email. Requires tenant admin.
 </dd>
 </dl>
 </dd>
@@ -1543,7 +1659,7 @@ Revoke All Personal Access Tokens for the user with the given email
 
 ```typescript
 await client.personalAccessTokens.revokeAll({
-    email: "email"
+    email: "alice@example.com"
 });
 
 ```
@@ -1592,7 +1708,7 @@ await client.personalAccessTokens.revokeAll({
 <dl>
 <dd>
 
-Delete Personal Access Token associated with the provided serviceAccountId
+Permanently delete the personal access token with the given ID. This action is irreversible.
 </dd>
 </dl>
 </dd>
@@ -1607,7 +1723,7 @@ Delete Personal Access Token associated with the provided serviceAccountId
 <dd>
 
 ```typescript
-await client.personalAccessTokens.delete("id");
+await client.personalAccessTokens.delete("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -1623,7 +1739,7 @@ await client.personalAccessTokens.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — serviceaccount id
+**id:** `string` — System-generated service account ID.
     
 </dd>
 </dl>
@@ -1643,7 +1759,7 @@ await client.personalAccessTokens.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">get</a>(name) -> TrueFoundry.GetOrCreatePersonalAccessTokenResponse</code></summary>
+<details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">get</a>(name, { ...params }) -> TrueFoundry.GetOrCreatePersonalAccessTokenResponse</code></summary>
 <dl>
 <dd>
 
@@ -1655,7 +1771,7 @@ await client.personalAccessTokens.delete("id");
 <dl>
 <dd>
 
-Get an existing Personal Access Token by name, if it doesn't exist, it will create a new one and return the PAT data along with a fresh token.
+Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token.
 </dd>
 </dl>
 </dd>
@@ -1670,7 +1786,9 @@ Get an existing Personal Access Token by name, if it doesn't exist, it will crea
 <dd>
 
 ```typescript
-await client.personalAccessTokens.get("name");
+await client.personalAccessTokens.get("name", {
+    teamName: "teamName"
+});
 
 ```
 </dd>
@@ -1687,6 +1805,14 @@ await client.personalAccessTokens.get("name");
 <dd>
 
 **name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.PersonalAccessTokensGetRequest` 
     
 </dd>
 </dl>
@@ -1719,7 +1845,7 @@ await client.personalAccessTokens.get("name");
 <dl>
 <dd>
 
-List virtual accounts for the tenant.
+List virtual accounts accessible to the current user.
 </dd>
 </dl>
 </dd>
@@ -1737,10 +1863,10 @@ List virtual accounts for the tenant.
 const pageableResponse = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
-    nameSearchQuery: "nameSearchQuery",
+    nameSearchQuery: "staging-bot",
     ownedByTeams: ["ownedByTeams"],
     isExpired: true,
-    filter: "filter"
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -1750,10 +1876,10 @@ for await (const item of pageableResponse) {
 let page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
-    nameSearchQuery: "nameSearchQuery",
+    nameSearchQuery: "staging-bot",
     ownedByTeams: ["ownedByTeams"],
     isExpired: true,
-    filter: "filter"
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -1808,7 +1934,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Creates a new virtual account or updates an existing one based on the provided manifest.
+Create a new virtual account or update an existing one using the provided VirtualAccountManifest. Matching is by name — if the name matches an existing virtual account it is updated, otherwise a new one is created.
 </dd>
 </dl>
 </dd>
@@ -1881,7 +2007,7 @@ await client.virtualAccounts.createOrUpdate({
 <dl>
 <dd>
 
-Get virtual account by id
+Get a single virtual account by its ID.
 </dd>
 </dl>
 </dd>
@@ -1896,7 +2022,7 @@ Get virtual account by id
 <dd>
 
 ```typescript
-await client.virtualAccounts.get("id");
+await client.virtualAccounts.get("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -1912,7 +2038,7 @@ await client.virtualAccounts.get("id");
 <dl>
 <dd>
 
-**id:** `string` — serviceaccount id
+**id:** `string` — System-generated service account ID.
     
 </dd>
 </dl>
@@ -1944,7 +2070,7 @@ await client.virtualAccounts.get("id");
 <dl>
 <dd>
 
-Delete a virtual account associated with the provided virtual account id.
+Permanently delete the virtual account with the given ID. This action is irreversible.
 </dd>
 </dl>
 </dd>
@@ -1959,7 +2085,7 @@ Delete a virtual account associated with the provided virtual account id.
 <dd>
 
 ```typescript
-await client.virtualAccounts.delete("id");
+await client.virtualAccounts.delete("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -1975,7 +2101,7 @@ await client.virtualAccounts.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — serviceaccount id
+**id:** `string` — System-generated service account ID.
     
 </dd>
 </dl>
@@ -2007,7 +2133,7 @@ await client.virtualAccounts.delete("id");
 <dl>
 <dd>
 
-Get token for a virtual account by id
+Retrieve the current authentication token for a virtual account by its ID.
 </dd>
 </dl>
 </dd>
@@ -2022,7 +2148,7 @@ Get token for a virtual account by id
 <dd>
 
 ```typescript
-await client.virtualAccounts.getToken("id");
+await client.virtualAccounts.getToken("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -2038,7 +2164,7 @@ await client.virtualAccounts.getToken("id");
 <dl>
 <dd>
 
-**id:** `string` — serviceaccount id
+**id:** `string` — System-generated service account ID.
     
 </dd>
 </dl>
@@ -2070,7 +2196,7 @@ await client.virtualAccounts.getToken("id");
 <dl>
 <dd>
 
-Syncs the virtual account token to the configured secret store. Returns the updated JWT with sync metadata including timestamp and error (if any).
+Sync the virtual account token to the configured secret store. Returns the sync metadata including timestamp and error (if any).
 </dd>
 </dl>
 </dd>
@@ -2085,7 +2211,7 @@ Syncs the virtual account token to the configured secret store. Returns the upda
 <dd>
 
 ```typescript
-await client.virtualAccounts.syncToSecretStore("id");
+await client.virtualAccounts.syncToSecretStore("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -2101,7 +2227,7 @@ await client.virtualAccounts.syncToSecretStore("id");
 <dl>
 <dd>
 
-**id:** `string` — serviceaccount id
+**id:** `string` — System-generated service account ID.
     
 </dd>
 </dl>
@@ -2133,7 +2259,7 @@ await client.virtualAccounts.syncToSecretStore("id");
 <dl>
 <dd>
 
-Regenerate token for a virtual account by id. The old token will remain valid for the specified grace period.
+Regenerate the authentication token for a virtual account. The old token remains valid for the specified grace period.
 </dd>
 </dl>
 </dd>
@@ -2148,7 +2274,7 @@ Regenerate token for a virtual account by id. The old token will remain valid fo
 <dd>
 
 ```typescript
-await client.virtualAccounts.regenerateToken("id", {
+await client.virtualAccounts.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
     gracePeriodInDays: 30
 });
 
@@ -2166,7 +2292,7 @@ await client.virtualAccounts.regenerateToken("id", {
 <dl>
 <dd>
 
-**id:** `string` — serviceaccount id
+**id:** `string` — System-generated service account ID.
     
 </dd>
 </dl>
@@ -2206,7 +2332,7 @@ await client.virtualAccounts.regenerateToken("id", {
 <dl>
 <dd>
 
-Delete a JWT for a virtual account by id
+Delete a specific JWT token belonging to a virtual account. The virtual account itself is not affected.
 </dd>
 </dl>
 </dd>
@@ -2221,7 +2347,7 @@ Delete a JWT for a virtual account by id
 <dd>
 
 ```typescript
-await client.virtualAccounts.deleteJwt("id", "jwtId");
+await client.virtualAccounts.deleteJwt("jqfwg345gi25n5ju2yz5iz6m", "jwt_abc123def456");
 
 ```
 </dd>
@@ -2237,7 +2363,7 @@ await client.virtualAccounts.deleteJwt("id", "jwtId");
 <dl>
 <dd>
 
-**id:** `string` — virtual account id
+**id:** `string` — System-generated virtual account ID that owns the JWT.
     
 </dd>
 </dl>
@@ -2245,7 +2371,7 @@ await client.virtualAccounts.deleteJwt("id", "jwtId");
 <dl>
 <dd>
 
-**jwtId:** `string` — JWT id
+**jwtId:** `string` — System-generated JWT ID to delete.
     
 </dd>
 </dl>
@@ -2278,7 +2404,7 @@ await client.virtualAccounts.deleteJwt("id", "jwtId");
 <dl>
 <dd>
 
-Retrieves a list of all latest Clusters. Pagination is available based on query parameters.
+List clusters the caller can read.
 </dd>
 </dl>
 </dd>
@@ -2295,7 +2421,8 @@ Retrieves a list of all latest Clusters. Pagination is available based on query 
 ```typescript
 const pageableResponse = await client.clusters.list({
     limit: 10,
-    offset: 0
+    offset: 0,
+    attributes: ["attributes"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -2304,7 +2431,8 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.clusters.list({
     limit: 10,
-    offset: 0
+    offset: 0,
+    attributes: ["attributes"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -2359,7 +2487,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create or Update cluster with provided manifest
+Create a new cluster or update an existing one using the provided `ClusterManifest`. Matching is by `name` — if a cluster with the same name exists it is updated, otherwise a new one is created.
 </dd>
 </dl>
 </dd>
@@ -2433,7 +2561,7 @@ await client.clusters.createOrUpdate({
 <dl>
 <dd>
 
-Get cluster associated with provided id
+Get a single cluster by its ID.
 </dd>
 </dl>
 </dd>
@@ -2464,7 +2592,7 @@ await client.clusters.get("id");
 <dl>
 <dd>
 
-**id:** `string` — Cluster id of the cluster
+**id:** `string` — Unique identifier of the cluster.
     
 </dd>
 </dl>
@@ -2484,7 +2612,7 @@ await client.clusters.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">delete</a>(id) -> TrueFoundry.ClustersDeleteResponse</code></summary>
+<details><summary><code>client.clusters.<a href="/src/api/resources/clusters/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteClusterResponse</code></summary>
 <dl>
 <dd>
 
@@ -2496,7 +2624,7 @@ await client.clusters.get("id");
 <dl>
 <dd>
 
-Delete cluster associated with provided cluster id
+Permanently delete the cluster with the given ID. This action is irreversible.
 </dd>
 </dl>
 </dd>
@@ -2527,7 +2655,7 @@ await client.clusters.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — Cluster id of the cluster
+**id:** `string` — Unique identifier of the cluster.
     
 </dd>
 </dl>
@@ -2559,7 +2687,7 @@ await client.clusters.delete("id");
 <dl>
 <dd>
 
-List addons for the provided cluster. Pagination is available based on query parameters.
+List addons installed on the cluster.
 </dd>
 </dl>
 </dd>
@@ -2576,7 +2704,8 @@ List addons for the provided cluster. Pagination is available based on query par
 ```typescript
 await client.clusters.getAddons("id", {
     limit: 10,
-    offset: 0
+    offset: 0,
+    attributes: ["attributes"]
 });
 
 ```
@@ -2593,7 +2722,7 @@ await client.clusters.getAddons("id", {
 <dl>
 <dd>
 
-**id:** `string` — Cluster id of the cluster
+**id:** `string` — Unique identifier of the cluster.
     
 </dd>
 </dl>
@@ -2633,7 +2762,7 @@ await client.clusters.getAddons("id", {
 <dl>
 <dd>
 
-Get the status of provided cluster
+Get the connection status of the cluster agent to the control plane.
 </dd>
 </dl>
 </dd>
@@ -2664,7 +2793,7 @@ await client.clusters.isConnected("id");
 <dl>
 <dd>
 
-**id:** `string` — Cluster id of the cluster
+**id:** `string` — Unique identifier of the cluster.
     
 </dd>
 </dl>
@@ -2697,7 +2826,7 @@ await client.clusters.isConnected("id");
 <dl>
 <dd>
 
-Retrieves a list of all latest applications. Supports filtering by application ID, name, type, and other parameters. Pagination is available based on query parameters.
+List applications the caller can read.
 </dd>
 </dl>
 </dd>
@@ -2720,7 +2849,7 @@ const pageableResponse = await client.applications.list({
     applicationName: "applicationName",
     fqn: "fqn",
     workspaceFqn: "workspaceFqn",
-    applicationType: "applicationType",
+    applicationType: "async-service",
     nameSearchQuery: "nameSearchQuery",
     environmentId: "environmentId",
     clusterId: "clusterId",
@@ -2744,7 +2873,7 @@ let page = await client.applications.list({
     applicationName: "applicationName",
     fqn: "fqn",
     workspaceFqn: "workspaceFqn",
-    applicationType: "applicationType",
+    applicationType: "async-service",
     nameSearchQuery: "nameSearchQuery",
     environmentId: "environmentId",
     clusterId: "clusterId",
@@ -2808,7 +2937,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create a new Application Deployment based on the provided manifest.
+Deploy an application from a manifest. Create the application if it does not exist, otherwise create a new deployment version. Return the resulting deployment.
 </dd>
 </dl>
 </dd>
@@ -2875,7 +3004,7 @@ await client.applications.createOrUpdate({
 <dl>
 <dd>
 
-Get Application associated with the provided application ID.
+Get a single application by its ID.
 </dd>
 </dl>
 </dd>
@@ -2906,7 +3035,7 @@ await client.applications.get("id");
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -2938,7 +3067,7 @@ await client.applications.get("id");
 <dl>
 <dd>
 
-Delete Application associated with the provided application ID.
+Permanently delete an application. This action cannot be undone.
 </dd>
 </dl>
 </dd>
@@ -2969,7 +3098,7 @@ await client.applications.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3001,7 +3130,7 @@ await client.applications.delete("id");
 <dl>
 <dd>
 
-Creates a new deployment with the same manifest as the given deployment.
+Redeploy an application by creating a new deployment version using the same manifest as the specified deployment.
 </dd>
 </dl>
 </dd>
@@ -3032,7 +3161,7 @@ await client.applications.redeploy("id", "deploymentId");
 <dl>
 <dd>
 
-**id:** `string` — Application id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3040,7 +3169,7 @@ await client.applications.redeploy("id", "deploymentId");
 <dl>
 <dd>
 
-**deploymentId:** `string` — Deployment id of the deployment
+**deploymentId:** `string` — Unique identifier of the deployment
     
 </dd>
 </dl>
@@ -3072,7 +3201,7 @@ await client.applications.redeploy("id", "deploymentId");
 <dl>
 <dd>
 
-Pause a running application by scaling to 0 replicas
+Pause a running application.
 </dd>
 </dl>
 </dd>
@@ -3103,7 +3232,7 @@ await client.applications.scaleToZero("id");
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3135,7 +3264,7 @@ await client.applications.scaleToZero("id");
 <dl>
 <dd>
 
-Resume a paused application by scaling back to the original number of replicas
+Resume a paused application.
 </dd>
 </dl>
 </dd>
@@ -3166,7 +3295,7 @@ await client.applications.scaleToOriginal("id");
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3198,7 +3327,7 @@ await client.applications.scaleToOriginal("id");
 <dl>
 <dd>
 
-Cancel an ongoing deployment associated with the provided application ID and deployment ID.
+Cancel an in-progress deployment.
 </dd>
 </dl>
 </dd>
@@ -3229,7 +3358,7 @@ await client.applications.cancelDeployment("id", "deploymentId");
 <dl>
 <dd>
 
-**id:** `string` — Application id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3237,7 +3366,7 @@ await client.applications.cancelDeployment("id", "deploymentId");
 <dl>
 <dd>
 
-**deploymentId:** `string` — Deployment id of the deployment
+**deploymentId:** `string` — Unique identifier of the deployment
     
 </dd>
 </dl>
@@ -3270,7 +3399,7 @@ await client.applications.cancelDeployment("id", "deploymentId");
 <dl>
 <dd>
 
-Fetch all deployments for a given application ID with optional filters such as deployment ID or version. Supports pagination.
+List deployments for a given application. Each deployment is a new version of the application.
 </dd>
 </dl>
 </dd>
@@ -3323,7 +3452,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3363,7 +3492,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Get Deployment associated with the provided application ID and deployment ID.
+Get a single deployment by application ID and deployment ID.
 </dd>
 </dl>
 </dd>
@@ -3394,7 +3523,7 @@ await client.applicationVersions.get("id", "deploymentId");
 <dl>
 <dd>
 
-**id:** `string` — Application id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -3402,7 +3531,7 @@ await client.applicationVersions.get("id", "deploymentId");
 <dl>
 <dd>
 
-**deploymentId:** `string` — Deployment id of the deployment
+**deploymentId:** `string` — Unique identifier of the deployment
     
 </dd>
 </dl>
@@ -3795,6 +3924,378 @@ await client.jobs.terminate({
 </dl>
 </details>
 
+## Workspaces
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List workspaces the caller can read.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.workspaces.list({
+    limit: 10,
+    offset: 0,
+    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+    name: "name",
+    fqn: "fqn",
+    includeCluster: true,
+    attributes: ["attributes"]
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.workspaces.list({
+    limit: 10,
+    offset: 0,
+    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+    name: "name",
+    fqn: "fqn",
+    includeCluster: true,
+    attributes: ["attributes"]
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.WorkspacesListRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetWorkspaceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new workspace or update an existing one using the provided WorkspaceManifest. Matching is by name and cluster — if both match an existing workspace it is updated, otherwise a new one is created.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.workspaces.createOrUpdate({
+    manifest: {
+        type: "workspace",
+        cluster_fqn: "cluster_fqn",
+        name: "name"
+    }
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.CreateOrUpdateWorkspaceRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">search</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Search workspaces using a structured filter expression. Return a paginated list of workspaces matching the filter criteria.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.workspaces.search({
+    limit: 10,
+    offset: 0,
+    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
+    includeCluster: true
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.workspaces.search({
+    limit: 10,
+    offset: 0,
+    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
+    includeCluster: true
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.WorkspacesSearchRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">get</a>(id) -> TrueFoundry.GetWorkspaceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a single workspace by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.workspaces.get("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated workspace ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteWorkspaceResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently delete the workspace with the given ID. This action is irreversible.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.workspaces.delete("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated workspace ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `WorkspacesClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Environments
 <details><summary><code>client.environments.<a href="/src/api/resources/environments/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse&gt;</code></summary>
 <dl>
@@ -3808,7 +4309,7 @@ await client.jobs.terminate({
 <dl>
 <dd>
 
-List environments, if no environments are found, default environments are created and returned. Pagination is available based on query parameters
+List environments the caller can read within the tenant.
 </dd>
 </dl>
 </dd>
@@ -3889,7 +4390,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Creates a new Environment or updates an existing Environment.
+Create a new environment or update an existing one using the provided `EnvironmentManifest`. Matching is by `name` — if an environment with the same name exists it is updated, otherwise a new one is created.
 </dd>
 </dl>
 </dd>
@@ -3960,7 +4461,7 @@ await client.environments.createOrUpdate({
 <dl>
 <dd>
 
-Get Environment associated with the provided id.
+Get a single environment by its ID.
 </dd>
 </dl>
 </dd>
@@ -3975,7 +4476,7 @@ Get Environment associated with the provided id.
 <dd>
 
 ```typescript
-await client.environments.get("id");
+await client.environments.get("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -3991,7 +4492,7 @@ await client.environments.get("id");
 <dl>
 <dd>
 
-**id:** `string` — Environment id
+**id:** `string` — System-generated environment ID.
     
 </dd>
 </dl>
@@ -4023,7 +4524,7 @@ await client.environments.get("id");
 <dl>
 <dd>
 
-Delete Environment associated with the provided id.
+Permanently delete the environment with the given ID.
 </dd>
 </dl>
 </dd>
@@ -4038,7 +4539,7 @@ Delete Environment associated with the provided id.
 <dd>
 
 ```typescript
-await client.environments.delete("id");
+await client.environments.delete("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -4054,7 +4555,7 @@ await client.environments.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — Environment id
+**id:** `string` — System-generated environment ID.
     
 </dd>
 </dl>
@@ -4063,378 +4564,6 @@ await client.environments.delete("id");
 <dd>
 
 **requestOptions:** `EnvironmentsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Workspaces
-<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List workspaces associated with the user. Optional filters include clusterId, fqn, and workspace name.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const pageableResponse = await client.workspaces.list({
-    limit: 10,
-    offset: 0,
-    clusterId: "clusterId",
-    name: "name",
-    fqn: "fqn",
-    includeCluster: true
-});
-for await (const item of pageableResponse) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-let page = await client.workspaces.list({
-    limit: 10,
-    offset: 0,
-    clusterId: "clusterId",
-    name: "name",
-    fqn: "fqn",
-    includeCluster: true
-});
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-
-// You can also access the underlying response
-const response = page.response;
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.WorkspacesListRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WorkspacesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetWorkspaceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a new workspace or updates an existing one based on the provided manifest.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.workspaces.createOrUpdate({
-    manifest: {
-        type: "workspace",
-        cluster_fqn: "cluster_fqn",
-        name: "name"
-    }
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.CreateOrUpdateWorkspaceRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WorkspacesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">search</a>({ ...params }) -> core.Page&lt;TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List workspaces the user can read with optional structured `filter` (name, id, environmentId, cluster_fqn) and pagination.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-const pageableResponse = await client.workspaces.search({
-    limit: 10,
-    offset: 0,
-    filter: "filter",
-    includeCluster: true
-});
-for await (const item of pageableResponse) {
-    console.log(item);
-}
-
-// Or you can manually iterate page-by-page
-let page = await client.workspaces.search({
-    limit: 10,
-    offset: 0,
-    filter: "filter",
-    includeCluster: true
-});
-while (page.hasNextPage()) {
-    page = page.getNextPage();
-}
-
-// You can also access the underlying response
-const response = page.response;
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.WorkspacesSearchRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WorkspacesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">get</a>(id) -> TrueFoundry.GetWorkspaceResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get workspace associated with provided workspace id
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.workspaces.get("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Workspace id of the space
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WorkspacesClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.workspaces.<a href="/src/api/resources/workspaces/client/Client.ts">delete</a>(id) -> TrueFoundry.WorkspacesDeleteResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes the workspace with the given workspace ID.
-    - Removes the associated namespace from the cluster.
-    - Deletes the corresponding authorization entry.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.workspaces.delete("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Workspace id of the space
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `WorkspacesClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -4459,7 +4588,7 @@ await client.workspaces.delete("id");
 <dl>
 <dd>
 
-List secrets associated with a user filtered with optional parameters passed in the body.
+List secrets the caller has access to.
 </dd>
 </dl>
 </dd>
@@ -4534,7 +4663,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Get Secret associated with provided id. The secret value is not returned if the control plane has `DISABLE_SECRET_VALUE_VIEW` set
+Get the secret with the specified ID. The secret value is omitted if value viewing is disabled on the control plane.
 </dd>
 </dl>
 </dd>
@@ -4565,7 +4694,7 @@ await client.secrets.get("id");
 <dl>
 <dd>
 
-**id:** `string` — Secret Id of the secret.
+**id:** `string` — Unique identifier of the secret.
     
 </dd>
 </dl>
@@ -4597,7 +4726,7 @@ await client.secrets.get("id");
 <dl>
 <dd>
 
-Deletes a secret and its versions along with its values.
+Delete the secret and all its versions permanently.
 </dd>
 </dl>
 </dd>
@@ -4630,7 +4759,7 @@ await client.secrets.delete("id", {
 <dl>
 <dd>
 
-**id:** `string` — Secret Id of the secret.
+**id:** `string` — Unique identifier of the secret.
     
 </dd>
 </dl>
@@ -4671,7 +4800,7 @@ await client.secrets.delete("id", {
 <dl>
 <dd>
 
-List the secret groups associated with a user along with the associated secrets for each group. Filtered with the options passed in the query fields. Note: This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+List secret groups the caller has access to, along with associated secrets for each group. Secret values are not included in the response.
 </dd>
 </dl>
 </dd>
@@ -4690,7 +4819,8 @@ const pageableResponse = await client.secretGroups.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    search: "search"
+    search: "search",
+    attributes: ["attributes"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -4701,7 +4831,8 @@ let page = await client.secretGroups.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    search: "search"
+    search: "search",
+    attributes: ["attributes"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4756,7 +4887,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Creates a secret group with secrets in it. A secret version for each of the created secret is created with version number as 1. The returned secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+Create a secret group with initial secrets.
 </dd>
 </dl>
 </dd>
@@ -4826,7 +4957,7 @@ await client.secretGroups.create({
 <dl>
 <dd>
 
-Creates a new secret group or updates an existing one based on the provided manifest.
+Create a new secret group or update an existing one using the provided manifest. Matching is by name.
 </dd>
 </dl>
 </dd>
@@ -4899,7 +5030,7 @@ await client.secretGroups.createOrUpdate({
 <dl>
 <dd>
 
-Get Secret Group by id. This method does not return the secret values of the <em>associatedSecrets</em> in the response. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+Get a secret group by ID.
 </dd>
 </dl>
 </dd>
@@ -4930,7 +5061,7 @@ await client.secretGroups.get("id");
 <dl>
 <dd>
 
-**id:** `string` — Secret Id of the secret group.
+**id:** `string` — Unique identifier of the secret group.
     
 </dd>
 </dl>
@@ -4962,7 +5093,7 @@ await client.secretGroups.get("id");
 <dl>
 <dd>
 
-Updates the secrets in a secret group with new values. A new secret version is created for every secret that has a modified value and any omitted secrets are deleted. The returned updated secret group does not have any secret values in the <em>associatedSecrets</em> field. A separate API call to `/v1/secrets/{id}` should be made to fetch the associated secret value.
+Update secrets in a secret group. A new version is created for each secret with a modified value. Omitted secrets are deleted. Secret values are not returned in the response.
 </dd>
 </dl>
 </dd>
@@ -4997,7 +5128,7 @@ await client.secretGroups.update("id", {
 <dl>
 <dd>
 
-**id:** `string` — Secret Id of the secret group.
+**id:** `string` — Unique identifier of the secret group.
     
 </dd>
 </dl>
@@ -5025,7 +5156,7 @@ await client.secretGroups.update("id", {
 </dl>
 </details>
 
-<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">delete</a>(id) -> TrueFoundry.DeleteSecretGroupResponse</code></summary>
+<details><summary><code>client.secretGroups.<a href="/src/api/resources/secretGroups/client/Client.ts">delete</a>(id, { ...params }) -> TrueFoundry.DeleteSecretGroupResponse</code></summary>
 <dl>
 <dd>
 
@@ -5037,7 +5168,7 @@ await client.secretGroups.update("id", {
 <dl>
 <dd>
 
-Deletes the secret group, its associated secrets and secret versions of those secrets.
+Delete the secret group and all its associated secrets and secret versions permanently.
 </dd>
 </dl>
 </dd>
@@ -5052,7 +5183,9 @@ Deletes the secret group, its associated secrets and secret versions of those se
 <dd>
 
 ```typescript
-await client.secretGroups.delete("id");
+await client.secretGroups.delete("id", {
+    forceDelete: true
+});
 
 ```
 </dd>
@@ -5068,7 +5201,15 @@ await client.secretGroups.delete("id");
 <dl>
 <dd>
 
-**id:** `string` — Secret Id of the secret group.
+**id:** `string` — Unique identifier of the secret group.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.SecretGroupsDeleteRequest` 
     
 </dd>
 </dl>
@@ -5101,7 +5242,7 @@ await client.secretGroups.delete("id");
 <dl>
 <dd>
 
-Get Events for Pod, Job Run, Application. The events are sourced from Kubernetes as well as events captured by truefoundry. Optional query parameters include startTs, endTs for filtering.
+Get events for an application, filtered by pod names, job run, or time range.
 </dd>
 </dl>
 </dd>
@@ -5218,88 +5359,6 @@ await client.alerts.list({
 <dd>
 
 **requestOptions:** `AlertsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Logs
-<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetLogsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetch logs for various workload components, including Services, Jobs, Workflows, Job Runs, and Pods. Logs are filtered based on the provided query parameters.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.logs.get({
-    startTs: 1000000,
-    endTs: 1000000,
-    limit: 1,
-    direction: "asc",
-    numLogsToIgnore: 1,
-    applicationId: "applicationId",
-    applicationFqn: "applicationFqn",
-    deploymentId: "deploymentId",
-    jobRunName: "jobRunName",
-    podName: "podName",
-    containerName: "containerName",
-    podNames: ["podNames"],
-    podNamesRegex: "podNamesRegex",
-    searchFilters: "searchFilters",
-    searchString: "searchString",
-    searchType: "regex",
-    searchOperator: "equal"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.LogsGetRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `LogsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -5583,6 +5642,88 @@ const response = page.response;
 <dd>
 
 **requestOptions:** `MlReposClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Logs
+<details><summary><code>client.logs.<a href="/src/api/resources/logs/client/Client.ts">get</a>({ ...params }) -> TrueFoundry.GetLogsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get runtime logs (stdout/stderr) emitted by the pods of a deployed application.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.logs.get({
+    startTs: "1779262323000000000",
+    endTs: "1779348723000000000",
+    limit: 1,
+    direction: "asc",
+    numLogsToIgnore: 1,
+    applicationId: "applicationId",
+    applicationFqn: "applicationFqn",
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName",
+    podName: "podName",
+    containerName: "containerName",
+    podNames: ["podNames"],
+    podNamesRegex: "podNamesRegex",
+    searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
+    searchString: "searchString",
+    searchType: "regex",
+    searchOperator: "equal"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.LogsGetRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `LogsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -7774,7 +7915,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Get an agent skill artifact by its ID.
+Get an agent skill by its ID.
 </dd>
 </dl>
 </dd>
@@ -7837,7 +7978,7 @@ await client.agentSkills.get("agent_skill_id");
 <dl>
 <dd>
 
-Delete an agent skill artifact by its ID.
+Delete an agent skill by its ID.
 </dd>
 </dl>
 </dd>
@@ -7900,7 +8041,7 @@ await client.agentSkills.delete("agent_skill_id");
 <dl>
 <dd>
 
-List agent skills with optional filtering by FQN, ML Repo, or name. When present, `latest_version.manifest.source` is `blob-storage` with `description` only; use GET agent skill version for full SKILL.md (inline `source` with `skill_md`).
+List agent skills with optional filtering by FQN, ML Repo, or name.
 </dd>
 </dl>
 </dd>
@@ -7989,7 +8130,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create or update an agent skill version from a manifest.
+Create or update an agent skill version.
 </dd>
 </dl>
 </dd>
@@ -8058,6 +8199,20 @@ await client.agentSkills.createOrUpdate({
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get an agent skill version by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -8106,6 +8261,20 @@ await client.agentSkillVersions.get("agent_skill_version_id");
 <details><summary><code>client.agentSkillVersions.<a href="/src/api/resources/agentSkillVersions/client/Client.ts">delete</a>(agent_skill_version_id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete an agent skill version by its ID.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -8164,7 +8333,7 @@ await client.agentSkillVersions.delete("agent_skill_version_id");
 <dl>
 <dd>
 
-List agent skill versions. Each manifest has `source.type` `blob-storage` and `description` only; use GET for full SKILL.md content.
+List agent skill versions with optional filtering by FQN, agent skill ID, ML Repo, name, or version.
 </dd>
 </dl>
 </dd>
@@ -8821,126 +8990,6 @@ await client.dataDirectories.createMultipartUpload({
 </dl>
 </details>
 
-## Internal Users
-<details><summary><code>client.internal.users.<a href="/src/api/resources/internal/resources/users/client/Client.ts">getInfo</a>() -> TrueFoundry.Session</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the user session details for the currently authenticated user
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.internal.users.getInfo();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `UsersClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Internal AiGateway
-<details><summary><code>client.internal.aiGateway.<a href="/src/api/resources/internal/resources/aiGateway/client/Client.ts">getGatewayConfig</a>(type) -> TrueFoundry.GatewayConfiguration</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get Gateway configuration based on type for the tenant.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**type:** `TrueFoundry.AiGatewayGetGatewayConfigRequestType` — Type of Config
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `AiGatewayClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Internal Clusters
 <details><summary><code>client.internal.clusters.<a href="/src/api/resources/internal/resources/clusters/client/Client.ts">getAutoprovisioningState</a>(id) -> TrueFoundry.GetAutoProvisioningStateResponse</code></summary>
 <dl>
@@ -8954,7 +9003,7 @@ await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config")
 <dl>
 <dd>
 
-Get the auto provisioning status for the provided cluster
+Get the auto-provisioning status for the specified cluster.
 </dd>
 </dl>
 </dd>
@@ -8985,7 +9034,7 @@ await client.internal.clusters.getAutoprovisioningState("id");
 <dl>
 <dd>
 
-**id:** `string` — Cluster id of the cluster
+**id:** `string` — Unique identifier of the cluster.
     
 </dd>
 </dl>
@@ -9018,7 +9067,7 @@ await client.internal.clusters.getAutoprovisioningState("id");
 <dl>
 <dd>
 
-This endpoint returns all statuses for a specific deployment in a given application.
+Get all statuses for a specific deployment of an application.
 </dd>
 </dl>
 </dd>
@@ -9049,7 +9098,7 @@ await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
 <dl>
 <dd>
 
-**id:** `string` — Application id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -9057,7 +9106,7 @@ await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
 <dl>
 <dd>
 
-**deploymentId:** `string` — Deployment id of the deployment
+**deploymentId:** `string` — Unique identifier of the deployment
     
 </dd>
 </dl>
@@ -9089,7 +9138,7 @@ await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
 <dl>
 <dd>
 
-This endpoint returns all build details associated with a specific deployment in a given application.
+Get all builds associated with a specific deployment of an application.
 </dd>
 </dl>
 </dd>
@@ -9120,7 +9169,7 @@ await client.internal.deployments.getBuilds("id", "deploymentId");
 <dl>
 <dd>
 
-**id:** `string` — Application id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -9128,7 +9177,7 @@ await client.internal.deployments.getBuilds("id", "deploymentId");
 <dl>
 <dd>
 
-**deploymentId:** `string` — Deployment id of the deployment
+**deploymentId:** `string` — Unique identifier of the deployment
     
 </dd>
 </dl>
@@ -9330,7 +9379,7 @@ await client.internal.applications.promoteRollout("id", {
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -9370,7 +9419,7 @@ await client.internal.applications.promoteRollout("id", {
 <dl>
 <dd>
 
-This endpoint fetches the pod template hash to deployment version map for a specific application.
+Get the pod template hash to deployment version map for a specific application.
 </dd>
 </dl>
 </dd>
@@ -9403,7 +9452,7 @@ await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
 <dl>
 <dd>
 
-**id:** `string` — Id of the application
+**id:** `string` — Unique identifier of the application
     
 </dd>
 </dl>
@@ -9444,7 +9493,7 @@ await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
 <dl>
 <dd>
 
-List charts for a given Application based on parameters passed in the query.
+List metric charts available for an application.
 </dd>
 </dl>
 </dd>
@@ -9464,7 +9513,7 @@ await client.internal.metrics.getCharts("workspaceId", {
     startTs: "startTs",
     endTs: "endTs",
     filterEntity: "application",
-    filterQuery: "filterQuery"
+    filterQuery: "{\"pod\":\"my-app-abc123-xyz\"}"
 });
 
 ```
@@ -9831,7 +9880,7 @@ await client.internal.workflows.executeWorkflow("applicationId");
 <dl>
 <dd>
 
-Get logs for a given pipeline run by its name, with optional filters and time range.
+Get logs emitted by the image build and deploy pipeline for a specific build of an application.
 </dd>
 </dl>
 </dd>
@@ -9851,6 +9900,7 @@ await client.internal.buildLogs.get("pipelineRunName", {
     endTs: "1635467891123456789",
     limit: "limit",
     direction: "direction",
+    filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}",
     numLogsToIgnore: 1.1
 });
 
@@ -9936,7 +9986,8 @@ const pageableResponse = await client.internal.artifactVersions.list({
     offset: 1,
     limit: 1,
     include_internal_metadata: true,
-    include_model_versions: true
+    include_model_versions: true,
+    artifact_types: ["artifact"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9955,7 +10006,8 @@ let page = await client.internal.artifactVersions.list({
     offset: 1,
     limit: 1,
     include_internal_metadata: true,
-    include_model_versions: true
+    include_model_versions: true,
+    artifact_types: ["artifact"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -10011,7 +10063,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create or update an ML entity (model, prompt, artifact, or data directory).
+Create or update an ML entity (model, prompt, artifact, agent skill, or data directory).
 </dd>
 </dl>
 </dd>

@@ -3,20 +3,34 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Deployment {
+    /** Unique identifier of the deployment */
     id?: string | undefined;
+    /** Incremental version number within the application */
     version?: number | undefined;
+    /** FQN of the deployment */
     fqn?: string | undefined;
+    /** Unique identifier of the application this deployment belongs to */
     applicationId?: string | undefined;
+    /** Deployment manifest defining the application configuration. */
     manifest: TrueFoundry.DeploymentManifest;
-    application?: TrueFoundry.Application | undefined;
+    /** Summary of the parent application (included when requested) */
+    application?: TrueFoundry.ApplicationSummary | undefined;
+    /** Subject (user or service account) that created this deployment */
     createdBySubject: TrueFoundry.Subject;
+    /** Timestamp when the deployment was created */
     createdAt?: string | undefined;
+    /** Timestamp when the deployment was last updated */
     updatedAt?: string | undefined;
+    /** Build steps associated with this deployment */
     deploymentBuilds?: TrueFoundry.BuildInfo[] | undefined;
+    /** Full history of deployment status transitions */
     deploymentStatuses?: TrueFoundry.DeploymentStatus[] | undefined;
+    /** Unique identifier of the current deployment status record */
     currentStatusId?: string | undefined;
+    /** Current deployment status object. */
     currentStatus?: TrueFoundry.DeploymentStatus | undefined;
     /** Applied recommendations for this deployment */
     appliedRecommendations?: TrueFoundry.Recommendation[] | undefined;
+    /** Slug of the subject that created this deployment */
     createdBy?: string | undefined;
 }

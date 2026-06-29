@@ -22,4 +22,6 @@ export interface AgentSkillVersion {
     ml_repo_id: string;
     /** ID of the parent agent skill artifact that this version belongs to */
     agent_skill_id: string;
+    /** Code snippets demonstrating how to download or use this agent skill version */
+    usage_code_snippets?: TrueFoundry.UsageCodeSnippet[] | undefined;
 }

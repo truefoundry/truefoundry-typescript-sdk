@@ -10,6 +10,8 @@ export type GatewayConfig =
     | TrueFoundry.LoadBalancingConfig
     | TrueFoundry.GuardrailsConfig
     | TrueFoundry.BudgetConfig
+    | TrueFoundry.TenantBudgetConfig
+    | TrueFoundry.TeamBudgetConfig
     | TrueFoundry.GatewayOtelConfig
     | TrueFoundry.GatewayMetadataConfig
     | TrueFoundry.GatewayLoggingConfig

@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetClusterResponse {
-    /** Cluster */
+    /** The cluster object. */
     data: TrueFoundry.Cluster;
 }

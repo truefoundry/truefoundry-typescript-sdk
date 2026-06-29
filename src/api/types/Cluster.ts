@@ -3,7 +3,9 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Cluster {
+    /** System-generated cluster ID. */
     id: string;
+    /** Human-readable Fully Qualified Name of the cluster. */
     fqn: string;
     manifest: TrueFoundry.ClusterManifest;
     tenantName: string;

@@ -11,15 +11,21 @@ describe("LogsClient", () => {
 
         const rawResponseBody = {
             data: [
-                { job_name: "job_name", log: "log", stream: "stream", time: "time", containerName: "containerName" },
+                {
+                    job_name: "job_name",
+                    log: "log",
+                    stream: "stdout",
+                    time: "1635467890123456789",
+                    containerName: "containerName",
+                },
             ],
         };
 
         server.mockEndpoint().get("/api/svc/v1/logs").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const response = await client.logs.get({
-            startTs: 1000000,
-            endTs: 1000000,
+            startTs: "1779262323000000000",
+            endTs: "1779348723000000000",
             limit: 1,
             direction: "asc",
             numLogsToIgnore: 1,
@@ -31,7 +37,7 @@ describe("LogsClient", () => {
             containerName: "containerName",
             podNames: ["podNames"],
             podNamesRegex: "podNamesRegex",
-            searchFilters: "searchFilters",
+            searchFilters: '[{"string":"error","type":"substring","operator":"equal"}]',
             searchString: "searchString",
             searchType: "regex",
             searchOperator: "equal",

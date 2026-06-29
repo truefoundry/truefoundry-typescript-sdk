@@ -22,7 +22,7 @@ export class SecretsClient {
     }
 
     /**
-     * List secrets associated with a user filtered with optional parameters passed in the body.
+     * List secrets the caller has access to.
      *
      * @param {TrueFoundry.ListSecretsRequest} request
      * @param {SecretsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -106,9 +106,9 @@ export class SecretsClient {
     }
 
     /**
-     * Get Secret associated with provided id. The secret value is not returned if the control plane has `DISABLE_SECRET_VALUE_VIEW` set
+     * Get the secret with the specified ID. The secret value is omitted if value viewing is disabled on the control plane.
      *
-     * @param {string} id - Secret Id of the secret.
+     * @param {string} id - Unique identifier of the secret.
      * @param {SecretsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -175,9 +175,9 @@ export class SecretsClient {
     }
 
     /**
-     * Deletes a secret and its versions along with its values.
+     * Delete the secret and all its versions permanently.
      *
-     * @param {string} id - Secret Id of the secret.
+     * @param {string} id - Unique identifier of the secret.
      * @param {TrueFoundry.SecretsDeleteRequest} request
      * @param {SecretsClient.RequestOptions} requestOptions - Request-specific configuration.
      *

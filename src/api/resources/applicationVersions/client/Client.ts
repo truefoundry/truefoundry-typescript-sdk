@@ -22,9 +22,9 @@ export class ApplicationVersionsClient {
     }
 
     /**
-     * Fetch all deployments for a given application ID with optional filters such as deployment ID or version. Supports pagination.
+     * List deployments for a given application. Each deployment is a new version of the application.
      *
-     * @param {string} id - Id of the application
+     * @param {string} id - Unique identifier of the application
      * @param {TrueFoundry.ApplicationVersionsListRequest} request
      * @param {ApplicationVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -126,10 +126,10 @@ export class ApplicationVersionsClient {
     }
 
     /**
-     * Get Deployment associated with the provided application ID and deployment ID.
+     * Get a single deployment by application ID and deployment ID.
      *
-     * @param {string} id - Application id of the application
-     * @param {string} deploymentId - Deployment id of the deployment
+     * @param {string} id - Unique identifier of the application
+     * @param {string} deploymentId - Unique identifier of the deployment
      * @param {ApplicationVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}

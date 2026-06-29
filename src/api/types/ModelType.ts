@@ -13,5 +13,6 @@ export const ModelType = {
     Moderation: "moderation",
     Image: "image",
     Responses: "responses",
+    Ocr: "ocr",
 } as const;
 export type ModelType = (typeof ModelType)[keyof typeof ModelType];

@@ -9,9 +9,9 @@ export interface ListSecretsRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
-    /** Array of FQNs */
+    /** Filter by secret FQNs. */
     secretFqns?: string[];
-    /** Secret Group Id of the secret gourp. */
+    /** Filter by secret group ID. */
     secretGroupId?: string;
     /** Whether to include the secret values in the response. Defaults to false. */
     withValue?: boolean;

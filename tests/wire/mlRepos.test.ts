@@ -374,7 +374,6 @@ describe("MlReposClient", () => {
                     account_id: "account_id",
                     id: "420",
                     num_runs: 10,
-                    artifact_type_counts: { key: 1 },
                     datasets_count: 10,
                 },
             ],

@@ -22,7 +22,7 @@ export class BuildLogsClient {
     }
 
     /**
-     * Get logs for a given pipeline run by its name, with optional filters and time range.
+     * Get logs emitted by the image build and deploy pipeline for a specific build of an application.
      *
      * @param {string} pipelineRunName - PipelineRun Name
      * @param {TrueFoundry.internal.BuildLogsGetRequest} request
@@ -36,6 +36,7 @@ export class BuildLogsClient {
      *         endTs: "1635467891123456789",
      *         limit: "limit",
      *         direction: "direction",
+     *         filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}",
      *         numLogsToIgnore: 1.1
      *     })
      */
@@ -71,7 +72,7 @@ export class BuildLogsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/svc/v1/build-logs/${core.url.encodePathParam(pipelineRunName)}`,
+                `api/svc/v1/x/build-logs/${core.url.encodePathParam(pipelineRunName)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -107,7 +108,7 @@ export class BuildLogsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/svc/v1/build-logs/{pipelineRunName}",
+            "/api/svc/v1/x/build-logs/{pipelineRunName}",
         );
     }
 }
