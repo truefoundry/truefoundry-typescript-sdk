@@ -10,7 +10,7 @@ export type TrueFoundryApplyResponseExistingManifest =
     | TrueFoundry.ArtifactManifest
     | TrueFoundry.ModelManifest
     | TrueFoundry.ChatPromptManifest
-    | TrueFoundry.DataDirectory
+    | TrueFoundry.DataDirectoryManifest
     | TrueFoundry.Service
     | TrueFoundry.ApplicationSet
     | TrueFoundry.ProviderAccounts
