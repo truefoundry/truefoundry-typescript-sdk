@@ -48,7 +48,7 @@ describe("AgentSkillVersionsClient", () => {
             agent_skill_id: "agent_skill_id",
             ml_repo_id: "ml_repo_id",
             name: "name",
-            version: "latest",
+            version: 1,
         });
 
         expect(expected.data).toEqual(page.data);
