@@ -11,7 +11,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *         fqn: "fqn",
  *         prompt_id: "prompt_id",
  *         ml_repo_id: "ml_repo_id",
- *         name: "name"
+ *         name: "name",
+ *         version: "latest"
  *     }
  */
 export interface PromptVersionsListRequest {
@@ -30,5 +31,5 @@ export interface PromptVersionsListRequest {
     /** Filter prompt versions by name. */
     name?: string;
     /** Version number (positive integer) or `latest` */
-    version?: TrueFoundry.Object_;
+    version?: TrueFoundry.PromptVersionsListRequestVersion;
 }

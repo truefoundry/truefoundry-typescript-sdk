@@ -694,7 +694,6 @@ export * from "./NvidiaMiggpu.js";
 export * from "./NvidiaMiggpuProfile.js";
 export * from "./NvidiaTimeslicingGpu.js";
 export * from "./OAuth2LoginProvider.js";
-export * from "./Object_.js";
 export * from "./OciRepo.js";
 export * from "./OcrCostMetric.js";
 export * from "./OcrCostMetricValue.js";

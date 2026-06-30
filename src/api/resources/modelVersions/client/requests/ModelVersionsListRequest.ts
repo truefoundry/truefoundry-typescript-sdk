@@ -12,6 +12,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         model_id: "model_id",
  *         ml_repo_id: "ml_repo_id",
  *         name: "name",
+ *         version: "latest",
  *         run_ids: ["run_ids"],
  *         run_steps: [1.1],
  *         include_internal_metadata: true
@@ -33,7 +34,7 @@ export interface ModelVersionsListRequest {
     /** Filter model versions by name. */
     name?: string;
     /** Version number (positive integer) or `latest` */
-    version?: TrueFoundry.Object_;
+    version?: TrueFoundry.ModelVersionsListRequestVersion;
     /** Filter model versions by associated run identifiers. */
     run_ids?: string | string[];
     /** Filter model versions by associated run steps. */

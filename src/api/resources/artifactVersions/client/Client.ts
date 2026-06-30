@@ -36,6 +36,7 @@ export class ArtifactVersionsClient {
      *         artifact_id: "artifact_id",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
+     *         version: "latest",
      *         run_ids: ["run_ids"],
      *         run_steps: [1.1],
      *         include_internal_metadata: true
@@ -70,7 +71,7 @@ export class ArtifactVersionsClient {
                     artifact_id: artifactId,
                     ml_repo_id: mlRepoId,
                     name,
-                    version,
+                    version: version != null ? version : undefined,
                     run_ids: runIds,
                     run_steps: runSteps,
                     include_internal_metadata: includeInternalMetadata,

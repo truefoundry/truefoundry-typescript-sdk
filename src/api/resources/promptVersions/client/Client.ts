@@ -35,7 +35,8 @@ export class PromptVersionsClient {
      *         fqn: "fqn",
      *         prompt_id: "prompt_id",
      *         ml_repo_id: "ml_repo_id",
-     *         name: "name"
+     *         name: "name",
+     *         version: "latest"
      *     })
      */
     public async list(
@@ -64,7 +65,7 @@ export class PromptVersionsClient {
                     prompt_id: promptId,
                     ml_repo_id: mlRepoId,
                     name,
-                    version,
+                    version: version != null ? version : undefined,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

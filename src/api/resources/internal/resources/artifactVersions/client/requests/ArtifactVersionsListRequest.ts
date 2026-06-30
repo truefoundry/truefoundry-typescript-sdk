@@ -12,6 +12,7 @@ import type * as TrueFoundry from "../../../../../../index.js";
  *         artifact_id: "artifact_id",
  *         ml_repo_id: "ml_repo_id",
  *         name: "name",
+ *         version: "latest",
  *         run_ids: ["run_ids"],
  *         run_steps: [1.1],
  *         include_internal_metadata: true,
@@ -35,7 +36,7 @@ export interface ArtifactVersionsListRequest {
     /** Name of the artifact version. */
     name?: string;
     /** Version number of the artifact version, or "latest" to fetch the most recent one. */
-    version?: TrueFoundry.Object_;
+    version?: TrueFoundry.internal.ArtifactVersionsListRequestVersion;
     /** Run IDs to filter artifact versions by. */
     run_ids?: string | string[];
     /** Run steps to filter artifact versions by. */

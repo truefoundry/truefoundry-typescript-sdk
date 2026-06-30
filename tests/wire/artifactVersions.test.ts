@@ -49,6 +49,7 @@ describe("ArtifactVersionsClient", () => {
             artifact_id: "artifact_id",
             ml_repo_id: "ml_repo_id",
             name: "name",
+            version: "latest",
             run_ids: ["run_ids"],
             run_steps: [1.1],
             include_internal_metadata: true,

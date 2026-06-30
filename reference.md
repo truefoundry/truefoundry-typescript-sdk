@@ -5695,7 +5695,8 @@ const pageableResponse = await client.promptVersions.list({
     fqn: "fqn",
     prompt_id: "prompt_id",
     ml_repo_id: "ml_repo_id",
-    name: "name"
+    name: "name",
+    version: "latest"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -5709,7 +5710,8 @@ let page = await client.promptVersions.list({
     fqn: "fqn",
     prompt_id: "prompt_id",
     ml_repo_id: "ml_repo_id",
-    name: "name"
+    name: "name",
+    version: "latest"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6272,6 +6274,7 @@ const pageableResponse = await client.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
+    version: "latest",
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -6289,6 +6292,7 @@ let page = await client.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
+    version: "latest",
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -9100,6 +9104,7 @@ const pageableResponse = await client.modelVersions.list({
     model_id: "model_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
+    version: "latest",
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -9117,6 +9122,7 @@ let page = await client.modelVersions.list({
     model_id: "model_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
+    version: "latest",
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -9762,7 +9768,8 @@ const pageableResponse = await client.agentSkillVersions.list({
     fqn: "fqn",
     agent_skill_id: "agent_skill_id",
     ml_repo_id: "ml_repo_id",
-    name: "name"
+    name: "name",
+    version: "latest"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9775,7 +9782,8 @@ let page = await client.agentSkillVersions.list({
     fqn: "fqn",
     agent_skill_id: "agent_skill_id",
     ml_repo_id: "ml_repo_id",
-    name: "name"
+    name: "name",
+    version: "latest"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -10717,6 +10725,7 @@ const pageableResponse = await client.internal.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
+    version: "latest",
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true,
@@ -10736,6 +10745,7 @@ let page = await client.internal.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
+    version: "latest",
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true,

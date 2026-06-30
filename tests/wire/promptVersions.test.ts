@@ -49,6 +49,7 @@ describe("PromptVersionsClient", () => {
             prompt_id: "prompt_id",
             ml_repo_id: "ml_repo_id",
             name: "name",
+            version: "latest",
         });
 
         expect(expected.data).toEqual(page.data);

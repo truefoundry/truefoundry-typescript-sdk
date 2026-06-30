@@ -10,7 +10,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *         fqn: "fqn",
  *         agent_skill_id: "agent_skill_id",
  *         ml_repo_id: "ml_repo_id",
- *         name: "name"
+ *         name: "name",
+ *         version: "latest"
  *     }
  */
 export interface AgentSkillVersionsListRequest {
@@ -27,5 +28,5 @@ export interface AgentSkillVersionsListRequest {
     /** Name of the agent skill to filter versions by. */
     name?: string;
     /** Version number (positive integer) or `latest` */
-    version?: TrueFoundry.Object_;
+    version?: TrueFoundry.AgentSkillVersionsListRequestVersion;
 }
