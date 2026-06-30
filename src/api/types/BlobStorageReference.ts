@@ -10,6 +10,5 @@ export interface BlobStorageReference {
     type: "blob-storage";
     /** Path to the content in blob storage */
     path: string;
-    /** MIME type of the content */
-    mime_type: TrueFoundry.BlobStorageReferenceMimeType;
+    mime_type: TrueFoundry.MimeType;
 }

@@ -6072,7 +6072,7 @@ const pageableResponse = await client.promptVersions.list({
     prompt_id: "prompt_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest"
+    version: 1
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -6087,7 +6087,7 @@ let page = await client.promptVersions.list({
     prompt_id: "prompt_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest"
+    version: 1
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6650,7 +6650,7 @@ const pageableResponse = await client.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest",
+    version: 1,
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -6668,7 +6668,7 @@ let page = await client.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest",
+    version: 1,
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -7322,7 +7322,7 @@ await client.mlRepos.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.mlRepos.<a href="/src/api/resources/mlRepos/client/Client.ts">delete</a>(id) -> void</code></summary>
+<details><summary><code>client.mlRepos.<a href="/src/api/resources/mlRepos/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -9480,7 +9480,7 @@ const pageableResponse = await client.modelVersions.list({
     model_id: "model_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest",
+    version: 1,
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -9498,7 +9498,7 @@ let page = await client.modelVersions.list({
     model_id: "model_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest",
+    version: 1,
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true
@@ -11101,7 +11101,7 @@ const pageableResponse = await client.internal.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest",
+    version: 1,
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true,
@@ -11121,7 +11121,7 @@ let page = await client.internal.artifactVersions.list({
     artifact_id: "artifact_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest",
+    version: 1,
     run_ids: ["run_ids"],
     run_steps: [1.1],
     include_internal_metadata: true,
