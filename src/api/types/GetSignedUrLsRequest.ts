@@ -8,5 +8,5 @@ export interface GetSignedUrLsRequest {
     /** Paths of the files to generate signed URLs for. */
     paths: string[];
     /** Operation the signed URLs should permit (READ or WRITE). */
-    operation: TrueFoundry.GetSignedUrLsRequestOperation;
+    operation: TrueFoundry.Operation;
 }
