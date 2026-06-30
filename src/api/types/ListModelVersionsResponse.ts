@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListModelVersionsResponse {
-    /** List of model versions matching the query */
+    /** List of model versions matching the query. */
     data: TrueFoundry.ModelVersion[];
-    /** Pagination information including total count, offset, and limit */
+    /** Pagination information for the response. */
     pagination: TrueFoundry.Pagination;
 }

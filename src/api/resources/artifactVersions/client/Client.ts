@@ -22,12 +22,125 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * List artifact versions with optional filtering by tag, FQN, artifact ID, ML Repo, name, version, run IDs, or run steps.
+     *
+     * @param {TrueFoundry.ArtifactVersionsListRequest} request
+     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.artifactVersions.list({
+     *         limit: 10,
+     *         offset: 0,
+     *         tag: "tag",
+     *         fqn: "fqn",
+     *         artifact_id: "artifact_id",
+     *         ml_repo_id: "ml_repo_id",
+     *         name: "name",
+     *         version: "latest",
+     *         run_ids: ["run_ids"],
+     *         run_steps: [1.1],
+     *         include_internal_metadata: true
+     *     })
+     */
+    public async list(
+        request: TrueFoundry.ArtifactVersionsListRequest = {},
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): Promise<core.Page<TrueFoundry.ArtifactVersion, TrueFoundry.ListArtifactVersionsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(
+            async (
+                request: TrueFoundry.ArtifactVersionsListRequest,
+            ): Promise<core.WithRawResponse<TrueFoundry.ListArtifactVersionsResponse>> => {
+                const {
+                    limit = 100,
+                    offset = 0,
+                    tag,
+                    fqn,
+                    artifact_id: artifactId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    include_internal_metadata: includeInternalMetadata = false,
+                } = request;
+                const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
+                    tag,
+                    fqn,
+                    artifact_id: artifactId,
+                    ml_repo_id: mlRepoId,
+                    name,
+                    version: version != null ? version : undefined,
+                    run_ids: runIds,
+                    run_steps: runSteps,
+                    include_internal_metadata: includeInternalMetadata,
+                };
+                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    _authRequest.headers,
+                    this._options?.headers,
+                    requestOptions?.headers,
+                );
+                const _response = await (this._options.fetcher ?? core.fetcher)({
+                    url: core.url.join(
+                        (await core.Supplier.get(this._options.baseUrl)) ??
+                            (await core.Supplier.get(this._options.environment)),
+                        "api/svc/v1/artifact-versions",
+                    ),
+                    method: "GET",
+                    headers: _headers,
+                    queryString: core.url
+                        .queryBuilder()
+                        .addMany(_queryParams)
+                        .mergeAdditional(requestOptions?.queryParams)
+                        .build(),
+                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+                    abortSignal: requestOptions?.abortSignal,
+                    fetchFn: this._options?.fetch,
+                    logging: this._options.logging,
+                });
+                if (_response.ok) {
+                    return {
+                        data: _response.body as TrueFoundry.ListArtifactVersionsResponse,
+                        rawResponse: _response.rawResponse,
+                    };
+                }
+                if (_response.error.reason === "status-code") {
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+                }
+                return handleNonStatusCodeError(
+                    _response.error,
+                    _response.rawResponse,
+                    "GET",
+                    "/api/svc/v1/artifact-versions",
+                );
+            },
+        );
+        let _offset = request?.offset != null ? request?.offset : 0;
+        const dataWithRawResponse = await list(request).withRawResponse();
+        return new core.Page<TrueFoundry.ArtifactVersion, TrueFoundry.ListArtifactVersionsResponse>({
+            response: dataWithRawResponse.data,
+            rawResponse: dataWithRawResponse.rawResponse,
+            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
+            getItems: (response) => response?.data ?? [],
+            loadPage: (response) => {
+                _offset += response?.data != null ? response.data.length : 1;
+                return list(core.setObjectProperty(request, "offset", _offset));
+            },
+        });
+    }
+
+    /**
      * Apply tags to an artifact version.
      *
      * @param {TrueFoundry.ApplyArtifactVersionTagsRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.artifactVersions.applyTags({
@@ -56,7 +169,7 @@ export class ArtifactVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/artifact-versions/tags",
+                "api/svc/v1/artifact-versions/tags",
             ),
             method: "PUT",
             headers: _headers,
@@ -75,297 +188,19 @@ export class ArtifactVersionsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "PUT",
-            "/api/ml/v1/artifact-versions/tags",
+            "/api/svc/v1/artifact-versions/tags",
         );
-    }
-
-    /**
-     * Get an artifact version by its ID.
-     *
-     * @param {string} id
-     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.artifactVersions.get("id")
-     */
-    public get(
-        id: string,
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetArtifactVersionResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
-    }
-
-    private async __get(
-        id: string,
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetArtifactVersionResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/artifact-versions/${core.url.encodePathParam(id)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return {
-                data: _response.body as TrueFoundry.GetArtifactVersionResponse,
-                rawResponse: _response.rawResponse,
-            };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/api/ml/v1/artifact-versions/{id}",
-        );
-    }
-
-    /**
-     * Delete an artifact version by its ID.
-     *
-     * @param {string} id
-     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.artifactVersions.delete("id")
-     */
-    public delete(
-        id: string,
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
-    }
-
-    private async __delete(
-        id: string,
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/artifact-versions/${core.url.encodePathParam(id)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/api/ml/v1/artifact-versions/{id}",
-        );
-    }
-
-    /**
-     * List artifact versions with optional filtering by tag, FQN, artifact ID, ML Repo, name, version, run IDs, or run steps.
-     *
-     * @param {TrueFoundry.ArtifactVersionsListRequest} request
-     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.artifactVersions.list({
-     *         tag: "tag",
-     *         fqn: "fqn",
-     *         artifact_id: "artifact_id",
-     *         ml_repo_id: "ml_repo_id",
-     *         name: "name",
-     *         version: 1,
-     *         run_ids: ["run_ids"],
-     *         run_steps: [1],
-     *         offset: 1,
-     *         limit: 1,
-     *         include_internal_metadata: true
-     *     })
-     */
-    public async list(
-        request: TrueFoundry.ArtifactVersionsListRequest = {},
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.ArtifactVersion, TrueFoundry.ListArtifactVersionsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(
-            async (
-                request: TrueFoundry.ArtifactVersionsListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListArtifactVersionsResponse>> => {
-                const {
-                    tag,
-                    fqn,
-                    artifact_id: artifactId,
-                    ml_repo_id: mlRepoId,
-                    name,
-                    version,
-                    run_ids: runIds,
-                    run_steps: runSteps,
-                    offset = 0,
-                    limit = 100,
-                    include_internal_metadata: includeInternalMetadata = false,
-                } = request;
-                const _queryParams: Record<string, unknown> = {
-                    tag,
-                    fqn,
-                    artifact_id: artifactId,
-                    ml_repo_id: mlRepoId,
-                    name,
-                    version,
-                    run_ids: runIds,
-                    run_steps: runSteps,
-                    offset,
-                    limit,
-                    include_internal_metadata: includeInternalMetadata,
-                };
-                const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-                const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-                    _authRequest.headers,
-                    this._options?.headers,
-                    requestOptions?.headers,
-                );
-                const _response = await (this._options.fetcher ?? core.fetcher)({
-                    url: core.url.join(
-                        (await core.Supplier.get(this._options.baseUrl)) ??
-                            (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/artifact-versions",
-                    ),
-                    method: "GET",
-                    headers: _headers,
-                    queryString: core.url
-                        .queryBuilder()
-                        .addMany(_queryParams)
-                        .mergeAdditional(requestOptions?.queryParams)
-                        .build(),
-                    timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-                    maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-                    abortSignal: requestOptions?.abortSignal,
-                    fetchFn: this._options?.fetch,
-                    logging: this._options.logging,
-                });
-                if (_response.ok) {
-                    return {
-                        data: _response.body as TrueFoundry.ListArtifactVersionsResponse,
-                        rawResponse: _response.rawResponse,
-                    };
-                }
-                if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
-                }
-                return handleNonStatusCodeError(
-                    _response.error,
-                    _response.rawResponse,
-                    "GET",
-                    "/api/ml/v1/artifact-versions",
-                );
-            },
-        );
-        let _offset = request?.offset != null ? request?.offset : 0;
-        const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<TrueFoundry.ArtifactVersion, TrueFoundry.ListArtifactVersionsResponse>({
-            response: dataWithRawResponse.data,
-            rawResponse: dataWithRawResponse.rawResponse,
-            hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
-            getItems: (response) => response?.data ?? [],
-            loadPage: (response) => {
-                _offset += response?.data != null ? response.data.length : 1;
-                return list(core.setObjectProperty(request, "offset", _offset));
-            },
-        });
     }
 
     /**
@@ -373,8 +208,6 @@ export class ArtifactVersionsClient {
      *
      * @param {TrueFoundry.GetSignedUrLsRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.artifactVersions.getSignedUrls({
@@ -404,7 +237,7 @@ export class ArtifactVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/artifact-versions/signed-urls",
+                "api/svc/v1/artifact-versions/signed-urls",
             ),
             method: "POST",
             headers: _headers,
@@ -423,26 +256,18 @@ export class ArtifactVersionsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "POST",
-            "/api/ml/v1/artifact-versions/signed-urls",
+            "/api/svc/v1/artifact-versions/signed-urls",
         );
     }
 
@@ -452,13 +277,11 @@ export class ArtifactVersionsClient {
      * @param {TrueFoundry.CreateMultiPartUploadRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.artifactVersions.createMultiPartUpload({
      *         id: "id",
      *         path: "path",
-     *         num_parts: 1
+     *         num_parts: 1.1
      *     })
      */
     public createMultiPartUpload(
@@ -482,7 +305,7 @@ export class ArtifactVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/artifact-versions/signed-urls/multipart",
+                "api/svc/v1/artifact-versions/signed-urls/multipart",
             ),
             method: "POST",
             headers: _headers,
@@ -501,112 +324,18 @@ export class ArtifactVersionsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "POST",
-            "/api/ml/v1/artifact-versions/signed-urls/multipart",
-        );
-    }
-
-    /**
-     * Stage an artifact version for upload, returning storage location and version ID.
-     *
-     * @param {TrueFoundry.StageArtifactRequest} request
-     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.artifactVersions.stage({
-     *         manifest: {
-     *             name: "name",
-     *             metadata: {
-     *                 "key": "value"
-     *             },
-     *             ml_repo: "ml_repo",
-     *             type: "model-version",
-     *             source: {
-     *                 type: "truefoundry"
-     *             }
-     *         }
-     *     })
-     */
-    public stage(
-        request: TrueFoundry.StageArtifactRequest,
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.StageArtifactResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__stage(request, requestOptions));
-    }
-
-    private async __stage(
-        request: TrueFoundry.StageArtifactRequest,
-        requestOptions?: ArtifactVersionsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.StageArtifactResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/artifact-versions/stage",
-            ),
-            method: "POST",
-            headers: _headers,
-            contentType: "application/json",
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.StageArtifactResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "POST",
-            "/api/ml/v1/artifact-versions/stage",
+            "/api/svc/v1/artifact-versions/signed-urls/multipart",
         );
     }
 
@@ -615,8 +344,6 @@ export class ArtifactVersionsClient {
      *
      * @param {TrueFoundry.ListFilesRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.artifactVersions.listFiles({
@@ -641,7 +368,7 @@ export class ArtifactVersionsClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/artifact-versions/files",
+                        "api/svc/v1/artifact-versions/files",
                     ),
                     method: "POST",
                     headers: _headers,
@@ -662,25 +389,17 @@ export class ArtifactVersionsClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
                 return handleNonStatusCodeError(
                     _response.error,
                     _response.rawResponse,
                     "POST",
-                    "/api/ml/v1/artifact-versions/files",
+                    "/api/svc/v1/artifact-versions/files",
                 );
             },
         );
@@ -699,12 +418,85 @@ export class ArtifactVersionsClient {
     }
 
     /**
+     * Stage an artifact version for upload, returning storage location and version ID.
+     *
+     * @param {TrueFoundry.StageArtifactRequest} request
+     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.artifactVersions.stage({
+     *         manifest: {
+     *             metadata: {
+     *                 "key": "value"
+     *             },
+     *             type: "artifact-version",
+     *             source: {
+     *                 type: "truefoundry"
+     *             },
+     *             step: 1
+     *         }
+     *     })
+     */
+    public stage(
+        request: TrueFoundry.StageArtifactRequest,
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.StageArtifactResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__stage(request, requestOptions));
+    }
+
+    private async __stage(
+        request: TrueFoundry.StageArtifactRequest,
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.StageArtifactResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/artifact-versions/stage",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.StageArtifactResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/artifact-versions/stage",
+        );
+    }
+
+    /**
      * Mark a staged artifact version as failed.
      *
      * @param {TrueFoundry.MarkStageArtifactFailureRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.artifactVersions.markStageFailure({
@@ -732,7 +524,7 @@ export class ArtifactVersionsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/artifact-versions/mark-stage-failure",
+                "api/svc/v1/artifact-versions/mark-stage-failure",
             ),
             method: "POST",
             headers: _headers,
@@ -751,12 +543,75 @@ export class ArtifactVersionsClient {
         }
 
         if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/artifact-versions/mark-stage-failure",
+        );
+    }
+
+    /**
+     * Get an artifact version by its ID.
+     *
+     * @param {string} id - Artifact version ID
+     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.artifactVersions.get("id")
+     */
+    public get(
+        id: string,
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetArtifactVersionResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
+    }
+
+    private async __get(
+        id: string,
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetArtifactVersionResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/artifact-versions/${core.url.encodePathParam(id)}`,
+            ),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: _response.body as TrueFoundry.GetArtifactVersionResponse,
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -769,8 +624,76 @@ export class ArtifactVersionsClient {
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
-            "POST",
-            "/api/ml/v1/artifact-versions/mark-stage-failure",
+            "GET",
+            "/api/svc/v1/artifact-versions/{id}",
+        );
+    }
+
+    /**
+     * Delete an artifact version by its ID.
+     *
+     * @param {string} id - Artifact version ID
+     * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.artifactVersions.delete("id")
+     */
+    public delete(
+        id: string,
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: ArtifactVersionsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/artifact-versions/${core.url.encodePathParam(id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/api/svc/v1/artifact-versions/{id}",
         );
     }
 }

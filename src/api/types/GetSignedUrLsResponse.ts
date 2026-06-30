@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetSignedUrLsResponse {
-    /** List of signed URLs for the requested file paths */
+    /** List of generated signed URLs. */
     data: TrueFoundry.SignedUrl[];
 }

@@ -17,4 +17,6 @@ export interface MlRepo {
     artifact_type_counts?: Record<string, number> | undefined;
     /** Number of datasets */
     datasets_count?: number | undefined;
+    /** Total number of tracing projects in this ML Repo */
+    tracing_projects_count?: number | undefined;
 }

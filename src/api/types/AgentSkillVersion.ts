@@ -2,26 +2,23 @@
 
 import type * as TrueFoundry from "../index.js";
 
-/**
- * Shared artifact-version fields (identity, manifest union, ML repo).
- */
 export interface AgentSkillVersion {
-    /** Unique identifier for the artifact version */
-    id: string;
-    /** Fully qualified name of the artifact version in the format '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}' */
-    fqn: string;
-    /** Subject (user, team, or service account) that created this artifact version */
-    created_by_subject: TrueFoundry.Subject;
-    /** Timestamp when the artifact version was created */
+    /** Timestamp when the agent skill version was created. */
     created_at?: string | undefined;
-    /** Timestamp when the artifact version was last updated */
+    /** Timestamp when the agent skill version was last updated. */
     updated_at?: string | undefined;
-    /** Manifest containing metadata specific to this agent skill version */
+    /** Manifest describing the agent skill version. */
     manifest: TrueFoundry.AgentSkillManifest;
-    /** ID of the ML Repo that this artifact version belongs to */
+    /** Unique identifier of the agent skill version. */
+    id: string;
+    /** Fully Qualified Name uniquely identifying the agent skill version. */
+    fqn: string;
+    /** Subject (user, team, or service account) that created the agent skill version. */
+    created_by_subject: TrueFoundry.Subject;
+    /** Identifier of the ML Repo the agent skill version belongs to. */
     ml_repo_id: string;
-    /** ID of the parent agent skill artifact that this version belongs to */
+    /** Identifier of the agent skill this version belongs to. */
     agent_skill_id: string;
-    /** Code snippets demonstrating how to download or use this agent skill version */
+    /** Code snippets showing how to use the agent skill version. */
     usage_code_snippets?: TrueFoundry.UsageCodeSnippet[] | undefined;
 }

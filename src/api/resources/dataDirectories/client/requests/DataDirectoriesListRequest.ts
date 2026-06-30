@@ -3,22 +3,22 @@
 /**
  * @example
  *     {
+ *         limit: 10,
+ *         offset: 0,
  *         fqn: "fqn",
  *         ml_repo_id: "ml_repo_id",
- *         name: "name",
- *         limit: 1,
- *         offset: 1
+ *         name: "name"
  *     }
  */
 export interface DataDirectoriesListRequest {
-    /** Fully qualified name to filter data directories by */
+    /** Number of items per page */
+    limit?: number;
+    /** Number of items to skip */
+    offset?: number;
+    /** Fully qualified name to filter by */
     fqn?: string;
-    /** ID of the ML Repo to filter data directories by */
+    /** ID of the ML Repo to filter by */
     ml_repo_id?: string;
     /** Name of the data directory to filter by */
     name?: string;
-    /** Maximum number of data directories to return */
-    limit?: number;
-    /** Number of data directories to skip for pagination */
-    offset?: number;
 }

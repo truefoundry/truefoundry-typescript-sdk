@@ -11,7 +11,7 @@ describe("ArtifactsClient", () => {
 
         const rawResponseBody = {
             data: {
-                id: "id",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
                 ml_repo_id: "ml_repo_id",
                 type: "artifact",
                 name: "name",
@@ -28,33 +28,35 @@ describe("ArtifactsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 latest_version: {
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
                     manifest: {
-                        name: "name",
                         metadata: { key: "value" },
-                        ml_repo: "ml_repo",
-                        type: "model-version",
+                        type: "artifact-version",
                         source: { type: "truefoundry" },
+                        step: 1,
                     },
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     ml_repo_id: "ml_repo_id",
+                    usage_code_snippet: "usage_code_snippet",
+                    tags: ["tags"],
+                    artifact_id: "artifact_id",
                 },
-                run_steps: [1],
+                run_steps: [1.1],
             },
         };
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/artifacts/id")
+            .get("/api/svc/v1/artifacts/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.artifacts.get("id");
+        const response = await client.artifacts.get("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -66,15 +68,15 @@ describe("ArtifactsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/artifacts/id")
+            .get("/api/svc/v1/artifacts/id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.artifacts.get("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -85,13 +87,13 @@ describe("ArtifactsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/artifacts/id")
+            .delete("/api/svc/v1/artifacts/jqfwg345gi25n5ju2yz5iz6m")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.artifacts.delete("id");
+        const response = await client.artifacts.delete("jqfwg345gi25n5ju2yz5iz6m");
         expect(response).toEqual(rawResponseBody);
     });
 
@@ -103,25 +105,25 @@ describe("ArtifactsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/artifacts/id")
+            .delete("/api/svc/v1/artifacts/id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.artifacts.delete("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("list (1)", async () => {
+    test("list", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
         const rawResponseBody = {
             data: [
                 {
-                    id: "id",
+                    id: "jqfwg345gi25n5ju2yz5iz6m",
                     ml_repo_id: "ml_repo_id",
                     type: "artifact",
                     name: "name",
@@ -130,12 +132,13 @@ describe("ArtifactsClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
                     latest_version: {
-                        id: "id",
+                        id: "jqfwg345gi25n5ju2yz5iz6m",
                         fqn: "fqn",
                         created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                         ml_repo_id: "ml_repo_id",
+                        artifact_id: "artifact_id",
                     },
-                    run_steps: [1],
+                    run_steps: [1.1],
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -143,7 +146,7 @@ describe("ArtifactsClient", () => {
 
         server
             .mockEndpoint({ once: false })
-            .get("/api/ml/v1/artifacts")
+            .get("/api/svc/v1/artifacts")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -151,11 +154,11 @@ describe("ArtifactsClient", () => {
 
         const expected = rawResponseBody;
         const page = await client.artifacts.list({
+            limit: 10,
+            offset: 0,
             fqn: "fqn",
             ml_repo_id: "ml_repo_id",
             name: "name",
-            offset: 1,
-            limit: 1,
             run_id: "run_id",
             include_empty_artifacts: true,
         });
@@ -166,50 +169,19 @@ describe("ArtifactsClient", () => {
         expect(expected.data).toEqual(nextPage.data);
     });
 
-    test("list (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/artifacts")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.artifacts.list();
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("create_or_update (1)", async () => {
+    test("create_or_update", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
-                name: "name",
                 metadata: { key: "value" },
-                ml_repo: "ml_repo",
                 type: "artifact-version",
                 source: { type: "truefoundry" },
+                step: 1,
             },
         };
         const rawResponseBody = {
             data: {
-                id: "id",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 manifest: {
@@ -224,17 +196,27 @@ describe("ArtifactsClient", () => {
                     step: 1,
                     run_id: "run_id",
                 },
+                id: "jqfwg345gi25n5ju2yz5iz6m",
+                fqn: "fqn",
+                created_by_subject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
                 ml_repo_id: "ml_repo_id",
-                tags: ["tags"],
-                version_alias: "version_alias",
                 usage_code_snippet: "usage_code_snippet",
+                tags: ["tags"],
                 artifact_id: "artifact_id",
             },
         };
 
         server
             .mockEndpoint()
-            .put("/api/ml/v1/artifact-versions")
+            .put("/api/svc/v1/artifact-versions")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
@@ -243,59 +225,16 @@ describe("ArtifactsClient", () => {
 
         const response = await client.artifacts.createOrUpdate({
             manifest: {
-                name: "name",
                 metadata: {
                     key: "value",
                 },
-                ml_repo: "ml_repo",
                 type: "artifact-version",
                 source: {
                     type: "truefoundry",
                 },
+                step: 1,
             },
         });
         expect(response).toEqual(rawResponseBody);
-    });
-
-    test("create_or_update (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                name: "name",
-                metadata: { metadata: { key: "value" } },
-                ml_repo: "ml_repo",
-                type: "artifact-version",
-                source: { type: "truefoundry" },
-            },
-        };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/api/ml/v1/artifact-versions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.artifacts.createOrUpdate({
-                manifest: {
-                    name: "name",
-                    metadata: {
-                        metadata: {
-                            key: "value",
-                        },
-                    },
-                    ml_repo: "ml_repo",
-                    type: "artifact-version",
-                    source: {
-                        type: "truefoundry",
-                    },
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

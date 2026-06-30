@@ -24,13 +24,13 @@ export class ArtifactsClient {
     /**
      * Get an artifact by its ID.
      *
-     * @param {string} id
+     * @param {string} id - System-generated artifact ID.
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.artifacts.get("id")
+     *     await client.artifacts.get("jqfwg345gi25n5ju2yz5iz6m")
      */
     public get(
         id: string,
@@ -53,7 +53,7 @@ export class ArtifactsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/artifacts/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/artifacts/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -70,11 +70,8 @@ export class ArtifactsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -84,19 +81,19 @@ export class ArtifactsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/artifacts/{id}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/artifacts/{id}");
     }
 
     /**
      * Delete an artifact by its ID.
      *
-     * @param {string} id
+     * @param {string} id - System-generated artifact ID.
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.artifacts.delete("id")
+     *     await client.artifacts.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
     public delete(
         id: string,
@@ -119,7 +116,7 @@ export class ArtifactsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/artifacts/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/artifacts/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -136,11 +133,8 @@ export class ArtifactsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -150,7 +144,7 @@ export class ArtifactsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/ml/v1/artifacts/{id}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/svc/v1/artifacts/{id}");
     }
 
     /**
@@ -159,15 +153,13 @@ export class ArtifactsClient {
      * @param {TrueFoundry.ArtifactsListRequest} request
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.artifacts.list({
+     *         limit: 10,
+     *         offset: 0,
      *         fqn: "fqn",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         offset: 1,
-     *         limit: 1,
      *         run_id: "run_id",
      *         include_empty_artifacts: true
      *     })
@@ -181,20 +173,20 @@ export class ArtifactsClient {
                 request: TrueFoundry.ArtifactsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListArtifactsResponse>> => {
                 const {
+                    limit = 100,
+                    offset = 0,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset = 0,
-                    limit = 100,
                     run_id: runId,
                     include_empty_artifacts: includeEmptyArtifacts = true,
                 } = request;
                 const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset,
-                    limit,
                     run_id: runId,
                     include_empty_artifacts: includeEmptyArtifacts,
                 };
@@ -208,7 +200,7 @@ export class ArtifactsClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/artifacts",
+                        "api/svc/v1/artifacts",
                     ),
                     method: "GET",
                     headers: _headers,
@@ -230,21 +222,13 @@ export class ArtifactsClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
-                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/artifacts");
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/artifacts");
             },
         );
         let _offset = request?.offset != null ? request?.offset : 0;
@@ -262,25 +246,22 @@ export class ArtifactsClient {
     }
 
     /**
-     * Create or update an artifact version.
+     * Create or update an artifact version from a manifest.
      *
      * @param {TrueFoundry.ApplyArtifactRequest} request
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.artifacts.createOrUpdate({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
      *             type: "artifact-version",
      *             source: {
      *                 type: "truefoundry"
-     *             }
+     *             },
+     *             step: 1
      *         }
      *     })
      */
@@ -305,7 +286,7 @@ export class ArtifactsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/artifact-versions",
+                "api/svc/v1/artifact-versions",
             ),
             method: "PUT",
             headers: _headers,
@@ -327,21 +308,13 @@ export class ArtifactsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/ml/v1/artifact-versions");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/svc/v1/artifact-versions");
     }
 }

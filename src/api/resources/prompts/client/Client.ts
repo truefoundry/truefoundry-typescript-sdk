@@ -24,10 +24,10 @@ export class PromptsClient {
     /**
      * Get a prompt by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Unique identifier of the prompt.
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.prompts.get("id")
@@ -53,7 +53,7 @@ export class PromptsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/prompts/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/prompts/${core.url.encodePathParam(id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -70,11 +70,8 @@ export class PromptsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -84,16 +81,16 @@ export class PromptsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/prompts/{id}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/prompts/{id}");
     }
 
     /**
      * Delete a prompt by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Unique identifier of the prompt.
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.prompts.delete("id")
@@ -119,7 +116,7 @@ export class PromptsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/prompts/${core.url.encodePathParam(id)}`,
+                `api/svc/v1/prompts/${core.url.encodePathParam(id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -136,11 +133,8 @@ export class PromptsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -150,7 +144,7 @@ export class PromptsClient {
             }
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/ml/v1/prompts/{id}");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "DELETE", "/api/svc/v1/prompts/{id}");
     }
 
     /**
@@ -159,15 +153,13 @@ export class PromptsClient {
      * @param {TrueFoundry.PromptsListRequest} request
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.prompts.list({
+     *         limit: 10,
+     *         offset: 0,
      *         fqn: "fqn",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         offset: 1,
-     *         limit: 1,
      *         include_empty_prompts: true
      *     })
      */
@@ -180,19 +172,19 @@ export class PromptsClient {
                 request: TrueFoundry.PromptsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListPromptsResponse>> => {
                 const {
+                    limit = 100,
+                    offset = 0,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset = 0,
-                    limit = 100,
                     include_empty_prompts: includeEmptyPrompts = true,
                 } = request;
                 const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset,
-                    limit,
                     include_empty_prompts: includeEmptyPrompts,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -205,7 +197,7 @@ export class PromptsClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/prompts",
+                        "api/svc/v1/prompts",
                     ),
                     method: "GET",
                     headers: _headers,
@@ -227,21 +219,13 @@ export class PromptsClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
-                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/ml/v1/prompts");
+                return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/prompts");
             },
         );
         let _offset = request?.offset != null ? request?.offset : 0;
@@ -264,16 +248,12 @@ export class PromptsClient {
      * @param {TrueFoundry.ApplyPromptRequest} request
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.prompts.createOrUpdate({
      *         manifest: {
-     *             name: "name",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             ml_repo: "ml_repo",
      *             type: "chat_prompt",
      *             messages: [{
      *                     role: "system",
@@ -303,7 +283,7 @@ export class PromptsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/prompt-versions",
+                "api/svc/v1/prompt-versions",
             ),
             method: "PUT",
             headers: _headers,
@@ -322,21 +302,13 @@ export class PromptsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/ml/v1/prompt-versions");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/svc/v1/prompt-versions");
     }
 }

@@ -174,7 +174,7 @@ export class SecretGroupsClient {
             switch (_response.error.statusCode) {
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 case 424:
@@ -276,7 +276,7 @@ export class SecretGroupsClient {
                     );
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:
@@ -438,7 +438,7 @@ export class SecretGroupsClient {
                     throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:

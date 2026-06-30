@@ -106,7 +106,7 @@ describe("EnvironmentsClient", () => {
         const rawRequestBody = {
             manifest: { type: "environment", name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()

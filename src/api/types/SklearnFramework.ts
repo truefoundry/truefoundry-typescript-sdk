@@ -2,7 +2,11 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Sklearn
+ */
 export interface SklearnFramework {
+    /** Type of the framework */
     type: "sklearn";
     /** Relative path to the model file in the model version contents */
     model_filepath?: string | undefined;

@@ -13,7 +13,7 @@ describe("ModelsClient", () => {
             data: {
                 id: "id",
                 ml_repo_id: "ml_repo_id",
-                type: "model",
+                type: "artifact",
                 name: "name",
                 fqn: "fqn",
                 created_by_subject: {
@@ -28,33 +28,31 @@ describe("ModelsClient", () => {
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 latest_version: {
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
                     manifest: {
-                        name: "name",
                         metadata: { key: "value" },
-                        ml_repo: "ml_repo",
                         type: "model-version",
                         source: { type: "truefoundry" },
+                        step: 1,
                     },
+                    id: "id",
+                    fqn: "fqn",
+                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     ml_repo_id: "ml_repo_id",
-                    tags: ["tags"],
-                    version_alias: "version_alias",
                     usage_code_snippet: "usage_code_snippet",
+                    tags: ["tags"],
                     model_id: "model_id",
                     metrics: [{ key: "key" }],
                     deployable: true,
                 },
-                run_steps: [1],
+                run_steps: [1.1],
             },
         };
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/models/id")
+            .get("/api/svc/v1/models/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -72,15 +70,15 @@ describe("ModelsClient", () => {
 
         server
             .mockEndpoint()
-            .get("/api/ml/v1/models/id")
+            .get("/api/svc/v1/models/id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.models.get("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
     test("delete (1)", async () => {
@@ -91,7 +89,7 @@ describe("ModelsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/models/id")
+            .delete("/api/svc/v1/models/id")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -109,18 +107,18 @@ describe("ModelsClient", () => {
 
         server
             .mockEndpoint()
-            .delete("/api/ml/v1/models/id")
+            .delete("/api/svc/v1/models/id")
             .respondWith()
-            .statusCode(422)
+            .statusCode(404)
             .jsonBody(rawResponseBody)
             .build();
 
         await expect(async () => {
             return await client.models.delete("id");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("list (1)", async () => {
+    test("list", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
@@ -129,27 +127,27 @@ describe("ModelsClient", () => {
                 {
                     id: "id",
                     ml_repo_id: "ml_repo_id",
-                    type: "model",
+                    type: "artifact",
                     name: "name",
                     fqn: "fqn",
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
                     latest_version: {
+                        manifest: {
+                            metadata: { key: "value" },
+                            type: "model-version",
+                            source: { type: "truefoundry" },
+                            step: 1,
+                        },
                         id: "id",
                         fqn: "fqn",
                         created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                        manifest: {
-                            name: "name",
-                            metadata: { key: "value" },
-                            ml_repo: "ml_repo",
-                            type: "model-version",
-                            source: { type: "truefoundry" },
-                        },
                         ml_repo_id: "ml_repo_id",
                         model_id: "model_id",
+                        deployable: true,
                     },
-                    run_steps: [1],
+                    run_steps: [1.1],
                 },
             ],
             pagination: { total: 100, offset: 0, limit: 10 },
@@ -157,7 +155,7 @@ describe("ModelsClient", () => {
 
         server
             .mockEndpoint({ once: false })
-            .get("/api/ml/v1/models")
+            .get("/api/svc/v1/models")
             .respondWith()
             .statusCode(200)
             .jsonBody(rawResponseBody)
@@ -165,11 +163,11 @@ describe("ModelsClient", () => {
 
         const expected = rawResponseBody;
         const page = await client.models.list({
+            limit: 10,
+            offset: 0,
             fqn: "fqn",
             ml_repo_id: "ml_repo_id",
             name: "name",
-            offset: 1,
-            limit: 1,
             run_id: "run_id",
             include_empty_models: true,
         });
@@ -180,50 +178,14 @@ describe("ModelsClient", () => {
         expect(expected.data).toEqual(nextPage.data);
     });
 
-    test("list (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/ml/v1/models")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.models.list();
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
-    });
-
-    test("create_or_update (1)", async () => {
+    test("create_or_update", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                name: "name",
-                metadata: { key: "value" },
-                ml_repo: "ml_repo",
-                type: "model-version",
-                source: { type: "truefoundry" },
-            },
+            manifest: { metadata: { key: "value" }, type: "model-version", source: { type: "truefoundry" }, step: 1 },
         };
         const rawResponseBody = {
             data: {
-                id: "id",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
                 created_at: "2024-01-15T09:30:00Z",
                 updated_at: "2024-01-15T09:30:00Z",
                 manifest: {
@@ -239,10 +201,20 @@ describe("ModelsClient", () => {
                     step: 1,
                     run_id: "run_id",
                 },
+                id: "id",
+                fqn: "fqn",
+                created_by_subject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
                 ml_repo_id: "ml_repo_id",
-                tags: ["tags"],
-                version_alias: "version_alias",
                 usage_code_snippet: "usage_code_snippet",
+                tags: ["tags"],
                 model_id: "model_id",
                 metrics: [{ key: "key" }],
                 deployable: true,
@@ -251,7 +223,7 @@ describe("ModelsClient", () => {
 
         server
             .mockEndpoint()
-            .put("/api/ml/v1/model-versions")
+            .put("/api/svc/v1/model-versions")
             .jsonBody(rawRequestBody)
             .respondWith()
             .statusCode(200)
@@ -260,59 +232,16 @@ describe("ModelsClient", () => {
 
         const response = await client.models.createOrUpdate({
             manifest: {
-                name: "name",
                 metadata: {
                     key: "value",
                 },
-                ml_repo: "ml_repo",
                 type: "model-version",
                 source: {
                     type: "truefoundry",
                 },
+                step: 1,
             },
         });
         expect(response).toEqual(rawResponseBody);
-    });
-
-    test("create_or_update (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                name: "name",
-                metadata: { metadata: { key: "value" } },
-                ml_repo: "ml_repo",
-                type: "model-version",
-                source: { type: "truefoundry" },
-            },
-        };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/api/ml/v1/model-versions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.models.createOrUpdate({
-                manifest: {
-                    name: "name",
-                    metadata: {
-                        metadata: {
-                            key: "value",
-                        },
-                    },
-                    ml_repo: "ml_repo",
-                    type: "model-version",
-                    source: {
-                        type: "truefoundry",
-                    },
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

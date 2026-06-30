@@ -122,7 +122,7 @@ describe("UsersClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email" };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -212,7 +212,7 @@ describe("UsersClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { email: "email", roles: ["roles", "roles"] };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()

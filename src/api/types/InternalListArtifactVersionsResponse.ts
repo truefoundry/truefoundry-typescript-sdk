@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface InternalListArtifactVersionsResponse {
-    /** List of artifact versions and model versions with internal metadata */
+    /** List of artifact versions matching the query. */
     data: TrueFoundry.InternalListArtifactVersionsResponseDataItem[];
-    /** Pagination information including total count, offset, and limit */
+    /** Pagination information for the response. */
     pagination: TrueFoundry.Pagination;
 }

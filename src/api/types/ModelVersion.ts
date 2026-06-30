@@ -2,34 +2,29 @@
 
 import type * as TrueFoundry from "../index.js";
 
-/**
- * Tags, optional version alias, and SDK usage snippet (models, prompts, generic artifacts).
- */
 export interface ModelVersion {
-    /** Unique identifier for the artifact version */
-    id: string;
-    /** Fully qualified name of the artifact version in the format '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}' */
-    fqn: string;
-    /** Subject (user, team, or service account) that created this artifact version */
-    created_by_subject: TrueFoundry.Subject;
-    /** Timestamp when the artifact version was created */
+    /** Timestamp when the model version was created. */
     created_at?: string | undefined;
-    /** Timestamp when the artifact version was last updated */
+    /** Timestamp when the model version was last updated. */
     updated_at?: string | undefined;
-    /** Manifest containing metadata specific to the model version */
+    /** Manifest describing the model version. */
     manifest: TrueFoundry.ModelManifest;
-    /** ID of the ML Repo that this artifact version belongs to */
+    /** Unique identifier of the model version. */
+    id: string;
+    /** Fully Qualified Name uniquely identifying the model version. */
+    fqn: string;
+    /** Subject (user, team, or service account) that created the model version. */
+    created_by_subject: TrueFoundry.Subject;
+    /** Identifier of the ML Repo the model version belongs to. */
     ml_repo_id: string;
-    /** List of tags associated with this artifact version for filtering and organization */
-    tags?: string[] | undefined;
-    /** Optional human-readable version alias (e.g. v1.0.0) */
-    version_alias?: string | undefined;
-    /** Code snippet demonstrating how to use this artifact version */
+    /** Code snippet showing how to use the model version. */
     usage_code_snippet?: string | undefined;
-    /** ID of the parent model that this version belongs to */
+    /** Tags associated with the model version. */
+    tags?: string[] | undefined;
+    /** Identifier of the model this version belongs to. */
     model_id: string;
-    /** List of metrics associated with this model version */
+    /** Metrics logged for the model version. */
     metrics?: TrueFoundry.Metric[] | undefined;
-    /** Whether this model version is ready for deployment */
-    deployable?: boolean | undefined;
+    /** Whether the model version can be deployed. */
+    deployable: boolean;
 }

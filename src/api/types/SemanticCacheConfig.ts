@@ -4,6 +4,7 @@
  * Semantic Cache Configuration
  */
 export interface SemanticCacheConfig {
+    /** Cache type */
     type: "semantic";
     /** Similarity threshold for semantic matching (between 0 and 1) */
     similarity_threshold: number;

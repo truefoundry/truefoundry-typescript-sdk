@@ -5,45 +5,46 @@ import type * as TrueFoundry from "../../../../../../index.js";
 /**
  * @example
  *     {
+ *         limit: 10,
+ *         offset: 0,
  *         tag: "tag",
  *         fqn: "fqn",
  *         artifact_id: "artifact_id",
  *         ml_repo_id: "ml_repo_id",
  *         name: "name",
- *         version: 1,
+ *         version: "latest",
  *         run_ids: ["run_ids"],
- *         run_steps: [1],
- *         offset: 1,
- *         limit: 1,
+ *         run_steps: [1.1],
  *         include_internal_metadata: true,
  *         include_model_versions: true,
  *         artifact_types: ["artifact"]
  *     }
  */
 export interface ArtifactVersionsListRequest {
-    /** Tag to filter artifact versions by */
-    tag?: string;
-    /** Fully qualified name to filter artifact versions by (format: '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}' or '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}:{version}') */
-    fqn?: string;
-    /** ID of the artifact to filter versions by */
-    artifact_id?: string;
-    /** ID of the ML Repo to filter artifact versions by */
-    ml_repo_id?: string;
-    /** Name of the artifact to filter versions by */
-    name?: string;
-    /** Version number (positive integer) or 'latest' to filter by specific version */
-    version?: number;
-    /** List of run IDs to filter artifact versions by */
-    run_ids?: string | string[];
-    /** List of run step numbers to filter artifact versions by */
-    run_steps?: number | number[];
-    /** Number of artifact versions to skip for pagination */
-    offset?: number;
-    /** Maximum number of artifact versions to return */
+    /** Number of items per page */
     limit?: number;
-    /** Whether to include internal metadata in the response */
+    /** Number of items to skip */
+    offset?: number;
+    /** Tag to filter artifact versions by. */
+    tag?: string;
+    /** Fully Qualified Name uniquely identifying the artifact version. */
+    fqn?: string;
+    /** Identifier of the artifact whose versions to list. */
+    artifact_id?: string;
+    /** Identifier of the ML Repo the artifact versions belong to. */
+    ml_repo_id?: string;
+    /** Name of the artifact version. */
+    name?: string;
+    /** Version number of the artifact version, or "latest" to fetch the most recent one. */
+    version?: TrueFoundry.internal.ArtifactVersionsListRequestVersion;
+    /** Run IDs to filter artifact versions by. */
+    run_ids?: string | string[];
+    /** Run steps to filter artifact versions by. */
+    run_steps?: number | number[];
+    /** Whether to include internal metadata in the response. */
     include_internal_metadata?: boolean;
-    /** Whether to include model versions in the results (internal use only) */
+    /** Whether to include model versions in the response. */
     include_model_versions?: boolean;
+    /** Artifact types to filter artifact versions by. */
     artifact_types?: TrueFoundry.ArtifactType | TrueFoundry.ArtifactType[];
 }

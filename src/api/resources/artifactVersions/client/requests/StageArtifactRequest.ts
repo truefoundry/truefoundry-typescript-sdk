@@ -6,15 +6,14 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             name: "name",
  *             metadata: {
  *                 "key": "value"
  *             },
- *             ml_repo: "ml_repo",
- *             type: "model-version",
+ *             type: "artifact-version",
  *             source: {
  *                 type: "truefoundry"
- *             }
+ *             },
+ *             step: 1
  *         }
  *     }
  */

@@ -3,6 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetPromptResponse {
-    /** The prompt data */
+    /** The requested prompt. */
     data: TrueFoundry.Prompt;
 }

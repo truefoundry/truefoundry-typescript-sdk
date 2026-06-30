@@ -3,24 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Artifact Version manifest.
+ * Log a new Artifact Version containing files and folders with metadata
  */
-export interface ArtifactManifest {
-    /** Name of the artifact (alphanumeric characters, hyphens, and underscores only, max 256 characters) */
-    name: string;
-    /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
-    metadata: Record<string, unknown>;
-    /** Name of the ML Repo that this artifact belongs to (must start and end with alphanumeric, 2-100 characters) */
-    ml_repo: string;
-    /** Version of the entity */
-    version?: number | undefined;
+export interface ArtifactManifest extends TrueFoundry.BaseArtifactVersion {
+    /** Artifact Version */
     type: "artifact-version";
+    /** Description */
     description?: string | undefined;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     version_alias?: string | undefined;
+    /** Artifact Source */
     source: TrueFoundry.ArtifactManifestSource;
     /** Step/Epoch number in an iterative training loop the artifact version was created. Generally useful when logging a model version from a MLRepo Run */
-    step?: number | undefined;
+    step: number;
     /** ID of the MLRepo Run that generated the artifact version */
     run_id?: string | undefined;
 }

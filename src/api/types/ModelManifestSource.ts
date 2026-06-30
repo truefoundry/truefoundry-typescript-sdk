@@ -2,6 +2,9 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Model Source
+ */
 export type ModelManifestSource =
     | TrueFoundry.TrueFoundryManagedSource
     | TrueFoundry.ExternalBlobStorageSource

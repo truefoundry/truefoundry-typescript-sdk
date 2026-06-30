@@ -22,175 +22,18 @@ export class DataDirectoriesClient {
     }
 
     /**
-     * Get a data directory by its ID.
-     *
-     * @param {string} id
-     * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.dataDirectories.get("id")
-     */
-    public get(
-        id: string,
-        requestOptions?: DataDirectoriesClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetDataDirectoryResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
-    }
-
-    private async __get(
-        id: string,
-        requestOptions?: DataDirectoriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetDataDirectoryResponse>> {
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/data-directories/${core.url.encodePathParam(id)}`,
-            ),
-            method: "GET",
-            headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetDataDirectoryResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "GET",
-            "/api/ml/v1/data-directories/{id}",
-        );
-    }
-
-    /**
-     * Delete a data directory, optionally including its contents.
-     *
-     * @param {string} id
-     * @param {TrueFoundry.DataDirectoriesDeleteRequest} request
-     * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
-     * @example
-     *     await client.dataDirectories.delete("id", {
-     *         delete_contents: true
-     *     })
-     */
-    public delete(
-        id: string,
-        request: TrueFoundry.DataDirectoriesDeleteRequest = {},
-        requestOptions?: DataDirectoriesClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
-    }
-
-    private async __delete(
-        id: string,
-        request: TrueFoundry.DataDirectoriesDeleteRequest = {},
-        requestOptions?: DataDirectoriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
-        const { delete_contents: deleteContents = false } = request;
-        const _queryParams: Record<string, unknown> = {
-            delete_contents: deleteContents,
-        };
-        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
-        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
-            _authRequest.headers,
-            this._options?.headers,
-            requestOptions?.headers,
-        );
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(
-                (await core.Supplier.get(this._options.baseUrl)) ??
-                    (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/data-directories/${core.url.encodePathParam(id)}`,
-            ),
-            method: "DELETE",
-            headers: _headers,
-            queryString: core.url
-                .queryBuilder()
-                .addMany(_queryParams)
-                .mergeAdditional(requestOptions?.queryParams)
-                .build(),
-            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
-            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-            fetchFn: this._options?.fetch,
-            logging: this._options.logging,
-        });
-        if (_response.ok) {
-            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
-        }
-
-        return handleNonStatusCodeError(
-            _response.error,
-            _response.rawResponse,
-            "DELETE",
-            "/api/ml/v1/data-directories/{id}",
-        );
-    }
-
-    /**
      * List data directories with optional filtering by FQN, ML Repo, or name.
      *
      * @param {TrueFoundry.DataDirectoriesListRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.dataDirectories.list({
+     *         limit: 10,
+     *         offset: 0,
      *         fqn: "fqn",
      *         ml_repo_id: "ml_repo_id",
-     *         name: "name",
-     *         limit: 1,
-     *         offset: 1
+     *         name: "name"
      *     })
      */
     public async list(
@@ -201,13 +44,13 @@ export class DataDirectoriesClient {
             async (
                 request: TrueFoundry.DataDirectoriesListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListDataDirectoriesResponse>> => {
-                const { fqn, ml_repo_id: mlRepoId, name, limit = 100, offset = 0 } = request;
+                const { limit = 100, offset = 0, fqn, ml_repo_id: mlRepoId, name } = request;
                 const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    limit,
-                    offset,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -219,7 +62,7 @@ export class DataDirectoriesClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/data-directories",
+                        "api/svc/v1/data-directories",
                     ),
                     method: "GET",
                     headers: _headers,
@@ -241,25 +84,17 @@ export class DataDirectoriesClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
                 return handleNonStatusCodeError(
                     _response.error,
                     _response.rawResponse,
                     "GET",
-                    "/api/ml/v1/data-directories",
+                    "/api/svc/v1/data-directories",
                 );
             },
         );
@@ -282,8 +117,6 @@ export class DataDirectoriesClient {
      *
      * @param {TrueFoundry.ApplyDataDirectoryRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.dataDirectories.createOrUpdate({
@@ -321,7 +154,7 @@ export class DataDirectoriesClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/data-directories",
+                "api/svc/v1/data-directories",
             ),
             method: "PUT",
             headers: _headers,
@@ -340,22 +173,14 @@ export class DataDirectoriesClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
-        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/ml/v1/data-directories");
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "PUT", "/api/svc/v1/data-directories");
     }
 
     /**
@@ -363,8 +188,6 @@ export class DataDirectoriesClient {
      *
      * @param {TrueFoundry.ListFilesRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.dataDirectories.listFiles({
@@ -389,7 +212,7 @@ export class DataDirectoriesClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/data-directories/files",
+                        "api/svc/v1/data-directories/files",
                     ),
                     method: "POST",
                     headers: _headers,
@@ -410,25 +233,17 @@ export class DataDirectoriesClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
                 return handleNonStatusCodeError(
                     _response.error,
                     _response.rawResponse,
                     "POST",
-                    "/api/ml/v1/data-directories/files",
+                    "/api/svc/v1/data-directories/files",
                 );
             },
         );
@@ -451,8 +266,6 @@ export class DataDirectoriesClient {
      *
      * @param {TrueFoundry.DeleteFilesRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.dataDirectories.deleteFiles({
@@ -481,7 +294,7 @@ export class DataDirectoriesClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/data-directories/files",
+                "api/svc/v1/data-directories/files",
             ),
             method: "DELETE",
             headers: _headers,
@@ -500,26 +313,86 @@ export class DataDirectoriesClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "DELETE",
-            "/api/ml/v1/data-directories/files",
+            "/api/svc/v1/data-directories/files",
+        );
+    }
+
+    /**
+     * Create a multipart upload for large files in a data directory.
+     *
+     * @param {TrueFoundry.CreateMultiPartUploadRequest} request
+     * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @example
+     *     await client.dataDirectories.createMultipartUpload({
+     *         id: "id",
+     *         path: "path",
+     *         num_parts: 1.1
+     *     })
+     */
+    public createMultipartUpload(
+        request: TrueFoundry.CreateMultiPartUploadRequest,
+        requestOptions?: DataDirectoriesClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.MultiPartUploadResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createMultipartUpload(request, requestOptions));
+    }
+
+    private async __createMultipartUpload(
+        request: TrueFoundry.CreateMultiPartUploadRequest,
+        requestOptions?: DataDirectoriesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.MultiPartUploadResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/data-directories/signed-urls/multipart",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: request,
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.MultiPartUploadResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/data-directories/signed-urls/multipart",
         );
     }
 
@@ -528,8 +401,6 @@ export class DataDirectoriesClient {
      *
      * @param {TrueFoundry.GetSignedUrLsRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.dataDirectories.getSignedUrls({
@@ -559,7 +430,7 @@ export class DataDirectoriesClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/data-directories/signed-urls",
+                "api/svc/v1/data-directories/signed-urls",
             ),
             method: "POST",
             headers: _headers,
@@ -578,55 +449,43 @@ export class DataDirectoriesClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "POST",
-            "/api/ml/v1/data-directories/signed-urls",
+            "/api/svc/v1/data-directories/signed-urls",
         );
     }
 
     /**
-     * Create a multipart upload for large files in a data directory.
+     * Get a data directory by its ID.
      *
-     * @param {TrueFoundry.CreateMultiPartUploadRequest} request
+     * @param {string} id - Data directory ID
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.dataDirectories.createMultipartUpload({
-     *         id: "id",
-     *         path: "path",
-     *         num_parts: 1
-     *     })
+     *     await client.dataDirectories.get("id")
      */
-    public createMultipartUpload(
-        request: TrueFoundry.CreateMultiPartUploadRequest,
+    public get(
+        id: string,
         requestOptions?: DataDirectoriesClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.MultiPartUploadResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__createMultipartUpload(request, requestOptions));
+    ): core.HttpResponsePromise<TrueFoundry.GetDataDirectoryResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
     }
 
-    private async __createMultipartUpload(
-        request: TrueFoundry.CreateMultiPartUploadRequest,
+    private async __get(
+        id: string,
         requestOptions?: DataDirectoriesClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.MultiPartUploadResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.GetDataDirectoryResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -637,14 +496,11 @@ export class DataDirectoriesClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/data-directories/signed-urls/multipart",
+                `api/svc/v1/data-directories/${core.url.encodePathParam(id)}`,
             ),
-            method: "POST",
+            method: "GET",
             headers: _headers,
-            contentType: "application/json",
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
-            requestType: "json",
-            body: request,
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -652,16 +508,13 @@ export class DataDirectoriesClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as TrueFoundry.MultiPartUploadResponse, rawResponse: _response.rawResponse };
+            return { data: _response.body as TrueFoundry.GetDataDirectoryResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -674,8 +527,76 @@ export class DataDirectoriesClient {
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
-            "POST",
-            "/api/ml/v1/data-directories/signed-urls/multipart",
+            "GET",
+            "/api/svc/v1/data-directories/{id}",
+        );
+    }
+
+    /**
+     * Delete a data directory, optionally including its contents.
+     *
+     * @param {string} id - Data directory ID
+     * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.dataDirectories.delete("id")
+     */
+    public delete(
+        id: string,
+        requestOptions?: DataDirectoriesClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    }
+
+    private async __delete(
+        id: string,
+        requestOptions?: DataDirectoriesClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/data-directories/${core.url.encodePathParam(id)}`,
+            ),
+            method: "DELETE",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "DELETE",
+            "/api/svc/v1/data-directories/{id}",
         );
     }
 }

@@ -116,7 +116,7 @@ describe("SecretGroupsClient", () => {
                 { key: "key", value: "value" },
             ],
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -443,7 +443,7 @@ describe("SecretGroupsClient", () => {
                 ],
             },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()
@@ -691,7 +691,7 @@ describe("SecretGroupsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { secrets: [{ key: "key" }, { key: "key" }] };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()

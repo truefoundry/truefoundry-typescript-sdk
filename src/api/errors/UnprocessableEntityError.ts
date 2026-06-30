@@ -2,9 +2,10 @@
 
 import type * as core from "../../core/index.js";
 import * as errors from "../../errors/index.js";
+import type * as TrueFoundry from "../index.js";
 
 export class UnprocessableEntityError extends errors.TrueFoundryError {
-    constructor(body?: unknown, rawResponse?: core.RawResponse) {
+    constructor(body: TrueFoundry.HttpError, rawResponse?: core.RawResponse) {
         super({
             message: "UnprocessableEntityError",
             statusCode: 422,

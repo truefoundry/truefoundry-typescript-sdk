@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListFilesResponse {
-    /** List of files and directories in the artifact version */
+    /** List of files and directories in the artifact version. */
     data: TrueFoundry.FileInfo[];
-    /** Pagination information including page tokens for navigation */
+    /** Pagination information for the response. */
     pagination: TrueFoundry.TokenPagination;
 }

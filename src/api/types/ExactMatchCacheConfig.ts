@@ -4,6 +4,7 @@
  * Exact Match Cache Configuration
  */
 export interface ExactMatchCacheConfig {
+    /** Cache type */
     type: "exact-match";
     /** Cache namespace (defaults to 'default' if not provided) */
     namespace?: string | undefined;
