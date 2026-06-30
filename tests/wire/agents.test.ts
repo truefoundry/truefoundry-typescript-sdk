@@ -116,7 +116,6 @@ describe("AgentsClient", () => {
                     ownedBy: { account: "account" },
                 },
                 version: 1.1,
-                metadata: { key: "value" },
                 createdBySubject: {
                     subjectId: "subjectId",
                     subjectType: "user",
@@ -432,7 +431,6 @@ describe("AgentsClient", () => {
                         collaborators: [{ subject: "subject", role_id: "role_id" }],
                     },
                     version: 1.1,
-                    metadata: { key: "value" },
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                 },
                 createdBySubject: {

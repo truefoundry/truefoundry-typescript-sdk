@@ -35,7 +35,6 @@ export * from "./internal/client/requests/index.js";
 export * as internal from "./internal/index.js";
 export * from "./jobs/client/requests/index.js";
 export * as jobs from "./jobs/index.js";
-export * from "./jobs/types/index.js";
 export * from "./logs/client/requests/index.js";
 export * as logs from "./logs/index.js";
 export * from "./mlRepos/client/requests/index.js";

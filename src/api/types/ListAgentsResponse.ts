@@ -2,7 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export interface ListAgentResponse {
+export interface ListAgentsResponse {
     /** Array of Agents */
     data: TrueFoundry.Agent[];
     /** Pagination Information */

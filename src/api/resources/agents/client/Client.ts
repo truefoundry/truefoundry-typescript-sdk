@@ -42,11 +42,11 @@ export class AgentsClient {
     public async list(
         request: TrueFoundry.AgentsListRequest = {},
         requestOptions?: AgentsClient.RequestOptions,
-    ): Promise<core.Page<TrueFoundry.Agent, TrueFoundry.ListAgentResponse>> {
+    ): Promise<core.Page<TrueFoundry.Agent, TrueFoundry.ListAgentsResponse>> {
         const list = core.HttpResponsePromise.interceptFunction(
             async (
                 request: TrueFoundry.AgentsListRequest,
-            ): Promise<core.WithRawResponse<TrueFoundry.ListAgentResponse>> => {
+            ): Promise<core.WithRawResponse<TrueFoundry.ListAgentsResponse>> => {
                 const { limit = 100, offset = 0, name, namePrefix, type: type_, attributes } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
@@ -83,7 +83,7 @@ export class AgentsClient {
                 });
                 if (_response.ok) {
                     return {
-                        data: _response.body as TrueFoundry.ListAgentResponse,
+                        data: _response.body as TrueFoundry.ListAgentsResponse,
                         rawResponse: _response.rawResponse,
                     };
                 }
@@ -107,7 +107,7 @@ export class AgentsClient {
         );
         let _offset = request?.offset != null ? request?.offset : 0;
         const dataWithRawResponse = await list(request).withRawResponse();
-        return new core.Page<TrueFoundry.Agent, TrueFoundry.ListAgentResponse>({
+        return new core.Page<TrueFoundry.Agent, TrueFoundry.ListAgentsResponse>({
             response: dataWithRawResponse.data,
             rawResponse: dataWithRawResponse.rawResponse,
             hasNextPage: (response) => (response?.data ?? []).length >= Math.floor(request?.limit ?? 100),
@@ -122,7 +122,7 @@ export class AgentsClient {
     /**
      * Create or Update an Agent.
      *
-     * @param {TrueFoundry.CreateOrUpdateAgentDto} request
+     * @param {TrueFoundry.CreateOrUpdateAgentRequest} request
      * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -148,16 +148,16 @@ export class AgentsClient {
      *     })
      */
     public createOrUpdate(
-        request: TrueFoundry.CreateOrUpdateAgentDto,
+        request: TrueFoundry.CreateOrUpdateAgentRequest,
         requestOptions?: AgentsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetAgentVersionResponseDto> {
+    ): core.HttpResponsePromise<TrueFoundry.GetAgentVersionResponse> {
         return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
     }
 
     private async __createOrUpdate(
-        request: TrueFoundry.CreateOrUpdateAgentDto,
+        request: TrueFoundry.CreateOrUpdateAgentRequest,
         requestOptions?: AgentsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetAgentVersionResponseDto>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAgentVersionResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -183,10 +183,7 @@ export class AgentsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return {
-                data: _response.body as TrueFoundry.GetAgentVersionResponseDto,
-                rawResponse: _response.rawResponse,
-            };
+            return { data: _response.body as TrueFoundry.GetAgentVersionResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
@@ -237,14 +234,14 @@ export class AgentsClient {
     public get(
         id: string,
         requestOptions?: AgentsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GetAgentResponseDto> {
+    ): core.HttpResponsePromise<TrueFoundry.GetAgentResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(id, requestOptions));
     }
 
     private async __get(
         id: string,
         requestOptions?: AgentsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GetAgentResponseDto>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAgentResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -267,7 +264,7 @@ export class AgentsClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: _response.body as TrueFoundry.GetAgentResponseDto, rawResponse: _response.rawResponse };
+            return { data: _response.body as TrueFoundry.GetAgentResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {
