@@ -18,5 +18,5 @@ export interface TenantBudgetConfig {
     applies_to: TrueFoundry.BudgetV2AppliesTo;
     /** `enforce` blocks breaching requests, `audit` only tracks them. */
     mode: TrueFoundry.TenantBudgetConfigMode;
-    alerts: TrueFoundry.BudgetV2Alert;
+    alerts?: TrueFoundry.BudgetV2Alert | undefined;
 }

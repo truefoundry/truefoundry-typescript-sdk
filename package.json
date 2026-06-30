@@ -198,6 +198,28 @@
             },
             "default": "./dist/cjs/api/resources/alerts/exports.js"
         },
+        "./agents": {
+            "import": {
+                "types": "./dist/esm/api/resources/agents/exports.d.mts",
+                "default": "./dist/esm/api/resources/agents/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agents/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agents/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agents/exports.js"
+        },
+        "./agentVersions": {
+            "import": {
+                "types": "./dist/esm/api/resources/agentVersions/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentVersions/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/agentVersions/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentVersions/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/agentVersions/exports.js"
+        },
         "./prompts": {
             "import": {
                 "types": "./dist/esm/api/resources/prompts/exports.d.mts",

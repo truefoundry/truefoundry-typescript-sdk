@@ -3,6 +3,7 @@ export * from "./ConflictError.js";
 export * from "./ExpectationFailedError.js";
 export * from "./FailedDependencyError.js";
 export * from "./ForbiddenError.js";
+export * from "./InternalServerError.js";
 export * from "./MethodNotAllowedError.js";
 export * from "./NotFoundError.js";
 export * from "./NotImplementedError.js";

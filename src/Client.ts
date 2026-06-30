@@ -3,6 +3,8 @@
 import type * as TrueFoundry from "./api/index.js";
 import { AgentSkillsClient } from "./api/resources/agentSkills/client/Client.js";
 import { AgentSkillVersionsClient } from "./api/resources/agentSkillVersions/client/Client.js";
+import { AgentsClient } from "./api/resources/agents/client/Client.js";
+import { AgentVersionsClient } from "./api/resources/agentVersions/client/Client.js";
 import { AlertsClient } from "./api/resources/alerts/client/Client.js";
 import { ApplicationsClient } from "./api/resources/applications/client/Client.js";
 import { ApplicationVersionsClient } from "./api/resources/applicationVersions/client/Client.js";
@@ -61,6 +63,8 @@ export class TrueFoundryClient {
     protected _secretGroups: SecretGroupsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _alerts: AlertsClient | undefined;
+    protected _agents: AgentsClient | undefined;
+    protected _agentVersions: AgentVersionsClient | undefined;
     protected _prompts: PromptsClient | undefined;
     protected _promptVersions: PromptVersionsClient | undefined;
     protected _artifacts: ArtifactsClient | undefined;
@@ -141,6 +145,14 @@ export class TrueFoundryClient {
 
     public get alerts(): AlertsClient {
         return (this._alerts ??= new AlertsClient(this._options));
+    }
+
+    public get agents(): AgentsClient {
+        return (this._agents ??= new AgentsClient(this._options));
+    }
+
+    public get agentVersions(): AgentVersionsClient {
+        return (this._agentVersions ??= new AgentVersionsClient(this._options));
     }
 
     public get prompts(): PromptsClient {
