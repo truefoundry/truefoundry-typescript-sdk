@@ -6,8 +6,8 @@
  * Replace will terminate any currently running instance of the job and start a new one.
  */
 export const ScheduleConcurrencyPolicy = {
-    Forbid: "Forbid",
-    Allow: "Allow",
-    Replace: "Replace",
-} as const;
-export type ScheduleConcurrencyPolicy = (typeof ScheduleConcurrencyPolicy)[keyof typeof ScheduleConcurrencyPolicy];
+        Forbid: "Forbid",
+        Allow: "Allow",
+        Replace: "Replace"
+    } as const;
+export type ScheduleConcurrencyPolicy = typeof ScheduleConcurrencyPolicy[keyof typeof ScheduleConcurrencyPolicy];

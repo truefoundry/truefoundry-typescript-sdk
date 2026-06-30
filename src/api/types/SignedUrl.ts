@@ -4,5 +4,5 @@ export interface SignedUrl {
     /** Path of the file relative to the artifact version storage root. */
     path: string;
     /** Signed URL used to access or upload the file. */
-    signed_url: string;
+    signedUrl: string;
 }

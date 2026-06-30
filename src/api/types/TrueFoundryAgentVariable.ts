@@ -2,7 +2,7 @@
 
 export interface TrueFoundryAgentVariable {
     /** Default value for the variable */
-    default_value?: string | undefined;
+    defaultValue?: string;
     /** Description of the variable */
-    description?: string | undefined;
+    description?: string;
 }

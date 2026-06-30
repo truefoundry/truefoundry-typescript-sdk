@@ -5,7 +5,7 @@
  */
 export interface BudgetV2InNotInFilter {
     /** Match when the value is present in this list */
-    in?: string[] | undefined;
+    "in"?: string[];
     /** Match when the value is NOT present in this list */
-    not_in?: string[] | undefined;
+    notIn?: string[];
 }

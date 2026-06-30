@@ -6,9 +6,9 @@
  */
 export interface AzurePromptShieldGuardrailConfigConfig {
     /** Name of your Azure Content Safety resource where the Prompt Shield service is deployed (e.g., my-content-safety) */
-    resource_name: string;
+    resourceName: string;
     /** API version for the Prompt Shield API */
-    api_version: string;
+    apiVersion: string;
     /** Custom endpoint URL for the Prompt Shield API (optional, uses default Azure endpoint if not specified) */
-    custom_host?: string | undefined;
+    customHost?: string;
 }

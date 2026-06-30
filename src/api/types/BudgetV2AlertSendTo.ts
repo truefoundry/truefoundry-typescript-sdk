@@ -2,7 +2,7 @@
 
 /** Whom to notify when an alert fires. `shared` sends to the configured notification targets only. `breaching-user` additionally notifies the user whose usage caused the breach. */
 export const BudgetV2AlertSendTo = {
-    Shared: "shared",
-    BreachingUser: "breaching-user",
-} as const;
-export type BudgetV2AlertSendTo = (typeof BudgetV2AlertSendTo)[keyof typeof BudgetV2AlertSendTo];
+        Shared: "shared",
+        BreachingUser: "breaching-user"
+    } as const;
+export type BudgetV2AlertSendTo = typeof BudgetV2AlertSendTo[keyof typeof BudgetV2AlertSendTo];

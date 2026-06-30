@@ -5,7 +5,7 @@
  */
 export interface AgentIdentitySecretStoreConfig {
     /** The secret store to store the agent identity token in */
-    integration_fqn: string;
+    integrationFqn: string;
     /** The path where the agent identity token will be stored in the secret store (example: secret/path/to/agent-identity-token) */
-    secret_path: string;
+    secretPath: string;
 }

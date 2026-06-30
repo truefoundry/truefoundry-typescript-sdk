@@ -2,5 +2,5 @@
 
 export interface SparkConfig {
     /** The base domain for the cluster with which you can access your Spark UI */
-    ui_base_domain: string;
+    uiBaseDomain: string;
 }

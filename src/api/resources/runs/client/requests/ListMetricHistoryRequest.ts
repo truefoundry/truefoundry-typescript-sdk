@@ -6,7 +6,7 @@
  */
 export interface ListMetricHistoryRequest {
     /** Metric keys to filter by. When omitted, returns all metric keys for the run. */
-    metric_keys?: string[];
+    metricKeys?: string[];
     /** Training step to filter metric history by. */
     step?: number;
 }

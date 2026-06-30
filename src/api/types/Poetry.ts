@@ -8,7 +8,7 @@ export interface Poetry {
     /** +value=poetry */
     type: "poetry";
     /** Poetry version to use */
-    poetry_version?: string | undefined;
+    poetryVersion?: string;
     /** install options to pass to poetry command */
-    install_options?: string | undefined;
+    installOptions?: string;
 }

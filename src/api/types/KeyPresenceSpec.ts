@@ -9,5 +9,5 @@ export interface KeyPresenceSpec {
      * +value=true
      * A presence rule that doesn't require the key is a no-op, so this is fixed to true.
      */
-    required?: true | undefined;
+    required?: true;
 }

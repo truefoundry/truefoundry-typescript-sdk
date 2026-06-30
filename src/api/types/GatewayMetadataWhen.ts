@@ -5,5 +5,5 @@
  */
 export interface GatewayMetadataWhen {
     /** List of subjects that this rule applies to */
-    subjects?: string[] | undefined;
+    subjects?: string[];
 }

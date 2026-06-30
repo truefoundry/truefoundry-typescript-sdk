@@ -7,8 +7,8 @@
  *         offset: 0,
  *         tag: "tag",
  *         fqn: "fqn",
- *         prompt_id: "prompt_id",
- *         ml_repo_id: "ml_repo_id",
+ *         promptId: "prompt_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
  *         version: 1
  *     }
@@ -23,9 +23,9 @@ export interface PromptVersionsListRequest {
     /** Filter prompt versions by Fully Qualified Name. */
     fqn?: string;
     /** Filter prompt versions by the identifier of the prompt they belong to. */
-    prompt_id?: string;
+    promptId?: string;
     /** Filter prompt versions by the identifier of the ML Repo they belong to. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Filter prompt versions by name. */
     name?: string;
     /** Version number (positive integer) to filter by. */

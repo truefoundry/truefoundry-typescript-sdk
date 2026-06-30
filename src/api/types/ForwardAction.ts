@@ -7,7 +7,7 @@ export interface ForwardAction {
      * Service uri to redirect to. This is the kubernetes fully qualified domain name that the target service can be reached on
      * Eg - For a service called `sample-service` in workspace `ws` this would be `sample-service.ws.svc.cluster.local
      */
-    service_uri: string;
+    serviceUri: string;
     /** Port to redirect the service traffic to */
     port: number;
 }

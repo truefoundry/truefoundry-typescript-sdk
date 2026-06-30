@@ -2,8 +2,8 @@
 
 /** Current lifecycle stage of the application */
 export const ApplicationLifecycleStage = {
-    Active: "active",
-    Deleting: "deleting",
-    DeletionFailed: "deletion_failed",
-} as const;
-export type ApplicationLifecycleStage = (typeof ApplicationLifecycleStage)[keyof typeof ApplicationLifecycleStage];
+        Active: "active",
+        Deleting: "deleting",
+        DeletionFailed: "deletion_failed"
+    } as const;
+export type ApplicationLifecycleStage = typeof ApplicationLifecycleStage[keyof typeof ApplicationLifecycleStage];

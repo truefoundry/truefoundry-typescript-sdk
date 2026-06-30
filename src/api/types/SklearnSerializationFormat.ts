@@ -2,8 +2,8 @@
 
 /** Serialization format used to save the sklearn model */
 export const SklearnSerializationFormat = {
-    Cloudpickle: "cloudpickle",
-    Joblib: "joblib",
-    Pickle: "pickle",
-} as const;
-export type SklearnSerializationFormat = (typeof SklearnSerializationFormat)[keyof typeof SklearnSerializationFormat];
+        Cloudpickle: "cloudpickle",
+        Joblib: "joblib",
+        Pickle: "pickle"
+    } as const;
+export type SklearnSerializationFormat = typeof SklearnSerializationFormat[keyof typeof SklearnSerializationFormat];

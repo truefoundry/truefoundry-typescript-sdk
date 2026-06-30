@@ -16,5 +16,5 @@ export interface RegisterUsersRequest {
     /** When true, validates the request without persisting changes. */
     dryRun?: boolean;
     /** URL the user is redirected to when they accept the invite. Required when sendInviteEmail is true. */
-    acceptInviteClientURL?: string;
+    acceptInviteClientUrl?: string;
 }

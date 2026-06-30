@@ -3,4 +3,6 @@
 /**
  * JSON from a downloadable Google Cloud service account key (type service_account). Not for Workload Identity Federation; use authentication type Workload Identity Federation file (workload-identity-federation-file) for gcloud iam workload-identity-pools create-cred-config output.
  */
-export type VertexKeyFileAuthKeyFileContent = string | Record<string, unknown>;
+export type VertexKeyFileAuthKeyFileContent = 
+    | string
+    | Record<string, unknown>;

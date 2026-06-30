@@ -2,14 +2,14 @@
 
 /** Chart visualisation type. */
 export const GraphChartType = {
-    Line: "line",
-    VerticalLine: "vertical_line",
-    StackedBar: "stacked_bar",
-    StackedArea: "stacked_area",
-    Bubble: "bubble",
-    HorizontalBar: "horizontal_bar",
-    HorizontalStackedBar: "horizontal_stacked_bar",
-    HorizontalBoxPlot: "horizontal_box_plot",
-    BarList: "bar_list",
-} as const;
-export type GraphChartType = (typeof GraphChartType)[keyof typeof GraphChartType];
+        Line: "line",
+        VerticalLine: "vertical_line",
+        StackedBar: "stacked_bar",
+        StackedArea: "stacked_area",
+        Bubble: "bubble",
+        HorizontalBar: "horizontal_bar",
+        HorizontalStackedBar: "horizontal_stacked_bar",
+        HorizontalBoxPlot: "horizontal_box_plot",
+        BarList: "bar_list"
+    } as const;
+export type GraphChartType = typeof GraphChartType[keyof typeof GraphChartType];

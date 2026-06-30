@@ -4,7 +4,7 @@ export interface SecretMount {
     /** +value=secret */
     type: "secret";
     /** Absolute file path where the file will be created. */
-    mount_path: string;
+    mountPath: string;
     /** The TrueFoundry secret whose value will be the file content. */
-    secret_fqn: string;
+    secretFqn: string;
 }

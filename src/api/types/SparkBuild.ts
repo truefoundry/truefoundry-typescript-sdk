@@ -7,12 +7,12 @@ export interface SparkBuild {
     /** +value=tfy-spark-buildpack */
     type: "tfy-spark-buildpack";
     /** Spark version should match the spark version installed in the image. */
-    spark_version: string;
+    sparkVersion: string;
     /** Build path relative to project root path. */
-    build_context_path: string;
+    buildContextPath: string;
     /**
      * Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirements_path?: string | undefined;
+    requirementsPath?: string;
 }

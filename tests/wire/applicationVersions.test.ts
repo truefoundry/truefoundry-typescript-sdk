@@ -5,261 +5,317 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("ApplicationVersionsClient", () => {
+    
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "id",
-                    version: 1.1,
-                    fqn: "fqn",
-                    applicationId: "applicationId",
-                    manifest: {
-                        name: "name",
-                        image: {
-                            type: "build",
-                            build_source: { type: "remote", remote_uri: "remote_uri" },
-                            build_spec: {
-                                type: "dockerfile",
-                                dockerfile_path: "dockerfile_path",
-                                build_context_path: "build_context_path",
-                            },
-                        },
-                        ports: [{ port: 1, protocol: "TCP", expose: true }],
-                        type: "service",
-                        replicas: 1.1,
-                    },
-                    application: { lifecycleStage: "active" },
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    deploymentBuilds: [{ name: "name", status: 20 }],
-                    deploymentStatuses: [{}],
-                    currentStatusId: "currentStatusId",
-                    appliedRecommendations: [
-                        {
-                            recommendationData: { key: "value" },
-                            recommendationType: "recommendationType",
-                            expiryTimestamp: "2024-01-15T09:30:00Z",
-                        },
-                    ],
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "id" , "version" : 1.1 , "fqn" : "fqn" , "applicationId" : "applicationId" , "manifest" : { "name" : "name" , "image" : { "type" : "build" , "build_source" : { "type" : "remote" , "remote_uri" : "remote_uri" } , "build_spec" : { "type" : "dockerfile" , "dockerfile_path" : "dockerfile_path" , "build_context_path" : "build_context_path" } } , "ports" : [ { "port" : 1 , "protocol" : "TCP" , "expose" : true } ] , "type" : "service" , "replicas" : 1.1 } , "application" : { "lifecycleStage" : "active" } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "deploymentBuilds" : [ { "name" : "name" , "status" : 20 } ] , "deploymentStatuses" : [ { } ] , "currentStatusId" : "currentStatusId" , "appliedRecommendations" : [ { "recommendationData" : { "key" : "value" } , "recommendationType" : "recommendationType" , "expiryTimestamp" : "2024-01-15T09:30:00Z" } ] , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/apps/id/deployments")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/apps/id/deployments").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.applicationVersions.list("id", {
-            limit: 10,
-            offset: 0,
-            version: "1",
-            deploymentId: "deployment123",
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            id: "id",
+            version: 1.1,
+            fqn: "fqn",
+            applicationId: "applicationId",
+            manifest: {
+                name: "name",
+                image: {
+                    type: "build",
+                    buildSource: {
+                        type: "remote",
+                        remoteUri: "remote_uri"
+                    },
+                    buildSpec: {
+                        type: "dockerfile",
+                        dockerfilePath: "dockerfile_path",
+                        buildContextPath: "build_context_path"
+                    }
+                },
+                ports: [{
+                        port: 1,
+                        protocol: "TCP",
+                        expose: true
+                    }],
+                type: "service",
+                replicas: 1.1
+            },
+            application: {
+                lifecycleStage: "active"
+            },
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            deploymentBuilds: [{
+                    name: "name",
+                    status: 20
+                }],
+            deploymentStatuses: [{}],
+            currentStatusId: "currentStatusId",
+            appliedRecommendations: [{
+                    recommendationData: {
+                        "key": "value"
+                    },
+                    recommendationType: "recommendationType",
+                    expiryTimestamp: new Date("2024-01-15T09:30:00.000Z")
+                }],
+            createdBy: "createdBy"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.applicationVersions.list("id", {
+    limit: 10,
+    offset: 0,
+    version: "1",
+    deploymentId: "deployment123"
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/apps/id/deployments")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/apps/id/deployments").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.applicationVersions.list("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.applicationVersions.list("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("list (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/apps/id/deployments")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/apps/id/deployments").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.applicationVersions.list("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.applicationVersions.list("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "id",
-                version: 1.1,
-                fqn: "fqn",
-                applicationId: "applicationId",
-                manifest: {
-                    name: "name",
-                    image: {
-                        type: "build",
-                        build_source: { type: "remote", remote_uri: "remote_uri" },
-                        build_spec: {
-                            type: "dockerfile",
-                            dockerfile_path: "dockerfile_path",
-                            build_context_path: "build_context_path",
-                        },
-                    },
-                    artifacts_download: {
-                        artifacts: [
-                            {
-                                type: "truefoundry-artifact",
-                                artifact_version_fqn: "artifact_version_fqn",
-                                download_path_env_variable: "download_path_env_variable",
-                            },
-                        ],
-                    },
-                    resources: {
-                        cpu_request: 1.1,
-                        cpu_limit: 1.1,
-                        memory_request: 1,
-                        memory_limit: 1,
-                        ephemeral_storage_request: 1,
-                        ephemeral_storage_limit: 1,
-                    },
-                    ports: [{ port: 1, protocol: "TCP", expose: true }],
-                    service_account: "service_account",
-                    mounts: [{ type: "secret", mount_path: "mount_path", secret_fqn: "secret_fqn" }],
-                    labels: { key: "value" },
-                    liveness_probe: { config: { type: "http", path: "path", port: 1 } },
-                    readiness_probe: { config: { type: "http", path: "path", port: 1 } },
-                    startup_probe: { config: { type: "http", path: "path", port: 1 } },
-                    workspace_fqn: "workspace_fqn",
-                    type: "service",
-                    replicas: 1.1,
-                    auto_shutdown: { wait_time: 1 },
-                    allow_interception: true,
-                    rollout_strategy: {
-                        type: "rolling_update",
-                        max_unavailable_percentage: 1,
-                        max_surge_percentage: 1,
-                    },
-                },
-                application: {
-                    id: "id",
-                    fqn: "fqn",
-                    name: "name",
-                    type: "async-service",
-                    lifecycleStage: "active",
-                    workspaceId: "workspaceId",
-                    activeVersion: 1,
-                    applicationSetId: "applicationSetId",
-                },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                deploymentBuilds: [{ name: "name", status: 20 }],
-                deploymentStatuses: [{}],
-                currentStatusId: "currentStatusId",
-                currentStatus: {
-                    id: "id",
-                    deploymentId: "deploymentId",
-                    status: "INITIALIZED",
-                    state: { key: "value" },
-                    transition: "BUILDING",
-                    message: "message",
-                    retryCount: 1.1,
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                },
-                appliedRecommendations: [
-                    {
-                        recommendationData: { key: "value" },
-                        recommendationType: "recommendationType",
-                        expiryTimestamp: "2024-01-15T09:30:00Z",
-                    },
-                ],
-                createdBy: "createdBy",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "id" , "version" : 1.1 , "fqn" : "fqn" , "applicationId" : "applicationId" , "manifest" : { "name" : "name" , "image" : { "type" : "build" , "build_source" : { "type" : "remote" , "remote_uri" : "remote_uri" } , "build_spec" : { "type" : "dockerfile" , "dockerfile_path" : "dockerfile_path" , "build_context_path" : "build_context_path" } } , "artifacts_download" : { "artifacts" : [ { "type" : "truefoundry-artifact" , "artifact_version_fqn" : "artifact_version_fqn" , "download_path_env_variable" : "download_path_env_variable" } ] } , "resources" : { "cpu_request" : 1.1 , "cpu_limit" : 1.1 , "memory_request" : 1 , "memory_limit" : 1 , "ephemeral_storage_request" : 1 , "ephemeral_storage_limit" : 1 } , "ports" : [ { "port" : 1 , "protocol" : "TCP" , "expose" : true } ] , "service_account" : "service_account" , "mounts" : [ { "type" : "secret" , "mount_path" : "mount_path" , "secret_fqn" : "secret_fqn" } ] , "labels" : { "key" : "value" } , "liveness_probe" : { "config" : { "type" : "http" , "path" : "path" , "port" : 1 } } , "readiness_probe" : { "config" : { "type" : "http" , "path" : "path" , "port" : 1 } } , "startup_probe" : { "config" : { "type" : "http" , "path" : "path" , "port" : 1 } } , "workspace_fqn" : "workspace_fqn" , "type" : "service" , "replicas" : 1.1 , "auto_shutdown" : { "wait_time" : 1 } , "allow_interception" : true , "rollout_strategy" : { "type" : "rolling_update" , "max_unavailable_percentage" : 1 , "max_surge_percentage" : 1 } } , "application" : { "id" : "id" , "fqn" : "fqn" , "name" : "name" , "type" : "async-service" , "lifecycleStage" : "active" , "workspaceId" : "workspaceId" , "activeVersion" : 1 , "applicationSetId" : "applicationSetId" } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "deploymentBuilds" : [ { "name" : "name" , "status" : 20 } ] , "deploymentStatuses" : [ { } ] , "currentStatusId" : "currentStatusId" , "currentStatus" : { "id" : "id" , "deploymentId" : "deploymentId" , "status" : "INITIALIZED" , "state" : { "key" : "value" } , "transition" : "BUILDING" , "message" : "message" , "retryCount" : 1.1 , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" } , "appliedRecommendations" : [ { "recommendationData" : { "key" : "value" } , "recommendationType" : "recommendationType" , "expiryTimestamp" : "2024-01-15T09:30:00Z" } ] , "createdBy" : "createdBy" } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/apps/id/deployments/deploymentId").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.applicationVersions.get("id", "deploymentId");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.applicationVersions.get("id", "deploymentId");
+                                expect(response).toEqual({
+    data: {
+        id: "id",
+        version: 1.1,
+        fqn: "fqn",
+        applicationId: "applicationId",
+        manifest: {
+            name: "name",
+            image: {
+                type: "build",
+                buildSource: {
+                    type: "remote",
+                    remoteUri: "remote_uri"
+                },
+                buildSpec: {
+                    type: "dockerfile",
+                    dockerfilePath: "dockerfile_path",
+                    buildContextPath: "build_context_path"
+                }
+            },
+            artifactsDownload: {
+                artifacts: [{
+                        type: "truefoundry-artifact",
+                        artifactVersionFqn: "artifact_version_fqn",
+                        downloadPathEnvVariable: "download_path_env_variable"
+                    }]
+            },
+            resources: {
+                cpuRequest: 1.1,
+                cpuLimit: 1.1,
+                memoryRequest: 1,
+                memoryLimit: 1,
+                ephemeralStorageRequest: 1,
+                ephemeralStorageLimit: 1
+            },
+            ports: [{
+                    port: 1,
+                    protocol: "TCP",
+                    expose: true
+                }],
+            serviceAccount: "service_account",
+            mounts: [{
+                    type: "secret",
+                    mountPath: "mount_path",
+                    secretFqn: "secret_fqn"
+                }],
+            labels: {
+                "key": "value"
+            },
+            livenessProbe: {
+                config: {
+                    type: "http",
+                    path: "path",
+                    port: 1
+                }
+            },
+            readinessProbe: {
+                config: {
+                    type: "http",
+                    path: "path",
+                    port: 1
+                }
+            },
+            startupProbe: {
+                config: {
+                    type: "http",
+                    path: "path",
+                    port: 1
+                }
+            },
+            workspaceFqn: "workspace_fqn",
+            type: "service",
+            replicas: 1.1,
+            autoShutdown: {
+                waitTime: 1
+            },
+            allowInterception: true,
+            rolloutStrategy: {
+                type: "rolling_update",
+                maxUnavailablePercentage: 1,
+                maxSurgePercentage: 1
+            }
+        },
+        application: {
+            id: "id",
+            fqn: "fqn",
+            name: "name",
+            type: "async-service",
+            lifecycleStage: "active",
+            workspaceId: "workspaceId",
+            activeVersion: 1,
+            applicationSetId: "applicationSetId"
+        },
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        deploymentBuilds: [{
+                name: "name",
+                status: 20
+            }],
+        deploymentStatuses: [{}],
+        currentStatusId: "currentStatusId",
+        currentStatus: {
+            id: "id",
+            deploymentId: "deploymentId",
+            status: "INITIALIZED",
+            state: {
+                "key": "value"
+            },
+            transition: "BUILDING",
+            message: "message",
+            retryCount: 1.1,
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z")
+        },
+        appliedRecommendations: [{
+                recommendationData: {
+                    "key": "value"
+                },
+                recommendationType: "recommendationType",
+                expiryTimestamp: new Date("2024-01-15T09:30:00.000Z")
+            }],
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/apps/id/deployments/deploymentId").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.applicationVersions.get("id", "deploymentId");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.applicationVersions.get("id", "deploymentId")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/apps/id/deployments/deploymentId")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/apps/id/deployments/deploymentId").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.applicationVersions.get("id", "deploymentId");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.applicationVersions.get("id", "deploymentId")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
+          
 });

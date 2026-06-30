@@ -2,8 +2,7 @@
 
 /** How requests are routed across the endpoints in this account. When unset, each endpoint is reachable individually at /proxy-api/<account-name>/<endpoint-name>. Set to "weight" or "priority" to load balance across the endpoints, reachable at /proxy-api/<account-name>/<slug>/<upstream-path>. */
 export const CustomEndpointProviderAccountRoutingType = {
-    Weight: "weight",
-    Priority: "priority",
-} as const;
-export type CustomEndpointProviderAccountRoutingType =
-    (typeof CustomEndpointProviderAccountRoutingType)[keyof typeof CustomEndpointProviderAccountRoutingType];
+        Weight: "weight",
+        Priority: "priority"
+    } as const;
+export type CustomEndpointProviderAccountRoutingType = typeof CustomEndpointProviderAccountRoutingType[keyof typeof CustomEndpointProviderAccountRoutingType];

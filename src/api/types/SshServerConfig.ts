@@ -2,7 +2,7 @@
 
 export interface SshServerConfig {
     /** The base domain for the cluster with which you can access your SSH containers */
-    base_domain: string;
+    baseDomain: string;
     /** The port for the cluster with which you can access your SSH containers */
     port: number;
 }

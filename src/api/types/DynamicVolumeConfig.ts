@@ -7,7 +7,7 @@ export interface DynamicVolumeConfig {
     /** Volume Type for the volume. */
     type: "dynamic";
     /** Name of the storage class to be used for the volume. */
-    storage_class: string;
+    storageClass: string;
     /** Size of volume in Gi */
     size: number;
 }

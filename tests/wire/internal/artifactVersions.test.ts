@@ -4,65 +4,83 @@ import { TrueFoundryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
 describe("ArtifactVersionsClient", () => {
+    
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        metadata: { key: "value" },
-                        type: "artifact-version",
-                        source: { type: "truefoundry" },
-                        step: 1,
-                    },
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    ml_repo_id: "ml_repo_id",
-                    usage_code_snippet: "usage_code_snippet",
-                    tags: ["tags"],
-                    artifact_id: "artifact_id",
-                    artifact_size: 1.1,
-                    artifact_fqn: "artifact_fqn",
-                    artifact_metadata: { key: "value" },
-                    internal_metadata: { key: "value" },
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "artifact-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "tags" : [ "tags" ] , "artifact_id" : "artifact_id" , "artifact_size" : 1.1 , "artifact_fqn" : "artifact_fqn" , "artifact_metadata" : { "key" : "value" } , "internal_metadata" : { "key" : "value" } } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/x/artifact-versions")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/artifact-versions").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.internal.artifactVersions.list({
-            limit: 10,
-            offset: 0,
-            tag: "tag",
+        
+                        
+                const expected = {
+    data: [{
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            manifest: {
+                metadata: {
+                    "key": "value"
+                },
+                type: "artifact-version",
+                source: {
+                    type: "truefoundry"
+                },
+                step: 1
+            },
+            id: "jqfwg345gi25n5ju2yz5iz6m",
             fqn: "fqn",
-            artifact_id: "artifact_id",
-            ml_repo_id: "ml_repo_id",
-            name: "name",
-            version: 1,
-            run_ids: ["run_ids"],
-            run_steps: [1.1],
-            include_internal_metadata: true,
-            include_model_versions: true,
-            artifact_types: ["artifact"],
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            mlRepoId: "ml_repo_id",
+            usageCodeSnippet: "usage_code_snippet",
+            tags: ["tags"],
+            artifactId: "artifact_id",
+            artifactSize: 1.1,
+            artifactFqn: "artifact_fqn",
+            artifactMetadata: {
+                "key": "value"
+            },
+            internalMetadata: {
+                "key": "value"
+            }
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.internal.artifactVersions.list({
+    limit: 10,
+    offset: 0,
+    tag: "tag",
+    fqn: "fqn",
+    artifactId: "artifact_id",
+    mlRepoId: "ml_repo_id",
+    name: "name",
+    version: 1,
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true,
+    includeModelVersions: true,
+    artifactTypes: ["artifact"]
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
+          
 });

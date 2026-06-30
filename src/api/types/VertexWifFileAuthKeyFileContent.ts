@@ -3,4 +3,6 @@
 /**
  * JSON credential configuration for Workload Identity Federation (ADC type external_account), for example from gcloud iam workload-identity-pools create-cred-config. This is not a service account private key. Same field name as key-file auth (key_file_content); use auth_data.type workload-identity-federation-file vs key-file to distinguish.
  */
-export type VertexWifFileAuthKeyFileContent = string | Record<string, unknown>;
+export type VertexWifFileAuthKeyFileContent = 
+    | string
+    | Record<string, unknown>;

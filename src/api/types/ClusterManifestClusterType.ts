@@ -2,10 +2,10 @@
 
 /** The cluster type of this cluster */
 export const ClusterManifestClusterType = {
-    AwsEks: "aws-eks",
-    GcpGkeStandard: "gcp-gke-standard",
-    AzureAks: "azure-aks",
-    Generic: "generic",
-    CivoTalos: "civo-talos",
-} as const;
-export type ClusterManifestClusterType = (typeof ClusterManifestClusterType)[keyof typeof ClusterManifestClusterType];
+        AwsEks: "aws-eks",
+        GcpGkeStandard: "gcp-gke-standard",
+        AzureAks: "azure-aks",
+        Generic: "generic",
+        CivoTalos: "civo-talos"
+    } as const;
+export type ClusterManifestClusterType = typeof ClusterManifestClusterType[keyof typeof ClusterManifestClusterType];

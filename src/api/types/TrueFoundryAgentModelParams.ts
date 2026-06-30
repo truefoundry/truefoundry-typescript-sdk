@@ -2,15 +2,15 @@
 
 export interface TrueFoundryAgentModelParams {
     /** Maximum number of tokens to generate. */
-    max_tokens?: number | undefined;
+    maxTokens?: number;
     /** Reasoning depth when the model and provider support this parameter. */
-    reasoning_effort?: string | undefined;
+    reasoningEffort?: string;
     /** Sampling temperature (0–2). Higher values increase randomness. */
-    temperature?: number | undefined;
+    temperature?: number;
     /** Nucleus sampling threshold (0–1). Alternative to temperature. */
-    top_p?: number | undefined;
+    topP?: number;
     /** Top-K sampling when supported by the provider. */
-    top_k?: number | undefined;
+    topK?: number;
     /** Allow the model to request multiple tool calls in parallel when supported. */
-    parallel_tool_calls?: boolean | undefined;
+    parallelToolCalls?: boolean;
 }

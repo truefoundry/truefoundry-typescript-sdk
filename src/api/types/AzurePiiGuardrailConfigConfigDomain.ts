@@ -2,8 +2,7 @@
 
 /** Specialized domain for PII detection. Use phi for PHI (Protected Health Information) or none for general text */
 export const AzurePiiGuardrailConfigConfigDomain = {
-    None: "none",
-    Phi: "phi",
-} as const;
-export type AzurePiiGuardrailConfigConfigDomain =
-    (typeof AzurePiiGuardrailConfigConfigDomain)[keyof typeof AzurePiiGuardrailConfigConfigDomain];
+        None: "none",
+        Phi: "phi"
+    } as const;
+export type AzurePiiGuardrailConfigConfigDomain = typeof AzurePiiGuardrailConfigConfigDomain[keyof typeof AzurePiiGuardrailConfigConfigDomain];

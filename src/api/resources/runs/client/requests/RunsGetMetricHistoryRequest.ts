@@ -3,10 +3,10 @@
 /**
  * @example
  *     {
- *         metric_key: "metric_key"
+ *         metricKey: "metric_key"
  *     }
  */
 export interface RunsGetMetricHistoryRequest {
     /** Metric key (may contain slashes). */
-    metric_key: string;
+    metricKey: string;
 }

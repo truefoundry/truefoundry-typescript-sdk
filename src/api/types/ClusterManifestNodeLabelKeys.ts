@@ -7,5 +7,5 @@
  */
 export interface ClusterManifestNodeLabelKeys {
     /** The nodepool selector label that this cluster supports */
-    nodepool_selector_label: string;
+    nodepoolSelectorLabel: string;
 }

@@ -5,7 +5,7 @@
  */
 export interface AgentIdentityProviderMapping {
     /** Name of the external identity provider */
-    identity_provider: string;
+    identityProvider: string;
     /** Claim value that should resolve to this agent identity */
     value: string;
 }

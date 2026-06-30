@@ -5,11 +5,11 @@
  */
 export interface BudgetV2OverrideLimits {
     /** Override daily cost cap in USD */
-    cost_per_day?: number | undefined;
+    costPerDay?: number;
     /** Override weekly cost cap in USD */
-    cost_per_week?: number | undefined;
+    costPerWeek?: number;
     /** Override monthly cost cap in USD */
-    cost_per_month?: number | undefined;
+    costPerMonth?: number;
     /** Override quarterly cost cap in USD */
-    cost_per_quarter?: number | undefined;
+    costPerQuarter?: number;
 }

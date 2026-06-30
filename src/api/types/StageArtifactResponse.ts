@@ -4,7 +4,7 @@ export interface StageArtifactResponse {
     /** ID of the staged artifact version */
     id: string;
     /** Root storage path where the artifact version files should be uploaded */
-    storage_root: string;
+    storageRoot: string;
     /** ID of the artifact that the staged version belongs to */
-    artifact_id: string;
+    artifactId: string;
 }

@@ -5,56 +5,69 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("LogsClient", () => {
+    
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "job_name" : "job_name" , "log" : "log" , "stream" : "stdout" , "time" : "1635467890123456789" , "containerName" : "containerName" } ] };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/logs").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const rawResponseBody = {
-            data: [
-                {
-                    job_name: "job_name",
-                    log: "log",
-                    stream: "stdout",
-                    time: "1635467890123456789",
-                    containerName: "containerName",
-                },
-            ],
-        };
-
-        server.mockEndpoint().get("/api/svc/v1/logs").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.logs.get({
-            startTs: "1779262323000000000",
-            endTs: "1779348723000000000",
-            limit: 1,
-            direction: "asc",
-            numLogsToIgnore: 1,
-            applicationId: "applicationId",
-            applicationFqn: "applicationFqn",
-            deploymentId: "deploymentId",
-            jobRunName: "jobRunName",
-            podName: "podName",
-            containerName: "containerName",
-            podNames: ["podNames"],
-            podNamesRegex: "podNamesRegex",
-            searchFilters: '[{"string":"error","type":"substring","operator":"equal"}]',
-            searchString: "searchString",
-            searchType: "regex",
-            searchOperator: "equal",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.logs.get({
+    startTs: "1779262323000000000",
+    endTs: "1779348723000000000",
+    limit: 1,
+    direction: "asc",
+    numLogsToIgnore: 1,
+    applicationId: "applicationId",
+    applicationFqn: "applicationFqn",
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName",
+    podName: "podName",
+    containerName: "containerName",
+    podNames: ["podNames"],
+    podNamesRegex: "podNamesRegex",
+    searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
+    searchString: "searchString",
+    searchType: "regex",
+    searchOperator: "equal"
+});
+                                expect(response).toEqual({
+    data: [{
+            jobName: "job_name",
+            log: "log",
+            stream: "stdout",
+            time: "1635467890123456789",
+            containerName: "containerName"
+        }]
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/logs").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/api/svc/v1/logs").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.logs.get();
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.logs.get()
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
+          
 });

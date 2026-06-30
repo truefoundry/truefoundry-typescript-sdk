@@ -8,7 +8,7 @@ export interface BlueGreen {
     /** +value=blue_green */
     type: "blue_green";
     /** Promote the new release to handle the complete traffic. A manual promotion would be needed if this is disabled */
-    enable_auto_promotion?: boolean | undefined;
+    enableAutoPromotion?: boolean;
     /** Promote the new release to handle the complete traffic after waiting for these many seconds */
-    auto_promotion_seconds?: number | undefined;
+    autoPromotionSeconds?: number;
 }

@@ -4,9 +4,9 @@ export interface VolumeMount {
     /** +value=volume */
     type: "volume";
     /** Absolute file path where the volume will be mounted. */
-    mount_path: string;
+    mountPath: string;
     /** Sub path within the volume to mount. Defaults to root of the volume. */
-    sub_path?: string | undefined;
+    subPath?: string;
     /** The TrueFoundry volume that needs to be mounted. */
-    volume_fqn: string;
+    volumeFqn: string;
 }

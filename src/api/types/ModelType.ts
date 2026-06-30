@@ -2,17 +2,17 @@
 
 /** Model Type */
 export const ModelType = {
-    Chat: "chat",
-    Completion: "completion",
-    Embedding: "embedding",
-    Realtime: "realtime",
-    Rerank: "rerank",
-    AudioTranscription: "audio_transcription",
-    AudioTranslation: "audio_translation",
-    TextToSpeech: "text_to_speech",
-    Moderation: "moderation",
-    Image: "image",
-    Responses: "responses",
-    Ocr: "ocr",
-} as const;
-export type ModelType = (typeof ModelType)[keyof typeof ModelType];
+        Chat: "chat",
+        Completion: "completion",
+        Embedding: "embedding",
+        Realtime: "realtime",
+        Rerank: "rerank",
+        AudioTranscription: "audio_transcription",
+        AudioTranslation: "audio_translation",
+        TextToSpeech: "text_to_speech",
+        Moderation: "moderation",
+        Image: "image",
+        Responses: "responses",
+        Ocr: "ocr"
+    } as const;
+export type ModelType = typeof ModelType[keyof typeof ModelType];

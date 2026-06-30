@@ -7,7 +7,7 @@ export interface HashicorpAppRoleAuth {
     /** +value=approle */
     type: "approle";
     /** AppRole role ID for Vault authentication. */
-    role_id: string;
+    roleId: string;
     /** AppRole secret ID for Vault authentication. */
-    secret_id: string;
+    secretId: string;
 }

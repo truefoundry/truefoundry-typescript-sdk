@@ -2,10 +2,9 @@
 
 /** Global: worldwide processing; Data zone (US): US data zone processing; Data zone (EU): EU data zone processing; Standard: single-region processing */
 export const AzureOpenAiModelDeploymentType = {
-    Standard: "standard",
-    DatazoneUs: "datazone_us",
-    DatazoneEu: "datazone_eu",
-    Global: "global",
-} as const;
-export type AzureOpenAiModelDeploymentType =
-    (typeof AzureOpenAiModelDeploymentType)[keyof typeof AzureOpenAiModelDeploymentType];
+        Standard: "standard",
+        DatazoneUs: "datazone_us",
+        DatazoneEu: "datazone_eu",
+        Global: "global"
+    } as const;
+export type AzureOpenAiModelDeploymentType = typeof AzureOpenAiModelDeploymentType[keyof typeof AzureOpenAiModelDeploymentType];

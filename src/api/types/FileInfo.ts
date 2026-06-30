@@ -4,11 +4,11 @@ export interface FileInfo {
     /** Path of the file or directory relative to the artifact version storage root. */
     path: string;
     /** Whether the entry is a directory. */
-    is_dir: boolean;
+    isDir: boolean;
     /** Size of the file in bytes. */
-    file_size?: number | undefined;
+    fileSize?: number;
     /** Signed URL used to download the file. */
-    signed_url?: string | undefined;
+    signedUrl?: string;
     /** Timestamp when the file was last modified. */
-    last_modified?: string | undefined;
+    lastModified?: Date;
 }

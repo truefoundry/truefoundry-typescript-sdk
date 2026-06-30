@@ -6,5 +6,5 @@
  */
 export interface AktoGuardrailConfigConfig {
     /** The base URL of the Akto guardrails service (e.g. https://your-akto-host:port) */
-    base_url: string;
+    baseUrl: string;
 }

@@ -2,11 +2,11 @@
 
 export interface BaseArtifactVersion {
     /** Name of the entity */
-    name?: string | undefined;
+    name?: string;
     /** Key value metadata. Should be valid JSON. For e.g. `{"business-unit": "sales", "quality": "good", "rating": 4.5}` */
     metadata: Record<string, unknown>;
     /** Name of the ML Repo */
-    ml_repo?: string | undefined;
+    mlRepo?: string;
     /** Version of the entity */
-    version?: number | undefined;
+    version?: number;
 }

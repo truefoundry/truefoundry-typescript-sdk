@@ -7,12 +7,12 @@ export interface OciRepo {
     /** +value=oci-repo */
     type: "oci-repo";
     /** OCI chart URL - Need to be a valid URL. */
-    oci_chart_url: string;
+    ociChartUrl: string;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations) page
      */
-    integration_fqn?: string | undefined;
+    integrationFqn?: string;
     /** Helm chart version */
     version: string;
 }

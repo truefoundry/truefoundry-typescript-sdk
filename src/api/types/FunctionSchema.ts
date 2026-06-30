@@ -7,9 +7,9 @@ export interface FunctionSchema {
     /** Name of the function */
     name: string;
     /** Description of the function */
-    description?: string | undefined;
+    description?: string;
     /** Parameters schema for the function */
-    parameters?: Record<string, unknown> | undefined;
+    parameters?: Record<string, unknown>;
     /** Indicates if the function should be called strictly */
-    strict?: boolean | undefined;
+    strict?: boolean;
 }

@@ -2,8 +2,8 @@
 
 /** Name of the library for the framework */
 export const LibraryName = {
-    Transformers: "transformers",
-    SentenceTransformers: "sentence-transformers",
-    Diffusers: "diffusers",
-} as const;
-export type LibraryName = (typeof LibraryName)[keyof typeof LibraryName];
+        Transformers: "transformers",
+        SentenceTransformers: "sentence-transformers",
+        Diffusers: "diffusers"
+    } as const;
+export type LibraryName = typeof LibraryName[keyof typeof LibraryName];

@@ -7,5 +7,5 @@ export interface GroqKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Groq authentication */
-    api_key: string;
+    apiKey: string;
 }

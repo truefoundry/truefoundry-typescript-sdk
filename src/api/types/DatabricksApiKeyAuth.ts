@@ -7,5 +7,5 @@ export interface DatabricksApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** API key for Databricks authentication. */
-    api_key: string;
+    apiKey: string;
 }

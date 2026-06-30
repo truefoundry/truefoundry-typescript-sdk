@@ -7,13 +7,13 @@
  *         offset: 0,
  *         tag: "tag",
  *         fqn: "fqn",
- *         model_id: "model_id",
- *         ml_repo_id: "ml_repo_id",
+ *         modelId: "model_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
  *         version: 1,
- *         run_ids: ["run_ids"],
- *         run_steps: [1.1],
- *         include_internal_metadata: true
+ *         runIds: ["run_ids"],
+ *         runSteps: [1.1],
+ *         includeInternalMetadata: true
  *     }
  */
 export interface ModelVersionsListRequest {
@@ -26,17 +26,17 @@ export interface ModelVersionsListRequest {
     /** Filter model versions by Fully Qualified Name. */
     fqn?: string;
     /** Filter model versions by model identifier. */
-    model_id?: string;
+    modelId?: string;
     /** Filter model versions by ML Repo identifier. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Filter model versions by name. */
     name?: string;
     /** Version number (positive integer) to filter by. */
     version?: number;
     /** Filter model versions by associated run identifiers. */
-    run_ids?: string | string[];
+    runIds?: string | string[];
     /** Filter model versions by associated run steps. */
-    run_steps?: number | number[];
+    runSteps?: number | number[];
     /** Whether to include internal metadata in the response. */
-    include_internal_metadata?: boolean;
+    includeInternalMetadata?: boolean;
 }

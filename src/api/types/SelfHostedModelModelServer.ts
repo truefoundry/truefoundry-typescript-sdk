@@ -2,11 +2,11 @@
 
 /** The type of model server being used */
 export const SelfHostedModelModelServer = {
-    OpenaiCompatible: "openai-compatible",
-    CohereRerankV2: "cohere-rerank-v2",
-    NemoRetriever: "nemo-retriever",
-    Infinity: "infinity",
-    Tei: "tei",
-    VllmOpenai: "vllm-openai",
-} as const;
-export type SelfHostedModelModelServer = (typeof SelfHostedModelModelServer)[keyof typeof SelfHostedModelModelServer];
+        OpenaiCompatible: "openai-compatible",
+        CohereRerankV2: "cohere-rerank-v2",
+        NemoRetriever: "nemo-retriever",
+        Infinity: "infinity",
+        Tei: "tei",
+        VllmOpenai: "vllm-openai"
+    } as const;
+export type SelfHostedModelModelServer = typeof SelfHostedModelModelServer[keyof typeof SelfHostedModelModelServer];

@@ -9,7 +9,7 @@ export interface AmqpOutputConfig {
     /** AMQP Queue URL of Publisher */
     url: string;
     /** AMQP Routing Key to publish to. */
-    routing_key: string;
+    routingKey: string;
     /** AMQP Exchange Name */
-    exchange_name?: string | undefined;
+    exchangeName?: string;
 }

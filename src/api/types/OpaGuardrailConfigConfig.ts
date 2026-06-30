@@ -6,7 +6,7 @@
  */
 export interface OpaGuardrailConfigConfig {
     /** The base URL of the OPA server (e.g., https://opa.example.com:8181). The policy will be queried at {opa_url}/v1/data/{policy_path}. */
-    opa_url: string;
+    opaUrl: string;
     /** The policy path to evaluate in OPA (e.g., "authz/allow", "guardrails/validate"). This corresponds to the package and rule name in your Rego policy. The full query URL will be {opa_url}/v1/data/{policy_path}. */
-    policy_path: string;
+    policyPath: string;
 }

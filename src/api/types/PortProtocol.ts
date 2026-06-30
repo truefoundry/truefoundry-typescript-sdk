@@ -2,7 +2,7 @@
 
 /** Protocol for the port. */
 export const PortProtocol = {
-    Tcp: "TCP",
-    Udp: "UDP",
-} as const;
-export type PortProtocol = (typeof PortProtocol)[keyof typeof PortProtocol];
+        Tcp: "TCP",
+        Udp: "UDP"
+    } as const;
+export type PortProtocol = typeof PortProtocol[keyof typeof PortProtocol];

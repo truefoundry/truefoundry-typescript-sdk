@@ -2,7 +2,7 @@
 
 /** Source of the JWT token to be used for verification. */
 export const McpServerOAuth2JwtSource = {
-    AccessToken: "access_token",
-    IdToken: "id_token",
-} as const;
-export type McpServerOAuth2JwtSource = (typeof McpServerOAuth2JwtSource)[keyof typeof McpServerOAuth2JwtSource];
+        AccessToken: "access_token",
+        IdToken: "id_token"
+    } as const;
+export type McpServerOAuth2JwtSource = typeof McpServerOAuth2JwtSource[keyof typeof McpServerOAuth2JwtSource];

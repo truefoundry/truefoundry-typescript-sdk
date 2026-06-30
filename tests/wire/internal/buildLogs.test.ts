@@ -5,57 +5,58 @@ import { TrueFoundryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
 describe("BuildLogsClient", () => {
+    
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            logs: [
-                {
-                    job_name: "job_name",
-                    log: "log",
-                    stream: "stdout",
-                    time: "1635467890123456789",
-                    containerName: "containerName",
-                },
-            ],
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "logs" : [ { "job_name" : "job_name" , "log" : "log" , "stream" : "stdout" , "time" : "1635467890123456789" , "containerName" : "containerName" } ] };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/x/build-logs/pipelineRunName")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/build-logs/pipelineRunName").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.buildLogs.get("pipelineRunName", {
-            startTs: "1635467890123456789",
-            endTs: "1635467891123456789",
-            limit: "limit",
-            direction: "direction",
-            filterQuery: '{"matchString":"error","type":"substring","operator":"equal"}',
-            numLogsToIgnore: 1.1,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.buildLogs.get("pipelineRunName", {
+    startTs: "1635467890123456789",
+    endTs: "1635467891123456789",
+    limit: "limit",
+    direction: "direction",
+    filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}",
+    numLogsToIgnore: 1.1
+});
+                                expect(response).toEqual({
+    logs: [{
+            jobName: "job_name",
+            log: "log",
+            stream: "stdout",
+            time: "1635467890123456789",
+            containerName: "containerName"
+        }]
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/x/build-logs/pipelineRunName")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/build-logs/pipelineRunName").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.buildLogs.get("pipelineRunName");
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.internal.buildLogs.get("pipelineRunName")
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
+          
 });

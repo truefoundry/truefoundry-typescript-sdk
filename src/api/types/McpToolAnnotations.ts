@@ -5,7 +5,7 @@
  */
 export interface McpToolAnnotations {
     /** Indicates the tool only reads data and does not modify anything. */
-    readOnlyHint?: boolean | undefined;
+    readOnlyHint?: boolean;
     /** Indicates the tool may perform destructive updates. */
-    destructiveHint?: boolean | undefined;
+    destructiveHint?: boolean;
 }

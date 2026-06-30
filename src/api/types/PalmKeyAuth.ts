@@ -7,5 +7,5 @@ export interface PalmKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** Your PaLM API key for authentication */
-    api_key: string;
+    apiKey: string;
 }

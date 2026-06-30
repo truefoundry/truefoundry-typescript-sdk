@@ -7,8 +7,8 @@
  * "on_demand" will strictly place the application on on-demand nodes.
  */
 export const NodeSelectorCapacityType = {
-    SpotFallbackOnDemand: "spot_fallback_on_demand",
-    Spot: "spot",
-    OnDemand: "on_demand",
-} as const;
-export type NodeSelectorCapacityType = (typeof NodeSelectorCapacityType)[keyof typeof NodeSelectorCapacityType];
+        SpotFallbackOnDemand: "spot_fallback_on_demand",
+        Spot: "spot",
+        OnDemand: "on_demand"
+    } as const;
+export type NodeSelectorCapacityType = typeof NodeSelectorCapacityType[keyof typeof NodeSelectorCapacityType];

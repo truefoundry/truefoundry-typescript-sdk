@@ -4,7 +4,7 @@ export interface McpToolTarget {
     /** Name of the MCP server */
     name: string;
     /** When enabled, all tools from this MCP server are targeted. Disable to select specific tools. */
-    enable_all_tools: boolean;
+    enableAllTools: boolean;
     /** List of specific tools to target from this MCP server. */
-    enabled_tools?: string[] | undefined;
+    enabledTools?: string[];
 }

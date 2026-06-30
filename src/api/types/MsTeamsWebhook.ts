@@ -7,5 +7,5 @@ export interface MsTeamsWebhook {
     /** +value=ms-teams-webhook */
     type: "ms-teams-webhook";
     /** Specify the notification channel to send alerts to */
-    notification_channel: string;
+    notificationChannel: string;
 }

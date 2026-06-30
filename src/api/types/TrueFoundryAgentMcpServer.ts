@@ -8,13 +8,13 @@ export interface TrueFoundryAgentMcpServer {
     /** MCP server name */
     name: string;
     /** When true, this server's tools are preloaded into context. When false (default), tools are discovered lazily and only preload_tools stay eager. */
-    preload?: boolean | undefined;
+    preload?: boolean;
     /** Tools to enable. Supports tags @all, @read-only, @write, @destructive or literal tool names. */
-    enable_tools?: string[] | undefined;
+    enableTools?: string[];
     /** Tools to disable (subtracted from enable_tools). */
-    disable_tools?: string[] | undefined;
+    disableTools?: string[];
     /** When preload is false, tools to still preload into context. */
-    preload_tools?: string[] | undefined;
+    preloadTools?: string[];
     /** Tools that require human approval before execution. Supports tags and literal tool names. */
-    require_approval_for_tools?: string[] | undefined;
+    requireApprovalForTools?: string[];
 }

@@ -7,5 +7,5 @@ export interface A2AFramework {
     /** Type */
     type: "a2a";
     /** Path to the agent card JSON, relative to the base URL */
-    agent_card_path: string;
+    agentCardPath: string;
 }

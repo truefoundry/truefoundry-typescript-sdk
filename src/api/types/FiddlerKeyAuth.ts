@@ -4,5 +4,5 @@ export interface FiddlerKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** API key for the Fiddler account */
-    api_key: string;
+    apiKey: string;
 }

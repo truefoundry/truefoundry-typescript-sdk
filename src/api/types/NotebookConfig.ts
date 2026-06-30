@@ -2,5 +2,5 @@
 
 export interface NotebookConfig {
     /** The base domain for the cluster with which you can access your Notebooks */
-    base_domain: string;
+    baseDomain: string;
 }

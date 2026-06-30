@@ -15,5 +15,5 @@ export interface AiFeaturesSettings {
      * AI provider to use for AI features
      * When TrueFoundry is selected, TrueFoundry will manage and provide the AI models for the features.
      */
-    ai_provider: "truefoundry";
+    aiProvider: "truefoundry";
 }

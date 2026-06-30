@@ -2,5 +2,5 @@
 
 export interface TrueFoundryAgentCompactionConfig {
     enabled: boolean;
-    compaction_threshold_tokens?: number | undefined;
+    compactionThresholdTokens?: number;
 }

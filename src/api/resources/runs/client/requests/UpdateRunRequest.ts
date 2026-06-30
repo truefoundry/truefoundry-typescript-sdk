@@ -8,7 +8,7 @@ export interface UpdateRunRequest {
     /** Updated status of the run (e.g. RUNNING, FINISHED, FAILED). */
     status?: string;
     /** Unix timestamp in milliseconds when the run ended. */
-    end_time?: number;
+    endTime?: number;
     /** Updated description of the run. */
     description?: string;
 }

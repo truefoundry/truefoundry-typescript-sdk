@@ -7,9 +7,9 @@ export interface AzureClientSecretAuth {
     /** +value=client-secret */
     type: "client-secret";
     /** The Azure AD tenant ID where the application is registered */
-    tenant_id: string;
+    tenantId: string;
     /** The Azure AD application (client) ID for service principal authentication */
-    client_id: string;
+    clientId: string;
     /** The Azure AD application client secret value used for the OAuth client_credentials flow */
-    client_secret: string;
+    clientSecret: string;
 }

@@ -2,8 +2,7 @@
 
 /** Source from which session identifier value will be extracted */
 export const StickySessionIdentifierSource = {
-    Headers: "headers",
-    Metadata: "metadata",
-} as const;
-export type StickySessionIdentifierSource =
-    (typeof StickySessionIdentifierSource)[keyof typeof StickySessionIdentifierSource];
+        Headers: "headers",
+        Metadata: "metadata"
+    } as const;
+export type StickySessionIdentifierSource = typeof StickySessionIdentifierSource[keyof typeof StickySessionIdentifierSource];

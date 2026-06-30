@@ -2,8 +2,7 @@
 
 /** Validate blocks when pattern matches. Mutate replaces matched text and continues. */
 export const RegexGuardrailConfigOperation = {
-    Validate: "validate",
-    Mutate: "mutate",
-} as const;
-export type RegexGuardrailConfigOperation =
-    (typeof RegexGuardrailConfigOperation)[keyof typeof RegexGuardrailConfigOperation];
+        Validate: "validate",
+        Mutate: "mutate"
+    } as const;
+export type RegexGuardrailConfigOperation = typeof RegexGuardrailConfigOperation[keyof typeof RegexGuardrailConfigOperation];

@@ -5,515 +5,522 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("JobsClient", () => {
+    
     test("list_runs (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    name: "name",
-                    applicationName: "applicationName",
-                    deploymentVersion: "deploymentVersion",
-                    createdAt: 1.1,
-                    endTime: 1.1,
-                    duration: 1,
-                    command: "command",
-                    totalRetries: 1,
-                    error: "error",
-                    status: "CREATED",
-                    triggeredBy: "triggeredBy",
-                    triggeredBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    exitCode: 1,
-                    sparkUi: "sparkUi",
-                    applicationId: "applicationId",
-                    deploymentId: "deploymentId",
-                    tenantName: "tenantName",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "applicationName" : "applicationName" , "deploymentVersion" : "deploymentVersion" , "createdAt" : 1.1 , "endTime" : 1.1 , "duration" : 1 , "command" : "command" , "totalRetries" : 1 , "error" : "error" , "status" : "CREATED" , "triggeredBy" : "triggeredBy" , "triggeredBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "exitCode" : 1 , "sparkUi" : "sparkUi" , "applicationId" : "applicationId" , "deploymentId" : "deploymentId" , "tenantName" : "tenantName" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/jobs/jobId/runs")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.jobs.listRuns("jobId", {
-            limit: 10,
-            offset: 0,
-            searchPrefix: "searchPrefix",
-            sortBy: "startTime",
-            order: "asc",
-            triggeredBy: ["triggeredBy"],
-            status: ["CREATED"],
-            versionNumbers: [1.1],
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            name: "name",
+            applicationName: "applicationName",
+            deploymentVersion: "deploymentVersion",
+            createdAt: 1.1,
+            endTime: 1.1,
+            duration: 1,
+            command: "command",
+            totalRetries: 1,
+            error: "error",
+            status: "CREATED",
+            triggeredBy: "triggeredBy",
+            triggeredBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            exitCode: 1,
+            sparkUi: "sparkUi",
+            applicationId: "applicationId",
+            deploymentId: "deploymentId",
+            tenantName: "tenantName"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.jobs.listRuns("jobId", {
+    limit: 10,
+    offset: 0,
+    searchPrefix: "searchPrefix",
+    sortBy: "startTime",
+    order: "asc",
+    triggeredBy: ["triggeredBy"],
+    status: ["CREATED"],
+    versionNumbers: [1.1]
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("list_runs (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/jobs/jobId/runs")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.listRuns("jobId");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.jobs.listRuns("jobId")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("list_runs (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/jobs/jobId/runs")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.listRuns("jobId");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.jobs.listRuns("jobId")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("list_runs (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/jobs/jobId/runs")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs").respondWith()
+            .statusCode(422).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.listRuns("jobId");
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        
+            await expect(async () => {
+                return await client.jobs.listRuns("jobId")
+            }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
-
+          
     test("get_run (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                name: "name",
-                applicationName: "applicationName",
-                deploymentVersion: "deploymentVersion",
-                createdAt: 1.1,
-                endTime: 1.1,
-                duration: 1,
-                command: "command",
-                totalRetries: 1,
-                error: "error",
-                status: "CREATED",
-                triggeredBy: "triggeredBy",
-                triggeredBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                exitCode: 1,
-                sparkUi: "sparkUi",
-                applicationId: "applicationId",
-                deploymentId: "deploymentId",
-                tenantName: "tenantName",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "applicationName" : "applicationName" , "deploymentVersion" : "deploymentVersion" , "createdAt" : 1.1 , "endTime" : 1.1 , "duration" : 1 , "command" : "command" , "totalRetries" : 1 , "error" : "error" , "status" : "CREATED" , "triggeredBy" : "triggeredBy" , "triggeredBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "exitCode" : 1 , "sparkUi" : "sparkUi" , "applicationId" : "applicationId" , "deploymentId" : "deploymentId" , "tenantName" : "tenantName" } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.jobs.getRun("jobId", "jobRunName");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.jobs.getRun("jobId", "jobRunName");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        name: "name",
+        applicationName: "applicationName",
+        deploymentVersion: "deploymentVersion",
+        createdAt: 1.1,
+        endTime: 1.1,
+        duration: 1,
+        command: "command",
+        totalRetries: 1,
+        error: "error",
+        status: "CREATED",
+        triggeredBy: "triggeredBy",
+        triggeredBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        exitCode: 1,
+        sparkUi: "sparkUi",
+        applicationId: "applicationId",
+        deploymentId: "deploymentId",
+        tenantName: "tenantName"
+    }
+});
+                              
+                    
     });
-
+          
     test("get_run (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.getRun("jobId", "jobRunName");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.jobs.getRun("jobId", "jobRunName")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("get_run (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.getRun("jobId", "jobRunName");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.jobs.getRun("jobId", "jobRunName")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete_run (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.jobs.deleteRun("jobId", "jobRunName");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.jobs.deleteRun("jobId", "jobRunName");
+                                expect(response).toEqual({
+    message: "message"
+});
+                              
+                    
     });
-
+          
     test("delete_run (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.deleteRun("jobId", "jobRunName");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.jobs.deleteRun("jobId", "jobRunName")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("delete_run (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.deleteRun("jobId", "jobRunName");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.jobs.deleteRun("jobId", "jobRunName")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete_run (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName")
-            .respondWith()
-            .statusCode(409)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/jobs/jobId/runs/jobRunName").respondWith()
+            .statusCode(409).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.deleteRun("jobId", "jobRunName");
-        }).rejects.toThrow(TrueFoundry.ConflictError);
+        
+            await expect(async () => {
+                return await client.jobs.deleteRun("jobId", "jobRunName")
+            }).rejects.toThrow(TrueFoundry.ConflictError);
     });
-
+          
     test("trigger (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = {
-            message: "message",
-            jobRunName: "jobRunName",
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                name: "name",
-                applicationName: "applicationName",
-                deploymentVersion: "deploymentVersion",
-                createdAt: 1.1,
-                endTime: 1.1,
-                duration: 1,
-                command: "command",
-                totalRetries: 1,
-                error: "error",
-                status: "CREATED",
-                triggeredBy: "triggeredBy",
-                triggeredBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                exitCode: 1,
-                sparkUi: "sparkUi",
-                applicationId: "applicationId",
-                deploymentId: "deploymentId",
-                tenantName: "tenantName",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "message" : "message" , "jobRunName" : "jobRunName" , "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "applicationName" : "applicationName" , "deploymentVersion" : "deploymentVersion" , "createdAt" : 1.1 , "endTime" : 1.1 , "duration" : 1 , "command" : "command" , "totalRetries" : 1 , "error" : "error" , "status" : "CREATED" , "triggeredBy" : "triggeredBy" , "triggeredBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "exitCode" : 1 , "sparkUi" : "sparkUi" , "applicationId" : "applicationId" , "deploymentId" : "deploymentId" , "tenantName" : "tenantName" } };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/trigger")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/trigger").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.jobs.trigger();
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.jobs.trigger();
+                                expect(response).toEqual({
+    message: "message",
+    jobRunName: "jobRunName",
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        name: "name",
+        applicationName: "applicationName",
+        deploymentVersion: "deploymentVersion",
+        createdAt: 1.1,
+        endTime: 1.1,
+        duration: 1,
+        command: "command",
+        totalRetries: 1,
+        error: "error",
+        status: "CREATED",
+        triggeredBy: "triggeredBy",
+        triggeredBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        exitCode: 1,
+        sparkUi: "sparkUi",
+        applicationId: "applicationId",
+        deploymentId: "deploymentId",
+        tenantName: "tenantName"
+    }
+});
+                              
+                    
     });
-
+          
     test("trigger (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/trigger")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/trigger").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.trigger();
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.jobs.trigger()
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
-
+          
     test("trigger (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/trigger")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/trigger").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.trigger();
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.jobs.trigger()
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("trigger (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/trigger")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/trigger").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.trigger();
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.jobs.trigger()
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("trigger (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/trigger")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/trigger").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(422).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.trigger();
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        
+            await expect(async () => {
+                return await client.jobs.trigger()
+            }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
-
+          
     test("terminate (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { message: "message", jobRunStatus: "CREATED" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "message" : "message" , "jobRunStatus" : "CREATED" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/terminate")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/terminate").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.jobs.terminate({
-            deploymentId: "deploymentId",
-            jobRunName: "jobRunName",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.jobs.terminate({
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName"
+});
+                                expect(response).toEqual({
+    message: "message",
+    jobRunStatus: "CREATED"
+});
+                              
+                    
     });
-
+          
     test("terminate (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/terminate")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/terminate").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.terminate({
-                deploymentId: "deploymentId",
-                jobRunName: "jobRunName",
-            });
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.jobs.terminate({
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName"
+})
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("terminate (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/terminate")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/terminate").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.terminate({
-                deploymentId: "deploymentId",
-                jobRunName: "jobRunName",
-            });
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.jobs.terminate({
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName"
+})
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("terminate (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/terminate")
-            .respondWith()
-            .statusCode(417)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/terminate").respondWith()
+            .statusCode(417).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.terminate({
-                deploymentId: "deploymentId",
-                jobRunName: "jobRunName",
-            });
-        }).rejects.toThrow(TrueFoundry.ExpectationFailedError);
+        
+            await expect(async () => {
+                return await client.jobs.terminate({
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName"
+})
+            }).rejects.toThrow(TrueFoundry.ExpectationFailedError);
     });
-
+          
     test("terminate (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/jobs/terminate")
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/jobs/terminate").respondWith()
+            .statusCode(422).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.jobs.terminate({
-                deploymentId: "deploymentId",
-                jobRunName: "jobRunName",
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        
+            await expect(async () => {
+                return await client.jobs.terminate({
+    deploymentId: "deploymentId",
+    jobRunName: "jobRunName"
+})
+            }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
+          
 });

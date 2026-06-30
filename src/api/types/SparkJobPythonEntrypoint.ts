@@ -7,7 +7,7 @@ export interface SparkJobPythonEntrypoint {
     /** +value=python */
     type: "python";
     /** The main application file to be executed by the spark job. Relative path in case of git repository. */
-    main_application_file: string;
+    mainApplicationFile: string;
     /** Arguments to be passed to the main application file. */
-    arguments?: string | undefined;
+    arguments?: string;
 }

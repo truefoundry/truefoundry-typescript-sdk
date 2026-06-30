@@ -7,5 +7,5 @@ export interface TrueFoundryManagedSource {
     /** Type of the source */
     type: "truefoundry";
     /** URI */
-    uri?: string | undefined;
+    uri?: string;
 }

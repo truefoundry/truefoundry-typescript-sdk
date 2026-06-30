@@ -4,9 +4,9 @@ export interface ListFilesRequest {
     /** Identifier of the artifact version to list files for. */
     id: string;
     /** Path within the artifact version to list files under. */
-    path?: string | undefined;
+    path?: string;
     /** Maximum number of files to return. */
-    limit?: number | undefined;
+    limit?: number;
     /** Token to retrieve the next page of results */
-    pageToken?: string | undefined;
+    pageToken?: string;
 }

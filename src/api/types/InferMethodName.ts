@@ -2,7 +2,7 @@
 
 /** Name of the method used for inference */
 export const InferMethodName = {
-    Predict: "predict",
-    PredictProba: "predict_proba",
-} as const;
-export type InferMethodName = (typeof InferMethodName)[keyof typeof InferMethodName];
+        Predict: "predict",
+        PredictProba: "predict_proba"
+    } as const;
+export type InferMethodName = typeof InferMethodName[keyof typeof InferMethodName];

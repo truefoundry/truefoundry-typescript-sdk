@@ -6,17 +6,17 @@
  */
 export interface SearchRunsRequest {
     /** List of ML Repo experiment IDs to search over. */
-    experiment_ids?: string[];
+    experimentIds?: string[];
     /** Filter expression over params, metrics, and tags. Supports SQL-like comparisons (e.g. metrics.rmse < 1 and params.model_class = "LogisticRegression"). */
     filter?: string;
     /** Whether to return active only, deleted only, or all runs. */
-    run_view_type?: string;
+    runViewType?: string;
     /** Maximum number of runs to return. */
-    max_results?: number;
+    maxResults?: number;
     /** Sort order for results (e.g. metrics.accuracy DESC, params.lr ASC). */
-    order_by?: string[];
+    orderBy?: string[];
     /** Token for fetching the next page of results. */
-    page_token?: string;
+    pageToken?: string;
     /** Zero-based offset for pagination. */
     offset?: number;
     /** Exact FQN lookup. */
@@ -24,7 +24,7 @@ export interface SearchRunsRequest {
     /** Run name lookup within experiment. */
     name?: string;
     /** System-generated unique identifier for the ML Repo. */
-    experiment_id?: string;
+    experimentId?: string;
     /** ML Repo name when resolving by run name. */
-    ml_repo_name?: string;
+    mlRepoName?: string;
 }

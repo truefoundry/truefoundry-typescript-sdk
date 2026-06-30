@@ -7,5 +7,5 @@ export interface NomicKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Nomic authentication */
-    api_key: string;
+    apiKey: string;
 }

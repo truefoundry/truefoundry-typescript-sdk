@@ -7,13 +7,13 @@
  *         offset: 0,
  *         tag: "tag",
  *         fqn: "fqn",
- *         artifact_id: "artifact_id",
- *         ml_repo_id: "ml_repo_id",
+ *         artifactId: "artifact_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
  *         version: 1,
- *         run_ids: ["run_ids"],
- *         run_steps: [1.1],
- *         include_internal_metadata: true
+ *         runIds: ["run_ids"],
+ *         runSteps: [1.1],
+ *         includeInternalMetadata: true
  *     }
  */
 export interface ArtifactVersionsListRequest {
@@ -26,17 +26,17 @@ export interface ArtifactVersionsListRequest {
     /** Fully Qualified Name uniquely identifying the artifact version. */
     fqn?: string;
     /** Identifier of the artifact whose versions to list. */
-    artifact_id?: string;
+    artifactId?: string;
     /** Identifier of the ML Repo the artifact versions belong to. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Name of the artifact version. */
     name?: string;
     /** Version number (positive integer) to filter by. */
     version?: number;
     /** Run IDs to filter artifact versions by. */
-    run_ids?: string | string[];
+    runIds?: string | string[];
     /** Run steps to filter artifact versions by. */
-    run_steps?: number | number[];
+    runSteps?: number | number[];
     /** Whether to include internal metadata in the response. */
-    include_internal_metadata?: boolean;
+    includeInternalMetadata?: boolean;
 }

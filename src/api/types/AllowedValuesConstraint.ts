@@ -7,5 +7,5 @@ export interface AllowedValuesConstraint {
     /** +value=allowed_values */
     constraint: "allowed_values";
     /** Add each value that should pass. Comparison is exact and case-sensitive. At least one entry is required. */
-    allowed_values: string[];
+    allowedValues: string[];
 }

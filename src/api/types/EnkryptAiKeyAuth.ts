@@ -7,5 +7,5 @@ export interface EnkryptAiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Enkrypt AI authentication */
-    api_key: string;
+    apiKey: string;
 }

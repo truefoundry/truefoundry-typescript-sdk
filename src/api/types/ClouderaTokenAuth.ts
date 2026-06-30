@@ -7,5 +7,5 @@ export interface ClouderaTokenAuth {
     /** +value=token */
     type: "token";
     /** Pre-generated API token for Cloudera CDP authentication. You can generate this token using the CDP CLI or from your user profile settings. This token provides direct access to CDP services without requiring workload-specific authentication. */
-    api_token: string;
+    apiToken: string;
 }

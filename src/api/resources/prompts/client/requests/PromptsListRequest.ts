@@ -6,9 +6,9 @@
  *         limit: 10,
  *         offset: 0,
  *         fqn: "fqn",
- *         ml_repo_id: "ml_repo_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
- *         include_empty_prompts: true
+ *         includeEmptyPrompts: true
  *     }
  */
 export interface PromptsListRequest {
@@ -19,9 +19,9 @@ export interface PromptsListRequest {
     /** Filter prompts by Fully Qualified Name. */
     fqn?: string;
     /** Filter prompts by the identifier of the ML Repo they belong to. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Filter prompts by name. */
     name?: string;
     /** Whether to include prompts that have no versions in the results. */
-    include_empty_prompts?: boolean;
+    includeEmptyPrompts?: boolean;
 }

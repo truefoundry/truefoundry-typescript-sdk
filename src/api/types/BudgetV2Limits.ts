@@ -5,11 +5,11 @@
  */
 export interface BudgetV2Limits {
     /** Maximum daily cost in USD */
-    cost_per_day?: number | undefined;
+    costPerDay?: number;
     /** Maximum weekly cost in USD */
-    cost_per_week?: number | undefined;
+    costPerWeek?: number;
     /** Maximum monthly cost in USD */
-    cost_per_month?: number | undefined;
+    costPerMonth?: number;
     /** Maximum quarterly cost in USD */
-    cost_per_quarter?: number | undefined;
+    costPerQuarter?: number;
 }

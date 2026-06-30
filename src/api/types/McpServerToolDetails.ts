@@ -5,7 +5,7 @@
  */
 export interface McpServerToolDetails {
     /** The integration ID of the MCP server */
-    mcp_server_integration_id: string;
+    mcpServerIntegrationId: string;
     /** The name of the tool in the MCP server */
-    tool_name: string;
+    toolName: string;
 }

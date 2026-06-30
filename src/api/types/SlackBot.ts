@@ -4,7 +4,7 @@ export interface SlackBot {
     /** +value=slack-bot */
     type: "slack-bot";
     /** Specify the notification channel to send alerts to */
-    notification_channel: string;
+    notificationChannel: string;
     /** List of channels to send messages to. */
     channels: string[];
 }

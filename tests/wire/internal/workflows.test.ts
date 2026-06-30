@@ -5,62 +5,66 @@ import { TrueFoundryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
 describe("WorkflowsClient", () => {
+    
     test("execute_workflow (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { executionName: "executionName" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "executionName" : "executionName" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/workflow/applicationId/executions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/workflow/applicationId/executions").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.workflows.executeWorkflow("applicationId");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.workflows.executeWorkflow("applicationId");
+                                expect(response).toEqual({
+    executionName: "executionName"
+});
+                              
+                    
     });
-
+          
     test("execute_workflow (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/workflow/applicationId/executions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/workflow/applicationId/executions").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.workflows.executeWorkflow("applicationId");
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.internal.workflows.executeWorkflow("applicationId")
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
-
+          
     test("execute_workflow (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/workflow/applicationId/executions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/workflow/applicationId/executions").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.workflows.executeWorkflow("applicationId");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.internal.workflows.executeWorkflow("applicationId")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
+          
 });

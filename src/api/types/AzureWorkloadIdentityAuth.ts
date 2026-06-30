@@ -7,7 +7,7 @@ export interface AzureWorkloadIdentityAuth {
     /** +value=workload-identity */
     type: "workload-identity";
     /** The Azure AD tenant ID where the application is registered */
-    tenant_id: string;
+    tenantId: string;
     /** The Azure AD application (client) ID configured with a federated identity credential for the gateway's Kubernetes service account */
-    client_id: string;
+    clientId: string;
 }

@@ -7,7 +7,7 @@ export interface BuildInfo {
      *         STARTED = 20,
      *         SUCCEEDED = 30,
      *         FAILED = 40
-     *
+     *     
      */
     status: number;
 }

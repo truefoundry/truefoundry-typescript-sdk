@@ -5,5 +5,5 @@
  */
 export interface OllamaKeyAuth {
     /** The custom host URL for Ollama API */
-    custom_host: string;
+    customHost: string;
 }

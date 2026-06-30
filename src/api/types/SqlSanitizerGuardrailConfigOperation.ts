@@ -2,8 +2,7 @@
 
 /** Validate (detect and block) or Mutate (detect, sanitize comments, and continue). */
 export const SqlSanitizerGuardrailConfigOperation = {
-    Validate: "validate",
-    Mutate: "mutate",
-} as const;
-export type SqlSanitizerGuardrailConfigOperation =
-    (typeof SqlSanitizerGuardrailConfigOperation)[keyof typeof SqlSanitizerGuardrailConfigOperation];
+        Validate: "validate",
+        Mutate: "mutate"
+    } as const;
+export type SqlSanitizerGuardrailConfigOperation = typeof SqlSanitizerGuardrailConfigOperation[keyof typeof SqlSanitizerGuardrailConfigOperation];

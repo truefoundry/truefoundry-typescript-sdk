@@ -7,9 +7,9 @@ export interface GitSource {
     /** +value=git */
     type: "git";
     /** The repository URL. */
-    repo_url: string;
+    repoUrl: string;
     /** The commit SHA. */
     ref: string;
     /** Selecting branch will select latest commit SHA of the branch. */
-    branch_name?: string | undefined;
+    branchName?: string;
 }

@@ -4,5 +4,5 @@ export interface Collaborator {
     /** Fully Qualified Name of the subject. eg: user:email or team:teamname */
     subject: string;
     /** Role ID for the resource */
-    role_id: string;
+    roleId: string;
 }

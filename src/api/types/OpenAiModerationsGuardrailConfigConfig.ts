@@ -8,6 +8,6 @@ export interface OpenAiModerationsGuardrailConfigConfig {
     /** The model to use for the OpenAI Moderation API. */
     model: string;
     /** Optional custom base URL for OpenAI API. If not provided, the default base URL will be used. */
-    base_url?: string | undefined;
-    category_thresholds?: Record<string, number> | undefined;
+    baseUrl?: string;
+    categoryThresholds?: Record<string, number>;
 }

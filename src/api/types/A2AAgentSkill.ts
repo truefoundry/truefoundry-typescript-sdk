@@ -4,8 +4,8 @@ export interface A2AAgentSkill {
     id: string;
     name: string;
     description: string;
-    tags?: string[] | undefined;
-    examples?: string[] | undefined;
-    inputModes?: string[] | undefined;
-    outputModes?: string[] | undefined;
+    tags?: string[];
+    examples?: string[];
+    inputModes?: string[];
+    outputModes?: string[];
 }

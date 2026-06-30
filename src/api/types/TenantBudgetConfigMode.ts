@@ -2,7 +2,7 @@
 
 /** `enforce` blocks breaching requests, `audit` only tracks them. */
 export const TenantBudgetConfigMode = {
-    Enforce: "enforce",
-    Audit: "audit",
-} as const;
-export type TenantBudgetConfigMode = (typeof TenantBudgetConfigMode)[keyof typeof TenantBudgetConfigMode];
+        Enforce: "enforce",
+        Audit: "audit"
+    } as const;
+export type TenantBudgetConfigMode = typeof TenantBudgetConfigMode[keyof typeof TenantBudgetConfigMode];

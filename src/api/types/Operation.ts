@@ -2,7 +2,7 @@
 
 /** Operation the signed URLs should permit (READ or WRITE). */
 export const Operation = {
-    Read: "READ",
-    Write: "WRITE",
-} as const;
-export type Operation = (typeof Operation)[keyof typeof Operation];
+        Read: "READ",
+        Write: "WRITE"
+    } as const;
+export type Operation = typeof Operation[keyof typeof Operation];

@@ -5,236 +5,257 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("ArtifactsClient", () => {
+    
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                ml_repo_id: "ml_repo_id",
-                type: "artifact",
-                name: "name",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                latest_version: {
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        metadata: { key: "value" },
-                        type: "artifact-version",
-                        source: { type: "truefoundry" },
-                        step: 1,
-                    },
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    ml_repo_id: "ml_repo_id",
-                    usage_code_snippet: "usage_code_snippet",
-                    tags: ["tags"],
-                    artifact_id: "artifact_id",
-                },
-                run_steps: [1.1],
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "artifact-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "tags" : [ "tags" ] , "artifact_id" : "artifact_id" } , "run_steps" : [ 1.1 ] } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/artifacts/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/artifacts/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.artifacts.get("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("get (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/api/svc/v1/artifacts/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.artifacts.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-
-    test("delete (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .delete("/api/svc/v1/artifacts/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.artifacts.delete("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("delete (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/api/svc/v1/artifacts/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.artifacts.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-
-    test("list", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    ml_repo_id: "ml_repo_id",
-                    type: "artifact",
-                    name: "name",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    latest_version: {
-                        id: "jqfwg345gi25n5ju2yz5iz6m",
-                        fqn: "fqn",
-                        created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                        ml_repo_id: "ml_repo_id",
-                        artifact_id: "artifact_id",
-                    },
-                    run_steps: [1.1],
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/artifacts")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const expected = rawResponseBody;
-        const page = await client.artifacts.list({
-            limit: 10,
-            offset: 0,
-            fqn: "fqn",
-            ml_repo_id: "ml_repo_id",
-            name: "name",
-            run_id: "run_id",
-            include_empty_artifacts: true,
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("create_or_update", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                metadata: { key: "value" },
-                type: "artifact-version",
-                source: { type: "truefoundry" },
-                step: 1,
-            },
-        };
-        const rawResponseBody = {
-            data: {
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    name: "name",
-                    metadata: { key: "value" },
-                    ml_repo: "ml_repo",
-                    version: 1,
-                    type: "artifact-version",
-                    description: "description",
-                    version_alias: "version_alias",
-                    source: { type: "truefoundry" },
-                    step: 1,
-                    run_id: "run_id",
-                },
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                ml_repo_id: "ml_repo_id",
-                usage_code_snippet: "usage_code_snippet",
-                tags: ["tags"],
-                artifact_id: "artifact_id",
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/artifact-versions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.artifacts.createOrUpdate({
+        
+                        
+                                const response = await client.artifacts.get("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        mlRepoId: "ml_repo_id",
+        type: "artifact",
+        name: "name",
+        fqn: "fqn",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        latestVersion: {
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             manifest: {
                 metadata: {
-                    key: "value",
+                    "key": "value"
                 },
                 type: "artifact-version",
                 source: {
-                    type: "truefoundry",
+                    type: "truefoundry"
                 },
-                step: 1,
+                step: 1
             },
-        });
-        expect(response).toEqual(rawResponseBody);
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            fqn: "fqn",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            mlRepoId: "ml_repo_id",
+            usageCodeSnippet: "usage_code_snippet",
+            tags: ["tags"],
+            artifactId: "artifact_id"
+        },
+        runSteps: [1.1]
+    }
+});
+                              
+                    
     });
+          
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/artifacts/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.artifacts.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("delete (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { };
+        
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/artifacts/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.artifacts.delete("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({});
+                              
+                    
+    });
+          
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/artifacts/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.artifacts.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "artifact_id" : "artifact_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/artifacts").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            mlRepoId: "ml_repo_id",
+            type: "artifact",
+            name: "name",
+            fqn: "fqn",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            latestVersion: {
+                id: "jqfwg345gi25n5ju2yz5iz6m",
+                fqn: "fqn",
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user"
+                },
+                mlRepoId: "ml_repo_id",
+                artifactId: "artifact_id"
+            },
+            runSteps: [1.1]
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.artifacts.list({
+    limit: 10,
+    offset: 0,
+    fqn: "fqn",
+    mlRepoId: "ml_repo_id",
+    name: "name",
+    runId: "run_id",
+    includeEmptyArtifacts: true
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
+    });
+          
+    test("create_or_update", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "metadata" : { "key" : "value" } , "type" : "artifact-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } };
+        const rawResponseBody = { "data" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "name" : "name" , "metadata" : { "key" : "value" } , "ml_repo" : "ml_repo" , "version" : 1 , "type" : "artifact-version" , "description" : "description" , "version_alias" : "version_alias" , "source" : { "type" : "truefoundry" } , "step" : 1 , "run_id" : "run_id" } , "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "tags" : [ "tags" ] , "artifact_id" : "artifact_id" } };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/artifact-versions").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.artifacts.createOrUpdate({
+    manifest: {
+        metadata: {
+            "key": "value"
+        },
+        type: "artifact-version",
+        source: {
+            type: "truefoundry"
+        },
+        step: 1
+    }
+});
+                                expect(response).toEqual({
+    data: {
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        manifest: {
+            name: "name",
+            metadata: {
+                "key": "value"
+            },
+            mlRepo: "ml_repo",
+            version: 1,
+            type: "artifact-version",
+            description: "description",
+            versionAlias: "version_alias",
+            source: {
+                type: "truefoundry"
+            },
+            step: 1,
+            runId: "run_id"
+        },
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        fqn: "fqn",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        mlRepoId: "ml_repo_id",
+        usageCodeSnippet: "usage_code_snippet",
+        tags: ["tags"],
+        artifactId: "artifact_id"
+    }
+});
+                              
+                    
+    });
+          
 });

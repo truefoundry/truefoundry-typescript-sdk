@@ -4,5 +4,5 @@ export interface CerebrasKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Cerebras authentication */
-    api_key: string;
+    apiKey: string;
 }

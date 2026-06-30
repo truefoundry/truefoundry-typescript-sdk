@@ -2,12 +2,12 @@
 
 /** Type of the authenticated subject. "user" for human users, "serviceaccount" (also known as virtual account) for programmatic access. */
 export const SubjectType = {
-    User: "user",
-    Team: "team",
-    Serviceaccount: "serviceaccount",
-    Virtualaccount: "virtualaccount",
-    ExternalIdentity: "external-identity",
-    AgentIdentity: "agent-identity",
-    Role: "role",
-} as const;
-export type SubjectType = (typeof SubjectType)[keyof typeof SubjectType];
+        User: "user",
+        Team: "team",
+        Serviceaccount: "serviceaccount",
+        Virtualaccount: "virtualaccount",
+        ExternalIdentity: "external-identity",
+        AgentIdentity: "agent-identity",
+        Role: "role"
+    } as const;
+export type SubjectType = typeof SubjectType[keyof typeof SubjectType];

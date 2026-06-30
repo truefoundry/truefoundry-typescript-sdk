@@ -2,7 +2,7 @@
 
 /** Level at which this authentication will be applied. Values: global (default), per_user */
 export const McpServerEnvAuthAuthLevel = {
-    Global: "global",
-    PerUser: "per_user",
-} as const;
-export type McpServerEnvAuthAuthLevel = (typeof McpServerEnvAuthAuthLevel)[keyof typeof McpServerEnvAuthAuthLevel];
+        Global: "global",
+        PerUser: "per_user"
+    } as const;
+export type McpServerEnvAuthAuthLevel = typeof McpServerEnvAuthAuthLevel[keyof typeof McpServerEnvAuthAuthLevel];
