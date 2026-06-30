@@ -5,14 +5,22 @@ import type * as TrueFoundry from "../index.js";
 export interface Artifact {
     /** System-generated artifact ID. */
     id: string;
+    /** Identifier of the ML Repo the artifact belongs to. */
     ml_repo_id: string;
+    /** Discriminator for the artifact type; always `artifact` for a generic artifact. */
     type: TrueFoundry.ArtifactType;
+    /** Name of the artifact. */
     name: string;
     /** Human-readable Fully Qualified Name of the artifact. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the artifact. */
     created_by_subject: TrueFoundry.Subject;
+    /** Timestamp when the artifact was created. */
     created_at?: string | undefined;
+    /** Timestamp when the artifact was last updated. */
     updated_at?: string | undefined;
+    /** Most recently created version of the artifact, if any exist. */
     latest_version?: TrueFoundry.ArtifactVersion | undefined;
+    /** Run steps associated with the artifact. */
     run_steps?: number[] | undefined;
 }

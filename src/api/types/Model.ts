@@ -3,14 +3,24 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Model {
+    /** Unique identifier of the model. */
     id: string;
+    /** Identifier of the ML Repo the model belongs to. */
     ml_repo_id: string;
+    /** Discriminator for the artifact type; always `model` for a model. */
     type: TrueFoundry.ArtifactType;
+    /** Name of the model. */
     name: string;
+    /** Fully Qualified Name uniquely identifying the model. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the model. */
     created_by_subject: TrueFoundry.Subject;
+    /** Timestamp when the model was created. */
     created_at?: string | undefined;
+    /** Timestamp when the model was last updated. */
     updated_at?: string | undefined;
+    /** Most recently created version of the model, if any exist. */
     latest_version?: TrueFoundry.ModelVersion | undefined;
+    /** Run steps associated with the model. */
     run_steps?: number[] | undefined;
 }

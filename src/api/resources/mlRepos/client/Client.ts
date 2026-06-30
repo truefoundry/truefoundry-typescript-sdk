@@ -95,14 +95,17 @@ export class MlReposClient {
      * @example
      *     await client.mlRepos.delete("id")
      */
-    public delete(id: string, requestOptions?: MlReposClient.RequestOptions): core.HttpResponsePromise<void> {
+    public delete(
+        id: string,
+        requestOptions?: MlReposClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
     }
 
     private async __delete(
         id: string,
         requestOptions?: MlReposClient.RequestOptions,
-    ): Promise<core.WithRawResponse<void>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -125,7 +128,7 @@ export class MlReposClient {
             logging: this._options.logging,
         });
         if (_response.ok) {
-            return { data: undefined, rawResponse: _response.rawResponse };
+            return { data: _response.body as TrueFoundry.EmptyResponse, rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

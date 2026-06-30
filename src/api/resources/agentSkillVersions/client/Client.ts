@@ -35,7 +35,7 @@ export class AgentSkillVersionsClient {
      *         agent_skill_id: "agent_skill_id",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         version: "latest"
+     *         version: 1
      *     })
      */
     public async list(
@@ -62,7 +62,7 @@ export class AgentSkillVersionsClient {
                     agent_skill_id: agentSkillId,
                     ml_repo_id: mlRepoId,
                     name,
-                    version: version != null ? version : undefined,
+                    version,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

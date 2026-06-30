@@ -3,13 +3,22 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface AgentSkill {
+    /** Unique identifier of the agent skill. */
     id: string;
+    /** Identifier of the ML Repo the agent skill belongs to. */
     ml_repo_id: string;
+    /** Discriminator for the artifact type; always `agent-skill` for an agent skill. */
     type: TrueFoundry.ArtifactType;
+    /** Name of the agent skill. */
     name: string;
+    /** Fully Qualified Name uniquely identifying the agent skill. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the agent skill. */
     created_by_subject: TrueFoundry.Subject;
+    /** Timestamp when the agent skill was created. */
     created_at?: string | undefined;
+    /** Timestamp when the agent skill was last updated. */
     updated_at?: string | undefined;
+    /** Most recently created version of the agent skill, if any exist. */
     latest_version?: TrueFoundry.AgentSkillVersion | undefined;
 }

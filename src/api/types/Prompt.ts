@@ -3,14 +3,24 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface Prompt {
+    /** Unique identifier of the prompt. */
     id: string;
+    /** Identifier of the ML Repo the prompt belongs to. */
     ml_repo_id: string;
+    /** Discriminator for the artifact type; always `chat_prompt` for a prompt. */
     type: TrueFoundry.ArtifactType;
+    /** Name of the prompt. */
     name: string;
+    /** Fully Qualified Name uniquely identifying the prompt. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the prompt. */
     created_by_subject: TrueFoundry.Subject;
+    /** Timestamp when the prompt was created. */
     created_at?: string | undefined;
+    /** Timestamp when the prompt was last updated. */
     updated_at?: string | undefined;
+    /** Most recently created version of the prompt, if any exist. */
     latest_version?: TrueFoundry.PromptVersion | undefined;
+    /** Run steps associated with the prompt. */
     run_steps?: number[] | undefined;
 }
