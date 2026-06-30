@@ -24,10 +24,10 @@ export class AgentSkillsClient {
     /**
      * Get an agent skill by its ID.
      *
-     * @param {string} agent_skill_id
+     * @param {string} agent_skill_id - Identifier of the agent skill.
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.agentSkills.get("agent_skill_id")
@@ -53,7 +53,7 @@ export class AgentSkillsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/agent-skills/${core.url.encodePathParam(agent_skill_id)}`,
+                `api/svc/v1/agent-skills/${core.url.encodePathParam(agent_skill_id)}`,
             ),
             method: "GET",
             headers: _headers,
@@ -70,11 +70,8 @@ export class AgentSkillsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -88,17 +85,17 @@ export class AgentSkillsClient {
             _response.error,
             _response.rawResponse,
             "GET",
-            "/api/ml/v1/agent-skills/{agent_skill_id}",
+            "/api/svc/v1/agent-skills/{agent_skill_id}",
         );
     }
 
     /**
      * Delete an agent skill by its ID.
      *
-     * @param {string} agent_skill_id
+     * @param {string} agent_skill_id - Identifier of the agent skill.
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
      *     await client.agentSkills.delete("agent_skill_id")
@@ -124,7 +121,7 @@ export class AgentSkillsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                `api/ml/v1/agent-skills/${core.url.encodePathParam(agent_skill_id)}`,
+                `api/svc/v1/agent-skills/${core.url.encodePathParam(agent_skill_id)}`,
             ),
             method: "DELETE",
             headers: _headers,
@@ -141,11 +138,8 @@ export class AgentSkillsClient {
 
         if (_response.error.reason === "status-code") {
             switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body as unknown, _response.rawResponse);
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,
@@ -159,7 +153,7 @@ export class AgentSkillsClient {
             _response.error,
             _response.rawResponse,
             "DELETE",
-            "/api/ml/v1/agent-skills/{agent_skill_id}",
+            "/api/svc/v1/agent-skills/{agent_skill_id}",
         );
     }
 
@@ -169,15 +163,13 @@ export class AgentSkillsClient {
      * @param {TrueFoundry.AgentSkillsListRequest} request
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.agentSkills.list({
+     *         limit: 10,
+     *         offset: 0,
      *         fqn: "fqn",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         offset: 1,
-     *         limit: 1,
      *         include_empty_agent_skills: true
      *     })
      */
@@ -190,19 +182,19 @@ export class AgentSkillsClient {
                 request: TrueFoundry.AgentSkillsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListAgentSkillsResponse>> => {
                 const {
+                    limit = 100,
+                    offset = 0,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset = 0,
-                    limit = 100,
                     include_empty_agent_skills: includeEmptyAgentSkills = true,
                 } = request;
                 const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
                     fqn,
                     ml_repo_id: mlRepoId,
                     name,
-                    offset,
-                    limit,
                     include_empty_agent_skills: includeEmptyAgentSkills,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -215,7 +207,7 @@ export class AgentSkillsClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/agent-skills",
+                        "api/svc/v1/agent-skills",
                     ),
                     method: "GET",
                     headers: _headers,
@@ -237,25 +229,17 @@ export class AgentSkillsClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
                 return handleNonStatusCodeError(
                     _response.error,
                     _response.rawResponse,
                     "GET",
-                    "/api/ml/v1/agent-skills",
+                    "/api/svc/v1/agent-skills",
                 );
             },
         );
@@ -278,8 +262,6 @@ export class AgentSkillsClient {
      *
      * @param {TrueFoundry.ApplyAgentSkillRequest} request
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
      *
      * @example
      *     await client.agentSkills.createOrUpdate({
@@ -318,7 +300,7 @@ export class AgentSkillsClient {
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
                     (await core.Supplier.get(this._options.environment)),
-                "api/ml/v1/agent-skill-versions",
+                "api/svc/v1/agent-skill-versions",
             ),
             method: "PUT",
             headers: _headers,
@@ -340,26 +322,18 @@ export class AgentSkillsClient {
         }
 
         if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 422:
-                    throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
-                        _response.rawResponse,
-                    );
-                default:
-                    throw new errors.TrueFoundryError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                        rawResponse: _response.rawResponse,
-                    });
-            }
+            throw new errors.TrueFoundryError({
+                statusCode: _response.error.statusCode,
+                body: _response.error.body,
+                rawResponse: _response.rawResponse,
+            });
         }
 
         return handleNonStatusCodeError(
             _response.error,
             _response.rawResponse,
             "PUT",
-            "/api/ml/v1/agent-skill-versions",
+            "/api/svc/v1/agent-skill-versions",
         );
     }
 }

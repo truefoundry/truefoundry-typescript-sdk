@@ -2,6 +2,9 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Artifact Source
+ */
 export type ArtifactManifestSource =
     | TrueFoundry.TrueFoundryManagedSource
     | TrueFoundry.ExternalBlobStorageSource

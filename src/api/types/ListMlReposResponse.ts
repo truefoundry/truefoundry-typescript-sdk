@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListMlReposResponse {
-    /** List of ML Repos matching the query */
+    /** Array of ML Repos */
     data: TrueFoundry.MlRepo[];
-    /** Pagination information including total count, offset, and limit */
+    /** Pagination Information */
     pagination: TrueFoundry.Pagination;
 }

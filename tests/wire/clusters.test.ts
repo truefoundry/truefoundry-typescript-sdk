@@ -258,7 +258,7 @@ describe("ClustersClient", () => {
                 ],
             },
         };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()

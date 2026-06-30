@@ -4,6 +4,7 @@
  * SKILL.md content stored on blob
  */
 export interface AgentSkillSourceBlobStorage {
+    /** Type */
     type: "blob-storage";
     /** 1–1024 chars. */
     description: string;

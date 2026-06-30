@@ -4,5 +4,6 @@
  * Simple JSON mode response format
  */
 export interface JsonObjectResponseFormat {
+    /** Type of response format */
     type: "json_object";
 }

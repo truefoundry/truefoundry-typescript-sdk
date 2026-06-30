@@ -24,6 +24,7 @@ import { ModelVersionsClient } from "./api/resources/modelVersions/client/Client
 import { PersonalAccessTokensClient } from "./api/resources/personalAccessTokens/client/Client.js";
 import { PromptsClient } from "./api/resources/prompts/client/Client.js";
 import { PromptVersionsClient } from "./api/resources/promptVersions/client/Client.js";
+import { RunsClient } from "./api/resources/runs/client/Client.js";
 import { SecretGroupsClient } from "./api/resources/secretGroups/client/Client.js";
 import { SecretsClient } from "./api/resources/secrets/client/Client.js";
 import { TeamsClient } from "./api/resources/teams/client/Client.js";
@@ -62,20 +63,21 @@ export class TrueFoundryClient {
     protected _secretGroups: SecretGroupsClient | undefined;
     protected _events: EventsClient | undefined;
     protected _alerts: AlertsClient | undefined;
-    protected _mlRepos: MlReposClient | undefined;
-    protected _logs: LogsClient | undefined;
-    protected _traces: TracesClient | undefined;
-    protected _artifacts: ArtifactsClient | undefined;
-    protected _prompts: PromptsClient | undefined;
-    protected _models: ModelsClient | undefined;
-    protected _artifactVersions: ArtifactVersionsClient | undefined;
-    protected _modelVersions: ModelVersionsClient | undefined;
-    protected _promptVersions: PromptVersionsClient | undefined;
-    protected _agentSkills: AgentSkillsClient | undefined;
-    protected _agentSkillVersions: AgentSkillVersionsClient | undefined;
-    protected _dataDirectories: DataDirectoriesClient | undefined;
     protected _agents: AgentsClient | undefined;
     protected _agentVersions: AgentVersionsClient | undefined;
+    protected _prompts: PromptsClient | undefined;
+    protected _promptVersions: PromptVersionsClient | undefined;
+    protected _artifacts: ArtifactsClient | undefined;
+    protected _artifactVersions: ArtifactVersionsClient | undefined;
+    protected _mlRepos: MlReposClient | undefined;
+    protected _dataDirectories: DataDirectoriesClient | undefined;
+    protected _runs: RunsClient | undefined;
+    protected _models: ModelsClient | undefined;
+    protected _modelVersions: ModelVersionsClient | undefined;
+    protected _logs: LogsClient | undefined;
+    protected _agentSkills: AgentSkillsClient | undefined;
+    protected _agentSkillVersions: AgentSkillVersionsClient | undefined;
+    protected _traces: TracesClient | undefined;
 
     constructor(options: TrueFoundryClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
@@ -145,40 +147,52 @@ export class TrueFoundryClient {
         return (this._alerts ??= new AlertsClient(this._options));
     }
 
-    public get mlRepos(): MlReposClient {
-        return (this._mlRepos ??= new MlReposClient(this._options));
+    public get agents(): AgentsClient {
+        return (this._agents ??= new AgentsClient(this._options));
     }
 
-    public get logs(): LogsClient {
-        return (this._logs ??= new LogsClient(this._options));
-    }
-
-    public get traces(): TracesClient {
-        return (this._traces ??= new TracesClient(this._options));
-    }
-
-    public get artifacts(): ArtifactsClient {
-        return (this._artifacts ??= new ArtifactsClient(this._options));
+    public get agentVersions(): AgentVersionsClient {
+        return (this._agentVersions ??= new AgentVersionsClient(this._options));
     }
 
     public get prompts(): PromptsClient {
         return (this._prompts ??= new PromptsClient(this._options));
     }
 
-    public get models(): ModelsClient {
-        return (this._models ??= new ModelsClient(this._options));
+    public get promptVersions(): PromptVersionsClient {
+        return (this._promptVersions ??= new PromptVersionsClient(this._options));
+    }
+
+    public get artifacts(): ArtifactsClient {
+        return (this._artifacts ??= new ArtifactsClient(this._options));
     }
 
     public get artifactVersions(): ArtifactVersionsClient {
         return (this._artifactVersions ??= new ArtifactVersionsClient(this._options));
     }
 
+    public get mlRepos(): MlReposClient {
+        return (this._mlRepos ??= new MlReposClient(this._options));
+    }
+
+    public get dataDirectories(): DataDirectoriesClient {
+        return (this._dataDirectories ??= new DataDirectoriesClient(this._options));
+    }
+
+    public get runs(): RunsClient {
+        return (this._runs ??= new RunsClient(this._options));
+    }
+
+    public get models(): ModelsClient {
+        return (this._models ??= new ModelsClient(this._options));
+    }
+
     public get modelVersions(): ModelVersionsClient {
         return (this._modelVersions ??= new ModelVersionsClient(this._options));
     }
 
-    public get promptVersions(): PromptVersionsClient {
-        return (this._promptVersions ??= new PromptVersionsClient(this._options));
+    public get logs(): LogsClient {
+        return (this._logs ??= new LogsClient(this._options));
     }
 
     public get agentSkills(): AgentSkillsClient {
@@ -189,16 +203,8 @@ export class TrueFoundryClient {
         return (this._agentSkillVersions ??= new AgentSkillVersionsClient(this._options));
     }
 
-    public get dataDirectories(): DataDirectoriesClient {
-        return (this._dataDirectories ??= new DataDirectoriesClient(this._options));
-    }
-
-    public get agents(): AgentsClient {
-        return (this._agents ??= new AgentsClient(this._options));
-    }
-
-    public get agentVersions(): AgentVersionsClient {
-        return (this._agentVersions ??= new AgentVersionsClient(this._options));
+    public get traces(): TracesClient {
+        return (this._traces ??= new TracesClient(this._options));
     }
 
     /**

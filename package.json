@@ -198,49 +198,27 @@
             },
             "default": "./dist/cjs/api/resources/alerts/exports.js"
         },
-        "./mlRepos": {
+        "./agents": {
             "import": {
-                "types": "./dist/esm/api/resources/mlRepos/exports.d.mts",
-                "default": "./dist/esm/api/resources/mlRepos/exports.mjs"
+                "types": "./dist/esm/api/resources/agents/exports.d.mts",
+                "default": "./dist/esm/api/resources/agents/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/mlRepos/exports.d.ts",
-                "default": "./dist/cjs/api/resources/mlRepos/exports.js"
+                "types": "./dist/cjs/api/resources/agents/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agents/exports.js"
             },
-            "default": "./dist/cjs/api/resources/mlRepos/exports.js"
+            "default": "./dist/cjs/api/resources/agents/exports.js"
         },
-        "./logs": {
+        "./agentVersions": {
             "import": {
-                "types": "./dist/esm/api/resources/logs/exports.d.mts",
-                "default": "./dist/esm/api/resources/logs/exports.mjs"
+                "types": "./dist/esm/api/resources/agentVersions/exports.d.mts",
+                "default": "./dist/esm/api/resources/agentVersions/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/logs/exports.d.ts",
-                "default": "./dist/cjs/api/resources/logs/exports.js"
+                "types": "./dist/cjs/api/resources/agentVersions/exports.d.ts",
+                "default": "./dist/cjs/api/resources/agentVersions/exports.js"
             },
-            "default": "./dist/cjs/api/resources/logs/exports.js"
-        },
-        "./traces": {
-            "import": {
-                "types": "./dist/esm/api/resources/traces/exports.d.mts",
-                "default": "./dist/esm/api/resources/traces/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/traces/exports.d.ts",
-                "default": "./dist/cjs/api/resources/traces/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/traces/exports.js"
-        },
-        "./artifacts": {
-            "import": {
-                "types": "./dist/esm/api/resources/artifacts/exports.d.mts",
-                "default": "./dist/esm/api/resources/artifacts/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/artifacts/exports.d.ts",
-                "default": "./dist/cjs/api/resources/artifacts/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/artifacts/exports.js"
+            "default": "./dist/cjs/api/resources/agentVersions/exports.js"
         },
         "./prompts": {
             "import": {
@@ -253,16 +231,27 @@
             },
             "default": "./dist/cjs/api/resources/prompts/exports.js"
         },
-        "./models": {
+        "./promptVersions": {
             "import": {
-                "types": "./dist/esm/api/resources/models/exports.d.mts",
-                "default": "./dist/esm/api/resources/models/exports.mjs"
+                "types": "./dist/esm/api/resources/promptVersions/exports.d.mts",
+                "default": "./dist/esm/api/resources/promptVersions/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/models/exports.d.ts",
-                "default": "./dist/cjs/api/resources/models/exports.js"
+                "types": "./dist/cjs/api/resources/promptVersions/exports.d.ts",
+                "default": "./dist/cjs/api/resources/promptVersions/exports.js"
             },
-            "default": "./dist/cjs/api/resources/models/exports.js"
+            "default": "./dist/cjs/api/resources/promptVersions/exports.js"
+        },
+        "./artifacts": {
+            "import": {
+                "types": "./dist/esm/api/resources/artifacts/exports.d.mts",
+                "default": "./dist/esm/api/resources/artifacts/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/artifacts/exports.d.ts",
+                "default": "./dist/cjs/api/resources/artifacts/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/artifacts/exports.js"
         },
         "./artifactVersions": {
             "import": {
@@ -275,6 +264,50 @@
             },
             "default": "./dist/cjs/api/resources/artifactVersions/exports.js"
         },
+        "./mlRepos": {
+            "import": {
+                "types": "./dist/esm/api/resources/mlRepos/exports.d.mts",
+                "default": "./dist/esm/api/resources/mlRepos/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/mlRepos/exports.d.ts",
+                "default": "./dist/cjs/api/resources/mlRepos/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/mlRepos/exports.js"
+        },
+        "./dataDirectories": {
+            "import": {
+                "types": "./dist/esm/api/resources/dataDirectories/exports.d.mts",
+                "default": "./dist/esm/api/resources/dataDirectories/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/dataDirectories/exports.d.ts",
+                "default": "./dist/cjs/api/resources/dataDirectories/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/dataDirectories/exports.js"
+        },
+        "./runs": {
+            "import": {
+                "types": "./dist/esm/api/resources/runs/exports.d.mts",
+                "default": "./dist/esm/api/resources/runs/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/runs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/runs/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/runs/exports.js"
+        },
+        "./models": {
+            "import": {
+                "types": "./dist/esm/api/resources/models/exports.d.mts",
+                "default": "./dist/esm/api/resources/models/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/models/exports.d.ts",
+                "default": "./dist/cjs/api/resources/models/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/models/exports.js"
+        },
         "./modelVersions": {
             "import": {
                 "types": "./dist/esm/api/resources/modelVersions/exports.d.mts",
@@ -286,16 +319,16 @@
             },
             "default": "./dist/cjs/api/resources/modelVersions/exports.js"
         },
-        "./promptVersions": {
+        "./logs": {
             "import": {
-                "types": "./dist/esm/api/resources/promptVersions/exports.d.mts",
-                "default": "./dist/esm/api/resources/promptVersions/exports.mjs"
+                "types": "./dist/esm/api/resources/logs/exports.d.mts",
+                "default": "./dist/esm/api/resources/logs/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/promptVersions/exports.d.ts",
-                "default": "./dist/cjs/api/resources/promptVersions/exports.js"
+                "types": "./dist/cjs/api/resources/logs/exports.d.ts",
+                "default": "./dist/cjs/api/resources/logs/exports.js"
             },
-            "default": "./dist/cjs/api/resources/promptVersions/exports.js"
+            "default": "./dist/cjs/api/resources/logs/exports.js"
         },
         "./agentSkills": {
             "import": {
@@ -319,38 +352,16 @@
             },
             "default": "./dist/cjs/api/resources/agentSkillVersions/exports.js"
         },
-        "./dataDirectories": {
+        "./traces": {
             "import": {
-                "types": "./dist/esm/api/resources/dataDirectories/exports.d.mts",
-                "default": "./dist/esm/api/resources/dataDirectories/exports.mjs"
+                "types": "./dist/esm/api/resources/traces/exports.d.mts",
+                "default": "./dist/esm/api/resources/traces/exports.mjs"
             },
             "require": {
-                "types": "./dist/cjs/api/resources/dataDirectories/exports.d.ts",
-                "default": "./dist/cjs/api/resources/dataDirectories/exports.js"
+                "types": "./dist/cjs/api/resources/traces/exports.d.ts",
+                "default": "./dist/cjs/api/resources/traces/exports.js"
             },
-            "default": "./dist/cjs/api/resources/dataDirectories/exports.js"
-        },
-        "./agents": {
-            "import": {
-                "types": "./dist/esm/api/resources/agents/exports.d.mts",
-                "default": "./dist/esm/api/resources/agents/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/agents/exports.d.ts",
-                "default": "./dist/cjs/api/resources/agents/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/agents/exports.js"
-        },
-        "./agentVersions": {
-            "import": {
-                "types": "./dist/esm/api/resources/agentVersions/exports.d.mts",
-                "default": "./dist/esm/api/resources/agentVersions/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/agentVersions/exports.d.ts",
-                "default": "./dist/cjs/api/resources/agentVersions/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/agentVersions/exports.js"
+            "default": "./dist/cjs/api/resources/traces/exports.js"
         },
         "./internal/clusters": {
             "import": {
@@ -407,6 +418,17 @@
             },
             "default": "./dist/cjs/api/resources/internal/resources/vcs/exports.js"
         },
+        "./internal/artifactVersions": {
+            "import": {
+                "types": "./dist/esm/api/resources/internal/resources/artifactVersions/exports.d.mts",
+                "default": "./dist/esm/api/resources/internal/resources/artifactVersions/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/internal/resources/artifactVersions/exports.d.ts",
+                "default": "./dist/cjs/api/resources/internal/resources/artifactVersions/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/internal/resources/artifactVersions/exports.js"
+        },
         "./internal/dockerRegistries": {
             "import": {
                 "types": "./dist/esm/api/resources/internal/resources/dockerRegistries/exports.d.mts",
@@ -439,28 +461,6 @@
                 "default": "./dist/cjs/api/resources/internal/resources/buildLogs/exports.js"
             },
             "default": "./dist/cjs/api/resources/internal/resources/buildLogs/exports.js"
-        },
-        "./internal/artifactVersions": {
-            "import": {
-                "types": "./dist/esm/api/resources/internal/resources/artifactVersions/exports.d.mts",
-                "default": "./dist/esm/api/resources/internal/resources/artifactVersions/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/internal/resources/artifactVersions/exports.d.ts",
-                "default": "./dist/cjs/api/resources/internal/resources/artifactVersions/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/internal/resources/artifactVersions/exports.js"
-        },
-        "./internal/ml": {
-            "import": {
-                "types": "./dist/esm/api/resources/internal/resources/ml/exports.d.mts",
-                "default": "./dist/esm/api/resources/internal/resources/ml/exports.mjs"
-            },
-            "require": {
-                "types": "./dist/cjs/api/resources/internal/resources/ml/exports.d.ts",
-                "default": "./dist/cjs/api/resources/internal/resources/ml/exports.js"
-            },
-            "default": "./dist/cjs/api/resources/internal/resources/ml/exports.js"
         },
         "./package.json": "./package.json"
     },

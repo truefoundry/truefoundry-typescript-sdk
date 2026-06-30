@@ -194,7 +194,7 @@ describe("WorkspacesClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = { key: "value" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
             .mockEndpoint()

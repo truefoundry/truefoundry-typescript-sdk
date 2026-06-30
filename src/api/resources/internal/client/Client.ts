@@ -14,7 +14,6 @@ import { ClustersClient } from "../resources/clusters/client/Client.js";
 import { DeploymentsClient } from "../resources/deployments/client/Client.js";
 import { DockerRegistriesClient } from "../resources/dockerRegistries/client/Client.js";
 import { MetricsClient } from "../resources/metrics/client/Client.js";
-import { MlClient } from "../resources/ml/client/Client.js";
 import { VcsClient } from "../resources/vcs/client/Client.js";
 import { WorkflowsClient } from "../resources/workflows/client/Client.js";
 
@@ -31,11 +30,10 @@ export class InternalClient {
     protected _applications: ApplicationsClient | undefined;
     protected _metrics: MetricsClient | undefined;
     protected _vcs: VcsClient | undefined;
+    protected _artifactVersions: ArtifactVersionsClient | undefined;
     protected _dockerRegistries: DockerRegistriesClient | undefined;
     protected _workflows: WorkflowsClient | undefined;
     protected _buildLogs: BuildLogsClient | undefined;
-    protected _artifactVersions: ArtifactVersionsClient | undefined;
-    protected _ml: MlClient | undefined;
 
     constructor(options: InternalClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
@@ -61,6 +59,10 @@ export class InternalClient {
         return (this._vcs ??= new VcsClient(this._options));
     }
 
+    public get artifactVersions(): ArtifactVersionsClient {
+        return (this._artifactVersions ??= new ArtifactVersionsClient(this._options));
+    }
+
     public get dockerRegistries(): DockerRegistriesClient {
         return (this._dockerRegistries ??= new DockerRegistriesClient(this._options));
     }
@@ -71,14 +73,6 @@ export class InternalClient {
 
     public get buildLogs(): BuildLogsClient {
         return (this._buildLogs ??= new BuildLogsClient(this._options));
-    }
-
-    public get artifactVersions(): ArtifactVersionsClient {
-        return (this._artifactVersions ??= new ArtifactVersionsClient(this._options));
-    }
-
-    public get ml(): MlClient {
-        return (this._ml ??= new MlClient(this._options));
     }
 
     /**

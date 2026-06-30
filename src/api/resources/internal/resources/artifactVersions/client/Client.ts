@@ -6,7 +6,7 @@ import { mergeHeaders } from "../../../../../../core/headers.js";
 import * as core from "../../../../../../core/index.js";
 import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
-import * as TrueFoundry from "../../../../../index.js";
+import type * as TrueFoundry from "../../../../../index.js";
 
 export declare namespace ArtifactVersionsClient {
     export type Options = BaseClientOptions;
@@ -27,20 +27,18 @@ export class ArtifactVersionsClient {
      * @param {TrueFoundry.internal.ArtifactVersionsListRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
-     * @throws {@link TrueFoundry.UnprocessableEntityError}
-     *
      * @example
      *     await client.internal.artifactVersions.list({
+     *         limit: 10,
+     *         offset: 0,
      *         tag: "tag",
      *         fqn: "fqn",
      *         artifact_id: "artifact_id",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         version: 1,
+     *         version: "latest",
      *         run_ids: ["run_ids"],
-     *         run_steps: [1],
-     *         offset: 1,
-     *         limit: 1,
+     *         run_steps: [1.1],
      *         include_internal_metadata: true,
      *         include_model_versions: true,
      *         artifact_types: ["artifact"]
@@ -60,6 +58,8 @@ export class ArtifactVersionsClient {
                 request: TrueFoundry.internal.ArtifactVersionsListRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionsResponse>> => {
                 const {
+                    limit = 100,
+                    offset = 0,
                     tag,
                     fqn,
                     artifact_id: artifactId,
@@ -68,23 +68,21 @@ export class ArtifactVersionsClient {
                     version,
                     run_ids: runIds,
                     run_steps: runSteps,
-                    offset = 0,
-                    limit = 100,
                     include_internal_metadata: includeInternalMetadata = false,
                     include_model_versions: includeModelVersions = false,
                     artifact_types: artifactTypes,
                 } = request;
                 const _queryParams: Record<string, unknown> = {
+                    limit,
+                    offset,
                     tag,
                     fqn,
                     artifact_id: artifactId,
                     ml_repo_id: mlRepoId,
                     name,
-                    version,
+                    version: version != null ? version : undefined,
                     run_ids: runIds,
                     run_steps: runSteps,
-                    offset,
-                    limit,
                     include_internal_metadata: includeInternalMetadata,
                     include_model_versions: includeModelVersions,
                     artifact_types: Array.isArray(artifactTypes)
@@ -103,7 +101,7 @@ export class ArtifactVersionsClient {
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
                             (await core.Supplier.get(this._options.environment)),
-                        "api/ml/v1/x/artifact-versions",
+                        "api/svc/v1/x/artifact-versions",
                     ),
                     method: "GET",
                     headers: _headers,
@@ -125,25 +123,17 @@ export class ArtifactVersionsClient {
                     };
                 }
                 if (_response.error.reason === "status-code") {
-                    switch (_response.error.statusCode) {
-                        case 422:
-                            throw new TrueFoundry.UnprocessableEntityError(
-                                _response.error.body as unknown,
-                                _response.rawResponse,
-                            );
-                        default:
-                            throw new errors.TrueFoundryError({
-                                statusCode: _response.error.statusCode,
-                                body: _response.error.body,
-                                rawResponse: _response.rawResponse,
-                            });
-                    }
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
                 }
                 return handleNonStatusCodeError(
                     _response.error,
                     _response.rawResponse,
                     "GET",
-                    "/api/ml/v1/x/artifact-versions",
+                    "/api/svc/v1/x/artifact-versions",
                 );
             },
         );

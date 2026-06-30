@@ -3,25 +3,25 @@
 /**
  * @example
  *     {
+ *         limit: 10,
+ *         offset: 0,
  *         fqn: "fqn",
  *         ml_repo_id: "ml_repo_id",
  *         name: "name",
- *         offset: 1,
- *         limit: 1,
  *         include_empty_prompts: true
  *     }
  */
 export interface PromptsListRequest {
-    /** Fully qualified name to filter prompts by (format: 'chat_prompt:{tenant_name}/{ml_repo_name}/{prompt_name}') */
-    fqn?: string;
-    /** ID of the ML Repo to filter prompts by */
-    ml_repo_id?: string;
-    /** Name of the prompt to filter by */
-    name?: string;
-    /** Number of prompts to skip for pagination */
-    offset?: number;
-    /** Maximum number of prompts to return */
+    /** Number of items per page */
     limit?: number;
-    /** Whether to include prompts that have no versions */
+    /** Number of items to skip */
+    offset?: number;
+    /** Filter prompts by Fully Qualified Name. */
+    fqn?: string;
+    /** Filter prompts by the identifier of the ML Repo they belong to. */
+    ml_repo_id?: string;
+    /** Filter prompts by name. */
+    name?: string;
+    /** Whether to include prompts that have no versions in the results. */
     include_empty_prompts?: boolean;
 }

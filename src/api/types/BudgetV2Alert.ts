@@ -11,5 +11,5 @@ export interface BudgetV2Alert {
     /** Whom to notify when an alert fires. `shared` sends to the configured notification targets only. `breaching-user` additionally notifies the user whose usage caused the breach. */
     send_to: TrueFoundry.BudgetV2AlertSendTo;
     /** Select where to send budget alert notifications */
-    notification_target: TrueFoundry.NotificationTarget[];
+    notification_target?: TrueFoundry.NotificationTarget[] | undefined;
 }

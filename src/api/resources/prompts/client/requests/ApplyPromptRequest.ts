@@ -6,11 +6,9 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
- *             name: "name",
  *             metadata: {
  *                 "key": "value"
  *             },
- *             ml_repo: "ml_repo",
  *             type: "chat_prompt",
  *             messages: [{
  *                     role: "system",
@@ -20,6 +18,6 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface ApplyPromptRequest {
-    /** Manifest containing metadata for the prompt to apply */
+    /** Manifest containing metadata for the prompt version to apply */
     manifest: TrueFoundry.ChatPromptManifest;
 }

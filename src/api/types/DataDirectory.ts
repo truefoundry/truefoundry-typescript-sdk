@@ -11,13 +11,13 @@ export interface DataDirectory {
     name: string;
     /** Fully qualified name of the data directory */
     fqn: string;
-    /** Subject (user, team, or service account) that created this data directory */
+    /** Subject that created this data directory */
     created_by_subject: TrueFoundry.Subject;
     /** Timestamp when the data directory was created */
     created_at: string;
     /** Timestamp when the data directory was last updated */
     updated_at: string;
-    /** Manifest containing metadata for the data directory */
+    /** Manifest describing the data directory. */
     manifest: TrueFoundry.DataDirectoryManifest;
     /** Code snippet demonstrating how to use this data directory */
     usage_code_snippet?: string | undefined;

@@ -190,7 +190,7 @@ export class ClustersClient {
                     );
                 case 422:
                     throw new TrueFoundry.UnprocessableEntityError(
-                        _response.error.body as unknown,
+                        _response.error.body as TrueFoundry.HttpError,
                         _response.rawResponse,
                     );
                 default:

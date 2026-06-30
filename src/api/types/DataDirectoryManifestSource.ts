@@ -2,4 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Data Directory Source
+ */
 export type DataDirectoryManifestSource = TrueFoundry.TrueFoundryManagedSource | TrueFoundry.ExternalBlobStorageSource;

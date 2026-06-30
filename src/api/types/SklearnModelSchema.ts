@@ -2,9 +2,12 @@
 
 import type * as TrueFoundry from "../index.js";
 
+/**
+ * Scikit Learn Model Schema
+ */
 export interface SklearnModelSchema {
     /** Name of the method used for inference */
-    infer_method_name: TrueFoundry.InferMethodName;
+    infer_method_name: TrueFoundry.SklearnModelSchemaInferMethodName;
     /** Schema of the input */
     inputs: Record<string, unknown>[];
     /** Schema of the output */

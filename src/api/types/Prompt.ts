@@ -2,28 +2,15 @@
 
 import type * as TrueFoundry from "../index.js";
 
-/**
- * Generic artifact API DTO including run-step linkage for ML runs.
- */
 export interface Prompt {
-    /** Unique identifier for the artifact */
     id: string;
-    /** ID of the ML Repo that this artifact belongs to */
     ml_repo_id: string;
-    /** Type of the artifact, always 'chat_prompt' for Prompt entities */
-    type?: "chat_prompt" | undefined;
-    /** Name of the artifact (alphanumeric characters, hyphens, and underscores only, max 256 characters) */
+    type: TrueFoundry.ArtifactType;
     name: string;
-    /** Fully qualified name of the artifact in the format '{artifact_type}:{tenant_name}/{ml_repo_name}/{artifact_name}' */
     fqn: string;
-    /** Subject (user, team, or service account) that created this artifact */
     created_by_subject: TrueFoundry.Subject;
-    /** Timestamp when the artifact was created */
     created_at?: string | undefined;
-    /** Timestamp when the artifact was last updated */
     updated_at?: string | undefined;
-    /** The most recent version of this prompt */
     latest_version?: TrueFoundry.PromptVersion | undefined;
-    /** List of run step numbers where this artifact was created or updated */
     run_steps?: number[] | undefined;
 }

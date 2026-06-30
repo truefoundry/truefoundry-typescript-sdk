@@ -3,10 +3,10 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetSignedUrLsRequest {
-    /** ID of the artifact version to get signed URLs for */
+    /** Identifier of the artifact version to generate signed URLs for. */
     id: string;
-    /** List of relative file paths within the artifact version to get signed URLs for */
+    /** Paths of the files to generate signed URLs for. */
     paths: string[];
-    /** Operation type for the signed URL (e.g., 'READ' or 'WRITE') */
-    operation: TrueFoundry.Operation;
+    /** Operation the signed URLs should permit (READ or WRITE). */
+    operation: TrueFoundry.GetSignedUrLsRequestOperation;
 }
