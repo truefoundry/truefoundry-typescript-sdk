@@ -2,7 +2,6 @@ export * from "./agentSkills/client/requests/index.js";
 export * as agentSkills from "./agentSkills/index.js";
 export * from "./agentSkillVersions/client/requests/index.js";
 export * as agentSkillVersions from "./agentSkillVersions/index.js";
-export * from "./agentSkillVersions/types/index.js";
 export * from "./agents/client/requests/index.js";
 export * as agents from "./agents/index.js";
 export * from "./agents/types/index.js";
