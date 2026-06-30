@@ -28,6 +28,6 @@ export interface PromptVersionsListRequest {
     ml_repo_id?: string;
     /** Filter prompt versions by name. */
     name?: string;
-    /** Version number (positive integer) or `latest` */
+    /** Version number (positive integer) to filter by. */
     version?: number;
 }

@@ -35,7 +35,7 @@ export interface ArtifactVersionsListRequest {
     ml_repo_id?: string;
     /** Name of the artifact version. */
     name?: string;
-    /** Version number of the artifact version, or "latest" to fetch the most recent one. */
+    /** Version number (positive integer) to filter by. */
     version?: number;
     /** Run IDs to filter artifact versions by. */
     run_ids?: string | string[];

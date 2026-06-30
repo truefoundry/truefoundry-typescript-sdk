@@ -31,7 +31,7 @@ export interface ModelVersionsListRequest {
     ml_repo_id?: string;
     /** Filter model versions by name. */
     name?: string;
-    /** Version number (positive integer) or `latest` */
+    /** Version number (positive integer) to filter by. */
     version?: number;
     /** Filter model versions by associated run identifiers. */
     run_ids?: string | string[];
