@@ -74,10 +74,18 @@ describe("MlReposClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        server.mockEndpoint().delete("/api/svc/v1/ml-repos/id").respondWith().statusCode(200).build();
+        const rawResponseBody = {};
+
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/ml-repos/id")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
         const response = await client.mlRepos.delete("id");
-        expect(response).toEqual(undefined);
+        expect(response).toEqual(rawResponseBody);
     });
 
     test("delete (2)", async () => {

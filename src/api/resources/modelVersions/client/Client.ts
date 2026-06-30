@@ -36,7 +36,7 @@ export class ModelVersionsClient {
      *         model_id: "model_id",
      *         ml_repo_id: "ml_repo_id",
      *         name: "name",
-     *         version: "latest",
+     *         version: 1,
      *         run_ids: ["run_ids"],
      *         run_steps: [1.1],
      *         include_internal_metadata: true
@@ -71,7 +71,7 @@ export class ModelVersionsClient {
                     model_id: modelId,
                     ml_repo_id: mlRepoId,
                     name,
-                    version: version != null ? version : undefined,
+                    version,
                     run_ids: runIds,
                     run_steps: runSteps,
                     include_internal_metadata: includeInternalMetadata,
