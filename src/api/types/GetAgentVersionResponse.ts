@@ -2,7 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export interface GetAgentResponseDto {
-    /** Agent */
-    data: TrueFoundry.Agent;
+export interface GetAgentVersionResponse {
+    /** Agent Version */
+    data: TrueFoundry.AgentVersion;
 }

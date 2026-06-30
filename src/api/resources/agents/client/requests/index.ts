@@ -1,2 +1,2 @@
 export type { AgentsListRequest } from "./AgentsListRequest.js";
-export type { CreateOrUpdateAgentDto } from "./CreateOrUpdateAgentDto.js";
+export type { CreateOrUpdateAgentRequest } from "./CreateOrUpdateAgentRequest.js";

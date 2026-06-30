@@ -5371,7 +5371,7 @@ await client.alerts.list({
 </details>
 
 ## Agents
-<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Agent, TrueFoundry.ListAgentResponse&gt;</code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Agent, TrueFoundry.ListAgentsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5460,7 +5460,7 @@ const response = page.response;
 </dl>
 </details>
 
-<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetAgentVersionResponseDto</code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">createOrUpdate</a>({ ...params }) -> TrueFoundry.GetAgentVersionResponse</code></summary>
 <dl>
 <dd>
 
@@ -5516,7 +5516,7 @@ await client.agents.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CreateOrUpdateAgentDto` 
+**request:** `TrueFoundry.CreateOrUpdateAgentRequest` 
     
 </dd>
 </dl>
@@ -5536,7 +5536,7 @@ await client.agents.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentResponseDto</code></summary>
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">get</a>(id) -> TrueFoundry.GetAgentResponse</code></summary>
 <dl>
 <dd>
 

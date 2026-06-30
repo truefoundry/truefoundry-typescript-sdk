@@ -19,7 +19,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         }
  *     }
  */
-export interface CreateOrUpdateAgentDto {
+export interface CreateOrUpdateAgentRequest {
     /** Agent Manifest */
     manifest: TrueFoundry.AgentManifest;
     /** Validate the manifest and collaborators without persisting or syncing to the gateway store */

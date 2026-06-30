@@ -11,6 +11,7 @@ export interface AgentVersion {
     /** Agent Manifest */
     manifest: TrueFoundry.AgentManifest;
     version: number;
-    metadata?: Record<string, unknown> | undefined;
+    /** Optional metadata attached to the agent version. */
+    metadata?: TrueFoundry.AgentVersionMetadata | undefined;
     createdBySubject?: TrueFoundry.Subject | undefined;
 }
