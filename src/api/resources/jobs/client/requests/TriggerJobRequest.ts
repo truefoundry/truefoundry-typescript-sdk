@@ -12,7 +12,7 @@ export interface TriggerJobRequest {
     /** Application Id of the job */
     applicationId?: string;
     /** Job trigger input */
-    input?: TrueFoundry.JobTriggerInput;
+    input?: TrueFoundry.TriggerJobRequestInput;
     /** Metadata for the job run including job_alias_name */
     metadata?: TrueFoundry.Metadata;
 }

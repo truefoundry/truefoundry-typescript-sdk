@@ -951,6 +951,7 @@ export * from "./SparkJobPythonEntrypoint.js";
 export * from "./SparkJobPythonNotebookEntrypoint.js";
 export * from "./SparkJobScalaEntrypoint.js";
 export * from "./SparkJobScalaNotebookEntrypoint.js";
+export * from "./SparkJobTriggerInput.js";
 export * from "./SqlSanitizerGuardrailConfig.js";
 export * from "./SqlSanitizerGuardrailConfigConfig.js";
 export * from "./SqlSanitizerGuardrailConfigOperation.js";
