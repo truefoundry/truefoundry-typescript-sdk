@@ -8,7 +8,7 @@ export interface TaskPySparkBuild {
      * +uiType=Hidden
      * +value=task-pyspark-build
      */
-    type?: "task-pyspark-build" | undefined;
+    type: "task-pyspark-build";
     /** Spark version should match the spark version installed in the image. */
     spark_version: string;
     /**

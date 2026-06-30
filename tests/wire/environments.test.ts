@@ -19,7 +19,7 @@ describe("EnvironmentsClient", () => {
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     isProduction: true,
                     optimizeFor: "COST",
-                    manifest: { name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
+                    manifest: { type: "environment", name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
                     createdBy: "createdBy",
                 },
             ],
@@ -49,7 +49,9 @@ describe("EnvironmentsClient", () => {
     test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { name: "name", color: {}, isProduction: true, optimizeFor: "COST" } };
+        const rawRequestBody = {
+            manifest: { type: "environment", name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
+        };
         const rawResponseBody = {
             data: {
                 id: "id",
@@ -88,6 +90,7 @@ describe("EnvironmentsClient", () => {
 
         const response = await client.environments.createOrUpdate({
             manifest: {
+                type: "environment",
                 name: "name",
                 color: {},
                 isProduction: true,
@@ -100,7 +103,9 @@ describe("EnvironmentsClient", () => {
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { name: "name", color: {}, isProduction: true, optimizeFor: "COST" } };
+        const rawRequestBody = {
+            manifest: { type: "environment", name: "name", color: {}, isProduction: true, optimizeFor: "COST" },
+        };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -115,6 +120,7 @@ describe("EnvironmentsClient", () => {
         await expect(async () => {
             return await client.environments.createOrUpdate({
                 manifest: {
+                    type: "environment",
                     name: "name",
                     color: {},
                     isProduction: true,

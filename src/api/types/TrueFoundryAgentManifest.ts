@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface TrueFoundryAgentManifest {
     /** Type of the manifest */
-    type?: "truefoundry-agent" | undefined;
+    type: "truefoundry-agent";
     /** The name of the Agent */
     name: string;
     /** The description of the Agent */

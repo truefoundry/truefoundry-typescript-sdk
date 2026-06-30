@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SqsInputConfig {
     /** +value=sqs */
-    type?: "sqs" | undefined;
+    type: "sqs";
     /** AWS SQS Queue URL of Subscriber */
     queue_url: string;
     /** AWS Region Name */

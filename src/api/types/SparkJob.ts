@@ -7,7 +7,7 @@ export interface SparkJob {
      * +value=spark-job
      * +sort=1
      */
-    type?: "spark-job" | undefined;
+    type: "spark-job";
     /** Name of the job */
     name: string;
     /** The image to use for driver and executors. Must have spark installed. Spark version must match the version in the image. */

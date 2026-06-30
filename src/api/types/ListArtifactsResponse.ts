@@ -3,6 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListArtifactsResponse {
+    /** List of artifacts matching the query. */
     data: TrueFoundry.Artifact[];
+    /** Pagination information for the response. */
     pagination: TrueFoundry.Pagination;
 }

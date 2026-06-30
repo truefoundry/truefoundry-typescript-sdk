@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface InlineSpecSource {
     /** +value=inline */
-    type?: "inline" | undefined;
+    type: "inline";
     /** The OpenAPI specification as a JSON object or a JSON/YAML string. */
     openapi_spec: TrueFoundry.InlineSpecSourceOpenapiSpec;
 }

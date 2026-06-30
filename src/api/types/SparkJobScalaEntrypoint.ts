@@ -5,7 +5,7 @@
  */
 export interface SparkJobScalaEntrypoint {
     /** +value=scala */
-    type?: "scala" | undefined;
+    type: "scala";
     /** The main application file to be executed by the spark job. */
     main_application_file: string;
     /** The main class to be executed by the spark job. */

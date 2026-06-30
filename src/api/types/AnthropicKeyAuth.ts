@@ -5,7 +5,7 @@
  */
 export interface AnthropicKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** The API key for Anthropic authentication */
     api_key: string;
 }

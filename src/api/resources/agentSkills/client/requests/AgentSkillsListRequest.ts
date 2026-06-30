@@ -16,8 +16,12 @@ export interface AgentSkillsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Fully Qualified Name uniquely identifying the agent skill. */
     fqn?: string;
+    /** Identifier of the ML Repo to filter agent skills by. */
     ml_repo_id?: string;
+    /** Name of the agent skill to filter by. */
     name?: string;
+    /** Whether to include agent skills that have no versions. */
     include_empty_agent_skills?: boolean;
 }

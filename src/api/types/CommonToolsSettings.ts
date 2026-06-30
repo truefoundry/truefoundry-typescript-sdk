@@ -5,7 +5,7 @@
  */
 export interface CommonToolsSettings {
     /** +value=settings/common-tools */
-    type?: "settings/common-tools" | undefined;
+    type: "settings/common-tools";
     /**
      * Enable web search tool
      * Allows model to search the web for information.

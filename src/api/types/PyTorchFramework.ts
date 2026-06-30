@@ -5,5 +5,5 @@
  */
 export interface PyTorchFramework {
     /** Type of the framework */
-    type?: "pytorch" | undefined;
+    type: "pytorch";
 }

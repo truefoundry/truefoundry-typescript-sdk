@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface TruefoundryBackedIdentity {
     /** +value=truefoundry-backed */
-    type?: "truefoundry-backed" | undefined;
+    type: "truefoundry-backed";
     /** Expiration Date of the agent identity token (should be in the format yyyy-mm-dd) */
     expiration_date?: string | undefined;
     auto_rotate?: TrueFoundry.AgentIdentityAutoRotate | undefined;

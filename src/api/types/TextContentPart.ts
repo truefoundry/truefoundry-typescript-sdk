@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface TextContentPart {
     /** Type of the content part */
-    type?: "text" | undefined;
+    type: "text";
     /** Text content for the message */
     text: TrueFoundry.TextContentPartText;
 }

@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface LocalArtifactSource {
     /** Type of the source */
-    type?: "local" | undefined;
+    type: "local";
     /** Array of ArtifactPath objects representing the source and destination paths */
     paths: TrueFoundry.ArtifactPath[];
 }

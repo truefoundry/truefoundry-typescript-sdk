@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AgentSkillManifest extends TrueFoundry.BaseArtifactVersion {
     /** Type */
-    type?: "agent-skill" | undefined;
+    type: "agent-skill";
     /** Source */
     source: TrueFoundry.AgentSkillManifestSource;
 }

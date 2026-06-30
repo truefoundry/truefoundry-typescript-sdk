@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SmallestAiProviderAccount {
     /** +value=provider-account/smallest-ai */
-    type?: "provider-account/smallest-ai" | undefined;
+    type: "provider-account/smallest-ai";
     /** The name of the Smallest AI provider account */
     name: string;
     auth_data: TrueFoundry.SmallestAiApiKeyAuth;

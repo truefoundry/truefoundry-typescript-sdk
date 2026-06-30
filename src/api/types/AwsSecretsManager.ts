@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsSecretsManager {
     /** +value=integration/secret-store/aws/secrets-manager */
-    type?: "integration/secret-store/aws/secrets-manager" | undefined;
+    type: "integration/secret-store/aws/secrets-manager";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     region: TrueFoundry.AwsRegion;

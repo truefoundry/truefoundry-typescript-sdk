@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DockerhubProviderAccount {
     /** +value=provider-account/dockerhub */
-    type?: "provider-account/dockerhub" | undefined;
+    type: "provider-account/dockerhub";
     /** 3 to 36 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     /** Account Name */

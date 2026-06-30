@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GroqModel {
     /** +value=integration/model/groq */
-    type?: "integration/model/groq" | undefined;
+    type: "integration/model/groq";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Groq model identifier (e.g., llama-3.1-8b-instant, openai/gpt-oss-20b). This is the standard model id from Groq's model catalog. */

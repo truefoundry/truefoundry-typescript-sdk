@@ -6,7 +6,7 @@
  */
 export interface Poetry {
     /** +value=poetry */
-    type?: "poetry" | undefined;
+    type: "poetry";
     /** Poetry version to use */
     poetry_version?: string | undefined;
     /** install options to pass to poetry command */

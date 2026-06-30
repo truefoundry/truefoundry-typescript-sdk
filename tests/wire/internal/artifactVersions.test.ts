@@ -13,7 +13,12 @@ describe("ArtifactVersionsClient", () => {
                 {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
-                    manifest: { metadata: { key: "value" }, source: {}, step: 1 },
+                    manifest: {
+                        metadata: { key: "value" },
+                        type: "artifact-version",
+                        source: { type: "truefoundry" },
+                        step: 1,
+                    },
                     id: "jqfwg345gi25n5ju2yz5iz6m",
                     fqn: "fqn",
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },

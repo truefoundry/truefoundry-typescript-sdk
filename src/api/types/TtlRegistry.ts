@@ -5,7 +5,7 @@
  */
 export interface TtlRegistry {
     /** +value=integration/docker-registry/ttl */
-    type?: "integration/docker-registry/ttl" | undefined;
+    type: "integration/docker-registry/ttl";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */

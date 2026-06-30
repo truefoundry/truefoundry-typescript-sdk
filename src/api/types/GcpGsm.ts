@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GcpGsm {
     /** +value=integration/secret-store/gcp/gsm */
-    type?: "integration/secret-store/gcp/gsm" | undefined;
+    type: "integration/secret-store/gcp/gsm";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data?: TrueFoundry.GcpKeyFileAuth | undefined;

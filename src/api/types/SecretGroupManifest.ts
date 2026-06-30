@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface SecretGroupManifest {
     /** +value=secret-group */
-    type?: "secret-group" | undefined;
+    type: "secret-group";
     /** Name of the secret group */
     name: string;
     /** Secret Store to be associated with the secret group */

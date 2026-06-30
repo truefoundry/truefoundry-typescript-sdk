@@ -7,5 +7,5 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OtelMetricsExporterGrpcConfig extends TrueFoundry.OtelExporterGrpcConfigBase {
     /** Configuration type */
-    type?: "grpc" | undefined;
+    type: "grpc";
 }

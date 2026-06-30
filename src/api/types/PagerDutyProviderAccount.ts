@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PagerDutyProviderAccount {
     /** +value=provider-account/pagerduty */
-    type?: "provider-account/pagerduty" | undefined;
+    type: "provider-account/pagerduty";
     /** The name of the PagerDuty provider account */
     name: string;
     /** List of integrations that are associated with the PagerDuty provider account */

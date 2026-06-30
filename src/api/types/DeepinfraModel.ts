@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DeepinfraModel {
     /** +value=integration/model/deepinfra */
-    type?: "integration/model/deepinfra" | undefined;
+    type: "integration/model/deepinfra";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The DeepInfra model identifier (e.g., meta-llama/Llama-3.3-70B-Instruct-Turbo, mistralai/Mistral-Small-24B-Instruct-2501). This is the full model path from DeepInfra's model catalog. */

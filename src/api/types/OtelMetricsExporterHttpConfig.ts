@@ -7,5 +7,5 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OtelMetricsExporterHttpConfig extends TrueFoundry.OtelExporterHttpConfigBase {
     /** Configuration type */
-    type?: "http" | undefined;
+    type: "http";
 }

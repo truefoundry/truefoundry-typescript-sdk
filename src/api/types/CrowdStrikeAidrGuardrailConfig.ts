@@ -14,7 +14,7 @@ export interface CrowdStrikeAidrGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/crowdstrike-aidr
      */
-    type?: "integration/guardrail-config/crowdstrike-aidr" | undefined;
+    type: "integration/guardrail-config/crowdstrike-aidr";
     auth_data: TrueFoundry.CrowdStrikeAidrKeyAuth;
     /** The operation type to use for the Guardrail. Validate guardrails check for blocked content. Mutate guardrails additionally redact sensitive content (PII) and support unredaction on output. */
     operation: TrueFoundry.CrowdStrikeAidrGuardrailConfigOperation;

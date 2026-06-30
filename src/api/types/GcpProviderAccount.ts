@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GcpProviderAccount {
     /** +value=provider-account/gcp */
-    type?: "provider-account/gcp" | undefined;
+    type: "provider-account/gcp";
     /** The name of the GCP provider account. */
     name: string;
     /** The project id of the GCP account. */

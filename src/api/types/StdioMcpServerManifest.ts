@@ -16,7 +16,7 @@ export interface StdioMcpServerManifest {
      * +value=mcp-server/stdio
      * +sort=400
      */
-    type?: "mcp-server/stdio" | undefined;
+    type: "mcp-server/stdio";
     /** Executable to run for the stdio MCP server process. */
     command: string;
     /** Arguments passed to the stdio MCP server command. */

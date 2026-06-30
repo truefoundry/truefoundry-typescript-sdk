@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DataDirectoryManifest {
     /** Type */
-    type?: "data-dir" | undefined;
+    type: "data-dir";
     /** Name of the data directory */
     name: string;
     /** Name of the ML Repo to create the data directory under */

@@ -14,7 +14,7 @@ export interface AwsClaudePlatformModel {
      * +value=integration/model/aws-claude-platform
      * +icon=claude
      */
-    type?: "integration/model/aws-claude-platform" | undefined;
+    type: "integration/model/aws-claude-platform";
     /** Specify the type of the Anthropic model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric | undefined;

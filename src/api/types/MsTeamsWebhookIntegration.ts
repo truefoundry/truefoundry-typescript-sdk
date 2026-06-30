@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface MsTeamsWebhookIntegration {
     /** +value=integration/notification-channel/ms-teams-webhook */
-    type?: "integration/notification-channel/ms-teams-webhook" | undefined;
+    type: "integration/notification-channel/ms-teams-webhook";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.MsTeamsWebhookAuth;

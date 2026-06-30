@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GitlabIntegration {
     /** +value=integration/vcs/gitlab */
-    type?: "integration/vcs/gitlab" | undefined;
+    type: "integration/vcs/gitlab";
     /** +sort=100 */
     name: string;
     /** Account Name */

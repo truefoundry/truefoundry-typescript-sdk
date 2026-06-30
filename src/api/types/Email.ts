@@ -5,7 +5,7 @@
  */
 export interface Email {
     /** +value=email */
-    type?: "email" | undefined;
+    type: "email";
     /** Specify the notification channel to send alerts to */
     notification_channel: string;
     /** List of recipients' email addresses if the notification channel is Email. */

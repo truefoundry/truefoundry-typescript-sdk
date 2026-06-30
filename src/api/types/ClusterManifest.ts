@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface ClusterManifest {
     /** +value=cluster */
-    type?: "cluster" | undefined;
+    type: "cluster";
     /** Name - 3 to 35 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */
     name: string;
     /** The cluster type of this cluster */

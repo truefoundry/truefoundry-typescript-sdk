@@ -3,6 +3,8 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ListModelsResponse {
+    /** List of models matching the query. */
     data: TrueFoundry.Model[];
+    /** Pagination information for the response. */
     pagination: TrueFoundry.Pagination;
 }

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsBedrockProviderAccount {
     /** +value=provider-account/aws-bedrock */
-    type?: "provider-account/aws-bedrock" | undefined;
+    type: "provider-account/aws-bedrock";
     /** The name of the AWS Bedrock provider account */
     name: string;
     region: TrueFoundry.AwsRegion;

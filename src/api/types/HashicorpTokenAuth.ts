@@ -5,7 +5,7 @@
  */
 export interface HashicorpTokenAuth {
     /** +value=token */
-    type?: "token" | undefined;
+    type: "token";
     /** Vault authentication token that you want to use for authentication. */
     token: string;
 }

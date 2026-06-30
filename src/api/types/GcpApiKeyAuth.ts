@@ -5,7 +5,7 @@
  */
 export interface GcpApiKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** The API key for Google Cloud authentication */
     apiKey: string;
 }

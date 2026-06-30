@@ -5,7 +5,7 @@
  */
 export interface NodepoolSelector {
     /** +value=nodepool_selector */
-    type?: "nodepool_selector" | undefined;
+    type: "nodepool_selector";
     /**
      * Nodepools where you want to run your workload. Multiple nodepools can be selected.
      *  The workload is guaranteed to be scheduled on one of the nodepool

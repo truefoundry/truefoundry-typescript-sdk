@@ -14,7 +14,11 @@ describe("PromptVersionsClient", () => {
                 {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
-                    manifest: { metadata: { key: "value" }, messages: [{ role: "system", content: "content" }] },
+                    manifest: {
+                        metadata: { key: "value" },
+                        type: "chat_prompt",
+                        messages: [{ role: "system", content: "content" }],
+                    },
                     id: "id",
                     fqn: "fqn",
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
@@ -93,10 +97,16 @@ describe("PromptVersionsClient", () => {
                     version_alias: "version_alias",
                     messages: [{ role: "system", content: "content" }],
                     model_configuration: { provider: "provider", model: "model" },
-                    tools: [{ function: { name: "name" } }],
-                    mcp_servers: [{ integration_fqn: "integration_fqn", enable_all_tools: true }],
-                    routing_config: { load_balance_targets: [{ target: "target", weight: 1 }] },
-                    cache_config: { similarity_threshold: 1.1, ttl: 1.1 },
+                    tools: [{ type: "function", function: { name: "name" } }],
+                    mcp_servers: [
+                        { type: "mcp-server-fqn", integration_fqn: "integration_fqn", enable_all_tools: true },
+                    ],
+                    response_format: { type: "json_object" },
+                    routing_config: {
+                        type: "weight-based-routing",
+                        load_balance_targets: [{ target: "target", weight: 1 }],
+                    },
+                    cache_config: { type: "semantic", similarity_threshold: 1.1, ttl: 1.1 },
                     tool_call_to_mcp_mapping: {
                         key: { mcp_server_integration_id: "mcp_server_integration_id", tool_name: "tool_name" },
                     },

@@ -3,15 +3,26 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface PromptVersion {
+    /** Timestamp when the prompt version was created. */
     created_at?: string | undefined;
+    /** Timestamp when the prompt version was last updated. */
     updated_at?: string | undefined;
+    /** Manifest describing the prompt version. */
     manifest: TrueFoundry.ChatPromptManifest;
+    /** Unique identifier of the prompt version. */
     id: string;
+    /** Fully Qualified Name uniquely identifying the prompt version. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the prompt version. */
     created_by_subject: TrueFoundry.Subject;
+    /** Identifier of the ML Repo the prompt version belongs to. */
     ml_repo_id: string;
+    /** Code snippet showing how to use the prompt version. */
     usage_code_snippet?: string | undefined;
+    /** Code snippets showing how to use the prompt version. */
     usage_code_snippets?: TrueFoundry.UsageCodeSnippet[] | undefined;
+    /** Tags associated with the prompt version. */
     tags?: string[] | undefined;
+    /** Identifier of the prompt this version belongs to. */
     prompt_id: string;
 }

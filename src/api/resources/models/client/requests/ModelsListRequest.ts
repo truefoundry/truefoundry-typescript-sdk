@@ -17,9 +17,14 @@ export interface ModelsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Filter models by Fully Qualified Name. */
     fqn?: string;
+    /** Filter models by ML Repo identifier. */
     ml_repo_id?: string;
+    /** Filter models by name. */
     name?: string;
+    /** Filter models by associated run identifier. */
     run_id?: string;
+    /** Whether to include models that have no versions. */
     include_empty_models?: boolean;
 }

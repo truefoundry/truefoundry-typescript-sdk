@@ -19,7 +19,13 @@ describe("DataDirectoriesClient", () => {
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
-                    manifest: { name: "name", ml_repo: "ml_repo", metadata: { key: "value" }, source: {} },
+                    manifest: {
+                        type: "data-dir",
+                        name: "name",
+                        ml_repo: "ml_repo",
+                        metadata: { key: "value" },
+                        source: { type: "truefoundry" },
+                    },
                     usage_code_snippet: "usage_code_snippet",
                 },
             ],
@@ -53,7 +59,13 @@ describe("DataDirectoriesClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: { name: "name", ml_repo: "ml_repo", metadata: { key: "value" }, source: {} },
+            manifest: {
+                type: "data-dir",
+                name: "name",
+                ml_repo: "ml_repo",
+                metadata: { key: "value" },
+                source: { type: "truefoundry" },
+            },
         };
         const rawResponseBody = {
             data: {
@@ -78,7 +90,7 @@ describe("DataDirectoriesClient", () => {
                     ml_repo: "ml_repo",
                     description: "description",
                     metadata: { key: "value" },
-                    source: {},
+                    source: { type: "truefoundry" },
                 },
                 usage_code_snippet: "usage_code_snippet",
             },
@@ -95,12 +107,15 @@ describe("DataDirectoriesClient", () => {
 
         const response = await client.dataDirectories.createOrUpdate({
             manifest: {
+                type: "data-dir",
                 name: "name",
                 ml_repo: "ml_repo",
                 metadata: {
                     key: "value",
                 },
-                source: {},
+                source: {
+                    type: "truefoundry",
+                },
             },
         });
         expect(response).toEqual(rawResponseBody);
@@ -246,7 +261,7 @@ describe("DataDirectoriesClient", () => {
                     ml_repo: "ml_repo",
                     description: "description",
                     metadata: { key: "value" },
-                    source: {},
+                    source: { type: "truefoundry" },
                 },
                 usage_code_snippet: "usage_code_snippet",
             },

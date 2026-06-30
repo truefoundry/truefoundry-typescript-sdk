@@ -2,7 +2,7 @@
 
 export interface HeaderMatch {
     /** +value=header */
-    type?: "header" | undefined;
+    type: "header";
     /** Header name to match on */
     name: string;
     /** Header value to match on */

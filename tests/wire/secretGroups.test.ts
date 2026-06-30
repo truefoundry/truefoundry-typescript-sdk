@@ -190,6 +190,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
@@ -230,6 +231,7 @@ describe("SecretGroupsClient", () => {
 
         const response = await client.secretGroups.createOrUpdate({
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [
@@ -248,6 +250,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [
@@ -270,6 +273,7 @@ describe("SecretGroupsClient", () => {
         await expect(async () => {
             return await client.secretGroups.createOrUpdate({
                 manifest: {
+                    type: "secret-group",
                     name: "name",
                     integration_fqn: "integration_fqn",
                     collaborators: [
@@ -292,6 +296,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [
@@ -314,6 +319,7 @@ describe("SecretGroupsClient", () => {
         await expect(async () => {
             return await client.secretGroups.createOrUpdate({
                 manifest: {
+                    type: "secret-group",
                     name: "name",
                     integration_fqn: "integration_fqn",
                     collaborators: [
@@ -336,6 +342,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [
@@ -358,6 +365,7 @@ describe("SecretGroupsClient", () => {
         await expect(async () => {
             return await client.secretGroups.createOrUpdate({
                 manifest: {
+                    type: "secret-group",
                     name: "name",
                     integration_fqn: "integration_fqn",
                     collaborators: [
@@ -380,6 +388,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [
@@ -402,6 +411,7 @@ describe("SecretGroupsClient", () => {
         await expect(async () => {
             return await client.secretGroups.createOrUpdate({
                 manifest: {
+                    type: "secret-group",
                     name: "name",
                     integration_fqn: "integration_fqn",
                     collaborators: [
@@ -424,6 +434,7 @@ describe("SecretGroupsClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "secret-group",
                 name: "name",
                 integration_fqn: "integration_fqn",
                 collaborators: [
@@ -446,6 +457,7 @@ describe("SecretGroupsClient", () => {
         await expect(async () => {
             return await client.secretGroups.createOrUpdate({
                 manifest: {
+                    type: "secret-group",
                     name: "name",
                     integration_fqn: "integration_fqn",
                     collaborators: [

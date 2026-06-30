@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Workflow {
     /** +value=workflow */
-    type?: "workflow" | undefined;
+    type: "workflow";
     /** Name of the workflow */
     name: string;
     /** Source Code for the workflow, either local or remote */

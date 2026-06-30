@@ -7,6 +7,6 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ToolSchema {
     /** Type of the tool */
-    type?: "function" | undefined;
+    type: "function";
     function: TrueFoundry.FunctionSchema;
 }

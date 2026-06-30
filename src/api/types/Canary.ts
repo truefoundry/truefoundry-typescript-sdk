@@ -8,7 +8,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Canary {
     /** +value=canary */
-    type?: "canary" | undefined;
+    type: "canary";
     /** These steps would be executed in order to enable shifting of traffic slowly from stable to canary version */
     steps: TrueFoundry.CanaryStep[];
 }

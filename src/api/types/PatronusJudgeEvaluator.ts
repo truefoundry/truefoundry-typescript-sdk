@@ -4,6 +4,6 @@ import type * as TrueFoundry from "../index.js";
 
 export interface PatronusJudgeEvaluator {
     /** The type of the evaluator to use for the Patronus Guardrail. */
-    type?: "judge" | undefined;
+    type: "judge";
     criteria: TrueFoundry.PatronusJudgeCriteria;
 }

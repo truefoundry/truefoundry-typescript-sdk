@@ -20,7 +20,7 @@ describe("TeamsClient", () => {
                     members: ["members"],
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    manifest: { name: "name", members: ["members"] },
+                    manifest: { type: "team", name: "name", members: ["members"] },
                     isEditable: true,
                     roles: ["roles"],
                     topMembers: ["topMembers"],
@@ -58,7 +58,7 @@ describe("TeamsClient", () => {
     test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { name: "name", members: ["members"] } };
+        const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members"] } };
         const rawResponseBody = {
             data: {
                 id: "jqfwg345gi25n5ju2yz5iz6m",
@@ -105,6 +105,7 @@ describe("TeamsClient", () => {
 
         const response = await client.teams.createOrUpdate({
             manifest: {
+                type: "team",
                 name: "name",
                 members: ["members"],
             },
@@ -115,7 +116,7 @@ describe("TeamsClient", () => {
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { name: "name", members: ["members", "members"] } };
+        const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members", "members"] } };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -130,6 +131,7 @@ describe("TeamsClient", () => {
         await expect(async () => {
             return await client.teams.createOrUpdate({
                 manifest: {
+                    type: "team",
                     name: "name",
                     members: ["members", "members"],
                 },
@@ -140,7 +142,7 @@ describe("TeamsClient", () => {
     test("create_or_update (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { name: "name", members: ["members", "members"] } };
+        const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members", "members"] } };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -155,6 +157,7 @@ describe("TeamsClient", () => {
         await expect(async () => {
             return await client.teams.createOrUpdate({
                 manifest: {
+                    type: "team",
                     name: "name",
                     members: ["members", "members"],
                 },

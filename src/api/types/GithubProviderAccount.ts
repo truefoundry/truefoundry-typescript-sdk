@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GithubProviderAccount {
     /** +value=provider-account/github */
-    type?: "provider-account/github" | undefined;
+    type: "provider-account/github";
     /** +uiProps={"disableEdit":true} */
     name: string;
     /** +uiType=IntegrationsGroup */

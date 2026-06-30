@@ -5,5 +5,5 @@
  */
 export interface FastAiFramework {
     /** Type of the framework */
-    type?: "fastai" | undefined;
+    type: "fastai";
 }

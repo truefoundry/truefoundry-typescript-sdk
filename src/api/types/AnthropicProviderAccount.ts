@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AnthropicProviderAccount {
     /** +value=provider-account/anthropic */
-    type?: "provider-account/anthropic" | undefined;
+    type: "provider-account/anthropic";
     /** The name of the Anthropic provider account */
     name: string;
     auth_data?: TrueFoundry.AnthropicKeyAuth | undefined;

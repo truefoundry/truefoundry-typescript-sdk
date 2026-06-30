@@ -24,7 +24,7 @@ export class ModelsClient {
     /**
      * Get a model by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Unique identifier of the model.
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -87,7 +87,7 @@ export class ModelsClient {
     /**
      * Delete a model by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Unique identifier of the model.
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -257,7 +257,10 @@ export class ModelsClient {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             source: {},
+     *             type: "model-version",
+     *             source: {
+     *                 type: "truefoundry"
+     *             },
      *             step: 1
      *         }
      *     })

@@ -5,7 +5,7 @@
  */
 export interface AwsSqsAccessKeyBasedAuth {
     /** +value=access-key-based */
-    type?: "access-key-based" | undefined;
+    type: "access-key-based";
     /** AWS access key ID that you want to use for authentication. */
     access_key_id: string;
     /** AWS access key secret that you want to use for authentication. */

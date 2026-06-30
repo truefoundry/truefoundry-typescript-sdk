@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SelfHostedAgent extends TrueFoundry.BaseRemoteAgent {
     /** Type of the manifest */
-    type?: "remote-agent/self-hosted" | undefined;
+    type: "remote-agent/self-hosted";
     /** The URL of the server */
     url: string;
     auth_data?: TrueFoundry.CustomAgentServerAuth | undefined;

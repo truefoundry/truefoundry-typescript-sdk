@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface NomicModel {
     /** +value=integration/model/nomic */
-    type?: "integration/model/nomic" | undefined;
+    type: "integration/model/nomic";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The name of the Nomic model to use */

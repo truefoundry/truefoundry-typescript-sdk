@@ -5,7 +5,7 @@
  */
 export interface UploadSpecSource {
     /** +value=upload */
-    type?: "upload" | undefined;
+    type: "upload";
     /** Cloud storage path where the OpenAPI specification is stored (S3, GCS, or Azure Blob). */
     url: string;
 }

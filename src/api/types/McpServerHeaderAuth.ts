@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerHeaderAuth {
     /** +value=header */
-    type?: "header" | undefined;
+    type: "header";
     /** Map each header name to its value. For shared, enter the actual value. For individual, use a placeholder that will be filled in by each user (e.g. Bearer {{API_KEY}}). */
     headers: Record<string, string>;
     /** Level at which this authentication will be applied. Values: global (default), per_user */

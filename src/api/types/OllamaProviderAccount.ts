@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OllamaProviderAccount {
     /** +value=provider-account/ollama */
-    type?: "provider-account/ollama" | undefined;
+    type: "provider-account/ollama";
     /** The name of the Ollama provider account */
     name: string;
     auth_data: TrueFoundry.OllamaKeyAuth;

@@ -5,5 +5,5 @@
  */
 export interface GluonFramework {
     /** Type of the framework */
-    type?: "gluon" | undefined;
+    type: "gluon";
 }

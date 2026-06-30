@@ -5,7 +5,7 @@
  */
 export interface ExternalBlobStorageSource {
     /** Type of the source */
-    type?: "external" | undefined;
+    type: "external";
     /** URI referencing a path in the blob storage bucket linked to the MLRepo */
     uri: string;
 }

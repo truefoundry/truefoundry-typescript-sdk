@@ -5,5 +5,5 @@
  */
 export interface LightGbmFramework {
     /** Type of the framework */
-    type?: "lightgbm" | undefined;
+    type: "lightgbm";
 }

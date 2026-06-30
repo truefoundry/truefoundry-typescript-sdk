@@ -5,7 +5,7 @@
  */
 export interface SparkExecutorDynamicScaling {
     /** +value=dynamic */
-    type?: "dynamic" | undefined;
+    type: "dynamic";
     /** Minimum number of instances to start / scale down to */
     min: number;
     /** Maximum number of instances to scale up to */

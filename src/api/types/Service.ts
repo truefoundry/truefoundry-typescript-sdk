@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Service extends TrueFoundry.BaseService {
     /** +value=service */
-    type?: "service" | undefined;
+    type: "service";
     /** Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing. */
     replicas: TrueFoundry.ServiceReplicas;
     auto_shutdown?: TrueFoundry.Autoshutdown | undefined;

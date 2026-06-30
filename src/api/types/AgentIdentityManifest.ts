@@ -6,7 +6,7 @@ export interface AgentIdentityManifest {
     /** Agent Identity Name */
     name: string;
     /** +value=agent-identity */
-    type?: "agent-identity" | undefined;
+    type: "agent-identity";
     identity: TrueFoundry.AgentIdentityConfig;
     /** Key-value pairs to categorize this Agent Identity (e.g., by owner or environment). */
     tags?: Record<string, unknown> | undefined;

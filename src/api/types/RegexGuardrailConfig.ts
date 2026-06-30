@@ -14,7 +14,7 @@ export interface RegexGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/regex
      */
-    type?: "integration/guardrail-config/regex" | undefined;
+    type: "integration/guardrail-config/regex";
     /** Validate blocks when pattern matches. Mutate replaces matched text and continues. */
     operation: TrueFoundry.RegexGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */

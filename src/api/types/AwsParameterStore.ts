@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsParameterStore {
     /** +value=integration/secret-store/aws/parameter-store */
-    type?: "integration/secret-store/aws/parameter-store" | undefined;
+    type: "integration/secret-store/aws/parameter-store";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     region: TrueFoundry.AwsRegion;

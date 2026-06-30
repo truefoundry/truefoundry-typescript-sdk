@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomEndpoint {
     /** +value=integration/model/custom-endpoint */
-    type?: "integration/model/custom-endpoint" | undefined;
+    type: "integration/model/custom-endpoint";
     /** A descriptive name to identify this endpoint in the UI */
     name: string;
     /** The target base URL to proxy requests to (e.g., https://my-service.example.com/v1) */

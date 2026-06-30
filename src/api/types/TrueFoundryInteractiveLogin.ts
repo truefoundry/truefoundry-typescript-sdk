@@ -5,7 +5,7 @@
  */
 export interface TrueFoundryInteractiveLogin {
     /** +value=truefoundry_oauth */
-    type?: "truefoundry_oauth" | undefined;
+    type: "truefoundry_oauth";
     /**
      * List of paths that will bypass auth.
      * needs to start with a forward slash(/) and should not contain wildcards(*)

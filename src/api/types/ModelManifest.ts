@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ModelManifest extends TrueFoundry.BaseArtifactVersion {
     /** Model Version */
-    type?: "model-version" | undefined;
+    type: "model-version";
     /** Description */
     description?: string | undefined;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */

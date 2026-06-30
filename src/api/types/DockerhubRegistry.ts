@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DockerhubRegistry {
     /** +value=integration/docker-registry/dockerhub */
-    type?: "integration/docker-registry/dockerhub" | undefined;
+    type: "integration/docker-registry/dockerhub";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** Registry URL */

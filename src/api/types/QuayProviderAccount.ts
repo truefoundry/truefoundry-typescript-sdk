@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface QuayProviderAccount {
     /** +value=provider-account/quay */
-    type?: "provider-account/quay" | undefined;
+    type: "provider-account/quay";
     /** The name of the provider account. */
     name: string;
     /** The name of the account on Quay. */

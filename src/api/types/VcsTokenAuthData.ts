@@ -5,7 +5,7 @@
  */
 export interface VcsTokenAuthData {
     /** +value=token */
-    type?: "token" | undefined;
+    type: "token";
     /** Personal access token for API and Git access when not using the default OAuth or app-based flow. */
     token: string;
 }

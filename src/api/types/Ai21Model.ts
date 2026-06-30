@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Ai21Model {
     /** +value=integration/model/ai21 */
-    type?: "integration/model/ai21" | undefined;
+    type: "integration/model/ai21";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The AI21 model identifier (e.g., jamba-large, jamba-mini). This is the model name from AI21's model catalog. */

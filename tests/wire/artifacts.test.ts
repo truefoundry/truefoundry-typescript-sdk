@@ -30,7 +30,12 @@ describe("ArtifactsClient", () => {
                 latest_version: {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
-                    manifest: { metadata: { key: "value" }, source: {}, step: 1 },
+                    manifest: {
+                        metadata: { key: "value" },
+                        type: "artifact-version",
+                        source: { type: "truefoundry" },
+                        step: 1,
+                    },
                     id: "jqfwg345gi25n5ju2yz5iz6m",
                     fqn: "fqn",
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
@@ -167,7 +172,14 @@ describe("ArtifactsClient", () => {
     test("create_or_update", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { metadata: { key: "value" }, source: {}, step: 1 } };
+        const rawRequestBody = {
+            manifest: {
+                metadata: { key: "value" },
+                type: "artifact-version",
+                source: { type: "truefoundry" },
+                step: 1,
+            },
+        };
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
@@ -180,7 +192,7 @@ describe("ArtifactsClient", () => {
                     type: "artifact-version",
                     description: "description",
                     version_alias: "version_alias",
-                    source: {},
+                    source: { type: "truefoundry" },
                     step: 1,
                     run_id: "run_id",
                 },
@@ -216,7 +228,10 @@ describe("ArtifactsClient", () => {
                 metadata: {
                     key: "value",
                 },
-                source: {},
+                type: "artifact-version",
+                source: {
+                    type: "truefoundry",
+                },
                 step: 1,
             },
         });

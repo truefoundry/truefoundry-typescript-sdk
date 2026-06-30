@@ -5,5 +5,5 @@
  */
 export interface CustomServerPassthrough {
     /** +value=passthrough */
-    type?: "passthrough" | undefined;
+    type: "passthrough";
 }

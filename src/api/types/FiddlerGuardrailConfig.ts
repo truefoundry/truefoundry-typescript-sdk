@@ -14,7 +14,7 @@ export interface FiddlerGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/fiddler
      */
-    type?: "integration/guardrail-config/fiddler" | undefined;
+    type: "integration/guardrail-config/fiddler";
     auth_data: TrueFoundry.FiddlerKeyAuth;
     /** The operation type for this guardrail. Fiddler guardrails can only be used for validation. */
     operation: "validate";

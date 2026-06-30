@@ -5,7 +5,7 @@
  */
 export interface SmallestAiApiKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** The API key for Smallest AI authentication */
     api_key: string;
 }

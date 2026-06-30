@@ -7,5 +7,6 @@
  *     }
  */
 export interface MarkStageArtifactFailureRequest {
+    /** Identifier of the staged artifact version to mark as failed. */
     id: string;
 }

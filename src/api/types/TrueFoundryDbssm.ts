@@ -5,7 +5,7 @@
  */
 export interface TrueFoundryDbssm {
     /** +value=integration/secret-store/truefoundry/db */
-    type?: "integration/secret-store/truefoundry/db" | undefined;
+    type: "integration/secret-store/truefoundry/db";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */

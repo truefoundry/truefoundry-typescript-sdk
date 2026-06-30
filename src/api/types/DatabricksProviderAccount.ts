@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DatabricksProviderAccount {
     /** +value=provider-account/databricks */
-    type?: "provider-account/databricks" | undefined;
+    type: "provider-account/databricks";
     /** The name of the Databricks provider account */
     name: string;
     /** Databricks authentication credentials */

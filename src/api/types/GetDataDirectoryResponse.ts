@@ -3,5 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetDataDirectoryResponse {
+    /** The data directory matching the query. */
     data: TrueFoundry.DataDirectory;
 }

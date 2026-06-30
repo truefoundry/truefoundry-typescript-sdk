@@ -5,7 +5,7 @@
  */
 export interface AwsSqsAssumedRoleBasedAuth {
     /** +value=assumed-role-based */
-    type?: "assumed-role-based" | undefined;
+    type: "assumed-role-based";
     /** ARN of the role you want to assume. */
     assumed_role_arn: string;
 }

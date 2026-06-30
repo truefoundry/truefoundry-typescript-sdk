@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SlackProviderAccount {
     /** +value=provider-account/slack */
-    type?: "provider-account/slack" | undefined;
+    type: "provider-account/slack";
     /** The name of the provider account. */
     name: string;
     /** List of integrations that are associated with the provider account. */

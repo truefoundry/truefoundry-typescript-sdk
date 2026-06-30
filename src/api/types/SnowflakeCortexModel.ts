@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface SnowflakeCortexModel {
     /** +value=integration/model/snowflake-cortex */
-    type?: "integration/model/snowflake-cortex" | undefined;
+    type: "integration/model/snowflake-cortex";
     /** Name to identify this Snowflake Cortex model in the UI */
     name: string;
     /** ID of the Snowflake Cortex model to use */

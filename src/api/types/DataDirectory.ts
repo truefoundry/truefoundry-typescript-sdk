@@ -17,6 +17,7 @@ export interface DataDirectory {
     created_at: string;
     /** Timestamp when the data directory was last updated */
     updated_at: string;
+    /** Manifest describing the data directory. */
     manifest: TrueFoundry.DataDirectoryManifest;
     /** Code snippet demonstrating how to use this data directory */
     usage_code_snippet?: string | undefined;

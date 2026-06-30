@@ -3,9 +3,14 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface MultiPartUpload {
+    /** Storage provider backing the multipart upload. */
     storage_provider: TrueFoundry.MultiPartUploadStorageProvider;
+    /** Signed URLs for uploading each part of the multipart upload. */
     part_signed_urls: TrueFoundry.SignedUrl[];
+    /** Signed URL used to finalize the multipart upload. */
     finalize_signed_url: TrueFoundry.SignedUrl;
+    /** Upload identifier for S3-compatible storage providers. */
     s3_compatible_upload_id?: string | undefined;
+    /** Block identifiers used for Azure Blob storage uploads. */
     azure_blob_block_ids?: string[] | undefined;
 }

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ClouderaModel {
     /** +value=integration/model/cloudera */
-    type?: "integration/model/cloudera" | undefined;
+    type: "integration/model/cloudera";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The unique identifier of the Model in Cloudera Model Registry. This is the model ID assigned when you registered or deployed your model in the CDP Model Registry */

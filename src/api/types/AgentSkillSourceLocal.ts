@@ -5,7 +5,7 @@
  */
 export interface AgentSkillSourceLocal {
     /** Type */
-    type?: "local" | undefined;
+    type: "local";
     /** Path to the skill root directory, including SKILL.md and related assets. */
     skill_dir: string;
 }

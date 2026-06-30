@@ -5,7 +5,7 @@
  */
 export interface PerplexityAiKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** The API key for Perplexity AI authentication */
     api_key: string;
 }

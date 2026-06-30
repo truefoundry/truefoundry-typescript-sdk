@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface ChatPromptManifest extends TrueFoundry.BaseArtifactVersion {
     /** Type of the prompt */
-    type?: "chat_prompt" | undefined;
+    type: "chat_prompt";
     /** Description */
     description?: string | undefined;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */

@@ -2,7 +2,7 @@
 
 export interface NvidiaGpu {
     /** +value=nvidia_gpu */
-    type?: "nvidia_gpu" | undefined;
+    type: "nvidia_gpu";
     /**
      * Name of the Nvidia GPU. One of [P4, P100, V100, T4, A10G, A100_40GB, A100_80GB]
      * This field is required for Node Selector and can be ignored in Nodepool Selector.

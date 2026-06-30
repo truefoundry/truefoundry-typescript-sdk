@@ -5,7 +5,7 @@
  */
 export interface AzureConnectionStringAuth {
     /** +value=connection-string */
-    type?: "connection-string" | undefined;
+    type: "connection-string";
     /** The connection string for the Azure managed identity. */
     connection_string: string;
 }

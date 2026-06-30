@@ -14,7 +14,7 @@ export interface GraySwanCygnalGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/grayswan-cygnal
      */
-    type?: "integration/guardrail-config/grayswan-cygnal" | undefined;
+    type: "integration/guardrail-config/grayswan-cygnal";
     auth_data: TrueFoundry.GraySwanCygnalApiKeyAuth;
     /** The operation type for this guardrail. GraySwan Cygnal guardrails can only be used for validation. */
     operation: "validate";

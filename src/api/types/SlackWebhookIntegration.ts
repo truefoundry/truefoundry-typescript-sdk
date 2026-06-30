@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SlackWebhookIntegration {
     /** +value=integration/notification-channel/slack-webhook */
-    type?: "integration/notification-channel/slack-webhook" | undefined;
+    type: "integration/notification-channel/slack-webhook";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data: TrueFoundry.SlackWebhookAuth;

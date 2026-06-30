@@ -2,7 +2,7 @@
 
 export interface WebhookBearerAuth {
     /** +value=auth/webhook-bearer */
-    type?: "webhook-bearer" | undefined;
+    type: "webhook-bearer";
     /** Bearer token for authentication */
     token: string;
     /** Prefix for the token */

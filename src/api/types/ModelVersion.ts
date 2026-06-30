@@ -3,16 +3,28 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface ModelVersion {
+    /** Timestamp when the model version was created. */
     created_at?: string | undefined;
+    /** Timestamp when the model version was last updated. */
     updated_at?: string | undefined;
+    /** Manifest describing the model version. */
     manifest: TrueFoundry.ModelManifest;
+    /** Unique identifier of the model version. */
     id: string;
+    /** Fully Qualified Name uniquely identifying the model version. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the model version. */
     created_by_subject: TrueFoundry.Subject;
+    /** Identifier of the ML Repo the model version belongs to. */
     ml_repo_id: string;
+    /** Code snippet showing how to use the model version. */
     usage_code_snippet?: string | undefined;
+    /** Tags associated with the model version. */
     tags?: string[] | undefined;
+    /** Identifier of the model this version belongs to. */
     model_id: string;
+    /** Metrics logged for the model version. */
     metrics?: TrueFoundry.Metric[] | undefined;
+    /** Whether the model version can be deployed. */
     deployable: boolean;
 }

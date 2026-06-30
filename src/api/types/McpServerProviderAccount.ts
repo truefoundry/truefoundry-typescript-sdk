@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerProviderAccount {
     /** +value=provider-account/mcp-server-group */
-    type?: "provider-account/mcp-server-group" | undefined;
+    type: "provider-account/mcp-server-group";
     /** The name of the MCP Server Group. */
     name: string;
     /** List of teams/users who can manage this MCP Server Group. These subjects can add new MCP server integrations, can edit existing ones and can also use the MCP server. */

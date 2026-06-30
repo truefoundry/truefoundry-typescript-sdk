@@ -3,5 +3,6 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface GetModelVersionResponse {
+    /** The requested model version. */
     data: TrueFoundry.ModelVersion;
 }

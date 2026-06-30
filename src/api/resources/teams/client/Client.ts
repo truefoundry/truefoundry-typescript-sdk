@@ -124,6 +124,7 @@ export class TeamsClient {
      * @example
      *     await client.teams.createOrUpdate({
      *         manifest: {
+     *             type: "team",
      *             name: "name",
      *             members: ["members"]
      *         }

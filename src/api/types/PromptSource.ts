@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PromptSource {
     /** Type of agent source */
-    type?: "prompt" | undefined;
+    type: "prompt";
     /** Fully qualified name of the prompt version to use as the agent source */
     prompt_version_fqn: string;
     /** List of skills associated with the agent */

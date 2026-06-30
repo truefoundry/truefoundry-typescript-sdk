@@ -22,14 +22,22 @@ export interface ModelVersionsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Filter model versions by tag. */
     tag?: string;
+    /** Filter model versions by Fully Qualified Name. */
     fqn?: string;
+    /** Filter model versions by model identifier. */
     model_id?: string;
+    /** Filter model versions by ML Repo identifier. */
     ml_repo_id?: string;
+    /** Filter model versions by name. */
     name?: string;
     /** Version number (positive integer) or `latest` */
     version?: TrueFoundry.Object_;
+    /** Filter model versions by associated run identifiers. */
     run_ids?: string | string[];
+    /** Filter model versions by associated run steps. */
     run_steps?: number | number[];
+    /** Whether to include internal metadata in the response. */
     include_internal_metadata?: boolean;
 }

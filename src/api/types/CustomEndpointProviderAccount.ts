@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomEndpointProviderAccount {
     /** +value=provider-account/custom-endpoint */
-    type?: "provider-account/custom-endpoint" | undefined;
+    type: "provider-account/custom-endpoint";
     /** The name of the custom endpoint provider account. */
     name: string;
     /** The type of service behind this endpoint (used for tracking purposes) */

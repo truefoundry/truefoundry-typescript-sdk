@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GatewayDataRoutingConfig {
     /** Type of configuration */
-    type?: "gateway-data-routing-config" | undefined;
+    type: "gateway-data-routing-config";
     /** List of conditional routing destinations */
     destinations?: TrueFoundry.GatewayDataRoutingConfigDestination[] | undefined;
     default: TrueFoundry.GatewayDataRoutingConfigDestinationStorage;

@@ -5,7 +5,7 @@
  */
 export interface DockerhubBasicAuth {
     /** +value=basic-auth */
-    type?: "basic-auth" | undefined;
+    type: "basic-auth";
     /** +sort=100 */
     username: string;
     /**

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerIntegration {
     /** +value=integration/mcp-server/remote */
-    type?: "integration/mcp-server/remote" | undefined;
+    type: "integration/mcp-server/remote";
     /** The name of the MCP Server. */
     name: string;
     /** Provide a brief description of the purpose of this MCP Server. */

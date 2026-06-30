@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DatabricksModel {
     /** +value=integration/model/databricks */
-    type?: "integration/model/databricks" | undefined;
+    type: "integration/model/databricks";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The serving endpoint name configured in your Databricks workspace. This is the endpoint you created in Databricks Model Serving, not the underlying model name. */

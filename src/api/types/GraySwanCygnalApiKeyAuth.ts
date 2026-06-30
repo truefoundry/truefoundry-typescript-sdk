@@ -5,7 +5,7 @@
  */
 export interface GraySwanCygnalApiKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** GraySwan API key for Cygnal access */
     api_key: string;
 }

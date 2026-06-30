@@ -6,7 +6,7 @@
  */
 export interface HttpProbe {
     /** Request Type */
-    type?: "http" | undefined;
+    type: "http";
     /** Path to the health check endpoint */
     path: string;
     /** Listening port for the health check endpoint */

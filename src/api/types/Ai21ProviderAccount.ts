@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface Ai21ProviderAccount {
     /** +value=provider-account/ai21 */
-    type?: "provider-account/ai21" | undefined;
+    type: "provider-account/ai21";
     /** The name of the AI21 provider account */
     name: string;
     auth_data: TrueFoundry.Ai21KeyAuth;

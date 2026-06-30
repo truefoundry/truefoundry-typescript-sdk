@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OpenRouterProviderAccount {
     /** +value=provider-account/openrouter */
-    type?: "provider-account/openrouter" | undefined;
+    type: "provider-account/openrouter";
     /** The name of the OpenRouter provider account */
     name: string;
     auth_data: TrueFoundry.OpenRouterApiKeyAuth;

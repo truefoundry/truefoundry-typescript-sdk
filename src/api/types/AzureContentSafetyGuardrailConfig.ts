@@ -14,7 +14,7 @@ export interface AzureContentSafetyGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/azure-content-safety
      */
-    type?: "integration/guardrail-config/azure-content-safety" | undefined;
+    type: "integration/guardrail-config/azure-content-safety";
     /** Authentication data for the Azure account */
     auth_data: TrueFoundry.AzureContentSafetyGuardrailConfigAuthData;
     /** The operation type for this guardrail. Azure Content Safety guardrails can only be used for validation. */

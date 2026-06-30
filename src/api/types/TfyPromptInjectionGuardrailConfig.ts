@@ -14,7 +14,7 @@ export interface TfyPromptInjectionGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/tfy-prompt-injection
      */
-    type?: "integration/guardrail-config/tfy-prompt-injection" | undefined;
+    type: "integration/guardrail-config/tfy-prompt-injection";
     /** The operation type for this guardrail. TrueFoundry Prompt Shield guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;

@@ -121,12 +121,15 @@ export class DataDirectoriesClient {
      * @example
      *     await client.dataDirectories.createOrUpdate({
      *         manifest: {
+     *             type: "data-dir",
      *             name: "name",
      *             ml_repo: "ml_repo",
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             source: {}
+     *             source: {
+     *                 type: "truefoundry"
+     *             }
      *         }
      *     })
      */

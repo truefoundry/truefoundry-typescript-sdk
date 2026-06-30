@@ -257,7 +257,10 @@ export class ArtifactsClient {
      *             metadata: {
      *                 "key": "value"
      *             },
-     *             source: {},
+     *             type: "artifact-version",
+     *             source: {
+     *                 type: "truefoundry"
+     *             },
      *             step: 1
      *         }
      *     })

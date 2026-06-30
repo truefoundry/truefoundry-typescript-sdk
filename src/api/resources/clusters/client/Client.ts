@@ -126,6 +126,7 @@ export class ClustersClient {
      * @example
      *     await client.clusters.createOrUpdate({
      *         manifest: {
+     *             type: "cluster",
      *             name: "name",
      *             cluster_type: "aws-eks",
      *             environment_names: ["environment_names"],

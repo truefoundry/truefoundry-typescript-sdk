@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface TracingProjectManifest {
     /** +value=tracing-project */
-    type?: "tracing-project" | undefined;
+    type: "tracing-project";
     /** Name of the Tracing Project */
     name: string;
     storage: TrueFoundry.TracingProjectStorageConfig;

@@ -5,7 +5,7 @@
  */
 export interface OpaBearerAuth {
     /** +value=bearer-auth */
-    type?: "bearer-auth" | undefined;
+    type: "bearer-auth";
     /** The bearer token for OPA server authentication. */
     bearer_token: string;
 }

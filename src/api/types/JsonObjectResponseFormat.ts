@@ -5,5 +5,5 @@
  */
 export interface JsonObjectResponseFormat {
     /** Type of response format */
-    type?: "json_object" | undefined;
+    type: "json_object";
 }

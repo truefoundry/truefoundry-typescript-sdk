@@ -5,7 +5,7 @@
  */
 export interface AmqpOutputConfig {
     /** +value=amqp */
-    type?: "amqp" | undefined;
+    type: "amqp";
     /** AMQP Queue URL of Publisher */
     url: string;
     /** AMQP Routing Key to publish to. */

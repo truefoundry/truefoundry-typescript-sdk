@@ -15,7 +15,7 @@ export interface OpenAiModerationsGuardrailConfig {
      * +sort=50
      * +uiType=Hidden
      */
-    type?: "integration/guardrail-config/openai-moderations" | undefined;
+    type: "integration/guardrail-config/openai-moderations";
     auth_data: TrueFoundry.OpenaiApiKeyAuth;
     /** The operation type for this guardrail. OpenAI Moderation guardrails can only be used for validation. */
     operation: "validate";

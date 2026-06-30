@@ -14,7 +14,7 @@ export interface AwsBedrockGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/aws-bedrock
      */
-    type?: "integration/guardrail-config/aws-bedrock" | undefined;
+    type: "integration/guardrail-config/aws-bedrock";
     /** Authentication data for the AWS account */
     auth_data?: TrueFoundry.AwsBedrockGuardrailConfigAuthData | undefined;
     /**

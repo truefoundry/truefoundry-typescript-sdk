@@ -130,6 +130,7 @@ export class WorkspacesClient {
      * @example
      *     await client.workspaces.createOrUpdate({
      *         manifest: {
+     *             type: "workspace",
      *             cluster_fqn: "cluster_fqn",
      *             name: "name"
      *         }

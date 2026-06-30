@@ -10,7 +10,7 @@ export interface GatewayDataAccessConfig {
      * +value=gateway-data-access-config
      * +sort=1
      */
-    type?: "gateway-data-access-config" | undefined;
+    type: "gateway-data-access-config";
     /** List of data access rules */
     rules: TrueFoundry.DataAccessRule[];
 }

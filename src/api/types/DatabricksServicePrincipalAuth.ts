@@ -5,7 +5,7 @@
  */
 export interface DatabricksServicePrincipalAuth {
     /** +value=service-principal */
-    type?: "service-principal" | undefined;
+    type: "service-principal";
     /** OAuth secret of the Databricks service principal. */
     oauth_secret: string;
     /** Client ID or Application ID of the Databricks service principal. */

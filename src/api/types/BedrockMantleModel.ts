@@ -11,7 +11,7 @@ export interface BedrockMantleModel {
     /** The Bedrock Mantle model identifier (e.g., openai.gpt-oss-20b-1:0). Use the OpenAI-compatible model name exposed by the Bedrock Mantle endpoint. */
     model_id: string;
     /** +value=integration/model/bedrock-mantle */
-    type?: "integration/model/bedrock-mantle" | undefined;
+    type: "integration/model/bedrock-mantle";
     /** Specify the type of the Bedrock Mantle model */
     model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion | undefined;

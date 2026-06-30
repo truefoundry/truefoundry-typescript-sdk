@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface McpServerWithUrl {
     /** The URL of the MCP server */
-    type?: "mcp-server-url" | undefined;
+    type: "mcp-server-url";
     /** The URL of the MCP server */
     url: string;
     /** The headers to send to the MCP server */

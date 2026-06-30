@@ -108,6 +108,7 @@ describe("MlReposClient", () => {
                 {
                     tenant_name: "truefoundry",
                     manifest: {
+                        type: "ml-repo",
                         name: "name",
                         storage_integration_fqn: "storage_integration_fqn",
                         collaborators: [{ subject: "subject", role_id: "role_id" }],
@@ -151,6 +152,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [{ subject: "subject", role_id: "role_id" }],
@@ -197,6 +199,7 @@ describe("MlReposClient", () => {
 
         const response = await client.mlRepos.createOrUpdate({
             manifest: {
+                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -215,6 +218,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -237,6 +241,7 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
+                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -259,6 +264,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -281,6 +287,7 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
+                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -303,6 +310,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -325,6 +333,7 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
+                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [
@@ -347,6 +356,7 @@ describe("MlReposClient", () => {
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
             manifest: {
+                type: "ml-repo",
                 name: "name",
                 storage_integration_fqn: "storage_integration_fqn",
                 collaborators: [
@@ -369,6 +379,7 @@ describe("MlReposClient", () => {
         await expect(async () => {
             return await client.mlRepos.createOrUpdate({
                 manifest: {
+                    type: "ml-repo",
                     name: "name",
                     storage_integration_fqn: "storage_integration_fqn",
                     collaborators: [

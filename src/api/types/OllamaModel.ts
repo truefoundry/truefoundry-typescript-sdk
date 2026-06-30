@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OllamaModel {
     /** +value=integration/model/ollama */
-    type?: "integration/model/ollama" | undefined;
+    type: "integration/model/ollama";
     /** Name to identify this Ollama model in the UI */
     name: string;
     /** The name of the Ollama model to use */

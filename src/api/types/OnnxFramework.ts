@@ -5,5 +5,5 @@
  */
 export interface OnnxFramework {
     /** Type of the framework */
-    type?: "onnx" | undefined;
+    type: "onnx";
 }

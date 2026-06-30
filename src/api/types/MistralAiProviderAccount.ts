@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface MistralAiProviderAccount {
     /** +value=provider-account/mistral-ai */
-    type?: "provider-account/mistral-ai" | undefined;
+    type: "provider-account/mistral-ai";
     /** The name of the Mistral AI provider account */
     name: string;
     auth_data: TrueFoundry.MistralAiKeyAuth;

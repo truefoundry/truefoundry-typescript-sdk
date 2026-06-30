@@ -24,7 +24,7 @@ export class PromptsClient {
     /**
      * Get a prompt by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Unique identifier of the prompt.
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -87,7 +87,7 @@ export class PromptsClient {
     /**
      * Delete a prompt by its ID.
      *
-     * @param {string} id
+     * @param {string} id - Unique identifier of the prompt.
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -254,6 +254,7 @@ export class PromptsClient {
      *             metadata: {
      *                 "key": "value"
      *             },
+     *             type: "chat_prompt",
      *             messages: [{
      *                     role: "system",
      *                     content: "content"

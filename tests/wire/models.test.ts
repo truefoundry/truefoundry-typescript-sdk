@@ -30,7 +30,12 @@ describe("ModelsClient", () => {
                 latest_version: {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
-                    manifest: { metadata: { key: "value" }, source: {}, step: 1 },
+                    manifest: {
+                        metadata: { key: "value" },
+                        type: "model-version",
+                        source: { type: "truefoundry" },
+                        step: 1,
+                    },
                     id: "id",
                     fqn: "fqn",
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
@@ -129,7 +134,12 @@ describe("ModelsClient", () => {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
                     latest_version: {
-                        manifest: { metadata: { key: "value" }, source: {}, step: 1 },
+                        manifest: {
+                            metadata: { key: "value" },
+                            type: "model-version",
+                            source: { type: "truefoundry" },
+                            step: 1,
+                        },
                         id: "id",
                         fqn: "fqn",
                         created_by_subject: { subjectId: "subjectId", subjectType: "user" },
@@ -171,7 +181,9 @@ describe("ModelsClient", () => {
     test("create_or_update", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { metadata: { key: "value" }, source: {}, step: 1 } };
+        const rawRequestBody = {
+            manifest: { metadata: { key: "value" }, type: "model-version", source: { type: "truefoundry" }, step: 1 },
+        };
         const rawResponseBody = {
             data: {
                 created_at: "2024-01-15T09:30:00Z",
@@ -184,7 +196,8 @@ describe("ModelsClient", () => {
                     type: "model-version",
                     description: "description",
                     version_alias: "version_alias",
-                    source: {},
+                    source: { type: "truefoundry" },
+                    framework: { type: "transformers" },
                     step: 1,
                     run_id: "run_id",
                 },
@@ -222,7 +235,10 @@ describe("ModelsClient", () => {
                 metadata: {
                     key: "value",
                 },
-                source: {},
+                type: "model-version",
+                source: {
+                    type: "truefoundry",
+                },
                 step: 1,
             },
         });

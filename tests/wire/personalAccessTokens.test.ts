@@ -17,6 +17,7 @@ describe("PersonalAccessTokensClient", () => {
                     tenantName: "tenantName",
                     manifest: {
                         name: "name",
+                        type: "virtual-account",
                         permissions: [
                             { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
                         ],
@@ -232,7 +233,11 @@ describe("PersonalAccessTokensClient", () => {
                     permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
                     expiration_date: "expiration_date",
                     auto_rotate: { auto_rotate_interval: 1, grace_period: 1 },
-                    notification_target: { notification_channel: "notification_channel", to_emails: ["to_emails"] },
+                    notification_target: {
+                        type: "email",
+                        notification_channel: "notification_channel",
+                        to_emails: ["to_emails"],
+                    },
                     secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },

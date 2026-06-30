@@ -19,8 +19,12 @@ export interface ArtifactsListRequest {
     offset?: number;
     /** Human-readable Fully Qualified Name of the artifact. */
     fqn?: string;
+    /** Identifier of the ML Repo to filter artifacts by. */
     ml_repo_id?: string;
+    /** Name of the artifact to filter by. */
     name?: string;
+    /** Identifier of the run to filter artifacts by. */
     run_id?: string;
+    /** Whether to include artifacts that have no versions. */
     include_empty_artifacts?: boolean;
 }

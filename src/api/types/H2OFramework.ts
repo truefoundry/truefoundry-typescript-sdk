@@ -5,5 +5,5 @@
  */
 export interface H2OFramework {
     /** Type of the framework */
-    type?: "h2o" | undefined;
+    type: "h2o";
 }

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CoreNatsOutputConfig {
     /** +value=core-nats */
-    type?: "core-nats" | undefined;
+    type: "core-nats";
     /** Output NATS URL */
     nats_url: string;
     /** Root subject of output NATS */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureOpenAiProviderAccount {
     /** +value=provider-account/azure-openai */
-    type?: "provider-account/azure-openai" | undefined;
+    type: "provider-account/azure-openai";
     /** The name of the Azure OpenAI provider account */
     name: string;
     /** The Azure OpenAI Service endpoint URL. Should look like https://{resource-name}.openai.azure.com */

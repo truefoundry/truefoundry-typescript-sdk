@@ -28,6 +28,7 @@ Apply a manifest to create or update a resource.
 ```typescript
 await client.apply({
     manifest: {
+        type: "ml-repo",
         name: "name",
         storage_integration_fqn: "storage_integration_fqn",
         collaborators: [{
@@ -100,6 +101,7 @@ Delete a resource identified by the provided manifest.
 ```typescript
 await client.delete({
     manifest: {
+        type: "ml-repo",
         name: "name",
         storage_integration_fqn: "storage_integration_fqn",
         collaborators: [{
@@ -950,6 +952,7 @@ Create a new team or update an existing one using the provided TeamManifest. Mat
 ```typescript
 await client.teams.createOrUpdate({
     manifest: {
+        type: "team",
         name: "name",
         members: ["members"]
     }
@@ -1949,6 +1952,7 @@ Create a new virtual account or update an existing one using the provided Virtua
 await client.virtualAccounts.createOrUpdate({
     manifest: {
         name: "name",
+        type: "virtual-account",
         permissions: [{
                 resource_fqn: "resource_fqn",
                 resource_type: "resource_type",
@@ -2500,6 +2504,7 @@ Create a new cluster or update an existing one using the provided `ClusterManife
 ```typescript
 await client.clusters.createOrUpdate({
     manifest: {
+        type: "cluster",
         name: "name",
         cluster_type: "aws-eks",
         environment_names: ["environment_names"],
@@ -4040,6 +4045,7 @@ Create a new workspace or update an existing one using the provided WorkspaceMan
 ```typescript
 await client.workspaces.createOrUpdate({
     manifest: {
+        type: "workspace",
         cluster_fqn: "cluster_fqn",
         name: "name"
     }
@@ -4401,6 +4407,7 @@ Create a new environment or update an existing one using the provided `Environme
 ```typescript
 await client.environments.createOrUpdate({
     manifest: {
+        type: "environment",
         name: "name",
         color: {},
         isProduction: true,
@@ -4967,6 +4974,7 @@ Create a new secret group or update an existing one using the provided manifest.
 ```typescript
 await client.secretGroups.createOrUpdate({
     manifest: {
+        type: "secret-group",
         name: "name",
         integration_fqn: "integration_fqn",
         collaborators: [{
@@ -5406,7 +5414,7 @@ await client.prompts.get("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**id:** `string` — Unique identifier of the prompt.
     
 </dd>
 </dl>
@@ -5469,7 +5477,7 @@ await client.prompts.delete("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**id:** `string` — Unique identifier of the prompt.
     
 </dd>
 </dl>
@@ -5610,6 +5618,7 @@ await client.prompts.createOrUpdate({
         metadata: {
             "key": "value"
         },
+        type: "chat_prompt",
         messages: [{
                 role: "system",
                 content: "content"
@@ -6185,7 +6194,10 @@ await client.artifacts.createOrUpdate({
         metadata: {
             "key": "value"
         },
-        source: {},
+        type: "artifact-version",
+        source: {
+            type: "truefoundry"
+        },
         step: 1
     }
 });
@@ -6633,7 +6645,10 @@ await client.artifactVersions.stage({
         metadata: {
             "key": "value"
         },
-        source: {},
+        type: "artifact-version",
+        source: {
+            type: "truefoundry"
+        },
         step: 1
     }
 });
@@ -7104,6 +7119,7 @@ Creates or updates an MLRepo entity based on the provided manifest.
 ```typescript
 await client.mlRepos.createOrUpdate({
     manifest: {
+        type: "ml-repo",
         name: "name",
         storage_integration_fqn: "storage_integration_fqn",
         collaborators: [{
@@ -7264,12 +7280,15 @@ Create or update a data directory.
 ```typescript
 await client.dataDirectories.createOrUpdate({
     manifest: {
+        type: "data-dir",
         name: "name",
         ml_repo: "ml_repo",
         metadata: {
             "key": "value"
         },
-        source: {}
+        source: {
+            type: "truefoundry"
+        }
     }
 });
 
@@ -8797,7 +8816,7 @@ await client.models.get("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**id:** `string` — Unique identifier of the model.
     
 </dd>
 </dl>
@@ -8860,7 +8879,7 @@ await client.models.delete("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**id:** `string` — Unique identifier of the model.
     
 </dd>
 </dl>
@@ -9003,7 +9022,10 @@ await client.models.createOrUpdate({
         metadata: {
             "key": "value"
         },
-        source: {},
+        type: "model-version",
+        source: {
+            type: "truefoundry"
+        },
         step: 1
     }
 });
@@ -9458,7 +9480,7 @@ await client.agentSkills.get("agent_skill_id");
 <dl>
 <dd>
 
-**agent_skill_id:** `string` 
+**agent_skill_id:** `string` — Identifier of the agent skill.
     
 </dd>
 </dl>
@@ -9521,7 +9543,7 @@ await client.agentSkills.delete("agent_skill_id");
 <dl>
 <dd>
 
-**agent_skill_id:** `string` 
+**agent_skill_id:** `string` — Identifier of the agent skill.
     
 </dd>
 </dl>
@@ -9664,7 +9686,9 @@ await client.agentSkills.createOrUpdate({
             "key": "value"
         },
         ml_repo: "ml_repo",
+        type: "agent-skill",
         source: {
+            type: "inline",
             skill_md: "skill_md"
         }
     }

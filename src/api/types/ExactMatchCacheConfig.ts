@@ -5,7 +5,7 @@
  */
 export interface ExactMatchCacheConfig {
     /** Cache type */
-    type?: "exact-match" | undefined;
+    type: "exact-match";
     /** Cache namespace (defaults to 'default' if not provided) */
     namespace?: string | undefined;
     /** Time-to-live for cached entries in seconds (max 3 days) */

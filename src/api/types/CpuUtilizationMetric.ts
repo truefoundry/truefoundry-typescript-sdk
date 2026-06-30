@@ -2,7 +2,7 @@
 
 export interface CpuUtilizationMetric {
     /** +value=cpu_utilization */
-    type?: "cpu_utilization" | undefined;
+    type: "cpu_utilization";
     /** Percentage of cpu request averaged over all replicas which the autoscaler should try to maintain */
     value: number;
 }

@@ -2,7 +2,7 @@
 
 export interface RpsMetric {
     /** +value=rps */
-    type?: "rps" | undefined;
+    type: "rps";
     /** Average request per second averaged over all replicas that autoscaler should try to maintain */
     value: number;
 }

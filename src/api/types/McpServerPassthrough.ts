@@ -5,5 +5,5 @@
  */
 export interface McpServerPassthrough {
     /** +value=passthrough */
-    type?: "passthrough" | undefined;
+    type: "passthrough";
 }

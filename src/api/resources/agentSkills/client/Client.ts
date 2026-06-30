@@ -24,7 +24,7 @@ export class AgentSkillsClient {
     /**
      * Get an agent skill by its ID.
      *
-     * @param {string} agent_skill_id
+     * @param {string} agent_skill_id - Identifier of the agent skill.
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -92,7 +92,7 @@ export class AgentSkillsClient {
     /**
      * Delete an agent skill by its ID.
      *
-     * @param {string} agent_skill_id
+     * @param {string} agent_skill_id - Identifier of the agent skill.
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -271,7 +271,9 @@ export class AgentSkillsClient {
      *                 "key": "value"
      *             },
      *             ml_repo: "ml_repo",
+     *             type: "agent-skill",
      *             source: {
+     *                 type: "inline",
      *                 skill_md: "skill_md"
      *             }
      *         }

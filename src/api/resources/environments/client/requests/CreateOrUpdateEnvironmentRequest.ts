@@ -6,6 +6,7 @@ import type * as TrueFoundry from "../../../../index.js";
  * @example
  *     {
  *         manifest: {
+ *             type: "environment",
  *             name: "name",
  *             color: {},
  *             isProduction: true,

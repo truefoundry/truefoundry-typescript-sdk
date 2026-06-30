@@ -19,10 +19,15 @@ export interface PromptVersionsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Filter prompt versions by tag. */
     tag?: string;
+    /** Filter prompt versions by Fully Qualified Name. */
     fqn?: string;
+    /** Filter prompt versions by the identifier of the prompt they belong to. */
     prompt_id?: string;
+    /** Filter prompt versions by the identifier of the ML Repo they belong to. */
     ml_repo_id?: string;
+    /** Filter prompt versions by name. */
     name?: string;
     /** Version number (positive integer) or `latest` */
     version?: TrueFoundry.Object_;

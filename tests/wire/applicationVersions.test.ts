@@ -19,13 +19,16 @@ describe("ApplicationVersionsClient", () => {
                     manifest: {
                         name: "name",
                         image: {
-                            build_source: { remote_uri: "remote_uri" },
+                            type: "build",
+                            build_source: { type: "remote", remote_uri: "remote_uri" },
                             build_spec: {
+                                type: "dockerfile",
                                 dockerfile_path: "dockerfile_path",
                                 build_context_path: "build_context_path",
                             },
                         },
                         ports: [{ port: 1, protocol: "TCP", expose: true }],
+                        type: "service",
                         replicas: 1.1,
                     },
                     application: { lifecycleStage: "active" },
@@ -121,12 +124,18 @@ describe("ApplicationVersionsClient", () => {
                 manifest: {
                     name: "name",
                     image: {
-                        build_source: { remote_uri: "remote_uri" },
-                        build_spec: { dockerfile_path: "dockerfile_path", build_context_path: "build_context_path" },
+                        type: "build",
+                        build_source: { type: "remote", remote_uri: "remote_uri" },
+                        build_spec: {
+                            type: "dockerfile",
+                            dockerfile_path: "dockerfile_path",
+                            build_context_path: "build_context_path",
+                        },
                     },
                     artifacts_download: {
                         artifacts: [
                             {
+                                type: "truefoundry-artifact",
                                 artifact_version_fqn: "artifact_version_fqn",
                                 download_path_env_variable: "download_path_env_variable",
                             },
@@ -142,17 +151,21 @@ describe("ApplicationVersionsClient", () => {
                     },
                     ports: [{ port: 1, protocol: "TCP", expose: true }],
                     service_account: "service_account",
-                    mounts: [{ mount_path: "mount_path", secret_fqn: "secret_fqn" }],
+                    mounts: [{ type: "secret", mount_path: "mount_path", secret_fqn: "secret_fqn" }],
                     labels: { key: "value" },
-                    liveness_probe: { config: { path: "path", port: 1 } },
-                    readiness_probe: { config: { path: "path", port: 1 } },
-                    startup_probe: { config: { path: "path", port: 1 } },
+                    liveness_probe: { config: { type: "http", path: "path", port: 1 } },
+                    readiness_probe: { config: { type: "http", path: "path", port: 1 } },
+                    startup_probe: { config: { type: "http", path: "path", port: 1 } },
                     workspace_fqn: "workspace_fqn",
                     type: "service",
                     replicas: 1.1,
                     auto_shutdown: { wait_time: 1 },
                     allow_interception: true,
-                    rollout_strategy: { max_unavailable_percentage: 1, max_surge_percentage: 1 },
+                    rollout_strategy: {
+                        type: "rolling_update",
+                        max_unavailable_percentage: 1,
+                        max_surge_percentage: 1,
+                    },
                 },
                 application: {
                     id: "id",

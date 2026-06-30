@@ -10,7 +10,7 @@ export interface TenantBudgetConfig {
      * +value=tenant-budget-config
      * +sort=1
      */
-    type?: "tenant-budget-config" | undefined;
+    type: "tenant-budget-config";
     /** Unique name for this budget */
     name: string;
     when: TrueFoundry.BudgetV2WhenTenantScoped;

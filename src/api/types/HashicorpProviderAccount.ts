@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface HashicorpProviderAccount {
     /** +value=provider-account/hashicorp */
-    type?: "provider-account/hashicorp" | undefined;
+    type: "provider-account/hashicorp";
     /** The name of the HashiCorp Vault provider account. */
     name: string;
     /** List of integrations that are associated with the HashiCorp Vault provider account. */

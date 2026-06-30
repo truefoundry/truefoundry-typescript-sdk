@@ -5,7 +5,7 @@
  */
 export interface StaticVolumeConfig {
     /** Volume Type for the volume. */
-    type?: "static" | undefined;
+    type: "static";
     /** Persistent Volume Name of the volume to be used. */
     persistent_volume_name: string;
 }

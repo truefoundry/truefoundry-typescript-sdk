@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Intercept {
     /** +value=intercept */
-    type?: "intercept" | undefined;
+    type: "intercept";
     /** Name of the service this intercept is for */
     name: string;
     rules: TrueFoundry.InterceptRulesItem[];

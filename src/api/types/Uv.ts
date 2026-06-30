@@ -6,7 +6,7 @@
  */
 export interface Uv {
     /** +value=uv */
-    type?: "uv" | undefined;
+    type: "uv";
     /** UV version to use */
     uv_version?: string | undefined;
     /** Sync options to pass to uv command */

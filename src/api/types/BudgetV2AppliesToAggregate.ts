@@ -5,5 +5,5 @@
  */
 export interface BudgetV2AppliesToAggregate {
     /** Applies To Type */
-    type?: "aggregate" | undefined;
+    type: "aggregate";
 }

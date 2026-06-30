@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface Helm {
     /** +value=helm */
-    type?: "helm" | undefined;
+    type: "helm";
     /** Name of the Helm deployment. This will be set as the release name of the chart you are deploying. */
     name: string;
     /** Add labels to base argo app */

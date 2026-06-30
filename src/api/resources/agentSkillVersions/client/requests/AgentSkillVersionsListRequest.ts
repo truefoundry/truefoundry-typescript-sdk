@@ -18,9 +18,13 @@ export interface AgentSkillVersionsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Fully Qualified Name uniquely identifying the agent skill version. */
     fqn?: string;
+    /** Identifier of the agent skill whose versions are being listed. */
     agent_skill_id?: string;
+    /** Identifier of the ML Repo to filter agent skill versions by. */
     ml_repo_id?: string;
+    /** Name of the agent skill to filter versions by. */
     name?: string;
     /** Version number (positive integer) or `latest` */
     version?: TrueFoundry.Object_;

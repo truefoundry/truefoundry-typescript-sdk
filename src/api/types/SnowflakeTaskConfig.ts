@@ -2,7 +2,7 @@
 
 export interface SnowflakeTaskConfig {
     /** +value=snowflake-task-config */
-    type?: "snowflake-task-config" | undefined;
+    type: "snowflake-task-config";
     /** Configuration required to connect and execute tasks in Snowflake. */
     user: string;
     /** Snowflake account identifier (e.g., <org>-<account>). */

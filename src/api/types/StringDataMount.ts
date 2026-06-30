@@ -2,7 +2,7 @@
 
 export interface StringDataMount {
     /** +value=string */
-    type?: "string" | undefined;
+    type: "string";
     /** Absolute file path where the file will be created. */
     mount_path: string;
     /** The file content. */

@@ -5,7 +5,7 @@
  */
 export interface SambaNovaKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** The API key for SambaNova authentication */
     api_key: string;
 }

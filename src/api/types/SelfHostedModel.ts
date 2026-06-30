@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface SelfHostedModel {
     /** +value=integration/model/self-hosted-model */
-    type?: "integration/model/self-hosted-model" | undefined;
+    type: "integration/model/self-hosted-model";
     /** A descriptive name to identify this self-hosted model in the UI */
     name: string;
     /** The name of the hosted model */

@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface PolicyManifest {
     /** +value=policy */
-    type?: "policy" | undefined;
+    type: "policy";
     /** Unique identifier of the policy across the organisation */
     name: string;
     /** Description of the policy that explains what the policy does, its purpose, and how it affects resources. This helps other users understand the policy's behavior and impact. */

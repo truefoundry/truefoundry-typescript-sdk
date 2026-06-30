@@ -14,7 +14,12 @@ describe("ModelVersionsClient", () => {
                 {
                     created_at: "2024-01-15T09:30:00Z",
                     updated_at: "2024-01-15T09:30:00Z",
-                    manifest: { metadata: { key: "value" }, source: {}, step: 1 },
+                    manifest: {
+                        metadata: { key: "value" },
+                        type: "model-version",
+                        source: { type: "truefoundry" },
+                        step: 1,
+                    },
                     id: "id",
                     fqn: "fqn",
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
@@ -95,7 +100,8 @@ describe("ModelVersionsClient", () => {
                     type: "model-version",
                     description: "description",
                     version_alias: "version_alias",
-                    source: {},
+                    source: { type: "truefoundry" },
+                    framework: { type: "transformers" },
                     step: 1,
                     run_id: "run_id",
                 },

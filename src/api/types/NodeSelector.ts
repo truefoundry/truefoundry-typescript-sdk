@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface NodeSelector {
     /** +value=node_selector */
-    type?: "node_selector" | undefined;
+    type: "node_selector";
     /**
      * Instance family of the underlying machine to use. Multiple instance families can be supplied.
      * The workload is guaranteed to be scheduled on one of them.

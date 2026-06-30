@@ -2,7 +2,7 @@
 
 export interface VolumeMount {
     /** +value=volume */
-    type?: "volume" | undefined;
+    type: "volume";
     /** Absolute file path where the volume will be mounted. */
     mount_path: string;
     /** Sub path within the volume to mount. Defaults to root of the volume. */

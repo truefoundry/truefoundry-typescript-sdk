@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface VirtualMcpServerIntegration {
     /** +value=integration/mcp-server/virtual */
-    type?: "integration/mcp-server/virtual" | undefined;
+    type: "integration/mcp-server/virtual";
     /** The name of the Virtual MCP Server. */
     name: string;
     /** Provide a brief description of the purpose of this Virtual MCP Server. */

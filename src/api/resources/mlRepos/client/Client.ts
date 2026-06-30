@@ -242,6 +242,7 @@ export class MlReposClient {
      * @example
      *     await client.mlRepos.createOrUpdate({
      *         manifest: {
+     *             type: "ml-repo",
      *             name: "name",
      *             storage_integration_fqn: "storage_integration_fqn",
      *             collaborators: [{

@@ -5,5 +5,5 @@
  */
 export interface Manual {
     /** +value=manual */
-    type?: "manual" | undefined;
+    type: "manual";
 }

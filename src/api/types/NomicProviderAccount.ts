@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface NomicProviderAccount {
     /** +value=provider-account/nomic */
-    type?: "provider-account/nomic" | undefined;
+    type: "provider-account/nomic";
     /** The name of the Nomic provider account */
     name: string;
     auth_data: TrueFoundry.NomicKeyAuth;

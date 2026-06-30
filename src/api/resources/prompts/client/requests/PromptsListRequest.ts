@@ -16,8 +16,12 @@ export interface PromptsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Filter prompts by Fully Qualified Name. */
     fqn?: string;
+    /** Filter prompts by the identifier of the ML Repo they belong to. */
     ml_repo_id?: string;
+    /** Filter prompts by name. */
     name?: string;
+    /** Whether to include prompts that have no versions in the results. */
     include_empty_prompts?: boolean;
 }

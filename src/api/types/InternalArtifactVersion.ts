@@ -3,21 +3,32 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface InternalArtifactVersion {
+    /** Timestamp when the artifact version was created. */
     created_at?: string | undefined;
+    /** Timestamp when the artifact version was last updated. */
     updated_at?: string | undefined;
+    /** Manifest describing the artifact version. */
     manifest?: TrueFoundry.ArtifactManifest | undefined;
     /** System-generated artifact version ID. */
     id: string;
     /** Human-readable Fully Qualified Name of the artifact version. */
     fqn: string;
+    /** Subject (user, team, or service account) that created the artifact version. */
     created_by_subject: TrueFoundry.Subject;
+    /** Identifier of the ML Repo the artifact version belongs to. */
     ml_repo_id: string;
+    /** Code snippet demonstrating how to use the artifact version. */
     usage_code_snippet?: string | undefined;
+    /** Tags associated with the artifact version. */
     tags?: string[] | undefined;
+    /** Identifier of the artifact this version belongs to. */
     artifact_id: string;
+    /** Total size of the artifact version files in bytes. */
     artifact_size?: number | undefined;
     /** Fully qualified name of the parent artifact */
     artifact_fqn: string;
+    /** User-defined metadata associated with the artifact version. */
     artifact_metadata?: Record<string, unknown> | undefined;
+    /** Internal metadata associated with the artifact version. */
     internal_metadata?: Record<string, unknown> | undefined;
 }

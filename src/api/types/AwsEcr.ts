@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AwsEcr {
     /** +value=integration/docker-registry/aws/ecr */
-    type?: "integration/docker-registry/aws/ecr" | undefined;
+    type: "integration/docker-registry/aws/ecr";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */

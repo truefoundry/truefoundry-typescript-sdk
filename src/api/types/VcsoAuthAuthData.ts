@@ -5,5 +5,5 @@
  */
 export interface VcsoAuthAuthData {
     /** +value=oauth */
-    type?: "oauth" | undefined;
+    type: "oauth";
 }

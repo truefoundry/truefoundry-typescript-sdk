@@ -2,7 +2,7 @@
 
 export interface CronMetric {
     /** +value=cron */
-    type?: "cron" | undefined;
+    type: "cron";
     /** Desired number of replicas during the given interval. Default value is max_replicas. */
     desired_replicas?: number | undefined;
     /**

@@ -14,7 +14,7 @@ export interface TrojAiGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/trojai
      */
-    type?: "integration/guardrail-config/trojai" | undefined;
+    type: "integration/guardrail-config/trojai";
     auth_data: TrueFoundry.TrojAiClientIdAuth;
     /**
      * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests.

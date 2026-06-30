@@ -14,7 +14,7 @@ export interface TfyContentModerationGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/tfy-content-moderation
      */
-    type?: "integration/guardrail-config/tfy-content-moderation" | undefined;
+    type: "integration/guardrail-config/tfy-content-moderation";
     /** The operation type for this guardrail. TrueFoundry Content Moderation guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;

@@ -14,7 +14,7 @@ export interface CedarGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/cedar
      */
-    type?: "integration/guardrail-config/cedar" | undefined;
+    type: "integration/guardrail-config/cedar";
     /** The operation type for this guardrail. Cedar guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;

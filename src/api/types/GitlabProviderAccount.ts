@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GitlabProviderAccount {
     /** +value=provider-account/gitlab */
-    type?: "provider-account/gitlab" | undefined;
+    type: "provider-account/gitlab";
     /** +uiProps={"disableEdit":true} */
     name: string;
     /** +uiType=IntegrationsGroup */

@@ -9,6 +9,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *             metadata: {
  *                 "key": "value"
  *             },
+ *             type: "chat_prompt",
  *             messages: [{
  *                     role: "system",
  *                     content: "content"

@@ -14,7 +14,7 @@ export interface CodeSafetyLinterGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/code-safety-linter
      */
-    type?: "integration/guardrail-config/code-safety-linter" | undefined;
+    type: "integration/guardrail-config/code-safety-linter";
     /** The operation type for this guardrail. Code Safety Linter guardrails can only be used for validation. */
     operation: "validate";
     enforcing_strategy: TrueFoundry.EnforcingStrategy;

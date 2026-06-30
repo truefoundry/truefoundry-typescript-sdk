@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AsyncService extends TrueFoundry.BaseService {
     /** +value=async-service */
-    type?: "async-service" | undefined;
+    type: "async-service";
     /** Deploy multiple instances of your pods to distribute incoming traffic across them, ensuring effective load balancing. */
     replicas: TrueFoundry.AsyncServiceReplicas;
     rollout_strategy?: TrueFoundry.Rolling | undefined;

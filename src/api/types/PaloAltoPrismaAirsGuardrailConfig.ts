@@ -14,7 +14,7 @@ export interface PaloAltoPrismaAirsGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/palo-alto-prisma-airs
      */
-    type?: "integration/guardrail-config/palo-alto-prisma-airs" | undefined;
+    type: "integration/guardrail-config/palo-alto-prisma-airs";
     auth_data: TrueFoundry.PaloAltoPrismaAirsKeyAuth;
     /** The operation type for this guardrail. Palo Alto Prisma AIRS guardrails can only be used for validation. */
     operation: "validate";

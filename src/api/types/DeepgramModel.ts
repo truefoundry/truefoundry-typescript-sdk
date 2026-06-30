@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface DeepgramModel {
     /** +value=integration/model/deepgram */
-    type?: "integration/model/deepgram" | undefined;
+    type: "integration/model/deepgram";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Deepgram model identifier (for example, nova-2, nova-2-general, aura-asteria-en) */

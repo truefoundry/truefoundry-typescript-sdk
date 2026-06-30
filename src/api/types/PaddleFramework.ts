@@ -5,5 +5,5 @@
  */
 export interface PaddleFramework {
     /** Type of the framework */
-    type?: "paddle" | undefined;
+    type: "paddle";
 }

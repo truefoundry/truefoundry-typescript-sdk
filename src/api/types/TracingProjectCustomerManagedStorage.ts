@@ -5,7 +5,7 @@
  */
 export interface TracingProjectCustomerManagedStorage {
     /** Type of storage configuration */
-    type?: "customer-managed" | undefined;
+    type: "customer-managed";
     /** Storage Integration FQN to store traces and spans. A storage integration represents a connected blob storage like AWS S3 / Azure Blob Storage / Google Cloud Storage. Please note that this cannot be changed once set. */
     storage_integration_fqn: string;
 }

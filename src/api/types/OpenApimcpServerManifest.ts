@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OpenApimcpServerManifest {
     /** +value=mcp-server/openapi */
-    type?: "mcp-server/openapi" | undefined;
+    type: "mcp-server/openapi";
     /** The name of the OpenAPI MCP Server. */
     name: string;
     /** Provide a brief description of the purpose of this OpenAPI MCP Server. */

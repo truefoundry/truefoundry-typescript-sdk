@@ -5,5 +5,5 @@
  */
 export interface SpaCyFramework {
     /** Type of the framework */
-    type?: "spacy" | undefined;
+    type: "spacy";
 }

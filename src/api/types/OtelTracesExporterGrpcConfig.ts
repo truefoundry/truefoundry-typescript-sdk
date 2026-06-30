@@ -9,5 +9,5 @@ export interface OtelTracesExporterGrpcConfig
     extends TrueFoundry.OtelExporterGrpcConfigBase,
         TrueFoundry.OtelTracesExporterCommonConfig {
     /** Configuration type */
-    type?: "grpc" | undefined;
+    type: "grpc";
 }

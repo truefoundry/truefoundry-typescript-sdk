@@ -5,5 +5,5 @@
  */
 export interface LoggingModeNever {
     /** +value=never */
-    type?: "never" | undefined;
+    type: "never";
 }

@@ -22,13 +22,22 @@ export interface ArtifactVersionsListRequest {
     limit?: number;
     /** Number of items to skip */
     offset?: number;
+    /** Tag to filter artifact versions by. */
     tag?: string;
+    /** Fully Qualified Name uniquely identifying the artifact version. */
     fqn?: string;
+    /** Identifier of the artifact whose versions to list. */
     artifact_id?: string;
+    /** Identifier of the ML Repo the artifact versions belong to. */
     ml_repo_id?: string;
+    /** Name of the artifact version. */
     name?: string;
+    /** Version number of the artifact version, or "latest" to fetch the most recent one. */
     version?: TrueFoundry.Object_;
+    /** Run IDs to filter artifact versions by. */
     run_ids?: string | string[];
+    /** Run steps to filter artifact versions by. */
     run_steps?: number | number[];
+    /** Whether to include internal metadata in the response. */
     include_internal_metadata?: boolean;
 }

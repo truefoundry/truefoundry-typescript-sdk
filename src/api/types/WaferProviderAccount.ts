@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface WaferProviderAccount {
     /** +value=provider-account/wafer */
-    type?: "provider-account/wafer" | undefined;
+    type: "provider-account/wafer";
     /** The name of the Wafer provider account */
     name: string;
     auth_data: TrueFoundry.WaferApiKeyAuth;

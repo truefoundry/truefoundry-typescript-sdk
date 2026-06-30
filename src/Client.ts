@@ -204,6 +204,7 @@ export class TrueFoundryClient {
      * @example
      *     await client.apply({
      *         manifest: {
+     *             type: "ml-repo",
      *             name: "name",
      *             storage_integration_fqn: "storage_integration_fqn",
      *             collaborators: [{
@@ -272,6 +273,7 @@ export class TrueFoundryClient {
      * @example
      *     await client.delete({
      *         manifest: {
+     *             type: "ml-repo",
      *             name: "name",
      *             storage_integration_fqn: "storage_integration_fqn",
      *             collaborators: [{

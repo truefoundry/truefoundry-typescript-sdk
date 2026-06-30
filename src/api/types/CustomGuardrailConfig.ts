@@ -14,7 +14,7 @@ export interface CustomGuardrailConfig {
      * +uiType=Hidden
      * +value=integration/guardrail-config/custom
      */
-    type?: "integration/guardrail-config/custom" | undefined;
+    type: "integration/guardrail-config/custom";
     /** Authentication data for the Guardrail Server. */
     auth_data?: TrueFoundry.CustomGuardrailConfigAuthData | undefined;
     /**

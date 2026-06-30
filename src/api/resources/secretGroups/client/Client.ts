@@ -209,6 +209,7 @@ export class SecretGroupsClient {
      * @example
      *     await client.secretGroups.createOrUpdate({
      *         manifest: {
+     *             type: "secret-group",
      *             name: "name",
      *             integration_fqn: "integration_fqn",
      *             collaborators: [{

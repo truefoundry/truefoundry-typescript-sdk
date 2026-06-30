@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface GroqProviderAccount {
     /** +value=provider-account/groq */
-    type?: "provider-account/groq" | undefined;
+    type: "provider-account/groq";
     /** The name of the Groq provider account */
     name: string;
     auth_data: TrueFoundry.GroqKeyAuth;

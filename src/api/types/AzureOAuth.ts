@@ -5,7 +5,7 @@
  */
 export interface AzureOAuth {
     /** +value=oauth */
-    type?: "oauth" | undefined;
+    type: "oauth";
     /** The Azure Active Directory tenant (directory) ID. */
     tenant_id: string;
     /** The client (application) ID of an App Registration in the tenant. */

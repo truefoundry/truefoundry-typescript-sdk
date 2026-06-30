@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface PalmProviderAccount {
     /** +value=provider-account/palm */
-    type?: "provider-account/palm" | undefined;
+    type: "provider-account/palm";
     /** The name of the PaLM provider account */
     name: string;
     auth_data: TrueFoundry.PalmKeyAuth;

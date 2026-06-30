@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface WorkspaceManifest {
     /** +value=workspace */
-    type?: "workspace" | undefined;
+    type: "workspace";
     /** Cluster FQN */
     cluster_fqn: string;
     /** Name - 3 to 32 lower case characters long alphanumeric word, may contain - in between, cannot start with a number */

@@ -5,5 +5,5 @@
  */
 export interface TensorFlowFramework {
     /** Type of the framework */
-    type?: "tensorflow" | undefined;
+    type: "tensorflow";
 }

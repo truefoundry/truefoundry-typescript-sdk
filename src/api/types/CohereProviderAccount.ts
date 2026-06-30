@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CohereProviderAccount {
     /** +value=provider-account/cohere */
-    type?: "provider-account/cohere" | undefined;
+    type: "provider-account/cohere";
     /** The name of the Cohere provider account */
     name: string;
     auth_data: TrueFoundry.CohereKeyAuth;

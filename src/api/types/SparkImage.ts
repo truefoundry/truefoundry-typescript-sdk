@@ -5,7 +5,7 @@
  */
 export interface SparkImage {
     /** +value=spark-image */
-    type?: "spark-image" | undefined;
+    type: "spark-image";
     /** Spark version should match the spark version installed in the image. */
     spark_version: string;
     /**

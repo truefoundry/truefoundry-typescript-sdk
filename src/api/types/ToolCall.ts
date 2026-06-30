@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface ToolCall {
     /** Type of the tool call */
-    type?: "function" | undefined;
+    type: "function";
     /** Unique identifier for the tool call */
     id: string;
     function: TrueFoundry.Function;

@@ -5,5 +5,5 @@
  */
 export interface StatsModelsFramework {
     /** Type of the framework */
-    type?: "statsmodels" | undefined;
+    type: "statsmodels";
 }

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface OpenRouterModel {
     /** +value=integration/model/openrouter */
-    type?: "integration/model/openrouter" | undefined;
+    type: "integration/model/openrouter";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The OpenRouter model identifier (e.g., anthropic/claude-3-haiku, openai/gpt-4o-mini). This is the model name from OpenRouter's model catalog. */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface BlobStorageReference {
     /** +value=blob-storage */
-    type?: "blob-storage" | undefined;
+    type: "blob-storage";
     /** Path to the content in blob storage */
     path: string;
     /** MIME type of the content */

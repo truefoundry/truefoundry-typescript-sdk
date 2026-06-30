@@ -2,7 +2,7 @@
 
 export interface RoleManifest {
     /** +value=role */
-    type?: "role" | undefined;
+    type: "role";
     /** Unique identifier of the role across the organization */
     name: string;
     /** Human-readable name for the role */

@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureVault {
     /** +value=integration/secret-store/azure/vault */
-    type?: "integration/secret-store/azure/vault" | undefined;
+    type: "integration/secret-store/azure/vault";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     auth_data?: TrueFoundry.AzureOAuth | undefined;

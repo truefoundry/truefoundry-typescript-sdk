@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface MlRepoManifest {
     /** +value=ml-repo */
-    type?: "ml-repo" | undefined;
+    type: "ml-repo";
     /** Name of the ML Repo. */
     name: string;
     /** Description for the ML Repo. */

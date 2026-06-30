@@ -11,7 +11,7 @@ export interface AnthropicModel {
     /** The Anthropic model identifier (e.g., claude-3-5-sonnet-20241022, claude-3-opus-20240229, claude-3-haiku-20240307). This is the standard model name from Anthropic's API documentation. */
     model_id: string;
     /** +value=integration/model/anthropic */
-    type?: "integration/model/anthropic" | undefined;
+    type: "integration/model/anthropic";
     /** Specify the type of the Anthropic model */
     model_types: TrueFoundry.ModelType[];
     cost?: TrueFoundry.ModelCostMetric | undefined;

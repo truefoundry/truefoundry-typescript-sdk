@@ -5,7 +5,7 @@
  */
 export interface MsTeamsWebhookAuth {
     /** +value=auth/ms-teams-webhook */
-    type?: "ms-teams-webhook" | undefined;
+    type: "ms-teams-webhook";
     /** The Microsoft Teams Incoming Webhook URL */
     webhook_url: string;
 }

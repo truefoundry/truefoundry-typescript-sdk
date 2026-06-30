@@ -11,7 +11,7 @@ export interface SagemakerModel {
     /** The SageMaker endpoint name you created for your model deployment. This is the name of the inference endpoint in AWS SageMaker, not the model name. */
     model_id: string;
     /** +value=integration/model/sagemaker */
-    type?: "integration/model/sagemaker" | undefined;
+    type: "integration/model/sagemaker";
     /** Specify the type of the Sagemaker model */
     model_types: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion | undefined;

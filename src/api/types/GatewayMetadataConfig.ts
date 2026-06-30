@@ -12,7 +12,7 @@ export interface GatewayMetadataConfig {
      * +value=gateway-metadata-config
      * +sort=2
      */
-    type?: "gateway-metadata-config" | undefined;
+    type: "gateway-metadata-config";
     /** List of metadata rules */
     rules: TrueFoundry.GatewayMetadataRule[];
 }

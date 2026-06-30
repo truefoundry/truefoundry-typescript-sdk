@@ -2,7 +2,7 @@
 
 export interface CerebrasKeyAuth {
     /** +value=api-key */
-    type?: "api-key" | undefined;
+    type: "api-key";
     /** The API key for Cerebras authentication */
     api_key: string;
 }

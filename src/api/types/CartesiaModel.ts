@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CartesiaModel {
     /** +value=integration/model/cartesia */
-    type?: "integration/model/cartesia" | undefined;
+    type: "integration/model/cartesia";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The Cartesia model identifier (for example, sonic-2, sonic-multilingual) */

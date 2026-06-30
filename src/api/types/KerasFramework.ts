@@ -5,5 +5,5 @@
  */
 export interface KerasFramework {
     /** Type of the framework */
-    type?: "keras" | undefined;
+    type: "keras";
 }

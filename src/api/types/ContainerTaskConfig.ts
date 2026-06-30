@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface ContainerTaskConfig {
     /** +value=container-task-config */
-    type?: "container-task-config" | undefined;
+    type: "container-task-config";
     /** Specify whether you want to deploy a Docker image or build and deploy from source code */
     image: TrueFoundry.ContainerTaskConfigImage;
     /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */

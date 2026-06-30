@@ -5,7 +5,7 @@
  */
 export interface OpaHeaderAuth {
     /** +value=header */
-    type?: "header" | undefined;
+    type: "header";
     /** Custom headers to include in requests to OPA server (e.g., {"Authorization": "Bearer <token>", "X-API-Key": "<key>"}) */
     headers: Record<string, string>;
 }

@@ -127,6 +127,7 @@ export class VirtualAccountsClient {
      *     await client.virtualAccounts.createOrUpdate({
      *         manifest: {
      *             name: "name",
+     *             type: "virtual-account",
      *             permissions: [{
      *                     resource_fqn: "resource_fqn",
      *                     resource_type: "resource_type",

@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../index.js";
 
 export interface EnvironmentManifest {
     /** +value=environment */
-    type?: "environment" | undefined;
+    type: "environment";
     /** Environment Name */
     name: string;
     color: TrueFoundry.EnvironmentColor;

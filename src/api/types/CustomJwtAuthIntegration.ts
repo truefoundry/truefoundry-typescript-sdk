@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface CustomJwtAuthIntegration {
     /** +value=integration/jwt-auth/custom */
-    type?: "integration/jwt-auth/custom" | undefined;
+    type: "integration/jwt-auth/custom";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The base URL of the authentication provider. */

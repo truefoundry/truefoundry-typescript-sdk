@@ -7,7 +7,7 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface AzureOpenAiModel {
     /** +value=integration/model/azure-openai */
-    type?: "integration/model/azure-openai" | undefined;
+    type: "integration/model/azure-openai";
     /** A descriptive name to identify this model integration in the UI */
     name: string;
     /** The model deployment name created in your Azure OpenAI resource (e.g., gpt-4-deployment, gpt-35-turbo-deployment). This is NOT the base model name but the deployment name you configured in Azure. */

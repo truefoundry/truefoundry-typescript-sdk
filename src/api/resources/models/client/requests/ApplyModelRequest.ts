@@ -9,7 +9,10 @@ import type * as TrueFoundry from "../../../../index.js";
  *             metadata: {
  *                 "key": "value"
  *             },
- *             source: {},
+ *             type: "model-version",
+ *             source: {
+ *                 type: "truefoundry"
+ *             },
  *             step: 1
  *         }
  *     }
