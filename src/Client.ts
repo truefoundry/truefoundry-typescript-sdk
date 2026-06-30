@@ -3,6 +3,8 @@
 import type * as TrueFoundry from "./api/index.js";
 import { AgentSkillsClient } from "./api/resources/agentSkills/client/Client.js";
 import { AgentSkillVersionsClient } from "./api/resources/agentSkillVersions/client/Client.js";
+import { AgentsClient } from "./api/resources/agents/client/Client.js";
+import { AgentVersionsClient } from "./api/resources/agentVersions/client/Client.js";
 import { AlertsClient } from "./api/resources/alerts/client/Client.js";
 import { ApplicationsClient } from "./api/resources/applications/client/Client.js";
 import { ApplicationVersionsClient } from "./api/resources/applicationVersions/client/Client.js";
@@ -72,6 +74,8 @@ export class TrueFoundryClient {
     protected _agentSkills: AgentSkillsClient | undefined;
     protected _agentSkillVersions: AgentSkillVersionsClient | undefined;
     protected _dataDirectories: DataDirectoriesClient | undefined;
+    protected _agents: AgentsClient | undefined;
+    protected _agentVersions: AgentVersionsClient | undefined;
 
     constructor(options: TrueFoundryClient.Options) {
         this._options = normalizeClientOptionsWithAuth(options);
@@ -187,6 +191,14 @@ export class TrueFoundryClient {
 
     public get dataDirectories(): DataDirectoriesClient {
         return (this._dataDirectories ??= new DataDirectoriesClient(this._options));
+    }
+
+    public get agents(): AgentsClient {
+        return (this._agents ??= new AgentsClient(this._options));
+    }
+
+    public get agentVersions(): AgentVersionsClient {
+        return (this._agentVersions ??= new AgentVersionsClient(this._options));
     }
 
     /**
