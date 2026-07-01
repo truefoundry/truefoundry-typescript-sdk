@@ -10145,7 +10145,7 @@ const pageableResponse = await client.agentSkillVersions.list({
     agent_skill_id: "agent_skill_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest"
+    version: 1
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -10159,7 +10159,7 @@ let page = await client.agentSkillVersions.list({
     agent_skill_id: "agent_skill_id",
     ml_repo_id: "ml_repo_id",
     name: "name",
-    version: "latest"
+    version: 1
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
