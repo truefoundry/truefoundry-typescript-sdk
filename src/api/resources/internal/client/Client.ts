@@ -8,6 +8,7 @@ import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCode
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
 import * as TrueFoundry from "../../../index.js";
+import { AiGatewayClient } from "../resources/aiGateway/client/Client.js";
 import { ApplicationsClient } from "../resources/applications/client/Client.js";
 import { ArtifactVersionsClient } from "../resources/artifactVersions/client/Client.js";
 import { BuildLogsClient } from "../resources/buildLogs/client/Client.js";
@@ -15,6 +16,7 @@ import { ClustersClient } from "../resources/clusters/client/Client.js";
 import { DeploymentsClient } from "../resources/deployments/client/Client.js";
 import { DockerRegistriesClient } from "../resources/dockerRegistries/client/Client.js";
 import { MetricsClient } from "../resources/metrics/client/Client.js";
+import { UsersClient } from "../resources/users/client/Client.js";
 import { VcsClient } from "../resources/vcs/client/Client.js";
 import { WorkflowsClient } from "../resources/workflows/client/Client.js";
 
@@ -27,6 +29,8 @@ export declare namespace InternalClient {
 
 export class InternalClient {
     protected readonly _options: NormalizedClientOptionsWithAuth<InternalClient.Options>;
+    protected _users: UsersClient | undefined;
+    protected _aiGateway: AiGatewayClient | undefined;
     protected _clusters: ClustersClient | undefined;
     protected _deployments: DeploymentsClient | undefined;
     protected _applications: ApplicationsClient | undefined;
@@ -42,6 +46,14 @@ export class InternalClient {
 
                         this._options = normalizeClientOptionsWithAuth(options);
                     
+    }
+
+    public get users(): UsersClient {
+        return (this._users ??= new UsersClient(this._options));
+    }
+
+    public get aiGateway(): AiGatewayClient {
+        return (this._aiGateway ??= new AiGatewayClient(this._options));
     }
 
     public get clusters(): ClustersClient {

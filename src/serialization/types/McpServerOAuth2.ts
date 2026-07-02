@@ -5,6 +5,7 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 import { McpServerOAuth2GrantType } from "./McpServerOAuth2GrantType.js";
 import { McpServerOAuth2JwtSource } from "./McpServerOAuth2JwtSource.js";
+import { McpServerOAuth2Provider } from "./McpServerOAuth2Provider.js";
 import { McpServerOAuth2ProviderAuth0Settings } from "./McpServerOAuth2ProviderAuth0Settings.js";
 
 export const McpServerOAuth2: core.serialization.ObjectSchema<serializers.McpServerOAuth2.Raw, TrueFoundry.McpServerOAuth2> = core.serialization.object({
@@ -16,7 +17,7 @@ export const McpServerOAuth2: core.serialization.ObjectSchema<serializers.McpSer
         "clientSecret": core.serialization.property("client_secret", core.serialization.string().optional()),
         "registrationUrl": core.serialization.property("registration_url", core.serialization.string().optional()),
         "introspectionUrl": core.serialization.property("introspection_url", core.serialization.string().optional()),
-        "provider": core.serialization.stringLiteral("auth0").optional(),
+        "provider": McpServerOAuth2Provider,
         "codeChallengeMethodsSupported": core.serialization.property("code_challenge_methods_supported", core.serialization.list(core.serialization.stringLiteral("S256")).optional()),
         "jwtSource": core.serialization.property("jwt_source", McpServerOAuth2JwtSource),
         "scopes": core.serialization.list(core.serialization.string()).optional(),
@@ -33,7 +34,7 @@ export declare namespace McpServerOAuth2 {
         client_secret?: string | null;
         registration_url?: string | null;
         introspection_url?: string | null;
-        provider?: "auth0" | null;
+        provider: McpServerOAuth2Provider.Raw;
         code_challenge_methods_supported?: "S256"[] | null;
         jwt_source: McpServerOAuth2JwtSource.Raw;
         scopes?: string[] | null;

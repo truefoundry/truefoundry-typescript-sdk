@@ -4,7 +4,6 @@ export type { ListMetricHistoryRequest } from "./ListMetricHistoryRequest.js";
 export type { LogBatchRequest } from "./LogBatchRequest.js";
 export type { LogMetricRequest } from "./LogMetricRequest.js";
 export type { LogParamRequest } from "./LogParamRequest.js";
-export type { RunsGetColumnsRequest } from "./RunsGetColumnsRequest.js";
 export type { RunsGetMetricHistoryRequest } from "./RunsGetMetricHistoryRequest.js";
 export type { SearchRunsRequest } from "./SearchRunsRequest.js";
 export type { SetTagRequest } from "./SetTagRequest.js";

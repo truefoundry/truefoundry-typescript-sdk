@@ -10,7 +10,7 @@ describe("PromptsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "usage_code_snippets" : [ { "display_name" : "display_name" , "language" : "language" , "code" : "code" } ] , "tags" : [ "tags" ] , "prompt_id" : "prompt_id" } , "run_steps" : [ 1.1 ] } };
+        const rawResponseBody = { "data" : { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "chat_prompt" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "usage_code_snippets" : [ { "display_name" : "display_name" , "language" : "language" , "code" : "code" } ] , "tags" : [ "tags" ] , "prompt_id" : "prompt_id" } , "run_steps" : [ 1.1 ] } };
         
         server
             .mockEndpoint()
@@ -25,7 +25,7 @@ describe("PromptsClient", () => {
     data: {
         id: "id",
         mlRepoId: "ml_repo_id",
-        type: "artifact",
+        type: "chat_prompt",
         name: "name",
         fqn: "fqn",
         createdBySubject: {
@@ -135,7 +135,7 @@ describe("PromptsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : [ { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "prompt_id" : "prompt_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        const rawResponseBody = { "data" : [ { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "chat_prompt" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "prompt_id" : "prompt_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
         
         server
             .mockEndpoint({ once: false })
@@ -149,7 +149,7 @@ describe("PromptsClient", () => {
     data: [{
             id: "id",
             mlRepoId: "ml_repo_id",
-            type: "artifact",
+            type: "chat_prompt",
             name: "name",
             fqn: "fqn",
             createdBySubject: {

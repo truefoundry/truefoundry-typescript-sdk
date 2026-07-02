@@ -8,7 +8,7 @@ export interface AgentSkill {
     /** Identifier of the ML Repo the agent skill belongs to. */
     mlRepoId: string;
     /** Discriminator for the artifact type; always `agent-skill` for an agent skill. */
-    type: TrueFoundry.ArtifactType;
+    type?: "agent-skill";
     /** Name of the agent skill. */
     name: string;
     /** Fully Qualified Name uniquely identifying the agent skill. */

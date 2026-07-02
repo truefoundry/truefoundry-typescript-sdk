@@ -6,6 +6,6 @@
 export interface CustomHeaderAuth {
     /** +value=header */
     type: "header";
-    /** Headers passed to the generic secret server with every request. */
+    /** HTTP headers forwarded to the upstream on every request. Values may contain internal spaces (e.g. `Bearer <token>`) but must not be empty or have leading/trailing whitespace. */
     headers: Record<string, string>;
 }

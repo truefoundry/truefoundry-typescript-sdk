@@ -376,25 +376,32 @@ export class DataDirectoriesClient {
      * Delete a data directory, optionally including its contents.
      *
      * @param {string} id - Data directory ID
+     * @param {TrueFoundry.DataDirectoriesDeleteRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.dataDirectories.delete("id")
+     *     await client.dataDirectories.delete("id", {
+     *         deleteContents: true
+     *     })
      */
-    public delete(id: string, requestOptions?: DataDirectoriesClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__delete(id, requestOptions));
+    public delete(id: string, request: TrueFoundry.DataDirectoriesDeleteRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
-    private async __delete(id: string, requestOptions?: DataDirectoriesClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+    private async __delete(id: string, request: TrueFoundry.DataDirectoriesDeleteRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+        const { deleteContents = false } = request;
+        const _queryParams: Record<string, unknown> = {
+            delete_contents: deleteContents
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/data-directories/${core.url.encodePathParam(id)}`),
             method: "DELETE",
             headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url.queryBuilder().addMany(_queryParams).mergeAdditional(requestOptions?.queryParams).build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,

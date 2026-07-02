@@ -10,7 +10,7 @@ describe("ModelsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "model-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "tags" : [ "tags" ] , "model_id" : "model_id" , "metrics" : [ { "key" : "key" } ] , "deployable" : true } , "run_steps" : [ 1.1 ] } };
+        const rawResponseBody = { "data" : { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "model" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "model-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "tags" : [ "tags" ] , "model_id" : "model_id" , "metrics" : [ { "key" : "key" } ] , "deployable" : true } , "run_steps" : [ 1.1 ] } };
         
         server
             .mockEndpoint()
@@ -25,7 +25,7 @@ describe("ModelsClient", () => {
     data: {
         id: "id",
         mlRepoId: "ml_repo_id",
-        type: "artifact",
+        type: "model",
         name: "name",
         fqn: "fqn",
         createdBySubject: {
@@ -134,7 +134,7 @@ describe("ModelsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : [ { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "manifest" : { "metadata" : { "key" : "value" } , "type" : "model-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "model_id" : "model_id" , "deployable" : true } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        const rawResponseBody = { "data" : [ { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "model" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "manifest" : { "metadata" : { "key" : "value" } , "type" : "model-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "model_id" : "model_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
         
         server
             .mockEndpoint({ once: false })
@@ -148,7 +148,7 @@ describe("ModelsClient", () => {
     data: [{
             id: "id",
             mlRepoId: "ml_repo_id",
-            type: "artifact",
+            type: "model",
             name: "name",
             fqn: "fqn",
             createdBySubject: {
@@ -175,8 +175,7 @@ describe("ModelsClient", () => {
                     subjectType: "user"
                 },
                 mlRepoId: "ml_repo_id",
-                modelId: "model_id",
-                deployable: true
+                modelId: "model_id"
             },
             runSteps: [1.1]
         }],

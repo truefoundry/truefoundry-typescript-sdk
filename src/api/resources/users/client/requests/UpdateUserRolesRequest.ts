@@ -15,5 +15,5 @@ export interface UpdateUserRolesRequest {
     /** Role names to assign to the user. */
     roles: string[];
     /** Resource type scope for the role assignment. */
-    resourceType?: TrueFoundry.UpdateUserRolesRequestResourceType;
+    resourceType?: TrueFoundry.ResourceType;
 }

@@ -835,6 +835,195 @@ await client.users.changePassword({
 </dl>
 </details>
 
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getResources</a>(id) -> TrueFoundry.GetUserResourcesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all resources where the user is a collaborator.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getResources("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated user ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getPermissions</a>(id) -> TrueFoundry.GetUserPermissionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all role bindings for a user, including team-inherited bindings.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated user ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.<a href="/src/api/resources/users/client/Client.ts">getTeams</a>(id) -> TrueFoundry.GetUserTeamsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get all teams a user belongs to, including their role in each team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.getTeams("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated user ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Teams
 <details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.TeamDto, TrueFoundry.ListTeamsResponse&gt;</code></summary>
 <dl>
@@ -866,7 +1055,6 @@ List teams accessible to the current user.
 const pageableResponse = await client.teams.list({
     limit: 10,
     offset: 0,
-    type: "team",
     role: "manager",
     attributes: ["attributes"]
 });
@@ -878,7 +1066,6 @@ for await (const item of pageableResponse) {
 let page = await client.teams.list({
     limit: 10,
     offset: 0,
-    type: "team",
     role: "manager",
     attributes: ["attributes"]
 });
@@ -1352,125 +1539,6 @@ await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
 <dd>
 
 **requestOptions:** `TeamsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## GatewayConfigs
-<details><summary><code>client.gatewayConfigs.<a href="/src/api/resources/gatewayConfigs/client/Client.ts">get</a>(type) -> TrueFoundry.GatewayConfiguration</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the AI Gateway configuration for the given type.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.gatewayConfigs.get("gateway-rate-limiting-config");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**type:** `TrueFoundry.GatewayConfigsGetRequestType` — The type of gateway configuration to retrieve or delete.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `GatewayConfigsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.gatewayConfigs.<a href="/src/api/resources/gatewayConfigs/client/Client.ts">getBudgetUsage</a>() -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the current budget usage for every budget rule configured in the tenant.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.gatewayConfigs.getBudgetUsage();
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**requestOptions:** `GatewayConfigsClient.RequestOptions` 
     
 </dd>
 </dl>
@@ -8048,7 +8116,7 @@ await client.dataDirectories.get("id");
 </dl>
 </details>
 
-<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">delete</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
+<details><summary><code>client.dataDirectories.<a href="/src/api/resources/dataDirectories/client/Client.ts">delete</a>(id, { ...params }) -> TrueFoundry.EmptyResponse</code></summary>
 <dl>
 <dd>
 
@@ -8075,7 +8143,9 @@ Delete a data directory, optionally including its contents.
 <dd>
 
 ```typescript
-await client.dataDirectories.delete("id");
+await client.dataDirectories.delete("id", {
+    deleteContents: true
+});
 
 ```
 </dd>
@@ -8092,6 +8162,14 @@ await client.dataDirectories.delete("id");
 <dd>
 
 **id:** `string` — Data directory ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.DataDirectoriesDeleteRequest` 
     
 </dd>
 </dl>
@@ -8159,71 +8237,6 @@ await client.runs.create({
 <dd>
 
 **request:** `TrueFoundry.CreateRunRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RunsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.runs.<a href="/src/api/resources/runs/client/Client.ts">getColumns</a>({ ...params }) -> TrueFoundry.GetRunColumnsResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List distinct metric, parameter, and tag keys for runs in an ML Repo.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.runs.getColumns({
-    experimentId: "experiment_id"
-});
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TrueFoundry.RunsGetColumnsRequest` 
     
 </dd>
 </dl>
@@ -8496,132 +8509,6 @@ const response = page.response;
 <dd>
 
 **request:** `TrueFoundry.SearchRunsRequest` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RunsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.runs.<a href="/src/api/resources/runs/client/Client.ts">archive</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Soft-delete a run.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.runs.archive("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — System-generated unique identifier for the run.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `RunsClient.RequestOptions` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.runs.<a href="/src/api/resources/runs/client/Client.ts">restore</a>(id) -> TrueFoundry.EmptyResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Restore an archived run.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.runs.restore("id");
-
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — System-generated unique identifier for the run.
     
 </dd>
 </dl>
@@ -10394,6 +10281,181 @@ const response = page.response;
 </dl>
 </details>
 
+## Internal Users
+<details><summary><code>client.internal.users.<a href="/src/api/resources/internal/resources/users/client/Client.ts">getInfo</a>() -> TrueFoundry.Session</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the session details for the currently authenticated user.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.users.getInfo();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Internal AiGateway
+<details><summary><code>client.internal.aiGateway.<a href="/src/api/resources/internal/resources/aiGateway/client/Client.ts">getGatewayConfig</a>(type) -> TrueFoundry.GatewayConfiguration</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the AI Gateway configuration for the given type.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**type:** `TrueFoundry.AiGatewayGetGatewayConfigRequestType` — The type of gateway configuration to retrieve or delete.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AiGatewayClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.internal.aiGateway.<a href="/src/api/resources/internal/resources/aiGateway/client/Client.ts">getBudgetUsage</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the current budget usage for every budget rule configured in the tenant.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.internal.aiGateway.getBudgetUsage();
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `AiGatewayClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Internal Clusters
 <details><summary><code>client.internal.clusters.<a href="/src/api/resources/internal/resources/clusters/client/Client.ts">getAutoprovisioningState</a>(id) -> TrueFoundry.GetAutoProvisioningStateResponse</code></summary>
 <dl>
@@ -11106,7 +11168,7 @@ const pageableResponse = await client.internal.artifactVersions.list({
     runSteps: [1.1],
     includeInternalMetadata: true,
     includeModelVersions: true,
-    artifactTypes: ["artifact"]
+    artifactTypes: ["artifact_types"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -11126,7 +11188,7 @@ let page = await client.internal.artifactVersions.list({
     runSteps: [1.1],
     includeInternalMetadata: true,
     includeModelVersions: true,
-    artifactTypes: ["artifact"]
+    artifactTypes: ["artifact_types"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();

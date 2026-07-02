@@ -19,7 +19,7 @@ export const ModelVersion: core.serialization.ObjectSchema<serializers.ModelVers
         "tags": core.serialization.list(core.serialization.string()).optional(),
         "modelId": core.serialization.property("model_id", core.serialization.string()),
         "metrics": core.serialization.list(Metric).optional(),
-        "deployable": core.serialization.boolean()
+        "deployable": core.serialization.boolean().optional()
     });
 
 export declare namespace ModelVersion {
@@ -35,6 +35,6 @@ export declare namespace ModelVersion {
         tags?: string[] | null;
         model_id: string;
         metrics?: Metric.Raw[] | null;
-        deployable: boolean;
+        deployable?: boolean | null;
     }
 }

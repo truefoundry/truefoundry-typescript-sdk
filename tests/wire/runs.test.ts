@@ -64,54 +64,6 @@ describe("RunsClient", () => {
                     
     });
           
-    test("get_columns (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "columns" : { "metric_names" : [ "metric_names" ] , "param_names" : [ "param_names" ] , "tag_names" : [ "tag_names" ] } };
-        
-        server
-            .mockEndpoint()
-            .get("/api/svc/v1/runs/columns").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
-
-        
-                        
-                                const response = await client.runs.getColumns({
-    experimentId: "experiment_id"
-});
-                                expect(response).toEqual({
-    columns: {
-        metricNames: ["metric_names"],
-        paramNames: ["param_names"],
-        tagNames: ["tag_names"]
-    }
-});
-                              
-                    
-    });
-          
-    test("get_columns (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { "key" : "value" };
-        
-        server
-            .mockEndpoint()
-            .get("/api/svc/v1/runs/columns").respondWith()
-            .statusCode(404).jsonBody(rawResponseBody)
-                .build();
-
-        
-            await expect(async () => {
-                return await client.runs.getColumns({
-    experimentId: "experiment_id"
-})
-            }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-          
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
@@ -340,46 +292,6 @@ describe("RunsClient", () => {
                             expect(expected.runs).toEqual(nextPage.data);
                         
                 
-                    
-    });
-          
-    test("archive", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { };
-        
-        server
-            .mockEndpoint()
-            .post("/api/svc/v1/runs/id/archive").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
-
-        
-                        
-                                const response = await client.runs.archive("id");
-                                expect(response).toEqual({});
-                              
-                    
-    });
-          
-    test("restore", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
-        
-        const rawResponseBody = { };
-        
-        server
-            .mockEndpoint()
-            .post("/api/svc/v1/runs/id/restore").respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
-
-        
-                        
-                                const response = await client.runs.restore("id");
-                                expect(response).toEqual({});
-                              
                     
     });
           

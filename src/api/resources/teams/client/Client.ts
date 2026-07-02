@@ -36,16 +36,14 @@ export class TeamsClient {
      *     await client.teams.list({
      *         limit: 10,
      *         offset: 0,
-     *         type: "team",
      *         role: "manager",
      *         attributes: ["attributes"]
      *     })
      */
     public async list(request: TrueFoundry.TeamsListRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.TeamDto, TrueFoundry.ListTeamsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.TeamsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => { const { limit = 100, offset = 0, "type": type_, role, attributes } = request; const _queryParams: Record<string, unknown> = {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.TeamsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => { const { limit = 100, offset = 0, role, attributes } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
-            type: type_ != null ? serializers.TeamsListRequestType.jsonOrThrow(type_, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
             role: role != null ? role : undefined,
             attributes
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({

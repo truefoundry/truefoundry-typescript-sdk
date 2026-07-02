@@ -1,3 +1,5 @@
+export * as aiGateway from "./aiGateway/index.js";
+export * from "./aiGateway/types/index.js";
 export * as applications from "./applications/index.js";
 export * as deployments from "./deployments/index.js";
 export * from "./deployments/client/requests/index.js";

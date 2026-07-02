@@ -3,14 +3,13 @@
 import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
-import { ArtifactType } from "./ArtifactType.js";
 import { ArtifactVersion } from "./ArtifactVersion.js";
 import { Subject } from "./Subject.js";
 
 export const Artifact: core.serialization.ObjectSchema<serializers.Artifact.Raw, TrueFoundry.Artifact> = core.serialization.object({
         "id": core.serialization.string(),
         "mlRepoId": core.serialization.property("ml_repo_id", core.serialization.string()),
-        "type": ArtifactType,
+        "type": core.serialization.stringLiteral("artifact").optional(),
         "name": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
@@ -24,7 +23,7 @@ export declare namespace Artifact {
     export interface Raw {
         id: string;
         ml_repo_id: string;
-        type: ArtifactType.Raw;
+        type?: "artifact" | null;
         name: string;
         fqn: string;
         created_by_subject: Subject.Raw;

@@ -8,7 +8,7 @@ export interface Prompt {
     /** Identifier of the ML Repo the prompt belongs to. */
     mlRepoId: string;
     /** Discriminator for the artifact type; always `chat_prompt` for a prompt. */
-    type: TrueFoundry.ArtifactType;
+    type?: "chat_prompt";
     /** Name of the prompt. */
     name: string;
     /** Fully Qualified Name uniquely identifying the prompt. */

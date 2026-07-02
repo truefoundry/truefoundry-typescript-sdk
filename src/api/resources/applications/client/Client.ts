@@ -64,7 +64,7 @@ export class ApplicationsClient {
             applicationName,
             fqn,
             workspaceFqn,
-            applicationType: applicationType != null ? serializers.ApplicationsListRequestApplicationType.jsonOrThrow(applicationType, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
+            applicationType: applicationType != null ? serializers.ApplicationType.jsonOrThrow(applicationType, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
             nameSearchQuery,
             environmentId,
             clusterId,

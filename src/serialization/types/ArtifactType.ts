@@ -4,8 +4,8 @@ import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
-export const ArtifactType: core.serialization.Schema<serializers.ArtifactType.Raw, TrueFoundry.ArtifactType> = core.serialization.enum_(["artifact", "model", "plot", "image", "chat_prompt", "agent-skill"]);
+export const ArtifactType: core.serialization.Schema<serializers.ArtifactType.Raw, TrueFoundry.ArtifactType> = core.serialization.string();
 
 export declare namespace ArtifactType {
-    export type Raw = "artifact" | "model" | "plot" | "image" | "chat_prompt" | "agent-skill";
+    export type Raw = string;
 }

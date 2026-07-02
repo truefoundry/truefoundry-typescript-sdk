@@ -54,7 +54,6 @@ describe("TeamsClient", () => {
                 const page = await client.teams.list({
     limit: 10,
     offset: 0,
-    type: "team",
     role: "manager",
     attributes: ["attributes"]
 });
