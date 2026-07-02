@@ -7,5 +7,5 @@ export interface BasetenKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Baseten authentication */
-    api_key: string;
+    apiKey: string;
 }

@@ -9,7 +9,7 @@ export interface AmqpInputConfig {
     /** AMQP Queue URL of Subscriber */
     url: string;
     /** AMQP Queue Name */
-    queue_name: string;
+    queueName: string;
     /** Wait timeout for long polling. */
-    wait_time_seconds: number;
+    waitTimeSeconds: number;
 }

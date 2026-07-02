@@ -7,5 +7,5 @@ export interface AzureKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Azure AI Foundry authentication */
-    api_key: string;
+    apiKey: string;
 }

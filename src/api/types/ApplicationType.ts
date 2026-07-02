@@ -2,20 +2,20 @@
 
 /** Type of the application */
 export const ApplicationType = {
-    AsyncService: "async-service",
-    Service: "service",
-    Job: "job",
-    SparkJob: "spark-job",
-    Helm: "helm",
-    Notebook: "notebook",
-    SparkNotebook: "spark-notebook",
-    Codeserver: "codeserver",
-    Rstudio: "rstudio",
-    SshServer: "ssh-server",
-    Volume: "volume",
-    Application: "application",
-    ApplicationSet: "application-set",
-    Intercept: "intercept",
-    Workflow: "workflow",
-} as const;
-export type ApplicationType = (typeof ApplicationType)[keyof typeof ApplicationType];
+        AsyncService: "async-service",
+        Service: "service",
+        Job: "job",
+        SparkJob: "spark-job",
+        Helm: "helm",
+        Notebook: "notebook",
+        SparkNotebook: "spark-notebook",
+        Codeserver: "codeserver",
+        Rstudio: "rstudio",
+        SshServer: "ssh-server",
+        Volume: "volume",
+        Application: "application",
+        ApplicationSet: "application-set",
+        Intercept: "intercept",
+        Workflow: "workflow"
+    } as const;
+export type ApplicationType = typeof ApplicationType[keyof typeof ApplicationType];

@@ -5,7 +5,7 @@
  */
 export interface ArtifactsCacheVolume {
     /** Storage class of the Volume where artifacts will be cached */
-    storage_class: string;
+    storageClass: string;
     /** Size of the Volume (in GB) where artifacts will be cached. Should be greater than twice the size of artifacts getting cached */
-    cache_size: number;
+    cacheSize: number;
 }

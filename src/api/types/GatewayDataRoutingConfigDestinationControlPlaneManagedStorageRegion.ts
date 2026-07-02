@@ -2,9 +2,8 @@
 
 /** Specifies the region where control plane–managed storage is located. */
 export const GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion = {
-    Us: "us",
-    Australia: "australia",
-    India: "india",
-} as const;
-export type GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion =
-    (typeof GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion)[keyof typeof GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion];
+        Us: "us",
+        Australia: "australia",
+        India: "india"
+    } as const;
+export type GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion = typeof GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion[keyof typeof GatewayDataRoutingConfigDestinationControlPlaneManagedStorageRegion];

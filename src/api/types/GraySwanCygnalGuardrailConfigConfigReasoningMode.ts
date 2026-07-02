@@ -2,9 +2,8 @@
 
 /** Controls whether Cygnal uses internal reasoning steps before determining if content violates policy. "off" is fastest, "hybrid" adds moderate reasoning, "thinking" performs guided reasoning for highest quality. */
 export const GraySwanCygnalGuardrailConfigConfigReasoningMode = {
-    Off: "off",
-    Hybrid: "hybrid",
-    Thinking: "thinking",
-} as const;
-export type GraySwanCygnalGuardrailConfigConfigReasoningMode =
-    (typeof GraySwanCygnalGuardrailConfigConfigReasoningMode)[keyof typeof GraySwanCygnalGuardrailConfigConfigReasoningMode];
+        Off: "off",
+        Hybrid: "hybrid",
+        Thinking: "thinking"
+    } as const;
+export type GraySwanCygnalGuardrailConfigConfigReasoningMode = typeof GraySwanCygnalGuardrailConfigConfigReasoningMode[keyof typeof GraySwanCygnalGuardrailConfigConfigReasoningMode];

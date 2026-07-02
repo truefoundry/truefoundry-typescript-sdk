@@ -7,5 +7,5 @@ export interface MistralAiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Mistral AI authentication */
-    api_key: string;
+    apiKey: string;
 }

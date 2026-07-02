@@ -5,5 +5,5 @@
  */
 export interface SemanticCacheSettings {
     /** Select the embedding model to use for semantic caching across the gateway. This model will be used to generate embeddings for cache lookups when semantic caching is enabled. The embedding model helps identify semantically similar requests to serve cached responses, improving performance for similar queries. */
-    semantic_cache_embedding_model: string;
+    semanticCacheEmbeddingModel: string;
 }

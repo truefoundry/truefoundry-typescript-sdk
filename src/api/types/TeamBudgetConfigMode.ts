@@ -2,7 +2,7 @@
 
 /** `enforce` blocks breaching requests, `audit` only tracks them. */
 export const TeamBudgetConfigMode = {
-    Enforce: "enforce",
-    Audit: "audit",
-} as const;
-export type TeamBudgetConfigMode = (typeof TeamBudgetConfigMode)[keyof typeof TeamBudgetConfigMode];
+        Enforce: "enforce",
+        Audit: "audit"
+    } as const;
+export type TeamBudgetConfigMode = typeof TeamBudgetConfigMode[keyof typeof TeamBudgetConfigMode];

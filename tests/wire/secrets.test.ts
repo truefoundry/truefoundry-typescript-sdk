@@ -5,239 +5,252 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("SecretsClient", () => {
+    
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "id",
-                    fqn: "fqn",
-                    name: "name",
-                    secretGroupId: "secretGroupId",
-                    value: "value",
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    secretVersions: [{ id: "id", fqn: "fqn" }],
-                    activeDeploymentsCount: 1,
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "data" : [ { "id" : "id" , "fqn" : "fqn" , "name" : "name" , "secretGroupId" : "secretGroupId" , "value" : "value" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "secretVersions" : [ { "id" : "id" , "fqn" : "fqn" } ] , "activeDeploymentsCount" : 1 , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/secrets").jsonBody(rawRequestBody, { ignoredFields: [ "offset" ] })
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.secrets.list();
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            id: "id",
+            fqn: "fqn",
+            name: "name",
+            secretGroupId: "secretGroupId",
+            value: "value",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            secretVersions: [{
+                    id: "id",
+                    fqn: "fqn"
+                }],
+            activeDeploymentsCount: 1,
+            createdBy: "createdBy"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.secrets.list();
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/secrets").jsonBody(rawRequestBody, { ignoredFields: [ "offset" ] })
+                .respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.list();
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.secrets.list()
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("list (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {};
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint({ once: false })
-            .post("/api/svc/v1/secrets")
-            .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/secrets").jsonBody(rawRequestBody, { ignoredFields: [ "offset" ] })
+                .respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.list();
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.secrets.list()
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "id",
-                fqn: "fqn",
-                name: "name",
-                secretGroupId: "secretGroupId",
-                value: "value",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                secretVersions: [{ id: "id", fqn: "fqn" }],
-                activeDeploymentsCount: 1,
-                createdBy: "createdBy",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "id" , "fqn" : "fqn" , "name" : "name" , "secretGroupId" : "secretGroupId" , "value" : "value" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "secretVersions" : [ { "id" : "id" , "fqn" : "fqn" } ] , "activeDeploymentsCount" : 1 , "createdBy" : "createdBy" } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.secrets.get("id");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.secrets.get("id");
+                                expect(response).toEqual({
+    data: {
+        id: "id",
+        fqn: "fqn",
+        name: "name",
+        secretGroupId: "secretGroupId",
+        value: "value",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        secretVersions: [{
+                id: "id",
+                fqn: "fqn"
+            }],
+        activeDeploymentsCount: 1,
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.get("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.secrets.get("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.secrets.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
         const rawResponseBody = 1.1;
-
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.secrets.delete("id", {
-            forceDelete: true,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.secrets.delete("id", {
+    forceDelete: true
+});
+                                expect(response).toEqual(1.1);
+                              
+                    
     });
-
+          
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.delete("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.secrets.delete("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.secrets.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/secrets/id")
-            .respondWith()
-            .statusCode(424)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/secrets/id").respondWith()
+            .statusCode(424).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.secrets.delete("id");
-        }).rejects.toThrow(TrueFoundry.FailedDependencyError);
+        
+            await expect(async () => {
+                return await client.secrets.delete("id")
+            }).rejects.toThrow(TrueFoundry.FailedDependencyError);
     });
+          
 });

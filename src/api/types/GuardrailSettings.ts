@@ -5,7 +5,7 @@
  */
 export interface GuardrailSettings {
     /** Maximum time in milliseconds the gateway waits for a guardrail provider to respond before timing out the call. Increase this value if guardrails are being invoked on large payloads (e.g. big files) and frequently exceed the default timeout. Applies to all guardrail integrations for this tenant. When unset, the gateway falls back to its built-in default (5000ms) or the GUARDRAIL_TIMEOUT_MS environment variable on the gateway instance. */
-    timeout_ms?: number | undefined;
+    timeoutMs?: number;
     /** Controls whether input guardrails run in parallel with the model request or sequentially before it. When enabled (default), input guardrails are dispatched concurrently with the model request which lowers user-perceived latency but may invoke the model with payloads that a guardrail later rejects. Disable to force input guardrails to fully complete before the model is called, ensuring no wasted model invocations at the cost of additional latency. This sets the tenant-wide default and can still be overridden per-request via the x-tfy-guardrails header. */
-    enable_parallel_execution?: boolean | undefined;
+    enableParallelExecution?: boolean;
 }

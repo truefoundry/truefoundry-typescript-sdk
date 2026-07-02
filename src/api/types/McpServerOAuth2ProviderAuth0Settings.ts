@@ -2,7 +2,7 @@
 
 export interface McpServerOAuth2ProviderAuth0Settings {
     /** When enabled, organization will be extracted from the inbound token and it will be included as the organization parameter on token endpoint requests. */
-    use_organization?: boolean | undefined;
+    useOrganization?: boolean;
     /** Fallback Auth0 organization when the inbound token does not include organization. */
-    default_organization?: string | undefined;
+    defaultOrganization?: string;
 }

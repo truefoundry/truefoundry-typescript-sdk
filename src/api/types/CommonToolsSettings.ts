@@ -10,25 +10,25 @@ export interface CommonToolsSettings {
      * Enable web search tool
      * Allows model to search the web for information.
      */
-    web_search: boolean;
+    webSearch: boolean;
     /**
      * Enable code executor tool
      * Allows model to execute code and return the results.
      */
-    code_executor: boolean;
+    codeExecutor: boolean;
     /**
      * Enable sandbox executor tool
      * Allows model to execute shell command in an isolated stateful sandbox environment.
      */
-    sandbox_exec: boolean;
+    sandboxExec: boolean;
     /**
      * Enable sequential thinking tool
      * Allows model to reason step-by-step to solve complex problems.
      */
-    sequential_thinking: boolean;
+    sequentialThinking: boolean;
     /**
      * Enable web scraping tool.
      * Allows model to scrape content from web pages with intelligent format selection for structured or unstructured data.
      */
-    web_scrape: boolean;
+    webScrape: boolean;
 }

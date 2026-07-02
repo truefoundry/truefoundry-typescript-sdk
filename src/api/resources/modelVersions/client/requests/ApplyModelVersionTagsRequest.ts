@@ -3,13 +3,13 @@
 /**
  * @example
  *     {
- *         model_version_id: "model_version_id",
+ *         modelVersionId: "model_version_id",
  *         tags: ["tags"]
  *     }
  */
 export interface ApplyModelVersionTagsRequest {
     /** Identifier of the model version to apply tags to. */
-    model_version_id: string;
+    modelVersionId: string;
     /** Tags to apply to the model version. */
     tags: string[];
     /** Whether to overwrite existing tags that are already in use. */

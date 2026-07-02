@@ -9,7 +9,7 @@ export interface TtlRegistry {
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
     /** The URL of the registry. */
-    registry_url: string;
+    registryUrl: string;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
-    authorized_subjects?: string[] | undefined;
+    authorizedSubjects?: string[];
 }

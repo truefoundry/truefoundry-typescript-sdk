@@ -2,10 +2,10 @@
 
 /** MIME type of the content */
 export const MimeType = {
-    TextPlain: "text/plain",
-    ApplicationJson: "application/json",
-    ImagePng: "image/png",
-    ImageJpeg: "image/jpeg",
-    ApplicationXDirectory: "application/x-directory",
-} as const;
-export type MimeType = (typeof MimeType)[keyof typeof MimeType];
+        TextPlain: "text/plain",
+        ApplicationJson: "application/json",
+        ImagePng: "image/png",
+        ImageJpeg: "image/jpeg",
+        ApplicationXDirectory: "application/x-directory"
+    } as const;
+export type MimeType = typeof MimeType[keyof typeof MimeType];

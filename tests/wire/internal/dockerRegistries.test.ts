@@ -5,71 +5,83 @@ import { TrueFoundryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
 describe("DockerRegistriesClient", () => {
+    
     test("create_repository (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
-        const rawResponseBody = { repoName: "repoName" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "fqn" : "fqn" , "applicationName" : "applicationName" , "workspaceFqn" : "workspaceFqn" };
+        const rawResponseBody = { "repoName" : "repoName" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/docker-registry/create-repo")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/docker-registry/create-repo").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.dockerRegistries.createRepository({
-            fqn: "fqn",
-            applicationName: "applicationName",
-            workspaceFqn: "workspaceFqn",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.dockerRegistries.createRepository({
+    fqn: "fqn",
+    applicationName: "applicationName",
+    workspaceFqn: "workspaceFqn"
+});
+                                expect(response).toEqual({
+    repoName: "repoName"
+});
+                              
+                    
     });
-
+          
     test("create_repository (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "fqn" : "fqn" , "applicationName" : "applicationName" , "workspaceFqn" : "workspaceFqn" };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/docker-registry/create-repo")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/docker-registry/create-repo").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.dockerRegistries.createRepository({
-                fqn: "fqn",
-                applicationName: "applicationName",
-                workspaceFqn: "workspaceFqn",
-            });
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.internal.dockerRegistries.createRepository({
+    fqn: "fqn",
+    applicationName: "applicationName",
+    workspaceFqn: "workspaceFqn"
+})
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get_credentials", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { fqn: "fqn", registryUrl: "registryUrl", username: "username", password: "password" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "fqn" : "fqn" , "registryUrl" : "registryUrl" , "username" : "username" , "password" : "password" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/docker-registry/creds")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/docker-registry/creds").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.dockerRegistries.getCredentials({
-            fqn: "fqn",
-            clusterId: "clusterId",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.dockerRegistries.getCredentials({
+    fqn: "fqn",
+    clusterId: "clusterId"
+});
+                                expect(response).toEqual({
+    fqn: "fqn",
+    registryUrl: "registryUrl",
+    username: "username",
+    password: "password"
+});
+                              
+                    
     });
+          
 });

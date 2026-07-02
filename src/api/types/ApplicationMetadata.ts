@@ -2,5 +2,5 @@
 
 export interface ApplicationMetadata {
     /** Explicit pause state. true = user has paused the app (all pods removed). false = user has explicitly resumed the app. null/undefined = user has never toggled pause; the app is managed normally, but autoshutdown may have scaled it to zero pods due to inactivity. */
-    paused?: boolean | undefined;
+    paused?: boolean;
 }

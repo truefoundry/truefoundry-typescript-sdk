@@ -4,90 +4,85 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("TrueFoundryClient", () => {
+    
     test("apply", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
-        };
-        const rawResponseBody = {
-            existingManifest: {
-                type: "ml-repo",
-                name: "name",
-                description: "description",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-                ownedBy: { account: "account" },
-            },
-            action: "CREATE",
-            data: { key: "value" },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "ml-repo" , "name" : "name" , "storage_integration_fqn" : "storage_integration_fqn" , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "existingManifest" : { "type" : "ml-repo" , "name" : "name" , "description" : "description" , "storage_integration_fqn" : "storage_integration_fqn" , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "action" : "CREATE" , "data" : { "key" : "value" } };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/apply")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/apply").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.apply({
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        role_id: "role_id",
-                    },
-                ],
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.apply({
+    manifest: {
+        type: "ml-repo",
+        name: "name",
+        storageIntegrationFqn: "storage_integration_fqn",
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+});
+                                expect(response).toEqual({
+    existingManifest: {
+        type: "ml-repo",
+        name: "name",
+        description: "description",
+        storageIntegrationFqn: "storage_integration_fqn",
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }],
+        ownedBy: {
+            account: "account"
+        }
+    },
+    action: "CREATE",
+    data: {
+        "key": "value"
+    }
+});
+                              
+                    
     });
-
+          
     test("delete", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
-        };
-        const rawResponseBody = {};
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "ml-repo" , "name" : "name" , "storage_integration_fqn" : "storage_integration_fqn" , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/delete")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/delete").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.delete({
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        role_id: "role_id",
-                    },
-                ],
-            },
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.delete({
+    manifest: {
+        type: "ml-repo",
+        name: "name",
+        storageIntegrationFqn: "storage_integration_fqn",
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+});
+                                expect(response).toEqual({});
+                              
+                    
     });
+          
 });

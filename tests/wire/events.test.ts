@@ -5,76 +5,104 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("EventsClient", () => {
+    
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "name" : "name" , "firstTimestamp" : "firstTimestamp" , "lastTimestamp" : "lastTimestamp" , "involvedObject" : { "kind" : "kind" , "name" : "name" } , "type" : "type" , "count" : 1 , "reason" : "reason" , "message" : "message" , "namespace" : "namespace" , "chart" : { "category" : "ContainerTerminated" } } ] };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/events").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const rawResponseBody = {
-            data: [
-                {
-                    name: "name",
-                    firstTimestamp: "firstTimestamp",
-                    lastTimestamp: "lastTimestamp",
-                    involvedObject: { kind: "kind", name: "name" },
-                    type: "type",
-                    count: 1,
-                    reason: "reason",
-                    message: "message",
-                    namespace: "namespace",
-                    chart: { category: "ContainerTerminated" },
-                },
-            ],
-        };
-
-        server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
-
-        const response = await client.events.get({
-            startTs: "startTs",
-            endTs: "endTs",
-            applicationId: "applicationId",
-            applicationFqn: "applicationFqn",
-            podNames: ["podNames"],
-            jobRunName: "jobRunName",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.events.get({
+    startTs: "startTs",
+    endTs: "endTs",
+    applicationId: "applicationId",
+    applicationFqn: "applicationFqn",
+    podNames: ["podNames"],
+    jobRunName: "jobRunName"
+});
+                                expect(response).toEqual({
+    data: [{
+            name: "name",
+            firstTimestamp: "firstTimestamp",
+            lastTimestamp: "lastTimestamp",
+            involvedObject: {
+                kind: "kind",
+                name: "name"
+            },
+            type: "type",
+            count: 1,
+            reason: "reason",
+            message: "message",
+            namespace: "namespace",
+            chart: {
+                category: "ContainerTerminated"
+            }
+        }]
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/events").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.events.get();
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.events.get()
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
-
+          
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/events").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
-        server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(403).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.events.get();
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.events.get()
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("get (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/events").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        const rawResponseBody = { key: "value" };
-
-        server.mockEndpoint().get("/api/svc/v1/events").respondWith().statusCode(404).jsonBody(rawResponseBody).build();
-
-        await expect(async () => {
-            return await client.events.get();
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.events.get()
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
+          
 });

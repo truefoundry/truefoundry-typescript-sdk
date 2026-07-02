@@ -2,11 +2,11 @@
 
 /** Discriminator for the artifact type; always `chat_prompt` for a prompt. */
 export const ArtifactType = {
-    Artifact: "artifact",
-    Model: "model",
-    Plot: "plot",
-    Image: "image",
-    ChatPrompt: "chat_prompt",
-    AgentSkill: "agent-skill",
-} as const;
-export type ArtifactType = (typeof ArtifactType)[keyof typeof ArtifactType];
+        Artifact: "artifact",
+        Model: "model",
+        Plot: "plot",
+        Image: "image",
+        ChatPrompt: "chat_prompt",
+        AgentSkill: "agent-skill"
+    } as const;
+export type ArtifactType = typeof ArtifactType[keyof typeof ArtifactType];

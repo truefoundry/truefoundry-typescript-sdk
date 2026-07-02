@@ -7,16 +7,16 @@ export interface SparkImage {
     /** +value=spark-image */
     type: "spark-image";
     /** Spark version should match the spark version installed in the image. */
-    spark_version: string;
+    sparkVersion: string;
     /**
      * The image URI. Specify the name of the image and the tag.
      * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
      * You can use an image from a private registry using Advanced fields
      */
-    image_uri: string;
+    imageUri: string;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string | undefined;
+    dockerRegistry?: string;
 }

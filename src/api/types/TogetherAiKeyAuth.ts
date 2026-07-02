@@ -7,5 +7,5 @@ export interface TogetherAiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Together AI authentication */
-    api_key: string;
+    apiKey: string;
 }

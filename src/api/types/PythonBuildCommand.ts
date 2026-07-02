@@ -6,4 +6,6 @@
  * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
  * E.g. `python main.py --learning_rate {{learning_rate}}`
  */
-export type PythonBuildCommand = string | string[];
+export type PythonBuildCommand = 
+    | string
+    | string[];

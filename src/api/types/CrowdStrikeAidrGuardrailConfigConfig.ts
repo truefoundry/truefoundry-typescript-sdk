@@ -6,5 +6,5 @@
  */
 export interface CrowdStrikeAidrGuardrailConfigConfig {
     /** The CrowdStrike API base URL for AIDR. Varies by region: US-1 (https://api.crowdstrike.com/aidr/aiguard), US-2 (https://api.us-2.crowdstrike.com/aidr/aiguard), EU-1 (https://api.eu-1.crowdstrike.com/aidr/aiguard). */
-    base_url?: string | undefined;
+    baseUrl?: string;
 }

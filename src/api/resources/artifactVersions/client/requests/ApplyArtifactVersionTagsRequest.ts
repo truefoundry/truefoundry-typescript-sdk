@@ -3,13 +3,13 @@
 /**
  * @example
  *     {
- *         artifact_version_id: "artifact_version_id",
+ *         artifactVersionId: "artifact_version_id",
  *         tags: ["tags"]
  *     }
  */
 export interface ApplyArtifactVersionTagsRequest {
     /** ID of the artifact version to apply tags to */
-    artifact_version_id: string;
+    artifactVersionId: string;
     /** List of tags to apply to the artifact version */
     tags: string[];
     /** Whether to overwrite existing tags if they conflict */

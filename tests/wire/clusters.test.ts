@@ -5,565 +5,566 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("ClustersClient", () => {
+    
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    fqn: "fqn",
-                    manifest: {
-                        type: "cluster",
-                        name: "name",
-                        cluster_type: "aws-eks",
-                        environment_names: ["environment_names"],
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    },
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" ] , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/clusters")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.clusters.list({
-            limit: 10,
-            offset: 0,
-            attributes: ["attributes"],
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            fqn: "fqn",
+            manifest: {
+                type: "cluster",
+                name: "name",
+                clusterType: "aws-eks",
+                environmentNames: ["environment_names"],
+                collaborators: [{
+                        subject: "subject",
+                        roleId: "role_id"
+                    }]
+            },
+            tenantName: "tenantName",
+            accountId: "accountId",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            createdBy: "createdBy"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.clusters.list({
+    limit: 10,
+    offset: 0,
+    attributes: ["attributes"]
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("list (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/clusters")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.list();
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.clusters.list()
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "cluster",
-                name: "name",
-                cluster_type: "aws-eks",
-                environment_names: ["environment_names"],
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
-        };
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                fqn: "fqn",
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names"],
-                    base_domains: ["base_domains"],
-                    default_registry_fqn: "default_registry_fqn",
-                    spark_config: { ui_base_domain: "ui_base_domain" },
-                    ingress_controller_config: { ingress_class_name: "ingress_class_name" },
-                    cluster_integration_fqn: "cluster_integration_fqn",
-                    workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
-                    supported_nodepools: [{ name: "name" }],
-                    node_label_keys: { nodepool_selector_label: "nodepool_selector_label" },
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
-                },
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" ] , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" ] , "base_domains" : [ "base_domains" ] , "default_registry_fqn" : "default_registry_fqn" , "spark_config" : { "ui_base_domain" : "ui_base_domain" } , "ingress_controller_config" : { "ingress_class_name" : "ingress_class_name" } , "cluster_integration_fqn" : "cluster_integration_fqn" , "workflow_storage_integration_fqn" : "workflow_storage_integration_fqn" , "supported_nodepools" : [ { "name" : "name" } ] , "node_label_keys" : { "nodepool_selector_label" : "nodepool_selector_label" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "createdBy" : "createdBy" } };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/clusters")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/clusters").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.clusters.createOrUpdate({
-            manifest: {
-                type: "cluster",
-                name: "name",
-                cluster_type: "aws-eks",
-                environment_names: ["environment_names"],
-                collaborators: [
-                    {
-                        subject: "subject",
-                        role_id: "role_id",
-                    },
-                ],
+        
+                        
+                                const response = await client.clusters.createOrUpdate({
+    manifest: {
+        type: "cluster",
+        name: "name",
+        clusterType: "aws-eks",
+        environmentNames: ["environment_names"],
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+});
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        fqn: "fqn",
+        manifest: {
+            type: "cluster",
+            name: "name",
+            clusterType: "aws-eks",
+            environmentNames: ["environment_names"],
+            baseDomains: ["base_domains"],
+            defaultRegistryFqn: "default_registry_fqn",
+            sparkConfig: {
+                uiBaseDomain: "ui_base_domain"
             },
-        });
-        expect(response).toEqual(rawResponseBody);
+            ingressControllerConfig: {
+                ingressClassName: "ingress_class_name"
+            },
+            clusterIntegrationFqn: "cluster_integration_fqn",
+            workflowStorageIntegrationFqn: "workflow_storage_integration_fqn",
+            supportedNodepools: [{
+                    name: "name"
+                }],
+            nodeLabelKeys: {
+                nodepoolSelectorLabel: "nodepool_selector_label"
+            },
+            collaborators: [{
+                    subject: "subject",
+                    roleId: "role_id"
+                }],
+            ownedBy: {
+                account: "account"
+            }
+        },
+        tenantName: "tenantName",
+        accountId: "accountId",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
     });
-
+          
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "cluster",
-                name: "name",
-                cluster_type: "aws-eks",
-                environment_names: ["environment_names", "environment_names"],
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" , "environment_names" ] , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/clusters")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/clusters").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.createOrUpdate({
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names", "environment_names"],
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.clusters.createOrUpdate({
+    manifest: {
+        type: "cluster",
+        name: "name",
+        clusterType: "aws-eks",
+        environmentNames: ["environment_names", "environment_names"],
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("create_or_update (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "cluster",
-                name: "name",
-                cluster_type: "aws-eks",
-                environment_names: ["environment_names", "environment_names"],
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" , "environment_names" ] , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/clusters")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(409)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/clusters").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(409).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.createOrUpdate({
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names", "environment_names"],
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.ConflictError);
+        
+            await expect(async () => {
+                return await client.clusters.createOrUpdate({
+    manifest: {
+        type: "cluster",
+        name: "name",
+        clusterType: "aws-eks",
+        environmentNames: ["environment_names", "environment_names"],
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.ConflictError);
     });
-
+          
     test("create_or_update (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "cluster",
-                name: "name",
-                cluster_type: "aws-eks",
-                environment_names: ["environment_names", "environment_names"],
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" , "environment_names" ] , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/clusters")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/clusters").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(422).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.createOrUpdate({
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names", "environment_names"],
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        
+            await expect(async () => {
+                return await client.clusters.createOrUpdate({
+    manifest: {
+        type: "cluster",
+        name: "name",
+        clusterType: "aws-eks",
+        environmentNames: ["environment_names", "environment_names"],
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
-
+          
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                fqn: "fqn",
-                manifest: {
-                    type: "cluster",
-                    name: "name",
-                    cluster_type: "aws-eks",
-                    environment_names: ["environment_names"],
-                    base_domains: ["base_domains"],
-                    default_registry_fqn: "default_registry_fqn",
-                    spark_config: { ui_base_domain: "ui_base_domain" },
-                    ingress_controller_config: { ingress_class_name: "ingress_class_name" },
-                    cluster_integration_fqn: "cluster_integration_fqn",
-                    workflow_storage_integration_fqn: "workflow_storage_integration_fqn",
-                    supported_nodepools: [{ name: "name" }],
-                    node_label_keys: { nodepool_selector_label: "nodepool_selector_label" },
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
-                },
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                createdBy: "createdBy",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "manifest" : { "type" : "cluster" , "name" : "name" , "cluster_type" : "aws-eks" , "environment_names" : [ "environment_names" ] , "base_domains" : [ "base_domains" ] , "default_registry_fqn" : "default_registry_fqn" , "spark_config" : { "ui_base_domain" : "ui_base_domain" } , "ingress_controller_config" : { "ingress_class_name" : "ingress_class_name" } , "cluster_integration_fqn" : "cluster_integration_fqn" , "workflow_storage_integration_fqn" : "workflow_storage_integration_fqn" , "supported_nodepools" : [ { "name" : "name" } ] , "node_label_keys" : { "nodepool_selector_label" : "nodepool_selector_label" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "createdBy" : "createdBy" } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.clusters.get("id");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.clusters.get("id");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        fqn: "fqn",
+        manifest: {
+            type: "cluster",
+            name: "name",
+            clusterType: "aws-eks",
+            environmentNames: ["environment_names"],
+            baseDomains: ["base_domains"],
+            defaultRegistryFqn: "default_registry_fqn",
+            sparkConfig: {
+                uiBaseDomain: "ui_base_domain"
+            },
+            ingressControllerConfig: {
+                ingressClassName: "ingress_class_name"
+            },
+            clusterIntegrationFqn: "cluster_integration_fqn",
+            workflowStorageIntegrationFqn: "workflow_storage_integration_fqn",
+            supportedNodepools: [{
+                    name: "name"
+                }],
+            nodeLabelKeys: {
+                nodepoolSelectorLabel: "nodepool_selector_label"
+            },
+            collaborators: [{
+                    subject: "subject",
+                    roleId: "role_id"
+                }],
+            ownedBy: {
+                account: "account"
+            }
+        },
+        tenantName: "tenantName",
+        accountId: "accountId",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.get("id");
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.clusters.get("id")
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.clusters.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/clusters/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/clusters/id").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.clusters.delete("id");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.clusters.delete("id");
+                                expect(response).toEqual({
+    message: "message"
+});
+                              
+                    
     });
-
+          
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/clusters/id")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/clusters/id").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.delete("id");
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.clusters.delete("id")
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/clusters/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/clusters/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.clusters.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get_addons (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    name: "ARGOCD",
-                    appName: "appName",
-                    namespace: "namespace",
-                    applicationId: "applicationId",
-                    description: "description",
-                    path: "path",
-                    addonFolder: "addonFolder",
-                    installed: true,
-                    status: { installed: true },
-                    version: "version",
-                    manifest: { key: "value" },
-                    installationSource: "installationSource",
-                    unsupportedClusterTypes: ["aws-eks"],
-                    required: true,
-                    knownCRDs: ["knownCRDs"],
-                    source: { repo_url: "repo_url", chart: "chart" },
-                    labels: ["labels"],
-                    recommendations: [
-                        {
-                            recommendationData: { key: "value" },
-                            recommendationType: "recommendationType",
-                            expiryTimestamp: "2024-01-15T09:30:00Z",
-                        },
-                    ],
-                    workspaceId: "workspaceId",
-                    metadata: { key: "value" },
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "name" : "ARGOCD" , "appName" : "appName" , "namespace" : "namespace" , "applicationId" : "applicationId" , "description" : "description" , "path" : "path" , "addonFolder" : "addonFolder" , "installed" : true , "status" : { "installed" : true } , "version" : "version" , "manifest" : { "key" : "value" } , "installationSource" : "installationSource" , "unsupportedClusterTypes" : [ "aws-eks" ] , "required" : true , "knownCRDs" : [ "knownCRDs" ] , "source" : { "repo_url" : "repo_url" , "chart" : "chart" } , "labels" : [ "labels" ] , "recommendations" : [ { "recommendationData" : { "key" : "value" } , "recommendationType" : "recommendationType" , "expiryTimestamp" : "2024-01-15T09:30:00Z" } ] , "workspaceId" : "workspaceId" , "metadata" : { "key" : "value" } } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/get-addons")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id/get-addons").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.clusters.getAddons("id", {
-            limit: 10,
-            offset: 0,
-            attributes: ["attributes"],
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.clusters.getAddons("id", {
+    limit: 10,
+    offset: 0,
+    attributes: ["attributes"]
+});
+                                expect(response).toEqual({
+    data: [{
+            name: "ARGOCD",
+            appName: "appName",
+            namespace: "namespace",
+            applicationId: "applicationId",
+            description: "description",
+            path: "path",
+            addonFolder: "addonFolder",
+            installed: true,
+            status: {
+                installed: true
+            },
+            version: "version",
+            manifest: {
+                "key": "value"
+            },
+            installationSource: "installationSource",
+            unsupportedClusterTypes: ["aws-eks"],
+            required: true,
+            knownCrDs: ["knownCRDs"],
+            source: {
+                repoUrl: "repo_url",
+                chart: "chart"
+            },
+            labels: ["labels"],
+            recommendations: [{
+                    recommendationData: {
+                        "key": "value"
+                    },
+                    recommendationType: "recommendationType",
+                    expiryTimestamp: new Date("2024-01-15T09:30:00.000Z")
+                }],
+            workspaceId: "workspaceId",
+            metadata: {
+                "key": "value"
+            }
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+});
+                              
+                    
     });
-
+          
     test("get_addons (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/get-addons")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id/get-addons").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.getAddons("id");
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.clusters.getAddons("id")
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("get_addons (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/get-addons")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id/get-addons").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.getAddons("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.clusters.getAddons("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("is_connected (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { isConnected: true };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "isConnected" : true };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/is-connected")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id/is-connected").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.clusters.isConnected("id");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.clusters.isConnected("id");
+                                expect(response).toEqual({
+    isConnected: true
+});
+                              
+                    
     });
-
+          
     test("is_connected (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/clusters/id/is-connected")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/clusters/id/is-connected").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.clusters.isConnected("id");
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.clusters.isConnected("id")
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
+          
 });

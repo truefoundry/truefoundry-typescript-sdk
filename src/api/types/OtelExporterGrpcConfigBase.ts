@@ -7,5 +7,5 @@ export interface OtelExporterGrpcConfigBase {
     /** Endpoint URL where OpenTelemetry data will be sent */
     endpoint: string;
     /** gRPC metadata to include in OpenTelemetry export requests */
-    headers?: Record<string, string> | undefined;
+    headers?: Record<string, string>;
 }

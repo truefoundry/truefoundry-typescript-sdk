@@ -7,5 +7,5 @@ export interface CohereKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The API key for Cohere authentication */
-    api_key: string;
+    apiKey: string;
 }

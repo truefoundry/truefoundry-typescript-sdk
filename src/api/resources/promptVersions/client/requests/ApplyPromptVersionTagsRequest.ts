@@ -3,13 +3,13 @@
 /**
  * @example
  *     {
- *         prompt_version_id: "prompt_version_id",
+ *         promptVersionId: "prompt_version_id",
  *         tags: ["tags"]
  *     }
  */
 export interface ApplyPromptVersionTagsRequest {
     /** Identifier of the prompt version to apply tags to. */
-    prompt_version_id: string;
+    promptVersionId: string;
     /** Tags to apply to the prompt version. */
     tags: string[];
     /** Whether to forcibly reassign tags already in use by other prompt versions. */

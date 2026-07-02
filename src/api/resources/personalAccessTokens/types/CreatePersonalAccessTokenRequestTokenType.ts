@@ -2,8 +2,7 @@
 
 /** Format of the issued token. Leave empty to use the tenant override or platform default. */
 export const CreatePersonalAccessTokenRequestTokenType = {
-    Jwt: "jwt",
-    Opaque: "opaque",
-} as const;
-export type CreatePersonalAccessTokenRequestTokenType =
-    (typeof CreatePersonalAccessTokenRequestTokenType)[keyof typeof CreatePersonalAccessTokenRequestTokenType];
+        Jwt: "jwt",
+        Opaque: "opaque"
+    } as const;
+export type CreatePersonalAccessTokenRequestTokenType = typeof CreatePersonalAccessTokenRequestTokenType[keyof typeof CreatePersonalAccessTokenRequestTokenType];

@@ -5,7 +5,7 @@
  */
 export interface SecretStoreConfig {
     /** The secret store to store the virtual account token in */
-    integration_fqn: string;
+    integrationFqn: string;
     /** The path where the virtual account token will be stored in the secret store (example: secret/path/to/virtual-account-token) */
-    secret_path: string;
+    secretPath: string;
 }

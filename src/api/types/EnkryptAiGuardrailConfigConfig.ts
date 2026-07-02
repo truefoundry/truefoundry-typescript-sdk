@@ -6,5 +6,5 @@
  */
 export interface EnkryptAiGuardrailConfigConfig {
     /** The name of the guardrail to use for the Enkrypt AI Guardrail. */
-    guardrail_name: string;
+    guardrailName: string;
 }

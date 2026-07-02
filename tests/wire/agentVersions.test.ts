@@ -4,48 +4,63 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("AgentVersionsClient", () => {
+    
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    agentId: "agentId",
-                    fqn: "fqn",
-                    manifest: {
-                        type: "truefoundry-agent",
-                        name: "name",
-                        description: "description",
-                        model: { name: "name" },
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    },
-                    version: 1.1,
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/agent-versions")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/agent-versions").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.agentVersions.list({
-            limit: 10,
-            offset: 0,
-            id: "id",
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            agentId: "agentId",
+            fqn: "fqn",
+            manifest: {
+                type: "truefoundry-agent",
+                name: "name",
+                description: "description",
+                model: {
+                    name: "name"
+                },
+                collaborators: [{
+                        subject: "subject",
+                        roleId: "role_id"
+                    }]
+            },
+            version: 1.1,
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            }
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.agentVersions.list({
+    limit: 10,
+    offset: 0,
+    id: "id"
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
+          
 });

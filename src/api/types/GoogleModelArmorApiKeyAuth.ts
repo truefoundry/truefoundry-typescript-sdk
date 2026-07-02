@@ -7,5 +7,5 @@ export interface GoogleModelArmorApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** Google Cloud API key with Model Armor access */
-    api_key: string;
+    apiKey: string;
 }

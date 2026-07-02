@@ -6,5 +6,5 @@
  */
 export interface TrojAiGuardrailConfigConfig {
     /** The base URL of the TrojAI firewall (e.g. https://your-trojai-firewall-host) */
-    base_url: string;
+    baseUrl: string;
 }

@@ -7,11 +7,11 @@ export interface HuggingfaceArtifactSource {
     /** +value=huggingface-hub */
     type: "huggingface-hub";
     /** Model ID of the artifact to be downloaded */
-    model_id: string;
+    modelId: string;
     /** Revision of the artifact to be downloaded */
     revision: string;
     /** List of patterns to ignore while downloading the artifact */
-    ignore_patterns: string[];
+    ignorePatterns: string[];
     /** Environment variable which will contain the download path of the artifact */
-    download_path_env_variable: string;
+    downloadPathEnvVariable: string;
 }

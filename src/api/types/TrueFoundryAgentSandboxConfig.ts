@@ -2,5 +2,5 @@
 
 export interface TrueFoundryAgentSandboxConfig {
     enabled: boolean;
-    file_downloads?: boolean | undefined;
+    fileDownloads?: boolean;
 }

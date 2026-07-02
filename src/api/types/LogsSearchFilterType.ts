@@ -2,8 +2,8 @@
 
 /** Query filter type for logs search */
 export const LogsSearchFilterType = {
-    Regex: "regex",
-    Substring: "substring",
-    IgnoreCaseSubstring: "ignore_case_substring",
-} as const;
-export type LogsSearchFilterType = (typeof LogsSearchFilterType)[keyof typeof LogsSearchFilterType];
+        Regex: "regex",
+        Substring: "substring",
+        IgnoreCaseSubstring: "ignore_case_substring"
+    } as const;
+export type LogsSearchFilterType = typeof LogsSearchFilterType[keyof typeof LogsSearchFilterType];

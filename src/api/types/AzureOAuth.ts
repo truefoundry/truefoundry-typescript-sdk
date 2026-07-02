@@ -7,11 +7,11 @@ export interface AzureOAuth {
     /** +value=oauth */
     type: "oauth";
     /** The Azure Active Directory tenant (directory) ID. */
-    tenant_id: string;
+    tenantId: string;
     /** The client (application) ID of an App Registration in the tenant. */
-    client_id: string;
+    clientId: string;
     /** A client secret that was generated for the App Registration. */
-    client_secret: string;
+    clientSecret: string;
     /** The ID of the target subscription. The value must be an UUID. */
-    subscription_id: string;
+    subscriptionId: string;
 }

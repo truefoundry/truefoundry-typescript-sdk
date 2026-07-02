@@ -2,8 +2,8 @@
 
 /** Mode of the policy: `Audit` logs all policy evaluations without blocking deployments. `Enforce` blocks deployments if the policy fails. `Disabled` deactivates the policy. */
 export const PolicyManifestMode = {
-    Audit: "audit",
-    Enforce: "enforce",
-    Disabled: "disabled",
-} as const;
-export type PolicyManifestMode = (typeof PolicyManifestMode)[keyof typeof PolicyManifestMode];
+        Audit: "audit",
+        Enforce: "enforce",
+        Disabled: "disabled"
+    } as const;
+export type PolicyManifestMode = typeof PolicyManifestMode[keyof typeof PolicyManifestMode];

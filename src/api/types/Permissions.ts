@@ -2,9 +2,9 @@
 
 export interface Permissions {
     /** The fully qualified name of the resource */
-    resource_fqn: string;
+    resourceFqn: string;
     /** The type of the resource (cluster, workspace, etc.) */
-    resource_type: string;
+    resourceType: string;
     /** The role id of the role to be assigned to the service account for that resource */
-    role_id: string;
+    roleId: string;
 }

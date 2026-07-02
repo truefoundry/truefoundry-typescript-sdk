@@ -4,12 +4,12 @@ export interface HelmRepo {
     /** +value=helm-repo */
     type: "helm-repo";
     /** Helm repository URL - Needs to be a valid URL. */
-    repo_url: string;
+    repoUrl: string;
     /**
      * FQN of the helm repo integration. If you can't find your integration here,
      * add it through the [Integrations](/integrations) page
      */
-    integration_fqn?: string | undefined;
+    integrationFqn?: string;
     /** The helm chart name */
     chart: string;
     /** Helm chart version */

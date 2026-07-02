@@ -5,180 +5,204 @@ import { TrueFoundryClient } from "../../../src/Client";
 import { mockServerPool } from "../../mock-server/MockServerPool";
 
 describe("DeploymentsClient", () => {
+    
     test("get_deployment_statuses (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = [
-            {
-                id: "id",
-                deploymentId: "deploymentId",
-                status: "INITIALIZED",
-                state: { key: "value" },
-                transition: "BUILDING",
-                message: "message",
-                retryCount: 1.1,
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-            },
-        ];
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = [ { "id" : "id" , "deploymentId" : "deploymentId" , "status" : "INITIALIZED" , "state" : { "key" : "value" } , "transition" : "BUILDING" , "message" : "message" , "retryCount" : 1.1 , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" } ];
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/statuses")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/statuses").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
+                                expect(response).toEqual([{
+        id: "id",
+        deploymentId: "deploymentId",
+        status: "INITIALIZED",
+        state: {
+            "key": "value"
+        },
+        transition: "BUILDING",
+        message: "message",
+        retryCount: 1.1,
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z")
+    }]);
+                              
+                    
     });
-
+          
     test("get_deployment_statuses (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/statuses")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/statuses").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.deployments.getDeploymentStatuses("id", "deploymentId");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.internal.deployments.getDeploymentStatuses("id", "deploymentId")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get_builds (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = [
-            {
-                id: "id",
-                deploymentId: "deploymentId",
-                componentName: "componentName",
-                build: { name: "name", status: 20 },
-                buildId: "buildId",
-                imageUri: "imageUri",
-                name: "name",
-                status: "STARTED",
-                getLogsUrl: "getLogsUrl",
-                tailLogsUrl: "tailLogsUrl",
-                logsStartTs: "logsStartTs",
-                metadata: { key: "value" },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-            },
-        ];
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = [ { "id" : "id" , "deploymentId" : "deploymentId" , "componentName" : "componentName" , "build" : { "name" : "name" , "status" : 20 } , "buildId" : "buildId" , "imageUri" : "imageUri" , "name" : "name" , "status" : "STARTED" , "getLogsUrl" : "getLogsUrl" , "tailLogsUrl" : "tailLogsUrl" , "logsStartTs" : "logsStartTs" , "metadata" : { "key" : "value" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" } ];
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/builds")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/builds").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.deployments.getBuilds("id", "deploymentId");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.deployments.getBuilds("id", "deploymentId");
+                                expect(response).toEqual([{
+        id: "id",
+        deploymentId: "deploymentId",
+        componentName: "componentName",
+        build: {
+            name: "name",
+            status: 20
+        },
+        buildId: "buildId",
+        imageUri: "imageUri",
+        name: "name",
+        status: "STARTED",
+        getLogsUrl: "getLogsUrl",
+        tailLogsUrl: "tailLogsUrl",
+        logsStartTs: "logsStartTs",
+        metadata: {
+            "key": "value"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z")
+    }]);
+                              
+                    
     });
-
+          
     test("get_builds (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/builds")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/x/apps/id/deployments/deploymentId/builds").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.deployments.getBuilds("id", "deploymentId");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.internal.deployments.getBuilds("id", "deploymentId")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get_code_upload_url", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { serviceName: "serviceName", workspaceFqn: "workspaceFqn" };
-        const rawResponseBody = { uri: "uri", url: "url", headers: { key: "value" } };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "serviceName" : "serviceName" , "workspaceFqn" : "workspaceFqn" };
+        const rawResponseBody = { "uri" : "uri" , "url" : "url" , "headers" : { "key" : "value" } };
+        
         server
             .mockEndpoint()
-            .post("/api/svc/v1/deployment/code-upload-url")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .post("/api/svc/v1/deployment/code-upload-url").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.deployments.getCodeUploadUrl({
-            serviceName: "serviceName",
-            workspaceFqn: "workspaceFqn",
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.deployments.getCodeUploadUrl({
+    serviceName: "serviceName",
+    workspaceFqn: "workspaceFqn"
+});
+                                expect(response).toEqual({
+    uri: "uri",
+    url: "url",
+    headers: {
+        "key": "value"
+    }
+});
+                              
+                    
     });
-
+          
     test("get_suggested_endpoint (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            host: "host",
-            path: "path",
-            gateway: { uid: "uid", name: "name", hosts: ["hosts"], isTieBreaker: true, selector: { key: "value" } },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "host" : "host" , "path" : "path" , "gateway" : { "uid" : "uid" , "name" : "name" , "hosts" : [ "hosts" ] , "isTieBreaker" : true , "selector" : { "key" : "value" } } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/deployment/deployment-endpoint")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/deployment/deployment-endpoint").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.internal.deployments.getSuggestedEndpoint({
-            applicationType: "async-service",
-            applicationName: "applicationName",
-            workspaceId: "workspaceId",
-            baseDomain: "baseDomain",
-            port: "port",
-            preferWildcard: true,
-        });
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.internal.deployments.getSuggestedEndpoint({
+    applicationType: "async-service",
+    applicationName: "applicationName",
+    workspaceId: "workspaceId",
+    baseDomain: "baseDomain",
+    port: "port",
+    preferWildcard: true
+});
+                                expect(response).toEqual({
+    host: "host",
+    path: "path",
+    gateway: {
+        uid: "uid",
+        name: "name",
+        hosts: ["hosts"],
+        isTieBreaker: true,
+        selector: {
+            "key": "value"
+        }
+    }
+});
+                              
+                    
     });
-
+          
     test("get_suggested_endpoint (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/deployment/deployment-endpoint")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/deployment/deployment-endpoint").respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.internal.deployments.getSuggestedEndpoint({
-                applicationType: "async-service",
-                applicationName: "applicationName",
-                workspaceId: "workspaceId",
-            });
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.internal.deployments.getSuggestedEndpoint({
+    applicationType: "async-service",
+    applicationName: "applicationName",
+    workspaceId: "workspaceId"
+})
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
+          
 });

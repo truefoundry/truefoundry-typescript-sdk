@@ -2,13 +2,13 @@
 
 export interface UsageCodeSnippet {
     /** Display name of the usage code snippet. */
-    display_name: string;
+    displayName: string;
     /** Programming language of the usage code snippet. */
     language: string;
     /** Libraries required to run the usage code snippet. */
-    libraries?: string[] | undefined;
+    libraries?: string[];
     /** Source code of the usage code snippet. */
     code: string;
     /** Icon representing the usage code snippet. */
-    icon?: string | undefined;
+    icon?: string;
 }

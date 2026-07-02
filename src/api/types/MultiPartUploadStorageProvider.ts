@@ -2,8 +2,7 @@
 
 /** Storage provider backing the multipart upload. */
 export const MultiPartUploadStorageProvider = {
-    S3Compatible: "S3_COMPATIBLE",
-    AzureBlob: "AZURE_BLOB",
-} as const;
-export type MultiPartUploadStorageProvider =
-    (typeof MultiPartUploadStorageProvider)[keyof typeof MultiPartUploadStorageProvider];
+        S3Compatible: "S3_COMPATIBLE",
+        AzureBlob: "AZURE_BLOB"
+    } as const;
+export type MultiPartUploadStorageProvider = typeof MultiPartUploadStorageProvider[keyof typeof MultiPartUploadStorageProvider];

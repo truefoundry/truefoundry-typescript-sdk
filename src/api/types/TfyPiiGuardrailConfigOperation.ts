@@ -2,8 +2,7 @@
 
 /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. Validate guardrails are run in parallel while mutate guardrails are run sequentially. */
 export const TfyPiiGuardrailConfigOperation = {
-    Mutate: "mutate",
-    Validate: "validate",
-} as const;
-export type TfyPiiGuardrailConfigOperation =
-    (typeof TfyPiiGuardrailConfigOperation)[keyof typeof TfyPiiGuardrailConfigOperation];
+        Mutate: "mutate",
+        Validate: "validate"
+    } as const;
+export type TfyPiiGuardrailConfigOperation = typeof TfyPiiGuardrailConfigOperation[keyof typeof TfyPiiGuardrailConfigOperation];

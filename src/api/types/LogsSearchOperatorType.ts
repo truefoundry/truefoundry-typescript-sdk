@@ -2,7 +2,7 @@
 
 /** Comparison operator logs search */
 export const LogsSearchOperatorType = {
-    Equal: "equal",
-    NotEqual: "not_equal",
-} as const;
-export type LogsSearchOperatorType = (typeof LogsSearchOperatorType)[keyof typeof LogsSearchOperatorType];
+        Equal: "equal",
+        NotEqual: "not_equal"
+    } as const;
+export type LogsSearchOperatorType = typeof LogsSearchOperatorType[keyof typeof LogsSearchOperatorType];

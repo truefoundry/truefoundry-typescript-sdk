@@ -4,7 +4,7 @@ export interface GitHelmRepo {
     /** +value=git-helm-repo */
     type: "git-helm-repo";
     /** Git repository URL - Needs to be a valid URL. */
-    repo_url: string;
+    repoUrl: string;
     /** Branch/Commit SHA/Tag of the git repo. */
     revision: string;
     /** Path to the chart. */
@@ -13,5 +13,5 @@ export interface GitHelmRepo {
      * Helm values files for overriding values in the helm chart.
      * The path is relative to the Path directory defined above
      */
-    value_files?: string[] | undefined;
+    valueFiles?: string[];
 }

@@ -2,7 +2,7 @@
 
 /** Source of the JWT token to be used for verification. */
 export const BaseOAuth2LoginJwtSource = {
-    AccessToken: "access_token",
-    IdToken: "id_token",
-} as const;
-export type BaseOAuth2LoginJwtSource = (typeof BaseOAuth2LoginJwtSource)[keyof typeof BaseOAuth2LoginJwtSource];
+        AccessToken: "access_token",
+        IdToken: "id_token"
+    } as const;
+export type BaseOAuth2LoginJwtSource = typeof BaseOAuth2LoginJwtSource[keyof typeof BaseOAuth2LoginJwtSource];

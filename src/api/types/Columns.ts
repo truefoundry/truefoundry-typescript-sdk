@@ -2,9 +2,9 @@
 
 export interface Columns {
     /** Distinct metric keys across runs in the ML Repo. */
-    metric_names: string[];
+    metricNames: string[];
     /** Distinct parameter keys across runs in the ML Repo. */
-    param_names: string[];
+    paramNames: string[];
     /** Distinct tag keys across runs in the ML Repo. */
-    tag_names: string[];
+    tagNames: string[];
 }

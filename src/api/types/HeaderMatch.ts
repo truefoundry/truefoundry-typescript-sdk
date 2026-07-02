@@ -6,5 +6,5 @@ export interface HeaderMatch {
     /** Header name to match on */
     name: string;
     /** Header value to match on */
-    exact_match: string;
+    exactMatch: string;
 }

@@ -5,420 +5,484 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("WorkspacesClient", () => {
+    
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    fqn: "fqn",
-                    tenantName: "tenantName",
-                    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                    manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
-                    accountId: "jqfwg345gi25n5ju2yz5iz6m",
-                    isSystemWs: true,
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "tenantName" : "tenantName" , "clusterId" : "jqfwg345gi25n5ju2yz5iz6m" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "environmentId" : "jqfwg345gi25n5ju2yz5iz6m" , "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } , "accountId" : "jqfwg345gi25n5ju2yz5iz6m" , "isSystemWs" : true , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/workspaces")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/workspaces").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.workspaces.list({
-            limit: 10,
-            offset: 0,
-            clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-            name: "name",
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
             fqn: "fqn",
-            includeCluster: true,
-            attributes: ["attributes"],
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("create_or_update (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                    environment_name: "environment_name",
-                    labels: { key: "value" },
-                    annotations: { key: "value" },
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
-                },
-                accountId: "jqfwg345gi25n5ju2yz5iz6m",
-                isSystemWs: true,
-                createdBy: "createdBy",
+            tenantName: "tenantName",
+            clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
             },
-        };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/workspaces")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.workspaces.createOrUpdate({
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            environmentId: "jqfwg345gi25n5ju2yz5iz6m",
             manifest: {
                 type: "workspace",
-                cluster_fqn: "cluster_fqn",
-                name: "name",
+                clusterFqn: "cluster_fqn",
+                name: "name"
             },
-        });
-        expect(response).toEqual(rawResponseBody);
+            accountId: "jqfwg345gi25n5ju2yz5iz6m",
+            isSystemWs: true,
+            createdBy: "createdBy"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.workspaces.list({
+    limit: 10,
+    offset: 0,
+    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+    name: "name",
+    fqn: "fqn",
+    includeCluster: true,
+    attributes: ["attributes"]
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
+          
+    test("create_or_update (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "tenantName" : "tenantName" , "clusterId" : "jqfwg345gi25n5ju2yz5iz6m" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "environmentId" : "jqfwg345gi25n5ju2yz5iz6m" , "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" , "environment_name" : "environment_name" , "labels" : { "key" : "value" } , "annotations" : { "key" : "value" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "permissions" : [ { "resource_fqn" : "resource_fqn" , "resource_type" : "resource_type" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "accountId" : "jqfwg345gi25n5ju2yz5iz6m" , "isSystemWs" : true , "createdBy" : "createdBy" } };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/workspaces").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
+        
+                        
+                                const response = await client.workspaces.createOrUpdate({
+    manifest: {
+        type: "workspace",
+        clusterFqn: "cluster_fqn",
+        name: "name"
+    }
+});
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        fqn: "fqn",
+        tenantName: "tenantName",
+        clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        environmentId: "jqfwg345gi25n5ju2yz5iz6m",
+        manifest: {
+            type: "workspace",
+            clusterFqn: "cluster_fqn",
+            name: "name",
+            environmentName: "environment_name",
+            labels: {
+                "key": "value"
+            },
+            annotations: {
+                "key": "value"
+            },
+            collaborators: [{
+                    subject: "subject",
+                    roleId: "role_id"
+                }],
+            permissions: [{
+                    resourceFqn: "resource_fqn",
+                    resourceType: "resource_type",
+                    roleId: "role_id"
+                }],
+            ownedBy: {
+                account: "account"
+            }
+        },
+        accountId: "jqfwg345gi25n5ju2yz5iz6m",
+        isSystemWs: true,
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
+    });
+          
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/workspaces")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/workspaces").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.createOrUpdate({
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
+        
+            await expect(async () => {
+                return await client.workspaces.createOrUpdate({
+    manifest: {
+        type: "workspace",
+        clusterFqn: "cluster_fqn",
+        name: "name"
+    }
+})
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
     });
-
+          
     test("create_or_update (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/workspaces")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/workspaces").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.createOrUpdate({
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.workspaces.createOrUpdate({
+    manifest: {
+        type: "workspace",
+        clusterFqn: "cluster_fqn",
+        name: "name"
+    }
+})
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("create_or_update (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } };
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/workspaces")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/workspaces").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.createOrUpdate({
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.workspaces.createOrUpdate({
+    manifest: {
+        type: "workspace",
+        clusterFqn: "cluster_fqn",
+        name: "name"
+    }
+})
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("create_or_update (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" } };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/workspaces")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/workspaces").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(422).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.createOrUpdate({
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        
+            await expect(async () => {
+                return await client.workspaces.createOrUpdate({
+    manifest: {
+        type: "workspace",
+        clusterFqn: "cluster_fqn",
+        name: "name"
+    }
+})
+            }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
-
+          
     test("search", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    fqn: "fqn",
-                    tenantName: "tenantName",
-                    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                    manifest: { type: "workspace", cluster_fqn: "cluster_fqn", name: "name" },
-                    accountId: "jqfwg345gi25n5ju2yz5iz6m",
-                    isSystemWs: true,
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "tenantName" : "tenantName" , "clusterId" : "jqfwg345gi25n5ju2yz5iz6m" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "environmentId" : "jqfwg345gi25n5ju2yz5iz6m" , "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" } , "accountId" : "jqfwg345gi25n5ju2yz5iz6m" , "isSystemWs" : true , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/workspaces/search")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/workspaces/search").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.workspaces.search({
-            limit: 10,
-            offset: 0,
-            filter: '[{"type":"name","operator":"STRING_CONTAINS","value":"prod"}]',
-            includeCluster: true,
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            fqn: "fqn",
+            tenantName: "tenantName",
+            clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            environmentId: "jqfwg345gi25n5ju2yz5iz6m",
+            manifest: {
+                type: "workspace",
+                clusterFqn: "cluster_fqn",
+                name: "name"
+            },
+            accountId: "jqfwg345gi25n5ju2yz5iz6m",
+            isSystemWs: true,
+            createdBy: "createdBy"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.workspaces.search({
+    limit: 10,
+    offset: 0,
+    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
+    includeCluster: true
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                    environment_name: "environment_name",
-                    labels: { key: "value" },
-                    annotations: { key: "value" },
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
-                },
-                accountId: "jqfwg345gi25n5ju2yz5iz6m",
-                isSystemWs: true,
-                createdBy: "createdBy",
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "tenantName" : "tenantName" , "clusterId" : "jqfwg345gi25n5ju2yz5iz6m" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "environmentId" : "jqfwg345gi25n5ju2yz5iz6m" , "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" , "environment_name" : "environment_name" , "labels" : { "key" : "value" } , "annotations" : { "key" : "value" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "permissions" : [ { "resource_fqn" : "resource_fqn" , "resource_type" : "resource_type" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "accountId" : "jqfwg345gi25n5ju2yz5iz6m" , "isSystemWs" : true , "createdBy" : "createdBy" } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/workspaces/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/workspaces/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.workspaces.get("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.workspaces.get("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        fqn: "fqn",
+        tenantName: "tenantName",
+        clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        environmentId: "jqfwg345gi25n5ju2yz5iz6m",
+        manifest: {
+            type: "workspace",
+            clusterFqn: "cluster_fqn",
+            name: "name",
+            environmentName: "environment_name",
+            labels: {
+                "key": "value"
+            },
+            annotations: {
+                "key": "value"
+            },
+            collaborators: [{
+                    subject: "subject",
+                    roleId: "role_id"
+                }],
+            permissions: [{
+                    resourceFqn: "resource_fqn",
+                    resourceType: "resource_type",
+                    roleId: "role_id"
+                }],
+            ownedBy: {
+                account: "account"
+            }
+        },
+        accountId: "jqfwg345gi25n5ju2yz5iz6m",
+        isSystemWs: true,
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/workspaces/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/workspaces/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.workspaces.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                environmentId: "jqfwg345gi25n5ju2yz5iz6m",
-                manifest: {
-                    type: "workspace",
-                    cluster_fqn: "cluster_fqn",
-                    name: "name",
-                    environment_name: "environment_name",
-                    labels: { key: "value" },
-                    annotations: { key: "value" },
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    permissions: [{ resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
-                },
-                accountId: "jqfwg345gi25n5ju2yz5iz6m",
-                isSystemWs: true,
-                createdBy: "createdBy",
-            },
-            message: "message",
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "tenantName" : "tenantName" , "clusterId" : "jqfwg345gi25n5ju2yz5iz6m" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "environmentId" : "jqfwg345gi25n5ju2yz5iz6m" , "manifest" : { "type" : "workspace" , "cluster_fqn" : "cluster_fqn" , "name" : "name" , "environment_name" : "environment_name" , "labels" : { "key" : "value" } , "annotations" : { "key" : "value" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "permissions" : [ { "resource_fqn" : "resource_fqn" , "resource_type" : "resource_type" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "accountId" : "jqfwg345gi25n5ju2yz5iz6m" , "isSystemWs" : true , "createdBy" : "createdBy" } , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/workspaces/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/workspaces/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.workspaces.delete("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.workspaces.delete("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        fqn: "fqn",
+        tenantName: "tenantName",
+        clusterId: "jqfwg345gi25n5ju2yz5iz6m",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        environmentId: "jqfwg345gi25n5ju2yz5iz6m",
+        manifest: {
+            type: "workspace",
+            clusterFqn: "cluster_fqn",
+            name: "name",
+            environmentName: "environment_name",
+            labels: {
+                "key": "value"
+            },
+            annotations: {
+                "key": "value"
+            },
+            collaborators: [{
+                    subject: "subject",
+                    roleId: "role_id"
+                }],
+            permissions: [{
+                    resourceFqn: "resource_fqn",
+                    resourceType: "resource_type",
+                    roleId: "role_id"
+                }],
+            ownedBy: {
+                account: "account"
+            }
+        },
+        accountId: "jqfwg345gi25n5ju2yz5iz6m",
+        isSystemWs: true,
+        createdBy: "createdBy"
+    },
+    message: "message"
+});
+                              
+                    
     });
-
+          
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/workspaces/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/workspaces/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.workspaces.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/workspaces/id")
-            .respondWith()
-            .statusCode(417)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/workspaces/id").respondWith()
+            .statusCode(417).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.workspaces.delete("id");
-        }).rejects.toThrow(TrueFoundry.ExpectationFailedError);
+        
+            await expect(async () => {
+                return await client.workspaces.delete("id")
+            }).rejects.toThrow(TrueFoundry.ExpectationFailedError);
     });
+          
 });

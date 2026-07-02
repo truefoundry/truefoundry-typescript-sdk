@@ -7,5 +7,5 @@ export interface ElevenLabsApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** The XI API key for ElevenLabs authentication */
-    api_key: string;
+    apiKey: string;
 }

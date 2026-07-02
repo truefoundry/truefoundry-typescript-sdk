@@ -2,9 +2,9 @@
 
 export interface AsyncProcessorSidecar {
     /** URL for the processor to invoke */
-    destination_url: string;
+    destinationUrl: string;
     /** Timeout for the invoke request in seconds */
-    request_timeout?: number | undefined;
+    requestTimeout?: number;
     /** Image for the processor sidecar (This field will be deprecated in the future) */
-    sidecar_image?: string | undefined;
+    sidecarImage?: string;
 }

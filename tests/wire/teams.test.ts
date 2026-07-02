@@ -5,494 +5,545 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("TeamsClient", () => {
+    
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    description: "description",
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    members: ["members"],
-                    createdAt: "2024-01-15T09:30:00Z",
-                    updatedAt: "2024-01-15T09:30:00Z",
-                    manifest: { type: "team", name: "name", members: ["members"] },
-                    isEditable: true,
-                    roles: ["roles"],
-                    topMembers: ["topMembers"],
-                    topManagers: ["topManagers"],
-                    totalMemberCount: 1.1,
-                    totalManagerCount: 1.1,
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "members" : [ "members" ] } , "isEditable" : true , "roles" : [ "roles" ] , "topMembers" : [ "topMembers" ] , "topManagers" : [ "topManagers" ] , "totalMemberCount" : 1.1 , "totalManagerCount" : 1.1 } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/user")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/user").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.teams.list({
-            limit: 10,
-            offset: 0,
-            type: "team",
-            role: "manager",
-            attributes: ["attributes"],
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("create_or_update (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members"] } };
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                description: "description",
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                members: ["members"],
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "team",
-                    name: "name",
-                    displayName: "displayName",
-                    description: "description",
-                    managers: ["managers"],
-                    members: ["members"],
-                    ownedBy: { account: "account" },
-                    tags: { key: "value" },
-                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
-                },
-                metadata: { createdByScim: true, scimExternalId: "scimExternalId" },
-                isEditable: true,
-                roles: ["roles"],
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            description: "description",
+            tenantName: "tenantName",
+            accountId: "accountId",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
             },
-        };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/teams")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.teams.createOrUpdate({
+            members: ["members"],
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             manifest: {
                 type: "team",
                 name: "name",
-                members: ["members"],
+                members: ["members"]
             },
-        });
-        expect(response).toEqual(rawResponseBody);
+            isEditable: true,
+            roles: ["roles"],
+            topMembers: ["topMembers"],
+            topManagers: ["topManagers"],
+            totalMemberCount: 1.1,
+            totalManagerCount: 1.1
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.teams.list({
+    limit: 10,
+    offset: 0,
+    type: "team",
+    role: "manager",
+    attributes: ["attributes"]
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
+          
+    test("create_or_update (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "team" , "name" : "name" , "members" : [ "members" ] } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "displayName" : "displayName" , "description" : "description" , "managers" : [ "managers" ] , "members" : [ "members" ] , "ownedBy" : { "account" : "account" } , "tags" : { "key" : "value" } , "identity_provider_mapping" : [ { "identity_provider" : "identity_provider" , "value" : "value" } ] } , "metadata" : { "createdByScim" : true , "scimExternalId" : "scimExternalId" } , "isEditable" : true , "roles" : [ "roles" ] } };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/teams").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
+        
+                        
+                                const response = await client.teams.createOrUpdate({
+    manifest: {
+        type: "team",
+        name: "name",
+        members: ["members"]
+    }
+});
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        description: "description",
+        tenantName: "tenantName",
+        accountId: "accountId",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        members: ["members"],
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        manifest: {
+            type: "team",
+            name: "name",
+            displayName: "displayName",
+            description: "description",
+            managers: ["managers"],
+            members: ["members"],
+            ownedBy: {
+                account: "account"
+            },
+            tags: {
+                "key": "value"
+            },
+            identityProviderMapping: [{
+                    identityProvider: "identity_provider",
+                    value: "value"
+                }]
+        },
+        metadata: {
+            createdByScim: true,
+            scimExternalId: "scimExternalId"
+        },
+        isEditable: true,
+        roles: ["roles"]
+    }
+});
+                              
+                    
+    });
+          
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members", "members"] } };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "team" , "name" : "name" , "members" : [ "members" , "members" ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/teams")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(409)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/teams").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(409).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.createOrUpdate({
-                manifest: {
-                    type: "team",
-                    name: "name",
-                    members: ["members", "members"],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.ConflictError);
+        
+            await expect(async () => {
+                return await client.teams.createOrUpdate({
+    manifest: {
+        type: "team",
+        name: "name",
+        members: ["members", "members"]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.ConflictError);
     });
-
+          
     test("create_or_update (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = { manifest: { type: "team", name: "name", members: ["members", "members"] } };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "team" , "name" : "name" , "members" : [ "members" , "members" ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/teams")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(422)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/teams").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(422).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.createOrUpdate({
-                manifest: {
-                    type: "team",
-                    name: "name",
-                    members: ["members", "members"],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+        
+            await expect(async () => {
+                return await client.teams.createOrUpdate({
+    manifest: {
+        type: "team",
+        name: "name",
+        members: ["members", "members"]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
-
+          
     test("list_members (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [{ subjectId: "jqfwg345gi25n5ju2yz5iz6m", subjectSlug: "alice@example.com", subjectType: "user" }],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "subjectId" : "jqfwg345gi25n5ju2yz5iz6m" , "subjectSlug" : "alice@example.com" , "subjectType" : "user" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/members")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/members").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
-            limit: 10,
-            offset: 0,
-            filter: '{"type":"AND","children":[{"column":"email","op":"STRING_CONTAINS","value":"@example.com"}]}',
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            subjectId: "jqfwg345gi25n5ju2yz5iz6m",
+            subjectSlug: "alice@example.com",
+            subjectType: "user"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
+    limit: 10,
+    offset: 0,
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("list_members (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/id/members")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id/members").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.listMembers("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.teams.listMembers("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("list_members (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/id/members")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id/members").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.listMembers("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.teams.listMembers("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("list_managers (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [{ subjectId: "jqfwg345gi25n5ju2yz5iz6m", subjectSlug: "alice@example.com", subjectType: "user" }],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "subjectId" : "jqfwg345gi25n5ju2yz5iz6m" , "subjectSlug" : "alice@example.com" , "subjectType" : "user" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/managers")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/managers").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
-            limit: 10,
-            offset: 0,
-            filter: '{"type":"AND","children":[{"column":"email","op":"STRING_CONTAINS","value":"@example.com"}]}',
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
+        
+                        
+                const expected = {
+    data: [{
+            subjectId: "jqfwg345gi25n5ju2yz5iz6m",
+            subjectSlug: "alice@example.com",
+            subjectType: "user"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
+    limit: 10,
+    offset: 0,
+    filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
     });
-
+          
     test("list_managers (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/id/managers")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id/managers").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.listManagers("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.teams.listManagers("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("list_managers (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/teams/id/managers")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id/managers").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.listManagers("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.teams.listManagers("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                description: "description",
-                tenantName: "tenantName",
-                accountId: "accountId",
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                members: ["members"],
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-                manifest: {
-                    type: "team",
-                    name: "name",
-                    displayName: "displayName",
-                    description: "description",
-                    managers: ["managers"],
-                    members: ["members"],
-                    ownedBy: { account: "account" },
-                    tags: { key: "value" },
-                    identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
-                },
-                metadata: { createdByScim: true, scimExternalId: "scimExternalId" },
-                isEditable: true,
-                roles: ["roles"],
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "displayName" : "displayName" , "description" : "description" , "managers" : [ "managers" ] , "members" : [ "members" ] , "ownedBy" : { "account" : "account" } , "tags" : { "key" : "value" } , "identity_provider_mapping" : [ { "identity_provider" : "identity_provider" , "value" : "value" } ] } , "metadata" : { "createdByScim" : true , "scimExternalId" : "scimExternalId" } , "isEditable" : true , "roles" : [ "roles" ] } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.teams.get("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.teams.get("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        description: "description",
+        tenantName: "tenantName",
+        accountId: "accountId",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        members: ["members"],
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        manifest: {
+            type: "team",
+            name: "name",
+            displayName: "displayName",
+            description: "description",
+            managers: ["managers"],
+            members: ["members"],
+            ownedBy: {
+                account: "account"
+            },
+            tags: {
+                "key": "value"
+            },
+            identityProviderMapping: [{
+                    identityProvider: "identity_provider",
+                    value: "value"
+                }]
+        },
+        metadata: {
+            createdByScim: true,
+            scimExternalId: "scimExternalId"
+        },
+        isEditable: true,
+        roles: ["roles"]
+    }
+});
+                              
+                    
     });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.teams.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {};
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.teams.delete("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.teams.delete("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({});
+                              
+                    
     });
-
+          
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/teams/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/teams/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.teams.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/teams/id")
-            .respondWith()
-            .statusCode(409)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/teams/id").respondWith()
+            .statusCode(409).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.delete("id");
-        }).rejects.toThrow(TrueFoundry.ConflictError);
+        
+            await expect(async () => {
+                return await client.teams.delete("id")
+            }).rejects.toThrow(TrueFoundry.ConflictError);
     });
-
+          
     test("get_permissions (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    resourceType: "resourceType",
-                    resourceId: "resourceId",
-                    resourceName: "resourceName",
-                    resourceFqn: "resourceFqn",
-                    roleId: "roleId",
-                    roleName: "roleName",
-                    subjectId: "subjectId",
-                    subjectType: "subjectType",
-                },
-            ],
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "resourceType" : "resourceType" , "resourceId" : "resourceId" , "resourceName" : "resourceName" , "resourceFqn" : "resourceFqn" , "roleId" : "roleId" , "roleName" : "roleName" , "subjectId" : "subjectId" , "subjectType" : "subjectType" } ] };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/permissions")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/permissions").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
+        
+                        
+                                const response = await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: [{
+            resourceType: "resourceType",
+            resourceId: "resourceId",
+            resourceName: "resourceName",
+            resourceFqn: "resourceFqn",
+            roleId: "roleId",
+            roleName: "roleName",
+            subjectId: "subjectId",
+            subjectType: "subjectType"
+        }]
+});
+                              
+                    
     });
-
+          
     test("get_permissions (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/id/permissions")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id/permissions").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.getPermissions("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.teams.getPermissions("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("get_permissions (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/teams/id/permissions")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/teams/id/permissions").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.teams.getPermissions("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.teams.getPermissions("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
+          
 });

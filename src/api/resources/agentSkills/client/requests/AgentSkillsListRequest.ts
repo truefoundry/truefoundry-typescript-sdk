@@ -6,9 +6,9 @@
  *         limit: 10,
  *         offset: 0,
  *         fqn: "fqn",
- *         ml_repo_id: "ml_repo_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
- *         include_empty_agent_skills: true
+ *         includeEmptyAgentSkills: true
  *     }
  */
 export interface AgentSkillsListRequest {
@@ -19,9 +19,9 @@ export interface AgentSkillsListRequest {
     /** Fully Qualified Name uniquely identifying the agent skill. */
     fqn?: string;
     /** Identifier of the ML Repo to filter agent skills by. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Name of the agent skill to filter by. */
     name?: string;
     /** Whether to include agent skills that have no versions. */
-    include_empty_agent_skills?: boolean;
+    includeEmptyAgentSkills?: boolean;
 }

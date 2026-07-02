@@ -5,7 +5,7 @@
  */
 export interface AutoRotate {
     /** Rotation Interval in days after which the token will be rotated. Minimum value is 30. */
-    auto_rotate_interval: number;
+    autoRotateInterval: number;
     /** Grace Period in days for which the token will be valid after rotation interval. Minimum value is 1. */
-    grace_period: number;
+    gracePeriod: number;
 }

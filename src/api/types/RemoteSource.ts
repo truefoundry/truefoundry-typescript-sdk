@@ -7,5 +7,5 @@ export interface RemoteSource {
     /** +value=remote */
     type: "remote";
     /** Remote repository URI */
-    remote_uri: string;
+    remoteUri: string;
 }

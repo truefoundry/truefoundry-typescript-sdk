@@ -5,97 +5,31 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("AgentsClient", () => {
+    
     test("list (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    name: "name",
-                    fqn: "fqn",
-                    tenantName: "tenantName",
-                    accountId: "accountId",
-                    latestVersion: 1.1,
-                    type: "type",
-                    latestVersionDetails: {
-                        id: "jqfwg345gi25n5ju2yz5iz6m",
-                        agentId: "agentId",
-                        fqn: "fqn",
-                        manifest: {
-                            type: "truefoundry-agent",
-                            name: "name",
-                            description: "description",
-                            model: { name: "name" },
-                            collaborators: [{ subject: "subject", role_id: "role_id" }],
-                        },
-                        version: 1.1,
-                    },
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                    createdBy: "createdBy",
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "fqn" : "fqn" , "tenantName" : "tenantName" , "accountId" : "accountId" , "latestVersion" : 1.1 , "type" : "type" , "latestVersionDetails" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
         server
             .mockEndpoint({ once: false })
-            .get("/api/svc/v1/agents")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/agents").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const expected = rawResponseBody;
-        const page = await client.agents.list({
-            limit: 10,
-            offset: 0,
+        
+                        
+                const expected = {
+    data: [{
+            id: "jqfwg345gi25n5ju2yz5iz6m",
             name: "name",
-            namePrefix: "namePrefix",
-            type: "remote-agent",
-            attributes: ["attributes"],
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("list (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/agents")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agents.list();
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
-    });
-
-    test("create_or_update (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "name" },
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
-        };
-        const rawResponseBody = {
-            data: {
+            fqn: "fqn",
+            tenantName: "tenantName",
+            accountId: "accountId",
+            latestVersion: 1.1,
+            type: "type",
+            latestVersionDetails: {
                 id: "jqfwg345gi25n5ju2yz5iz6m",
                 agentId: "agentId",
                 fqn: "fqn",
@@ -103,487 +37,513 @@ describe("AgentsClient", () => {
                     type: "truefoundry-agent",
                     name: "name",
                     description: "description",
-                    tags: { key: "value" },
-                    model: { name: "name" },
-                    skills: [{ fqn: "fqn", preload: true }],
-                    mcp_servers: [{ name: "name" }],
-                    instructions: "instructions",
-                    messages: [{ role: "user", content: "content" }],
-                    variables: { key: {} },
-                    sample_inputs: [{}],
-                    response_format: { type: "text" },
-                    collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    ownedBy: { account: "account" },
+                    model: {
+                        name: "name"
+                    },
+                    collaborators: [{
+                            subject: "subject",
+                            roleId: "role_id"
+                        }]
                 },
-                version: 1.1,
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
+                version: 1.1
             },
-        };
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdBy: "createdBy"
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.agents.list({
+    limit: 10,
+    offset: 0,
+    name: "name",
+    namePrefix: "namePrefix",
+    type: "remote-agent",
+    attributes: ["attributes"]
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
+    });
+          
+    test("list (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/agents").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
+        
+            await expect(async () => {
+                return await client.agents.list()
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+          
+    test("create_or_update (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "tags" : { "key" : "value" } , "model" : { "name" : "name" } , "skills" : [ { "fqn" : "fqn" , "preload" : true } ] , "mcp_servers" : [ { "name" : "name" } ] , "instructions" : "instructions" , "messages" : [ { "role" : "user" , "content" : "content" } ] , "variables" : { "key" : { } } , "sample_inputs" : [ { } ] , "response_format" : { "type" : "text" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } } };
+        
         server
             .mockEndpoint()
-            .put("/api/svc/v1/agents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .put("/api/svc/v1/agents").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.agents.createOrUpdate({
+        
+                        
+                                const response = await client.agents.createOrUpdate({
+    manifest: {
+        type: "truefoundry-agent",
+        name: "name",
+        description: "description",
+        model: {
+            name: "name"
+        },
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+});
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        agentId: "agentId",
+        fqn: "fqn",
+        manifest: {
+            type: "truefoundry-agent",
+            name: "name",
+            description: "description",
+            tags: {
+                "key": "value"
+            },
+            model: {
+                name: "name"
+            },
+            skills: [{
+                    fqn: "fqn",
+                    preload: true
+                }],
+            mcpServers: [{
+                    name: "name"
+                }],
+            instructions: "instructions",
+            messages: [{
+                    role: "user",
+                    content: "content"
+                }],
+            variables: {
+                "key": {}
+            },
+            sampleInputs: [{}],
+            responseFormat: {
+                type: "text"
+            },
+            collaborators: [{
+                    subject: "subject",
+                    roleId: "role_id"
+                }],
+            ownedBy: {
+                account: "account"
+            }
+        },
+        version: 1.1,
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        }
+    }
+});
+                              
+                    
+    });
+          
+    test("create_or_update (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "x" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/agents").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(400).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.agents.createOrUpdate({
+    manifest: {
+        type: "truefoundry-agent",
+        name: "name",
+        description: "description",
+        model: {
+            name: "x"
+        },
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+          
+    test("create_or_update (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "x" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/agents").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.agents.createOrUpdate({
+    manifest: {
+        type: "truefoundry-agent",
+        name: "name",
+        description: "description",
+        model: {
+            name: "x"
+        },
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+          
+    test("create_or_update (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "x" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/agents").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.agents.createOrUpdate({
+    manifest: {
+        type: "truefoundry-agent",
+        name: "name",
+        description: "description",
+        model: {
+            name: "x"
+        },
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+          
+    test("create_or_update (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "x" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/agents").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.agents.createOrUpdate({
+    manifest: {
+        type: "truefoundry-agent",
+        name: "name",
+        description: "description",
+        model: {
+            name: "x"
+        },
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("create_or_update (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "x" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } , { "subject" : "subject" , "role_id" : "role_id" } ] } };
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/agents").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.agents.createOrUpdate({
+    manifest: {
+        type: "truefoundry-agent",
+        name: "name",
+        description: "description",
+        model: {
+            name: "x"
+        },
+        collaborators: [{
+                subject: "subject",
+                roleId: "role_id"
+            }, {
+                subject: "subject",
+                roleId: "role_id"
+            }]
+    }
+})
+            }).rejects.toThrow(TrueFoundry.InternalServerError);
+    });
+          
+    test("get (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "fqn" : "fqn" , "tenantName" : "tenantName" , "accountId" : "accountId" , "latestVersion" : 1.1 , "type" : "type" , "latestVersionDetails" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdBy" : "createdBy" } };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.agents.get("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: {
+        id: "jqfwg345gi25n5ju2yz5iz6m",
+        name: "name",
+        fqn: "fqn",
+        tenantName: "tenantName",
+        accountId: "accountId",
+        latestVersion: 1.1,
+        type: "type",
+        latestVersionDetails: {
+            id: "jqfwg345gi25n5ju2yz5iz6m",
+            agentId: "agentId",
+            fqn: "fqn",
             manifest: {
                 type: "truefoundry-agent",
                 name: "name",
                 description: "description",
                 model: {
-                    name: "name",
+                    name: "name"
                 },
-                collaborators: [
-                    {
+                collaborators: [{
                         subject: "subject",
-                        role_id: "role_id",
-                    },
-                ],
+                        roleId: "role_id"
+                    }]
             },
-        });
-        expect(response).toEqual(rawResponseBody);
+            version: 1.1,
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            }
+        },
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdBy: "createdBy"
+    }
+});
+                              
+                    
     });
-
-    test("create_or_update (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/agents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agents.createOrUpdate({
-                manifest: {
-                    type: "truefoundry-agent",
-                    name: "name",
-                    description: "description",
-                    model: {
-                        name: "x",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.BadRequestError);
-    });
-
-    test("create_or_update (3)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/agents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agents.createOrUpdate({
-                manifest: {
-                    type: "truefoundry-agent",
-                    name: "name",
-                    description: "description",
-                    model: {
-                        name: "x",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
-    });
-
-    test("create_or_update (4)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/agents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agents.createOrUpdate({
-                manifest: {
-                    type: "truefoundry-agent",
-                    name: "name",
-                    description: "description",
-                    model: {
-                        name: "x",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
-    });
-
-    test("create_or_update (5)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/agents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agents.createOrUpdate({
-                manifest: {
-                    type: "truefoundry-agent",
-                    name: "name",
-                    description: "description",
-                    model: {
-                        name: "x",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-
-    test("create_or_update (6)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/agents")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.agents.createOrUpdate({
-                manifest: {
-                    type: "truefoundry-agent",
-                    name: "name",
-                    description: "description",
-                    model: {
-                        name: "x",
-                    },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            role_id: "role_id",
-                        },
-                    ],
-                },
-            });
-        }).rejects.toThrow(TrueFoundry.InternalServerError);
-    });
-
-    test("get (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "jqfwg345gi25n5ju2yz5iz6m",
-                name: "name",
-                fqn: "fqn",
-                tenantName: "tenantName",
-                accountId: "accountId",
-                latestVersion: 1.1,
-                type: "type",
-                latestVersionDetails: {
-                    id: "jqfwg345gi25n5ju2yz5iz6m",
-                    agentId: "agentId",
-                    fqn: "fqn",
-                    manifest: {
-                        type: "truefoundry-agent",
-                        name: "name",
-                        description: "description",
-                        model: { name: "name" },
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    },
-                    version: 1.1,
-                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdBy: "createdBy",
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .get("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.agents.get("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(rawResponseBody);
-    });
-
+          
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/agents/id")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/agents/id").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.agents.get("id");
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.agents.get("id")
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("get (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/agents/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/agents/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.agents.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.agents.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m")
-            .respondWith()
-            .statusCode(200)
-            .build();
+            .delete("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m").respondWith()
+            .statusCode(200).build();
 
-        const response = await client.agents.delete("jqfwg345gi25n5ju2yz5iz6m");
-        expect(response).toEqual(undefined);
+        
+                        
+                                const response = await client.agents.delete("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual(undefined);
+                              
+                    
     });
-
+          
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/agents/id")
-            .respondWith()
-            .statusCode(401)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/agents/id").respondWith()
+            .statusCode(401).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.agents.delete("id");
-        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+        
+            await expect(async () => {
+                return await client.agents.delete("id")
+            }).rejects.toThrow(TrueFoundry.UnauthorizedError);
     });
-
+          
     test("delete (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/agents/id")
-            .respondWith()
-            .statusCode(403)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/agents/id").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.agents.delete("id");
-        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+        
+            await expect(async () => {
+                return await client.agents.delete("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
     });
-
+          
     test("delete (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/agents/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/agents/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.agents.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
+        
+            await expect(async () => {
+                return await client.agents.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
-
+          
     test("delete (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { statusCode: 1, message: "message" };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
         server
             .mockEndpoint()
-            .delete("/api/svc/v1/agents/id")
-            .respondWith()
-            .statusCode(500)
-            .jsonBody(rawResponseBody)
-            .build();
+            .delete("/api/svc/v1/agents/id").respondWith()
+            .statusCode(500).jsonBody(rawResponseBody)
+                .build();
 
-        await expect(async () => {
-            return await client.agents.delete("id");
-        }).rejects.toThrow(TrueFoundry.InternalServerError);
+        
+            await expect(async () => {
+                return await client.agents.delete("id")
+            }).rejects.toThrow(TrueFoundry.InternalServerError);
     });
+          
 });

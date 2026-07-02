@@ -4,7 +4,7 @@ export interface RetryConfig {
     /** Number of attempts to retry the request */
     attempts: number;
     /** Delay between retries in milliseconds */
-    delay?: number | undefined;
+    delay?: number;
     /** Status codes to retry on */
-    on_status_codes?: string[] | undefined;
+    onStatusCodes?: string[];
 }

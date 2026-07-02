@@ -2,21 +2,21 @@
 
 export interface SqlSanitizerGuardrailConfigConfig {
     /** Block SQL DROP statements as dangerous operations. */
-    block_drop?: boolean | undefined;
+    blockDrop?: boolean;
     /** Block SQL TRUNCATE statements as dangerous operations. */
-    block_truncate?: boolean | undefined;
+    blockTruncate?: boolean;
     /** Block SQL ALTER statements as dangerous operations. */
-    block_alter?: boolean | undefined;
+    blockAlter?: boolean;
     /** Block SQL GRANT statements as dangerous operations. */
-    block_grant?: boolean | undefined;
+    blockGrant?: boolean;
     /** Block SQL REVOKE statements as dangerous operations. */
-    block_revoke?: boolean | undefined;
+    blockRevoke?: boolean;
     /** Remove SQL comments (-- and block comments) from queries. In mutate mode, comments are stripped from the output. */
-    strip_comments?: boolean | undefined;
+    stripComments?: boolean;
     /** Flag DELETE FROM statements that lack a WHERE clause as potentially dangerous. */
-    block_delete_without_where?: boolean | undefined;
+    blockDeleteWithoutWhere?: boolean;
     /** Flag UPDATE statements that lack a WHERE clause as potentially dangerous. */
-    block_update_without_where?: boolean | undefined;
+    blockUpdateWithoutWhere?: boolean;
     /** Detect naive string interpolation patterns (+, %., {}) that may indicate SQL injection vulnerabilities. */
-    require_parameterization?: boolean | undefined;
+    requireParameterization?: boolean;
 }

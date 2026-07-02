@@ -6,10 +6,10 @@
  *         limit: 10,
  *         offset: 0,
  *         fqn: "fqn",
- *         ml_repo_id: "ml_repo_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
- *         run_id: "run_id",
- *         include_empty_models: true
+ *         runId: "run_id",
+ *         includeEmptyModels: true
  *     }
  */
 export interface ModelsListRequest {
@@ -20,11 +20,11 @@ export interface ModelsListRequest {
     /** Filter models by Fully Qualified Name. */
     fqn?: string;
     /** Filter models by ML Repo identifier. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Filter models by name. */
     name?: string;
     /** Filter models by associated run identifier. */
-    run_id?: string;
+    runId?: string;
     /** Whether to include models that have no versions. */
-    include_empty_models?: boolean;
+    includeEmptyModels?: boolean;
 }

@@ -9,15 +9,15 @@ export interface WorkbenchImage {
      * If the image is in Dockerhub, you can skip registry-url (for e.g. `tensorflow/tensorflow`).
      * You can use an image from a private registry using Advanced fields
      */
-    image_uri: string;
+    imageUri: string;
     /**
      * The build script to run when building the image.
      * This will be executed as the last step in the docker build process as the root user (RUN DEBIAN_FRONTEND=noninteractive bash -ex build_script.sh)
      */
-    build_script?: string | undefined;
+    buildScript?: string;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string | undefined;
+    dockerRegistry?: string;
 }

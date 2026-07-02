@@ -30,10 +30,10 @@ await client.apply({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storage_integration_fqn: "storage_integration_fqn",
+        storageIntegrationFqn: "storage_integration_fqn",
         collaborators: [{
                 subject: "subject",
-                role_id: "role_id"
+                roleId: "role_id"
             }]
     }
 });
@@ -103,10 +103,10 @@ await client.delete({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storage_integration_fqn: "storage_integration_fqn",
+        storageIntegrationFqn: "storage_integration_fqn",
         collaborators: [{
                 subject: "subject",
-                role_id: "role_id"
+                roleId: "role_id"
             }]
     }
 });
@@ -1954,9 +1954,9 @@ await client.virtualAccounts.createOrUpdate({
         name: "name",
         type: "virtual-account",
         permissions: [{
-                resource_fqn: "resource_fqn",
-                resource_type: "resource_type",
-                role_id: "role_id"
+                resourceFqn: "resource_fqn",
+                resourceType: "resource_type",
+                roleId: "role_id"
             }]
     }
 });
@@ -2506,11 +2506,11 @@ await client.clusters.createOrUpdate({
     manifest: {
         type: "cluster",
         name: "name",
-        cluster_type: "aws-eks",
-        environment_names: ["environment_names"],
+        clusterType: "aws-eks",
+        environmentNames: ["environment_names"],
         collaborators: [{
                 subject: "subject",
-                role_id: "role_id"
+                roleId: "role_id"
             }]
     }
 });
@@ -4046,7 +4046,7 @@ Create a new workspace or update an existing one using the provided WorkspaceMan
 await client.workspaces.createOrUpdate({
     manifest: {
         type: "workspace",
-        cluster_fqn: "cluster_fqn",
+        clusterFqn: "cluster_fqn",
         name: "name"
     }
 });
@@ -4976,10 +4976,10 @@ await client.secretGroups.createOrUpdate({
     manifest: {
         type: "secret-group",
         name: "name",
-        integration_fqn: "integration_fqn",
+        integrationFqn: "integration_fqn",
         collaborators: [{
                 subject: "subject",
-                role_id: "role_id"
+                roleId: "role_id"
             }]
     }
 });
@@ -5497,7 +5497,7 @@ await client.agents.createOrUpdate({
         },
         collaborators: [{
                 subject: "subject",
-                role_id: "role_id"
+                roleId: "role_id"
             }]
     }
 });
@@ -5904,9 +5904,9 @@ const pageableResponse = await client.prompts.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    include_empty_prompts: true
+    includeEmptyPrompts: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -5917,9 +5917,9 @@ let page = await client.prompts.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    include_empty_prompts: true
+    includeEmptyPrompts: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6069,8 +6069,8 @@ const pageableResponse = await client.promptVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    prompt_id: "prompt_id",
-    ml_repo_id: "ml_repo_id",
+    promptId: "prompt_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1
 });
@@ -6084,8 +6084,8 @@ let page = await client.promptVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    prompt_id: "prompt_id",
-    ml_repo_id: "ml_repo_id",
+    promptId: "prompt_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1
 });
@@ -6158,7 +6158,7 @@ Apply tags to a prompt version.
 
 ```typescript
 await client.promptVersions.applyTags({
-    prompt_version_id: "prompt_version_id",
+    promptVersionId: "prompt_version_id",
     tags: ["tags"]
 });
 
@@ -6480,10 +6480,10 @@ const pageableResponse = await client.artifacts.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    run_id: "run_id",
-    include_empty_artifacts: true
+    runId: "run_id",
+    includeEmptyArtifacts: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -6494,10 +6494,10 @@ let page = await client.artifacts.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    run_id: "run_id",
-    include_empty_artifacts: true
+    runId: "run_id",
+    includeEmptyArtifacts: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6647,13 +6647,13 @@ const pageableResponse = await client.artifactVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    artifact_id: "artifact_id",
-    ml_repo_id: "ml_repo_id",
+    artifactId: "artifact_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1,
-    run_ids: ["run_ids"],
-    run_steps: [1.1],
-    include_internal_metadata: true
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -6665,13 +6665,13 @@ let page = await client.artifactVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    artifact_id: "artifact_id",
-    ml_repo_id: "ml_repo_id",
+    artifactId: "artifact_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1,
-    run_ids: ["run_ids"],
-    run_steps: [1.1],
-    include_internal_metadata: true
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6742,7 +6742,7 @@ Apply tags to an artifact version.
 
 ```typescript
 await client.artifactVersions.applyTags({
-    artifact_version_id: "artifact_version_id",
+    artifactVersionId: "artifact_version_id",
     tags: ["tags"]
 });
 
@@ -6877,7 +6877,7 @@ Create a multipart upload for large files in an artifact version.
 await client.artifactVersions.createMultiPartUpload({
     id: "id",
     path: "path",
-    num_parts: 1.1
+    numParts: 1.1
 });
 
 ```
@@ -7501,10 +7501,10 @@ await client.mlRepos.createOrUpdate({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storage_integration_fqn: "storage_integration_fqn",
+        storageIntegrationFqn: "storage_integration_fqn",
         collaborators: [{
                 subject: "subject",
-                role_id: "role_id"
+                roleId: "role_id"
             }]
     }
 });
@@ -7575,7 +7575,7 @@ const pageableResponse = await client.dataDirectories.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name"
 });
 for await (const item of pageableResponse) {
@@ -7587,7 +7587,7 @@ let page = await client.dataDirectories.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name"
 });
 while (page.hasNextPage()) {
@@ -7662,7 +7662,7 @@ await client.dataDirectories.createOrUpdate({
     manifest: {
         type: "data-dir",
         name: "name",
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         metadata: {
             "key": "value"
         },
@@ -7881,7 +7881,7 @@ Create a multipart upload for large files in a data directory.
 await client.dataDirectories.createMultipartUpload({
     id: "id",
     path: "path",
-    num_parts: 1.1
+    numParts: 1.1
 });
 
 ```
@@ -8140,7 +8140,7 @@ Create a new run within an ML Repo.
 
 ```typescript
 await client.runs.create({
-    experiment_id: "experiment_id",
+    experimentId: "experiment_id",
     name: "name"
 });
 
@@ -8206,7 +8206,7 @@ List distinct metric, parameter, and tag keys for runs in an ML Repo.
 
 ```typescript
 await client.runs.getColumns({
-    experiment_id: "experiment_id"
+    experimentId: "experiment_id"
 });
 
 ```
@@ -8669,7 +8669,7 @@ Get full time-series history for a metric key on a run.
 
 ```typescript
 await client.runs.getMetricHistory("id", {
-    metric_key: "metric_key"
+    metricKey: "metric_key"
 });
 
 ```
@@ -9310,10 +9310,10 @@ const pageableResponse = await client.models.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    run_id: "run_id",
-    include_empty_models: true
+    runId: "run_id",
+    includeEmptyModels: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9324,10 +9324,10 @@ let page = await client.models.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    run_id: "run_id",
-    include_empty_models: true
+    runId: "run_id",
+    includeEmptyModels: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -9477,13 +9477,13 @@ const pageableResponse = await client.modelVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    model_id: "model_id",
-    ml_repo_id: "ml_repo_id",
+    modelId: "model_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1,
-    run_ids: ["run_ids"],
-    run_steps: [1.1],
-    include_internal_metadata: true
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9495,13 +9495,13 @@ let page = await client.modelVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    model_id: "model_id",
-    ml_repo_id: "ml_repo_id",
+    modelId: "model_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1,
-    run_ids: ["run_ids"],
-    run_steps: [1.1],
-    include_internal_metadata: true
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -9572,7 +9572,7 @@ Apply tags to a model version.
 
 ```typescript
 await client.modelVersions.applyTags({
-    model_version_id: "model_version_id",
+    modelVersionId: "model_version_id",
     tags: ["tags"]
 });
 
@@ -9976,9 +9976,9 @@ const pageableResponse = await client.agentSkills.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    include_empty_agent_skills: true
+    includeEmptyAgentSkills: true
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9989,9 +9989,9 @@ let page = await client.agentSkills.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    ml_repo_id: "ml_repo_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
-    include_empty_agent_skills: true
+    includeEmptyAgentSkills: true
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -10067,11 +10067,11 @@ await client.agentSkills.createOrUpdate({
         metadata: {
             "key": "value"
         },
-        ml_repo: "ml_repo",
+        mlRepo: "ml_repo",
         type: "agent-skill",
         source: {
             type: "inline",
-            skill_md: "skill_md"
+            skillMd: "skill_md"
         }
     }
 });
@@ -10142,8 +10142,8 @@ const pageableResponse = await client.agentSkillVersions.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    agent_skill_id: "agent_skill_id",
-    ml_repo_id: "ml_repo_id",
+    agentSkillId: "agent_skill_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1
 });
@@ -10156,8 +10156,8 @@ let page = await client.agentSkillVersions.list({
     limit: 10,
     offset: 0,
     fqn: "fqn",
-    agent_skill_id: "agent_skill_id",
-    ml_repo_id: "ml_repo_id",
+    agentSkillId: "agent_skill_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1
 });
@@ -10977,7 +10977,7 @@ await client.internal.metrics.getCharts("workspaceId", {
 
 ```typescript
 await client.internal.vcs.getRepositoryDetails({
-    repoURL: "repoURL"
+    repoUrl: "repoURL"
 });
 
 ```
@@ -11028,7 +11028,7 @@ await client.internal.vcs.getRepositoryDetails({
 
 ```typescript
 await client.internal.vcs.getAuthenticatedUrl({
-    repoURL: "repoURL"
+    repoUrl: "repoURL"
 });
 
 ```
@@ -11098,15 +11098,15 @@ const pageableResponse = await client.internal.artifactVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    artifact_id: "artifact_id",
-    ml_repo_id: "ml_repo_id",
+    artifactId: "artifact_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1,
-    run_ids: ["run_ids"],
-    run_steps: [1.1],
-    include_internal_metadata: true,
-    include_model_versions: true,
-    artifact_types: ["artifact"]
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true,
+    includeModelVersions: true,
+    artifactTypes: ["artifact"]
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -11118,15 +11118,15 @@ let page = await client.internal.artifactVersions.list({
     offset: 0,
     tag: "tag",
     fqn: "fqn",
-    artifact_id: "artifact_id",
-    ml_repo_id: "ml_repo_id",
+    artifactId: "artifact_id",
+    mlRepoId: "ml_repo_id",
     name: "name",
     version: 1,
-    run_ids: ["run_ids"],
-    run_steps: [1.1],
-    include_internal_metadata: true,
-    include_model_versions: true,
-    artifact_types: ["artifact"]
+    runIds: ["run_ids"],
+    runSteps: [1.1],
+    includeInternalMetadata: true,
+    includeModelVersions: true,
+    artifactTypes: ["artifact"]
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();

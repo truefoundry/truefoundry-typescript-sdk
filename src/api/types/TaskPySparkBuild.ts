@@ -10,31 +10,31 @@ export interface TaskPySparkBuild {
      */
     type: "task-pyspark-build";
     /** Spark version should match the spark version installed in the image. */
-    spark_version: string;
+    sparkVersion: string;
     /**
      * Custom container image URI. If provided, this image is used instead of the
      * default Spark base image (public.ecr.aws/bitnami/spark). The image must be
      * Debian-based and have Python and Spark pre-installed.
      */
-    container_image?: string | undefined;
+    containerImage?: string;
     /**
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string | undefined;
+    dockerRegistry?: string;
     /**
      * Path to `requirements.txt` relative to
      * `Path to build context`
      */
-    requirements_path?: string | undefined;
+    requirementsPath?: string;
     /**
      * Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
      */
-    pip_packages?: string[] | undefined;
+    pipPackages?: string[];
     /**
      * Debian packages to install via `apt get`.
      * In Python/YAML E.g. ["git", "ffmpeg", "htop"]
      */
-    apt_packages?: string[] | undefined;
+    aptPackages?: string[];
 }

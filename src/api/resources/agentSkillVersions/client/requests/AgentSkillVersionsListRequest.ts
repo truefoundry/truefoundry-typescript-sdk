@@ -6,8 +6,8 @@
  *         limit: 10,
  *         offset: 0,
  *         fqn: "fqn",
- *         agent_skill_id: "agent_skill_id",
- *         ml_repo_id: "ml_repo_id",
+ *         agentSkillId: "agent_skill_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
  *         version: 1
  *     }
@@ -20,9 +20,9 @@ export interface AgentSkillVersionsListRequest {
     /** Fully Qualified Name uniquely identifying the agent skill version. */
     fqn?: string;
     /** Identifier of the agent skill whose versions are being listed. */
-    agent_skill_id?: string;
+    agentSkillId?: string;
     /** Identifier of the ML Repo to filter agent skill versions by. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Name of the agent skill to filter versions by. */
     name?: string;
     /** Version number (positive integer) to filter by. */

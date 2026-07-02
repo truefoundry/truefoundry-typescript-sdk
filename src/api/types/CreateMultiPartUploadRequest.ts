@@ -6,5 +6,5 @@ export interface CreateMultiPartUploadRequest {
     /** Path of the file relative to the artifact version storage root. */
     path: string;
     /** Number of parts the file will be split into for the multipart upload. */
-    num_parts: number;
+    numParts: number;
 }

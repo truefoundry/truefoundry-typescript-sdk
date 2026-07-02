@@ -2,8 +2,7 @@
 
 /** The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests. */
 export const GoogleModelArmorGuardrailConfigOperation = {
-    Validate: "validate",
-    Mutate: "mutate",
-} as const;
-export type GoogleModelArmorGuardrailConfigOperation =
-    (typeof GoogleModelArmorGuardrailConfigOperation)[keyof typeof GoogleModelArmorGuardrailConfigOperation];
+        Validate: "validate",
+        Mutate: "mutate"
+    } as const;
+export type GoogleModelArmorGuardrailConfigOperation = typeof GoogleModelArmorGuardrailConfigOperation[keyof typeof GoogleModelArmorGuardrailConfigOperation];

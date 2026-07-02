@@ -6,10 +6,10 @@
  *         limit: 10,
  *         offset: 0,
  *         fqn: "fqn",
- *         ml_repo_id: "ml_repo_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name",
- *         run_id: "run_id",
- *         include_empty_artifacts: true
+ *         runId: "run_id",
+ *         includeEmptyArtifacts: true
  *     }
  */
 export interface ArtifactsListRequest {
@@ -20,11 +20,11 @@ export interface ArtifactsListRequest {
     /** Human-readable Fully Qualified Name of the artifact. */
     fqn?: string;
     /** Identifier of the ML Repo to filter artifacts by. */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Name of the artifact to filter by. */
     name?: string;
     /** Identifier of the run to filter artifacts by. */
-    run_id?: string;
+    runId?: string;
     /** Whether to include artifacts that have no versions. */
-    include_empty_artifacts?: boolean;
+    includeEmptyArtifacts?: boolean;
 }

@@ -5,9 +5,9 @@
  */
 export interface PolicyFilters {
     /** Cluster names where Policy applies */
-    cluster_names?: string[] | undefined;
+    clusterNames?: string[];
     /** Workspace names where Policy applies */
-    workspace_names?: string[] | undefined;
+    workspaceNames?: string[];
     /** Environment names where Policy applies */
-    env_names?: string[] | undefined;
+    envNames?: string[];
 }

@@ -2,8 +2,7 @@
 
 /** Format of the issued token. Leave empty to use the platform default. */
 export const VirtualAccountManifestTokenType = {
-    Jwt: "jwt",
-    Opaque: "opaque",
-} as const;
-export type VirtualAccountManifestTokenType =
-    (typeof VirtualAccountManifestTokenType)[keyof typeof VirtualAccountManifestTokenType];
+        Jwt: "jwt",
+        Opaque: "opaque"
+    } as const;
+export type VirtualAccountManifestTokenType = typeof VirtualAccountManifestTokenType[keyof typeof VirtualAccountManifestTokenType];

@@ -7,7 +7,7 @@ export interface TrueFoundryArtifactSource {
     /** +value=truefoundry-artifact */
     type: "truefoundry-artifact";
     /** Artifact or Model Version FQN of the artifact to be downloaded */
-    artifact_version_fqn: string;
+    artifactVersionFqn: string;
     /** Environment variable which will contain the download path of the artifact */
-    download_path_env_variable: string;
+    downloadPathEnvVariable: string;
 }

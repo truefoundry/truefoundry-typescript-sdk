@@ -6,7 +6,7 @@
  *         limit: 10,
  *         offset: 0,
  *         fqn: "fqn",
- *         ml_repo_id: "ml_repo_id",
+ *         mlRepoId: "ml_repo_id",
  *         name: "name"
  *     }
  */
@@ -18,7 +18,7 @@ export interface DataDirectoriesListRequest {
     /** Fully qualified name to filter by */
     fqn?: string;
     /** ID of the ML Repo to filter by */
-    ml_repo_id?: string;
+    mlRepoId?: string;
     /** Name of the data directory to filter by */
     name?: string;
 }

@@ -7,7 +7,7 @@ export interface PagerDutyIntegrationKeyAuth {
     /** +value=pagerduty-integration-auth */
     type: "pagerduty-integration-auth";
     /** The integration key for the PagerDuty integration */
-    integration_key: string;
+    integrationKey: string;
     /** The integration URL for the PagerDuty integration */
-    integration_url: string;
+    integrationUrl: string;
 }

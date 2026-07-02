@@ -2,9 +2,9 @@
 
 /** Whether this row identifies a user (email), a team (name), a virtual account (name), or an external identity (name). */
 export const RoleBindingSubjectType = {
-    User: "user",
-    Team: "team",
-    Virtualaccount: "virtualaccount",
-    ExternalIdentity: "external-identity",
-} as const;
-export type RoleBindingSubjectType = (typeof RoleBindingSubjectType)[keyof typeof RoleBindingSubjectType];
+        User: "user",
+        Team: "team",
+        Virtualaccount: "virtualaccount",
+        ExternalIdentity: "external-identity"
+    } as const;
+export type RoleBindingSubjectType = typeof RoleBindingSubjectType[keyof typeof RoleBindingSubjectType];

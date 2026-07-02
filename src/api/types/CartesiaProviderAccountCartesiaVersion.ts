@@ -2,9 +2,8 @@
 
 /** The Cartesia API version header. Must be set to a supported API version. */
 export const CartesiaProviderAccountCartesiaVersion = {
-    TwoThousandTwentyFive0416: "2025-04-16",
-    TwoThousandTwentyFour1113: "2024-11-13",
-    TwoThousandTwentyFour0610: "2024-06-10",
-} as const;
-export type CartesiaProviderAccountCartesiaVersion =
-    (typeof CartesiaProviderAccountCartesiaVersion)[keyof typeof CartesiaProviderAccountCartesiaVersion];
+        TwoThousandTwentyFive0416: "2025-04-16",
+        TwoThousandTwentyFour1113: "2024-11-13",
+        TwoThousandTwentyFour0610: "2024-06-10"
+    } as const;
+export type CartesiaProviderAccountCartesiaVersion = typeof CartesiaProviderAccountCartesiaVersion[keyof typeof CartesiaProviderAccountCartesiaVersion];

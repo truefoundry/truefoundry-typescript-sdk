@@ -2,9 +2,9 @@
 
 /** Serialization format used to save the xgboost model */
 export const XgBoostSerializationFormat = {
-    Cloudpickle: "cloudpickle",
-    Joblib: "joblib",
-    Pickle: "pickle",
-    Json: "json",
-} as const;
-export type XgBoostSerializationFormat = (typeof XgBoostSerializationFormat)[keyof typeof XgBoostSerializationFormat];
+        Cloudpickle: "cloudpickle",
+        Joblib: "joblib",
+        Pickle: "pickle",
+        Json: "json"
+    } as const;
+export type XgBoostSerializationFormat = typeof XgBoostSerializationFormat[keyof typeof XgBoostSerializationFormat];

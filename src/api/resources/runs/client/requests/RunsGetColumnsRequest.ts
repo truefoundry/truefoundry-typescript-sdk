@@ -3,10 +3,10 @@
 /**
  * @example
  *     {
- *         experiment_id: "experiment_id"
+ *         experimentId: "experiment_id"
  *     }
  */
 export interface RunsGetColumnsRequest {
     /** System-generated unique identifier for the ML Repo. */
-    experiment_id: string;
+    experimentId: string;
 }

@@ -5,7 +5,7 @@
  */
 export interface NatsUserPasswordAuth {
     /** Name of the NATS account */
-    account_name: string;
+    accountName: string;
     /** User for NATS authentication */
     user: string;
     /** Password for NATS authentication */

@@ -7,5 +7,5 @@ export interface AwsAssumedRoleBasedAuth {
     /** +value=assumed-role-based */
     type: "assumed-role-based";
     /** ARN of the role you want to assume. */
-    assumed_role_arn: string;
+    assumedRoleArn: string;
 }

@@ -5,256 +5,317 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("PromptsClient", () => {
+    
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: {
-                id: "id",
-                ml_repo_id: "ml_repo_id",
-                type: "artifact",
-                name: "name",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                latest_version: {
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    manifest: {
-                        metadata: { key: "value" },
-                        type: "chat_prompt",
-                        messages: [{ role: "system", content: "content" }],
-                    },
-                    id: "id",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    ml_repo_id: "ml_repo_id",
-                    usage_code_snippet: "usage_code_snippet",
-                    usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
-                    tags: ["tags"],
-                    prompt_id: "prompt_id",
-                },
-                run_steps: [1.1],
-            },
-        };
-
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "usage_code_snippets" : [ { "display_name" : "display_name" , "language" : "language" , "code" : "code" } ] , "tags" : [ "tags" ] , "prompt_id" : "prompt_id" } , "run_steps" : [ 1.1 ] } };
+        
         server
             .mockEndpoint()
-            .get("/api/svc/v1/prompts/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+            .get("/api/svc/v1/prompts/id").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
 
-        const response = await client.prompts.get("id");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("get (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .get("/api/svc/v1/prompts/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.prompts.get("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-
-    test("delete (1)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {};
-
-        server
-            .mockEndpoint()
-            .delete("/api/svc/v1/prompts/id")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.prompts.delete("id");
-        expect(response).toEqual(rawResponseBody);
-    });
-
-    test("delete (2)", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = { key: "value" };
-
-        server
-            .mockEndpoint()
-            .delete("/api/svc/v1/prompts/id")
-            .respondWith()
-            .statusCode(404)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        await expect(async () => {
-            return await client.prompts.delete("id");
-        }).rejects.toThrow(TrueFoundry.NotFoundError);
-    });
-
-    test("list", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-
-        const rawResponseBody = {
-            data: [
-                {
-                    id: "id",
-                    ml_repo_id: "ml_repo_id",
-                    type: "artifact",
-                    name: "name",
-                    fqn: "fqn",
-                    created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                    created_at: "2024-01-15T09:30:00Z",
-                    updated_at: "2024-01-15T09:30:00Z",
-                    latest_version: {
-                        manifest: {
-                            metadata: { key: "value" },
-                            type: "chat_prompt",
-                            messages: [{ role: "system", content: "content" }],
-                        },
-                        id: "id",
-                        fqn: "fqn",
-                        created_by_subject: { subjectId: "subjectId", subjectType: "user" },
-                        ml_repo_id: "ml_repo_id",
-                        prompt_id: "prompt_id",
-                    },
-                    run_steps: [1.1],
-                },
-            ],
-            pagination: { total: 100, offset: 0, limit: 10 },
-        };
-
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/prompts")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const expected = rawResponseBody;
-        const page = await client.prompts.list({
-            limit: 10,
-            offset: 0,
-            fqn: "fqn",
-            ml_repo_id: "ml_repo_id",
-            name: "name",
-            include_empty_prompts: true,
-        });
-
-        expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
-    });
-
-    test("create_or_update", async () => {
-        const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                metadata: { key: "value" },
-                type: "chat_prompt",
-                messages: [{ role: "system", content: "content" }],
-            },
-        };
-        const rawResponseBody = {
-            data: {
-                created_at: "2024-01-15T09:30:00Z",
-                updated_at: "2024-01-15T09:30:00Z",
-                manifest: {
-                    name: "name",
-                    metadata: { key: "value" },
-                    ml_repo: "ml_repo",
-                    version: 1,
-                    type: "chat_prompt",
-                    description: "description",
-                    version_alias: "version_alias",
-                    messages: [{ role: "system", content: "content" }],
-                    model_configuration: { provider: "provider", model: "model" },
-                    tools: [{ type: "function", function: { name: "name" } }],
-                    mcp_servers: [
-                        { type: "mcp-server-fqn", integration_fqn: "integration_fqn", enable_all_tools: true },
-                    ],
-                    response_format: { type: "json_object" },
-                    routing_config: {
-                        type: "weight-based-routing",
-                        load_balance_targets: [{ target: "target", weight: 1 }],
-                    },
-                    cache_config: { type: "semantic", similarity_threshold: 1.1, ttl: 1.1 },
-                    tool_call_to_mcp_mapping: {
-                        key: { mcp_server_integration_id: "mcp_server_integration_id", tool_name: "tool_name" },
-                    },
-                    logging_config: { enabled: true },
-                    sub_agents: [{ name: "name" }],
-                },
-                id: "id",
-                fqn: "fqn",
-                created_by_subject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                ml_repo_id: "ml_repo_id",
-                usage_code_snippet: "usage_code_snippet",
-                usage_code_snippets: [{ display_name: "display_name", language: "language", code: "code" }],
-                tags: ["tags"],
-                prompt_id: "prompt_id",
-            },
-        };
-
-        server
-            .mockEndpoint()
-            .put("/api/svc/v1/prompt-versions")
-            .jsonBody(rawRequestBody)
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
-
-        const response = await client.prompts.createOrUpdate({
+        
+                        
+                                const response = await client.prompts.get("id");
+                                expect(response).toEqual({
+    data: {
+        id: "id",
+        mlRepoId: "ml_repo_id",
+        type: "artifact",
+        name: "name",
+        fqn: "fqn",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        latestVersion: {
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             manifest: {
                 metadata: {
-                    key: "value",
+                    "key": "value"
                 },
                 type: "chat_prompt",
-                messages: [
-                    {
+                messages: [{
                         role: "system",
-                        content: "content",
-                    },
-                ],
+                        content: "content"
+                    }]
             },
-        });
-        expect(response).toEqual(rawResponseBody);
+            id: "id",
+            fqn: "fqn",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            mlRepoId: "ml_repo_id",
+            usageCodeSnippet: "usage_code_snippet",
+            usageCodeSnippets: [{
+                    displayName: "display_name",
+                    language: "language",
+                    code: "code"
+                }],
+            tags: ["tags"],
+            promptId: "prompt_id"
+        },
+        runSteps: [1.1]
+    }
+});
+                              
+                    
     });
+          
+    test("get (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/prompts/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.prompts.get("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("delete (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { };
+        
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/prompts/id").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.prompts.delete("id");
+                                expect(response).toEqual({});
+                              
+                    
+    });
+          
+    test("delete (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .delete("/api/svc/v1/prompts/id").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.prompts.delete("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "id" : "id" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "prompt_id" : "prompt_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        
+        server
+            .mockEndpoint({ once: false })
+            .get("/api/svc/v1/prompts").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                const expected = {
+    data: [{
+            id: "id",
+            mlRepoId: "ml_repo_id",
+            type: "artifact",
+            name: "name",
+            fqn: "fqn",
+            createdBySubject: {
+                subjectId: "subjectId",
+                subjectType: "user"
+            },
+            createdAt: new Date("2024-01-15T09:30:00.000Z"),
+            updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+            latestVersion: {
+                manifest: {
+                    metadata: {
+                        "key": "value"
+                    },
+                    type: "chat_prompt",
+                    messages: [{
+                            role: "system",
+                            content: "content"
+                        }]
+                },
+                id: "id",
+                fqn: "fqn",
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user"
+                },
+                mlRepoId: "ml_repo_id",
+                promptId: "prompt_id"
+            },
+            runSteps: [1.1]
+        }],
+    pagination: {
+        total: 100,
+        offset: 0,
+        limit: 10
+    }
+};
+                const page = await client.prompts.list({
+    limit: 10,
+    offset: 0,
+    fqn: "fqn",
+    mlRepoId: "ml_repo_id",
+    name: "name",
+    includeEmptyPrompts: true
+});
+                
+                            expect(expected.data).toEqual(page.data);
+                            expect(page.hasNextPage()).toBe(true);
+                            const nextPage = await page.getNextPage();
+                            expect(expected.data).toEqual(nextPage.data);
+                        
+                
+                    
+    });
+          
+    test("create_or_update", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        const rawRequestBody = { "manifest" : { "metadata" : { "key" : "value" } , "type" : "chat_prompt" , "messages" : [ { "role" : "system" , "content" : "content" } ] } };
+        const rawResponseBody = { "data" : { "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "manifest" : { "name" : "name" , "metadata" : { "key" : "value" } , "ml_repo" : "ml_repo" , "version" : 1 , "type" : "chat_prompt" , "description" : "description" , "version_alias" : "version_alias" , "messages" : [ { "role" : "system" , "content" : "content" } ] , "model_configuration" : { "provider" : "provider" , "model" : "model" } , "tools" : [ { "type" : "function" , "function" : { "name" : "name" } } ] , "mcp_servers" : [ { "type" : "mcp-server-fqn" , "integration_fqn" : "integration_fqn" , "enable_all_tools" : true } ] , "response_format" : { "type" : "json_object" } , "routing_config" : { "type" : "weight-based-routing" , "load_balance_targets" : [ { "target" : "target" , "weight" : 1 } ] } , "cache_config" : { "type" : "semantic" , "similarity_threshold" : 1.1 , "ttl" : 1.1 } , "tool_call_to_mcp_mapping" : { "key" : { "mcp_server_integration_id" : "mcp_server_integration_id" , "tool_name" : "tool_name" } } , "logging_config" : { "enabled" : true } , "sub_agents" : [ { "name" : "name" } ] } , "id" : "id" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "ml_repo_id" : "ml_repo_id" , "usage_code_snippet" : "usage_code_snippet" , "usage_code_snippets" : [ { "display_name" : "display_name" , "language" : "language" , "code" : "code" } ] , "tags" : [ "tags" ] , "prompt_id" : "prompt_id" } };
+        
+        server
+            .mockEndpoint()
+            .put("/api/svc/v1/prompt-versions").jsonBody(rawRequestBody)
+                .respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.prompts.createOrUpdate({
+    manifest: {
+        metadata: {
+            "key": "value"
+        },
+        type: "chat_prompt",
+        messages: [{
+                role: "system",
+                content: "content"
+            }]
+    }
+});
+                                expect(response).toEqual({
+    data: {
+        createdAt: new Date("2024-01-15T09:30:00.000Z"),
+        updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+        manifest: {
+            name: "name",
+            metadata: {
+                "key": "value"
+            },
+            mlRepo: "ml_repo",
+            version: 1,
+            type: "chat_prompt",
+            description: "description",
+            versionAlias: "version_alias",
+            messages: [{
+                    role: "system",
+                    content: "content"
+                }],
+            modelConfiguration: {
+                provider: "provider",
+                model: "model"
+            },
+            tools: [{
+                    type: "function",
+                    "function": {
+                        name: "name"
+                    }
+                }],
+            mcpServers: [{
+                    type: "mcp-server-fqn",
+                    integrationFqn: "integration_fqn",
+                    enableAllTools: true
+                }],
+            responseFormat: {
+                type: "json_object"
+            },
+            routingConfig: {
+                type: "weight-based-routing",
+                loadBalanceTargets: [{
+                        target: "target",
+                        weight: 1
+                    }]
+            },
+            cacheConfig: {
+                type: "semantic",
+                similarityThreshold: 1.1,
+                ttl: 1.1
+            },
+            toolCallToMcpMapping: {
+                "key": {
+                    mcpServerIntegrationId: "mcp_server_integration_id",
+                    toolName: "tool_name"
+                }
+            },
+            loggingConfig: {
+                enabled: true
+            },
+            subAgents: [{
+                    name: "name"
+                }]
+        },
+        id: "id",
+        fqn: "fqn",
+        createdBySubject: {
+            subjectId: "subjectId",
+            subjectType: "user",
+            subjectSlug: "subjectSlug",
+            subjectDisplayName: "subjectDisplayName",
+            subjectPatName: "subjectPatName",
+            subjectControllerName: "subjectControllerName",
+            subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
+        },
+        mlRepoId: "ml_repo_id",
+        usageCodeSnippet: "usage_code_snippet",
+        usageCodeSnippets: [{
+                displayName: "display_name",
+                language: "language",
+                code: "code"
+            }],
+        tags: ["tags"],
+        promptId: "prompt_id"
+    }
+});
+                              
+                    
+    });
+          
 });

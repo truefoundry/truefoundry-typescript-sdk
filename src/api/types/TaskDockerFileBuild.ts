@@ -13,9 +13,9 @@ export interface TaskDockerFileBuild {
      * FQN of the container registry. If you can't find your registry here,
      * add it through the [Integrations](/integrations?tab=docker-registry) page
      */
-    docker_registry?: string | undefined;
+    dockerRegistry?: string;
     /** The file path of the Dockerfile relative to project root path. */
-    dockerfile_path: string;
+    dockerfilePath: string;
     /** Build arguments to pass to docker build */
-    build_args?: Record<string, string> | undefined;
+    buildArgs?: Record<string, string>;
 }

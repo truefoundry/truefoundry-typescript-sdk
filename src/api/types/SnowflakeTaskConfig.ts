@@ -10,7 +10,7 @@ export interface SnowflakeTaskConfig {
     /** Target Snowflake database where the task will run. */
     database: string;
     /** Target schema within the Snowflake database. */
-    schema_name: string;
+    schemaName: string;
     /** Compute warehouse to be used for executing the task. */
     warehouse: string;
 }

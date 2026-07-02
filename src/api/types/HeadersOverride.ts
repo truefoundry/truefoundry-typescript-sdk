@@ -5,7 +5,7 @@
  */
 export interface HeadersOverride {
     /** List of headers to remove from upstream request */
-    remove?: string[] | undefined;
+    remove?: string[];
     /** Headers to add or overwrite in upstream request */
-    set?: Record<string, string> | undefined;
+    set?: Record<string, string>;
 }

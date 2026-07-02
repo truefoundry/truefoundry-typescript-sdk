@@ -4,9 +4,9 @@ export interface Metric {
     /** Name of the metric. */
     key: string;
     /** Numeric value of the metric. */
-    value?: number | undefined;
+    value?: number;
     /** Unix timestamp in milliseconds when the metric was logged. */
-    timestamp?: number | undefined;
+    timestamp?: number;
     /** Training step at which the metric was logged. */
-    step?: number | undefined;
+    step?: number;
 }

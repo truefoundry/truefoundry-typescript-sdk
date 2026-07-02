@@ -7,8 +7,8 @@
  * This is only applicable if `expose=true`.
  */
 export const PortAppProtocol = {
-    Http: "http",
-    Grpc: "grpc",
-    Tcp: "tcp",
-} as const;
-export type PortAppProtocol = (typeof PortAppProtocol)[keyof typeof PortAppProtocol];
+        Http: "http",
+        Grpc: "grpc",
+        Tcp: "tcp"
+    } as const;
+export type PortAppProtocol = typeof PortAppProtocol[keyof typeof PortAppProtocol];

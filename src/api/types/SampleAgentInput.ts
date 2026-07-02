@@ -2,7 +2,7 @@
 
 export interface SampleAgentInput {
     /** Input for the agent */
-    text?: string | undefined;
+    text?: string;
     /** Variable inputs for Prompt Variables defined in the Prompt */
-    variables?: Record<string, string> | undefined;
+    variables?: Record<string, string>;
 }

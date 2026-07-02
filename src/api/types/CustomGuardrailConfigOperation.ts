@@ -5,8 +5,7 @@
  * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
  */
 export const CustomGuardrailConfigOperation = {
-    Validate: "validate",
-    Mutate: "mutate",
-} as const;
-export type CustomGuardrailConfigOperation =
-    (typeof CustomGuardrailConfigOperation)[keyof typeof CustomGuardrailConfigOperation];
+        Validate: "validate",
+        Mutate: "mutate"
+    } as const;
+export type CustomGuardrailConfigOperation = typeof CustomGuardrailConfigOperation[keyof typeof CustomGuardrailConfigOperation];

@@ -2,8 +2,8 @@
 
 /** Strategy for enforcing this guardrail: enforce (block on failure), enforce_but_ignore_on_error (continue on error but block on failure), or audit (only audit violations) */
 export const EnforcingStrategy = {
-    EnforceButIgnoreOnError: "enforce_but_ignore_on_error",
-    Enforce: "enforce",
-    Audit: "audit",
-} as const;
-export type EnforcingStrategy = (typeof EnforcingStrategy)[keyof typeof EnforcingStrategy];
+        EnforceButIgnoreOnError: "enforce_but_ignore_on_error",
+        Enforce: "enforce",
+        Audit: "audit"
+    } as const;
+export type EnforcingStrategy = typeof EnforcingStrategy[keyof typeof EnforcingStrategy];

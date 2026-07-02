@@ -7,5 +7,5 @@ export interface AwsBedrockApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
     /** Your AWS Bedrock API key for authentication */
-    api_key: string;
+    apiKey: string;
 }

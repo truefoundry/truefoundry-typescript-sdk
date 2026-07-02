@@ -2,8 +2,7 @@
 
 /** The operation type to use for the Guardrail. Validate guardrails check for blocked content. Mutate guardrails additionally redact sensitive content (PII) and support unredaction on output. */
 export const CrowdStrikeAidrGuardrailConfigOperation = {
-    Validate: "validate",
-    Mutate: "mutate",
-} as const;
-export type CrowdStrikeAidrGuardrailConfigOperation =
-    (typeof CrowdStrikeAidrGuardrailConfigOperation)[keyof typeof CrowdStrikeAidrGuardrailConfigOperation];
+        Validate: "validate",
+        Mutate: "mutate"
+    } as const;
+export type CrowdStrikeAidrGuardrailConfigOperation = typeof CrowdStrikeAidrGuardrailConfigOperation[keyof typeof CrowdStrikeAidrGuardrailConfigOperation];

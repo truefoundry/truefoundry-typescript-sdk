@@ -5,13 +5,13 @@
  */
 export interface CustomEndpointTargetConfig {
     /** Relative weight for routing decisions (higher values mean more traffic). Weights across all endpoints in the account must sum to 100. */
-    weight?: number | undefined;
+    weight?: number;
     /** Priority for the endpoint, Lower the number, higher the priority (0 is the highest priority) */
-    priority?: number | undefined;
+    priority?: number;
     /** Status Codes for which the request will fall back to other endpoints. If the status code is not present in fallback_status_codes, it fails immediately. */
-    fallback_status_codes?: string[] | undefined;
+    fallbackStatusCodes?: string[];
     /** Whether this endpoint is a fallback candidate. If set to false, this endpoint will not be considered as a fallback option for the account. */
-    fallback_candidate?: boolean | undefined;
+    fallbackCandidate?: boolean;
     /** Optional metadata key-value pairs that must match incoming request metadata headers for this endpoint to be considered for routing. */
-    metadata_match?: Record<string, string> | undefined;
+    metadataMatch?: Record<string, string>;
 }

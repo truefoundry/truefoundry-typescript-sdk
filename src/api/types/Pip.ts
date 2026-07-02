@@ -7,10 +7,10 @@ export interface Pip {
     /** +value=pip */
     type: "pip";
     /** Path to `requirements.txt` relative to `Path to build context` */
-    requirements_path?: string | undefined;
+    requirementsPath?: string;
     /**
      * Define pip package requirements.
      * In Python/YAML E.g. ["fastapi>=0.90,<1.0", "uvicorn"]
      */
-    pip_packages?: string[] | undefined;
+    pipPackages?: string[];
 }

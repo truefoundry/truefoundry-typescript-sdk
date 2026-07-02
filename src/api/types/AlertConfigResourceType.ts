@@ -2,7 +2,7 @@
 
 /** The type of resource this alert config belongs to. Can be either an application or a cluster. */
 export const AlertConfigResourceType = {
-    Application: "application",
-    Cluster: "cluster",
-} as const;
-export type AlertConfigResourceType = (typeof AlertConfigResourceType)[keyof typeof AlertConfigResourceType];
+        Application: "application",
+        Cluster: "cluster"
+    } as const;
+export type AlertConfigResourceType = typeof AlertConfigResourceType[keyof typeof AlertConfigResourceType];
