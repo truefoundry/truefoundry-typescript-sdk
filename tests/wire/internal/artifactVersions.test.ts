@@ -71,7 +71,7 @@ describe("ArtifactVersionsClient", () => {
     runSteps: [1.1],
     includeInternalMetadata: true,
     includeModelVersions: true,
-    artifactTypes: ["artifact"]
+    artifactTypes: ["artifact_types"]
 });
                 
                             expect(expected.data).toEqual(page.data);

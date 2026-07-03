@@ -645,4 +645,195 @@ describe("UsersClient", () => {
                     
     });
           
+    test("get_resources (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "resourceType" : "resourceType" , "resourceId" : "resourceId" , "roleId" : "roleId" , "resourceName" : "resourceName" } ] };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/jqfwg345gi25n5ju2yz5iz6m/resources").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.users.getResources("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: [{
+            resourceType: "resourceType",
+            resourceId: "resourceId",
+            roleId: "roleId",
+            resourceName: "resourceName"
+        }]
+});
+                              
+                    
+    });
+          
+    test("get_resources (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/id/resources").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.users.getResources("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+          
+    test("get_resources (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/id/resources").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.users.getResources("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("get_permissions (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "resourceType" : "resourceType" , "resourceId" : "resourceId" , "resourceName" : "resourceName" , "resourceFqn" : "resourceFqn" , "roleId" : "roleId" , "roleName" : "roleName" , "subjectId" : "subjectId" , "subjectType" : "subjectType" } ] };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/jqfwg345gi25n5ju2yz5iz6m/permissions").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.users.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: [{
+            resourceType: "resourceType",
+            resourceId: "resourceId",
+            resourceName: "resourceName",
+            resourceFqn: "resourceFqn",
+            roleId: "roleId",
+            roleName: "roleName",
+            subjectId: "subjectId",
+            subjectType: "subjectType"
+        }]
+});
+                              
+                    
+    });
+          
+    test("get_permissions (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/id/permissions").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.users.getPermissions("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+          
+    test("get_permissions (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/id/permissions").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.users.getPermissions("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
+    test("get_teams (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "data" : [ { "teamName" : "teamName" , "roles" : [ "roles" ] } ] };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/jqfwg345gi25n5ju2yz5iz6m/teams").respondWith()
+            .statusCode(200).jsonBody(rawResponseBody)
+                .build();
+
+        
+                        
+                                const response = await client.users.getTeams("jqfwg345gi25n5ju2yz5iz6m");
+                                expect(response).toEqual({
+    data: [{
+            teamName: "teamName",
+            roles: ["roles"]
+        }]
+});
+                              
+                    
+    });
+          
+    test("get_teams (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "statusCode" : 1 , "message" : "message" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/id/teams").respondWith()
+            .statusCode(403).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.users.getTeams("id")
+            }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+          
+    test("get_teams (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
+        
+        const rawResponseBody = { "key" : "value" };
+        
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/x/users/id/teams").respondWith()
+            .statusCode(404).jsonBody(rawResponseBody)
+                .build();
+
+        
+            await expect(async () => {
+                return await client.users.getTeams("id")
+            }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+          
 });

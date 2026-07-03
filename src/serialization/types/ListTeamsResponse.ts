@@ -4,16 +4,16 @@ import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 import { Pagination } from "./Pagination.js";
-import { TeamDto } from "./TeamDto.js";
+import { Team } from "./Team.js";
 
 export const ListTeamsResponse: core.serialization.ObjectSchema<serializers.ListTeamsResponse.Raw, TrueFoundry.ListTeamsResponse> = core.serialization.object({
-        "data": core.serialization.list(TeamDto),
+        "data": core.serialization.list(Team),
         "pagination": Pagination
     });
 
 export declare namespace ListTeamsResponse {
     export interface Raw {
-        data: TeamDto.Raw[];
+        data: Team.Raw[];
         pagination: Pagination.Raw;
     }
 }

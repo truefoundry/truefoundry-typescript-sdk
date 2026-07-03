@@ -1,3 +1,5 @@
+export * as aiGateway from "./aiGateway/index.js";
+export * from "./aiGateway/types/index.js";
 export * as applications from "./applications/index.js";
 export * from "./applications/client/requests/index.js";
 export * as artifactVersions from "./artifactVersions/index.js";
@@ -12,6 +14,7 @@ export * from "./dockerRegistries/client/requests/index.js";
 export * as metrics from "./metrics/index.js";
 export * from "./metrics/client/requests/index.js";
 export * from "./metrics/types/index.js";
+export * as users from "./users/index.js";
 export * as vcs from "./vcs/index.js";
 export * from "./vcs/client/requests/index.js";
 export * as workflows from "./workflows/index.js";

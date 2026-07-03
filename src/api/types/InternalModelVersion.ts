@@ -26,7 +26,7 @@ export interface InternalModelVersion {
     /** Metrics logged for the model version. */
     metrics?: TrueFoundry.Metric[];
     /** Whether the model version can be deployed. */
-    deployable: boolean;
+    deployable?: boolean;
     /** Size of the model version artifact in bytes. */
     artifactSize?: number;
     /** Fully qualified name of the parent model */

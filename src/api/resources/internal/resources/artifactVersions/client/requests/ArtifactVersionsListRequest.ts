@@ -17,7 +17,7 @@ import * as TrueFoundry from "../../../../../../index.js";
  *         runSteps: [1.1],
  *         includeInternalMetadata: true,
  *         includeModelVersions: true,
- *         artifactTypes: ["artifact"]
+ *         artifactTypes: ["artifact_types"]
  *     }
  */
 export interface ArtifactVersionsListRequest {

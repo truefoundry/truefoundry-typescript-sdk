@@ -8,8 +8,8 @@ import * as TrueFoundry from "../index.js";
 export interface BudgetV2Alert {
     /** List of usage percentages (0-100) at which alerts should be triggered. Default thresholds are [75, 90, 95, 100]. */
     thresholds: number[];
-    /** Whom to notify when an alert fires. `shared` sends to the configured notification targets only. `breaching-user` additionally notifies the user whose usage caused the breach. */
-    sendTo: TrueFoundry.BudgetV2AlertSendTo;
+    /** Notify the user who caused the breach. Only applies to per-user budgets. */
+    notifyBreachingUser?: boolean;
     /** Select where to send budget alert notifications */
     notificationTarget?: TrueFoundry.NotificationTarget[];
 }

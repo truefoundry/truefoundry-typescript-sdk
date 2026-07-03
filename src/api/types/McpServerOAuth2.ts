@@ -22,8 +22,8 @@ export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth
     registrationUrl?: string;
     /** URL to fetch token expiry (RFC 7662) when the provider does not return expires_in (e.g. Salesforce). Requires client_id and client_secret. */
     introspectionUrl?: string;
-    /** Select the OAuth provider when provider-specific configuration is required. */
-    provider?: "auth0";
+    /** Select the OAuth provider. Provider-specific configuration (e.g. Auth0 organization) is unlocked based on this value. */
+    provider: TrueFoundry.McpServerOAuth2Provider;
     /** List of supported PKCE code challenge methods (S256 only) */
     codeChallengeMethodsSupported?: "S256"[];
     /** Source of the JWT token to be used for verification. */

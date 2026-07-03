@@ -54,7 +54,6 @@ describe("TeamsClient", () => {
                 const page = await client.teams.list({
     limit: 10,
     offset: 0,
-    type: "team",
     role: "manager",
     attributes: ["attributes"]
 });
@@ -72,7 +71,7 @@ describe("TeamsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "manifest" : { "type" : "team" , "name" : "name" , "members" : [ "members" ] } };
-        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "displayName" : "displayName" , "description" : "description" , "managers" : [ "managers" ] , "members" : [ "members" ] , "ownedBy" : { "account" : "account" } , "tags" : { "key" : "value" } , "identity_provider_mapping" : [ { "identity_provider" : "identity_provider" , "value" : "value" } ] } , "metadata" : { "createdByScim" : true , "scimExternalId" : "scimExternalId" } , "isEditable" : true , "roles" : [ "roles" ] } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "displayName" : "displayName" , "description" : "description" , "managers" : [ "managers" ] , "members" : [ "members" ] , "ownedBy" : { "account" : "account" } , "tags" : { "key" : "value" } , "identity_provider_mapping" : [ { "identity_provider" : "identity_provider" , "value" : "value" } ] } , "metadata" : { "createdByScim" : true , "scimExternalId" : "scimExternalId" } , "isEditable" : true , "roles" : [ "roles" ] , "topMembers" : [ "topMembers" ] , "topManagers" : [ "topManagers" ] , "totalMemberCount" : 1.1 , "totalManagerCount" : 1.1 } };
         
         server
             .mockEndpoint()
@@ -131,7 +130,11 @@ describe("TeamsClient", () => {
             scimExternalId: "scimExternalId"
         },
         isEditable: true,
-        roles: ["roles"]
+        roles: ["roles"],
+        topMembers: ["topMembers"],
+        topManagers: ["topManagers"],
+        totalMemberCount: 1.1,
+        totalManagerCount: 1.1
     }
 });
                               
@@ -346,7 +349,7 @@ describe("TeamsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "displayName" : "displayName" , "description" : "description" , "managers" : [ "managers" ] , "members" : [ "members" ] , "ownedBy" : { "account" : "account" } , "tags" : { "key" : "value" } , "identity_provider_mapping" : [ { "identity_provider" : "identity_provider" , "value" : "value" } ] } , "metadata" : { "createdByScim" : true , "scimExternalId" : "scimExternalId" } , "isEditable" : true , "roles" : [ "roles" ] } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "description" : "description" , "tenantName" : "tenantName" , "accountId" : "accountId" , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "members" : [ "members" ] , "createdAt" : "2024-01-15T09:30:00Z" , "updatedAt" : "2024-01-15T09:30:00Z" , "manifest" : { "type" : "team" , "name" : "name" , "displayName" : "displayName" , "description" : "description" , "managers" : [ "managers" ] , "members" : [ "members" ] , "ownedBy" : { "account" : "account" } , "tags" : { "key" : "value" } , "identity_provider_mapping" : [ { "identity_provider" : "identity_provider" , "value" : "value" } ] } , "metadata" : { "createdByScim" : true , "scimExternalId" : "scimExternalId" } , "isEditable" : true , "roles" : [ "roles" ] , "topMembers" : [ "topMembers" ] , "topManagers" : [ "topManagers" ] , "totalMemberCount" : 1.1 , "totalManagerCount" : 1.1 } };
         
         server
             .mockEndpoint()
@@ -398,7 +401,11 @@ describe("TeamsClient", () => {
             scimExternalId: "scimExternalId"
         },
         isEditable: true,
-        roles: ["roles"]
+        roles: ["roles"],
+        topMembers: ["topMembers"],
+        topManagers: ["topManagers"],
+        totalMemberCount: 1.1,
+        totalManagerCount: 1.1
     }
 });
                               

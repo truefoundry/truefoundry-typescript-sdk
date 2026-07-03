@@ -8,7 +8,7 @@ export interface Model {
     /** Identifier of the ML Repo the model belongs to. */
     mlRepoId: string;
     /** Discriminator for the artifact type; always `model` for a model. */
-    type: TrueFoundry.ArtifactType;
+    type?: "model";
     /** Name of the model. */
     name: string;
     /** Fully Qualified Name uniquely identifying the model. */

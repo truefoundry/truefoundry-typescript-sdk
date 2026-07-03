@@ -8,7 +8,7 @@ export interface Artifact {
     /** Identifier of the ML Repo the artifact belongs to. */
     mlRepoId: string;
     /** Discriminator for the artifact type; always `artifact` for a generic artifact. */
-    type: TrueFoundry.ArtifactType;
+    type?: "artifact";
     /** Name of the artifact. */
     name: string;
     /** Human-readable Fully Qualified Name of the artifact. */

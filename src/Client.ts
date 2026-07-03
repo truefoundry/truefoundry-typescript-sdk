@@ -14,7 +14,6 @@ import { ClustersClient } from "./api/resources/clusters/client/Client.js";
 import { DataDirectoriesClient } from "./api/resources/dataDirectories/client/Client.js";
 import { EnvironmentsClient } from "./api/resources/environments/client/Client.js";
 import { EventsClient } from "./api/resources/events/client/Client.js";
-import { GatewayConfigsClient } from "./api/resources/gatewayConfigs/client/Client.js";
 import { InternalClient } from "./api/resources/internal/client/Client.js";
 import { JobsClient } from "./api/resources/jobs/client/Client.js";
 import { LogsClient } from "./api/resources/logs/client/Client.js";
@@ -52,7 +51,6 @@ export class TrueFoundryClient {
     protected _internal: InternalClient | undefined;
     protected _users: UsersClient | undefined;
     protected _teams: TeamsClient | undefined;
-    protected _gatewayConfigs: GatewayConfigsClient | undefined;
     protected _personalAccessTokens: PersonalAccessTokensClient | undefined;
     protected _virtualAccounts: VirtualAccountsClient | undefined;
     protected _clusters: ClustersClient | undefined;
@@ -98,10 +96,6 @@ export class TrueFoundryClient {
 
     public get teams(): TeamsClient {
         return (this._teams ??= new TeamsClient(this._options));
-    }
-
-    public get gatewayConfigs(): GatewayConfigsClient {
-        return (this._gatewayConfigs ??= new GatewayConfigsClient(this._options));
     }
 
     public get personalAccessTokens(): PersonalAccessTokensClient {

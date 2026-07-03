@@ -40,7 +40,7 @@ export interface ApplicationsListRequest {
     /** FQN of the workspace to filter by. */
     workspaceFqn?: string;
     /** Application type to filter by (comma-separated). */
-    applicationType?: TrueFoundry.ApplicationsListRequestApplicationType;
+    applicationType?: TrueFoundry.ApplicationType;
     /** Substring search query for application name. Ignored if applicationName is also provided. */
     nameSearchQuery?: string;
     /** Environment IDs to filter by (comma-separated) */

@@ -26,5 +26,5 @@ export interface ModelVersion {
     /** Metrics logged for the model version. */
     metrics?: TrueFoundry.Metric[];
     /** Whether the model version can be deployed. */
-    deployable: boolean;
+    deployable?: boolean;
 }

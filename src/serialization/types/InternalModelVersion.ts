@@ -19,7 +19,7 @@ export const InternalModelVersion: core.serialization.ObjectSchema<serializers.I
         "tags": core.serialization.list(core.serialization.string()).optional(),
         "modelId": core.serialization.property("model_id", core.serialization.string()),
         "metrics": core.serialization.list(Metric).optional(),
-        "deployable": core.serialization.boolean(),
+        "deployable": core.serialization.boolean().optional(),
         "artifactSize": core.serialization.property("artifact_size", core.serialization.number().optional()),
         "artifactFqn": core.serialization.property("artifact_fqn", core.serialization.string())
     });
@@ -37,7 +37,7 @@ export declare namespace InternalModelVersion {
         tags?: string[] | null;
         model_id: string;
         metrics?: Metric.Raw[] | null;
-        deployable: boolean;
+        deployable?: boolean | null;
         artifact_size?: number | null;
         artifact_fqn: string;
     }

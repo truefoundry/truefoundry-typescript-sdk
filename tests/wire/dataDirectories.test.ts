@@ -350,7 +350,9 @@ describe("DataDirectoriesClient", () => {
 
         
                         
-                                const response = await client.dataDirectories.delete("id");
+                                const response = await client.dataDirectories.delete("id", {
+    deleteContents: true
+});
                                 expect(response).toEqual({});
                               
                     

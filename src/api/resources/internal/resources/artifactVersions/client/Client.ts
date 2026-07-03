@@ -46,7 +46,7 @@ export class ArtifactVersionsClient {
      *         runSteps: [1.1],
      *         includeInternalMetadata: true,
      *         includeModelVersions: true,
-     *         artifactTypes: ["artifact"]
+     *         artifactTypes: ["artifact_types"]
      *     })
      */
     public async list(request: TrueFoundry.internal.ArtifactVersionsListRequest = {}, requestOptions?: ArtifactVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.InternalListArtifactVersionsResponseDataItem, TrueFoundry.InternalListArtifactVersionsResponse>> {
@@ -63,7 +63,7 @@ export class ArtifactVersionsClient {
             run_steps: runSteps,
             include_internal_metadata: includeInternalMetadata,
             include_model_versions: includeModelVersions,
-            artifact_types: Array.isArray(artifactTypes) ? artifactTypes.map(item => serializers.ArtifactType.jsonOrThrow(item, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true })) : artifactTypes != null ? serializers.ArtifactType.jsonOrThrow(artifactTypes, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined
+            artifact_types: artifactTypes
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), "api/svc/v1/x/artifact-versions"),
             method: "GET",

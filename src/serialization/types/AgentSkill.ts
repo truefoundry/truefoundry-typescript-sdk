@@ -4,13 +4,12 @@ import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 import { AgentSkillVersion } from "./AgentSkillVersion.js";
-import { ArtifactType } from "./ArtifactType.js";
 import { Subject } from "./Subject.js";
 
 export const AgentSkill: core.serialization.ObjectSchema<serializers.AgentSkill.Raw, TrueFoundry.AgentSkill> = core.serialization.object({
         "id": core.serialization.string(),
         "mlRepoId": core.serialization.property("ml_repo_id", core.serialization.string()),
-        "type": ArtifactType,
+        "type": core.serialization.stringLiteral("agent-skill").optional(),
         "name": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
@@ -23,7 +22,7 @@ export declare namespace AgentSkill {
     export interface Raw {
         id: string;
         ml_repo_id: string;
-        type: ArtifactType.Raw;
+        type?: "agent-skill" | null;
         name: string;
         fqn: string;
         created_by_subject: Subject.Raw;

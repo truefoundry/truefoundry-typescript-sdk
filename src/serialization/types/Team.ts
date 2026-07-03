@@ -19,7 +19,11 @@ export const Team: core.serialization.ObjectSchema<serializers.Team.Raw, TrueFou
         "manifest": TeamManifest,
         "metadata": TeamMetadata.optional(),
         "isEditable": core.serialization.boolean(),
-        "roles": core.serialization.list(core.serialization.string()).optional()
+        "roles": core.serialization.list(core.serialization.string()).optional(),
+        "topMembers": core.serialization.list(core.serialization.string()).optional(),
+        "topManagers": core.serialization.list(core.serialization.string()).optional(),
+        "totalMemberCount": core.serialization.number().optional(),
+        "totalManagerCount": core.serialization.number().optional()
     });
 
 export declare namespace Team {
@@ -36,5 +40,9 @@ export declare namespace Team {
         metadata?: TeamMetadata.Raw | null;
         isEditable: boolean;
         roles?: string[] | null;
+        topMembers?: string[] | null;
+        topManagers?: string[] | null;
+        totalMemberCount?: number | null;
+        totalManagerCount?: number | null;
     }
 }

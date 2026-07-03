@@ -507,4 +507,151 @@ export class UsersClient {
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "POST", "/api/svc/v1/users/change-password");
     }
+
+    /**
+     * Get all resources where the user is a collaborator.
+     *
+     * @param {string} id - System-generated user ID.
+     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.getResources("jqfwg345gi25n5ju2yz5iz6m")
+     */
+    public getResources(id: string, requestOptions?: UsersClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetUserResourcesResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getResources(id, requestOptions));
+    }
+
+    private async __getResources(id: string, requestOptions?: UsersClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetUserResourcesResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/x/users/${core.url.encodePathParam(id)}/resources`),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging
+        });
+        if (_response.ok) {
+            return { data: serializers.GetUserResourcesResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403: throw new TrueFoundry.ForbiddenError(serializers.HttpError.parseOrThrow(_response.error.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), _response.rawResponse);
+                case 404: throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                default: throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.body,
+                    rawResponse: _response.rawResponse
+                });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/x/users/{id}/resources");
+    }
+
+    /**
+     * Get all role bindings for a user, including team-inherited bindings.
+     *
+     * @param {string} id - System-generated user ID.
+     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.getPermissions("jqfwg345gi25n5ju2yz5iz6m")
+     */
+    public getPermissions(id: string, requestOptions?: UsersClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetUserPermissionsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getPermissions(id, requestOptions));
+    }
+
+    private async __getPermissions(id: string, requestOptions?: UsersClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetUserPermissionsResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/x/users/${core.url.encodePathParam(id)}/permissions`),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging
+        });
+        if (_response.ok) {
+            return { data: serializers.GetUserPermissionsResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403: throw new TrueFoundry.ForbiddenError(serializers.HttpError.parseOrThrow(_response.error.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), _response.rawResponse);
+                case 404: throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                default: throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.body,
+                    rawResponse: _response.rawResponse
+                });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/x/users/{id}/permissions");
+    }
+
+    /**
+     * Get all teams a user belongs to, including their role in each team.
+     *
+     * @param {string} id - System-generated user ID.
+     * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     *
+     * @example
+     *     await client.users.getTeams("jqfwg345gi25n5ju2yz5iz6m")
+     */
+    public getTeams(id: string, requestOptions?: UsersClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetUserTeamsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__getTeams(id, requestOptions));
+    }
+
+    private async __getTeams(id: string, requestOptions?: UsersClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetUserTeamsResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/x/users/${core.url.encodePathParam(id)}/teams`),
+            method: "GET",
+            headers: _headers,
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging
+        });
+        if (_response.ok) {
+            return { data: serializers.GetUserTeamsResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 403: throw new TrueFoundry.ForbiddenError(serializers.HttpError.parseOrThrow(_response.error.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), _response.rawResponse);
+                case 404: throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                default: throw new errors.TrueFoundryError({
+                    statusCode: _response.error.statusCode,
+                    body: _response.error.body,
+                    rawResponse: _response.rawResponse
+                });
+            }
+        }
+
+        return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/x/users/{id}/teams");
+    }
 }
