@@ -27,4 +27,12 @@ export interface Team {
     isEditable: boolean;
     /** Role names assigned to the team. */
     roles?: string[];
+    /** Up to 5 team member emails, sourced from cache. Absent when the cache is unavailable. */
+    topMembers?: string[];
+    /** Up to 5 team manager emails, sourced from cache. Absent when the cache is unavailable. */
+    topManagers?: string[];
+    /** Total number of team members, sourced from cache. Absent when the cache is unavailable. */
+    totalMemberCount?: number;
+    /** Total number of team managers, sourced from cache. Absent when the cache is unavailable. */
+    totalManagerCount?: number;
 }

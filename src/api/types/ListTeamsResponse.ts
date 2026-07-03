@@ -4,7 +4,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface ListTeamsResponse {
     /** Array of teams matching the query. */
-    data: TrueFoundry.TeamDto[];
+    data: TrueFoundry.Team[];
     /** Pagination metadata. */
     pagination: TrueFoundry.Pagination;
 }

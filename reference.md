@@ -1025,7 +1025,7 @@ await client.users.getTeams("jqfwg345gi25n5ju2yz5iz6m");
 </details>
 
 ## Teams
-<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.TeamDto, TrueFoundry.ListTeamsResponse&gt;</code></summary>
+<details><summary><code>client.teams.<a href="/src/api/resources/teams/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;TrueFoundry.Team, TrueFoundry.ListTeamsResponse&gt;</code></summary>
 <dl>
 <dd>
 
