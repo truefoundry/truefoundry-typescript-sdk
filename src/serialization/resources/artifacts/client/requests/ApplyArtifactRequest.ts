@@ -3,14 +3,14 @@
 import * as TrueFoundry from "../../../../../api/index.js";
 import * as core from "../../../../../core/index.js";
 import * as serializers from "../../../../index.js";
-import { ApplyArtifactRequestManifest } from "../../types/ApplyArtifactRequestManifest.js";
+import { ArtifactManifest } from "../../../../types/ArtifactManifest.js";
 
 export const ApplyArtifactRequest: core.serialization.Schema<serializers.ApplyArtifactRequest.Raw, TrueFoundry.ApplyArtifactRequest> = core.serialization.object({
-        "manifest": ApplyArtifactRequestManifest
+        "manifest": ArtifactManifest
     });
 
 export declare namespace ApplyArtifactRequest {
     export interface Raw {
-        manifest: ApplyArtifactRequestManifest.Raw;
+        manifest: ArtifactManifest.Raw;
     }
 }

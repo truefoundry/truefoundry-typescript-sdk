@@ -19,5 +19,5 @@ import * as TrueFoundry from "../../../../index.js";
  */
 export interface ApplyArtifactRequest {
     /** Manifest containing metadata for the artifact version to create or update */
-    manifest: TrueFoundry.ApplyArtifactRequestManifest;
+    manifest: TrueFoundry.ArtifactManifest;
 }
