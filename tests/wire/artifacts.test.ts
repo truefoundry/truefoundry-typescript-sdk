@@ -130,7 +130,7 @@ describe("ArtifactsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "artifact_id" : "artifact_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "ml_repo_id" : "ml_repo_id" , "type" : "artifact" , "name" : "name" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "created_at" : "2024-01-15T09:30:00Z" , "updated_at" : "2024-01-15T09:30:00Z" , "latest_version" : { "manifest" : { "metadata" : { "key" : "value" } , "type" : "artifact-version" , "source" : { "type" : "truefoundry" } , "step" : 1 } , "id" : "jqfwg345gi25n5ju2yz5iz6m" , "fqn" : "fqn" , "created_by_subject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "ml_repo_id" : "ml_repo_id" , "artifact_id" : "artifact_id" } , "run_steps" : [ 1.1 ] } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
         
         server
             .mockEndpoint({ once: false })
@@ -154,6 +154,16 @@ describe("ArtifactsClient", () => {
             createdAt: new Date("2024-01-15T09:30:00.000Z"),
             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             latestVersion: {
+                manifest: {
+                    metadata: {
+                        "key": "value"
+                    },
+                    type: "artifact-version",
+                    source: {
+                        type: "truefoundry"
+                    },
+                    step: 1
+                },
                 id: "jqfwg345gi25n5ju2yz5iz6m",
                 fqn: "fqn",
                 createdBySubject: {

@@ -9,7 +9,7 @@ import { Subject } from "./Subject.js";
 export const InternalArtifactVersion: core.serialization.ObjectSchema<serializers.InternalArtifactVersion.Raw, TrueFoundry.InternalArtifactVersion> = core.serialization.object({
         "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
         "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
-        "manifest": ArtifactManifest.optional(),
+        "manifest": ArtifactManifest,
         "id": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
@@ -27,7 +27,7 @@ export declare namespace InternalArtifactVersion {
     export interface Raw {
         created_at?: string | null;
         updated_at?: string | null;
-        manifest?: ArtifactManifest.Raw | null;
+        manifest: ArtifactManifest.Raw;
         id: string;
         fqn: string;
         created_by_subject: Subject.Raw;

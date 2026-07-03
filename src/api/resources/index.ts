@@ -16,7 +16,6 @@ export * as applicationVersions from "./applicationVersions/index.js";
 export * from "./applicationVersions/client/requests/index.js";
 export * as artifacts from "./artifacts/index.js";
 export * from "./artifacts/client/requests/index.js";
-export * from "./artifacts/types/index.js";
 export * as artifactVersions from "./artifactVersions/index.js";
 export * from "./artifactVersions/client/requests/index.js";
 export * from "./artifactVersions/types/index.js";

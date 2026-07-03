@@ -8,7 +8,7 @@ export interface ArtifactVersion {
     /** Timestamp when the artifact version was last updated. */
     updatedAt?: Date;
     /** Manifest describing the artifact version. */
-    manifest?: TrueFoundry.ArtifactManifest;
+    manifest: TrueFoundry.ArtifactManifest;
     /** System-generated artifact version ID. */
     id: string;
     /** Human-readable Fully Qualified Name of the artifact version. */
