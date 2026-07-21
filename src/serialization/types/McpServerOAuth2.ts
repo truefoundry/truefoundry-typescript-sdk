@@ -7,6 +7,7 @@ import { McpServerOAuth2GrantType } from "./McpServerOAuth2GrantType.js";
 import { McpServerOAuth2JwtSource } from "./McpServerOAuth2JwtSource.js";
 import { McpServerOAuth2Provider } from "./McpServerOAuth2Provider.js";
 import { McpServerOAuth2ProviderAuth0Settings } from "./McpServerOAuth2ProviderAuth0Settings.js";
+import { McpServerOAuth2ProviderOktaSettings } from "./McpServerOAuth2ProviderOktaSettings.js";
 
 export const McpServerOAuth2: core.serialization.ObjectSchema<serializers.McpServerOAuth2.Raw, TrueFoundry.McpServerOAuth2> = core.serialization.object({
         "type": core.serialization.stringLiteral("oauth2"),
@@ -19,13 +20,13 @@ export const McpServerOAuth2: core.serialization.ObjectSchema<serializers.McpSer
         "introspectionUrl": core.serialization.property("introspection_url", core.serialization.string().optional()),
         "provider": McpServerOAuth2Provider,
         "codeChallengeMethodsSupported": core.serialization.property("code_challenge_methods_supported", core.serialization.list(core.serialization.stringLiteral("S256")).optional()),
-        "jwtSource": core.serialization.property("jwt_source", McpServerOAuth2JwtSource),
+        "jwtSource": core.serialization.property("jwt_source", McpServerOAuth2JwtSource.optional()),
         "scopes": core.serialization.list(core.serialization.string()).optional(),
         "additionalTokenParams": core.serialization.property("additional_token_params", core.serialization.record(core.serialization.string(), core.serialization.string()).optional())
-    }).extend(McpServerOAuth2ProviderAuth0Settings);
+    }).extend(McpServerOAuth2ProviderAuth0Settings).extend(McpServerOAuth2ProviderOktaSettings);
 
 export declare namespace McpServerOAuth2 {
-    export interface Raw extends McpServerOAuth2ProviderAuth0Settings.Raw {
+    export interface Raw extends McpServerOAuth2ProviderAuth0Settings.Raw, McpServerOAuth2ProviderOktaSettings.Raw {
         type: "oauth2";
         grant_type: McpServerOAuth2GrantType.Raw;
         authorization_url?: string | null;
@@ -36,7 +37,7 @@ export declare namespace McpServerOAuth2 {
         introspection_url?: string | null;
         provider: McpServerOAuth2Provider.Raw;
         code_challenge_methods_supported?: "S256"[] | null;
-        jwt_source: McpServerOAuth2JwtSource.Raw;
+        jwt_source?: McpServerOAuth2JwtSource.Raw | null;
         scopes?: string[] | null;
         additional_token_params?: Record<string, string> | null;
     }

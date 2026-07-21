@@ -13,6 +13,7 @@ export const AwsBedrockProviderAccount: core.serialization.ObjectSchema<serializ
         "type": core.serialization.stringLiteral("provider-account/aws-bedrock"),
         "name": core.serialization.string(),
         "region": AwsRegion,
+        "baseUrl": core.serialization.property("base_url", core.serialization.string().optional()),
         "authData": core.serialization.property("auth_data", AwsBedrockProviderAccountAuthData.optional()),
         "integrations": core.serialization.list(BedrockModel),
         "collaborators": core.serialization.list(Collaborator).optional(),
@@ -25,6 +26,7 @@ export declare namespace AwsBedrockProviderAccount {
         type: "provider-account/aws-bedrock";
         name: string;
         region: AwsRegion.Raw;
+        base_url?: string | null;
         auth_data?: AwsBedrockProviderAccountAuthData.Raw | null;
         integrations: BedrockModel.Raw[];
         collaborators?: Collaborator.Raw[] | null;

@@ -8,7 +8,8 @@ export const BudgetV2OverrideLimits: core.serialization.ObjectSchema<serializers
         "costPerDay": core.serialization.property("cost_per_day", core.serialization.number().optional()),
         "costPerWeek": core.serialization.property("cost_per_week", core.serialization.number().optional()),
         "costPerMonth": core.serialization.property("cost_per_month", core.serialization.number().optional()),
-        "costPerQuarter": core.serialization.property("cost_per_quarter", core.serialization.number().optional())
+        "costPerQuarter": core.serialization.property("cost_per_quarter", core.serialization.number().optional()),
+        "costPerLifetime": core.serialization.property("cost_per_lifetime", core.serialization.number().optional())
     });
 
 export declare namespace BudgetV2OverrideLimits {
@@ -17,5 +18,6 @@ export declare namespace BudgetV2OverrideLimits {
         cost_per_week?: number | null;
         cost_per_month?: number | null;
         cost_per_quarter?: number | null;
+        cost_per_lifetime?: number | null;
     }
 }

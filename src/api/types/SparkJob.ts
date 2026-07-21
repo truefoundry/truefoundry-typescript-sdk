@@ -14,6 +14,8 @@ export interface SparkJob {
     image: TrueFoundry.SparkJobImage;
     /** Entrypoint */
     entrypoint: TrueFoundry.SparkJobEntrypoint;
+    /** Specify the trigger */
+    trigger?: TrueFoundry.SparkJobTrigger;
     driverConfig: TrueFoundry.SparkDriverConfig;
     executorConfig: TrueFoundry.SparkExecutorConfig;
     /** Configure environment variables to be injected in the service either as plain text. [Docs](https://docs.truefoundry.com/docs/env-variables) */

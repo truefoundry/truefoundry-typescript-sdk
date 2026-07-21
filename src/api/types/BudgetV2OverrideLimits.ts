@@ -12,4 +12,6 @@ export interface BudgetV2OverrideLimits {
     costPerMonth?: number;
     /** Override quarterly cost cap in USD */
     costPerQuarter?: number;
+    /** Override lifetime cost cap in USD */
+    costPerLifetime?: number;
 }

@@ -5,7 +5,7 @@ import * as TrueFoundry from "../index.js";
 /**
  * OAuth2
  */
-export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth0Settings {
+export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth0Settings, TrueFoundry.McpServerOAuth2ProviderOktaSettings {
     /** OAuth2 authentication */
     type: "oauth2";
     /** The OAuth2 grant type to use for authentication. */
@@ -27,9 +27,9 @@ export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth
     /** List of supported PKCE code challenge methods (S256 only) */
     codeChallengeMethodsSupported?: "S256"[];
     /** Source of the JWT token to be used for verification. */
-    jwtSource: TrueFoundry.McpServerOAuth2JwtSource;
+    jwtSource?: TrueFoundry.McpServerOAuth2JwtSource;
     /** List of scopes to request from the OAuth2 provider. */
     scopes?: string[];
-    /** Extra key/value pairs sent on every token endpoint request (e.g. Auth0 'audience'). */
+    /** Extra key/value pairs sent on every token endpoint request (e.g. Auth0 'organization'). */
     additionalTokenParams?: Record<string, string>;
 }

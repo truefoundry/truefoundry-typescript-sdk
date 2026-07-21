@@ -14,7 +14,7 @@ export type GatewayConfig =
     | TrueFoundry.TeamBudgetConfig
     | TrueFoundry.GatewayOtelConfig
     | TrueFoundry.GatewayMetadataConfig
-    | TrueFoundry.GatewayLoggingConfig
     | TrueFoundry.GlobalSettings
     | TrueFoundry.GatewayDataAccessConfig
-    | TrueFoundry.GatewayDataRoutingConfig;
+    | TrueFoundry.GatewayDataRoutingConfig
+    | TrueFoundry.GatewayLoggingConfig;

@@ -16,6 +16,8 @@ export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, TrueF
         "type": core.serialization.string(),
         "latestVersionDetails": AgentVersion.optional(),
         "createdBySubject": Subject,
+        "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+        "agentIdentityId": core.serialization.string().optional(),
         "createdBy": core.serialization.string().optional()
     });
 
@@ -30,6 +32,8 @@ export declare namespace Agent {
         type: string;
         latestVersionDetails?: AgentVersion.Raw | null;
         createdBySubject: Subject.Raw;
+        manifest?: Record<string, unknown> | null;
+        agentIdentityId?: string | null;
         createdBy?: string | null;
     }
 }

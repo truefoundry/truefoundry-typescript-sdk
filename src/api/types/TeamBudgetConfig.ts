@@ -15,7 +15,7 @@ export interface TeamBudgetConfig {
     teamName: string;
     /** Unique name for this budget */
     name: string;
-    when: TrueFoundry.BudgetV2WhenTeamScoped;
+    when?: TrueFoundry.BudgetV2WhenTeamScoped;
     limits: TrueFoundry.BudgetV2Limits;
     appliesTo: TrueFoundry.BudgetV2AppliesTo;
     /** `enforce` blocks breaching requests, `audit` only tracks them. */

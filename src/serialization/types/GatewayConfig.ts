@@ -16,8 +16,8 @@ import { RateLimitConfig } from "./RateLimitConfig.js";
 import { TeamBudgetConfig } from "./TeamBudgetConfig.js";
 import { TenantBudgetConfig } from "./TenantBudgetConfig.js";
 
-export const GatewayConfig: core.serialization.Schema<serializers.GatewayConfig.Raw, TrueFoundry.GatewayConfig> = core.serialization.undiscriminatedUnion([RateLimitConfig, LoadBalancingConfig, GuardrailsConfig, BudgetConfig, TenantBudgetConfig, TeamBudgetConfig, GatewayOtelConfig, GatewayMetadataConfig, GatewayLoggingConfig, GlobalSettings, GatewayDataAccessConfig, GatewayDataRoutingConfig]);
+export const GatewayConfig: core.serialization.Schema<serializers.GatewayConfig.Raw, TrueFoundry.GatewayConfig> = core.serialization.undiscriminatedUnion([RateLimitConfig, LoadBalancingConfig, GuardrailsConfig, BudgetConfig, TenantBudgetConfig, TeamBudgetConfig, GatewayOtelConfig, GatewayMetadataConfig, GlobalSettings, GatewayDataAccessConfig, GatewayDataRoutingConfig, GatewayLoggingConfig]);
 
 export declare namespace GatewayConfig {
-    export type Raw = RateLimitConfig.Raw | LoadBalancingConfig.Raw | GuardrailsConfig.Raw | BudgetConfig.Raw | TenantBudgetConfig.Raw | TeamBudgetConfig.Raw | GatewayOtelConfig.Raw | GatewayMetadataConfig.Raw | GatewayLoggingConfig.Raw | GlobalSettings.Raw | GatewayDataAccessConfig.Raw | GatewayDataRoutingConfig.Raw;
+    export type Raw = RateLimitConfig.Raw | LoadBalancingConfig.Raw | GuardrailsConfig.Raw | BudgetConfig.Raw | TenantBudgetConfig.Raw | TeamBudgetConfig.Raw | GatewayOtelConfig.Raw | GatewayMetadataConfig.Raw | GlobalSettings.Raw | GatewayDataAccessConfig.Raw | GatewayDataRoutingConfig.Raw | GatewayLoggingConfig.Raw;
 }

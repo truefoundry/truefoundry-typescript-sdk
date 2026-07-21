@@ -11,6 +11,8 @@ export interface AnthropicProviderAccount {
     /** The name of the Anthropic provider account */
     name: string;
     authData?: TrueFoundry.AnthropicKeyAuth;
+    /** Optional custom base URL for the Anthropic API. Must include the version path, e.g. https://my-proxy.example.com/v1. When set, requests are sent here instead of the default https://api.anthropic.com/v1. */
+    baseUrl?: string;
     /** List of integrations that are associated with the Anthropic provider account */
     integrations?: TrueFoundry.AnthropicIntegrations[];
     /** List of users who have access to this provider account */

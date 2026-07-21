@@ -14,6 +14,7 @@ export const AwsClaudePlatformProviderAccount: core.serialization.ObjectSchema<s
         "name": core.serialization.string(),
         "workspaceId": core.serialization.property("workspace_id", core.serialization.string()),
         "region": AwsRegion,
+        "baseUrl": core.serialization.property("base_url", core.serialization.string().optional()),
         "authData": core.serialization.property("auth_data", AwsClaudePlatformProviderAccountAuthData.optional()),
         "integrations": core.serialization.list(AwsClaudePlatformIntegrations).optional(),
         "collaborators": core.serialization.list(Collaborator).optional(),
@@ -27,6 +28,7 @@ export declare namespace AwsClaudePlatformProviderAccount {
         name: string;
         workspace_id: string;
         region: AwsRegion.Raw;
+        base_url?: string | null;
         auth_data?: AwsClaudePlatformProviderAccountAuthData.Raw | null;
         integrations?: AwsClaudePlatformIntegrations.Raw[] | null;
         collaborators?: Collaborator.Raw[] | null;

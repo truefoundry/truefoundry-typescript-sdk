@@ -7,7 +7,8 @@ import * as serializers from "../index.js";
 export const HashicorpAppRoleAuth: core.serialization.ObjectSchema<serializers.HashicorpAppRoleAuth.Raw, TrueFoundry.HashicorpAppRoleAuth> = core.serialization.object({
         "type": core.serialization.stringLiteral("approle"),
         "roleId": core.serialization.property("role_id", core.serialization.string()),
-        "secretId": core.serialization.property("secret_id", core.serialization.string())
+        "secretId": core.serialization.property("secret_id", core.serialization.string()),
+        "rolePath": core.serialization.property("role_path", core.serialization.string().optional())
     });
 
 export declare namespace HashicorpAppRoleAuth {
@@ -15,5 +16,6 @@ export declare namespace HashicorpAppRoleAuth {
         type: "approle";
         role_id: string;
         secret_id: string;
+        role_path?: string | null;
     }
 }

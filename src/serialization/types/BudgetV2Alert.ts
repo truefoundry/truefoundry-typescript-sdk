@@ -7,14 +7,12 @@ import { NotificationTarget } from "./NotificationTarget.js";
 
 export const BudgetV2Alert: core.serialization.ObjectSchema<serializers.BudgetV2Alert.Raw, TrueFoundry.BudgetV2Alert> = core.serialization.object({
         "thresholds": core.serialization.list(core.serialization.number()),
-        "notifyBreachingUser": core.serialization.property("notify_breaching_user", core.serialization.boolean().optional()),
         "notificationTarget": core.serialization.property("notification_target", core.serialization.list(NotificationTarget).optional())
     });
 
 export declare namespace BudgetV2Alert {
     export interface Raw {
         thresholds: number[];
-        notify_breaching_user?: boolean | null;
         notification_target?: NotificationTarget.Raw[] | null;
     }
 }

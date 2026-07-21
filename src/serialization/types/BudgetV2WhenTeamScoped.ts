@@ -9,6 +9,7 @@ import { BudgetV2SubjectsTeamScoped } from "./BudgetV2SubjectsTeamScoped.js";
 export const BudgetV2WhenTeamScoped: core.serialization.ObjectSchema<serializers.BudgetV2WhenTeamScoped.Raw, TrueFoundry.BudgetV2WhenTeamScoped> = core.serialization.object({
         "subjects": BudgetV2SubjectsTeamScoped.optional(),
         "models": BudgetV2InNotInFilter.optional(),
+        "providerAccounts": core.serialization.property("provider_accounts", BudgetV2InNotInFilter.optional()),
         "metadata": core.serialization.record(core.serialization.string(), BudgetV2InNotInFilter).optional()
     });
 
@@ -16,6 +17,7 @@ export declare namespace BudgetV2WhenTeamScoped {
     export interface Raw {
         subjects?: BudgetV2SubjectsTeamScoped.Raw | null;
         models?: BudgetV2InNotInFilter.Raw | null;
+        provider_accounts?: BudgetV2InNotInFilter.Raw | null;
         metadata?: Record<string, BudgetV2InNotInFilter.Raw> | null;
     }
 }

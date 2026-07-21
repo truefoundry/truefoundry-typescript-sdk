@@ -13,6 +13,8 @@ export interface AwsClaudePlatformProviderAccount {
     /** Your Claude Platform on AWS workspace ID, in the format wrkspc_<alphanumeric>. */
     workspaceId: string;
     region: TrueFoundry.AwsRegion;
+    /** Optional custom base URL (e.g. a VPC/PrivateLink endpoint) for Claude Platform on AWS. Must include the version path, e.g. https://my-endpoint.example.com/v1. When set, requests are sent here instead of the default aws-external-anthropic.{region}.api.aws/v1 host. */
+    baseUrl?: string;
     /** Authentication data for the AWS account. Supports SigV4 (access key or assumed role) and API key authentication. */
     authData?: TrueFoundry.AwsClaudePlatformProviderAccountAuthData;
     /** List of integrations that are associated with the AWS Claude Platform provider account */

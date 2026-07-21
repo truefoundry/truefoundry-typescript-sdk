@@ -13,6 +13,7 @@ export const AwsBedrockMantleProviderAccount: core.serialization.ObjectSchema<se
         "type": core.serialization.stringLiteral("provider-account/aws-bedrock-mantle"),
         "name": core.serialization.string(),
         "region": AwsRegion,
+        "baseUrl": core.serialization.property("base_url", core.serialization.string().optional()),
         "authData": core.serialization.property("auth_data", AwsBedrockMantleProviderAccountAuthData.optional()),
         "integrations": core.serialization.list(AwsBedrockMantleIntegrations),
         "collaborators": core.serialization.list(Collaborator).optional(),
@@ -25,6 +26,7 @@ export declare namespace AwsBedrockMantleProviderAccount {
         type: "provider-account/aws-bedrock-mantle";
         name: string;
         region: AwsRegion.Raw;
+        base_url?: string | null;
         auth_data?: AwsBedrockMantleProviderAccountAuthData.Raw | null;
         integrations: AwsBedrockMantleIntegrations.Raw[];
         collaborators?: Collaborator.Raw[] | null;

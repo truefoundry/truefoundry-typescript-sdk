@@ -11,6 +11,8 @@ export interface AwsBedrockProviderAccount {
     /** The name of the AWS Bedrock provider account */
     name: string;
     region: TrueFoundry.AwsRegion;
+    /** Optional custom base URL (e.g. a VPC/PrivateLink endpoint) for AWS Bedrock. When set, requests are sent here instead of the default bedrock-runtime.{region}.amazonaws.com host. */
+    baseUrl?: string;
     /** Authentication data for the AWS account */
     authData?: TrueFoundry.AwsBedrockProviderAccountAuthData;
     /** List of integrations that are associated with the AWS Bedrock provider account */

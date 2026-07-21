@@ -11,6 +11,7 @@ export const AiGatewayGetGatewayConfigRequestType = {
         GatewayOtelConfig: "gateway-otel-config",
         GatewayGlobalSettings: "gateway-global-settings",
         GatewayDataAccessConfig: "gateway-data-access-config",
-        GatewayDataRoutingConfig: "gateway-data-routing-config"
+        GatewayDataRoutingConfig: "gateway-data-routing-config",
+        GatewayLoggingConfig: "gateway-logging-config"
     } as const;
 export type AiGatewayGetGatewayConfigRequestType = typeof AiGatewayGetGatewayConfigRequestType[keyof typeof AiGatewayGetGatewayConfigRequestType];

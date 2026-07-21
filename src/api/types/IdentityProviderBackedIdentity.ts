@@ -6,8 +6,8 @@ import * as TrueFoundry from "../index.js";
  * Identity resolved from tokens issued by an external identity provider
  */
 export interface IdentityProviderBackedIdentity {
-    /** +value=idp-backed */
-    type: "idp-backed";
+    /** +value=identity-provider-backed */
+    type: "identity-provider-backed";
     /** Mappings from external identity provider claim values to this agent identity */
     identityProviderMapping: TrueFoundry.AgentIdentityProviderMapping[];
 }

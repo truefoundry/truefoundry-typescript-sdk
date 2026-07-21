@@ -17,6 +17,6 @@ export interface GuardrailsRule {
     mcpToolPreInvokeGuardrails: string[];
     /** Guardrail selectors of the guardrails to apply to the MCP tool post invoke (format: groupName/guardrailName) */
     mcpToolPostInvokeGuardrails: string[];
-    /** Optional message returned to the client when a guardrail in this rule blocks a request. Use {{guardrail_message}} to include the default guardrail failure message. */
+    /** Optional message returned to the client when a guardrail in this rule blocks a request. Supported placeholders: {{guardrail_message}} (default guardrail failure detail), {{failed_guardrails}} (comma-separated list of the guardrails that failed). */
     customErrorMessage?: string;
 }

@@ -17,7 +17,7 @@ export interface SecretGroupsListRequest {
     offset?: number;
     /** Fqn of secret group. */
     fqn?: string;
-    /** Search query - filters by secret group names that contain the search string */
+    /** Search query - filters by secret group names or secret names that contain the search string */
     search?: string;
     /** Comma-separated list of attributes to return (e.g. id,name). When provided, only the specified fields are fetched. `id` is always included. */
     attributes?: string | string[];

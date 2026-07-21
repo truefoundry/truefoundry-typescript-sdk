@@ -29,5 +29,6 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.OpaGuardrailConfig
     | TrueFoundry.GoogleModelArmorGuardrailConfig
     | TrueFoundry.GraySwanCygnalGuardrailConfig
+    | TrueFoundry.NomaSecurityGuardrailConfig
     | TrueFoundry.AktoGuardrailConfig
     | TrueFoundry.TrojAiGuardrailConfig;

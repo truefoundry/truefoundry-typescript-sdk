@@ -10,7 +10,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "fqn" : "fqn" , "tenantName" : "tenantName" , "accountId" : "accountId" , "latestVersion" : 1.1 , "type" : "type" , "latestVersionDetails" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
+        const rawResponseBody = { "data" : [ { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "fqn" : "fqn" , "tenantName" : "tenantName" , "accountId" : "accountId" , "latestVersion" : 1.1 , "type" : "type" , "latestVersionDetails" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } , "manifest" : { "key" : "value" } , "agentIdentityId" : "agentIdentityId" , "createdBy" : "createdBy" } ] , "pagination" : { "total" : 100 , "offset" : 0 , "limit" : 10 } };
         
         server
             .mockEndpoint({ once: false })
@@ -51,6 +51,10 @@ describe("AgentsClient", () => {
                 subjectId: "subjectId",
                 subjectType: "user"
             },
+            manifest: {
+                "key": "value"
+            },
+            agentIdentityId: "agentIdentityId",
             createdBy: "createdBy"
         }],
     pagination: {
@@ -99,7 +103,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         const rawRequestBody = { "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
-        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "tags" : { "key" : "value" } , "model" : { "name" : "name" } , "skills" : [ { "fqn" : "fqn" , "preload" : true } ] , "mcp_servers" : [ { "name" : "name" } ] , "instructions" : "instructions" , "messages" : [ { "role" : "user" , "content" : "content" } ] , "variables" : { "key" : { } } , "sample_inputs" : [ { } ] , "response_format" : { "type" : "text" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "tags" : { "key" : "value" } , "model" : { "name" : "name" } , "skills" : [ { "fqn" : "fqn" , "preload" : true } ] , "mcp_servers" : [ { "name" : "name" } ] , "instructions" : "instructions" , "messages" : [ { "type" : "user.message" , "content" : "content" } ] , "variables" : { "key" : { } } , "sample_inputs" : [ { } ] , "response_format" : { "type" : "text" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } } };
         
         server
             .mockEndpoint()
@@ -148,7 +152,7 @@ describe("AgentsClient", () => {
                 }],
             instructions: "instructions",
             messages: [{
-                    role: "user",
+                    type: "user.message",
                     content: "content"
                 }],
             variables: {
@@ -361,7 +365,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
         
-        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "fqn" : "fqn" , "tenantName" : "tenantName" , "accountId" : "accountId" , "latestVersion" : 1.1 , "type" : "type" , "latestVersionDetails" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "createdBy" : "createdBy" } };
+        const rawResponseBody = { "data" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "name" : "name" , "fqn" : "fqn" , "tenantName" : "tenantName" , "accountId" : "accountId" , "latestVersion" : 1.1 , "type" : "type" , "latestVersionDetails" : { "id" : "jqfwg345gi25n5ju2yz5iz6m" , "agentId" : "agentId" , "fqn" : "fqn" , "manifest" : { "type" : "truefoundry-agent" , "name" : "name" , "description" : "description" , "model" : { "name" : "name" } , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } , "version" : 1.1 , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" } } , "createdBySubject" : { "subjectId" : "subjectId" , "subjectType" : "user" , "subjectSlug" : "subjectSlug" , "subjectDisplayName" : "subjectDisplayName" , "subjectPatName" : "subjectPatName" , "subjectControllerName" : "subjectControllerName" , "subjectExternalIdentitySlug" : "subjectExternalIdentitySlug" } , "manifest" : { "key" : "value" } , "agentIdentityId" : "agentIdentityId" , "createdBy" : "createdBy" } };
         
         server
             .mockEndpoint()
@@ -412,6 +416,10 @@ describe("AgentsClient", () => {
             subjectControllerName: "subjectControllerName",
             subjectExternalIdentitySlug: "subjectExternalIdentitySlug"
         },
+        manifest: {
+            "key": "value"
+        },
+        agentIdentityId: "agentIdentityId",
         createdBy: "createdBy"
     }
 });

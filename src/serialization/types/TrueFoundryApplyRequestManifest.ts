@@ -3,6 +3,7 @@
 import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
+import { AgentChannelManifest } from "./AgentChannelManifest.js";
 import { AgentIdentityManifest } from "./AgentIdentityManifest.js";
 import { AgentManifest } from "./AgentManifest.js";
 import { AiFeaturesSettings } from "./AiFeaturesSettings.js";
@@ -38,8 +39,8 @@ import { Volume } from "./Volume.js";
 import { Workflow } from "./Workflow.js";
 import { WorkspaceManifest } from "./WorkspaceManifest.js";
 
-export const TrueFoundryApplyRequestManifest: core.serialization.Schema<serializers.TrueFoundryApplyRequestManifest.Raw, TrueFoundry.TrueFoundryApplyRequestManifest> = core.serialization.undiscriminatedUnion([MlRepoManifest, ArtifactManifest, ModelManifest, ChatPromptManifest, DataDirectoryManifest, Service, ApplicationSet, ProviderAccounts, ClusterManifest, WorkspaceManifest, Job, Helm, Volume, Notebook, RStudio, Workflow, AsyncService, SshServer, SparkJob, GatewayConfig, TeamManifest, PolicyManifest, RoleManifest, AlertConfig, VirtualAccountManifest, CommonToolsSettings, AiFeaturesSettings, SecretGroupManifest, AgentManifest, EnvironmentManifest, TracingProjectManifest, McpServerManifest, RoleBindingManifest, AgentIdentityManifest]);
+export const TrueFoundryApplyRequestManifest: core.serialization.Schema<serializers.TrueFoundryApplyRequestManifest.Raw, TrueFoundry.TrueFoundryApplyRequestManifest> = core.serialization.undiscriminatedUnion([MlRepoManifest, ArtifactManifest, ModelManifest, ChatPromptManifest, DataDirectoryManifest, Service, ApplicationSet, ProviderAccounts, ClusterManifest, WorkspaceManifest, Job, Helm, Volume, Notebook, RStudio, Workflow, AsyncService, SshServer, SparkJob, GatewayConfig, TeamManifest, PolicyManifest, RoleManifest, AlertConfig, VirtualAccountManifest, CommonToolsSettings, AiFeaturesSettings, SecretGroupManifest, AgentManifest, EnvironmentManifest, TracingProjectManifest, McpServerManifest, RoleBindingManifest, AgentIdentityManifest, AgentChannelManifest]);
 
 export declare namespace TrueFoundryApplyRequestManifest {
-    export type Raw = MlRepoManifest.Raw | ArtifactManifest.Raw | ModelManifest.Raw | ChatPromptManifest.Raw | DataDirectoryManifest.Raw | Service.Raw | ApplicationSet.Raw | ProviderAccounts.Raw | ClusterManifest.Raw | WorkspaceManifest.Raw | Job.Raw | Helm.Raw | Volume.Raw | Notebook.Raw | RStudio.Raw | Workflow.Raw | AsyncService.Raw | SshServer.Raw | SparkJob.Raw | GatewayConfig.Raw | TeamManifest.Raw | PolicyManifest.Raw | RoleManifest.Raw | AlertConfig.Raw | VirtualAccountManifest.Raw | CommonToolsSettings.Raw | AiFeaturesSettings.Raw | SecretGroupManifest.Raw | AgentManifest.Raw | EnvironmentManifest.Raw | TracingProjectManifest.Raw | McpServerManifest.Raw | RoleBindingManifest.Raw | AgentIdentityManifest.Raw;
+    export type Raw = MlRepoManifest.Raw | ArtifactManifest.Raw | ModelManifest.Raw | ChatPromptManifest.Raw | DataDirectoryManifest.Raw | Service.Raw | ApplicationSet.Raw | ProviderAccounts.Raw | ClusterManifest.Raw | WorkspaceManifest.Raw | Job.Raw | Helm.Raw | Volume.Raw | Notebook.Raw | RStudio.Raw | Workflow.Raw | AsyncService.Raw | SshServer.Raw | SparkJob.Raw | GatewayConfig.Raw | TeamManifest.Raw | PolicyManifest.Raw | RoleManifest.Raw | AlertConfig.Raw | VirtualAccountManifest.Raw | CommonToolsSettings.Raw | AiFeaturesSettings.Raw | SecretGroupManifest.Raw | AgentManifest.Raw | EnvironmentManifest.Raw | TracingProjectManifest.Raw | McpServerManifest.Raw | RoleBindingManifest.Raw | AgentIdentityManifest.Raw | AgentChannelManifest.Raw;
 }

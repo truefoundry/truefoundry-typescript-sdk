@@ -4,8 +4,8 @@ import * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
-export const VirtualModelModelType: core.serialization.Schema<serializers.VirtualModelModelType.Raw, TrueFoundry.VirtualModelModelType> = core.serialization.enum_(["chat", "completion", "embedding", "rerank", "moderation", "audio_transcription", "audio_translation", "text_to_speech", "image"]);
+export const VirtualModelModelType: core.serialization.Schema<serializers.VirtualModelModelType.Raw, TrueFoundry.VirtualModelModelType> = core.serialization.enum_(["chat", "completion", "embedding", "rerank", "moderation", "audio_transcription", "audio_translation", "text_to_speech", "image", "responses"]);
 
 export declare namespace VirtualModelModelType {
-    export type Raw = "chat" | "completion" | "embedding" | "rerank" | "moderation" | "audio_transcription" | "audio_translation" | "text_to_speech" | "image";
+    export type Raw = "chat" | "completion" | "embedding" | "rerank" | "moderation" | "audio_transcription" | "audio_translation" | "text_to_speech" | "image" | "responses";
 }

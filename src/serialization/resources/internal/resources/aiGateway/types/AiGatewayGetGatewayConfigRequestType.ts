@@ -4,8 +4,8 @@ import * as TrueFoundry from "../../../../../../api/index.js";
 import * as core from "../../../../../../core/index.js";
 import * as serializers from "../../../../../index.js";
 
-export const AiGatewayGetGatewayConfigRequestType: core.serialization.Schema<serializers.internal.AiGatewayGetGatewayConfigRequestType.Raw, TrueFoundry.internal.AiGatewayGetGatewayConfigRequestType> = core.serialization.enum_(["gateway-rate-limiting-config", "gateway-fallback-config", "gateway-load-balancing-config", "gateway-guardrails-config", "gateway-budget-config", "tenant-budget-config", "team-budget-config", "gateway-otel-config", "gateway-global-settings", "gateway-data-access-config", "gateway-data-routing-config"]);
+export const AiGatewayGetGatewayConfigRequestType: core.serialization.Schema<serializers.internal.AiGatewayGetGatewayConfigRequestType.Raw, TrueFoundry.internal.AiGatewayGetGatewayConfigRequestType> = core.serialization.enum_(["gateway-rate-limiting-config", "gateway-fallback-config", "gateway-load-balancing-config", "gateway-guardrails-config", "gateway-budget-config", "tenant-budget-config", "team-budget-config", "gateway-otel-config", "gateway-global-settings", "gateway-data-access-config", "gateway-data-routing-config", "gateway-logging-config"]);
 
 export declare namespace AiGatewayGetGatewayConfigRequestType {
-    export type Raw = "gateway-rate-limiting-config" | "gateway-fallback-config" | "gateway-load-balancing-config" | "gateway-guardrails-config" | "gateway-budget-config" | "tenant-budget-config" | "team-budget-config" | "gateway-otel-config" | "gateway-global-settings" | "gateway-data-access-config" | "gateway-data-routing-config";
+    export type Raw = "gateway-rate-limiting-config" | "gateway-fallback-config" | "gateway-load-balancing-config" | "gateway-guardrails-config" | "gateway-budget-config" | "tenant-budget-config" | "team-budget-config" | "gateway-otel-config" | "gateway-global-settings" | "gateway-data-access-config" | "gateway-data-routing-config" | "gateway-logging-config";
 }
