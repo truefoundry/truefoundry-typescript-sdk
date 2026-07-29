@@ -82,7 +82,7 @@ describe("SecretsClient", () => {
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .post("/api/svc/v1/secrets")
             .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
             .respondWith()
@@ -102,7 +102,7 @@ describe("SecretsClient", () => {
         const rawResponseBody = { key: "value" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .post("/api/svc/v1/secrets")
             .jsonBody(rawRequestBody, { ignoredFields: ["offset"] })
             .respondWith()

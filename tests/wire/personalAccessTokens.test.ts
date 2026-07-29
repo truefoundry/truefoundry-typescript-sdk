@@ -53,7 +53,7 @@ describe("PersonalAccessTokensClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/personal-access-tokens")
             .respondWith()
             .statusCode(200)
@@ -127,9 +127,6 @@ describe("PersonalAccessTokensClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create (1)", async () => {

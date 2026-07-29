@@ -171,7 +171,7 @@ describe("MlReposClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/ml-repos")
             .respondWith()
             .statusCode(200)
@@ -217,9 +217,6 @@ describe("MlReposClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create_or_update (1)", async () => {

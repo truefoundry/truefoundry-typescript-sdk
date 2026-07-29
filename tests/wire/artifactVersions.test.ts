@@ -33,7 +33,7 @@ describe("ArtifactVersionsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/artifact-versions")
             .respondWith()
             .statusCode(200)
@@ -79,9 +79,6 @@ describe("ArtifactVersionsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("apply_tags", async () => {

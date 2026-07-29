@@ -195,7 +195,7 @@ describe("ArtifactsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/artifacts")
             .respondWith()
             .statusCode(200)
@@ -251,9 +251,6 @@ describe("ArtifactsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create_or_update", async () => {

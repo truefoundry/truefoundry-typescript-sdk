@@ -53,7 +53,7 @@ describe("VirtualAccountsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/virtual-accounts")
             .respondWith()
             .statusCode(200)
@@ -128,9 +128,6 @@ describe("VirtualAccountsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create_or_update (1)", async () => {

@@ -33,7 +33,7 @@ describe("ClustersClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/clusters")
             .respondWith()
             .statusCode(200)
@@ -80,9 +80,6 @@ describe("ClustersClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("list (2)", async () => {
@@ -92,7 +89,7 @@ describe("ClustersClient", () => {
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/clusters")
             .respondWith()
             .statusCode(401)

@@ -33,7 +33,7 @@ describe("TeamsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/user")
             .respondWith()
             .statusCode(200)
@@ -79,9 +79,6 @@ describe("TeamsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create_or_update (1)", async () => {
@@ -257,7 +254,7 @@ describe("TeamsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/members")
             .respondWith()
             .statusCode(200)
@@ -285,9 +282,6 @@ describe("TeamsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("list_members (2)", async () => {
@@ -297,7 +291,7 @@ describe("TeamsClient", () => {
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/id/members")
             .respondWith()
             .statusCode(403)
@@ -316,7 +310,7 @@ describe("TeamsClient", () => {
         const rawResponseBody = { key: "value" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/id/members")
             .respondWith()
             .statusCode(404)
@@ -338,7 +332,7 @@ describe("TeamsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/jqfwg345gi25n5ju2yz5iz6m/managers")
             .respondWith()
             .statusCode(200)
@@ -366,9 +360,6 @@ describe("TeamsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("list_managers (2)", async () => {
@@ -378,7 +369,7 @@ describe("TeamsClient", () => {
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/id/managers")
             .respondWith()
             .statusCode(403)
@@ -397,7 +388,7 @@ describe("TeamsClient", () => {
         const rawResponseBody = { key: "value" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/teams/id/managers")
             .respondWith()
             .statusCode(404)

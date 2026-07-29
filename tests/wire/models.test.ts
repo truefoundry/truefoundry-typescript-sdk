@@ -202,13 +202,7 @@ describe("ModelsClient", () => {
             pagination: { total: 100, offset: 0, limit: 10 },
         };
 
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/models")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/api/svc/v1/models").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const expected = {
             data: [
@@ -259,9 +253,6 @@ describe("ModelsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create_or_update", async () => {

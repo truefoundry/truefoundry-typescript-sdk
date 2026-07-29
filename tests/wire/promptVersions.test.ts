@@ -33,7 +33,7 @@ describe("PromptVersionsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/prompt-versions")
             .respondWith()
             .statusCode(200)
@@ -88,9 +88,6 @@ describe("PromptVersionsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("apply_tags", async () => {

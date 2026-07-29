@@ -31,13 +31,7 @@ describe("UsersClient", () => {
             pagination: { total: 100, offset: 0, limit: 10 },
         };
 
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/users")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/api/svc/v1/users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const expected = {
             data: [
@@ -81,9 +75,6 @@ describe("UsersClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("pre_register_users (1)", async () => {

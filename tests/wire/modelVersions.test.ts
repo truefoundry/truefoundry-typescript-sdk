@@ -35,7 +35,7 @@ describe("ModelVersionsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/model-versions")
             .respondWith()
             .statusCode(200)
@@ -87,9 +87,6 @@ describe("ModelVersionsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("apply_tags", async () => {

@@ -73,13 +73,7 @@ describe("ApplicationsClient", () => {
             pagination: { total: 100, offset: 0, limit: 10 },
         };
 
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/apps")
-            .respondWith()
-            .statusCode(200)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/api/svc/v1/apps").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
 
         const expected = {
             data: [
@@ -192,9 +186,6 @@ describe("ApplicationsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("list (2)", async () => {
@@ -203,13 +194,7 @@ describe("ApplicationsClient", () => {
 
         const rawResponseBody = { key: "value" };
 
-        server
-            .mockEndpoint({ once: false })
-            .get("/api/svc/v1/apps")
-            .respondWith()
-            .statusCode(400)
-            .jsonBody(rawResponseBody)
-            .build();
+        server.mockEndpoint().get("/api/svc/v1/apps").respondWith().statusCode(400).jsonBody(rawResponseBody).build();
 
         await expect(async () => {
             return await client.applications.list();

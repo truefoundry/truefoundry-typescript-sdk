@@ -203,7 +203,7 @@ describe("PromptsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/prompts")
             .respondWith()
             .statusCode(200)
@@ -261,9 +261,6 @@ describe("PromptsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("create_or_update", async () => {

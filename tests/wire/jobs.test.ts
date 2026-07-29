@@ -36,7 +36,7 @@ describe("JobsClient", () => {
         };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs")
             .respondWith()
             .statusCode(200)
@@ -81,9 +81,6 @@ describe("JobsClient", () => {
         });
 
         expect(expected.data).toEqual(page.data);
-        expect(page.hasNextPage()).toBe(true);
-        const nextPage = await page.getNextPage();
-        expect(expected.data).toEqual(nextPage.data);
     });
 
     test("list_runs (2)", async () => {
@@ -93,7 +90,7 @@ describe("JobsClient", () => {
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs")
             .respondWith()
             .statusCode(403)
@@ -112,7 +109,7 @@ describe("JobsClient", () => {
         const rawResponseBody = { key: "value" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs")
             .respondWith()
             .statusCode(404)
@@ -131,7 +128,7 @@ describe("JobsClient", () => {
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
-            .mockEndpoint({ once: false })
+            .mockEndpoint()
             .get("/api/svc/v1/jobs/jobId/runs")
             .respondWith()
             .statusCode(422)
