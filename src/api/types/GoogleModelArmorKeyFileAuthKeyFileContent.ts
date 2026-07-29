@@ -3,6 +3,4 @@
 /**
  * The JSON content of your Google Cloud service account key file with Model Armor permissions
  */
-export type GoogleModelArmorKeyFileAuthKeyFileContent = 
-    | string
-    | Record<string, unknown>;
+export type GoogleModelArmorKeyFileAuthKeyFileContent = string | Record<string, unknown>;

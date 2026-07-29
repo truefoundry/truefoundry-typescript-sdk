@@ -3,6 +3,4 @@
 /**
  * Error code
  */
-export type HttpErrorCode = 
-    | number
-    | string;
+export type HttpErrorCode = number | string;

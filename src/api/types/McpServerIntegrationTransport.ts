@@ -2,7 +2,8 @@
 
 /** The transport protocol to use for communication with the MCP Server. */
 export const McpServerIntegrationTransport = {
-        StreamableHttp: "streamable-http",
-        Sse: "sse"
-    } as const;
-export type McpServerIntegrationTransport = typeof McpServerIntegrationTransport[keyof typeof McpServerIntegrationTransport];
+    StreamableHttp: "streamable-http",
+    Sse: "sse",
+} as const;
+export type McpServerIntegrationTransport =
+    (typeof McpServerIntegrationTransport)[keyof typeof McpServerIntegrationTransport];

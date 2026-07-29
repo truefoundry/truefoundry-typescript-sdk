@@ -2,7 +2,8 @@
 
 /** Where to apply evaluation: request (evaluate user input) or response (evaluate model response) */
 export const PatronusGuardrailConfigConfigTarget = {
-        Response: "response",
-        Request: "request"
-    } as const;
-export type PatronusGuardrailConfigConfigTarget = typeof PatronusGuardrailConfigConfigTarget[keyof typeof PatronusGuardrailConfigConfigTarget];
+    Response: "response",
+    Request: "request",
+} as const;
+export type PatronusGuardrailConfigConfigTarget =
+    (typeof PatronusGuardrailConfigConfigTarget)[keyof typeof PatronusGuardrailConfigConfigTarget];

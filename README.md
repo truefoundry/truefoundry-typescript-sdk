@@ -50,7 +50,7 @@ Instantiate and use the client with the following:
 ```typescript
 import { TrueFoundryClient } from "truefoundry-sdk";
 
-const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
+const client = new TrueFoundryClient({ baseUrl: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
 const pageableResponse = await client.applications.list({
     limit: 10,
     offset: 0
@@ -112,7 +112,7 @@ List endpoints are paginated. The SDK provides an iterator so that you can simpl
 ```typescript
 import { TrueFoundryClient } from "truefoundry-sdk";
 
-const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
+const client = new TrueFoundryClient({ baseUrl: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
 const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,

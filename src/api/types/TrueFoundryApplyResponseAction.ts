@@ -2,7 +2,8 @@
 
 /** The action performed: CREATE or UPDATE */
 export const TrueFoundryApplyResponseAction = {
-        Create: "CREATE",
-        Update: "UPDATE"
-    } as const;
-export type TrueFoundryApplyResponseAction = typeof TrueFoundryApplyResponseAction[keyof typeof TrueFoundryApplyResponseAction];
+    Create: "CREATE",
+    Update: "UPDATE",
+} as const;
+export type TrueFoundryApplyResponseAction =
+    (typeof TrueFoundryApplyResponseAction)[keyof typeof TrueFoundryApplyResponseAction];

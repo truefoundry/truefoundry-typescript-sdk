@@ -5,6 +5,4 @@
  * When deploying a Job, the command can be templatized by defining `params` and referencing them in command
  * E.g. `python main.py --learning_rate {{learning_rate}}`
  */
-export type ImageCommand = 
-    | string
-    | string[];
+export type ImageCommand = string | string[];

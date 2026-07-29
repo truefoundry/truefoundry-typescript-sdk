@@ -2,11 +2,12 @@
 
 /** The HTTP method for this endpoint. */
 export const OpenApimcpToolSettingMethod = {
-        Get: "get",
-        Post: "post",
-        Put: "put",
-        Patch: "patch",
-        Delete: "delete",
-        Head: "head"
-    } as const;
-export type OpenApimcpToolSettingMethod = typeof OpenApimcpToolSettingMethod[keyof typeof OpenApimcpToolSettingMethod];
+    Get: "get",
+    Post: "post",
+    Put: "put",
+    Patch: "patch",
+    Delete: "delete",
+    Head: "head",
+} as const;
+export type OpenApimcpToolSettingMethod =
+    (typeof OpenApimcpToolSettingMethod)[keyof typeof OpenApimcpToolSettingMethod];

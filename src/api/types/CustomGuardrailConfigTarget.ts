@@ -2,7 +2,8 @@
 
 /** Specify whether the guardrail should be applied to the request or response. Guardrails with target "Request" can be only used in input guardrails and guardrails with target "Response" can only be used in output guardrails. */
 export const CustomGuardrailConfigTarget = {
-        Request: "request",
-        Response: "response"
-    } as const;
-export type CustomGuardrailConfigTarget = typeof CustomGuardrailConfigTarget[keyof typeof CustomGuardrailConfigTarget];
+    Request: "request",
+    Response: "response",
+} as const;
+export type CustomGuardrailConfigTarget =
+    (typeof CustomGuardrailConfigTarget)[keyof typeof CustomGuardrailConfigTarget];

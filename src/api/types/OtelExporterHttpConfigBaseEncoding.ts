@@ -2,7 +2,8 @@
 
 /** Encoding for OpenTelemetry data */
 export const OtelExporterHttpConfigBaseEncoding = {
-        Proto: "proto",
-        Json: "json"
-    } as const;
-export type OtelExporterHttpConfigBaseEncoding = typeof OtelExporterHttpConfigBaseEncoding[keyof typeof OtelExporterHttpConfigBaseEncoding];
+    Proto: "proto",
+    Json: "json",
+} as const;
+export type OtelExporterHttpConfigBaseEncoding =
+    (typeof OtelExporterHttpConfigBaseEncoding)[keyof typeof OtelExporterHttpConfigBaseEncoding];
