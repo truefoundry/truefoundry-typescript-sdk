@@ -7,8 +7,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *     {}
  */
 export interface ListGatewayBudgetsRequest {
-    /** Filter by budget type. One of tenant-budget-config | team-budget-config. */
+    /** Filter by budget type. */
     type?: TrueFoundry.ListGatewayBudgetsRequestType;
-    /** Filter by team_name (only meaningful for team-budget-config). */
+    /** Human-readable name of the team owning the budget. Only matches team budgets. */
     teamName?: string;
 }

@@ -3,6 +3,7 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { GatewayDataMetadataFilterOperator } from "./GatewayDataMetadataFilterOperator.js";
 
 export const GatewayDataMetadataFilter: core.serialization.ObjectSchema<
     serializers.GatewayDataMetadataFilter.Raw,
@@ -10,7 +11,7 @@ export const GatewayDataMetadataFilter: core.serialization.ObjectSchema<
 > = core.serialization.object({
     field: core.serialization.stringLiteral("metadata"),
     key: core.serialization.string(),
-    operator: core.serialization.stringLiteral("IN"),
+    operator: GatewayDataMetadataFilterOperator,
     value: core.serialization.list(core.serialization.string()),
 });
 
@@ -18,7 +19,7 @@ export declare namespace GatewayDataMetadataFilter {
     export interface Raw {
         field: "metadata";
         key: string;
-        operator: "IN";
+        operator: GatewayDataMetadataFilterOperator.Raw;
         value: string[];
     }
 }

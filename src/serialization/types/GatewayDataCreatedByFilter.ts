@@ -3,20 +3,21 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { GatewayDataCreatedByFilterOperator } from "./GatewayDataCreatedByFilterOperator.js";
 
 export const GatewayDataCreatedByFilter: core.serialization.ObjectSchema<
     serializers.GatewayDataCreatedByFilter.Raw,
     TrueFoundry.GatewayDataCreatedByFilter
 > = core.serialization.object({
     field: core.serialization.stringLiteral("created_by"),
-    operator: core.serialization.stringLiteral("IN"),
+    operator: GatewayDataCreatedByFilterOperator,
     value: core.serialization.list(core.serialization.string()),
 });
 
 export declare namespace GatewayDataCreatedByFilter {
     export interface Raw {
         field: "created_by";
-        operator: "IN";
+        operator: GatewayDataCreatedByFilterOperator.Raw;
         value: string[];
     }
 }

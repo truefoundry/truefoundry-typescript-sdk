@@ -9,33 +9,26 @@ describe("GatewayBudgetsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
-        const rawResponseBody = [
-            {
-                id: "id",
-                tenantName: "tenantName",
-                name: "name",
-                type: "type",
-                manifest: {
-                    type: "tenant-budget-config",
+        const rawResponseBody = {
+            data: [
+                {
+                    id: "id",
+                    tenantName: "tenantName",
                     name: "name",
-                    limits: {},
-                    applies_to: { type: "aggregate" },
-                    mode: "enforce",
-                    alerts: { thresholds: [1.1] },
+                    type: "type",
+                    manifest: {
+                        type: "tenant-budget-config",
+                        name: "name",
+                        limits: {},
+                        applies_to: { type: "aggregate" },
+                        mode: "enforce",
+                    },
+                    createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
                 },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: "2024-01-15T09:30:00Z",
-                updatedAt: "2024-01-15T09:30:00Z",
-            },
-        ];
+            ],
+        };
 
         server
             .mockEndpoint()
@@ -46,37 +39,31 @@ describe("GatewayBudgetsClient", () => {
             .build();
 
         const response = await client.gatewayBudgets.list();
-        expect(response).toEqual([
-            {
-                id: "id",
-                tenantName: "tenantName",
-                name: "name",
-                type: "type",
-                manifest: {
-                    type: "tenant-budget-config",
+        expect(response).toEqual({
+            data: [
+                {
+                    id: "id",
+                    tenantName: "tenantName",
                     name: "name",
-                    limits: {},
-                    appliesTo: {
-                        type: "aggregate",
+                    type: "type",
+                    manifest: {
+                        type: "tenant-budget-config",
+                        name: "name",
+                        limits: {},
+                        appliesTo: {
+                            type: "aggregate",
+                        },
+                        mode: "enforce",
                     },
-                    mode: "enforce",
-                    alerts: {
-                        thresholds: [1.1],
+                    createdBySubject: {
+                        subjectId: "subjectId",
+                        subjectType: "user",
                     },
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
-                createdBySubject: {
-                    subjectId: "subjectId",
-                    subjectType: "user",
-                    subjectSlug: "subjectSlug",
-                    subjectDisplayName: "subjectDisplayName",
-                    subjectPatName: "subjectPatName",
-                    subjectControllerName: "subjectControllerName",
-                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
-                },
-                createdAt: new Date("2024-01-15T09:30:00.000Z"),
-                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
-            },
-        ]);
+            ],
+        });
     });
 
     test("create_or_update (1)", async () => {

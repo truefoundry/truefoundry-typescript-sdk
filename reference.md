@@ -1543,7 +1543,7 @@ await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
 </details>
 
 ## GatewayBudgets
-<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.GatewayBudget[]</code></summary>
+<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">list</a>({ ...params }) -> TrueFoundry.ListBudgetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -1555,7 +1555,7 @@ await client.teams.getPermissions("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-Returns all budgets for the tenant. Supports filtering by type and team_name.
+List the gateway budgets the caller can read within the tenant.
 </dd>
 </dl>
 </dd>

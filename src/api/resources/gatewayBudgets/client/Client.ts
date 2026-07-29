@@ -24,7 +24,7 @@ export class GatewayBudgetsClient {
     }
 
     /**
-     * Returns all budgets for the tenant. Supports filtering by type and team_name.
+     * List the gateway budgets the caller can read within the tenant.
      *
      * @param {TrueFoundry.ListGatewayBudgetsRequest} request
      * @param {GatewayBudgetsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -38,14 +38,14 @@ export class GatewayBudgetsClient {
     public list(
         request: TrueFoundry.ListGatewayBudgetsRequest = {},
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.GatewayBudget[]> {
+    ): core.HttpResponsePromise<TrueFoundry.ListBudgetsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
     private async __list(
         request: TrueFoundry.ListGatewayBudgetsRequest = {},
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.GatewayBudget[]>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.ListBudgetsResponse>> {
         const { type: type_, teamName } = request;
         const _queryParams: Record<string, unknown> = {
             type:
@@ -86,7 +86,7 @@ export class GatewayBudgetsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.gatewayBudgets.list.Response.parseOrThrow(_response.body, {
+                data: serializers.ListBudgetsResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
