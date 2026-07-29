@@ -7,12 +7,12 @@ import { TrueFoundryApplyRequestManifest } from "../../types/TrueFoundryApplyReq
 
 export const TrueFoundryApplyRequest: core.serialization.Schema<serializers.TrueFoundryApplyRequest.Raw, TrueFoundry.TrueFoundryApplyRequest> = core.serialization.object({
         "manifest": TrueFoundryApplyRequestManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace TrueFoundryApplyRequest {
     export interface Raw {
         manifest: TrueFoundryApplyRequestManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

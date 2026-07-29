@@ -61,11 +61,7 @@ describe("AgentsClient", () => {
 };
                 const page = await client.agents.list({
     limit: 10,
-    offset: 0,
-    name: "name",
-    namePrefix: "namePrefix",
-    type: "remote-agent",
-    attributes: ["attributes"]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

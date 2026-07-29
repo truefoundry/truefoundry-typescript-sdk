@@ -16,9 +16,9 @@ export interface AgentSkill {
     /** Subject (user, team, or service account) that created the agent skill. */
     createdBySubject: TrueFoundry.Subject;
     /** Timestamp when the agent skill was created. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Timestamp when the agent skill was last updated. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
     /** Most recently created version of the agent skill, if any exist. */
-    latestVersion?: TrueFoundry.AgentSkillVersion;
+    latestVersion?: TrueFoundry.AgentSkillVersion | null;
 }

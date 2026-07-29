@@ -13,10 +13,10 @@ export const Artifact: core.serialization.ObjectSchema<serializers.Artifact.Raw,
         "name": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
-        "latestVersion": core.serialization.property("latest_version", ArtifactVersion.optional()),
-        "runSteps": core.serialization.property("run_steps", core.serialization.list(core.serialization.number()).optional())
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
+        "latestVersion": core.serialization.property("latest_version", ArtifactVersion.optionalNullable()),
+        "runSteps": core.serialization.property("run_steps", core.serialization.list(core.serialization.number()).optionalNullable())
     });
 
 export declare namespace Artifact {
@@ -27,9 +27,9 @@ export declare namespace Artifact {
         name: string;
         fqn: string;
         created_by_subject: Subject.Raw;
-        created_at?: string | null;
-        updated_at?: string | null;
-        latest_version?: ArtifactVersion.Raw | null;
-        run_steps?: number[] | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
+        latest_version?: (ArtifactVersion.Raw | null | undefined) | null;
+        run_steps?: (number[] | null | undefined) | null;
     }
 }

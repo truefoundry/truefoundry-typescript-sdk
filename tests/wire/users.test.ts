@@ -52,8 +52,7 @@ describe("UsersClient", () => {
                 const page = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "john@example.com",
-    showInvalidUsers: true
+    query: "john@example.com"
 });
                 
                             expect(expected.data).toEqual(page.data);
@@ -336,9 +335,7 @@ describe("UsersClient", () => {
 
         
                         
-                                const response = await client.users.delete("jqfwg345gi25n5ju2yz5iz6m", {
-    tenantName: "tenantName"
-});
+                                const response = await client.users.delete("jqfwg345gi25n5ju2yz5iz6m");
                                 expect(response).toEqual({});
                               
                     

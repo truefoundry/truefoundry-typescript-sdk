@@ -29,7 +29,7 @@ export class PersonalAccessTokensClient {
     /**
      * List personal access tokens created by the current user.
      *
-     * @param {TrueFoundry.PersonalAccessTokensListRequest} request
+     * @param {TrueFoundry.ListPersonalAccessTokensRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
@@ -39,8 +39,8 @@ export class PersonalAccessTokensClient {
      *         nameSearchQuery: "ci-token"
      *     })
      */
-    public async list(request: TrueFoundry.PersonalAccessTokensListRequest = {}, requestOptions?: PersonalAccessTokensClient.RequestOptions): Promise<core.Page<TrueFoundry.VirtualAccount, TrueFoundry.ListPersonalAccessTokenResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.PersonalAccessTokensListRequest): Promise<core.WithRawResponse<TrueFoundry.ListPersonalAccessTokenResponse>> => { const { limit = 100, offset = 0, nameSearchQuery } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListPersonalAccessTokensRequest = {}, requestOptions?: PersonalAccessTokensClient.RequestOptions): Promise<core.Page<TrueFoundry.VirtualAccount, TrueFoundry.ListPersonalAccessTokenResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListPersonalAccessTokensRequest): Promise<core.WithRawResponse<TrueFoundry.ListPersonalAccessTokenResponse>> => { const { limit = 100, offset = 0, nameSearchQuery } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             nameSearchQuery
@@ -231,21 +231,19 @@ export class PersonalAccessTokensClient {
      * Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token.
      *
      * @param {string} name
-     * @param {TrueFoundry.PersonalAccessTokensGetRequest} request
+     * @param {TrueFoundry.GetPersonalAccessTokensRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
      *
      * @example
-     *     await client.personalAccessTokens.get("name", {
-     *         teamName: "teamName"
-     *     })
+     *     await client.personalAccessTokens.get("name")
      */
-    public get(name: string, request: TrueFoundry.PersonalAccessTokensGetRequest = {}, requestOptions?: PersonalAccessTokensClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetOrCreatePersonalAccessTokenResponse> {
+    public get(name: string, request: TrueFoundry.GetPersonalAccessTokensRequest = {}, requestOptions?: PersonalAccessTokensClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetOrCreatePersonalAccessTokenResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(name, request, requestOptions));
     }
 
-    private async __get(name: string, request: TrueFoundry.PersonalAccessTokensGetRequest = {}, requestOptions?: PersonalAccessTokensClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetOrCreatePersonalAccessTokenResponse>> {
+    private async __get(name: string, request: TrueFoundry.GetPersonalAccessTokensRequest = {}, requestOptions?: PersonalAccessTokensClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetOrCreatePersonalAccessTokenResponse>> {
         const { teamName } = request;
         const _queryParams: Record<string, unknown> = {
             teamName

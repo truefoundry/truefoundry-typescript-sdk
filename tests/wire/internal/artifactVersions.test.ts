@@ -60,18 +60,7 @@ describe("ArtifactVersionsClient", () => {
 };
                 const page = await client.internal.artifactVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    artifactId: "artifact_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true,
-    includeModelVersions: true,
-    artifactTypes: ["artifact_types"]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

@@ -7,23 +7,23 @@ import * as serializers from "../index.js";
 export const SecretVersion: core.serialization.ObjectSchema<serializers.SecretVersion.Raw, TrueFoundry.SecretVersion> = core.serialization.object({
         "id": core.serialization.string(),
         "fqn": core.serialization.string(),
-        "value": core.serialization.string().optional(),
-        "version": core.serialization.number().optional(),
-        "secret": core.serialization.lazyObject(() => serializers.Secret).optional(),
-        "secretId": core.serialization.string().optional(),
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional()
+        "value": core.serialization.string().optionalNullable(),
+        "version": core.serialization.number().optionalNullable(),
+        "secret": core.serialization.lazyObject(() => serializers.Secret).optionalNullable(),
+        "secretId": core.serialization.string().optionalNullable(),
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable()
     });
 
 export declare namespace SecretVersion {
     export interface Raw {
         id: string;
         fqn: string;
-        value?: string | null;
-        version?: number | null;
-        secret?: serializers.Secret.Raw | null;
-        secretId?: string | null;
-        createdAt?: string | null;
-        updatedAt?: string | null;
+        value?: (string | null | undefined) | null;
+        version?: (number | null | undefined) | null;
+        secret?: (serializers.Secret.Raw | null | undefined) | null;
+        secretId?: (string | null | undefined) | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
     }
 }

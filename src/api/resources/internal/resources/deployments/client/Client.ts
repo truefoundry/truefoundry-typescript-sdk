@@ -173,7 +173,7 @@ export class DeploymentsClient {
     /**
      * Generate deployment endpoint based on the provided query parameters.
      *
-     * @param {TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest} request
+     * @param {TrueFoundry.internal.GetSuggestedEndpointDeploymentsRequest} request
      * @param {DeploymentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -182,17 +182,14 @@ export class DeploymentsClient {
      *     await client.internal.deployments.getSuggestedEndpoint({
      *         applicationType: "async-service",
      *         applicationName: "applicationName",
-     *         workspaceId: "workspaceId",
-     *         baseDomain: "baseDomain",
-     *         port: "port",
-     *         preferWildcard: true
+     *         workspaceId: "workspaceId"
      *     })
      */
-    public getSuggestedEndpoint(request: TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest, requestOptions?: DeploymentsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetSuggestedDeploymentEndpointResponse> {
+    public getSuggestedEndpoint(request: TrueFoundry.internal.GetSuggestedEndpointDeploymentsRequest, requestOptions?: DeploymentsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetSuggestedDeploymentEndpointResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getSuggestedEndpoint(request, requestOptions));
     }
 
-    private async __getSuggestedEndpoint(request: TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest, requestOptions?: DeploymentsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetSuggestedDeploymentEndpointResponse>> {
+    private async __getSuggestedEndpoint(request: TrueFoundry.internal.GetSuggestedEndpointDeploymentsRequest, requestOptions?: DeploymentsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetSuggestedDeploymentEndpointResponse>> {
         const { applicationType, applicationName, workspaceId, baseDomain, port, preferWildcard = false } = request;
         const _queryParams: Record<string, unknown> = {
             applicationType: serializers.ApplicationType.jsonOrThrow(applicationType, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }),

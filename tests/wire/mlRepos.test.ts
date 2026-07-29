@@ -162,9 +162,7 @@ describe("MlReposClient", () => {
 };
                 const page = await client.mlRepos.list({
     limit: 10,
-    offset: 0,
-    name: "name",
-    attributes: ["attributes"]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

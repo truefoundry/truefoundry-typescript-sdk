@@ -8,21 +8,21 @@ import { SubjectType } from "./SubjectType.js";
 export const Subject: core.serialization.ObjectSchema<serializers.Subject.Raw, TrueFoundry.Subject> = core.serialization.object({
         "subjectId": core.serialization.string(),
         "subjectType": SubjectType,
-        "subjectSlug": core.serialization.string().optional(),
-        "subjectDisplayName": core.serialization.string().optional(),
-        "subjectPatName": core.serialization.string().optional(),
-        "subjectControllerName": core.serialization.string().optional(),
-        "subjectExternalIdentitySlug": core.serialization.string().optional()
+        "subjectSlug": core.serialization.string().optionalNullable(),
+        "subjectDisplayName": core.serialization.string().optionalNullable(),
+        "subjectPatName": core.serialization.string().optionalNullable(),
+        "subjectControllerName": core.serialization.string().optionalNullable(),
+        "subjectExternalIdentitySlug": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Subject {
     export interface Raw {
         subjectId: string;
         subjectType: SubjectType.Raw;
-        subjectSlug?: string | null;
-        subjectDisplayName?: string | null;
-        subjectPatName?: string | null;
-        subjectControllerName?: string | null;
-        subjectExternalIdentitySlug?: string | null;
+        subjectSlug?: (string | null | undefined) | null;
+        subjectDisplayName?: (string | null | undefined) | null;
+        subjectPatName?: (string | null | undefined) | null;
+        subjectControllerName?: (string | null | undefined) | null;
+        subjectExternalIdentitySlug?: (string | null | undefined) | null;
     }
 }

@@ -5,15 +5,15 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const AddonComponentStatus: core.serialization.ObjectSchema<serializers.AddonComponentStatus.Raw, TrueFoundry.AddonComponentStatus> = core.serialization.object({
-        "healthStatus": core.serialization.string().optional(),
-        "syncStatus": core.serialization.string().optional(),
+        "healthStatus": core.serialization.string().optionalNullable(),
+        "syncStatus": core.serialization.string().optionalNullable(),
         "installed": core.serialization.boolean()
     });
 
 export declare namespace AddonComponentStatus {
     export interface Raw {
-        healthStatus?: string | null;
-        syncStatus?: string | null;
+        healthStatus?: (string | null | undefined) | null;
+        syncStatus?: (string | null | undefined) | null;
         installed: boolean;
     }
 }

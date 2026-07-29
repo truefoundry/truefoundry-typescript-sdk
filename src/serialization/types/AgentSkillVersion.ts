@@ -8,8 +8,8 @@ import { Subject } from "./Subject.js";
 import { UsageCodeSnippet } from "./UsageCodeSnippet.js";
 
 export const AgentSkillVersion: core.serialization.ObjectSchema<serializers.AgentSkillVersion.Raw, TrueFoundry.AgentSkillVersion> = core.serialization.object({
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
         "manifest": AgentSkillManifest,
         "id": core.serialization.string(),
         "fqn": core.serialization.string(),
@@ -21,8 +21,8 @@ export const AgentSkillVersion: core.serialization.ObjectSchema<serializers.Agen
 
 export declare namespace AgentSkillVersion {
     export interface Raw {
-        created_at?: string | null;
-        updated_at?: string | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
         manifest: AgentSkillManifest.Raw;
         id: string;
         fqn: string;

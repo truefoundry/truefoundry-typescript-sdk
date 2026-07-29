@@ -29,26 +29,20 @@ export class AlertsClient {
     /**
      * Get alerts for a given application or cluster filtered by start and end timestamp
      *
-     * @param {TrueFoundry.AlertsListRequest} request
+     * @param {TrueFoundry.ListAlertsRequest} request
      * @param {AlertsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
      * @throws {@link TrueFoundry.ForbiddenError}
      *
      * @example
-     *     await client.alerts.list({
-     *         startTs: "startTs",
-     *         endTs: "endTs",
-     *         clusterId: "clusterId",
-     *         applicationId: "applicationId",
-     *         alertStatus: "firing"
-     *     })
+     *     await client.alerts.list()
      */
-    public list(request: TrueFoundry.AlertsListRequest = {}, requestOptions?: AlertsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetAlertsResponse> {
+    public list(request: TrueFoundry.ListAlertsRequest = {}, requestOptions?: AlertsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetAlertsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__list(request, requestOptions));
     }
 
-    private async __list(request: TrueFoundry.AlertsListRequest = {}, requestOptions?: AlertsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetAlertsResponse>> {
+    private async __list(request: TrueFoundry.ListAlertsRequest = {}, requestOptions?: AlertsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetAlertsResponse>> {
         const { startTs, endTs, clusterId, applicationId, alertStatus } = request;
         const _queryParams: Record<string, unknown> = {
             startTs,

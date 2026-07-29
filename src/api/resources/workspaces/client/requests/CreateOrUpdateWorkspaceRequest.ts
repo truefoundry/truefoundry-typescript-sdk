@@ -16,5 +16,5 @@ export interface CreateOrUpdateWorkspaceRequest {
     /** Workspace manifest */
     manifest: TrueFoundry.WorkspaceManifest;
     /** When true, validates the request without persisting changes. */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

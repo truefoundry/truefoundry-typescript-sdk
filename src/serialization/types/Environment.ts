@@ -9,27 +9,27 @@ import { EnvironmentOptimizeFor } from "./EnvironmentOptimizeFor.js";
 import { Subject } from "./Subject.js";
 
 export const Environment: core.serialization.ObjectSchema<serializers.Environment.Raw, TrueFoundry.Environment> = core.serialization.object({
-        "id": core.serialization.string().optional(),
-        "priority": core.serialization.number().optional(),
+        "id": core.serialization.string().optionalNullable(),
+        "priority": core.serialization.number().optionalNullable(),
         "color": EnvironmentColor,
         "tenantName": core.serialization.string(),
         "createdBySubject": Subject,
         "isProduction": core.serialization.boolean(),
-        "optimizeFor": EnvironmentOptimizeFor.optional(),
+        "optimizeFor": EnvironmentOptimizeFor.optionalNullable(),
         "manifest": EnvironmentManifest,
-        "createdBy": core.serialization.string().optional()
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Environment {
     export interface Raw {
-        id?: string | null;
-        priority?: number | null;
+        id?: (string | null | undefined) | null;
+        priority?: (number | null | undefined) | null;
         color: EnvironmentColor.Raw;
         tenantName: string;
         createdBySubject: Subject.Raw;
         isProduction: boolean;
-        optimizeFor?: EnvironmentOptimizeFor.Raw | null;
+        optimizeFor?: (EnvironmentOptimizeFor.Raw | null | undefined) | null;
         manifest: EnvironmentManifest.Raw;
-        createdBy?: string | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

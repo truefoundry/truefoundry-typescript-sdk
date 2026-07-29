@@ -12,14 +12,14 @@ export const User: core.serialization.ObjectSchema<serializers.User.Raw, TrueFou
         "email": core.serialization.string(),
         "tenantName": core.serialization.string(),
         "metadata": UserMetadata,
-        "roles": core.serialization.list(core.serialization.string()).optional(),
-        "rolesWithResource": core.serialization.list(RoleWithResource).optional(),
-        "accounts": core.serialization.list(AccountInfo).optional(),
+        "roles": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "rolesWithResource": core.serialization.list(RoleWithResource).optionalNullable(),
+        "accounts": core.serialization.list(AccountInfo).optionalNullable(),
         "active": core.serialization.boolean(),
         "isEditable": core.serialization.boolean(),
         "createdAt": core.serialization.date(),
         "updatedAt": core.serialization.date(),
-        "lastAccessedAt": core.serialization.date().optional()
+        "lastAccessedAt": core.serialization.date().optionalNullable()
     });
 
 export declare namespace User {
@@ -28,13 +28,13 @@ export declare namespace User {
         email: string;
         tenantName: string;
         metadata: UserMetadata.Raw;
-        roles?: string[] | null;
-        rolesWithResource?: RoleWithResource.Raw[] | null;
-        accounts?: AccountInfo.Raw[] | null;
+        roles?: (string[] | null | undefined) | null;
+        rolesWithResource?: (RoleWithResource.Raw[] | null | undefined) | null;
+        accounts?: (AccountInfo.Raw[] | null | undefined) | null;
         active: boolean;
         isEditable: boolean;
         createdAt: string;
         updatedAt: string;
-        lastAccessedAt?: string | null;
+        lastAccessedAt?: (string | null | undefined) | null;
     }
 }

@@ -7,13 +7,13 @@ import * as serializers from "../../../../index.js";
 export const ApplyModelVersionTagsRequest: core.serialization.Schema<serializers.ApplyModelVersionTagsRequest.Raw, TrueFoundry.ApplyModelVersionTagsRequest> = core.serialization.object({
         "modelVersionId": core.serialization.property("model_version_id", core.serialization.string()),
         "tags": core.serialization.list(core.serialization.string()),
-        "force": core.serialization.boolean().optional()
+        "force": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ApplyModelVersionTagsRequest {
     export interface Raw {
         model_version_id: string;
         tags: string[];
-        force?: boolean | null;
+        force?: (boolean | null | undefined) | null;
     }
 }

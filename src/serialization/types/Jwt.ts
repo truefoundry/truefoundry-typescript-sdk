@@ -9,7 +9,7 @@ export const Jwt: core.serialization.ObjectSchema<serializers.Jwt.Raw, TrueFound
         "id": core.serialization.string(),
         "subjectType": core.serialization.string(),
         "subjectId": core.serialization.string(),
-        "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+        "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
         "expiry": core.serialization.date(),
         "tokenType": JwtTokenType,
         "createdAt": core.serialization.date(),
@@ -21,7 +21,7 @@ export declare namespace Jwt {
         id: string;
         subjectType: string;
         subjectId: string;
-        metadata?: Record<string, unknown> | null;
+        metadata?: (Record<string, unknown> | null | undefined) | null;
         expiry: string;
         tokenType: JwtTokenType.Raw;
         createdAt: string;

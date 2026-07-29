@@ -7,12 +7,12 @@ import { VirtualAccount } from "./VirtualAccount.js";
 
 export const GetVirtualAccountResponse: core.serialization.ObjectSchema<serializers.GetVirtualAccountResponse.Raw, TrueFoundry.GetVirtualAccountResponse> = core.serialization.object({
         "data": VirtualAccount,
-        "token": core.serialization.string().optional()
+        "token": core.serialization.string().optionalNullable()
     });
 
 export declare namespace GetVirtualAccountResponse {
     export interface Raw {
         data: VirtualAccount.Raw;
-        token?: string | null;
+        token?: (string | null | undefined) | null;
     }
 }

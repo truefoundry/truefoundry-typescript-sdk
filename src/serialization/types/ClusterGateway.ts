@@ -5,19 +5,19 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const ClusterGateway: core.serialization.ObjectSchema<serializers.ClusterGateway.Raw, TrueFoundry.ClusterGateway> = core.serialization.object({
-        "uid": core.serialization.string().optional(),
+        "uid": core.serialization.string().optionalNullable(),
         "name": core.serialization.string(),
         "hosts": core.serialization.list(core.serialization.string()),
-        "isTieBreaker": core.serialization.boolean().optional(),
+        "isTieBreaker": core.serialization.boolean().optionalNullable(),
         "selector": core.serialization.record(core.serialization.string(), core.serialization.string())
     });
 
 export declare namespace ClusterGateway {
     export interface Raw {
-        uid?: string | null;
+        uid?: (string | null | undefined) | null;
         name: string;
         hosts: string[];
-        isTieBreaker?: boolean | null;
+        isTieBreaker?: (boolean | null | undefined) | null;
         selector: Record<string, string>;
     }
 }

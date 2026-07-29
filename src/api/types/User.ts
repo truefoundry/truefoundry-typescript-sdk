@@ -8,13 +8,13 @@ export interface User {
     email: string;
     tenantName: string;
     metadata: TrueFoundry.UserMetadata;
-    roles?: string[];
-    rolesWithResource?: TrueFoundry.RoleWithResource[];
-    accounts?: TrueFoundry.AccountInfo[];
+    roles?: string[] | null;
+    rolesWithResource?: TrueFoundry.RoleWithResource[] | null;
+    accounts?: TrueFoundry.AccountInfo[] | null;
     active: boolean;
     isEditable: boolean;
     createdAt: Date;
     updatedAt: Date;
     /** Timestamp when the user last accessed the platform. */
-    lastAccessedAt?: Date;
+    lastAccessedAt?: Date | null;
 }

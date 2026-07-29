@@ -7,17 +7,17 @@ import { Metadata } from "../../../../types/Metadata.js";
 import { TriggerJobRequestInput } from "../../types/TriggerJobRequestInput.js";
 
 export const TriggerJobRequest: core.serialization.Schema<serializers.TriggerJobRequest.Raw, TrueFoundry.TriggerJobRequest> = core.serialization.object({
-        "deploymentId": core.serialization.string().optional(),
-        "applicationId": core.serialization.string().optional(),
-        "input": TriggerJobRequestInput.optional(),
-        "metadata": Metadata.optional()
+        "deploymentId": core.serialization.string().optionalNullable(),
+        "applicationId": core.serialization.string().optionalNullable(),
+        "input": TriggerJobRequestInput.optionalNullable(),
+        "metadata": Metadata.optionalNullable()
     });
 
 export declare namespace TriggerJobRequest {
     export interface Raw {
-        deploymentId?: string | null;
-        applicationId?: string | null;
-        input?: TriggerJobRequestInput.Raw | null;
-        metadata?: Metadata.Raw | null;
+        deploymentId?: (string | null | undefined) | null;
+        applicationId?: (string | null | undefined) | null;
+        input?: (TriggerJobRequestInput.Raw | null | undefined) | null;
+        metadata?: (Metadata.Raw | null | undefined) | null;
     }
 }

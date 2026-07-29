@@ -50,8 +50,7 @@ describe("AgentVersionsClient", () => {
 };
                 const page = await client.agentVersions.list({
     limit: 10,
-    offset: 0,
-    id: "id"
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

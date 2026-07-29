@@ -29,21 +29,21 @@ export class AiGatewayClient {
     /**
      * Get the AI Gateway configuration for the given type.
      *
-     * @param {TrueFoundry.internal.AiGatewayGetGatewayConfigRequestType} type - The type of gateway configuration to retrieve or delete.
+     * @param {TrueFoundry.internal.GetGatewayConfigAiGatewayRequestType} type - The type of gateway configuration to retrieve or delete.
      * @param {AiGatewayClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config")
      */
-    public getGatewayConfig(type: TrueFoundry.internal.AiGatewayGetGatewayConfigRequestType, requestOptions?: AiGatewayClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GatewayConfiguration> {
+    public getGatewayConfig(type: TrueFoundry.internal.GetGatewayConfigAiGatewayRequestType, requestOptions?: AiGatewayClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GatewayConfiguration> {
         return core.HttpResponsePromise.fromPromise(this.__getGatewayConfig(type, requestOptions));
     }
 
-    private async __getGatewayConfig(type: TrueFoundry.internal.AiGatewayGetGatewayConfigRequestType, requestOptions?: AiGatewayClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GatewayConfiguration>> {
+    private async __getGatewayConfig(type: TrueFoundry.internal.GetGatewayConfigAiGatewayRequestType, requestOptions?: AiGatewayClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GatewayConfiguration>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/llm-gateway/config/${core.url.encodePathParam(serializers.internal.AiGatewayGetGatewayConfigRequestType.jsonOrThrow(type, { omitUndefined: true }))}`),
+            url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/llm-gateway/config/${core.url.encodePathParam(serializers.internal.GetGatewayConfigAiGatewayRequestType.jsonOrThrow(type, { omitUndefined: true }))}`),
             method: "GET",
             headers: _headers,
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),

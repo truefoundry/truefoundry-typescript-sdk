@@ -1,1 +1,1 @@
-export * from "./AiGatewayGetGatewayConfigRequestType.js";
+export * from "./GetGatewayConfigAiGatewayRequestType.js";

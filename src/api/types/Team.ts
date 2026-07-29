@@ -14,7 +14,7 @@ export interface Team {
     /** The subject (user or service account) that created the team. */
     createdBySubject: TrueFoundry.Subject;
     /** Email addresses of team members. */
-    members?: string[];
+    members?: string[] | null;
     /** Timestamp when the team was created. */
     createdAt: Date;
     /** Timestamp when the team was last updated. */
@@ -22,11 +22,11 @@ export interface Team {
     /** The team manifest defining name, members, managers, and ownership. */
     manifest: TrueFoundry.TeamManifest;
     /** SCIM-related metadata for the team. */
-    metadata?: TrueFoundry.TeamMetadata;
+    metadata?: TrueFoundry.TeamMetadata | null;
     /** Whether the team can be edited. SCIM-managed teams may be non-editable. */
     isEditable: boolean;
     /** Role names assigned to the team. */
-    roles?: string[];
+    roles?: string[] | null;
     /** Up to 5 team member emails, sourced from cache. Absent when the cache is unavailable. */
     topMembers?: string[];
     /** Up to 5 team manager emails, sourced from cache. Absent when the cache is unavailable. */

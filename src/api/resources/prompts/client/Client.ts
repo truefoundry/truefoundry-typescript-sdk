@@ -123,21 +123,17 @@ export class PromptsClient {
     /**
      * List prompts with optional filtering by FQN, ML Repo, or name.
      *
-     * @param {TrueFoundry.PromptsListRequest} request
+     * @param {TrueFoundry.ListPromptsRequest} request
      * @param {PromptsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.prompts.list({
      *         limit: 10,
-     *         offset: 0,
-     *         fqn: "fqn",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name",
-     *         includeEmptyPrompts: true
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.PromptsListRequest = {}, requestOptions?: PromptsClient.RequestOptions): Promise<core.Page<TrueFoundry.Prompt, TrueFoundry.ListPromptsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.PromptsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListPromptsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, includeEmptyPrompts = true } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListPromptsRequest = {}, requestOptions?: PromptsClient.RequestOptions): Promise<core.Page<TrueFoundry.Prompt, TrueFoundry.ListPromptsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListPromptsRequest): Promise<core.WithRawResponse<TrueFoundry.ListPromptsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, includeEmptyPrompts = true } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             fqn,

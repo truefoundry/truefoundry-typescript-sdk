@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -29,29 +30,25 @@ export class WorkspacesClient {
     /**
      * List workspaces the caller can read.
      *
-     * @param {TrueFoundry.WorkspacesListRequest} request
+     * @param {TrueFoundry.ListWorkspacesRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.workspaces.list({
      *         limit: 10,
      *         offset: 0,
-     *         clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-     *         name: "name",
-     *         fqn: "fqn",
-     *         includeCluster: true,
-     *         attributes: ["attributes"]
+     *         clusterId: "jqfwg345gi25n5ju2yz5iz6m"
      *     })
      */
-    public async list(request: TrueFoundry.WorkspacesListRequest = {}, requestOptions?: WorkspacesClient.RequestOptions): Promise<core.Page<TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.WorkspacesListRequest): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => { const { limit = 100, offset = 0, clusterId, name, fqn, includeCluster, attributes } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListWorkspacesRequest = {}, requestOptions?: WorkspacesClient.RequestOptions): Promise<core.Page<TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListWorkspacesRequest): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => { const { limit = 100, offset = 0, clusterId, name, fqn, includeCluster, attributes } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             clusterId,
             name,
             fqn,
             includeCluster,
-            attributes
+            attributes: attributes !== undefined ? toJson(attributes) : undefined
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), "api/svc/v1/workspaces"),
             method: "GET",
@@ -147,19 +144,18 @@ export class WorkspacesClient {
     /**
      * Search workspaces using a structured filter expression. Return a paginated list of workspaces matching the filter criteria.
      *
-     * @param {TrueFoundry.WorkspacesSearchRequest} request
+     * @param {TrueFoundry.SearchWorkspacesRequest} request
      * @param {WorkspacesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.workspaces.search({
      *         limit: 10,
      *         offset: 0,
-     *         filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
-     *         includeCluster: true
+     *         filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]"
      *     })
      */
-    public async search(request: TrueFoundry.WorkspacesSearchRequest = {}, requestOptions?: WorkspacesClient.RequestOptions): Promise<core.Page<TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.WorkspacesSearchRequest): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => { const { limit = 100, offset = 0, filter, includeCluster } = request; const _queryParams: Record<string, unknown> = {
+    public async search(request: TrueFoundry.SearchWorkspacesRequest = {}, requestOptions?: WorkspacesClient.RequestOptions): Promise<core.Page<TrueFoundry.Workspace, TrueFoundry.ListWorkspacesResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.SearchWorkspacesRequest): Promise<core.WithRawResponse<TrueFoundry.ListWorkspacesResponse>> => { const { limit = 100, offset = 0, filter, includeCluster } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             filter,

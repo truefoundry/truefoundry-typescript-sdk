@@ -7,17 +7,17 @@ import * as serializers from "../index.js";
 export const UsageCodeSnippet: core.serialization.ObjectSchema<serializers.UsageCodeSnippet.Raw, TrueFoundry.UsageCodeSnippet> = core.serialization.object({
         "displayName": core.serialization.property("display_name", core.serialization.string()),
         "language": core.serialization.string(),
-        "libraries": core.serialization.list(core.serialization.string()).optional(),
+        "libraries": core.serialization.list(core.serialization.string()).optionalNullable(),
         "code": core.serialization.string(),
-        "icon": core.serialization.string().optional()
+        "icon": core.serialization.string().optionalNullable()
     });
 
 export declare namespace UsageCodeSnippet {
     export interface Raw {
         display_name: string;
         language: string;
-        libraries?: string[] | null;
+        libraries?: (string[] | null | undefined) | null;
         code: string;
-        icon?: string | null;
+        icon?: (string | null | undefined) | null;
     }
 }

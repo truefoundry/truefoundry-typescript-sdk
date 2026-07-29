@@ -7,18 +7,18 @@ import { CreatePersonalAccessTokenRequestTokenType } from "../../types/CreatePer
 
 export const CreatePersonalAccessTokenRequest: core.serialization.Schema<serializers.CreatePersonalAccessTokenRequest.Raw, TrueFoundry.CreatePersonalAccessTokenRequest> = core.serialization.object({
         "name": core.serialization.string(),
-        "expirationDate": core.serialization.string().optional(),
-        "accountName": core.serialization.string().optional(),
-        "teamName": core.serialization.string().optional(),
-        "tokenType": CreatePersonalAccessTokenRequestTokenType.optional()
+        "expirationDate": core.serialization.string().optionalNullable(),
+        "accountName": core.serialization.string().optionalNullable(),
+        "teamName": core.serialization.string().optionalNullable(),
+        "tokenType": CreatePersonalAccessTokenRequestTokenType.optionalNullable()
     });
 
 export declare namespace CreatePersonalAccessTokenRequest {
     export interface Raw {
         name: string;
-        expirationDate?: string | null;
-        accountName?: string | null;
-        teamName?: string | null;
-        tokenType?: CreatePersonalAccessTokenRequestTokenType.Raw | null;
+        expirationDate?: (string | null | undefined) | null;
+        accountName?: (string | null | undefined) | null;
+        teamName?: (string | null | undefined) | null;
+        tokenType?: (CreatePersonalAccessTokenRequestTokenType.Raw | null | undefined) | null;
     }
 }

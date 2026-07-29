@@ -7,13 +7,13 @@ import * as serializers from "../../../../index.js";
 export const ApplyPromptVersionTagsRequest: core.serialization.Schema<serializers.ApplyPromptVersionTagsRequest.Raw, TrueFoundry.ApplyPromptVersionTagsRequest> = core.serialization.object({
         "promptVersionId": core.serialization.property("prompt_version_id", core.serialization.string()),
         "tags": core.serialization.list(core.serialization.string()),
-        "force": core.serialization.boolean().optional()
+        "force": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ApplyPromptVersionTagsRequest {
     export interface Raw {
         prompt_version_id: string;
         tags: string[];
-        force?: boolean | null;
+        force?: (boolean | null | undefined) | null;
     }
 }

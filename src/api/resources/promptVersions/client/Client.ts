@@ -29,23 +29,17 @@ export class PromptVersionsClient {
     /**
      * List prompt versions with optional filtering by tag, FQN, prompt ID, ML Repo, name, or version.
      *
-     * @param {TrueFoundry.PromptVersionsListRequest} request
+     * @param {TrueFoundry.ListPromptVersionsRequest} request
      * @param {PromptVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.promptVersions.list({
      *         limit: 10,
-     *         offset: 0,
-     *         tag: "tag",
-     *         fqn: "fqn",
-     *         promptId: "prompt_id",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name",
-     *         version: 1
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.PromptVersionsListRequest = {}, requestOptions?: PromptVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.PromptVersion, TrueFoundry.ListPromptVersionsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.PromptVersionsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListPromptVersionsResponse>> => { const { limit = 100, offset = 0, tag, fqn, promptId, mlRepoId, name, version } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListPromptVersionsRequest = {}, requestOptions?: PromptVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.PromptVersion, TrueFoundry.ListPromptVersionsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListPromptVersionsRequest): Promise<core.WithRawResponse<TrueFoundry.ListPromptVersionsResponse>> => { const { limit = 100, offset = 0, tag, fqn, promptId, mlRepoId, name, version } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             tag,

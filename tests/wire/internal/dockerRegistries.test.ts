@@ -70,10 +70,7 @@ describe("DockerRegistriesClient", () => {
 
         
                         
-                                const response = await client.internal.dockerRegistries.getCredentials({
-    fqn: "fqn",
-    clusterId: "clusterId"
-});
+                                const response = await client.internal.dockerRegistries.getCredentials();
                                 expect(response).toEqual({
     fqn: "fqn",
     registryUrl: "registryUrl",

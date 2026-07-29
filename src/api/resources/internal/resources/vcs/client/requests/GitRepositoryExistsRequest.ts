@@ -10,5 +10,5 @@ export interface GitRepositoryExistsRequest {
     /** The URL of the repository */
     repoUrl: string;
     /** The integration id of the repository */
-    id?: string;
+    id?: string | null;
 }

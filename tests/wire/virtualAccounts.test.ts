@@ -76,8 +76,6 @@ describe("VirtualAccountsClient", () => {
     limit: 10,
     offset: 0,
     nameSearchQuery: "staging-bot",
-    ownedByTeams: ["ownedByTeams"],
-    isExpired: true,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
 });
                 

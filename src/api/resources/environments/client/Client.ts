@@ -29,7 +29,7 @@ export class EnvironmentsClient {
     /**
      * List environments the caller can read within the tenant.
      *
-     * @param {TrueFoundry.EnvironmentsListRequest} request
+     * @param {TrueFoundry.ListEnvironmentsRequest} request
      * @param {EnvironmentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
@@ -38,8 +38,8 @@ export class EnvironmentsClient {
      *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.EnvironmentsListRequest = {}, requestOptions?: EnvironmentsClient.RequestOptions): Promise<core.Page<TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.EnvironmentsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListEnvironmentsResponse>> => { const { limit = 100, offset = 0 } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListEnvironmentsRequest = {}, requestOptions?: EnvironmentsClient.RequestOptions): Promise<core.Page<TrueFoundry.Environment, TrueFoundry.ListEnvironmentsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListEnvironmentsRequest): Promise<core.WithRawResponse<TrueFoundry.ListEnvironmentsResponse>> => { const { limit = 100, offset = 0 } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({

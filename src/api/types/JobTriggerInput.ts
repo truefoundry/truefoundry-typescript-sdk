@@ -4,7 +4,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface JobTriggerInput {
     /** Command */
-    command?: TrueFoundry.JobTriggerInputCommand;
+    command?: TrueFoundry.JobTriggerInputCommand | null;
     /** Parameters used to populate template command */
-    params?: Record<string, unknown>;
+    params?: Record<string, unknown> | null;
 }

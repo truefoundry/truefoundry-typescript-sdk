@@ -7,12 +7,12 @@ import { WorkspaceManifest } from "../../../../types/WorkspaceManifest.js";
 
 export const CreateOrUpdateWorkspaceRequest: core.serialization.Schema<serializers.CreateOrUpdateWorkspaceRequest.Raw, TrueFoundry.CreateOrUpdateWorkspaceRequest> = core.serialization.object({
         "manifest": WorkspaceManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace CreateOrUpdateWorkspaceRequest {
     export interface Raw {
         manifest: WorkspaceManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

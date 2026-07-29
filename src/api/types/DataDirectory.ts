@@ -20,5 +20,5 @@ export interface DataDirectory {
     /** Manifest describing the data directory. */
     manifest: TrueFoundry.DataDirectoryManifest;
     /** Code snippet demonstrating how to use this data directory */
-    usageCodeSnippet?: string;
+    usageCodeSnippet?: string | null;
 }

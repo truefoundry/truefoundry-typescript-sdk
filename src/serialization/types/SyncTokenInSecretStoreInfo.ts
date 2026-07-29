@@ -6,12 +6,12 @@ import * as serializers from "../index.js";
 
 export const SyncTokenInSecretStoreInfo: core.serialization.ObjectSchema<serializers.SyncTokenInSecretStoreInfo.Raw, TrueFoundry.SyncTokenInSecretStoreInfo> = core.serialization.object({
         "updatedAt": core.serialization.string(),
-        "error": core.serialization.string().optional()
+        "error": core.serialization.string().optionalNullable()
     });
 
 export declare namespace SyncTokenInSecretStoreInfo {
     export interface Raw {
         updatedAt: string;
-        error?: string | null;
+        error?: (string | null | undefined) | null;
     }
 }

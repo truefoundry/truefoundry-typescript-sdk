@@ -8,14 +8,14 @@ import { Subject } from "./Subject.js";
 import { UsageCodeSnippet } from "./UsageCodeSnippet.js";
 
 export const PromptVersion: core.serialization.ObjectSchema<serializers.PromptVersion.Raw, TrueFoundry.PromptVersion> = core.serialization.object({
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
         "manifest": ChatPromptManifest,
         "id": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
         "mlRepoId": core.serialization.property("ml_repo_id", core.serialization.string()),
-        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optional()),
+        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optionalNullable()),
         "usageCodeSnippets": core.serialization.property("usage_code_snippets", core.serialization.list(UsageCodeSnippet).optional()),
         "tags": core.serialization.list(core.serialization.string()).optional(),
         "promptId": core.serialization.property("prompt_id", core.serialization.string())
@@ -23,14 +23,14 @@ export const PromptVersion: core.serialization.ObjectSchema<serializers.PromptVe
 
 export declare namespace PromptVersion {
     export interface Raw {
-        created_at?: string | null;
-        updated_at?: string | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
         manifest: ChatPromptManifest.Raw;
         id: string;
         fqn: string;
         created_by_subject: Subject.Raw;
         ml_repo_id: string;
-        usage_code_snippet?: string | null;
+        usage_code_snippet?: (string | null | undefined) | null;
         usage_code_snippets?: UsageCodeSnippet.Raw[] | null;
         tags?: string[] | null;
         prompt_id: string;

@@ -7,14 +7,14 @@ import { Run } from "./Run.js";
 
 export const SearchRunsResponse: core.serialization.ObjectSchema<serializers.SearchRunsResponse.Raw, TrueFoundry.SearchRunsResponse> = core.serialization.object({
         "runs": core.serialization.list(Run),
-        "total": core.serialization.number().optional(),
-        "nextPageToken": core.serialization.property("next_page_token", core.serialization.string().optional())
+        "total": core.serialization.number().optionalNullable(),
+        "nextPageToken": core.serialization.property("next_page_token", core.serialization.string().optionalNullable())
     });
 
 export declare namespace SearchRunsResponse {
     export interface Raw {
         runs: Run.Raw[];
-        total?: number | null;
-        next_page_token?: string | null;
+        total?: (number | null | undefined) | null;
+        next_page_token?: (string | null | undefined) | null;
     }
 }

@@ -6,16 +6,16 @@ import * as serializers from "../index.js";
 
 export const ListFilesRequest: core.serialization.ObjectSchema<serializers.ListFilesRequest.Raw, TrueFoundry.ListFilesRequest> = core.serialization.object({
         "id": core.serialization.string(),
-        "path": core.serialization.string().optional(),
-        "limit": core.serialization.number().optional(),
-        "pageToken": core.serialization.string().optional()
+        "path": core.serialization.string().optionalNullable(),
+        "limit": core.serialization.number().optionalNullable(),
+        "pageToken": core.serialization.string().optionalNullable()
     });
 
 export declare namespace ListFilesRequest {
     export interface Raw {
         id: string;
-        path?: string | null;
-        limit?: number | null;
-        pageToken?: string | null;
+        path?: (string | null | undefined) | null;
+        limit?: (number | null | undefined) | null;
+        pageToken?: (string | null | undefined) | null;
     }
 }

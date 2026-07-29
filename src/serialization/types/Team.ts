@@ -13,13 +13,13 @@ export const Team: core.serialization.ObjectSchema<serializers.Team.Raw, TrueFou
         "tenantName": core.serialization.string(),
         "accountId": core.serialization.string(),
         "createdBySubject": Subject,
-        "members": core.serialization.list(core.serialization.string()).optional(),
+        "members": core.serialization.list(core.serialization.string()).optionalNullable(),
         "createdAt": core.serialization.date(),
         "updatedAt": core.serialization.date(),
         "manifest": TeamManifest,
-        "metadata": TeamMetadata.optional(),
+        "metadata": TeamMetadata.optionalNullable(),
         "isEditable": core.serialization.boolean(),
-        "roles": core.serialization.list(core.serialization.string()).optional(),
+        "roles": core.serialization.list(core.serialization.string()).optionalNullable(),
         "topMembers": core.serialization.list(core.serialization.string()).optional(),
         "topManagers": core.serialization.list(core.serialization.string()).optional(),
         "totalMemberCount": core.serialization.number().optional(),
@@ -33,13 +33,13 @@ export declare namespace Team {
         tenantName: string;
         accountId: string;
         createdBySubject: Subject.Raw;
-        members?: string[] | null;
+        members?: (string[] | null | undefined) | null;
         createdAt: string;
         updatedAt: string;
         manifest: TeamManifest.Raw;
-        metadata?: TeamMetadata.Raw | null;
+        metadata?: (TeamMetadata.Raw | null | undefined) | null;
         isEditable: boolean;
-        roles?: string[] | null;
+        roles?: (string[] | null | undefined) | null;
         topMembers?: string[] | null;
         topManagers?: string[] | null;
         totalMemberCount?: number | null;

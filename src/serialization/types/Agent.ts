@@ -7,29 +7,29 @@ import { AgentVersion } from "./AgentVersion.js";
 import { Subject } from "./Subject.js";
 
 export const Agent: core.serialization.ObjectSchema<serializers.Agent.Raw, TrueFoundry.Agent> = core.serialization.object({
-        "id": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
         "name": core.serialization.string(),
         "fqn": core.serialization.string(),
         "tenantName": core.serialization.string(),
         "accountId": core.serialization.string(),
         "latestVersion": core.serialization.number(),
         "type": core.serialization.string(),
-        "latestVersionDetails": AgentVersion.optional(),
+        "latestVersionDetails": AgentVersion.optionalNullable(),
         "createdBySubject": Subject,
-        "createdBy": core.serialization.string().optional()
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Agent {
     export interface Raw {
-        id?: string | null;
+        id?: (string | null | undefined) | null;
         name: string;
         fqn: string;
         tenantName: string;
         accountId: string;
         latestVersion: number;
         type: string;
-        latestVersionDetails?: AgentVersion.Raw | null;
+        latestVersionDetails?: (AgentVersion.Raw | null | undefined) | null;
         createdBySubject: Subject.Raw;
-        createdBy?: string | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

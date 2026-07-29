@@ -5,19 +5,19 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const Log: core.serialization.ObjectSchema<serializers.Log.Raw, TrueFoundry.Log> = core.serialization.object({
-        "jobName": core.serialization.property("job_name", core.serialization.string().optional()),
+        "jobName": core.serialization.property("job_name", core.serialization.string().optionalNullable()),
         "log": core.serialization.string(),
         "stream": core.serialization.string(),
         "time": core.serialization.string(),
-        "containerName": core.serialization.string().optional()
+        "containerName": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Log {
     export interface Raw {
-        job_name?: string | null;
+        job_name?: (string | null | undefined) | null;
         log: string;
         stream: string;
         time: string;
-        containerName?: string | null;
+        containerName?: (string | null | undefined) | null;
     }
 }

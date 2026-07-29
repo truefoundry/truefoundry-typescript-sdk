@@ -4,9 +4,9 @@ import * as TrueFoundry from "../index.js";
 
 export interface InternalArtifactVersion {
     /** Timestamp when the artifact version was created. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Timestamp when the artifact version was last updated. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
     /** Manifest describing the artifact version. */
     manifest: TrueFoundry.ArtifactManifest;
     /** System-generated artifact version ID. */
@@ -18,17 +18,17 @@ export interface InternalArtifactVersion {
     /** Identifier of the ML Repo the artifact version belongs to. */
     mlRepoId: string;
     /** Code snippet demonstrating how to use the artifact version. */
-    usageCodeSnippet?: string;
+    usageCodeSnippet?: string | null;
     /** Tags associated with the artifact version. */
-    tags?: string[];
+    tags?: string[] | null;
     /** Identifier of the artifact this version belongs to. */
     artifactId: string;
     /** Total size of the artifact version files in bytes. */
-    artifactSize?: number;
+    artifactSize?: number | null;
     /** Fully qualified name of the parent artifact */
     artifactFqn: string;
     /** User-defined metadata associated with the artifact version. */
-    artifactMetadata?: Record<string, unknown>;
+    artifactMetadata?: Record<string, unknown> | null;
     /** Internal metadata associated with the artifact version. */
-    internalMetadata?: Record<string, unknown>;
+    internalMetadata?: Record<string, unknown> | null;
 }

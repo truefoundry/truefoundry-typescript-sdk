@@ -7,12 +7,12 @@ import { SecretGroupManifest } from "../../../../types/SecretGroupManifest.js";
 
 export const CreateOrUpdateSecretGroupRequest: core.serialization.Schema<serializers.CreateOrUpdateSecretGroupRequest.Raw, TrueFoundry.CreateOrUpdateSecretGroupRequest> = core.serialization.object({
         "manifest": SecretGroupManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace CreateOrUpdateSecretGroupRequest {
     export interface Raw {
         manifest: SecretGroupManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

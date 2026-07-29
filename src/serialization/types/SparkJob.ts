@@ -16,8 +16,8 @@ export const SparkJob: core.serialization.ObjectSchema<serializers.SparkJob.Raw,
         "entrypoint": SparkJobEntrypoint,
         "driverConfig": core.serialization.property("driver_config", SparkDriverConfig),
         "executorConfig": core.serialization.property("executor_config", SparkExecutorConfig),
-        "env": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "sparkConf": core.serialization.property("spark_conf", core.serialization.record(core.serialization.string(), core.serialization.string()).optional()),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "sparkConf": core.serialization.property("spark_conf", core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable()),
         "mounts": core.serialization.list(VolumeMount).optional(),
         "retries": core.serialization.number().optional(),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional()),
@@ -32,8 +32,8 @@ export declare namespace SparkJob {
         entrypoint: SparkJobEntrypoint.Raw;
         driver_config: SparkDriverConfig.Raw;
         executor_config: SparkExecutorConfig.Raw;
-        env?: Record<string, unknown> | null;
-        spark_conf?: Record<string, string | null> | null;
+        env?: (Record<string, unknown> | null | undefined) | null;
+        spark_conf?: (Record<string, string | null> | null | undefined) | null;
         mounts?: VolumeMount.Raw[] | null;
         retries?: number | null;
         service_account?: string | null;

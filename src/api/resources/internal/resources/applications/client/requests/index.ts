@@ -1,2 +1,2 @@
-export type { ApplicationsGetPodTemplateHashToDeploymentVersionRequest } from "./ApplicationsGetPodTemplateHashToDeploymentVersionRequest.js";
-export type { ApplicationsPromoteRolloutRequest } from "./ApplicationsPromoteRolloutRequest.js";
+export type { GetPodTemplateHashToDeploymentVersionApplicationsRequest } from "./GetPodTemplateHashToDeploymentVersionApplicationsRequest.js";
+export type { PromoteRolloutApplicationsRequest } from "./PromoteRolloutApplicationsRequest.js";

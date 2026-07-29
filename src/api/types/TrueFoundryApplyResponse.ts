@@ -4,9 +4,9 @@ import * as TrueFoundry from "../index.js";
 
 export interface TrueFoundryApplyResponse {
     /** The existing manifest of the resource */
-    existingManifest?: TrueFoundry.TrueFoundryApplyResponseExistingManifest;
+    existingManifest?: TrueFoundry.TrueFoundryApplyResponseExistingManifest | null;
     /** The action performed: CREATE or UPDATE */
-    action?: TrueFoundry.TrueFoundryApplyResponseAction;
+    action?: TrueFoundry.TrueFoundryApplyResponseAction | null;
     /** The created or updated resource */
-    data?: Record<string, unknown>;
+    data?: Record<string, unknown> | null;
 }

@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -29,7 +30,7 @@ export class VirtualAccountsClient {
     /**
      * List virtual accounts accessible to the current user.
      *
-     * @param {TrueFoundry.VirtualAccountsListRequest} request
+     * @param {TrueFoundry.ListVirtualAccountsRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
@@ -37,17 +38,15 @@ export class VirtualAccountsClient {
      *         limit: 10,
      *         offset: 0,
      *         nameSearchQuery: "staging-bot",
-     *         ownedByTeams: ["ownedByTeams"],
-     *         isExpired: true,
      *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
      *     })
      */
-    public async list(request: TrueFoundry.VirtualAccountsListRequest = {}, requestOptions?: VirtualAccountsClient.RequestOptions): Promise<core.Page<TrueFoundry.VirtualAccount, TrueFoundry.ListVirtualAccountResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.VirtualAccountsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListVirtualAccountResponse>> => { const { limit = 100, offset = 0, nameSearchQuery, ownedByTeams, isExpired, filter } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListVirtualAccountsRequest = {}, requestOptions?: VirtualAccountsClient.RequestOptions): Promise<core.Page<TrueFoundry.VirtualAccount, TrueFoundry.ListVirtualAccountResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListVirtualAccountsRequest): Promise<core.WithRawResponse<TrueFoundry.ListVirtualAccountResponse>> => { const { limit = 100, offset = 0, nameSearchQuery, ownedByTeams, isExpired, filter } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             nameSearchQuery,
-            ownedByTeams,
+            ownedByTeams: ownedByTeams !== undefined ? toJson(ownedByTeams) : undefined,
             isExpired,
             filter
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({

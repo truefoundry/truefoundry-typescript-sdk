@@ -8,7 +8,7 @@ import { BaseArtifactVersion } from "./BaseArtifactVersion.js";
 
 export const ArtifactManifest: core.serialization.ObjectSchema<serializers.ArtifactManifest.Raw, TrueFoundry.ArtifactManifest> = core.serialization.object({
         "type": core.serialization.stringLiteral("artifact-version"),
-        "description": core.serialization.string().optional(),
+        "description": core.serialization.string().optionalNullable(),
         "versionAlias": core.serialization.property("version_alias", core.serialization.string().optional()),
         "source": ArtifactManifestSource,
         "step": core.serialization.number(),
@@ -18,7 +18,7 @@ export const ArtifactManifest: core.serialization.ObjectSchema<serializers.Artif
 export declare namespace ArtifactManifest {
     export interface Raw extends BaseArtifactVersion.Raw {
         type: "artifact-version";
-        description?: string | null;
+        description?: (string | null | undefined) | null;
         version_alias?: string | null;
         source: ArtifactManifestSource.Raw;
         step: number;

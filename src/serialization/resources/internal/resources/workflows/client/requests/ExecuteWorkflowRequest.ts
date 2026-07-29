@@ -5,13 +5,13 @@ import * as core from "../../../../../../../core/index.js";
 import * as serializers from "../../../../../../index.js";
 
 export const ExecuteWorkflowRequest: core.serialization.Schema<serializers.internal.ExecuteWorkflowRequest.Raw, TrueFoundry.internal.ExecuteWorkflowRequest> = core.serialization.object({
-        "inputs": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "inputsLiteralMap": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        "inputs": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "inputsLiteralMap": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable()
     });
 
 export declare namespace ExecuteWorkflowRequest {
     export interface Raw {
-        inputs?: Record<string, unknown> | null;
-        inputsLiteralMap?: Record<string, unknown> | null;
+        inputs?: (Record<string, unknown> | null | undefined) | null;
+        inputsLiteralMap?: (Record<string, unknown> | null | undefined) | null;
     }
 }

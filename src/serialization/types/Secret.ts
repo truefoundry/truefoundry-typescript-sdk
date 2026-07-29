@@ -10,13 +10,13 @@ export const Secret: core.serialization.ObjectSchema<serializers.Secret.Raw, Tru
         "fqn": core.serialization.string(),
         "name": core.serialization.string(),
         "secretGroupId": core.serialization.string(),
-        "value": core.serialization.string().optional(),
-        "createdBySubject": Subject.optional(),
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional(),
-        "secretVersions": core.serialization.list(core.serialization.lazyObject(() => serializers.SecretVersion)).optional(),
-        "activeDeploymentsCount": core.serialization.number().optional(),
-        "createdBy": core.serialization.string().optional()
+        "value": core.serialization.string().optionalNullable(),
+        "createdBySubject": Subject.optionalNullable(),
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable(),
+        "secretVersions": core.serialization.list(core.serialization.lazyObject(() => serializers.SecretVersion)).optionalNullable(),
+        "activeDeploymentsCount": core.serialization.number().optionalNullable(),
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Secret {
@@ -25,12 +25,12 @@ export declare namespace Secret {
         fqn: string;
         name: string;
         secretGroupId: string;
-        value?: string | null;
-        createdBySubject?: Subject.Raw | null;
-        createdAt?: string | null;
-        updatedAt?: string | null;
-        secretVersions?: serializers.SecretVersion.Raw[] | null;
-        activeDeploymentsCount?: number | null;
-        createdBy?: string | null;
+        value?: (string | null | undefined) | null;
+        createdBySubject?: (Subject.Raw | null | undefined) | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
+        secretVersions?: (serializers.SecretVersion.Raw[] | null | undefined) | null;
+        activeDeploymentsCount?: (number | null | undefined) | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

@@ -5,11 +5,11 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const ApplicationMetadata: core.serialization.ObjectSchema<serializers.ApplicationMetadata.Raw, TrueFoundry.ApplicationMetadata> = core.serialization.object({
-        "paused": core.serialization.boolean().optional()
+        "paused": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ApplicationMetadata {
     export interface Raw {
-        paused?: boolean | null;
+        paused?: (boolean | null | undefined) | null;
     }
 }

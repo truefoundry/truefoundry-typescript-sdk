@@ -30,7 +30,7 @@ export class BuildLogsClient {
      * Get logs emitted by the image build and deploy pipeline for a specific build of an application.
      *
      * @param {string} pipelineRunName - PipelineRun Name
-     * @param {TrueFoundry.internal.BuildLogsGetRequest} request
+     * @param {TrueFoundry.internal.GetBuildLogsRequest} request
      * @param {BuildLogsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -39,17 +39,14 @@ export class BuildLogsClient {
      *     await client.internal.buildLogs.get("pipelineRunName", {
      *         startTs: "1635467890123456789",
      *         endTs: "1635467891123456789",
-     *         limit: "limit",
-     *         direction: "direction",
-     *         filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}",
-     *         numLogsToIgnore: 1.1
+     *         filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}"
      *     })
      */
-    public get(pipelineRunName: string, request: TrueFoundry.internal.BuildLogsGetRequest = {}, requestOptions?: BuildLogsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.LogsResponse> {
+    public get(pipelineRunName: string, request: TrueFoundry.internal.GetBuildLogsRequest = {}, requestOptions?: BuildLogsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.LogsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(pipelineRunName, request, requestOptions));
     }
 
-    private async __get(pipelineRunName: string, request: TrueFoundry.internal.BuildLogsGetRequest = {}, requestOptions?: BuildLogsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.LogsResponse>> {
+    private async __get(pipelineRunName: string, request: TrueFoundry.internal.GetBuildLogsRequest = {}, requestOptions?: BuildLogsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.LogsResponse>> {
         const { startTs, endTs, limit, direction, filterQuery, numLogsToIgnore } = request;
         const _queryParams: Record<string, unknown> = {
             startTs,

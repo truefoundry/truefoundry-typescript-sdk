@@ -13,10 +13,10 @@ export const MlRepo: core.serialization.ObjectSchema<serializers.MlRepo.Raw, Tru
         "createdAt": core.serialization.property("created_at", core.serialization.date()),
         "accountId": core.serialization.property("account_id", core.serialization.string()),
         "id": core.serialization.string(),
-        "numRuns": core.serialization.property("num_runs", core.serialization.number().optional()),
-        "artifactTypeCounts": core.serialization.property("artifact_type_counts", core.serialization.record(core.serialization.string(), core.serialization.number()).optional()),
-        "datasetsCount": core.serialization.property("datasets_count", core.serialization.number().optional()),
-        "tracingProjectsCount": core.serialization.property("tracing_projects_count", core.serialization.number().optional())
+        "numRuns": core.serialization.property("num_runs", core.serialization.number().optionalNullable()),
+        "artifactTypeCounts": core.serialization.property("artifact_type_counts", core.serialization.record(core.serialization.string(), core.serialization.number().nullable()).optionalNullable()),
+        "datasetsCount": core.serialization.property("datasets_count", core.serialization.number().optionalNullable()),
+        "tracingProjectsCount": core.serialization.property("tracing_projects_count", core.serialization.number().optionalNullable())
     });
 
 export declare namespace MlRepo {
@@ -27,9 +27,9 @@ export declare namespace MlRepo {
         created_at: string;
         account_id: string;
         id: string;
-        num_runs?: number | null;
-        artifact_type_counts?: Record<string, number | null> | null;
-        datasets_count?: number | null;
-        tracing_projects_count?: number | null;
+        num_runs?: (number | null | undefined) | null;
+        artifact_type_counts?: (Record<string, number | null> | null | undefined) | null;
+        datasets_count?: (number | null | undefined) | null;
+        tracing_projects_count?: (number | null | undefined) | null;
     }
 }

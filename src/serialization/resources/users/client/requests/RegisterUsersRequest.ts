@@ -6,18 +6,18 @@ import * as serializers from "../../../../index.js";
 
 export const RegisterUsersRequest: core.serialization.Schema<serializers.RegisterUsersRequest.Raw, TrueFoundry.RegisterUsersRequest> = core.serialization.object({
         "email": core.serialization.string(),
-        "sendInviteEmail": core.serialization.boolean().optional(),
-        "skipIfUserExists": core.serialization.boolean().optional(),
-        "dryRun": core.serialization.boolean().optional(),
-        "acceptInviteClientUrl": core.serialization.property("acceptInviteClientURL", core.serialization.string().optional())
+        "sendInviteEmail": core.serialization.boolean().optionalNullable(),
+        "skipIfUserExists": core.serialization.boolean().optionalNullable(),
+        "dryRun": core.serialization.boolean().optionalNullable(),
+        "acceptInviteClientUrl": core.serialization.property("acceptInviteClientURL", core.serialization.string().optionalNullable())
     });
 
 export declare namespace RegisterUsersRequest {
     export interface Raw {
         email: string;
-        sendInviteEmail?: boolean | null;
-        skipIfUserExists?: boolean | null;
-        dryRun?: boolean | null;
-        acceptInviteClientURL?: string | null;
+        sendInviteEmail?: (boolean | null | undefined) | null;
+        skipIfUserExists?: (boolean | null | undefined) | null;
+        dryRun?: (boolean | null | undefined) | null;
+        acceptInviteClientURL?: (string | null | undefined) | null;
     }
 }

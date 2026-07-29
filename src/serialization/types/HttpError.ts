@@ -8,15 +8,15 @@ import { HttpErrorCode } from "./HttpErrorCode.js";
 export const HttpError: core.serialization.ObjectSchema<serializers.HttpError.Raw, TrueFoundry.HttpError> = core.serialization.object({
         "statusCode": core.serialization.number(),
         "message": core.serialization.string(),
-        "code": HttpErrorCode.optional(),
-        "details": core.serialization.list(core.serialization.record(core.serialization.string(), core.serialization.unknown())).optional()
+        "code": HttpErrorCode.optionalNullable(),
+        "details": core.serialization.list(core.serialization.record(core.serialization.string(), core.serialization.unknown())).optionalNullable()
     });
 
 export declare namespace HttpError {
     export interface Raw {
         statusCode: number;
         message: string;
-        code?: HttpErrorCode.Raw | null;
-        details?: Record<string, unknown>[] | null;
+        code?: (HttpErrorCode.Raw | null | undefined) | null;
+        details?: (Record<string, unknown>[] | null | undefined) | null;
     }
 }

@@ -6,21 +6,21 @@ import * as serializers from "../index.js";
 import { Helm } from "./Helm.js";
 
 export const UpgradeData: core.serialization.ObjectSchema<serializers.UpgradeData.Raw, TrueFoundry.UpgradeData> = core.serialization.object({
-        "diff": core.serialization.list(core.serialization.lazyObject(() => serializers.IChange)).optional(),
-        "currentManifest": Helm.optional(),
-        "desiredManifest": Helm.optional(),
-        "upgradePossible": core.serialization.boolean().optional(),
-        "conflictFields": core.serialization.list(core.serialization.string()).optional(),
-        "hasConflict": core.serialization.boolean().optional()
+        "diff": core.serialization.list(core.serialization.lazyObject(() => serializers.IChange)).optionalNullable(),
+        "currentManifest": Helm.optionalNullable(),
+        "desiredManifest": Helm.optionalNullable(),
+        "upgradePossible": core.serialization.boolean().optionalNullable(),
+        "conflictFields": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "hasConflict": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace UpgradeData {
     export interface Raw {
-        diff?: serializers.IChange.Raw[] | null;
-        currentManifest?: Helm.Raw | null;
-        desiredManifest?: Helm.Raw | null;
-        upgradePossible?: boolean | null;
-        conflictFields?: string[] | null;
-        hasConflict?: boolean | null;
+        diff?: (serializers.IChange.Raw[] | null | undefined) | null;
+        currentManifest?: (Helm.Raw | null | undefined) | null;
+        desiredManifest?: (Helm.Raw | null | undefined) | null;
+        upgradePossible?: (boolean | null | undefined) | null;
+        conflictFields?: (string[] | null | undefined) | null;
+        hasConflict?: (boolean | null | undefined) | null;
     }
 }

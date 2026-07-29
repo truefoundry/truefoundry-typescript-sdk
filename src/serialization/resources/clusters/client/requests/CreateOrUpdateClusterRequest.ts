@@ -7,12 +7,12 @@ import { ClusterManifest } from "../../../../types/ClusterManifest.js";
 
 export const CreateOrUpdateClusterRequest: core.serialization.Schema<serializers.CreateOrUpdateClusterRequest.Raw, TrueFoundry.CreateOrUpdateClusterRequest> = core.serialization.object({
         "manifest": ClusterManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace CreateOrUpdateClusterRequest {
     export interface Raw {
         manifest: ClusterManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

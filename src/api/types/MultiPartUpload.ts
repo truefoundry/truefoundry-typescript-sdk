@@ -10,7 +10,7 @@ export interface MultiPartUpload {
     /** Signed URL used to finalize the multipart upload. */
     finalizeSignedUrl: TrueFoundry.SignedUrl;
     /** Upload identifier for S3-compatible storage providers. */
-    s3CompatibleUploadId?: string;
+    s3CompatibleUploadId?: string | null;
     /** Block identifiers used for Azure Blob storage uploads. */
-    azureBlobBlockIds?: string[];
+    azureBlobBlockIds?: string[] | null;
 }

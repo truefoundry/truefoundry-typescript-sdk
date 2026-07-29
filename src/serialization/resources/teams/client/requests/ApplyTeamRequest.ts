@@ -7,12 +7,12 @@ import { TeamManifest } from "../../../../types/TeamManifest.js";
 
 export const ApplyTeamRequest: core.serialization.Schema<serializers.ApplyTeamRequest.Raw, TrueFoundry.ApplyTeamRequest> = core.serialization.object({
         "manifest": TeamManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ApplyTeamRequest {
     export interface Raw {
         manifest: TeamManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

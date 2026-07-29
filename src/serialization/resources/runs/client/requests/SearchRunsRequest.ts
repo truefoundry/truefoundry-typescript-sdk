@@ -6,30 +6,30 @@ import * as serializers from "../../../../index.js";
 
 export const SearchRunsRequest: core.serialization.Schema<serializers.SearchRunsRequest.Raw, TrueFoundry.SearchRunsRequest> = core.serialization.object({
         "experimentIds": core.serialization.property("experiment_ids", core.serialization.list(core.serialization.string()).optional()),
-        "filter": core.serialization.string().optional(),
+        "filter": core.serialization.string().optionalNullable(),
         "runViewType": core.serialization.property("run_view_type", core.serialization.string().optional()),
         "maxResults": core.serialization.property("max_results", core.serialization.number().optional()),
         "orderBy": core.serialization.property("order_by", core.serialization.list(core.serialization.string()).optional()),
-        "pageToken": core.serialization.property("page_token", core.serialization.string().optional()),
-        "offset": core.serialization.number().optional(),
-        "fqn": core.serialization.string().optional(),
-        "name": core.serialization.string().optional(),
-        "experimentId": core.serialization.property("experiment_id", core.serialization.string().optional()),
-        "mlRepoName": core.serialization.property("ml_repo_name", core.serialization.string().optional())
+        "pageToken": core.serialization.property("page_token", core.serialization.string().optionalNullable()),
+        "offset": core.serialization.number().optionalNullable(),
+        "fqn": core.serialization.string().optionalNullable(),
+        "name": core.serialization.string().optionalNullable(),
+        "experimentId": core.serialization.property("experiment_id", core.serialization.string().optionalNullable()),
+        "mlRepoName": core.serialization.property("ml_repo_name", core.serialization.string().optionalNullable())
     });
 
 export declare namespace SearchRunsRequest {
     export interface Raw {
         experiment_ids?: string[] | null;
-        filter?: string | null;
+        filter?: (string | null | undefined) | null;
         run_view_type?: string | null;
         max_results?: number | null;
         order_by?: string[] | null;
-        page_token?: string | null;
-        offset?: number | null;
-        fqn?: string | null;
-        name?: string | null;
-        experiment_id?: string | null;
-        ml_repo_name?: string | null;
+        page_token?: (string | null | undefined) | null;
+        offset?: (number | null | undefined) | null;
+        fqn?: (string | null | undefined) | null;
+        name?: (string | null | undefined) | null;
+        experiment_id?: (string | null | undefined) | null;
+        ml_repo_name?: (string | null | undefined) | null;
     }
 }

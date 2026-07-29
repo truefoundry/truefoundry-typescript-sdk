@@ -3,13 +3,13 @@
 import * as TrueFoundry from "../index.js";
 
 export interface Environment {
-    id?: string;
-    priority?: number;
+    id?: string | null;
+    priority?: number | null;
     color: TrueFoundry.EnvironmentColor;
     tenantName: string;
     createdBySubject: TrueFoundry.Subject;
     isProduction: boolean;
-    optimizeFor?: TrueFoundry.EnvironmentOptimizeFor;
+    optimizeFor?: TrueFoundry.EnvironmentOptimizeFor | null;
     manifest: TrueFoundry.EnvironmentManifest;
-    createdBy?: string;
+    createdBy?: string | null;
 }

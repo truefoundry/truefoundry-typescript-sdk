@@ -13,10 +13,10 @@ export const Model: core.serialization.ObjectSchema<serializers.Model.Raw, TrueF
         "name": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
-        "latestVersion": core.serialization.property("latest_version", ModelVersion.optional()),
-        "runSteps": core.serialization.property("run_steps", core.serialization.list(core.serialization.number()).optional())
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
+        "latestVersion": core.serialization.property("latest_version", ModelVersion.optionalNullable()),
+        "runSteps": core.serialization.property("run_steps", core.serialization.list(core.serialization.number()).optionalNullable())
     });
 
 export declare namespace Model {
@@ -27,9 +27,9 @@ export declare namespace Model {
         name: string;
         fqn: string;
         created_by_subject: Subject.Raw;
-        created_at?: string | null;
-        updated_at?: string | null;
-        latest_version?: ModelVersion.Raw | null;
-        run_steps?: number[] | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
+        latest_version?: (ModelVersion.Raw | null | undefined) | null;
+        run_steps?: (number[] | null | undefined) | null;
     }
 }

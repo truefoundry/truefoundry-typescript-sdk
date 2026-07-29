@@ -123,22 +123,17 @@ export class ArtifactsClient {
     /**
      * List artifacts with optional filtering by FQN, ML Repo, name, or run ID.
      *
-     * @param {TrueFoundry.ArtifactsListRequest} request
+     * @param {TrueFoundry.ListArtifactsRequest} request
      * @param {ArtifactsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.artifacts.list({
      *         limit: 10,
-     *         offset: 0,
-     *         fqn: "fqn",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name",
-     *         runId: "run_id",
-     *         includeEmptyArtifacts: true
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.ArtifactsListRequest = {}, requestOptions?: ArtifactsClient.RequestOptions): Promise<core.Page<TrueFoundry.Artifact, TrueFoundry.ListArtifactsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ArtifactsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListArtifactsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, runId, includeEmptyArtifacts = true } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListArtifactsRequest = {}, requestOptions?: ArtifactsClient.RequestOptions): Promise<core.Page<TrueFoundry.Artifact, TrueFoundry.ListArtifactsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListArtifactsRequest): Promise<core.WithRawResponse<TrueFoundry.ListArtifactsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, runId, includeEmptyArtifacts = true } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             fqn,

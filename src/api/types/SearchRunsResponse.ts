@@ -6,7 +6,7 @@ export interface SearchRunsResponse {
     /** Runs matching the search criteria. */
     runs: TrueFoundry.Run[];
     /** Total number of matching runs. */
-    total?: number;
+    total?: number | null;
     /** Token for fetching the next page of results. */
-    nextPageToken?: string;
+    nextPageToken?: string | null;
 }

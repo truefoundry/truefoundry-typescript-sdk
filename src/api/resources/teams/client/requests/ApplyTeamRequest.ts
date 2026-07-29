@@ -16,5 +16,5 @@ export interface ApplyTeamRequest {
     /** The team manifest describing the team to create or update. */
     manifest: TrueFoundry.TeamManifest;
     /** When true, validate the request without persisting any changes. */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

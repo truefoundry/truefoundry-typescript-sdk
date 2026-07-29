@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -29,7 +30,7 @@ export class LogsClient {
     /**
      * Get runtime logs (stdout/stderr) emitted by the pods of a deployed application.
      *
-     * @param {TrueFoundry.LogsGetRequest} request
+     * @param {TrueFoundry.GetLogsRequest} request
      * @param {LogsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -38,28 +39,14 @@ export class LogsClient {
      *     await client.logs.get({
      *         startTs: "1779262323000000000",
      *         endTs: "1779348723000000000",
-     *         limit: 1,
-     *         direction: "asc",
-     *         numLogsToIgnore: 1,
-     *         applicationId: "applicationId",
-     *         applicationFqn: "applicationFqn",
-     *         deploymentId: "deploymentId",
-     *         jobRunName: "jobRunName",
-     *         podName: "podName",
-     *         containerName: "containerName",
-     *         podNames: ["podNames"],
-     *         podNamesRegex: "podNamesRegex",
-     *         searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
-     *         searchString: "searchString",
-     *         searchType: "regex",
-     *         searchOperator: "equal"
+     *         searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]"
      *     })
      */
-    public get(request: TrueFoundry.LogsGetRequest = {}, requestOptions?: LogsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetLogsResponse> {
+    public get(request: TrueFoundry.GetLogsRequest = {}, requestOptions?: LogsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetLogsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
-    private async __get(request: TrueFoundry.LogsGetRequest = {}, requestOptions?: LogsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetLogsResponse>> {
+    private async __get(request: TrueFoundry.GetLogsRequest = {}, requestOptions?: LogsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetLogsResponse>> {
         const { startTs, endTs, limit = 5000, direction, numLogsToIgnore, applicationId, applicationFqn, deploymentId, jobRunName, podName, containerName, podNames, podNamesRegex, searchFilters, searchString, searchType, searchOperator } = request;
         const _queryParams: Record<string, unknown> = {
             startTs,
@@ -73,7 +60,7 @@ export class LogsClient {
             jobRunName,
             podName,
             containerName,
-            podNames,
+            podNames: podNames !== undefined ? toJson(podNames) : undefined,
             podNamesRegex,
             searchFilters,
             searchString,

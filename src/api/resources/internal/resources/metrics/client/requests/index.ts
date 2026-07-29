@@ -1,1 +1,1 @@
-export type { MetricsGetChartsRequest } from "./MetricsGetChartsRequest.js";
+export type { GetChartsMetricsRequest } from "./GetChartsMetricsRequest.js";

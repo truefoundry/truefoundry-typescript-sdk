@@ -12,48 +12,48 @@ import { UserMetadata } from "./UserMetadata.js";
 
 export const Session: core.serialization.ObjectSchema<serializers.Session.Raw, TrueFoundry.Session> = core.serialization.object({
         "id": core.serialization.string(),
-        "userName": core.serialization.string().optional(),
+        "userName": core.serialization.string().optionalNullable(),
         "subjectSlug": core.serialization.string(),
-        "subjectControllerName": core.serialization.string().optional(),
-        "subjectPatName": core.serialization.string().optional(),
-        "subjectExternalIdentitySlug": core.serialization.string().optional(),
-        "email": core.serialization.string().optional(),
+        "subjectControllerName": core.serialization.string().optionalNullable(),
+        "subjectPatName": core.serialization.string().optionalNullable(),
+        "subjectExternalIdentitySlug": core.serialization.string().optionalNullable(),
+        "email": core.serialization.string().optionalNullable(),
         "subjectType": SubjectType,
-        "tenantName": core.serialization.string().optional(),
+        "tenantName": core.serialization.string().optionalNullable(),
         "roles": core.serialization.list(core.serialization.string()),
         "teams": core.serialization.list(SessionTeam),
         "accounts": core.serialization.list(SessionAccount),
-        "metadata": UserMetadata.optional(),
-        "createdAt": core.serialization.date().optional(),
-        "isBillingEnabled": core.serialization.boolean().optional(),
-        "actor": SessionActor.optional(),
-        "serviceAccountMetadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "account": Account.optional(),
-        "rootAccount": Account.optional(),
+        "metadata": UserMetadata.optionalNullable(),
+        "createdAt": core.serialization.date().optionalNullable(),
+        "isBillingEnabled": core.serialization.boolean().optionalNullable(),
+        "actor": SessionActor.optionalNullable(),
+        "serviceAccountMetadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "account": Account.optionalNullable(),
+        "rootAccount": Account.optionalNullable(),
         "effectiveUserId": core.serialization.string()
     });
 
 export declare namespace Session {
     export interface Raw {
         id: string;
-        userName?: string | null;
+        userName?: (string | null | undefined) | null;
         subjectSlug: string;
-        subjectControllerName?: string | null;
-        subjectPatName?: string | null;
-        subjectExternalIdentitySlug?: string | null;
-        email?: string | null;
+        subjectControllerName?: (string | null | undefined) | null;
+        subjectPatName?: (string | null | undefined) | null;
+        subjectExternalIdentitySlug?: (string | null | undefined) | null;
+        email?: (string | null | undefined) | null;
         subjectType: SubjectType.Raw;
-        tenantName?: string | null;
+        tenantName?: (string | null | undefined) | null;
         roles: string[];
         teams: SessionTeam.Raw[];
         accounts: SessionAccount.Raw[];
-        metadata?: UserMetadata.Raw | null;
-        createdAt?: string | null;
-        isBillingEnabled?: boolean | null;
-        actor?: SessionActor.Raw | null;
-        serviceAccountMetadata?: Record<string, unknown> | null;
-        account?: Account.Raw | null;
-        rootAccount?: Account.Raw | null;
+        metadata?: (UserMetadata.Raw | null | undefined) | null;
+        createdAt?: (string | null | undefined) | null;
+        isBillingEnabled?: (boolean | null | undefined) | null;
+        actor?: (SessionActor.Raw | null | undefined) | null;
+        serviceAccountMetadata?: (Record<string, unknown> | null | undefined) | null;
+        account?: (Account.Raw | null | undefined) | null;
+        rootAccount?: (Account.Raw | null | undefined) | null;
         effectiveUserId: string;
     }
 }

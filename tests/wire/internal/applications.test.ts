@@ -19,9 +19,7 @@ describe("ApplicationsClient", () => {
 
         
                         
-                                const response = await client.internal.applications.promoteRollout("id", {
-    full: true
-});
+                                const response = await client.internal.applications.promoteRollout("id");
                                 expect(response).toEqual(undefined);
                               
                     
@@ -77,9 +75,7 @@ describe("ApplicationsClient", () => {
 
         
                         
-                                const response = await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
-    podTemplateHashes: "podTemplateHashes"
-});
+                                const response = await client.internal.applications.getPodTemplateHashToDeploymentVersion("id");
                                 expect(response).toEqual({
     "key": 1.1
 });

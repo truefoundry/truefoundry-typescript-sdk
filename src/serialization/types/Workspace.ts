@@ -14,11 +14,11 @@ export const Workspace: core.serialization.ObjectSchema<serializers.Workspace.Ra
         "createdBySubject": Subject,
         "createdAt": core.serialization.date(),
         "updatedAt": core.serialization.date(),
-        "environmentId": core.serialization.string().optional(),
+        "environmentId": core.serialization.string().optionalNullable(),
         "manifest": WorkspaceManifest,
         "accountId": core.serialization.string(),
-        "isSystemWs": core.serialization.boolean().optional(),
-        "createdBy": core.serialization.string().optional()
+        "isSystemWs": core.serialization.boolean().optionalNullable(),
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Workspace {
@@ -30,10 +30,10 @@ export declare namespace Workspace {
         createdBySubject: Subject.Raw;
         createdAt: string;
         updatedAt: string;
-        environmentId?: string | null;
+        environmentId?: (string | null | undefined) | null;
         manifest: WorkspaceManifest.Raw;
         accountId: string;
-        isSystemWs?: boolean | null;
-        createdBy?: string | null;
+        isSystemWs?: (boolean | null | undefined) | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

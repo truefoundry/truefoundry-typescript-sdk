@@ -22,8 +22,6 @@ describe("MetricsClient", () => {
                         
                                 const response = await client.internal.metrics.getCharts("workspaceId", {
     applicationId: "applicationId",
-    startTs: "startTs",
-    endTs: "endTs",
     filterEntity: "application",
     filterQuery: "{\"pod\":\"my-app-abc123-xyz\"}"
 });

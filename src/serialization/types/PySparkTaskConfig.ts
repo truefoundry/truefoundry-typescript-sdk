@@ -13,8 +13,8 @@ export const PySparkTaskConfig: core.serialization.ObjectSchema<serializers.PySp
         "image": TaskPySparkBuild,
         "driverConfig": core.serialization.property("driver_config", SparkDriverConfig),
         "executorConfig": core.serialization.property("executor_config", SparkExecutorConfig),
-        "sparkConf": core.serialization.property("spark_conf", core.serialization.record(core.serialization.string(), core.serialization.string()).optional()),
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "sparkConf": core.serialization.property("spark_conf", core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable()),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "mounts": core.serialization.list(VolumeMount).optional(),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional())
     });
@@ -25,8 +25,8 @@ export declare namespace PySparkTaskConfig {
         image: TaskPySparkBuild.Raw;
         driver_config: SparkDriverConfig.Raw;
         executor_config: SparkExecutorConfig.Raw;
-        spark_conf?: Record<string, string | null> | null;
-        env?: Record<string, string | null> | null;
+        spark_conf?: (Record<string, string | null> | null | undefined) | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         mounts?: VolumeMount.Raw[] | null;
         service_account?: string | null;
     }

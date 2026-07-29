@@ -7,23 +7,23 @@ import { Config } from "./Config.js";
 import { Subject } from "./Subject.js";
 
 export const GatewayConfiguration: core.serialization.ObjectSchema<serializers.GatewayConfiguration.Raw, TrueFoundry.GatewayConfiguration> = core.serialization.object({
-        "id": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
         "tenantName": core.serialization.string(),
         "type": core.serialization.string(),
         "manifest": Config,
         "createdBySubject": Subject,
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional()
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable()
     });
 
 export declare namespace GatewayConfiguration {
     export interface Raw {
-        id?: string | null;
+        id?: (string | null | undefined) | null;
         tenantName: string;
         type: string;
         manifest: Config.Raw;
         createdBySubject: Subject.Raw;
-        createdAt?: string | null;
-        updatedAt?: string | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
     }
 }

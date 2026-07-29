@@ -250,9 +250,7 @@ describe("PersonalAccessTokensClient", () => {
 
         
                         
-                                const response = await client.personalAccessTokens.get("name", {
-    teamName: "teamName"
-});
+                                const response = await client.personalAccessTokens.get("name");
                                 expect(response).toEqual({
     data: {
         id: "jqfwg345gi25n5ju2yz5iz6m",

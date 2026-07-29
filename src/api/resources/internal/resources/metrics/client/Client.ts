@@ -30,7 +30,7 @@ export class MetricsClient {
      * List metric charts available for an application.
      *
      * @param {string} workspaceId
-     * @param {TrueFoundry.internal.MetricsGetChartsRequest} request
+     * @param {TrueFoundry.internal.GetChartsMetricsRequest} request
      * @param {MetricsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -40,23 +40,21 @@ export class MetricsClient {
      * @example
      *     await client.internal.metrics.getCharts("workspaceId", {
      *         applicationId: "applicationId",
-     *         startTs: "startTs",
-     *         endTs: "endTs",
      *         filterEntity: "application",
      *         filterQuery: "{\"pod\":\"my-app-abc123-xyz\"}"
      *     })
      */
-    public getCharts(workspaceId: string, request: TrueFoundry.internal.MetricsGetChartsRequest, requestOptions?: MetricsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetChartsResponse> {
+    public getCharts(workspaceId: string, request: TrueFoundry.internal.GetChartsMetricsRequest, requestOptions?: MetricsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetChartsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getCharts(workspaceId, request, requestOptions));
     }
 
-    private async __getCharts(workspaceId: string, request: TrueFoundry.internal.MetricsGetChartsRequest, requestOptions?: MetricsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetChartsResponse>> {
+    private async __getCharts(workspaceId: string, request: TrueFoundry.internal.GetChartsMetricsRequest, requestOptions?: MetricsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetChartsResponse>> {
         const { applicationId, startTs, endTs, filterEntity, filterQuery } = request;
         const _queryParams: Record<string, unknown> = {
             applicationId,
             startTs,
             endTs,
-            filterEntity: serializers.internal.MetricsGetChartsRequestFilterEntity.jsonOrThrow(filterEntity, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }),
+            filterEntity: serializers.internal.GetChartsMetricsRequestFilterEntity.jsonOrThrow(filterEntity, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }),
             filterQuery
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();

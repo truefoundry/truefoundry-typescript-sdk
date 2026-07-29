@@ -7,13 +7,13 @@ import * as serializers from "../index.js";
 export const PresignedUrlObject: core.serialization.ObjectSchema<serializers.PresignedUrlObject.Raw, TrueFoundry.PresignedUrlObject> = core.serialization.object({
         "uri": core.serialization.string(),
         "url": core.serialization.string(),
-        "headers": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        "headers": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable()
     });
 
 export declare namespace PresignedUrlObject {
     export interface Raw {
         uri: string;
         url: string;
-        headers?: Record<string, unknown> | null;
+        headers?: (Record<string, unknown> | null | undefined) | null;
     }
 }

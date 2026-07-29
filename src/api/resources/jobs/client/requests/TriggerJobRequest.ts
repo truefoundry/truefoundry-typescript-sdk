@@ -8,11 +8,11 @@ import * as TrueFoundry from "../../../../index.js";
  */
 export interface TriggerJobRequest {
     /** Deployment Id of the job */
-    deploymentId?: string;
+    deploymentId?: string | null;
     /** Application Id of the job */
-    applicationId?: string;
+    applicationId?: string | null;
     /** Job trigger input */
-    input?: TrueFoundry.TriggerJobRequestInput;
+    input?: TrueFoundry.TriggerJobRequestInput | null;
     /** Metadata for the job run including job_alias_name */
-    metadata?: TrueFoundry.Metadata;
+    metadata?: TrueFoundry.Metadata | null;
 }

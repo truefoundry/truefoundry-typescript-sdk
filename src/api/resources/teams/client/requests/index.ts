@@ -1,4 +1,4 @@
 export type { ApplyTeamRequest } from "./ApplyTeamRequest.js";
-export type { TeamsListManagersRequest } from "./TeamsListManagersRequest.js";
-export type { TeamsListMembersRequest } from "./TeamsListMembersRequest.js";
-export type { TeamsListRequest } from "./TeamsListRequest.js";
+export type { ListManagersTeamsRequest } from "./ListManagersTeamsRequest.js";
+export type { ListMembersTeamsRequest } from "./ListMembersTeamsRequest.js";
+export type { ListTeamsRequest } from "./ListTeamsRequest.js";

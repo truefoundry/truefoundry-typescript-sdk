@@ -11,7 +11,7 @@ export const BaseWorkbenchInput: core.serialization.ObjectSchema<serializers.Bas
         "name": core.serialization.string(),
         "homeDirectorySize": core.serialization.property("home_directory_size", core.serialization.number()),
         "resources": Resources.optional(),
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "mounts": core.serialization.list(BaseWorkbenchInputMountsItem).optional(),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional()),
         "kustomize": Kustomize.optional(),
@@ -23,7 +23,7 @@ export declare namespace BaseWorkbenchInput {
         name: string;
         home_directory_size: number;
         resources?: Resources.Raw | null;
-        env?: Record<string, string | null> | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         mounts?: BaseWorkbenchInputMountsItem.Raw[] | null;
         service_account?: string | null;
         kustomize?: Kustomize.Raw | null;

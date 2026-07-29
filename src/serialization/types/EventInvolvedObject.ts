@@ -7,17 +7,17 @@ import * as serializers from "../index.js";
 export const EventInvolvedObject: core.serialization.ObjectSchema<serializers.EventInvolvedObject.Raw, TrueFoundry.EventInvolvedObject> = core.serialization.object({
         "kind": core.serialization.string(),
         "name": core.serialization.string(),
-        "apiVersion": core.serialization.string().optional(),
-        "namespace": core.serialization.string().optional(),
-        "containerName": core.serialization.string().optional()
+        "apiVersion": core.serialization.string().optionalNullable(),
+        "namespace": core.serialization.string().optionalNullable(),
+        "containerName": core.serialization.string().optionalNullable()
     });
 
 export declare namespace EventInvolvedObject {
     export interface Raw {
         kind: string;
         name: string;
-        apiVersion?: string | null;
-        namespace?: string | null;
-        containerName?: string | null;
+        apiVersion?: (string | null | undefined) | null;
+        namespace?: (string | null | undefined) | null;
+        containerName?: (string | null | undefined) | null;
     }
 }

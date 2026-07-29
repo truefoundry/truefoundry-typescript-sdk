@@ -12,10 +12,10 @@ export const DatabricksJobTaskConfig: core.serialization.ObjectSchema<serializer
         "workspaceHost": core.serialization.property("workspace_host", core.serialization.string()),
         "jobId": core.serialization.property("job_id", core.serialization.string()),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional()),
-        "jobParameters": core.serialization.property("job_parameters", core.serialization.record(core.serialization.string(), core.serialization.string()).optional()),
-        "timeoutSeconds": core.serialization.property("timeout_seconds", core.serialization.number().optional()),
+        "jobParameters": core.serialization.property("job_parameters", core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable()),
+        "timeoutSeconds": core.serialization.property("timeout_seconds", core.serialization.number().optionalNullable()),
         "skipWaitForCompletion": core.serialization.property("skip_wait_for_completion", core.serialization.boolean().optional()),
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "resources": Resources.optional()
     });
 
@@ -26,10 +26,10 @@ export declare namespace DatabricksJobTaskConfig {
         workspace_host: string;
         job_id: string;
         service_account?: string | null;
-        job_parameters?: Record<string, string | null> | null;
-        timeout_seconds?: number | null;
+        job_parameters?: (Record<string, string | null> | null | undefined) | null;
+        timeout_seconds?: (number | null | undefined) | null;
         skip_wait_for_completion?: boolean | null;
-        env?: Record<string, string | null> | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         resources?: Resources.Raw | null;
     }
 }

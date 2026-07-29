@@ -6,31 +6,31 @@ import * as serializers from "../index.js";
 import { Subject } from "./Subject.js";
 
 export const SecretGroup: core.serialization.ObjectSchema<serializers.SecretGroup.Raw, TrueFoundry.SecretGroup> = core.serialization.object({
-        "id": core.serialization.string().optional(),
-        "fqn": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
+        "fqn": core.serialization.string().optionalNullable(),
         "tenantName": core.serialization.string(),
         "createdBySubject": Subject,
         "associatedSecrets": core.serialization.list(core.serialization.lazyObject(() => serializers.Secret)),
-        "integrationId": core.serialization.string().optional(),
-        "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
+        "integrationId": core.serialization.string().optionalNullable(),
+        "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
         "accountId": core.serialization.string(),
         "createdAt": core.serialization.date(),
         "updatedAt": core.serialization.date(),
-        "createdBy": core.serialization.string().optional()
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace SecretGroup {
     export interface Raw {
-        id?: string | null;
-        fqn?: string | null;
+        id?: (string | null | undefined) | null;
+        fqn?: (string | null | undefined) | null;
         tenantName: string;
         createdBySubject: Subject.Raw;
         associatedSecrets: serializers.Secret.Raw[];
-        integrationId?: string | null;
-        manifest?: Record<string, unknown> | null;
+        integrationId?: (string | null | undefined) | null;
+        manifest?: (Record<string, unknown> | null | undefined) | null;
         accountId: string;
         createdAt: string;
         updatedAt: string;
-        createdBy?: string | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

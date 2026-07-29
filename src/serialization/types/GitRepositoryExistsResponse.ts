@@ -6,12 +6,12 @@ import * as serializers from "../index.js";
 
 export const GitRepositoryExistsResponse: core.serialization.ObjectSchema<serializers.GitRepositoryExistsResponse.Raw, TrueFoundry.GitRepositoryExistsResponse> = core.serialization.object({
         "exists": core.serialization.boolean(),
-        "id": core.serialization.string().optional()
+        "id": core.serialization.string().optionalNullable()
     });
 
 export declare namespace GitRepositoryExistsResponse {
     export interface Raw {
         exists: boolean;
-        id?: string | null;
+        id?: (string | null | undefined) | null;
     }
 }

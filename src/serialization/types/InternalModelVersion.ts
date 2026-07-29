@@ -8,37 +8,37 @@ import { ModelManifest } from "./ModelManifest.js";
 import { Subject } from "./Subject.js";
 
 export const InternalModelVersion: core.serialization.ObjectSchema<serializers.InternalModelVersion.Raw, TrueFoundry.InternalModelVersion> = core.serialization.object({
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
         "manifest": ModelManifest,
         "id": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
         "mlRepoId": core.serialization.property("ml_repo_id", core.serialization.string()),
-        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optional()),
+        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optionalNullable()),
         "tags": core.serialization.list(core.serialization.string()).optional(),
         "modelId": core.serialization.property("model_id", core.serialization.string()),
-        "metrics": core.serialization.list(Metric).optional(),
-        "deployable": core.serialization.boolean().optional(),
-        "artifactSize": core.serialization.property("artifact_size", core.serialization.number().optional()),
+        "metrics": core.serialization.list(Metric).optionalNullable(),
+        "deployable": core.serialization.boolean().optionalNullable(),
+        "artifactSize": core.serialization.property("artifact_size", core.serialization.number().optionalNullable()),
         "artifactFqn": core.serialization.property("artifact_fqn", core.serialization.string())
     });
 
 export declare namespace InternalModelVersion {
     export interface Raw {
-        created_at?: string | null;
-        updated_at?: string | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
         manifest: ModelManifest.Raw;
         id: string;
         fqn: string;
         created_by_subject: Subject.Raw;
         ml_repo_id: string;
-        usage_code_snippet?: string | null;
+        usage_code_snippet?: (string | null | undefined) | null;
         tags?: string[] | null;
         model_id: string;
-        metrics?: Metric.Raw[] | null;
-        deployable?: boolean | null;
-        artifact_size?: number | null;
+        metrics?: (Metric.Raw[] | null | undefined) | null;
+        deployable?: (boolean | null | undefined) | null;
+        artifact_size?: (number | null | undefined) | null;
         artifact_fqn: string;
     }
 }

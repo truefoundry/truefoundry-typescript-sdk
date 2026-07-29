@@ -10,7 +10,7 @@ import { ModelVersionEnvironment } from "./ModelVersionEnvironment.js";
 
 export const ModelManifest: core.serialization.ObjectSchema<serializers.ModelManifest.Raw, TrueFoundry.ModelManifest> = core.serialization.object({
         "type": core.serialization.stringLiteral("model-version"),
-        "description": core.serialization.string().optional(),
+        "description": core.serialization.string().optionalNullable(),
         "versionAlias": core.serialization.property("version_alias", core.serialization.string().optional()),
         "source": ModelManifestSource,
         "framework": ModelManifestFramework.optional(),
@@ -22,7 +22,7 @@ export const ModelManifest: core.serialization.ObjectSchema<serializers.ModelMan
 export declare namespace ModelManifest {
     export interface Raw extends BaseArtifactVersion.Raw {
         type: "model-version";
-        description?: string | null;
+        description?: (string | null | undefined) | null;
         version_alias?: string | null;
         source: ModelManifestSource.Raw;
         framework?: ModelManifestFramework.Raw | null;

@@ -6,12 +6,12 @@ import * as serializers from "../../../../index.js";
 
 export const DeactivateUserRequest: core.serialization.Schema<serializers.DeactivateUserRequest.Raw, TrueFoundry.DeactivateUserRequest> = core.serialization.object({
         "email": core.serialization.string(),
-        "tenantName": core.serialization.string().optional()
+        "tenantName": core.serialization.string().optionalNullable()
     });
 
 export declare namespace DeactivateUserRequest {
     export interface Raw {
         email: string;
-        tenantName?: string | null;
+        tenantName?: (string | null | undefined) | null;
     }
 }

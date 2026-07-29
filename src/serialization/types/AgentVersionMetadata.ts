@@ -5,11 +5,11 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const AgentVersionMetadata: core.serialization.ObjectSchema<serializers.AgentVersionMetadata.Raw, TrueFoundry.AgentVersionMetadata> = core.serialization.object({
-        "promptVariables": core.serialization.record(core.serialization.string(), core.serialization.string()).optional()
+        "promptVariables": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable()
     });
 
 export declare namespace AgentVersionMetadata {
     export interface Raw {
-        promptVariables?: Record<string, string | null> | null;
+        promptVariables?: (Record<string, string | null> | null | undefined) | null;
     }
 }

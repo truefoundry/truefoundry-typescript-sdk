@@ -5,15 +5,15 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const SparkJobTriggerInput: core.serialization.ObjectSchema<serializers.SparkJobTriggerInput.Raw, TrueFoundry.SparkJobTriggerInput> = core.serialization.object({
-        "mainClass": core.serialization.string().optional(),
-        "mainApplicationFile": core.serialization.string().optional(),
-        "arguments": core.serialization.string().optional()
+        "mainClass": core.serialization.string().optionalNullable(),
+        "mainApplicationFile": core.serialization.string().optionalNullable(),
+        "arguments": core.serialization.string().optionalNullable()
     });
 
 export declare namespace SparkJobTriggerInput {
     export interface Raw {
-        mainClass?: string | null;
-        mainApplicationFile?: string | null;
-        arguments?: string | null;
+        mainClass?: (string | null | undefined) | null;
+        mainApplicationFile?: (string | null | undefined) | null;
+        arguments?: (string | null | undefined) | null;
     }
 }

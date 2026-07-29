@@ -7,14 +7,14 @@ import { ClusterGateway } from "./ClusterGateway.js";
 
 export const GetSuggestedDeploymentEndpointResponse: core.serialization.ObjectSchema<serializers.GetSuggestedDeploymentEndpointResponse.Raw, TrueFoundry.GetSuggestedDeploymentEndpointResponse> = core.serialization.object({
         "host": core.serialization.string(),
-        "path": core.serialization.string().optional(),
-        "gateway": ClusterGateway.optional()
+        "path": core.serialization.string().optionalNullable(),
+        "gateway": ClusterGateway.optionalNullable()
     });
 
 export declare namespace GetSuggestedDeploymentEndpointResponse {
     export interface Raw {
         host: string;
-        path?: string | null;
-        gateway?: ClusterGateway.Raw | null;
+        path?: (string | null | undefined) | null;
+        gateway?: (ClusterGateway.Raw | null | undefined) | null;
     }
 }

@@ -21,5 +21,5 @@ export interface CreateOrUpdateClusterRequest {
     /** Full cluster manifest. */
     manifest: TrueFoundry.ClusterManifest;
     /** When true, validates the request without persisting changes. */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

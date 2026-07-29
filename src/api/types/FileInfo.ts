@@ -6,9 +6,9 @@ export interface FileInfo {
     /** Whether the entry is a directory. */
     isDir: boolean;
     /** Size of the file in bytes. */
-    fileSize?: number;
+    fileSize?: number | null;
     /** Signed URL used to download the file. */
-    signedUrl?: string;
+    signedUrl?: string | null;
     /** Timestamp when the file was last modified. */
-    lastModified?: Date;
+    lastModified?: Date | null;
 }

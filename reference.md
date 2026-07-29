@@ -199,7 +199,7 @@ await client.internal.getIdFromFqn("type", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.InternalGetIdFromFqnRequest` 
+**request:** `TrueFoundry.GetIdFromFqnInternalRequest` 
     
 </dd>
 </dl>
@@ -250,8 +250,7 @@ List users in the current tenant.
 const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "john@example.com",
-    showInvalidUsers: true
+    query: "john@example.com"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -261,8 +260,7 @@ for await (const item of pageableResponse) {
 let page = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "john@example.com",
-    showInvalidUsers: true
+    query: "john@example.com"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -285,7 +283,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.UsersListRequest` 
+**request:** `TrueFoundry.ListUsersRequest` 
     
 </dd>
 </dl>
@@ -526,9 +524,7 @@ Permanently delete a user by ID. The user must not be a collaborator on any reso
 <dd>
 
 ```typescript
-await client.users.delete("jqfwg345gi25n5ju2yz5iz6m", {
-    tenantName: "tenantName"
-});
+await client.users.delete("jqfwg345gi25n5ju2yz5iz6m");
 
 ```
 </dd>
@@ -552,7 +548,7 @@ await client.users.delete("jqfwg345gi25n5ju2yz5iz6m", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.UsersDeleteRequest` 
+**request:** `TrueFoundry.DeleteUsersRequest` 
     
 </dd>
 </dl>
@@ -1054,9 +1050,7 @@ List teams accessible to the current user.
 ```typescript
 const pageableResponse = await client.teams.list({
     limit: 10,
-    offset: 0,
-    role: "manager",
-    attributes: ["attributes"]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -1065,9 +1059,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.teams.list({
     limit: 10,
-    offset: 0,
-    role: "manager",
-    attributes: ["attributes"]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -1090,7 +1082,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.TeamsListRequest` 
+**request:** `TrueFoundry.ListTeamsRequest` 
     
 </dd>
 </dl>
@@ -1250,7 +1242,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.TeamsListMembersRequest` 
+**request:** `TrueFoundry.ListMembersTeamsRequest` 
     
 </dd>
 </dl>
@@ -1341,7 +1333,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.TeamsListManagersRequest` 
+**request:** `TrueFoundry.ListManagersTeamsRequest` 
     
 </dd>
 </dl>
@@ -1614,7 +1606,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.PersonalAccessTokensListRequest` 
+**request:** `TrueFoundry.ListPersonalAccessTokensRequest` 
     
 </dd>
 </dl>
@@ -1854,9 +1846,7 @@ Get an existing personal access token by name. If none exists, a new one is crea
 <dd>
 
 ```typescript
-await client.personalAccessTokens.get("name", {
-    teamName: "teamName"
-});
+await client.personalAccessTokens.get("name");
 
 ```
 </dd>
@@ -1880,7 +1870,7 @@ await client.personalAccessTokens.get("name", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.PersonalAccessTokensGetRequest` 
+**request:** `TrueFoundry.GetPersonalAccessTokensRequest` 
     
 </dd>
 </dl>
@@ -1932,8 +1922,6 @@ const pageableResponse = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
     nameSearchQuery: "staging-bot",
-    ownedByTeams: ["ownedByTeams"],
-    isExpired: true,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
 });
 for await (const item of pageableResponse) {
@@ -1945,8 +1933,6 @@ let page = await client.virtualAccounts.list({
     limit: 10,
     offset: 0,
     nameSearchQuery: "staging-bot",
-    ownedByTeams: ["ownedByTeams"],
-    isExpired: true,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"name\",\"op\":\"STRING_CONTAINS\",\"value\":\"bot\"}]}"
 });
 while (page.hasNextPage()) {
@@ -1970,7 +1956,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.VirtualAccountsListRequest` 
+**request:** `TrueFoundry.ListVirtualAccountsRequest` 
     
 </dd>
 </dl>
@@ -2489,8 +2475,7 @@ List clusters the caller can read.
 ```typescript
 const pageableResponse = await client.clusters.list({
     limit: 10,
-    offset: 0,
-    attributes: ["attributes"]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -2499,8 +2484,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.clusters.list({
     limit: 10,
-    offset: 0,
-    attributes: ["attributes"]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -2523,7 +2507,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ClustersListRequest` 
+**request:** `TrueFoundry.ListClustersRequest` 
     
 </dd>
 </dl>
@@ -2772,8 +2756,7 @@ List addons installed on the cluster.
 ```typescript
 await client.clusters.getAddons("id", {
     limit: 10,
-    offset: 0,
-    attributes: ["attributes"]
+    offset: 0
 });
 
 ```
@@ -2798,7 +2781,7 @@ await client.clusters.getAddons("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ClustersGetAddonsRequest` 
+**request:** `TrueFoundry.GetAddonsClustersRequest` 
     
 </dd>
 </dl>
@@ -2911,22 +2894,7 @@ List applications the caller can read.
 ```typescript
 const pageableResponse = await client.applications.list({
     limit: 10,
-    offset: 0,
-    applicationId: "applicationId",
-    workspaceId: "workspaceId",
-    applicationName: "applicationName",
-    fqn: "fqn",
-    workspaceFqn: "workspaceFqn",
-    applicationType: "async-service",
-    nameSearchQuery: "nameSearchQuery",
-    environmentId: "environmentId",
-    clusterId: "clusterId",
-    applicationSetId: "applicationSetId",
-    paused: true,
-    deviceTypeFilter: "cpu",
-    lastDeployedBySubjects: "lastDeployedBySubjects",
-    lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -2935,22 +2903,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.applications.list({
     limit: 10,
-    offset: 0,
-    applicationId: "applicationId",
-    workspaceId: "workspaceId",
-    applicationName: "applicationName",
-    fqn: "fqn",
-    workspaceFqn: "workspaceFqn",
-    applicationType: "async-service",
-    nameSearchQuery: "nameSearchQuery",
-    environmentId: "environmentId",
-    clusterId: "clusterId",
-    applicationSetId: "applicationSetId",
-    paused: true,
-    deviceTypeFilter: "cpu",
-    lastDeployedBySubjects: "lastDeployedBySubjects",
-    lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -2973,7 +2926,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplicationsListRequest` 
+**request:** `TrueFoundry.ListApplicationsRequest` 
     
 </dd>
 </dl>
@@ -3383,7 +3336,7 @@ await client.applications.scaleToOriginal("id");
 </dl>
 </details>
 
-<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">cancelDeployment</a>(id, deploymentId) -> TrueFoundry.ApplicationsCancelDeploymentResponse</code></summary>
+<details><summary><code>client.applications.<a href="/src/api/resources/applications/client/Client.ts">cancelDeployment</a>(id, deploymentId) -> TrueFoundry.CancelDeploymentApplicationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3528,7 +3481,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ApplicationVersionsListRequest` 
+**request:** `TrueFoundry.ListApplicationVersionsRequest` 
     
 </dd>
 </dl>
@@ -3649,13 +3602,7 @@ List Job Runs for provided Job Id. Filter the data based on parameters passed in
 ```typescript
 const pageableResponse = await client.jobs.listRuns("jobId", {
     limit: 10,
-    offset: 0,
-    searchPrefix: "searchPrefix",
-    sortBy: "startTime",
-    order: "asc",
-    triggeredBy: ["triggeredBy"],
-    status: ["CREATED"],
-    versionNumbers: [1.1]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -3664,13 +3611,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.jobs.listRuns("jobId", {
     limit: 10,
-    offset: 0,
-    searchPrefix: "searchPrefix",
-    sortBy: "startTime",
-    order: "asc",
-    triggeredBy: ["triggeredBy"],
-    status: ["CREATED"],
-    versionNumbers: [1.1]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -3701,7 +3642,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.JobsListRunsRequest` 
+**request:** `TrueFoundry.ListRunsJobsRequest` 
     
 </dd>
 </dl>
@@ -3972,7 +3913,7 @@ await client.jobs.terminate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.JobsTerminateRequest` 
+**request:** `TrueFoundry.TerminateJobsRequest` 
     
 </dd>
 </dl>
@@ -4023,11 +3964,7 @@ List workspaces the caller can read.
 const pageableResponse = await client.workspaces.list({
     limit: 10,
     offset: 0,
-    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-    name: "name",
-    fqn: "fqn",
-    includeCluster: true,
-    attributes: ["attributes"]
+    clusterId: "jqfwg345gi25n5ju2yz5iz6m"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -4037,11 +3974,7 @@ for await (const item of pageableResponse) {
 let page = await client.workspaces.list({
     limit: 10,
     offset: 0,
-    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-    name: "name",
-    fqn: "fqn",
-    includeCluster: true,
-    attributes: ["attributes"]
+    clusterId: "jqfwg345gi25n5ju2yz5iz6m"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4064,7 +3997,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.WorkspacesListRequest` 
+**request:** `TrueFoundry.ListWorkspacesRequest` 
     
 </dd>
 </dl>
@@ -4183,8 +4116,7 @@ Search workspaces using a structured filter expression. Return a paginated list 
 const pageableResponse = await client.workspaces.search({
     limit: 10,
     offset: 0,
-    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
-    includeCluster: true
+    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -4194,8 +4126,7 @@ for await (const item of pageableResponse) {
 let page = await client.workspaces.search({
     limit: 10,
     offset: 0,
-    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
-    includeCluster: true
+    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4218,7 +4149,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.WorkspacesSearchRequest` 
+**request:** `TrueFoundry.SearchWorkspacesRequest` 
     
 </dd>
 </dl>
@@ -4426,7 +4357,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.EnvironmentsListRequest` 
+**request:** `TrueFoundry.ListEnvironmentsRequest` 
     
 </dd>
 </dl>
@@ -4809,9 +4740,7 @@ Delete the secret and all its versions permanently.
 <dd>
 
 ```typescript
-await client.secrets.delete("id", {
-    forceDelete: true
-});
+await client.secrets.delete("id");
 
 ```
 </dd>
@@ -4835,7 +4764,7 @@ await client.secrets.delete("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.SecretsDeleteRequest` 
+**request:** `TrueFoundry.DeleteSecretsRequest` 
     
 </dd>
 </dl>
@@ -4885,10 +4814,7 @@ List secret groups the caller has access to, along with associated secrets for e
 ```typescript
 const pageableResponse = await client.secretGroups.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    search: "search",
-    attributes: ["attributes"]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -4897,10 +4823,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.secretGroups.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    search: "search",
-    attributes: ["attributes"]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -4923,7 +4846,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.SecretGroupsListRequest` 
+**request:** `TrueFoundry.ListSecretGroupsRequest` 
     
 </dd>
 </dl>
@@ -5251,9 +5174,7 @@ Delete the secret group and all its associated secrets and secret versions perma
 <dd>
 
 ```typescript
-await client.secretGroups.delete("id", {
-    forceDelete: true
-});
+await client.secretGroups.delete("id");
 
 ```
 </dd>
@@ -5277,7 +5198,7 @@ await client.secretGroups.delete("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.SecretGroupsDeleteRequest` 
+**request:** `TrueFoundry.DeleteSecretGroupsRequest` 
     
 </dd>
 </dl>
@@ -5325,14 +5246,7 @@ Get events for an application, filtered by pod names, job run, or time range.
 <dd>
 
 ```typescript
-await client.events.get({
-    startTs: "startTs",
-    endTs: "endTs",
-    applicationId: "applicationId",
-    applicationFqn: "applicationFqn",
-    podNames: ["podNames"],
-    jobRunName: "jobRunName"
-});
+await client.events.get();
 
 ```
 </dd>
@@ -5348,7 +5262,7 @@ await client.events.get({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.EventsGetRequest` 
+**request:** `TrueFoundry.GetEventsRequest` 
     
 </dd>
 </dl>
@@ -5396,13 +5310,7 @@ Get alerts for a given application or cluster filtered by start and end timestam
 <dd>
 
 ```typescript
-await client.alerts.list({
-    startTs: "startTs",
-    endTs: "endTs",
-    clusterId: "clusterId",
-    applicationId: "applicationId",
-    alertStatus: "firing"
-});
+await client.alerts.list();
 
 ```
 </dd>
@@ -5418,7 +5326,7 @@ await client.alerts.list({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.AlertsListRequest` 
+**request:** `TrueFoundry.ListAlertsRequest` 
     
 </dd>
 </dl>
@@ -5468,11 +5376,7 @@ List all Agents for a tenant.
 ```typescript
 const pageableResponse = await client.agents.list({
     limit: 10,
-    offset: 0,
-    name: "name",
-    namePrefix: "namePrefix",
-    type: "remote-agent",
-    attributes: ["attributes"]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -5481,11 +5385,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.agents.list({
     limit: 10,
-    offset: 0,
-    name: "name",
-    namePrefix: "namePrefix",
-    type: "remote-agent",
-    attributes: ["attributes"]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -5508,7 +5408,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.AgentsListRequest` 
+**request:** `TrueFoundry.ListAgentsRequest` 
     
 </dd>
 </dl>
@@ -5760,8 +5660,7 @@ List Agent Versions for the provided agent id
 ```typescript
 const pageableResponse = await client.agentVersions.list({
     limit: 10,
-    offset: 0,
-    id: "id"
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -5770,8 +5669,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.agentVersions.list({
     limit: 10,
-    offset: 0,
-    id: "id"
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -5794,7 +5692,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.AgentVersionsListRequest` 
+**request:** `TrueFoundry.ListAgentVersionsRequest` 
     
 </dd>
 </dl>
@@ -5970,11 +5868,7 @@ List prompts with optional filtering by FQN, ML Repo, or name.
 ```typescript
 const pageableResponse = await client.prompts.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    includeEmptyPrompts: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -5983,11 +5877,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.prompts.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    includeEmptyPrompts: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6010,7 +5900,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.PromptsListRequest` 
+**request:** `TrueFoundry.ListPromptsRequest` 
     
 </dd>
 </dl>
@@ -6134,13 +6024,7 @@ List prompt versions with optional filtering by tag, FQN, prompt ID, ML Repo, na
 ```typescript
 const pageableResponse = await client.promptVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    promptId: "prompt_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -6149,13 +6033,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.promptVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    promptId: "prompt_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6178,7 +6056,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.PromptVersionsListRequest` 
+**request:** `TrueFoundry.ListPromptVersionsRequest` 
     
 </dd>
 </dl>
@@ -6546,12 +6424,7 @@ List artifacts with optional filtering by FQN, ML Repo, name, or run ID.
 ```typescript
 const pageableResponse = await client.artifacts.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    runId: "run_id",
-    includeEmptyArtifacts: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -6560,12 +6433,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.artifacts.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    runId: "run_id",
-    includeEmptyArtifacts: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6588,7 +6456,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ArtifactsListRequest` 
+**request:** `TrueFoundry.ListArtifactsRequest` 
     
 </dd>
 </dl>
@@ -6712,16 +6580,7 @@ List artifact versions with optional filtering by tag, FQN, artifact ID, ML Repo
 ```typescript
 const pageableResponse = await client.artifactVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    artifactId: "artifact_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -6730,16 +6589,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.artifactVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    artifactId: "artifact_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -6762,7 +6612,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ArtifactVersionsListRequest` 
+**request:** `TrueFoundry.ListArtifactVersionsRequest` 
     
 </dd>
 </dl>
@@ -7482,9 +7332,7 @@ List ML Repos with optional filtering by name.
 ```typescript
 const pageableResponse = await client.mlRepos.list({
     limit: 10,
-    offset: 0,
-    name: "name",
-    attributes: ["attributes"]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -7493,9 +7341,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.mlRepos.list({
     limit: 10,
-    offset: 0,
-    name: "name",
-    attributes: ["attributes"]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -7518,7 +7364,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.MlReposListRequest` 
+**request:** `TrueFoundry.ListMlReposRequest` 
     
 </dd>
 </dl>
@@ -7641,10 +7487,7 @@ List data directories with optional filtering by FQN, ML Repo, or name.
 ```typescript
 const pageableResponse = await client.dataDirectories.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name"
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -7653,10 +7496,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.dataDirectories.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name"
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -7679,7 +7519,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.DataDirectoriesListRequest` 
+**request:** `TrueFoundry.ListDataDirectoriesRequest` 
     
 </dd>
 </dl>
@@ -8143,9 +7983,7 @@ Delete a data directory, optionally including its contents.
 <dd>
 
 ```typescript
-await client.dataDirectories.delete("id", {
-    deleteContents: true
-});
+await client.dataDirectories.delete("id");
 
 ```
 </dd>
@@ -8169,7 +8007,7 @@ await client.dataDirectories.delete("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.DataDirectoriesDeleteRequest` 
+**request:** `TrueFoundry.DeleteDataDirectoriesRequest` 
     
 </dd>
 </dl>
@@ -8581,7 +8419,7 @@ await client.runs.getMetricHistory("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.RunsGetMetricHistoryRequest` 
+**request:** `TrueFoundry.GetMetricHistoryRunsRequest` 
     
 </dd>
 </dl>
@@ -9195,12 +9033,7 @@ List models with optional filtering by FQN, ML Repo, name, or run ID.
 ```typescript
 const pageableResponse = await client.models.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    runId: "run_id",
-    includeEmptyModels: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9209,12 +9042,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.models.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    runId: "run_id",
-    includeEmptyModels: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -9237,7 +9065,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ModelsListRequest` 
+**request:** `TrueFoundry.ListModelsRequest` 
     
 </dd>
 </dl>
@@ -9361,16 +9189,7 @@ List model versions with optional filtering by tag, FQN, model ID, ML Repo, name
 ```typescript
 const pageableResponse = await client.modelVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    modelId: "model_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9379,16 +9198,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.modelVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    modelId: "model_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -9411,7 +9221,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.ModelVersionsListRequest` 
+**request:** `TrueFoundry.ListModelVersionsRequest` 
     
 </dd>
 </dl>
@@ -9654,21 +9464,7 @@ Get runtime logs (stdout/stderr) emitted by the pods of a deployed application.
 await client.logs.get({
     startTs: "1779262323000000000",
     endTs: "1779348723000000000",
-    limit: 1,
-    direction: "asc",
-    numLogsToIgnore: 1,
-    applicationId: "applicationId",
-    applicationFqn: "applicationFqn",
-    deploymentId: "deploymentId",
-    jobRunName: "jobRunName",
-    podName: "podName",
-    containerName: "containerName",
-    podNames: ["podNames"],
-    podNamesRegex: "podNamesRegex",
-    searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
-    searchString: "searchString",
-    searchType: "regex",
-    searchOperator: "equal"
+    searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]"
 });
 
 ```
@@ -9685,7 +9481,7 @@ await client.logs.get({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.LogsGetRequest` 
+**request:** `TrueFoundry.GetLogsRequest` 
     
 </dd>
 </dl>
@@ -9861,11 +9657,7 @@ List agent skills with optional filtering by FQN, ML Repo, or name.
 ```typescript
 const pageableResponse = await client.agentSkills.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    includeEmptyAgentSkills: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -9874,11 +9666,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.agentSkills.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    includeEmptyAgentSkills: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -9901,7 +9689,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.AgentSkillsListRequest` 
+**request:** `TrueFoundry.ListAgentSkillsRequest` 
     
 </dd>
 </dl>
@@ -10027,12 +9815,7 @@ List agent skill versions with optional filtering by FQN, agent skill ID, ML Rep
 ```typescript
 const pageableResponse = await client.agentSkillVersions.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    agentSkillId: "agent_skill_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -10041,12 +9824,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.agentSkillVersions.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    agentSkillId: "agent_skill_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -10069,7 +9847,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.AgentSkillVersionsListRequest` 
+**request:** `TrueFoundry.ListAgentSkillVersionsRequest` 
     
 </dd>
 </dl>
@@ -10381,7 +10159,7 @@ await client.internal.aiGateway.getGatewayConfig("gateway-rate-limiting-config")
 <dl>
 <dd>
 
-**type:** `TrueFoundry.AiGatewayGetGatewayConfigRequestType` — The type of gateway configuration to retrieve or delete.
+**type:** `TrueFoundry.GetGatewayConfigAiGatewayRequestType` — The type of gateway configuration to retrieve or delete.
     
 </dd>
 </dl>
@@ -10759,10 +10537,7 @@ Generate deployment endpoint based on the provided query parameters.
 await client.internal.deployments.getSuggestedEndpoint({
     applicationType: "async-service",
     applicationName: "applicationName",
-    workspaceId: "workspaceId",
-    baseDomain: "baseDomain",
-    port: "port",
-    preferWildcard: true
+    workspaceId: "workspaceId"
 });
 
 ```
@@ -10779,7 +10554,7 @@ await client.internal.deployments.getSuggestedEndpoint({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.DeploymentsGetSuggestedEndpointRequest` 
+**request:** `TrueFoundry.internal.GetSuggestedEndpointDeploymentsRequest` 
     
 </dd>
 </dl>
@@ -10827,9 +10602,7 @@ Promote an application rollout for canary and blue-green.
 <dd>
 
 ```typescript
-await client.internal.applications.promoteRollout("id", {
-    full: true
-});
+await client.internal.applications.promoteRollout("id");
 
 ```
 </dd>
@@ -10853,7 +10626,7 @@ await client.internal.applications.promoteRollout("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.ApplicationsPromoteRolloutRequest` 
+**request:** `TrueFoundry.internal.PromoteRolloutApplicationsRequest` 
     
 </dd>
 </dl>
@@ -10900,9 +10673,7 @@ Get the pod template hash to deployment version map for a specific application.
 <dd>
 
 ```typescript
-await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
-    podTemplateHashes: "podTemplateHashes"
-});
+await client.internal.applications.getPodTemplateHashToDeploymentVersion("id");
 
 ```
 </dd>
@@ -10926,7 +10697,7 @@ await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest` 
+**request:** `TrueFoundry.internal.GetPodTemplateHashToDeploymentVersionApplicationsRequest` 
     
 </dd>
 </dl>
@@ -10976,8 +10747,6 @@ List metric charts available for an application.
 ```typescript
 await client.internal.metrics.getCharts("workspaceId", {
     applicationId: "applicationId",
-    startTs: "startTs",
-    endTs: "endTs",
     filterEntity: "application",
     filterQuery: "{\"pod\":\"my-app-abc123-xyz\"}"
 });
@@ -11004,7 +10773,7 @@ await client.internal.metrics.getCharts("workspaceId", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.MetricsGetChartsRequest` 
+**request:** `TrueFoundry.internal.GetChartsMetricsRequest` 
     
 </dd>
 </dl>
@@ -11157,18 +10926,7 @@ List artifact versions with internal metadata, optionally including model versio
 ```typescript
 const pageableResponse = await client.internal.artifactVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    artifactId: "artifact_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true,
-    includeModelVersions: true,
-    artifactTypes: ["artifact_types"]
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -11177,18 +10935,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.internal.artifactVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    artifactId: "artifact_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true,
-    includeModelVersions: true,
-    artifactTypes: ["artifact_types"]
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -11211,7 +10958,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.ArtifactVersionsListRequest` 
+**request:** `TrueFoundry.internal.ListArtifactVersionsRequest` 
     
 </dd>
 </dl>
@@ -11326,10 +11073,7 @@ Get docker registry credentials for building and pushing an image.
 <dd>
 
 ```typescript
-await client.internal.dockerRegistries.getCredentials({
-    fqn: "fqn",
-    clusterId: "clusterId"
-});
+await client.internal.dockerRegistries.getCredentials();
 
 ```
 </dd>
@@ -11345,7 +11089,7 @@ await client.internal.dockerRegistries.getCredentials({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.DockerRegistriesGetCredentialsRequest` 
+**request:** `TrueFoundry.internal.GetCredentialsDockerRegistriesRequest` 
     
 </dd>
 </dl>
@@ -11366,7 +11110,7 @@ await client.internal.dockerRegistries.getCredentials({
 </details>
 
 ## Internal Workflows
-<details><summary><code>client.internal.workflows.<a href="/src/api/resources/internal/resources/workflows/client/Client.ts">executeWorkflow</a>(applicationId, { ...params }) -> TrueFoundry.WorkflowsExecuteWorkflowResponse</code></summary>
+<details><summary><code>client.internal.workflows.<a href="/src/api/resources/internal/resources/workflows/client/Client.ts">executeWorkflow</a>(applicationId, { ...params }) -> TrueFoundry.ExecuteWorkflowWorkflowsResponse</code></summary>
 <dl>
 <dd>
 
@@ -11468,10 +11212,7 @@ Get logs emitted by the image build and deploy pipeline for a specific build of 
 await client.internal.buildLogs.get("pipelineRunName", {
     startTs: "1635467890123456789",
     endTs: "1635467891123456789",
-    limit: "limit",
-    direction: "direction",
-    filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}",
-    numLogsToIgnore: 1.1
+    filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}"
 });
 
 ```
@@ -11496,7 +11237,7 @@ await client.internal.buildLogs.get("pipelineRunName", {
 <dl>
 <dd>
 
-**request:** `TrueFoundry.internal.BuildLogsGetRequest` 
+**request:** `TrueFoundry.internal.GetBuildLogsRequest` 
     
 </dd>
 </dl>

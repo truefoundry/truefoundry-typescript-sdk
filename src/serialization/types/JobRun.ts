@@ -12,19 +12,19 @@ export const JobRun: core.serialization.ObjectSchema<serializers.JobRun.Raw, Tru
         "applicationName": core.serialization.string(),
         "deploymentVersion": core.serialization.string(),
         "createdAt": core.serialization.number(),
-        "endTime": core.serialization.number().optional(),
-        "duration": core.serialization.number().optional(),
+        "endTime": core.serialization.number().optionalNullable(),
+        "duration": core.serialization.number().optionalNullable(),
         "command": core.serialization.string(),
         "totalRetries": core.serialization.number(),
-        "error": core.serialization.string().optional(),
+        "error": core.serialization.string().optionalNullable(),
         "status": JobRunStatus,
-        "triggeredBy": core.serialization.string().optional(),
-        "triggeredBySubject": Subject.optional(),
-        "exitCode": core.serialization.number().optional(),
-        "sparkUi": core.serialization.string().optional(),
-        "applicationId": core.serialization.string().optional(),
-        "deploymentId": core.serialization.string().optional(),
-        "tenantName": core.serialization.string().optional()
+        "triggeredBy": core.serialization.string().optionalNullable(),
+        "triggeredBySubject": Subject.optionalNullable(),
+        "exitCode": core.serialization.number().optionalNullable(),
+        "sparkUi": core.serialization.string().optionalNullable(),
+        "applicationId": core.serialization.string().optionalNullable(),
+        "deploymentId": core.serialization.string().optionalNullable(),
+        "tenantName": core.serialization.string().optionalNullable()
     });
 
 export declare namespace JobRun {
@@ -34,18 +34,18 @@ export declare namespace JobRun {
         applicationName: string;
         deploymentVersion: string;
         createdAt: number;
-        endTime?: number | null;
-        duration?: number | null;
+        endTime?: (number | null | undefined) | null;
+        duration?: (number | null | undefined) | null;
         command: string;
         totalRetries: number;
-        error?: string | null;
+        error?: (string | null | undefined) | null;
         status: JobRunStatus.Raw;
-        triggeredBy?: string | null;
-        triggeredBySubject?: Subject.Raw | null;
-        exitCode?: number | null;
-        sparkUi?: string | null;
-        applicationId?: string | null;
-        deploymentId?: string | null;
-        tenantName?: string | null;
+        triggeredBy?: (string | null | undefined) | null;
+        triggeredBySubject?: (Subject.Raw | null | undefined) | null;
+        exitCode?: (number | null | undefined) | null;
+        sparkUi?: (string | null | undefined) | null;
+        applicationId?: (string | null | undefined) | null;
+        deploymentId?: (string | null | undefined) | null;
+        tenantName?: (string | null | undefined) | null;
     }
 }

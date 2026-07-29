@@ -12,10 +12,10 @@ export const Cluster: core.serialization.ObjectSchema<serializers.Cluster.Raw, T
         "manifest": ClusterManifest,
         "tenantName": core.serialization.string(),
         "accountId": core.serialization.string(),
-        "createdBySubject": Subject.optional(),
+        "createdBySubject": Subject.optionalNullable(),
         "createdAt": core.serialization.date(),
         "updatedAt": core.serialization.date(),
-        "createdBy": core.serialization.string().optional()
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Cluster {
@@ -25,9 +25,9 @@ export declare namespace Cluster {
         manifest: ClusterManifest.Raw;
         tenantName: string;
         accountId: string;
-        createdBySubject?: Subject.Raw | null;
+        createdBySubject?: (Subject.Raw | null | undefined) | null;
         createdAt: string;
         updatedAt: string;
-        createdBy?: string | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

@@ -5,19 +5,19 @@ import * as core from "../../../../../core/index.js";
 import * as serializers from "../../../../index.js";
 
 export const ListSecretsRequest: core.serialization.Schema<serializers.ListSecretsRequest.Raw, TrueFoundry.ListSecretsRequest> = core.serialization.object({
-        "limit": core.serialization.number().optional(),
-        "offset": core.serialization.number().optional(),
-        "secretFqns": core.serialization.list(core.serialization.string()).optional(),
-        "secretGroupId": core.serialization.string().optional(),
-        "withValue": core.serialization.boolean().optional()
+        "limit": core.serialization.number().optionalNullable(),
+        "offset": core.serialization.number().optionalNullable(),
+        "secretFqns": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "secretGroupId": core.serialization.string().optionalNullable(),
+        "withValue": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ListSecretsRequest {
     export interface Raw {
-        limit?: number | null;
-        offset?: number | null;
-        secretFqns?: string[] | null;
-        secretGroupId?: string | null;
-        withValue?: boolean | null;
+        limit?: (number | null | undefined) | null;
+        offset?: (number | null | undefined) | null;
+        secretFqns?: (string[] | null | undefined) | null;
+        secretGroupId?: (string | null | undefined) | null;
+        withValue?: (boolean | null | undefined) | null;
     }
 }

@@ -20,13 +20,7 @@ describe("AlertsClient", () => {
 
         
                         
-                                const response = await client.alerts.list({
-    startTs: "startTs",
-    endTs: "endTs",
-    clusterId: "clusterId",
-    applicationId: "applicationId",
-    alertStatus: "firing"
-});
+                                const response = await client.alerts.list();
                                 expect(response).toEqual({
     data: {
         "key": [{

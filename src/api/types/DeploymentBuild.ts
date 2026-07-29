@@ -3,18 +3,18 @@
 import * as TrueFoundry from "../index.js";
 
 export interface DeploymentBuild {
-    id?: string;
-    deploymentId?: string;
-    componentName?: string;
-    build?: TrueFoundry.BuildInfo;
-    buildId?: string;
-    imageUri?: string;
-    name?: string;
-    status?: TrueFoundry.BuildStatus;
-    getLogsUrl?: string;
-    tailLogsUrl?: string;
-    logsStartTs?: string;
-    metadata?: Record<string, unknown>;
-    createdAt?: Date;
-    updatedAt?: Date;
+    id?: string | null;
+    deploymentId?: string | null;
+    componentName?: string | null;
+    build?: TrueFoundry.BuildInfo | null;
+    buildId?: string | null;
+    imageUri?: string | null;
+    name?: string | null;
+    status?: TrueFoundry.BuildStatus | null;
+    getLogsUrl?: string | null;
+    tailLogsUrl?: string | null;
+    logsStartTs?: string | null;
+    metadata?: Record<string, unknown> | null;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
 }

@@ -14,10 +14,10 @@ export interface Workspace {
     createdAt: Date;
     updatedAt: Date;
     /** System-generated ID of the environment this workspace belongs to. */
-    environmentId?: string;
+    environmentId?: string | null;
     manifest: TrueFoundry.WorkspaceManifest;
     /** System-generated ID of the account. */
     accountId: string;
-    isSystemWs?: boolean;
-    createdBy?: string;
+    isSystemWs?: boolean | null;
+    createdBy?: string | null;
 }

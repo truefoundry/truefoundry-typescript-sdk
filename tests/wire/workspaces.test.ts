@@ -51,11 +51,7 @@ describe("WorkspacesClient", () => {
                 const page = await client.workspaces.list({
     limit: 10,
     offset: 0,
-    clusterId: "jqfwg345gi25n5ju2yz5iz6m",
-    name: "name",
-    fqn: "fqn",
-    includeCluster: true,
-    attributes: ["attributes"]
+    clusterId: "jqfwg345gi25n5ju2yz5iz6m"
 });
                 
                             expect(expected.data).toEqual(page.data);
@@ -285,8 +281,7 @@ describe("WorkspacesClient", () => {
                 const page = await client.workspaces.search({
     limit: 10,
     offset: 0,
-    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]",
-    includeCluster: true
+    filter: "[{\"type\":\"name\",\"operator\":\"STRING_CONTAINS\",\"value\":\"prod\"}]"
 });
                 
                             expect(expected.data).toEqual(page.data);

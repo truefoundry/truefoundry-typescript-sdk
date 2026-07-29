@@ -20,14 +20,7 @@ describe("EventsClient", () => {
 
         
                         
-                                const response = await client.events.get({
-    startTs: "startTs",
-    endTs: "endTs",
-    applicationId: "applicationId",
-    applicationFqn: "applicationFqn",
-    podNames: ["podNames"],
-    jobRunName: "jobRunName"
-});
+                                const response = await client.events.get();
                                 expect(response).toEqual({
     data: [{
             name: "name",

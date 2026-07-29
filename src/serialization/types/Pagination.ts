@@ -6,14 +6,14 @@ import * as serializers from "../index.js";
 
 export const Pagination: core.serialization.ObjectSchema<serializers.Pagination.Raw, TrueFoundry.Pagination> = core.serialization.object({
         "total": core.serialization.number(),
-        "offset": core.serialization.number().optional(),
-        "limit": core.serialization.number().optional()
+        "offset": core.serialization.number().optionalNullable(),
+        "limit": core.serialization.number().optionalNullable()
     });
 
 export declare namespace Pagination {
     export interface Raw {
         total: number;
-        offset?: number | null;
-        limit?: number | null;
+        offset?: (number | null | undefined) | null;
+        limit?: (number | null | undefined) | null;
     }
 }

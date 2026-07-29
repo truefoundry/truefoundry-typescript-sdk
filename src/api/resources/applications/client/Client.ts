@@ -29,7 +29,7 @@ export class ApplicationsClient {
     /**
      * List applications the caller can read.
      *
-     * @param {TrueFoundry.ApplicationsListRequest} request
+     * @param {TrueFoundry.ListApplicationsRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -37,26 +37,11 @@ export class ApplicationsClient {
      * @example
      *     await client.applications.list({
      *         limit: 10,
-     *         offset: 0,
-     *         applicationId: "applicationId",
-     *         workspaceId: "workspaceId",
-     *         applicationName: "applicationName",
-     *         fqn: "fqn",
-     *         workspaceFqn: "workspaceFqn",
-     *         applicationType: "async-service",
-     *         nameSearchQuery: "nameSearchQuery",
-     *         environmentId: "environmentId",
-     *         clusterId: "clusterId",
-     *         applicationSetId: "applicationSetId",
-     *         paused: true,
-     *         deviceTypeFilter: "cpu",
-     *         lastDeployedBySubjects: "lastDeployedBySubjects",
-     *         lifecycleStage: "active",
-     *         isRecommendationPresentAndVisible: true
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.ApplicationsListRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.Page<TrueFoundry.Application, TrueFoundry.ListApplicationsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ApplicationsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListApplicationsResponse>> => { const { limit = 100, offset = 0, applicationId, workspaceId, applicationName, fqn, workspaceFqn, applicationType, nameSearchQuery, environmentId, clusterId, applicationSetId, paused, deviceTypeFilter, lastDeployedBySubjects, lifecycleStage, isRecommendationPresentAndVisible } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListApplicationsRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.Page<TrueFoundry.Application, TrueFoundry.ListApplicationsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListApplicationsRequest): Promise<core.WithRawResponse<TrueFoundry.ListApplicationsResponse>> => { const { limit = 100, offset = 0, applicationId, workspaceId, applicationName, fqn, workspaceFqn, applicationType, nameSearchQuery, environmentId, clusterId, applicationSetId, paused, deviceTypeFilter, lastDeployedBySubjects, lifecycleStage, isRecommendationPresentAndVisible } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             applicationId,
@@ -70,9 +55,9 @@ export class ApplicationsClient {
             clusterId,
             applicationSetId,
             paused,
-            deviceTypeFilter: deviceTypeFilter != null ? serializers.ApplicationsListRequestDeviceTypeFilter.jsonOrThrow(deviceTypeFilter, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
+            deviceTypeFilter: deviceTypeFilter !== undefined ? serializers.ListApplicationsRequestDeviceTypeFilter.jsonOrThrow(deviceTypeFilter, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
             lastDeployedBySubjects,
-            lifecycleStage: lifecycleStage != null ? serializers.ApplicationsListRequestLifecycleStage.jsonOrThrow(lifecycleStage, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
+            lifecycleStage: lifecycleStage !== undefined ? serializers.ListApplicationsRequestLifecycleStage.jsonOrThrow(lifecycleStage, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
             isRecommendationPresentAndVisible
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), "api/svc/v1/apps"),
@@ -433,11 +418,11 @@ export class ApplicationsClient {
      * @example
      *     await client.applications.cancelDeployment("id", "deploymentId")
      */
-    public cancelDeployment(id: string, deploymentId: string, requestOptions?: ApplicationsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.ApplicationsCancelDeploymentResponse> {
+    public cancelDeployment(id: string, deploymentId: string, requestOptions?: ApplicationsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.CancelDeploymentApplicationsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__cancelDeployment(id, deploymentId, requestOptions));
     }
 
-    private async __cancelDeployment(id: string, deploymentId: string, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.ApplicationsCancelDeploymentResponse>> {
+    private async __cancelDeployment(id: string, deploymentId: string, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.CancelDeploymentApplicationsResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -452,7 +437,7 @@ export class ApplicationsClient {
             logging: this._options.logging
         });
         if (_response.ok) {
-            return { data: serializers.ApplicationsCancelDeploymentResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
+            return { data: serializers.CancelDeploymentApplicationsResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

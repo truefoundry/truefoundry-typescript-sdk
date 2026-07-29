@@ -29,18 +29,17 @@ export class AgentVersionsClient {
     /**
      * List Agent Versions for the provided agent id
      *
-     * @param {TrueFoundry.AgentVersionsListRequest} request
+     * @param {TrueFoundry.ListAgentVersionsRequest} request
      * @param {AgentVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.agentVersions.list({
      *         limit: 10,
-     *         offset: 0,
-     *         id: "id"
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.AgentVersionsListRequest = {}, requestOptions?: AgentVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.AgentVersion, TrueFoundry.ListAgentVersionsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.AgentVersionsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListAgentVersionsResponse>> => { const { limit = 100, offset = 0, id } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListAgentVersionsRequest = {}, requestOptions?: AgentVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.AgentVersion, TrueFoundry.ListAgentVersionsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListAgentVersionsRequest): Promise<core.WithRawResponse<TrueFoundry.ListAgentVersionsResponse>> => { const { limit = 100, offset = 0, id } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             id

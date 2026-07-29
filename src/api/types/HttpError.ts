@@ -8,7 +8,7 @@ export interface HttpError {
     /** Error Message */
     message: string;
     /** Error code */
-    code?: TrueFoundry.HttpErrorCode;
+    code?: TrueFoundry.HttpErrorCode | null;
     /** Error details */
-    details?: Record<string, unknown>[];
+    details?: Record<string, unknown>[] | null;
 }

@@ -10,9 +10,9 @@ export interface VirtualAccount {
     /** Tenant the virtual account belongs to. */
     tenantName: string;
     /** The manifest defining name, permissions, ownership, and configuration. */
-    manifest?: TrueFoundry.VirtualAccountManifest;
+    manifest?: TrueFoundry.VirtualAccountManifest | null;
     /** System-generated ID of the currently active JWT. */
-    jwtId?: string;
+    jwtId?: string | null;
     /** The subject (user or service account) that created this virtual account. */
     createdBySubject: TrueFoundry.Subject;
     /** Timestamp when the virtual account was created. */
@@ -20,19 +20,19 @@ export interface VirtualAccount {
     /** Timestamp when the virtual account was last updated. */
     updatedAt: Date;
     /** Timestamp when the virtual account was last used to authenticate. */
-    lastAccessedAt?: Date;
+    lastAccessedAt?: Date | null;
     /** Whether the virtual account token has expired. */
-    isExpired?: boolean;
+    isExpired?: boolean | null;
     /** JWT tokens associated with this virtual account. */
-    jwts?: TrueFoundry.Jwt[];
+    jwts?: TrueFoundry.Jwt[] | null;
     /** ID of the account that owns this virtual account. */
     accountId: string;
     /** Additional metadata for the virtual account. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | null;
     /** Role IDs assigned to this virtual account. */
-    roleIds?: string[];
+    roleIds?: string[] | null;
     /** Roles with their associated resources. */
-    rolesWithResource?: TrueFoundry.RoleWithResource[];
-    createdBy?: string;
-    nextScheduledRotation?: string;
+    rolesWithResource?: TrueFoundry.RoleWithResource[] | null;
+    createdBy?: string | null;
+    nextScheduledRotation?: string | null;
 }

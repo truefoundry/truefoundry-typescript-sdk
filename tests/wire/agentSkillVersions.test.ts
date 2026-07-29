@@ -58,12 +58,7 @@ describe("AgentSkillVersionsClient", () => {
 };
                 const page = await client.agentSkillVersions.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    agentSkillId: "agent_skill_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

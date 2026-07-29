@@ -113,22 +113,7 @@ describe("ApplicationsClient", () => {
 };
                 const page = await client.applications.list({
     limit: 10,
-    offset: 0,
-    applicationId: "applicationId",
-    workspaceId: "workspaceId",
-    applicationName: "applicationName",
-    fqn: "fqn",
-    workspaceFqn: "workspaceFqn",
-    applicationType: "async-service",
-    nameSearchQuery: "nameSearchQuery",
-    environmentId: "environmentId",
-    clusterId: "clusterId",
-    applicationSetId: "applicationSetId",
-    paused: true,
-    deviceTypeFilter: "cpu",
-    lastDeployedBySubjects: "lastDeployedBySubjects",
-    lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

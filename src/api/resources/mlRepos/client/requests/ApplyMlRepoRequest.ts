@@ -20,5 +20,5 @@ export interface ApplyMlRepoRequest {
     /** MLRepo manifest */
     manifest: TrueFoundry.MlRepoManifest;
     /** Validate the manifest and collaborators without persisting changes or updating artifact location in the database */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

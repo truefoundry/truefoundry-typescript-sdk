@@ -6,16 +6,16 @@ import * as serializers from "../index.js";
 
 export const Metric: core.serialization.ObjectSchema<serializers.Metric.Raw, TrueFoundry.Metric> = core.serialization.object({
         "key": core.serialization.string(),
-        "value": core.serialization.number().optional(),
-        "timestamp": core.serialization.number().optional(),
-        "step": core.serialization.number().optional()
+        "value": core.serialization.number().optionalNullable(),
+        "timestamp": core.serialization.number().optionalNullable(),
+        "step": core.serialization.number().optionalNullable()
     });
 
 export declare namespace Metric {
     export interface Raw {
         key: string;
-        value?: number | null;
-        timestamp?: number | null;
-        step?: number | null;
+        value?: (number | null | undefined) | null;
+        timestamp?: (number | null | undefined) | null;
+        step?: (number | null | undefined) | null;
     }
 }

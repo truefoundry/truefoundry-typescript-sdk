@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -29,25 +30,22 @@ export class SecretGroupsClient {
     /**
      * List secret groups the caller has access to, along with associated secrets for each group. Secret values are not included in the response.
      *
-     * @param {TrueFoundry.SecretGroupsListRequest} request
+     * @param {TrueFoundry.ListSecretGroupsRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.secretGroups.list({
      *         limit: 10,
-     *         offset: 0,
-     *         fqn: "fqn",
-     *         search: "search",
-     *         attributes: ["attributes"]
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.SecretGroupsListRequest = {}, requestOptions?: SecretGroupsClient.RequestOptions): Promise<core.Page<TrueFoundry.SecretGroup, TrueFoundry.ListSecretGroupResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.SecretGroupsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListSecretGroupResponse>> => { const { limit = 100, offset = 0, fqn, search, attributes } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListSecretGroupsRequest = {}, requestOptions?: SecretGroupsClient.RequestOptions): Promise<core.Page<TrueFoundry.SecretGroup, TrueFoundry.ListSecretGroupResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListSecretGroupsRequest): Promise<core.WithRawResponse<TrueFoundry.ListSecretGroupResponse>> => { const { limit = 100, offset = 0, fqn, search, attributes } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             fqn,
             search,
-            attributes
+            attributes: attributes !== undefined ? toJson(attributes) : undefined
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), "api/svc/v1/secret-groups"),
             method: "GET",
@@ -319,7 +317,7 @@ export class SecretGroupsClient {
      * Delete the secret group and all its associated secrets and secret versions permanently.
      *
      * @param {string} id - Unique identifier of the secret group.
-     * @param {TrueFoundry.SecretGroupsDeleteRequest} request
+     * @param {TrueFoundry.DeleteSecretGroupsRequest} request
      * @param {SecretGroupsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -327,15 +325,13 @@ export class SecretGroupsClient {
      * @throws {@link TrueFoundry.FailedDependencyError}
      *
      * @example
-     *     await client.secretGroups.delete("id", {
-     *         forceDelete: true
-     *     })
+     *     await client.secretGroups.delete("id")
      */
-    public delete(id: string, request: TrueFoundry.SecretGroupsDeleteRequest = {}, requestOptions?: SecretGroupsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.DeleteSecretGroupResponse> {
+    public delete(id: string, request: TrueFoundry.DeleteSecretGroupsRequest = {}, requestOptions?: SecretGroupsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.DeleteSecretGroupResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
-    private async __delete(id: string, request: TrueFoundry.SecretGroupsDeleteRequest = {}, requestOptions?: SecretGroupsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.DeleteSecretGroupResponse>> {
+    private async __delete(id: string, request: TrueFoundry.DeleteSecretGroupsRequest = {}, requestOptions?: SecretGroupsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.DeleteSecretGroupResponse>> {
         const { forceDelete } = request;
         const _queryParams: Record<string, unknown> = {
             forceDelete

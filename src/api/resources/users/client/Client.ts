@@ -29,19 +29,18 @@ export class UsersClient {
     /**
      * List users in the current tenant.
      *
-     * @param {TrueFoundry.UsersListRequest} request
+     * @param {TrueFoundry.ListUsersRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.users.list({
      *         limit: 10,
      *         offset: 0,
-     *         query: "john@example.com",
-     *         showInvalidUsers: true
+     *         query: "john@example.com"
      *     })
      */
-    public async list(request: TrueFoundry.UsersListRequest = {}, requestOptions?: UsersClient.RequestOptions): Promise<core.Page<TrueFoundry.User, TrueFoundry.ListUsersResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.UsersListRequest): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => { const { limit = 100, offset = 0, query, showInvalidUsers = false } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListUsersRequest = {}, requestOptions?: UsersClient.RequestOptions): Promise<core.Page<TrueFoundry.User, TrueFoundry.ListUsersResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListUsersRequest): Promise<core.WithRawResponse<TrueFoundry.ListUsersResponse>> => { const { limit = 100, offset = 0, query, showInvalidUsers = false } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             query,
@@ -240,7 +239,7 @@ export class UsersClient {
      * Permanently delete a user by ID. The user must not be a collaborator on any resource and must not belong to any team other than "everyone".
      *
      * @param {string} id - System-generated user ID.
-     * @param {TrueFoundry.UsersDeleteRequest} request
+     * @param {TrueFoundry.DeleteUsersRequest} request
      * @param {UsersClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -248,15 +247,13 @@ export class UsersClient {
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.users.delete("jqfwg345gi25n5ju2yz5iz6m", {
-     *         tenantName: "tenantName"
-     *     })
+     *     await client.users.delete("jqfwg345gi25n5ju2yz5iz6m")
      */
-    public delete(id: string, request: TrueFoundry.UsersDeleteRequest = {}, requestOptions?: UsersClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.DeleteUserResponse> {
+    public delete(id: string, request: TrueFoundry.DeleteUsersRequest = {}, requestOptions?: UsersClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.DeleteUserResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
-    private async __delete(id: string, request: TrueFoundry.UsersDeleteRequest = {}, requestOptions?: UsersClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.DeleteUserResponse>> {
+    private async __delete(id: string, request: TrueFoundry.DeleteUsersRequest = {}, requestOptions?: UsersClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.DeleteUserResponse>> {
         const { tenantName } = request;
         const _queryParams: Record<string, unknown> = {
             tenantName

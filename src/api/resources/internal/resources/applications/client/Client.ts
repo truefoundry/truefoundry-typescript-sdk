@@ -30,22 +30,20 @@ export class ApplicationsClient {
      * Promote an application rollout for canary and blue-green.
      *
      * @param {string} id - Unique identifier of the application
-     * @param {TrueFoundry.internal.ApplicationsPromoteRolloutRequest} request
+     * @param {TrueFoundry.internal.PromoteRolloutApplicationsRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      * @throws {@link TrueFoundry.MethodNotAllowedError}
      *
      * @example
-     *     await client.internal.applications.promoteRollout("id", {
-     *         full: true
-     *     })
+     *     await client.internal.applications.promoteRollout("id")
      */
-    public promoteRollout(id: string, request: TrueFoundry.internal.ApplicationsPromoteRolloutRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): core.HttpResponsePromise<void> {
+    public promoteRollout(id: string, request: TrueFoundry.internal.PromoteRolloutApplicationsRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__promoteRollout(id, request, requestOptions));
     }
 
-    private async __promoteRollout(id: string, request: TrueFoundry.internal.ApplicationsPromoteRolloutRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.WithRawResponse<void>> {
+    private async __promoteRollout(id: string, request: TrueFoundry.internal.PromoteRolloutApplicationsRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.WithRawResponse<void>> {
         const { full = false } = request;
         const _queryParams: Record<string, unknown> = {
             full
@@ -86,21 +84,19 @@ export class ApplicationsClient {
      * Get the pod template hash to deployment version map for a specific application.
      *
      * @param {string} id - Unique identifier of the application
-     * @param {TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest} request
+     * @param {TrueFoundry.internal.GetPodTemplateHashToDeploymentVersionApplicationsRequest} request
      * @param {ApplicationsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
      *
      * @example
-     *     await client.internal.applications.getPodTemplateHashToDeploymentVersion("id", {
-     *         podTemplateHashes: "podTemplateHashes"
-     *     })
+     *     await client.internal.applications.getPodTemplateHashToDeploymentVersion("id")
      */
-    public getPodTemplateHashToDeploymentVersion(id: string, request: TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): core.HttpResponsePromise<Record<string, number>> {
+    public getPodTemplateHashToDeploymentVersion(id: string, request: TrueFoundry.internal.GetPodTemplateHashToDeploymentVersionApplicationsRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): core.HttpResponsePromise<Record<string, number>> {
         return core.HttpResponsePromise.fromPromise(this.__getPodTemplateHashToDeploymentVersion(id, request, requestOptions));
     }
 
-    private async __getPodTemplateHashToDeploymentVersion(id: string, request: TrueFoundry.internal.ApplicationsGetPodTemplateHashToDeploymentVersionRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.WithRawResponse<Record<string, number>>> {
+    private async __getPodTemplateHashToDeploymentVersion(id: string, request: TrueFoundry.internal.GetPodTemplateHashToDeploymentVersionApplicationsRequest = {}, requestOptions?: ApplicationsClient.RequestOptions): Promise<core.WithRawResponse<Record<string, number>>> {
         const { podTemplateHashes } = request;
         const _queryParams: Record<string, unknown> = {
             podTemplateHashes

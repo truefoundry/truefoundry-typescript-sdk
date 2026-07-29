@@ -11,39 +11,39 @@ import { Recommendation } from "./Recommendation.js";
 import { Subject } from "./Subject.js";
 
 export const Deployment: core.serialization.ObjectSchema<serializers.Deployment.Raw, TrueFoundry.Deployment> = core.serialization.object({
-        "id": core.serialization.string().optional(),
-        "version": core.serialization.number().optional(),
-        "fqn": core.serialization.string().optional(),
-        "applicationId": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
+        "version": core.serialization.number().optionalNullable(),
+        "fqn": core.serialization.string().optionalNullable(),
+        "applicationId": core.serialization.string().optionalNullable(),
         "manifest": DeploymentManifest,
-        "application": ApplicationSummary.optional(),
+        "application": ApplicationSummary.optionalNullable(),
         "createdBySubject": Subject,
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional(),
-        "deploymentBuilds": core.serialization.list(BuildInfo).optional(),
-        "deploymentStatuses": core.serialization.list(DeploymentStatus).optional(),
-        "currentStatusId": core.serialization.string().optional(),
-        "currentStatus": DeploymentStatus.optional(),
-        "appliedRecommendations": core.serialization.list(Recommendation).optional(),
-        "createdBy": core.serialization.string().optional()
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable(),
+        "deploymentBuilds": core.serialization.list(BuildInfo).optionalNullable(),
+        "deploymentStatuses": core.serialization.list(DeploymentStatus).optionalNullable(),
+        "currentStatusId": core.serialization.string().optionalNullable(),
+        "currentStatus": DeploymentStatus.optionalNullable(),
+        "appliedRecommendations": core.serialization.list(Recommendation).optionalNullable(),
+        "createdBy": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Deployment {
     export interface Raw {
-        id?: string | null;
-        version?: number | null;
-        fqn?: string | null;
-        applicationId?: string | null;
+        id?: (string | null | undefined) | null;
+        version?: (number | null | undefined) | null;
+        fqn?: (string | null | undefined) | null;
+        applicationId?: (string | null | undefined) | null;
         manifest: DeploymentManifest.Raw;
-        application?: ApplicationSummary.Raw | null;
+        application?: (ApplicationSummary.Raw | null | undefined) | null;
         createdBySubject: Subject.Raw;
-        createdAt?: string | null;
-        updatedAt?: string | null;
-        deploymentBuilds?: BuildInfo.Raw[] | null;
-        deploymentStatuses?: DeploymentStatus.Raw[] | null;
-        currentStatusId?: string | null;
-        currentStatus?: DeploymentStatus.Raw | null;
-        appliedRecommendations?: Recommendation.Raw[] | null;
-        createdBy?: string | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
+        deploymentBuilds?: (BuildInfo.Raw[] | null | undefined) | null;
+        deploymentStatuses?: (DeploymentStatus.Raw[] | null | undefined) | null;
+        currentStatusId?: (string | null | undefined) | null;
+        currentStatus?: (DeploymentStatus.Raw | null | undefined) | null;
+        appliedRecommendations?: (Recommendation.Raw[] | null | undefined) | null;
+        createdBy?: (string | null | undefined) | null;
     }
 }

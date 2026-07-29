@@ -9,7 +9,7 @@ export interface ModelManifest extends TrueFoundry.BaseArtifactVersion {
     /** Model Version */
     type: "model-version";
     /** Description */
-    description?: string;
+    description?: string | null;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     versionAlias?: string;
     /** Model Source */

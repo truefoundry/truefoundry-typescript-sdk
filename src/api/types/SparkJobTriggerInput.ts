@@ -2,9 +2,9 @@
 
 export interface SparkJobTriggerInput {
     /** Main Class for Spark Job */
-    mainClass?: string;
+    mainClass?: string | null;
     /** Main Application File for Spark Job */
-    mainApplicationFile?: string;
+    mainApplicationFile?: string | null;
     /** Arguments to pass to the main application file */
-    arguments?: string;
+    arguments?: string | null;
 }

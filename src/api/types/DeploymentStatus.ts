@@ -3,13 +3,13 @@
 import * as TrueFoundry from "../index.js";
 
 export interface DeploymentStatus {
-    id?: string;
-    deploymentId?: string;
-    status?: TrueFoundry.DeploymentStatusValue;
-    state?: Record<string, unknown>;
-    transition?: TrueFoundry.DeploymentTransition;
-    message?: string;
-    retryCount?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+    id?: string | null;
+    deploymentId?: string | null;
+    status?: TrueFoundry.DeploymentStatusValue | null;
+    state?: Record<string, unknown> | null;
+    transition?: TrueFoundry.DeploymentTransition | null;
+    message?: string | null;
+    retryCount?: number | null;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
 }

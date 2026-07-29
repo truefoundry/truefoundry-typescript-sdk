@@ -52,13 +52,7 @@ describe("JobsClient", () => {
 };
                 const page = await client.jobs.listRuns("jobId", {
     limit: 10,
-    offset: 0,
-    searchPrefix: "searchPrefix",
-    sortBy: "startTime",
-    order: "asc",
-    triggeredBy: ["triggeredBy"],
-    status: ["CREATED"],
-    versionNumbers: [1.1]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

@@ -4,21 +4,21 @@ import * as TrueFoundry from "../index.js";
 
 export interface ApplicationSummary {
     /** Unique identifier of the application */
-    id?: string;
+    id?: string | null;
     /** FQN of the application */
-    fqn?: string;
+    fqn?: string | null;
     /** Human-readable application name */
-    name?: string;
+    name?: string | null;
     /** Type of the application */
-    type?: TrueFoundry.ApplicationType;
+    type?: TrueFoundry.ApplicationType | null;
     /** Application metadata including pause state and sync info */
-    metadata?: TrueFoundry.ApplicationMetadata;
+    metadata?: TrueFoundry.ApplicationMetadata | null;
     /** Current lifecycle stage of the application */
     lifecycleStage: TrueFoundry.ApplicationLifecycleStage;
     /** Unique identifier of the workspace this application belongs to */
-    workspaceId?: string;
+    workspaceId?: string | null;
     /** Version number of the currently active deployment */
-    activeVersion?: number;
+    activeVersion?: number | null;
     /** Unique identifier of the application set this application belongs to, if any */
-    applicationSetId?: string;
+    applicationSetId?: string | null;
 }

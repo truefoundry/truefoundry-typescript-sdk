@@ -2,9 +2,9 @@
 
 export interface AddonComponentStatus {
     /** Health status of the addon */
-    healthStatus?: string;
+    healthStatus?: string | null;
     /** Sync status of the addon */
-    syncStatus?: string;
+    syncStatus?: string | null;
     /** Indicates whether the addon is installed */
     installed: boolean;
 }

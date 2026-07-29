@@ -6,7 +6,7 @@ export interface Jwt {
     id: string;
     subjectType: string;
     subjectId: string;
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | null;
     expiry: Date;
     tokenType: TrueFoundry.JwtTokenType;
     createdAt: Date;

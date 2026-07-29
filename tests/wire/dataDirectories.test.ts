@@ -53,10 +53,7 @@ describe("DataDirectoriesClient", () => {
 };
                 const page = await client.dataDirectories.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name"
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);
@@ -350,9 +347,7 @@ describe("DataDirectoriesClient", () => {
 
         
                         
-                                const response = await client.dataDirectories.delete("id", {
-    deleteContents: true
-});
+                                const response = await client.dataDirectories.delete("id");
                                 expect(response).toEqual({});
                               
                     

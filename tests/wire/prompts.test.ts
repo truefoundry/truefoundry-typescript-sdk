@@ -188,11 +188,7 @@ describe("PromptsClient", () => {
 };
                 const page = await client.prompts.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    includeEmptyPrompts: true
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

@@ -23,5 +23,5 @@ export interface CreateOrUpdateAgentRequest {
     /** Agent Manifest */
     manifest: TrueFoundry.AgentManifest;
     /** Validate the manifest and collaborators without persisting or syncing to the gateway store */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

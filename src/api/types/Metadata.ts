@@ -2,5 +2,5 @@
 
 export interface Metadata {
     /** Job Run Name Alias */
-    jobRunNameAlias?: string;
+    jobRunNameAlias?: string | null;
 }

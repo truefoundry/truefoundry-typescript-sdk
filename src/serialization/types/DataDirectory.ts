@@ -15,7 +15,7 @@ export const DataDirectory: core.serialization.ObjectSchema<serializers.DataDire
         "createdAt": core.serialization.property("created_at", core.serialization.date()),
         "updatedAt": core.serialization.property("updated_at", core.serialization.date()),
         "manifest": DataDirectoryManifest,
-        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optional())
+        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optionalNullable())
     });
 
 export declare namespace DataDirectory {
@@ -28,6 +28,6 @@ export declare namespace DataDirectory {
         created_at: string;
         updated_at: string;
         manifest: DataDirectoryManifest.Raw;
-        usage_code_snippet?: string | null;
+        usage_code_snippet?: (string | null | undefined) | null;
     }
 }

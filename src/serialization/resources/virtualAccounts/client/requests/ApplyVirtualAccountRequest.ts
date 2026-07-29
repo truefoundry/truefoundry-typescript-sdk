@@ -7,12 +7,12 @@ import { VirtualAccountManifest } from "../../../../types/VirtualAccountManifest
 
 export const ApplyVirtualAccountRequest: core.serialization.Schema<serializers.ApplyVirtualAccountRequest.Raw, TrueFoundry.ApplyVirtualAccountRequest> = core.serialization.object({
         "manifest": VirtualAccountManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ApplyVirtualAccountRequest {
     export interface Raw {
         manifest: VirtualAccountManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

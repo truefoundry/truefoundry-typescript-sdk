@@ -15,9 +15,9 @@ export interface CreateRunRequest {
     /** Human-readable name of the run. */
     name: string;
     /** Unix timestamp in milliseconds when the run started. Defaults to the current time. */
-    startTime?: number;
+    startTime?: number | null;
     /** Initial tags to set on the run. */
     tags?: TrueFoundry.RunTagInput[];
     /** Description of the run. */
-    description?: string;
+    description?: string | null;
 }

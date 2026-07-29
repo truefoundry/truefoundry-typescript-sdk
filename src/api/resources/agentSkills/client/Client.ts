@@ -123,21 +123,17 @@ export class AgentSkillsClient {
     /**
      * List agent skills with optional filtering by FQN, ML Repo, or name.
      *
-     * @param {TrueFoundry.AgentSkillsListRequest} request
+     * @param {TrueFoundry.ListAgentSkillsRequest} request
      * @param {AgentSkillsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.agentSkills.list({
      *         limit: 10,
-     *         offset: 0,
-     *         fqn: "fqn",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name",
-     *         includeEmptyAgentSkills: true
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.AgentSkillsListRequest = {}, requestOptions?: AgentSkillsClient.RequestOptions): Promise<core.Page<TrueFoundry.AgentSkill, TrueFoundry.ListAgentSkillsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.AgentSkillsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListAgentSkillsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, includeEmptyAgentSkills = true } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListAgentSkillsRequest = {}, requestOptions?: AgentSkillsClient.RequestOptions): Promise<core.Page<TrueFoundry.AgentSkill, TrueFoundry.ListAgentSkillsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListAgentSkillsRequest): Promise<core.WithRawResponse<TrueFoundry.ListAgentSkillsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, includeEmptyAgentSkills = true } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             fqn,

@@ -187,12 +187,7 @@ describe("ModelsClient", () => {
 };
                 const page = await client.models.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    runId: "run_id",
-    includeEmptyModels: true
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -29,23 +30,21 @@ export class TeamsClient {
     /**
      * List teams accessible to the current user.
      *
-     * @param {TrueFoundry.TeamsListRequest} request
+     * @param {TrueFoundry.ListTeamsRequest} request
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.teams.list({
      *         limit: 10,
-     *         offset: 0,
-     *         role: "manager",
-     *         attributes: ["attributes"]
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.TeamsListRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.Team, TrueFoundry.ListTeamsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.TeamsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => { const { limit = 100, offset = 0, role, attributes } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListTeamsRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.Team, TrueFoundry.ListTeamsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListTeamsRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => { const { limit = 100, offset = 0, role, attributes } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
-            role: role != null ? role : undefined,
-            attributes
+            role: role !== undefined ? role : undefined,
+            attributes: attributes !== undefined ? toJson(attributes) : undefined
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), "api/svc/v1/teams/user"),
             method: "GET",
@@ -138,7 +137,7 @@ export class TeamsClient {
      * List users who are members of a team.
      *
      * @param {string} id - System-generated team ID.
-     * @param {TrueFoundry.TeamsListMembersRequest} request
+     * @param {TrueFoundry.ListMembersTeamsRequest} request
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -151,8 +150,8 @@ export class TeamsClient {
      *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
      *     })
      */
-    public async listMembers(id: string, request: TrueFoundry.TeamsListMembersRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamMembersResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.TeamsListMembersRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamMembersResponse>> => { const { limit = 100, offset = 0, filter } = request; const _queryParams: Record<string, unknown> = {
+    public async listMembers(id: string, request: TrueFoundry.ListMembersTeamsRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamMembersResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListMembersTeamsRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamMembersResponse>> => { const { limit = 100, offset = 0, filter } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             filter
@@ -194,7 +193,7 @@ export class TeamsClient {
      * List users who hold the team-manager role on a team.
      *
      * @param {string} id - System-generated team ID.
-     * @param {TrueFoundry.TeamsListManagersRequest} request
+     * @param {TrueFoundry.ListManagersTeamsRequest} request
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -207,8 +206,8 @@ export class TeamsClient {
      *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
      *     })
      */
-    public async listManagers(id: string, request: TrueFoundry.TeamsListManagersRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamManagersResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.TeamsListManagersRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamManagersResponse>> => { const { limit = 100, offset = 0, filter } = request; const _queryParams: Record<string, unknown> = {
+    public async listManagers(id: string, request: TrueFoundry.ListManagersTeamsRequest = {}, requestOptions?: TeamsClient.RequestOptions): Promise<core.Page<TrueFoundry.TeamSubjectRow, TrueFoundry.ListTeamManagersResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListManagersTeamsRequest): Promise<core.WithRawResponse<TrueFoundry.ListTeamManagersResponse>> => { const { limit = 100, offset = 0, filter } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             filter

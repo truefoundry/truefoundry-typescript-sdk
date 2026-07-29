@@ -8,27 +8,27 @@ import { ApplicationMetadata } from "./ApplicationMetadata.js";
 import { ApplicationType } from "./ApplicationType.js";
 
 export const ApplicationSummary: core.serialization.ObjectSchema<serializers.ApplicationSummary.Raw, TrueFoundry.ApplicationSummary> = core.serialization.object({
-        "id": core.serialization.string().optional(),
-        "fqn": core.serialization.string().optional(),
-        "name": core.serialization.string().optional(),
-        "type": ApplicationType.optional(),
-        "metadata": ApplicationMetadata.optional(),
+        "id": core.serialization.string().optionalNullable(),
+        "fqn": core.serialization.string().optionalNullable(),
+        "name": core.serialization.string().optionalNullable(),
+        "type": ApplicationType.optionalNullable(),
+        "metadata": ApplicationMetadata.optionalNullable(),
         "lifecycleStage": ApplicationLifecycleStage,
-        "workspaceId": core.serialization.string().optional(),
-        "activeVersion": core.serialization.number().optional(),
-        "applicationSetId": core.serialization.string().optional()
+        "workspaceId": core.serialization.string().optionalNullable(),
+        "activeVersion": core.serialization.number().optionalNullable(),
+        "applicationSetId": core.serialization.string().optionalNullable()
     });
 
 export declare namespace ApplicationSummary {
     export interface Raw {
-        id?: string | null;
-        fqn?: string | null;
-        name?: string | null;
-        type?: ApplicationType.Raw | null;
-        metadata?: ApplicationMetadata.Raw | null;
+        id?: (string | null | undefined) | null;
+        fqn?: (string | null | undefined) | null;
+        name?: (string | null | undefined) | null;
+        type?: (ApplicationType.Raw | null | undefined) | null;
+        metadata?: (ApplicationMetadata.Raw | null | undefined) | null;
         lifecycleStage: ApplicationLifecycleStage.Raw;
-        workspaceId?: string | null;
-        activeVersion?: number | null;
-        applicationSetId?: string | null;
+        workspaceId?: (string | null | undefined) | null;
+        activeVersion?: (number | null | undefined) | null;
+        applicationSetId?: (string | null | undefined) | null;
     }
 }

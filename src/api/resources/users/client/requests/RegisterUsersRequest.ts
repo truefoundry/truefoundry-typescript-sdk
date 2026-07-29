@@ -10,11 +10,11 @@ export interface RegisterUsersRequest {
     /** Email address of the user to register. */
     email: string;
     /** When true, sends an invite email to the user after registration. */
-    sendInviteEmail?: boolean;
+    sendInviteEmail?: boolean | null;
     /** When true, silently skips registration if the user already exists instead of returning an error. */
-    skipIfUserExists?: boolean;
+    skipIfUserExists?: boolean | null;
     /** When true, validates the request without persisting changes. */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
     /** URL the user is redirected to when they accept the invite. Required when sendInviteEmail is true. */
-    acceptInviteClientUrl?: string;
+    acceptInviteClientUrl?: string | null;
 }

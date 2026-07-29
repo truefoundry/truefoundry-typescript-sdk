@@ -29,20 +29,17 @@ export class DataDirectoriesClient {
     /**
      * List data directories with optional filtering by FQN, ML Repo, or name.
      *
-     * @param {TrueFoundry.DataDirectoriesListRequest} request
+     * @param {TrueFoundry.ListDataDirectoriesRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.dataDirectories.list({
      *         limit: 10,
-     *         offset: 0,
-     *         fqn: "fqn",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name"
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.DataDirectoriesListRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): Promise<core.Page<TrueFoundry.DataDirectory, TrueFoundry.ListDataDirectoriesResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.DataDirectoriesListRequest): Promise<core.WithRawResponse<TrueFoundry.ListDataDirectoriesResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListDataDirectoriesRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): Promise<core.Page<TrueFoundry.DataDirectory, TrueFoundry.ListDataDirectoriesResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListDataDirectoriesRequest): Promise<core.WithRawResponse<TrueFoundry.ListDataDirectoriesResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             fqn,
@@ -376,21 +373,19 @@ export class DataDirectoriesClient {
      * Delete a data directory, optionally including its contents.
      *
      * @param {string} id - Data directory ID
-     * @param {TrueFoundry.DataDirectoriesDeleteRequest} request
+     * @param {TrueFoundry.DeleteDataDirectoriesRequest} request
      * @param {DataDirectoriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.dataDirectories.delete("id", {
-     *         deleteContents: true
-     *     })
+     *     await client.dataDirectories.delete("id")
      */
-    public delete(id: string, request: TrueFoundry.DataDirectoriesDeleteRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
+    public delete(id: string, request: TrueFoundry.DeleteDataDirectoriesRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.EmptyResponse> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
-    private async __delete(id: string, request: TrueFoundry.DataDirectoriesDeleteRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
+    private async __delete(id: string, request: TrueFoundry.DeleteDataDirectoriesRequest = {}, requestOptions?: DataDirectoriesClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.EmptyResponse>> {
         const { deleteContents = false } = request;
         const _queryParams: Record<string, unknown> = {
             delete_contents: deleteContents

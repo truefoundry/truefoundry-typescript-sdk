@@ -9,7 +9,7 @@ export const DataDirectoryManifest: core.serialization.ObjectSchema<serializers.
         "type": core.serialization.stringLiteral("data-dir"),
         "name": core.serialization.string(),
         "mlRepo": core.serialization.property("ml_repo", core.serialization.string()),
-        "description": core.serialization.string().optional(),
+        "description": core.serialization.string().optionalNullable(),
         "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()),
         "source": DataDirectoryManifestSource
     });
@@ -19,7 +19,7 @@ export declare namespace DataDirectoryManifest {
         type: "data-dir";
         name: string;
         ml_repo: string;
-        description?: string | null;
+        description?: (string | null | undefined) | null;
         metadata: Record<string, unknown>;
         source: DataDirectoryManifestSource.Raw;
     }

@@ -6,13 +6,13 @@ import * as serializers from "../index.js";
 import { JobTriggerInputCommand } from "./JobTriggerInputCommand.js";
 
 export const JobTriggerInput: core.serialization.ObjectSchema<serializers.JobTriggerInput.Raw, TrueFoundry.JobTriggerInput> = core.serialization.object({
-        "command": JobTriggerInputCommand.optional(),
-        "params": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        "command": JobTriggerInputCommand.optionalNullable(),
+        "params": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable()
     });
 
 export declare namespace JobTriggerInput {
     export interface Raw {
-        command?: JobTriggerInputCommand.Raw | null;
-        params?: Record<string, unknown> | null;
+        command?: (JobTriggerInputCommand.Raw | null | undefined) | null;
+        params?: (Record<string, unknown> | null | undefined) | null;
     }
 }

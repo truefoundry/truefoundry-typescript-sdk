@@ -5,11 +5,11 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const GetAutoProvisioningStateResponse: core.serialization.ObjectSchema<serializers.GetAutoProvisioningStateResponse.Raw, TrueFoundry.GetAutoProvisioningStateResponse> = core.serialization.object({
-        "state": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        "state": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable()
     });
 
 export declare namespace GetAutoProvisioningStateResponse {
     export interface Raw {
-        state?: Record<string, unknown> | null;
+        state?: (Record<string, unknown> | null | undefined) | null;
     }
 }

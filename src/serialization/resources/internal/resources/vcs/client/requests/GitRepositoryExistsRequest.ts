@@ -6,12 +6,12 @@ import * as serializers from "../../../../../../index.js";
 
 export const GitRepositoryExistsRequest: core.serialization.Schema<serializers.internal.GitRepositoryExistsRequest.Raw, TrueFoundry.internal.GitRepositoryExistsRequest> = core.serialization.object({
         "repoUrl": core.serialization.property("repoURL", core.serialization.string()),
-        "id": core.serialization.string().optional()
+        "id": core.serialization.string().optionalNullable()
     });
 
 export declare namespace GitRepositoryExistsRequest {
     export interface Raw {
         repoURL: string;
-        id?: string | null;
+        id?: (string | null | undefined) | null;
     }
 }

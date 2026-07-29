@@ -4,9 +4,9 @@ import * as TrueFoundry from "../index.js";
 
 export interface AgentSkillVersion {
     /** Timestamp when the agent skill version was created. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Timestamp when the agent skill version was last updated. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
     /** Manifest describing the agent skill version. */
     manifest: TrueFoundry.AgentSkillManifest;
     /** Unique identifier of the agent skill version. */

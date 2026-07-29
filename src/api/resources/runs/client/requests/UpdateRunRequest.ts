@@ -6,9 +6,9 @@
  */
 export interface UpdateRunRequest {
     /** Updated status of the run (e.g. RUNNING, FINISHED, FAILED). */
-    status?: string;
+    status?: string | null;
     /** Unix timestamp in milliseconds when the run ended. */
-    endTime?: number;
+    endTime?: number | null;
     /** Updated description of the run. */
-    description?: string;
+    description?: string | null;
 }

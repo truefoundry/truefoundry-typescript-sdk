@@ -1,1 +1,1 @@
-export type { AgentSkillVersionsListRequest } from "./AgentSkillVersionsListRequest.js";
+export type { ListAgentSkillVersionsRequest } from "./ListAgentSkillVersionsRequest.js";

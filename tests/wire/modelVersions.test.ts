@@ -57,16 +57,7 @@ describe("ModelVersionsClient", () => {
 };
                 const page = await client.modelVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    modelId: "model_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1,
-    runIds: ["run_ids"],
-    runSteps: [1.1],
-    includeInternalMetadata: true
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

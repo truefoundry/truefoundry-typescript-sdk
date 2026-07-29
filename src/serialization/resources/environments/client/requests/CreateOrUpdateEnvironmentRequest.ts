@@ -7,12 +7,12 @@ import { EnvironmentManifest } from "../../../../types/EnvironmentManifest.js";
 
 export const CreateOrUpdateEnvironmentRequest: core.serialization.Schema<serializers.CreateOrUpdateEnvironmentRequest.Raw, TrueFoundry.CreateOrUpdateEnvironmentRequest> = core.serialization.object({
         "manifest": EnvironmentManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace CreateOrUpdateEnvironmentRequest {
     export interface Raw {
         manifest: EnvironmentManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

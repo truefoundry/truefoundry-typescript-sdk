@@ -7,8 +7,8 @@ import * as serializers from "../index.js";
 export const SubjectPermission: core.serialization.ObjectSchema<serializers.SubjectPermission.Raw, TrueFoundry.SubjectPermission> = core.serialization.object({
         "resourceType": core.serialization.string(),
         "resourceId": core.serialization.string(),
-        "resourceName": core.serialization.string().optional(),
-        "resourceFqn": core.serialization.string().optional(),
+        "resourceName": core.serialization.string().optionalNullable(),
+        "resourceFqn": core.serialization.string().optionalNullable(),
         "roleId": core.serialization.string(),
         "roleName": core.serialization.string(),
         "subjectId": core.serialization.string(),
@@ -19,8 +19,8 @@ export declare namespace SubjectPermission {
     export interface Raw {
         resourceType: string;
         resourceId: string;
-        resourceName?: string | null;
-        resourceFqn?: string | null;
+        resourceName?: (string | null | undefined) | null;
+        resourceFqn?: (string | null | undefined) | null;
         roleId: string;
         roleName: string;
         subjectId: string;

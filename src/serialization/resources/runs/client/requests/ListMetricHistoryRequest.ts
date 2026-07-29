@@ -6,12 +6,12 @@ import * as serializers from "../../../../index.js";
 
 export const ListMetricHistoryRequest: core.serialization.Schema<serializers.ListMetricHistoryRequest.Raw, TrueFoundry.ListMetricHistoryRequest> = core.serialization.object({
         "metricKeys": core.serialization.property("metric_keys", core.serialization.list(core.serialization.string()).optional()),
-        "step": core.serialization.number().optional()
+        "step": core.serialization.number().optionalNullable()
     });
 
 export declare namespace ListMetricHistoryRequest {
     export interface Raw {
         metric_keys?: string[] | null;
-        step?: number | null;
+        step?: (number | null | undefined) | null;
     }
 }

@@ -123,22 +123,17 @@ export class ModelsClient {
     /**
      * List models with optional filtering by FQN, ML Repo, name, or run ID.
      *
-     * @param {TrueFoundry.ModelsListRequest} request
+     * @param {TrueFoundry.ListModelsRequest} request
      * @param {ModelsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.models.list({
      *         limit: 10,
-     *         offset: 0,
-     *         fqn: "fqn",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name",
-     *         runId: "run_id",
-     *         includeEmptyModels: true
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.ModelsListRequest = {}, requestOptions?: ModelsClient.RequestOptions): Promise<core.Page<TrueFoundry.Model, TrueFoundry.ListModelsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ModelsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListModelsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, runId, includeEmptyModels = true } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListModelsRequest = {}, requestOptions?: ModelsClient.RequestOptions): Promise<core.Page<TrueFoundry.Model, TrueFoundry.ListModelsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListModelsRequest): Promise<core.WithRawResponse<TrueFoundry.ListModelsResponse>> => { const { limit = 100, offset = 0, fqn, mlRepoId, name, runId, includeEmptyModels = true } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             fqn,

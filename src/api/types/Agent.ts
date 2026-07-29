@@ -4,7 +4,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface Agent {
     /** System-generated agent ID. */
-    id?: string;
+    id?: string | null;
     name: string;
     /** Human-readable Fully Qualified Name of the agent. */
     fqn: string;
@@ -12,7 +12,7 @@ export interface Agent {
     accountId: string;
     latestVersion: number;
     type: string;
-    latestVersionDetails?: TrueFoundry.AgentVersion;
+    latestVersionDetails?: TrueFoundry.AgentVersion | null;
     createdBySubject: TrueFoundry.Subject;
-    createdBy?: string;
+    createdBy?: string | null;
 }

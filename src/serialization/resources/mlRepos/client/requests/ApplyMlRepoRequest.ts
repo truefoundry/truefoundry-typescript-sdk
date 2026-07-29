@@ -7,12 +7,12 @@ import { MlRepoManifest } from "../../../../types/MlRepoManifest.js";
 
 export const ApplyMlRepoRequest: core.serialization.Schema<serializers.ApplyMlRepoRequest.Raw, TrueFoundry.ApplyMlRepoRequest> = core.serialization.object({
         "manifest": MlRepoManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace ApplyMlRepoRequest {
     export interface Raw {
         manifest: MlRepoManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

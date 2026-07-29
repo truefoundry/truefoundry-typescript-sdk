@@ -53,9 +53,7 @@ describe("TeamsClient", () => {
 };
                 const page = await client.teams.list({
     limit: 10,
-    offset: 0,
-    role: "manager",
-    attributes: ["attributes"]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

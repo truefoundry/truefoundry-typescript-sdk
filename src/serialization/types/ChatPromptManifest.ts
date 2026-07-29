@@ -18,10 +18,10 @@ import { ToolSchema } from "./ToolSchema.js";
 
 export const ChatPromptManifest: core.serialization.ObjectSchema<serializers.ChatPromptManifest.Raw, TrueFoundry.ChatPromptManifest> = core.serialization.object({
         "type": core.serialization.stringLiteral("chat_prompt"),
-        "description": core.serialization.string().optional(),
+        "description": core.serialization.string().optionalNullable(),
         "versionAlias": core.serialization.property("version_alias", core.serialization.string().optional()),
         "messages": core.serialization.list(ChatMessageTurn),
-        "variables": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "variables": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optional(),
         "modelConfiguration": core.serialization.property("model_configuration", ModelConfiguration.optional()),
         "tools": core.serialization.list(ToolSchema).optional(),
         "mcpServers": core.serialization.property("mcp_servers", core.serialization.list(ChatPromptManifestMcpServersItem).optional()),
@@ -37,7 +37,7 @@ export const ChatPromptManifest: core.serialization.ObjectSchema<serializers.Cha
 export declare namespace ChatPromptManifest {
     export interface Raw extends BaseArtifactVersion.Raw {
         type: "chat_prompt";
-        description?: string | null;
+        description?: (string | null | undefined) | null;
         version_alias?: string | null;
         messages: ChatMessageTurn.Raw[];
         variables?: Record<string, string | null> | null;

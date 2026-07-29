@@ -8,17 +8,17 @@ import { IChangeOperation } from "./IChangeOperation.js";
 export const IChange: core.serialization.ObjectSchema<serializers.IChange.Raw, TrueFoundry.IChange> = core.serialization.object({
         "type": IChangeOperation,
         "key": core.serialization.string(),
-        "value": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "oldValue": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "changes": core.serialization.list(core.serialization.lazyObject(() => serializers.IChange)).optional()
+        "value": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "oldValue": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "changes": core.serialization.list(core.serialization.lazyObject(() => serializers.IChange)).optionalNullable()
     });
 
 export declare namespace IChange {
     export interface Raw {
         type: IChangeOperation.Raw;
         key: string;
-        value?: Record<string, unknown> | null;
-        oldValue?: Record<string, unknown> | null;
-        changes?: serializers.IChange.Raw[] | null;
+        value?: (Record<string, unknown> | null | undefined) | null;
+        oldValue?: (Record<string, unknown> | null | undefined) | null;
+        changes?: (serializers.IChange.Raw[] | null | undefined) | null;
     }
 }

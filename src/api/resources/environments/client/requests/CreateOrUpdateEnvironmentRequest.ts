@@ -18,5 +18,5 @@ export interface CreateOrUpdateEnvironmentRequest {
     /** Environment manifest. The environment is matched by `name` for upsert. */
     manifest: TrueFoundry.EnvironmentManifest;
     /** When true, validates the manifest without persisting changes. */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

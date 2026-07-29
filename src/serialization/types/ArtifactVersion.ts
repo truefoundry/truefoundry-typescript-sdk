@@ -7,29 +7,29 @@ import { ArtifactManifest } from "./ArtifactManifest.js";
 import { Subject } from "./Subject.js";
 
 export const ArtifactVersion: core.serialization.ObjectSchema<serializers.ArtifactVersion.Raw, TrueFoundry.ArtifactVersion> = core.serialization.object({
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
         "manifest": ArtifactManifest,
         "id": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
         "mlRepoId": core.serialization.property("ml_repo_id", core.serialization.string()),
-        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optional()),
-        "tags": core.serialization.list(core.serialization.string()).optional(),
+        "usageCodeSnippet": core.serialization.property("usage_code_snippet", core.serialization.string().optionalNullable()),
+        "tags": core.serialization.list(core.serialization.string()).optionalNullable(),
         "artifactId": core.serialization.property("artifact_id", core.serialization.string())
     });
 
 export declare namespace ArtifactVersion {
     export interface Raw {
-        created_at?: string | null;
-        updated_at?: string | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
         manifest: ArtifactManifest.Raw;
         id: string;
         fqn: string;
         created_by_subject: Subject.Raw;
         ml_repo_id: string;
-        usage_code_snippet?: string | null;
-        tags?: string[] | null;
+        usage_code_snippet?: (string | null | undefined) | null;
+        tags?: (string[] | null | undefined) | null;
         artifact_id: string;
     }
 }

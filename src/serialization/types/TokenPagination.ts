@@ -5,15 +5,15 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const TokenPagination: core.serialization.ObjectSchema<serializers.TokenPagination.Raw, TrueFoundry.TokenPagination> = core.serialization.object({
-        "limit": core.serialization.number().optional(),
-        "nextPageToken": core.serialization.string().optional(),
-        "previousPageToken": core.serialization.string().optional()
+        "limit": core.serialization.number().optionalNullable(),
+        "nextPageToken": core.serialization.string().optionalNullable(),
+        "previousPageToken": core.serialization.string().optionalNullable()
     });
 
 export declare namespace TokenPagination {
     export interface Raw {
-        limit?: number | null;
-        nextPageToken?: string | null;
-        previousPageToken?: string | null;
+        limit?: (number | null | undefined) | null;
+        nextPageToken?: (string | null | undefined) | null;
+        previousPageToken?: (string | null | undefined) | null;
     }
 }

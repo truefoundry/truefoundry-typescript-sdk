@@ -8,23 +8,23 @@ import { AgentVersionMetadata } from "./AgentVersionMetadata.js";
 import { Subject } from "./Subject.js";
 
 export const AgentVersion: core.serialization.ObjectSchema<serializers.AgentVersion.Raw, TrueFoundry.AgentVersion> = core.serialization.object({
-        "id": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
         "agentId": core.serialization.string(),
         "fqn": core.serialization.string(),
         "manifest": AgentManifest,
         "version": core.serialization.number(),
-        "metadata": AgentVersionMetadata.optional(),
-        "createdBySubject": Subject.optional()
+        "metadata": AgentVersionMetadata.optionalNullable(),
+        "createdBySubject": Subject.optionalNullable()
     });
 
 export declare namespace AgentVersion {
     export interface Raw {
-        id?: string | null;
+        id?: (string | null | undefined) | null;
         agentId: string;
         fqn: string;
         manifest: AgentManifest.Raw;
         version: number;
-        metadata?: AgentVersionMetadata.Raw | null;
-        createdBySubject?: Subject.Raw | null;
+        metadata?: (AgentVersionMetadata.Raw | null | undefined) | null;
+        createdBySubject?: (Subject.Raw | null | undefined) | null;
     }
 }

@@ -5,23 +5,23 @@ import * as TrueFoundry from "../index.js";
 export interface Session {
     /** System-generated session ID. */
     id: string;
-    userName?: string;
+    userName?: string | null;
     subjectSlug: string;
-    subjectControllerName?: string;
-    subjectPatName?: string;
-    subjectExternalIdentitySlug?: string;
-    email?: string;
+    subjectControllerName?: string | null;
+    subjectPatName?: string | null;
+    subjectExternalIdentitySlug?: string | null;
+    email?: string | null;
     subjectType: TrueFoundry.SubjectType;
-    tenantName?: string;
+    tenantName?: string | null;
     roles: string[];
     teams: TrueFoundry.SessionTeam[];
     accounts: TrueFoundry.SessionAccount[];
-    metadata?: TrueFoundry.UserMetadata;
-    createdAt?: Date;
-    isBillingEnabled?: boolean;
-    actor?: TrueFoundry.SessionActor;
-    serviceAccountMetadata?: Record<string, unknown>;
-    account?: TrueFoundry.Account;
-    rootAccount?: TrueFoundry.Account;
+    metadata?: TrueFoundry.UserMetadata | null;
+    createdAt?: Date | null;
+    isBillingEnabled?: boolean | null;
+    actor?: TrueFoundry.SessionActor | null;
+    serviceAccountMetadata?: Record<string, unknown> | null;
+    account?: TrueFoundry.Account | null;
+    rootAccount?: TrueFoundry.Account | null;
     effectiveUserId: string;
 }

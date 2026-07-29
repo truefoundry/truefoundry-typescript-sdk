@@ -23,10 +23,7 @@ describe("BuildLogsClient", () => {
                                 const response = await client.internal.buildLogs.get("pipelineRunName", {
     startTs: "1635467890123456789",
     endTs: "1635467891123456789",
-    limit: "limit",
-    direction: "direction",
-    filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}",
-    numLogsToIgnore: 1.1
+    filterQuery: "{\"matchString\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}"
 });
                                 expect(response).toEqual({
     logs: [{

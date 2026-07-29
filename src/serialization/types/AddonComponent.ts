@@ -12,50 +12,50 @@ import { UpgradeData } from "./UpgradeData.js";
 
 export const AddonComponent: core.serialization.ObjectSchema<serializers.AddonComponent.Raw, TrueFoundry.AddonComponent> = core.serialization.object({
         "name": AddonComponentName,
-        "appName": core.serialization.string().optional(),
-        "namespace": core.serialization.string().optional(),
-        "applicationId": core.serialization.string().optional(),
-        "description": core.serialization.string().optional(),
-        "path": core.serialization.string().optional(),
-        "addonFolder": core.serialization.string().optional(),
-        "installed": core.serialization.boolean().optional(),
-        "status": AddonComponentStatus.optional(),
-        "version": core.serialization.string().optional(),
-        "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "installationSource": core.serialization.string().optional(),
-        "unsupportedClusterTypes": core.serialization.list(ClusterType).optional(),
-        "required": core.serialization.boolean().optional(),
-        "knownCrDs": core.serialization.property("knownCRDs", core.serialization.list(core.serialization.string()).optional()),
-        "source": AddOnComponentSource.optional(),
-        "upgrades": UpgradeData.optional(),
-        "labels": core.serialization.list(core.serialization.string()).optional(),
-        "recommendations": core.serialization.list(Recommendation).optional(),
-        "workspaceId": core.serialization.string().optional(),
-        "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        "appName": core.serialization.string().optionalNullable(),
+        "namespace": core.serialization.string().optionalNullable(),
+        "applicationId": core.serialization.string().optionalNullable(),
+        "description": core.serialization.string().optionalNullable(),
+        "path": core.serialization.string().optionalNullable(),
+        "addonFolder": core.serialization.string().optionalNullable(),
+        "installed": core.serialization.boolean().optionalNullable(),
+        "status": AddonComponentStatus.optionalNullable(),
+        "version": core.serialization.string().optionalNullable(),
+        "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "installationSource": core.serialization.string().optionalNullable(),
+        "unsupportedClusterTypes": core.serialization.list(ClusterType).optionalNullable(),
+        "required": core.serialization.boolean().optionalNullable(),
+        "knownCrDs": core.serialization.property("knownCRDs", core.serialization.list(core.serialization.string()).optionalNullable()),
+        "source": AddOnComponentSource.optionalNullable(),
+        "upgrades": UpgradeData.optionalNullable(),
+        "labels": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "recommendations": core.serialization.list(Recommendation).optionalNullable(),
+        "workspaceId": core.serialization.string().optionalNullable(),
+        "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable()
     });
 
 export declare namespace AddonComponent {
     export interface Raw {
         name: AddonComponentName.Raw;
-        appName?: string | null;
-        namespace?: string | null;
-        applicationId?: string | null;
-        description?: string | null;
-        path?: string | null;
-        addonFolder?: string | null;
-        installed?: boolean | null;
-        status?: AddonComponentStatus.Raw | null;
-        version?: string | null;
-        manifest?: Record<string, unknown> | null;
-        installationSource?: string | null;
-        unsupportedClusterTypes?: ClusterType.Raw[] | null;
-        required?: boolean | null;
-        knownCRDs?: string[] | null;
-        source?: AddOnComponentSource.Raw | null;
-        upgrades?: UpgradeData.Raw | null;
-        labels?: string[] | null;
-        recommendations?: Recommendation.Raw[] | null;
-        workspaceId?: string | null;
-        metadata?: Record<string, unknown> | null;
+        appName?: (string | null | undefined) | null;
+        namespace?: (string | null | undefined) | null;
+        applicationId?: (string | null | undefined) | null;
+        description?: (string | null | undefined) | null;
+        path?: (string | null | undefined) | null;
+        addonFolder?: (string | null | undefined) | null;
+        installed?: (boolean | null | undefined) | null;
+        status?: (AddonComponentStatus.Raw | null | undefined) | null;
+        version?: (string | null | undefined) | null;
+        manifest?: (Record<string, unknown> | null | undefined) | null;
+        installationSource?: (string | null | undefined) | null;
+        unsupportedClusterTypes?: (ClusterType.Raw[] | null | undefined) | null;
+        required?: (boolean | null | undefined) | null;
+        knownCRDs?: (string[] | null | undefined) | null;
+        source?: (AddOnComponentSource.Raw | null | undefined) | null;
+        upgrades?: (UpgradeData.Raw | null | undefined) | null;
+        labels?: (string[] | null | undefined) | null;
+        recommendations?: (Recommendation.Raw[] | null | undefined) | null;
+        workspaceId?: (string | null | undefined) | null;
+        metadata?: (Record<string, unknown> | null | undefined) | null;
     }
 }

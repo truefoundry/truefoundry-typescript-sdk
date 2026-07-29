@@ -5,13 +5,13 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const TeamMetadata: core.serialization.ObjectSchema<serializers.TeamMetadata.Raw, TrueFoundry.TeamMetadata> = core.serialization.object({
-        "createdByScim": core.serialization.boolean().optional(),
-        "scimExternalId": core.serialization.string().optional()
+        "createdByScim": core.serialization.boolean().optionalNullable(),
+        "scimExternalId": core.serialization.string().optionalNullable()
     });
 
 export declare namespace TeamMetadata {
     export interface Raw {
-        createdByScim?: boolean | null;
-        scimExternalId?: string | null;
+        createdByScim?: (boolean | null | undefined) | null;
+        scimExternalId?: (string | null | undefined) | null;
     }
 }

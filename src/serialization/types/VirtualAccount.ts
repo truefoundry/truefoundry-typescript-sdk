@@ -12,20 +12,20 @@ export const VirtualAccount: core.serialization.ObjectSchema<serializers.Virtual
         "id": core.serialization.string(),
         "type": core.serialization.string(),
         "tenantName": core.serialization.string(),
-        "manifest": VirtualAccountManifest.optional(),
-        "jwtId": core.serialization.string().optional(),
+        "manifest": VirtualAccountManifest.optionalNullable(),
+        "jwtId": core.serialization.string().optionalNullable(),
         "createdBySubject": Subject,
         "createdAt": core.serialization.date(),
         "updatedAt": core.serialization.date(),
-        "lastAccessedAt": core.serialization.date().optional(),
-        "isExpired": core.serialization.boolean().optional(),
-        "jwts": core.serialization.list(Jwt).optional(),
+        "lastAccessedAt": core.serialization.date().optionalNullable(),
+        "isExpired": core.serialization.boolean().optionalNullable(),
+        "jwts": core.serialization.list(Jwt).optionalNullable(),
         "accountId": core.serialization.string(),
-        "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "roleIds": core.serialization.list(core.serialization.string()).optional(),
-        "rolesWithResource": core.serialization.list(RoleWithResource).optional(),
-        "createdBy": core.serialization.string().optional(),
-        "nextScheduledRotation": core.serialization.string().optional()
+        "metadata": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "roleIds": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "rolesWithResource": core.serialization.list(RoleWithResource).optionalNullable(),
+        "createdBy": core.serialization.string().optionalNullable(),
+        "nextScheduledRotation": core.serialization.string().optionalNullable()
     });
 
 export declare namespace VirtualAccount {
@@ -33,19 +33,19 @@ export declare namespace VirtualAccount {
         id: string;
         type: string;
         tenantName: string;
-        manifest?: VirtualAccountManifest.Raw | null;
-        jwtId?: string | null;
+        manifest?: (VirtualAccountManifest.Raw | null | undefined) | null;
+        jwtId?: (string | null | undefined) | null;
         createdBySubject: Subject.Raw;
         createdAt: string;
         updatedAt: string;
-        lastAccessedAt?: string | null;
-        isExpired?: boolean | null;
-        jwts?: Jwt.Raw[] | null;
+        lastAccessedAt?: (string | null | undefined) | null;
+        isExpired?: (boolean | null | undefined) | null;
+        jwts?: (Jwt.Raw[] | null | undefined) | null;
         accountId: string;
-        metadata?: Record<string, unknown> | null;
-        roleIds?: string[] | null;
-        rolesWithResource?: RoleWithResource.Raw[] | null;
-        createdBy?: string | null;
-        nextScheduledRotation?: string | null;
+        metadata?: (Record<string, unknown> | null | undefined) | null;
+        roleIds?: (string[] | null | undefined) | null;
+        rolesWithResource?: (RoleWithResource.Raw[] | null | undefined) | null;
+        createdBy?: (string | null | undefined) | null;
+        nextScheduledRotation?: (string | null | undefined) | null;
     }
 }

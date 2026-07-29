@@ -8,17 +8,17 @@ import { RunTagInput } from "../../../../types/RunTagInput.js";
 export const CreateRunRequest: core.serialization.Schema<serializers.CreateRunRequest.Raw, TrueFoundry.CreateRunRequest> = core.serialization.object({
         "experimentId": core.serialization.property("experiment_id", core.serialization.string()),
         "name": core.serialization.string(),
-        "startTime": core.serialization.property("start_time", core.serialization.number().optional()),
+        "startTime": core.serialization.property("start_time", core.serialization.number().optionalNullable()),
         "tags": core.serialization.list(RunTagInput).optional(),
-        "description": core.serialization.string().optional()
+        "description": core.serialization.string().optionalNullable()
     });
 
 export declare namespace CreateRunRequest {
     export interface Raw {
         experiment_id: string;
         name: string;
-        start_time?: number | null;
+        start_time?: (number | null | undefined) | null;
         tags?: RunTagInput.Raw[] | null;
-        description?: string | null;
+        description?: (string | null | undefined) | null;
     }
 }

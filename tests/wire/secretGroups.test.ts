@@ -52,10 +52,7 @@ describe("SecretGroupsClient", () => {
 };
                 const page = await client.secretGroups.list({
     limit: 10,
-    offset: 0,
-    fqn: "fqn",
-    search: "search",
-    attributes: ["attributes"]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);
@@ -655,9 +652,7 @@ describe("SecretGroupsClient", () => {
 
         
                         
-                                const response = await client.secretGroups.delete("id", {
-    forceDelete: true
-});
+                                const response = await client.secretGroups.delete("id");
                                 expect(response).toEqual({});
                               
                     

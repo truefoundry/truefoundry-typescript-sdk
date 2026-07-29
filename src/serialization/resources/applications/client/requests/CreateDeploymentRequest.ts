@@ -6,24 +6,24 @@ import * as serializers from "../../../../index.js";
 
 export const CreateDeploymentRequest: core.serialization.Schema<serializers.CreateDeploymentRequest.Raw, TrueFoundry.CreateDeploymentRequest> = core.serialization.object({
         "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()),
-        "dryRun": core.serialization.boolean().optional(),
-        "forceDeploy": core.serialization.boolean().optional(),
-        "triggerOnDeploy": core.serialization.boolean().optional(),
-        "workspaceId": core.serialization.string().optional(),
-        "applicationId": core.serialization.string().optional(),
-        "name": core.serialization.string().optional(),
-        "applicationSetId": core.serialization.string().optional()
+        "dryRun": core.serialization.boolean().optionalNullable(),
+        "forceDeploy": core.serialization.boolean().optionalNullable(),
+        "triggerOnDeploy": core.serialization.boolean().optionalNullable(),
+        "workspaceId": core.serialization.string().optionalNullable(),
+        "applicationId": core.serialization.string().optionalNullable(),
+        "name": core.serialization.string().optionalNullable(),
+        "applicationSetId": core.serialization.string().optionalNullable()
     });
 
 export declare namespace CreateDeploymentRequest {
     export interface Raw {
         manifest: Record<string, unknown>;
-        dryRun?: boolean | null;
-        forceDeploy?: boolean | null;
-        triggerOnDeploy?: boolean | null;
-        workspaceId?: string | null;
-        applicationId?: string | null;
-        name?: string | null;
-        applicationSetId?: string | null;
+        dryRun?: (boolean | null | undefined) | null;
+        forceDeploy?: (boolean | null | undefined) | null;
+        triggerOnDeploy?: (boolean | null | undefined) | null;
+        workspaceId?: (string | null | undefined) | null;
+        applicationId?: (string | null | undefined) | null;
+        name?: (string | null | undefined) | null;
+        applicationSetId?: (string | null | undefined) | null;
     }
 }

@@ -5,11 +5,11 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const SessionActor: core.serialization.ObjectSchema<serializers.SessionActor.Raw, TrueFoundry.SessionActor> = core.serialization.object({
-        "organization": core.serialization.string().optional()
+        "organization": core.serialization.string().optionalNullable()
     });
 
 export declare namespace SessionActor {
     export interface Raw {
-        organization?: string | null;
+        organization?: (string | null | undefined) | null;
     }
 }

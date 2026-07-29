@@ -39,11 +39,11 @@ export class WorkflowsClient {
      * @example
      *     await client.internal.workflows.executeWorkflow("applicationId")
      */
-    public executeWorkflow(applicationId: string, request: TrueFoundry.internal.ExecuteWorkflowRequest = {}, requestOptions?: WorkflowsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.internal.WorkflowsExecuteWorkflowResponse> {
+    public executeWorkflow(applicationId: string, request: TrueFoundry.internal.ExecuteWorkflowRequest = {}, requestOptions?: WorkflowsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.internal.ExecuteWorkflowWorkflowsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__executeWorkflow(applicationId, request, requestOptions));
     }
 
-    private async __executeWorkflow(applicationId: string, request: TrueFoundry.internal.ExecuteWorkflowRequest = {}, requestOptions?: WorkflowsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.internal.WorkflowsExecuteWorkflowResponse>> {
+    private async __executeWorkflow(applicationId: string, request: TrueFoundry.internal.ExecuteWorkflowRequest = {}, requestOptions?: WorkflowsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.internal.ExecuteWorkflowWorkflowsResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers);
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -61,7 +61,7 @@ export class WorkflowsClient {
             logging: this._options.logging
         });
         if (_response.ok) {
-            return { data: serializers.internal.WorkflowsExecuteWorkflowResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
+            return { data: serializers.internal.ExecuteWorkflowWorkflowsResponse.parseOrThrow(_response.body, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, skipValidation: true, breadcrumbsPrefix: ["response"] }), rawResponse: _response.rawResponse };
         }
 
         if (_response.error.reason === "status-code") {

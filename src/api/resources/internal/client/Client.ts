@@ -96,7 +96,7 @@ export class InternalClient {
      * Get IDs associated with the FQN for various entity types, such as deployment, application, workspace, or cluster.
      *
      * @param {string} type - Entity Type
-     * @param {TrueFoundry.InternalGetIdFromFqnRequest} request
+     * @param {TrueFoundry.GetIdFromFqnInternalRequest} request
      * @param {InternalClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -107,11 +107,11 @@ export class InternalClient {
      *         fqn: "fqn"
      *     })
      */
-    public getIdFromFqn(type: string, request: TrueFoundry.InternalGetIdFromFqnRequest, requestOptions?: InternalClient.RequestOptions): core.HttpResponsePromise<Record<string, unknown>> {
+    public getIdFromFqn(type: string, request: TrueFoundry.GetIdFromFqnInternalRequest, requestOptions?: InternalClient.RequestOptions): core.HttpResponsePromise<Record<string, unknown>> {
         return core.HttpResponsePromise.fromPromise(this.__getIdFromFqn(type, request, requestOptions));
     }
 
-    private async __getIdFromFqn(type: string, request: TrueFoundry.InternalGetIdFromFqnRequest, requestOptions?: InternalClient.RequestOptions): Promise<core.WithRawResponse<Record<string, unknown>>> {
+    private async __getIdFromFqn(type: string, request: TrueFoundry.GetIdFromFqnInternalRequest, requestOptions?: InternalClient.RequestOptions): Promise<core.WithRawResponse<Record<string, unknown>>> {
         const { fqn } = request;
         const _queryParams: Record<string, unknown> = {
             fqn

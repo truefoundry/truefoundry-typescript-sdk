@@ -20,5 +20,5 @@ export interface CreateOrUpdateSecretGroupRequest {
     /** Secret Group Manifest */
     manifest: TrueFoundry.SecretGroupManifest;
     /** Validate the manifest and collaborators without persisting or updating authorizations and secret groups */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

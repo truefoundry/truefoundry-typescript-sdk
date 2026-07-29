@@ -4,7 +4,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface AgentVersion {
     /** System-generated agent version ID. */
-    id?: string;
+    id?: string | null;
     agentId: string;
     /** Human-readable Fully Qualified Name of the agent version. */
     fqn: string;
@@ -12,6 +12,6 @@ export interface AgentVersion {
     manifest: TrueFoundry.AgentManifest;
     version: number;
     /** Optional metadata attached to the agent version. */
-    metadata?: TrueFoundry.AgentVersionMetadata;
-    createdBySubject?: TrueFoundry.Subject;
+    metadata?: TrueFoundry.AgentVersionMetadata | null;
+    createdBySubject?: TrueFoundry.Subject | null;
 }

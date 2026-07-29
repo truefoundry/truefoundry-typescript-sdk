@@ -13,7 +13,7 @@ export interface BaseService {
     artifactsDownload?: TrueFoundry.ArtifactsDownload;
     resources?: TrueFoundry.Resources;
     /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string>;
+    env?: Record<string, string | null> | null;
     /** Expose the deployment to make it accessible over the internet or keep it private. Implement authentication to restrict access. [Docs](https://docs.truefoundry.com/docs/define-ports-and-domains) */
     ports: TrueFoundry.Port[];
     serviceAccount?: string;

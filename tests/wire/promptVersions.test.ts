@@ -58,13 +58,7 @@ describe("PromptVersionsClient", () => {
 };
                 const page = await client.promptVersions.list({
     limit: 10,
-    offset: 0,
-    tag: "tag",
-    fqn: "fqn",
-    promptId: "prompt_id",
-    mlRepoId: "ml_repo_id",
-    name: "name",
-    version: 1
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);

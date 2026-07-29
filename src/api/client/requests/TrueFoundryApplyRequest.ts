@@ -20,5 +20,5 @@ export interface TrueFoundryApplyRequest {
     /** Manifest of the resource to be created or updated */
     manifest: TrueFoundry.TrueFoundryApplyRequestManifest;
     /** Dry run the apply operation without actually applying */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

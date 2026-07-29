@@ -265,7 +265,7 @@ export class RunsClient {
      * Get full time-series history for a metric key on a run.
      *
      * @param {string} id - System-generated unique identifier for the run.
-     * @param {TrueFoundry.RunsGetMetricHistoryRequest} request
+     * @param {TrueFoundry.GetMetricHistoryRunsRequest} request
      * @param {RunsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
@@ -275,11 +275,11 @@ export class RunsClient {
      *         metricKey: "metric_key"
      *     })
      */
-    public getMetricHistory(id: string, request: TrueFoundry.RunsGetMetricHistoryRequest, requestOptions?: RunsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetMetricHistoryResponse> {
+    public getMetricHistory(id: string, request: TrueFoundry.GetMetricHistoryRunsRequest, requestOptions?: RunsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetMetricHistoryResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getMetricHistory(id, request, requestOptions));
     }
 
-    private async __getMetricHistory(id: string, request: TrueFoundry.RunsGetMetricHistoryRequest, requestOptions?: RunsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetMetricHistoryResponse>> {
+    private async __getMetricHistory(id: string, request: TrueFoundry.GetMetricHistoryRunsRequest, requestOptions?: RunsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetMetricHistoryResponse>> {
         const { metricKey } = request;
         const _queryParams: Record<string, unknown> = {
             metric_key: metricKey

@@ -16,7 +16,7 @@ export const BaseService: core.serialization.ObjectSchema<serializers.BaseServic
         "image": BaseServiceImage,
         "artifactsDownload": core.serialization.property("artifacts_download", ArtifactsDownload.optional()),
         "resources": Resources.optional(),
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "ports": core.serialization.list(Port),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional()),
         "mounts": core.serialization.list(BaseServiceMountsItem).optional(),
@@ -34,7 +34,7 @@ export declare namespace BaseService {
         image: BaseServiceImage.Raw;
         artifacts_download?: ArtifactsDownload.Raw | null;
         resources?: Resources.Raw | null;
-        env?: Record<string, string | null> | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         ports: Port.Raw[];
         service_account?: string | null;
         mounts?: BaseServiceMountsItem.Raw[] | null;

@@ -7,16 +7,16 @@ import { LibraryName } from "./LibraryName.js";
 
 export const TransformersFramework: core.serialization.ObjectSchema<serializers.TransformersFramework.Raw, TrueFoundry.TransformersFramework> = core.serialization.object({
         "type": core.serialization.stringLiteral("transformers"),
-        "libraryName": core.serialization.property("library_name", LibraryName.optional()),
-        "pipelineTag": core.serialization.property("pipeline_tag", core.serialization.string().optional()),
-        "baseModel": core.serialization.property("base_model", core.serialization.string().optional())
+        "libraryName": core.serialization.property("library_name", LibraryName.optionalNullable()),
+        "pipelineTag": core.serialization.property("pipeline_tag", core.serialization.string().optionalNullable()),
+        "baseModel": core.serialization.property("base_model", core.serialization.string().optionalNullable())
     });
 
 export declare namespace TransformersFramework {
     export interface Raw {
         type: "transformers";
-        library_name?: LibraryName.Raw | null;
-        pipeline_tag?: string | null;
-        base_model?: string | null;
+        library_name?: (LibraryName.Raw | null | undefined) | null;
+        pipeline_tag?: (string | null | undefined) | null;
+        base_model?: (string | null | undefined) | null;
     }
 }

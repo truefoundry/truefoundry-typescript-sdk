@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -29,7 +30,7 @@ export class EventsClient {
     /**
      * Get events for an application, filtered by pod names, job run, or time range.
      *
-     * @param {TrueFoundry.EventsGetRequest} request
+     * @param {TrueFoundry.GetEventsRequest} request
      * @param {EventsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -37,27 +38,20 @@ export class EventsClient {
      * @throws {@link TrueFoundry.NotFoundError}
      *
      * @example
-     *     await client.events.get({
-     *         startTs: "startTs",
-     *         endTs: "endTs",
-     *         applicationId: "applicationId",
-     *         applicationFqn: "applicationFqn",
-     *         podNames: ["podNames"],
-     *         jobRunName: "jobRunName"
-     *     })
+     *     await client.events.get()
      */
-    public get(request: TrueFoundry.EventsGetRequest = {}, requestOptions?: EventsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetEventsResponse> {
+    public get(request: TrueFoundry.GetEventsRequest = {}, requestOptions?: EventsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetEventsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__get(request, requestOptions));
     }
 
-    private async __get(request: TrueFoundry.EventsGetRequest = {}, requestOptions?: EventsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetEventsResponse>> {
+    private async __get(request: TrueFoundry.GetEventsRequest = {}, requestOptions?: EventsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetEventsResponse>> {
         const { startTs, endTs, applicationId, applicationFqn, podNames, jobRunName } = request;
         const _queryParams: Record<string, unknown> = {
             startTs,
             endTs,
             applicationId,
             applicationFqn,
-            podNames,
+            podNames: podNames !== undefined ? toJson(podNames) : undefined,
             jobRunName
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();

@@ -129,7 +129,7 @@ export class SecretsClient {
      * Delete the secret and all its versions permanently.
      *
      * @param {string} id - Unique identifier of the secret.
-     * @param {TrueFoundry.SecretsDeleteRequest} request
+     * @param {TrueFoundry.DeleteSecretsRequest} request
      * @param {SecretsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -137,15 +137,13 @@ export class SecretsClient {
      * @throws {@link TrueFoundry.FailedDependencyError}
      *
      * @example
-     *     await client.secrets.delete("id", {
-     *         forceDelete: true
-     *     })
+     *     await client.secrets.delete("id")
      */
-    public delete(id: string, request: TrueFoundry.SecretsDeleteRequest = {}, requestOptions?: SecretsClient.RequestOptions): core.HttpResponsePromise<number> {
+    public delete(id: string, request: TrueFoundry.DeleteSecretsRequest = {}, requestOptions?: SecretsClient.RequestOptions): core.HttpResponsePromise<number> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
     }
 
-    private async __delete(id: string, request: TrueFoundry.SecretsDeleteRequest = {}, requestOptions?: SecretsClient.RequestOptions): Promise<core.WithRawResponse<number>> {
+    private async __delete(id: string, request: TrueFoundry.DeleteSecretsRequest = {}, requestOptions?: SecretsClient.RequestOptions): Promise<core.WithRawResponse<number>> {
         const { forceDelete } = request;
         const _queryParams: Record<string, unknown> = {
             forceDelete

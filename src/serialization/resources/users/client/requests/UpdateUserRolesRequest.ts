@@ -8,13 +8,13 @@ import { ResourceType } from "../../../../types/ResourceType.js";
 export const UpdateUserRolesRequest: core.serialization.Schema<serializers.UpdateUserRolesRequest.Raw, TrueFoundry.UpdateUserRolesRequest> = core.serialization.object({
         "email": core.serialization.string(),
         "roles": core.serialization.list(core.serialization.string()),
-        "resourceType": ResourceType.optional()
+        "resourceType": ResourceType.optionalNullable()
     });
 
 export declare namespace UpdateUserRolesRequest {
     export interface Raw {
         email: string;
         roles: string[];
-        resourceType?: ResourceType.Raw | null;
+        resourceType?: (ResourceType.Raw | null | undefined) | null;
     }
 }

@@ -19,7 +19,7 @@ export interface Job {
     /** Configure params and pass it to create different job runs */
     params?: TrueFoundry.Param[];
     /** Configure environment variables to be injected in the service either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string>;
+    env?: Record<string, string | null> | null;
     resources?: TrueFoundry.Resources;
     /** Configure alerts to be sent when the job starts/fails/completes */
     alerts?: TrueFoundry.JobAlert[];

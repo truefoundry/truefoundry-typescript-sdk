@@ -7,15 +7,15 @@ import { TrueFoundryApplyResponseAction } from "./TrueFoundryApplyResponseAction
 import { TrueFoundryApplyResponseExistingManifest } from "./TrueFoundryApplyResponseExistingManifest.js";
 
 export const TrueFoundryApplyResponse: core.serialization.ObjectSchema<serializers.TrueFoundryApplyResponse.Raw, TrueFoundry.TrueFoundryApplyResponse> = core.serialization.object({
-        "existingManifest": TrueFoundryApplyResponseExistingManifest.optional(),
-        "action": TrueFoundryApplyResponseAction.optional(),
-        "data": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        "existingManifest": TrueFoundryApplyResponseExistingManifest.optionalNullable(),
+        "action": TrueFoundryApplyResponseAction.optionalNullable(),
+        "data": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable()
     });
 
 export declare namespace TrueFoundryApplyResponse {
     export interface Raw {
-        existingManifest?: TrueFoundryApplyResponseExistingManifest.Raw | null;
-        action?: TrueFoundryApplyResponseAction.Raw | null;
-        data?: Record<string, unknown> | null;
+        existingManifest?: (TrueFoundryApplyResponseExistingManifest.Raw | null | undefined) | null;
+        action?: (TrueFoundryApplyResponseAction.Raw | null | undefined) | null;
+        data?: (Record<string, unknown> | null | undefined) | null;
     }
 }

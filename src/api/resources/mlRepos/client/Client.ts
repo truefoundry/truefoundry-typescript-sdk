@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -123,23 +124,21 @@ export class MlReposClient {
     /**
      * List ML Repos with optional filtering by name.
      *
-     * @param {TrueFoundry.MlReposListRequest} request
+     * @param {TrueFoundry.ListMlReposRequest} request
      * @param {MlReposClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.mlRepos.list({
      *         limit: 10,
-     *         offset: 0,
-     *         name: "name",
-     *         attributes: ["attributes"]
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.MlReposListRequest = {}, requestOptions?: MlReposClient.RequestOptions): Promise<core.Page<TrueFoundry.MlRepo, TrueFoundry.ListMlReposResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.MlReposListRequest): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => { const { limit = 100, offset = 0, name, attributes } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.ListMlReposRequest = {}, requestOptions?: MlReposClient.RequestOptions): Promise<core.Page<TrueFoundry.MlRepo, TrueFoundry.ListMlReposResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListMlReposRequest): Promise<core.WithRawResponse<TrueFoundry.ListMlReposResponse>> => { const { limit = 100, offset = 0, name, attributes } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             name,
-            attributes
+            attributes: attributes !== undefined ? toJson(attributes) : undefined
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), "api/svc/v1/ml-repos"),
             method: "GET",

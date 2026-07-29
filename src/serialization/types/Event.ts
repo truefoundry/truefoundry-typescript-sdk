@@ -7,29 +7,29 @@ import { EventChart } from "./EventChart.js";
 import { EventInvolvedObject } from "./EventInvolvedObject.js";
 
 export const Event: core.serialization.ObjectSchema<serializers.Event.Raw, TrueFoundry.Event> = core.serialization.object({
-        "name": core.serialization.string().optional(),
-        "firstTimestamp": core.serialization.string().optional(),
+        "name": core.serialization.string().optionalNullable(),
+        "firstTimestamp": core.serialization.string().optionalNullable(),
         "lastTimestamp": core.serialization.string(),
         "involvedObject": EventInvolvedObject,
         "type": core.serialization.string(),
         "count": core.serialization.number(),
         "reason": core.serialization.string(),
         "message": core.serialization.string(),
-        "namespace": core.serialization.string().optional(),
+        "namespace": core.serialization.string().optionalNullable(),
         "chart": EventChart
     });
 
 export declare namespace Event {
     export interface Raw {
-        name?: string | null;
-        firstTimestamp?: string | null;
+        name?: (string | null | undefined) | null;
+        firstTimestamp?: (string | null | undefined) | null;
         lastTimestamp: string;
         involvedObject: EventInvolvedObject.Raw;
         type: string;
         count: number;
         reason: string;
         message: string;
-        namespace?: string | null;
+        namespace?: (string | null | undefined) | null;
         chart: EventChart.Raw;
     }
 }

@@ -10,8 +10,8 @@ export const MultiPartUpload: core.serialization.ObjectSchema<serializers.MultiP
         "storageProvider": core.serialization.property("storage_provider", MultiPartUploadStorageProvider),
         "partSignedUrls": core.serialization.property("part_signed_urls", core.serialization.list(SignedUrl)),
         "finalizeSignedUrl": core.serialization.property("finalize_signed_url", SignedUrl),
-        "s3CompatibleUploadId": core.serialization.property("s3_compatible_upload_id", core.serialization.string().optional()),
-        "azureBlobBlockIds": core.serialization.property("azure_blob_block_ids", core.serialization.list(core.serialization.string()).optional())
+        "s3CompatibleUploadId": core.serialization.property("s3_compatible_upload_id", core.serialization.string().optionalNullable()),
+        "azureBlobBlockIds": core.serialization.property("azure_blob_block_ids", core.serialization.list(core.serialization.string()).optionalNullable())
     });
 
 export declare namespace MultiPartUpload {
@@ -19,7 +19,7 @@ export declare namespace MultiPartUpload {
         storage_provider: MultiPartUploadStorageProvider.Raw;
         part_signed_urls: SignedUrl.Raw[];
         finalize_signed_url: SignedUrl.Raw;
-        s3_compatible_upload_id?: string | null;
-        azure_blob_block_ids?: string[] | null;
+        s3_compatible_upload_id?: (string | null | undefined) | null;
+        azure_blob_block_ids?: (string[] | null | undefined) | null;
     }
 }

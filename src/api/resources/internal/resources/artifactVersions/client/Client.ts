@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../../../Ba
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../../../BaseClient.js";
 import * as core from "../../../../../../core/index.js";
 import { mergeHeaders } from "../../../../../../core/headers.js";
+import { toJson } from "../../../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../../../errors/index.js";
 import * as serializers from "../../../../../../serialization/index.js";
@@ -29,28 +30,17 @@ export class ArtifactVersionsClient {
     /**
      * List artifact versions with internal metadata, optionally including model versions.
      *
-     * @param {TrueFoundry.internal.ArtifactVersionsListRequest} request
+     * @param {TrueFoundry.internal.ListArtifactVersionsRequest} request
      * @param {ArtifactVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
      *     await client.internal.artifactVersions.list({
      *         limit: 10,
-     *         offset: 0,
-     *         tag: "tag",
-     *         fqn: "fqn",
-     *         artifactId: "artifact_id",
-     *         mlRepoId: "ml_repo_id",
-     *         name: "name",
-     *         version: 1,
-     *         runIds: ["run_ids"],
-     *         runSteps: [1.1],
-     *         includeInternalMetadata: true,
-     *         includeModelVersions: true,
-     *         artifactTypes: ["artifact_types"]
+     *         offset: 0
      *     })
      */
-    public async list(request: TrueFoundry.internal.ArtifactVersionsListRequest = {}, requestOptions?: ArtifactVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.InternalListArtifactVersionsResponseDataItem, TrueFoundry.InternalListArtifactVersionsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.internal.ArtifactVersionsListRequest): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionsResponse>> => { const { limit = 100, offset = 0, tag, fqn, artifactId, mlRepoId, name, version, runIds, runSteps, includeInternalMetadata = false, includeModelVersions = false, artifactTypes } = request; const _queryParams: Record<string, unknown> = {
+    public async list(request: TrueFoundry.internal.ListArtifactVersionsRequest = {}, requestOptions?: ArtifactVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.InternalListArtifactVersionsResponseDataItem, TrueFoundry.InternalListArtifactVersionsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.internal.ListArtifactVersionsRequest): Promise<core.WithRawResponse<TrueFoundry.InternalListArtifactVersionsResponse>> => { const { limit = 100, offset = 0, tag, fqn, artifactId, mlRepoId, name, version, runIds, runSteps, includeInternalMetadata = false, includeModelVersions = false, artifactTypes } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             tag,
@@ -59,8 +49,8 @@ export class ArtifactVersionsClient {
             ml_repo_id: mlRepoId,
             name,
             version,
-            run_ids: runIds,
-            run_steps: runSteps,
+            run_ids: runIds !== undefined ? toJson(runIds) : undefined,
+            run_steps: runSteps !== undefined ? toJson(runSteps) : undefined,
             include_internal_metadata: includeInternalMetadata,
             include_model_versions: includeModelVersions,
             artifact_types: artifactTypes

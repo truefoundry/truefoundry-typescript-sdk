@@ -10,7 +10,7 @@ import { Resources } from "./Resources.js";
 export const PythonTaskConfig: core.serialization.ObjectSchema<serializers.PythonTaskConfig.Raw, TrueFoundry.PythonTaskConfig> = core.serialization.object({
         "type": core.serialization.stringLiteral("python-task-config"),
         "image": PythonTaskConfigImage,
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "resources": Resources.optional(),
         "mounts": core.serialization.list(PythonTaskConfigMountsItem).optional(),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional())
@@ -20,7 +20,7 @@ export declare namespace PythonTaskConfig {
     export interface Raw {
         type: "python-task-config";
         image: PythonTaskConfigImage.Raw;
-        env?: Record<string, string | null> | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         resources?: Resources.Raw | null;
         mounts?: PythonTaskConfigMountsItem.Raw[] | null;
         service_account?: string | null;

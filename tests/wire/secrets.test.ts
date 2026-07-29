@@ -191,9 +191,7 @@ describe("SecretsClient", () => {
 
         
                         
-                                const response = await client.secrets.delete("id", {
-    forceDelete: true
-});
+                                const response = await client.secrets.delete("id");
                                 expect(response).toEqual(1.1);
                               
                     

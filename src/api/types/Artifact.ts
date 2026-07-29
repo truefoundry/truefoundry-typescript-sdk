@@ -16,11 +16,11 @@ export interface Artifact {
     /** Subject (user, team, or service account) that created the artifact. */
     createdBySubject: TrueFoundry.Subject;
     /** Timestamp when the artifact was created. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Timestamp when the artifact was last updated. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
     /** Most recently created version of the artifact, if any exist. */
-    latestVersion?: TrueFoundry.ArtifactVersion;
+    latestVersion?: TrueFoundry.ArtifactVersion | null;
     /** Run steps associated with the artifact. */
-    runSteps?: number[];
+    runSteps?: number[] | null;
 }

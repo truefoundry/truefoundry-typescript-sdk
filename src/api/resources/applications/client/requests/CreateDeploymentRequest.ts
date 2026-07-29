@@ -12,17 +12,17 @@ export interface CreateDeploymentRequest {
     /** Manifest of application */
     manifest: Record<string, unknown>;
     /** Dry run */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
     /** Cancels any ongoing deployments */
-    forceDeploy?: boolean;
+    forceDeploy?: boolean | null;
     /** Trigger on deploy */
-    triggerOnDeploy?: boolean;
+    triggerOnDeploy?: boolean | null;
     /** workspace id of the workspace */
-    workspaceId?: string;
+    workspaceId?: string | null;
     /** Id of the application */
-    applicationId?: string;
+    applicationId?: string | null;
     /** Name of application */
-    name?: string;
+    name?: string | null;
     /** Application Set Id */
-    applicationSetId?: string;
+    applicationSetId?: string | null;
 }

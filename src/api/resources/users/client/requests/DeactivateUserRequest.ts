@@ -10,5 +10,5 @@ export interface DeactivateUserRequest {
     /** Email of the user to deactivate. */
     email: string;
     /** Tenant name override. Defaults to the caller's tenant when omitted. */
-    tenantName?: string;
+    tenantName?: string | null;
 }

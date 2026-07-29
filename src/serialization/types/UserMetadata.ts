@@ -6,35 +6,35 @@ import * as serializers from "../index.js";
 import { UserMetadataTenantRoleManagedBy } from "./UserMetadataTenantRoleManagedBy.js";
 
 export const UserMetadata: core.serialization.ObjectSchema<serializers.UserMetadata.Raw, TrueFoundry.UserMetadata> = core.serialization.object({
-        "sub": core.serialization.string().optional(),
-        "imageUrl": core.serialization.property("imageURL", core.serialization.string().optional()),
-        "pictureDownloadPath": core.serialization.string().optional(),
-        "displayName": core.serialization.string().optional(),
-        "userObject": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "inviteAccepted": core.serialization.boolean().optional(),
-        "registeredInIdp": core.serialization.boolean().optional(),
-        "preference": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "groups": core.serialization.list(core.serialization.string()).optional(),
-        "tenantRoleManagedBy": UserMetadataTenantRoleManagedBy.optional(),
-        "ssoName": core.serialization.string().optional(),
-        "scimUserObject": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "createdByScim": core.serialization.boolean().optional()
+        "sub": core.serialization.string().optionalNullable(),
+        "imageUrl": core.serialization.property("imageURL", core.serialization.string().optionalNullable()),
+        "pictureDownloadPath": core.serialization.string().optionalNullable(),
+        "displayName": core.serialization.string().optionalNullable(),
+        "userObject": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "inviteAccepted": core.serialization.boolean().optionalNullable(),
+        "registeredInIdp": core.serialization.boolean().optionalNullable(),
+        "preference": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "groups": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "tenantRoleManagedBy": UserMetadataTenantRoleManagedBy.optionalNullable(),
+        "ssoName": core.serialization.string().optionalNullable(),
+        "scimUserObject": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "createdByScim": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace UserMetadata {
     export interface Raw {
-        sub?: string | null;
-        imageURL?: string | null;
-        pictureDownloadPath?: string | null;
-        displayName?: string | null;
-        userObject?: Record<string, unknown> | null;
-        inviteAccepted?: boolean | null;
-        registeredInIdp?: boolean | null;
-        preference?: Record<string, unknown> | null;
-        groups?: string[] | null;
-        tenantRoleManagedBy?: UserMetadataTenantRoleManagedBy.Raw | null;
-        ssoName?: string | null;
-        scimUserObject?: Record<string, unknown> | null;
-        createdByScim?: boolean | null;
+        sub?: (string | null | undefined) | null;
+        imageURL?: (string | null | undefined) | null;
+        pictureDownloadPath?: (string | null | undefined) | null;
+        displayName?: (string | null | undefined) | null;
+        userObject?: (Record<string, unknown> | null | undefined) | null;
+        inviteAccepted?: (boolean | null | undefined) | null;
+        registeredInIdp?: (boolean | null | undefined) | null;
+        preference?: (Record<string, unknown> | null | undefined) | null;
+        groups?: (string[] | null | undefined) | null;
+        tenantRoleManagedBy?: (UserMetadataTenantRoleManagedBy.Raw | null | undefined) | null;
+        ssoName?: (string | null | undefined) | null;
+        scimUserObject?: (Record<string, unknown> | null | undefined) | null;
+        createdByScim?: (boolean | null | undefined) | null;
     }
 }

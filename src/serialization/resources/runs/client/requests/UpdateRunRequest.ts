@@ -5,15 +5,15 @@ import * as core from "../../../../../core/index.js";
 import * as serializers from "../../../../index.js";
 
 export const UpdateRunRequest: core.serialization.Schema<serializers.UpdateRunRequest.Raw, TrueFoundry.UpdateRunRequest> = core.serialization.object({
-        "status": core.serialization.string().optional(),
-        "endTime": core.serialization.property("end_time", core.serialization.number().optional()),
-        "description": core.serialization.string().optional()
+        "status": core.serialization.string().optionalNullable(),
+        "endTime": core.serialization.property("end_time", core.serialization.number().optionalNullable()),
+        "description": core.serialization.string().optionalNullable()
     });
 
 export declare namespace UpdateRunRequest {
     export interface Raw {
-        status?: string | null;
-        end_time?: number | null;
-        description?: string | null;
+        status?: (string | null | undefined) | null;
+        end_time?: (number | null | undefined) | null;
+        description?: (string | null | undefined) | null;
     }
 }

@@ -13,10 +13,10 @@ export interface MlRepo {
     /** Experiment Id */
     id: string;
     /** Number of runs */
-    numRuns?: number;
-    artifactTypeCounts?: Record<string, number>;
+    numRuns?: number | null;
+    artifactTypeCounts?: Record<string, number | null> | null;
     /** Number of datasets */
-    datasetsCount?: number;
+    datasetsCount?: number | null;
     /** Total number of tracing projects in this ML Repo */
-    tracingProjectsCount?: number;
+    tracingProjectsCount?: number | null;
 }

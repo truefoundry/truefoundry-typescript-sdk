@@ -4,7 +4,7 @@ import * as TrueFoundry from "../index.js";
 
 export interface GatewayConfiguration {
     /** System-generated Configuration ID. */
-    id?: string;
+    id?: string | null;
     /** Tenant the gateway configuration belongs to. */
     tenantName: string;
     /** Configuration type. */
@@ -14,7 +14,7 @@ export interface GatewayConfiguration {
     /** Principal (user or service account) that created or last updated this configuration. */
     createdBySubject: TrueFoundry.Subject;
     /** Creation timestamp. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Last-update timestamp. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
 }

@@ -4,14 +4,14 @@ import * as TrueFoundry from "../index.js";
 
 export interface Account {
     /** System-generated account ID. */
-    id?: string;
+    id?: string | null;
     tenantName: string;
     /** Human-readable Fully Qualified Name of the account. */
     fqn: string;
     /** Account manifest */
     manifest: Record<string, unknown>;
     createdBySubject: TrueFoundry.Subject;
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt?: Date | null;
+    updatedAt?: Date | null;
     isEditable: boolean;
 }

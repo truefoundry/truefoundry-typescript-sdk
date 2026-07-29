@@ -9,13 +9,13 @@ export interface ChatPromptManifest extends TrueFoundry.BaseArtifactVersion {
     /** Type of the prompt */
     type: "chat_prompt";
     /** Description */
-    description?: string;
+    description?: string | null;
     /** Version alias is alternate, ideally human readable, version string to reference an artifact version. It should start with `v` followed by alphanumeric and it can include `.` and `-` in between (e.g. `v1.0.0`, `v1-prod`, `v3-dev`, etc) */
     versionAlias?: string;
     /** List of messages in the chat conversation, must be non-empty */
     messages: TrueFoundry.ChatMessageTurn[];
     /** Variables referenced in messages and that can be replaced when running generation */
-    variables?: Record<string, string>;
+    variables?: Record<string, string | null>;
     modelConfiguration?: TrueFoundry.ModelConfiguration;
     /** List of tools to be used in the chat prompt */
     tools?: TrueFoundry.ToolSchema[];

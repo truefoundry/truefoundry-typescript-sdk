@@ -21,7 +21,7 @@ export const TraceSpan: core.serialization.ObjectSchema<serializers.TraceSpan.Ra
         "spanAttributes": core.serialization.record(core.serialization.string(), core.serialization.unknown()),
         "events": core.serialization.list(core.serialization.record(core.serialization.string(), core.serialization.unknown())),
         "createdBySubject": Subject,
-        "feedbacks": core.serialization.list(core.serialization.list(core.serialization.unknown())).optional()
+        "feedbacks": core.serialization.list(core.serialization.list(core.serialization.unknown())).optionalNullable()
     });
 
 export declare namespace TraceSpan {
@@ -41,6 +41,6 @@ export declare namespace TraceSpan {
         spanAttributes: Record<string, unknown>;
         events: Record<string, unknown>[];
         createdBySubject: Subject.Raw;
-        feedbacks?: unknown[][] | null;
+        feedbacks?: (unknown[][] | null | undefined) | null;
     }
 }

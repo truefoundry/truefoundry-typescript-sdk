@@ -16,11 +16,11 @@ export interface Prompt {
     /** Subject (user, team, or service account) that created the prompt. */
     createdBySubject: TrueFoundry.Subject;
     /** Timestamp when the prompt was created. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Timestamp when the prompt was last updated. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
     /** Most recently created version of the prompt, if any exist. */
-    latestVersion?: TrueFoundry.PromptVersion;
+    latestVersion?: TrueFoundry.PromptVersion | null;
     /** Run steps associated with the prompt. */
-    runSteps?: number[];
+    runSteps?: number[] | null;
 }

@@ -30,7 +30,7 @@ export class ApplicationVersionsClient {
      * List deployments for a given application. Each deployment is a new version of the application.
      *
      * @param {string} id - Unique identifier of the application
-     * @param {TrueFoundry.ApplicationVersionsListRequest} request
+     * @param {TrueFoundry.ListApplicationVersionsRequest} request
      * @param {ApplicationVersionsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -44,8 +44,8 @@ export class ApplicationVersionsClient {
      *         deploymentId: "deployment123"
      *     })
      */
-    public async list(id: string, request: TrueFoundry.ApplicationVersionsListRequest = {}, requestOptions?: ApplicationVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.Deployment, TrueFoundry.ListApplicationDeploymentsResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ApplicationVersionsListRequest): Promise<core.WithRawResponse<TrueFoundry.ListApplicationDeploymentsResponse>> => { const { limit = 100, offset = 0, version, deploymentId } = request; const _queryParams: Record<string, unknown> = {
+    public async list(id: string, request: TrueFoundry.ListApplicationVersionsRequest = {}, requestOptions?: ApplicationVersionsClient.RequestOptions): Promise<core.Page<TrueFoundry.Deployment, TrueFoundry.ListApplicationDeploymentsResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListApplicationVersionsRequest): Promise<core.WithRawResponse<TrueFoundry.ListApplicationDeploymentsResponse>> => { const { limit = 100, offset = 0, version, deploymentId } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             version,

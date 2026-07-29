@@ -7,12 +7,12 @@ import { AgentManifest } from "../../../../types/AgentManifest.js";
 
 export const CreateOrUpdateAgentRequest: core.serialization.Schema<serializers.CreateOrUpdateAgentRequest.Raw, TrueFoundry.CreateOrUpdateAgentRequest> = core.serialization.object({
         "manifest": AgentManifest,
-        "dryRun": core.serialization.boolean().optional()
+        "dryRun": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace CreateOrUpdateAgentRequest {
     export interface Raw {
         manifest: AgentManifest.Raw;
-        dryRun?: boolean | null;
+        dryRun?: (boolean | null | undefined) | null;
     }
 }

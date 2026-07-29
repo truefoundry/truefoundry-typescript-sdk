@@ -20,5 +20,5 @@ export interface ApplyVirtualAccountRequest {
     /** The virtual account manifest describing the virtual account to create or update. */
     manifest: TrueFoundry.VirtualAccountManifest;
     /** When true, validate the request without persisting any changes. */
-    dryRun?: boolean;
+    dryRun?: boolean | null;
 }

@@ -4,26 +4,26 @@ import * as TrueFoundry from "../index.js";
 
 export interface AddonComponent {
     name: TrueFoundry.AddonComponentName;
-    appName?: string;
-    namespace?: string;
-    applicationId?: string;
-    description?: string;
-    path?: string;
-    addonFolder?: string;
-    installed?: boolean;
-    status?: TrueFoundry.AddonComponentStatus;
-    version?: string;
-    manifest?: Record<string, unknown>;
-    installationSource?: string;
-    unsupportedClusterTypes?: TrueFoundry.ClusterType[];
-    required?: boolean;
-    knownCrDs?: string[];
-    source?: TrueFoundry.AddOnComponentSource;
-    upgrades?: TrueFoundry.UpgradeData;
-    labels?: string[];
+    appName?: string | null;
+    namespace?: string | null;
+    applicationId?: string | null;
+    description?: string | null;
+    path?: string | null;
+    addonFolder?: string | null;
+    installed?: boolean | null;
+    status?: TrueFoundry.AddonComponentStatus | null;
+    version?: string | null;
+    manifest?: Record<string, unknown> | null;
+    installationSource?: string | null;
+    unsupportedClusterTypes?: TrueFoundry.ClusterType[] | null;
+    required?: boolean | null;
+    knownCrDs?: string[] | null;
+    source?: TrueFoundry.AddOnComponentSource | null;
+    upgrades?: TrueFoundry.UpgradeData | null;
+    labels?: string[] | null;
     /** Recommendations */
-    recommendations?: TrueFoundry.Recommendation[];
-    workspaceId?: string;
+    recommendations?: TrueFoundry.Recommendation[] | null;
+    workspaceId?: string | null;
     /** Addon metadata. autopilotEnabled is true when the backing addon application has autopilot enabled; otherwise false. */
-    metadata?: Record<string, unknown>;
+    metadata?: Record<string, unknown> | null;
 }

@@ -53,22 +53,7 @@ import { TrueFoundryClient } from "truefoundry-sdk";
 const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YOUR_API_KEY" });
 const pageableResponse = await client.applications.list({
     limit: 10,
-    offset: 0,
-    applicationId: "applicationId",
-    workspaceId: "workspaceId",
-    applicationName: "applicationName",
-    fqn: "fqn",
-    workspaceFqn: "workspaceFqn",
-    applicationType: "async-service",
-    nameSearchQuery: "nameSearchQuery",
-    environmentId: "environmentId",
-    clusterId: "clusterId",
-    applicationSetId: "applicationSetId",
-    paused: true,
-    deviceTypeFilter: "cpu",
-    lastDeployedBySubjects: "lastDeployedBySubjects",
-    lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true
+    offset: 0
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -77,22 +62,7 @@ for await (const item of pageableResponse) {
 // Or you can manually iterate page-by-page
 let page = await client.applications.list({
     limit: 10,
-    offset: 0,
-    applicationId: "applicationId",
-    workspaceId: "workspaceId",
-    applicationName: "applicationName",
-    fqn: "fqn",
-    workspaceFqn: "workspaceFqn",
-    applicationType: "async-service",
-    nameSearchQuery: "nameSearchQuery",
-    environmentId: "environmentId",
-    clusterId: "clusterId",
-    applicationSetId: "applicationSetId",
-    paused: true,
-    deviceTypeFilter: "cpu",
-    lastDeployedBySubjects: "lastDeployedBySubjects",
-    lifecycleStage: "active",
-    isRecommendationPresentAndVisible: true
+    offset: 0
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -110,7 +80,7 @@ following namespace:
 ```typescript
 import { TrueFoundry } from "truefoundry-sdk";
 
-const request: TrueFoundry.InternalGetIdFromFqnRequest = {
+const request: TrueFoundry.GetIdFromFqnInternalRequest = {
     ...
 };
 ```
@@ -146,8 +116,7 @@ const client = new TrueFoundryClient({ environment: "YOUR_BASE_URL", apiKey: "YO
 const pageableResponse = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "john@example.com",
-    showInvalidUsers: true
+    query: "john@example.com"
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -157,8 +126,7 @@ for await (const item of pageableResponse) {
 let page = await client.users.list({
     limit: 10,
     offset: 0,
-    query: "john@example.com",
-    showInvalidUsers: true
+    query: "john@example.com"
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();

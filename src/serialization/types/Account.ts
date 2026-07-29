@@ -6,25 +6,25 @@ import * as serializers from "../index.js";
 import { Subject } from "./Subject.js";
 
 export const Account: core.serialization.ObjectSchema<serializers.Account.Raw, TrueFoundry.Account> = core.serialization.object({
-        "id": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
         "tenantName": core.serialization.string(),
         "fqn": core.serialization.string(),
         "manifest": core.serialization.record(core.serialization.string(), core.serialization.unknown()),
         "createdBySubject": Subject,
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional(),
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable(),
         "isEditable": core.serialization.boolean()
     });
 
 export declare namespace Account {
     export interface Raw {
-        id?: string | null;
+        id?: (string | null | undefined) | null;
         tenantName: string;
         fqn: string;
         manifest: Record<string, unknown>;
         createdBySubject: Subject.Raw;
-        createdAt?: string | null;
-        updatedAt?: string | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
         isEditable: boolean;
     }
 }

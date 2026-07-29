@@ -52,8 +52,7 @@ describe("ClustersClient", () => {
 };
                 const page = await client.clusters.list({
     limit: 10,
-    offset: 0,
-    attributes: ["attributes"]
+    offset: 0
 });
                 
                             expect(expected.data).toEqual(page.data);
@@ -440,8 +439,7 @@ describe("ClustersClient", () => {
                         
                                 const response = await client.clusters.getAddons("id", {
     limit: 10,
-    offset: 0,
-    attributes: ["attributes"]
+    offset: 0
 });
                                 expect(response).toEqual({
     data: [{

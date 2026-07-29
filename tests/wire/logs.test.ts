@@ -23,21 +23,7 @@ describe("LogsClient", () => {
                                 const response = await client.logs.get({
     startTs: "1779262323000000000",
     endTs: "1779348723000000000",
-    limit: 1,
-    direction: "asc",
-    numLogsToIgnore: 1,
-    applicationId: "applicationId",
-    applicationFqn: "applicationFqn",
-    deploymentId: "deploymentId",
-    jobRunName: "jobRunName",
-    podName: "podName",
-    containerName: "containerName",
-    podNames: ["podNames"],
-    podNamesRegex: "podNamesRegex",
-    searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]",
-    searchString: "searchString",
-    searchType: "regex",
-    searchOperator: "equal"
+    searchFilters: "[{\"string\":\"error\",\"type\":\"substring\",\"operator\":\"equal\"}]"
 });
                                 expect(response).toEqual({
     data: [{

@@ -7,27 +7,27 @@ import { DeploymentStatusValue } from "./DeploymentStatusValue.js";
 import { DeploymentTransition } from "./DeploymentTransition.js";
 
 export const DeploymentStatus: core.serialization.ObjectSchema<serializers.DeploymentStatus.Raw, TrueFoundry.DeploymentStatus> = core.serialization.object({
-        "id": core.serialization.string().optional(),
-        "deploymentId": core.serialization.string().optional(),
-        "status": DeploymentStatusValue.optional(),
-        "state": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-        "transition": DeploymentTransition.optional(),
-        "message": core.serialization.string().optional(),
-        "retryCount": core.serialization.number().optional(),
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional()
+        "id": core.serialization.string().optionalNullable(),
+        "deploymentId": core.serialization.string().optionalNullable(),
+        "status": DeploymentStatusValue.optionalNullable(),
+        "state": core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+        "transition": DeploymentTransition.optionalNullable(),
+        "message": core.serialization.string().optionalNullable(),
+        "retryCount": core.serialization.number().optionalNullable(),
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable()
     });
 
 export declare namespace DeploymentStatus {
     export interface Raw {
-        id?: string | null;
-        deploymentId?: string | null;
-        status?: DeploymentStatusValue.Raw | null;
-        state?: Record<string, unknown> | null;
-        transition?: DeploymentTransition.Raw | null;
-        message?: string | null;
-        retryCount?: number | null;
-        createdAt?: string | null;
-        updatedAt?: string | null;
+        id?: (string | null | undefined) | null;
+        deploymentId?: (string | null | undefined) | null;
+        status?: (DeploymentStatusValue.Raw | null | undefined) | null;
+        state?: (Record<string, unknown> | null | undefined) | null;
+        transition?: (DeploymentTransition.Raw | null | undefined) | null;
+        message?: (string | null | undefined) | null;
+        retryCount?: (number | null | undefined) | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
     }
 }

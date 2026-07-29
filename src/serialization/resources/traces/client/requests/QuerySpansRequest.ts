@@ -9,38 +9,38 @@ import { QuerySpansRequestFiltersItem } from "../../types/QuerySpansRequestFilte
 
 export const QuerySpansRequest: core.serialization.Schema<serializers.QuerySpansRequest.Raw, TrueFoundry.QuerySpansRequest> = core.serialization.object({
         "startTime": core.serialization.string(),
-        "endTime": core.serialization.string().optional(),
-        "traceIds": core.serialization.list(core.serialization.string()).optional(),
-        "spanIds": core.serialization.list(core.serialization.string()).optional(),
-        "parentSpanIds": core.serialization.list(core.serialization.string()).optional(),
-        "createdBySubjectTypes": core.serialization.list(SubjectType).optional(),
-        "createdBySubjectSlugs": core.serialization.list(core.serialization.string()).optional(),
-        "applicationNames": core.serialization.list(core.serialization.string()).optional(),
-        "limit": core.serialization.number().optional(),
-        "sortDirection": SortDirection.optional(),
-        "pageToken": core.serialization.string().optional(),
-        "tracingProjectFqn": core.serialization.string().optional(),
-        "dataRoutingDestination": core.serialization.string().optional(),
-        "filters": core.serialization.list(QuerySpansRequestFiltersItem).optional(),
-        "includeFeedbacks": core.serialization.boolean().optional()
+        "endTime": core.serialization.string().optionalNullable(),
+        "traceIds": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "spanIds": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "parentSpanIds": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "createdBySubjectTypes": core.serialization.list(SubjectType).optionalNullable(),
+        "createdBySubjectSlugs": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "applicationNames": core.serialization.list(core.serialization.string()).optionalNullable(),
+        "limit": core.serialization.number().optionalNullable(),
+        "sortDirection": SortDirection.optionalNullable(),
+        "pageToken": core.serialization.string().optionalNullable(),
+        "tracingProjectFqn": core.serialization.string().optionalNullable(),
+        "dataRoutingDestination": core.serialization.string().optionalNullable(),
+        "filters": core.serialization.list(QuerySpansRequestFiltersItem).optionalNullable(),
+        "includeFeedbacks": core.serialization.boolean().optionalNullable()
     });
 
 export declare namespace QuerySpansRequest {
     export interface Raw {
         startTime: string;
-        endTime?: string | null;
-        traceIds?: string[] | null;
-        spanIds?: string[] | null;
-        parentSpanIds?: string[] | null;
-        createdBySubjectTypes?: SubjectType.Raw[] | null;
-        createdBySubjectSlugs?: string[] | null;
-        applicationNames?: string[] | null;
-        limit?: number | null;
-        sortDirection?: SortDirection.Raw | null;
-        pageToken?: string | null;
-        tracingProjectFqn?: string | null;
-        dataRoutingDestination?: string | null;
-        filters?: QuerySpansRequestFiltersItem.Raw[] | null;
-        includeFeedbacks?: boolean | null;
+        endTime?: (string | null | undefined) | null;
+        traceIds?: (string[] | null | undefined) | null;
+        spanIds?: (string[] | null | undefined) | null;
+        parentSpanIds?: (string[] | null | undefined) | null;
+        createdBySubjectTypes?: (SubjectType.Raw[] | null | undefined) | null;
+        createdBySubjectSlugs?: (string[] | null | undefined) | null;
+        applicationNames?: (string[] | null | undefined) | null;
+        limit?: (number | null | undefined) | null;
+        sortDirection?: (SortDirection.Raw | null | undefined) | null;
+        pageToken?: (string | null | undefined) | null;
+        tracingProjectFqn?: (string | null | undefined) | null;
+        dataRoutingDestination?: (string | null | undefined) | null;
+        filters?: (QuerySpansRequestFiltersItem.Raw[] | null | undefined) | null;
+        includeFeedbacks?: (boolean | null | undefined) | null;
     }
 }

@@ -161,10 +161,7 @@ describe("DeploymentsClient", () => {
                                 const response = await client.internal.deployments.getSuggestedEndpoint({
     applicationType: "async-service",
     applicationName: "applicationName",
-    workspaceId: "workspaceId",
-    baseDomain: "baseDomain",
-    port: "port",
-    preferWildcard: true
+    workspaceId: "workspaceId"
 });
                                 expect(response).toEqual({
     host: "host",

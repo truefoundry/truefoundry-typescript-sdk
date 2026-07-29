@@ -10,7 +10,7 @@ import { Resources } from "./Resources.js";
 export const ContainerTaskConfig: core.serialization.ObjectSchema<serializers.ContainerTaskConfig.Raw, TrueFoundry.ContainerTaskConfig> = core.serialization.object({
         "type": core.serialization.stringLiteral("container-task-config"),
         "image": ContainerTaskConfigImage,
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "resources": Resources.optional(),
         "mounts": core.serialization.list(ContainerTaskConfigMountsItem).optional(),
         "serviceAccount": core.serialization.property("service_account", core.serialization.string().optional())
@@ -20,7 +20,7 @@ export declare namespace ContainerTaskConfig {
     export interface Raw {
         type: "container-task-config";
         image: ContainerTaskConfigImage.Raw;
-        env?: Record<string, string | null> | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         resources?: Resources.Raw | null;
         mounts?: ContainerTaskConfigMountsItem.Raw[] | null;
         service_account?: string | null;

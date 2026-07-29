@@ -4,6 +4,7 @@ import type { BaseClientOptions, BaseRequestOptions } from "../../../../BaseClie
 import { normalizeClientOptionsWithAuth, type NormalizedClientOptionsWithAuth } from "../../../../BaseClient.js";
 import * as core from "../../../../core/index.js";
 import { mergeHeaders } from "../../../../core/headers.js";
+import { toJson } from "../../../../core/json.js";
 import { handleNonStatusCodeError } from "../../../../errors/handleNonStatusCodeError.js";
 import * as errors from "../../../../errors/index.js";
 import * as serializers from "../../../../serialization/index.js";
@@ -30,7 +31,7 @@ export class JobsClient {
      * List Job Runs for provided Job Id. Filter the data based on parameters passed in the query
      *
      * @param {string} jobId - Job id of the application
-     * @param {TrueFoundry.JobsListRunsRequest} request
+     * @param {TrueFoundry.ListRunsJobsRequest} request
      * @param {JobsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -40,25 +41,19 @@ export class JobsClient {
      * @example
      *     await client.jobs.listRuns("jobId", {
      *         limit: 10,
-     *         offset: 0,
-     *         searchPrefix: "searchPrefix",
-     *         sortBy: "startTime",
-     *         order: "asc",
-     *         triggeredBy: ["triggeredBy"],
-     *         status: ["CREATED"],
-     *         versionNumbers: [1.1]
+     *         offset: 0
      *     })
      */
-    public async listRuns(jobId: string, request: TrueFoundry.JobsListRunsRequest = {}, requestOptions?: JobsClient.RequestOptions): Promise<core.Page<TrueFoundry.JobRun, TrueFoundry.ListJobRunResponse>> {
-        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.JobsListRunsRequest): Promise<core.WithRawResponse<TrueFoundry.ListJobRunResponse>> => { const { limit = 100, offset = 0, searchPrefix, sortBy, order, triggeredBy, status, versionNumbers } = request; const _queryParams: Record<string, unknown> = {
+    public async listRuns(jobId: string, request: TrueFoundry.ListRunsJobsRequest = {}, requestOptions?: JobsClient.RequestOptions): Promise<core.Page<TrueFoundry.JobRun, TrueFoundry.ListJobRunResponse>> {
+        const list = core.HttpResponsePromise.interceptFunction(async (request: TrueFoundry.ListRunsJobsRequest): Promise<core.WithRawResponse<TrueFoundry.ListJobRunResponse>> => { const { limit = 100, offset = 0, searchPrefix, sortBy, order, triggeredBy, status, versionNumbers } = request; const _queryParams: Record<string, unknown> = {
             limit,
             offset,
             searchPrefix,
             sortBy: sortBy != null ? serializers.JobRunsSortBy.jsonOrThrow(sortBy, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
             order: order != null ? serializers.SortDirection.jsonOrThrow(order, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
-            triggeredBy,
+            triggeredBy: triggeredBy !== undefined ? toJson(triggeredBy) : undefined,
             status: Array.isArray(status) ? status.map(item => serializers.JobRunStatus.jsonOrThrow(item, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true })) : status != null ? serializers.JobRunStatus.jsonOrThrow(status, { unrecognizedObjectKeys: "passthrough", allowUnrecognizedUnionMembers: true, allowUnrecognizedEnumValues: true, omitUndefined: true }) : undefined,
-            versionNumbers
+            versionNumbers: versionNumbers !== undefined ? toJson(versionNumbers) : undefined
         }; const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest(); let _headers: core.Fetcher.Args["headers"] = mergeHeaders(_authRequest.headers, this._options?.headers, requestOptions?.headers); const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(await core.Supplier.get(this._options.baseUrl) ?? await core.Supplier.get(this._options.environment), `api/svc/v1/jobs/${core.url.encodePathParam(jobId)}/runs`),
             method: "GET",
@@ -255,7 +250,7 @@ export class JobsClient {
     /**
      * Terminate Job for provided deploymentId and jobRunName
      *
-     * @param {TrueFoundry.JobsTerminateRequest} request
+     * @param {TrueFoundry.TerminateJobsRequest} request
      * @param {JobsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.ForbiddenError}
@@ -269,11 +264,11 @@ export class JobsClient {
      *         jobRunName: "jobRunName"
      *     })
      */
-    public terminate(request: TrueFoundry.JobsTerminateRequest, requestOptions?: JobsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.TerminateJobResponse> {
+    public terminate(request: TrueFoundry.TerminateJobsRequest, requestOptions?: JobsClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.TerminateJobResponse> {
         return core.HttpResponsePromise.fromPromise(this.__terminate(request, requestOptions));
     }
 
-    private async __terminate(request: TrueFoundry.JobsTerminateRequest, requestOptions?: JobsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.TerminateJobResponse>> {
+    private async __terminate(request: TrueFoundry.TerminateJobsRequest, requestOptions?: JobsClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.TerminateJobResponse>> {
         const { deploymentId, jobRunName } = request;
         const _queryParams: Record<string, unknown> = {
             deploymentId,

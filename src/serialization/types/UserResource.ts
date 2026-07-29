@@ -8,7 +8,7 @@ export const UserResource: core.serialization.ObjectSchema<serializers.UserResou
         "resourceType": core.serialization.string(),
         "resourceId": core.serialization.string(),
         "roleId": core.serialization.string(),
-        "resourceName": core.serialization.string().optional()
+        "resourceName": core.serialization.string().optionalNullable()
     });
 
 export declare namespace UserResource {
@@ -16,6 +16,6 @@ export declare namespace UserResource {
         resourceType: string;
         resourceId: string;
         roleId: string;
-        resourceName?: string | null;
+        resourceName?: (string | null | undefined) | null;
     }
 }

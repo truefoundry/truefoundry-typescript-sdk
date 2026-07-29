@@ -18,7 +18,7 @@ export const Job: core.serialization.ObjectSchema<serializers.Job.Raw, TrueFound
         "trigger": JobTrigger,
         "triggerOnDeploy": core.serialization.property("trigger_on_deploy", core.serialization.boolean().optional()),
         "params": core.serialization.list(Param).optional(),
-        "env": core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
+        "env": core.serialization.record(core.serialization.string(), core.serialization.string().nullable()).optionalNullable(),
         "resources": Resources.optional(),
         "alerts": core.serialization.list(JobAlert).optional(),
         "retries": core.serialization.number().optional(),
@@ -39,7 +39,7 @@ export declare namespace Job {
         trigger: JobTrigger.Raw;
         trigger_on_deploy?: boolean | null;
         params?: Param.Raw[] | null;
-        env?: Record<string, string | null> | null;
+        env?: (Record<string, string | null> | null | undefined) | null;
         resources?: Resources.Raw | null;
         alerts?: JobAlert.Raw[] | null;
         retries?: number | null;

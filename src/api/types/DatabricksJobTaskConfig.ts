@@ -17,12 +17,12 @@ export interface DatabricksJobTaskConfig {
     /** Service Account */
     serviceAccount?: string;
     /** Optional parameters to pass to the job run (e.g. notebook params, jar params). */
-    jobParameters?: Record<string, string>;
+    jobParameters?: Record<string, string | null> | null;
     /** Maximum seconds to wait for the job run to complete. Used by CLI when polling. */
-    timeoutSeconds?: number;
+    timeoutSeconds?: number | null;
     /** If false, the task waits for the Databricks job run to complete (trigger and poll). If true, only triggers the job and returns. Default false. */
     skipWaitForCompletion?: boolean;
     /** Configure environment variables to be injected in the task either as plain text or secrets. [Docs](https://docs.truefoundry.com/docs/env-variables) */
-    env?: Record<string, string>;
+    env?: Record<string, string | null> | null;
     resources?: TrueFoundry.Resources;
 }

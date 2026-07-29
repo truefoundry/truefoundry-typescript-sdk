@@ -5,21 +5,21 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const ApplicationDebugInfo: core.serialization.ObjectSchema<serializers.ApplicationDebugInfo.Raw, TrueFoundry.ApplicationDebugInfo> = core.serialization.object({
-        "id": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
         "applicationId": core.serialization.string(),
-        "application": core.serialization.lazyObject(() => serializers.Application).optional(),
+        "application": core.serialization.lazyObject(() => serializers.Application).optionalNullable(),
         "debugInfo": core.serialization.record(core.serialization.string(), core.serialization.unknown()),
-        "createdAt": core.serialization.date().optional(),
-        "updatedAt": core.serialization.date().optional()
+        "createdAt": core.serialization.date().optionalNullable(),
+        "updatedAt": core.serialization.date().optionalNullable()
     });
 
 export declare namespace ApplicationDebugInfo {
     export interface Raw {
-        id?: string | null;
+        id?: (string | null | undefined) | null;
         applicationId: string;
-        application?: serializers.Application.Raw | null;
+        application?: (serializers.Application.Raw | null | undefined) | null;
         debugInfo: Record<string, unknown>;
-        createdAt?: string | null;
-        updatedAt?: string | null;
+        createdAt?: (string | null | undefined) | null;
+        updatedAt?: (string | null | undefined) | null;
     }
 }

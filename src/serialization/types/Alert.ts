@@ -5,33 +5,33 @@ import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
 
 export const Alert: core.serialization.ObjectSchema<serializers.Alert.Raw, TrueFoundry.Alert> = core.serialization.object({
-        "id": core.serialization.string().optional(),
+        "id": core.serialization.string().optionalNullable(),
         "name": core.serialization.string(),
         "timestamps": core.serialization.list(core.serialization.date()),
         "startTime": core.serialization.date(),
-        "resolvedTime": core.serialization.date().optional(),
-        "applicationId": core.serialization.string().optional(),
+        "resolvedTime": core.serialization.date().optionalNullable(),
+        "applicationId": core.serialization.string().optionalNullable(),
         "clusterId": core.serialization.string(),
-        "tenantName": core.serialization.string().optional(),
+        "tenantName": core.serialization.string().optionalNullable(),
         "fingerprint": core.serialization.string(),
-        "updatedAt": core.serialization.string().optional(),
-        "createdAt": core.serialization.string().optional(),
-        "applicationDebugInfoId": core.serialization.string().optional()
+        "updatedAt": core.serialization.string().optionalNullable(),
+        "createdAt": core.serialization.string().optionalNullable(),
+        "applicationDebugInfoId": core.serialization.string().optionalNullable()
     });
 
 export declare namespace Alert {
     export interface Raw {
-        id?: string | null;
+        id?: (string | null | undefined) | null;
         name: string;
         timestamps: string[];
         startTime: string;
-        resolvedTime?: string | null;
-        applicationId?: string | null;
+        resolvedTime?: (string | null | undefined) | null;
+        applicationId?: (string | null | undefined) | null;
         clusterId: string;
-        tenantName?: string | null;
+        tenantName?: (string | null | undefined) | null;
         fingerprint: string;
-        updatedAt?: string | null;
-        createdAt?: string | null;
-        applicationDebugInfoId?: string | null;
+        updatedAt?: (string | null | undefined) | null;
+        createdAt?: (string | null | undefined) | null;
+        applicationDebugInfoId?: (string | null | undefined) | null;
     }
 }

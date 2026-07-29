@@ -6,12 +6,12 @@ import * as serializers from "../index.js";
 
 export const UpdateSecretInput: core.serialization.ObjectSchema<serializers.UpdateSecretInput.Raw, TrueFoundry.UpdateSecretInput> = core.serialization.object({
         "key": core.serialization.string(),
-        "value": core.serialization.string().optional()
+        "value": core.serialization.string().optionalNullable()
     });
 
 export declare namespace UpdateSecretInput {
     export interface Raw {
         key: string;
-        value?: string | null;
+        value?: (string | null | undefined) | null;
     }
 }

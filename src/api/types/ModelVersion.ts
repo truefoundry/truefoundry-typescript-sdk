@@ -4,9 +4,9 @@ import * as TrueFoundry from "../index.js";
 
 export interface ModelVersion {
     /** Timestamp when the model version was created. */
-    createdAt?: Date;
+    createdAt?: Date | null;
     /** Timestamp when the model version was last updated. */
-    updatedAt?: Date;
+    updatedAt?: Date | null;
     /** Manifest describing the model version. */
     manifest: TrueFoundry.ModelManifest;
     /** Unique identifier of the model version. */
@@ -18,13 +18,13 @@ export interface ModelVersion {
     /** Identifier of the ML Repo the model version belongs to. */
     mlRepoId: string;
     /** Code snippet showing how to use the model version. */
-    usageCodeSnippet?: string;
+    usageCodeSnippet?: string | null;
     /** Tags associated with the model version. */
     tags?: string[];
     /** Identifier of the model this version belongs to. */
     modelId: string;
     /** Metrics logged for the model version. */
-    metrics?: TrueFoundry.Metric[];
+    metrics?: TrueFoundry.Metric[] | null;
     /** Whether the model version can be deployed. */
-    deployable?: boolean;
+    deployable?: boolean | null;
 }

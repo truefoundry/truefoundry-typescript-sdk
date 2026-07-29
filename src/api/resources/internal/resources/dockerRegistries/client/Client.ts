@@ -83,20 +83,17 @@ export class DockerRegistriesClient {
     /**
      * Get docker registry credentials for building and pushing an image.
      *
-     * @param {TrueFoundry.internal.DockerRegistriesGetCredentialsRequest} request
+     * @param {TrueFoundry.internal.GetCredentialsDockerRegistriesRequest} request
      * @param {DockerRegistriesClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @example
-     *     await client.internal.dockerRegistries.getCredentials({
-     *         fqn: "fqn",
-     *         clusterId: "clusterId"
-     *     })
+     *     await client.internal.dockerRegistries.getCredentials()
      */
-    public getCredentials(request: TrueFoundry.internal.DockerRegistriesGetCredentialsRequest = {}, requestOptions?: DockerRegistriesClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetDockerRegistryCredentialsResponse> {
+    public getCredentials(request: TrueFoundry.internal.GetCredentialsDockerRegistriesRequest = {}, requestOptions?: DockerRegistriesClient.RequestOptions): core.HttpResponsePromise<TrueFoundry.GetDockerRegistryCredentialsResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getCredentials(request, requestOptions));
     }
 
-    private async __getCredentials(request: TrueFoundry.internal.DockerRegistriesGetCredentialsRequest = {}, requestOptions?: DockerRegistriesClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetDockerRegistryCredentialsResponse>> {
+    private async __getCredentials(request: TrueFoundry.internal.GetCredentialsDockerRegistriesRequest = {}, requestOptions?: DockerRegistriesClient.RequestOptions): Promise<core.WithRawResponse<TrueFoundry.GetDockerRegistryCredentialsResponse>> {
         const { fqn, clusterId } = request;
         const _queryParams: Record<string, unknown> = {
             fqn,

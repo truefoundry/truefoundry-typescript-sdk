@@ -10,8 +10,8 @@ export interface Cluster {
     manifest: TrueFoundry.ClusterManifest;
     tenantName: string;
     accountId: string;
-    createdBySubject?: TrueFoundry.Subject;
+    createdBySubject?: TrueFoundry.Subject | null;
     createdAt: Date;
     updatedAt: Date;
-    createdBy?: string;
+    createdBy?: string | null;
 }

@@ -13,9 +13,9 @@ export const AgentSkill: core.serialization.ObjectSchema<serializers.AgentSkill.
         "name": core.serialization.string(),
         "fqn": core.serialization.string(),
         "createdBySubject": core.serialization.property("created_by_subject", Subject),
-        "createdAt": core.serialization.property("created_at", core.serialization.date().optional()),
-        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optional()),
-        "latestVersion": core.serialization.property("latest_version", AgentSkillVersion.optional())
+        "createdAt": core.serialization.property("created_at", core.serialization.date().optionalNullable()),
+        "updatedAt": core.serialization.property("updated_at", core.serialization.date().optionalNullable()),
+        "latestVersion": core.serialization.property("latest_version", AgentSkillVersion.optionalNullable())
     });
 
 export declare namespace AgentSkill {
@@ -26,8 +26,8 @@ export declare namespace AgentSkill {
         name: string;
         fqn: string;
         created_by_subject: Subject.Raw;
-        created_at?: string | null;
-        updated_at?: string | null;
-        latest_version?: AgentSkillVersion.Raw | null;
+        created_at?: (string | null | undefined) | null;
+        updated_at?: (string | null | undefined) | null;
+        latest_version?: (AgentSkillVersion.Raw | null | undefined) | null;
     }
 }
