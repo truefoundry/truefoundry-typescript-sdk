@@ -8,13 +8,13 @@ export const TrueFoundryAgentUserMessage: core.serialization.ObjectSchema<
     serializers.TrueFoundryAgentUserMessage.Raw,
     TrueFoundry.TrueFoundryAgentUserMessage
 > = core.serialization.object({
-    role: core.serialization.stringLiteral("user"),
+    type: core.serialization.stringLiteral("user.message"),
     content: core.serialization.string(),
 });
 
 export declare namespace TrueFoundryAgentUserMessage {
     export interface Raw {
-        role: "user";
+        type: "user.message";
         content: string;
     }
 }

@@ -3,6 +3,7 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { AgentChannelManifest } from "./AgentChannelManifest.js";
 import { AgentIdentityManifest } from "./AgentIdentityManifest.js";
 import { AgentManifest } from "./AgentManifest.js";
 import { AiFeaturesSettings } from "./AiFeaturesSettings.js";
@@ -76,6 +77,7 @@ export const TrueFoundryDeleteRequestManifest: core.serialization.Schema<
     McpServerManifest,
     RoleBindingManifest,
     AgentIdentityManifest,
+    AgentChannelManifest,
 ]);
 
 export declare namespace TrueFoundryDeleteRequestManifest {
@@ -113,5 +115,6 @@ export declare namespace TrueFoundryDeleteRequestManifest {
         | TracingProjectManifest.Raw
         | McpServerManifest.Raw
         | RoleBindingManifest.Raw
-        | AgentIdentityManifest.Raw;
+        | AgentIdentityManifest.Raw
+        | AgentChannelManifest.Raw;
 }

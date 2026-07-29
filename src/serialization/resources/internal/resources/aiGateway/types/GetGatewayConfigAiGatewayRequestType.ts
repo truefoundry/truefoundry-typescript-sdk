@@ -19,6 +19,7 @@ export const GetGatewayConfigAiGatewayRequestType: core.serialization.Schema<
     "gateway-global-settings",
     "gateway-data-access-config",
     "gateway-data-routing-config",
+    "gateway-logging-config",
 ]);
 
 export declare namespace GetGatewayConfigAiGatewayRequestType {
@@ -33,5 +34,6 @@ export declare namespace GetGatewayConfigAiGatewayRequestType {
         | "gateway-otel-config"
         | "gateway-global-settings"
         | "gateway-data-access-config"
-        | "gateway-data-routing-config";
+        | "gateway-data-routing-config"
+        | "gateway-logging-config";
 }

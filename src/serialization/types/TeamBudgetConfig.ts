@@ -16,7 +16,7 @@ export const TeamBudgetConfig: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("team-budget-config"),
     teamName: core.serialization.property("team_name", core.serialization.string()),
     name: core.serialization.string(),
-    when: BudgetV2WhenTeamScoped,
+    when: BudgetV2WhenTeamScoped.optional(),
     limits: BudgetV2Limits,
     appliesTo: core.serialization.property("applies_to", BudgetV2AppliesTo),
     mode: TeamBudgetConfigMode,
@@ -28,7 +28,7 @@ export declare namespace TeamBudgetConfig {
         type: "team-budget-config";
         team_name: string;
         name: string;
-        when: BudgetV2WhenTeamScoped.Raw;
+        when?: BudgetV2WhenTeamScoped.Raw | null;
         limits: BudgetV2Limits.Raw;
         applies_to: BudgetV2AppliesTo.Raw;
         mode: TeamBudgetConfigMode.Raw;

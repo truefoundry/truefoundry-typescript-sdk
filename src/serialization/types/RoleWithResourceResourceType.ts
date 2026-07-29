@@ -36,10 +36,13 @@ export const RoleWithResourceResourceType: core.serialization.Schema<
     "gateway-config",
     "gateway-controls",
     "gateway-budget",
+    "gateway-policy",
+    "gateway-approval-request",
     "tracing-project",
     "tracing-application",
     "agent",
     "agent-app",
+    "agent-channel",
     "gateway-installation",
     "virtual-account",
     "sso-based-identity",
@@ -79,10 +82,13 @@ export declare namespace RoleWithResourceResourceType {
         | "gateway-config"
         | "gateway-controls"
         | "gateway-budget"
+        | "gateway-policy"
+        | "gateway-approval-request"
         | "tracing-project"
         | "tracing-application"
         | "agent"
         | "agent-app"
+        | "agent-channel"
         | "gateway-installation"
         | "virtual-account"
         | "sso-based-identity"

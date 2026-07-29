@@ -9,4 +9,5 @@ import type * as TrueFoundry from "../index.js";
 export type HeaderRoutingConfig =
     | TrueFoundry.WeightBasedLoadBalancing
     | TrueFoundry.LatencyBasedLoadBalancing
-    | TrueFoundry.PriorityBasedLoadBalancing;
+    | TrueFoundry.PriorityBasedLoadBalancing
+    | TrueFoundry.ComplexityBasedLoadBalancing;

@@ -7,6 +7,7 @@ import { SparkDriverConfig } from "./SparkDriverConfig.js";
 import { SparkExecutorConfig } from "./SparkExecutorConfig.js";
 import { SparkJobEntrypoint } from "./SparkJobEntrypoint.js";
 import { SparkJobImage } from "./SparkJobImage.js";
+import { SparkJobTrigger } from "./SparkJobTrigger.js";
 import { VolumeMount } from "./VolumeMount.js";
 
 export const SparkJob: core.serialization.ObjectSchema<serializers.SparkJob.Raw, TrueFoundry.SparkJob> =
@@ -15,6 +16,7 @@ export const SparkJob: core.serialization.ObjectSchema<serializers.SparkJob.Raw,
         name: core.serialization.string(),
         image: SparkJobImage,
         entrypoint: SparkJobEntrypoint,
+        trigger: SparkJobTrigger.optional(),
         driverConfig: core.serialization.property("driver_config", SparkDriverConfig),
         executorConfig: core.serialization.property("executor_config", SparkExecutorConfig),
         env: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
@@ -36,6 +38,7 @@ export declare namespace SparkJob {
         name: string;
         image: SparkJobImage.Raw;
         entrypoint: SparkJobEntrypoint.Raw;
+        trigger?: SparkJobTrigger.Raw | null;
         driver_config: SparkDriverConfig.Raw;
         executor_config: SparkExecutorConfig.Raw;
         env?: (Record<string, unknown> | null | undefined) | null;

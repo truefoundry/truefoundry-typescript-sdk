@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * DeepInfra Provider Account
+ * DeepInfra Model Account
  */
 export interface DeepinfraProviderAccount {
     /** +value=provider-account/deepinfra */
     type: "provider-account/deepinfra";
-    /** The name of the DeepInfra provider account */
+    /** The name of the DeepInfra model account */
     name: string;
     authData: TrueFoundry.DeepinfraKeyAuth;
-    /** List of integrations that are associated with the DeepInfra provider account */
+    /** List of integrations that are associated with the DeepInfra model account */
     integrations?: TrueFoundry.DeepinfraIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

@@ -10,5 +10,6 @@ export const VirtualModelModelType = {
     AudioTranslation: "audio_translation",
     TextToSpeech: "text_to_speech",
     Image: "image",
+    Responses: "responses",
 } as const;
 export type VirtualModelModelType = (typeof VirtualModelModelType)[keyof typeof VirtualModelModelType];

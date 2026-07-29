@@ -3,18 +3,18 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Azure AI Foundry Provider Account
+ * Azure AI Foundry Model Account
  */
 export interface AzureFoundryProviderAccount {
     /** +value=provider-account/azure-foundry */
     type: "provider-account/azure-foundry";
-    /** The name of the Azure AI Foundry provider account */
+    /** The name of the Azure AI Foundry model account */
     name: string;
-    /** List of integrations that are associated with the Azure Foundry provider account */
+    /** List of integrations that are associated with the Azure Foundry model account */
     integrations: TrueFoundry.AzureFoundryModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

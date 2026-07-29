@@ -8,14 +8,16 @@ import type * as TrueFoundry from "../index.js";
 export interface AnthropicProviderAccount {
     /** +value=provider-account/anthropic */
     type: "provider-account/anthropic";
-    /** The name of the Anthropic provider account */
+    /** The name of the Anthropic model account */
     name: string;
     authData?: TrueFoundry.AnthropicKeyAuth;
-    /** List of integrations that are associated with the Anthropic provider account */
+    /** Optional custom base URL for the Anthropic API. Must include the version path, e.g. https://my-proxy.example.com/v1. When set, requests are sent here instead of the default https://api.anthropic.com/v1. */
+    baseUrl?: string;
+    /** List of integrations that are associated with the Anthropic model account */
     integrations?: TrueFoundry.AnthropicIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Guardrail Configs Group
+ * Guardrail Group
  */
 export interface GuardrailConfigGroup {
     /**

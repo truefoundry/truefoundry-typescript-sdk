@@ -3,6 +3,7 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { TrueFoundryAgentSandboxNetworkPolicy } from "./TrueFoundryAgentSandboxNetworkPolicy.js";
 
 export const TrueFoundryAgentSandboxConfig: core.serialization.ObjectSchema<
     serializers.TrueFoundryAgentSandboxConfig.Raw,
@@ -10,11 +11,13 @@ export const TrueFoundryAgentSandboxConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     enabled: core.serialization.boolean(),
     fileDownloads: core.serialization.property("file_downloads", core.serialization.boolean().optional()),
+    networkPolicy: core.serialization.property("network_policy", TrueFoundryAgentSandboxNetworkPolicy.optional()),
 });
 
 export declare namespace TrueFoundryAgentSandboxConfig {
     export interface Raw {
         enabled: boolean;
         file_downloads?: boolean | null;
+        network_policy?: TrueFoundryAgentSandboxNetworkPolicy.Raw | null;
     }
 }

@@ -25,7 +25,35 @@ describe("TrueFoundryClient", () => {
                 ownedBy: { account: "account" },
             },
             action: "CREATE",
-            data: { key: "value" },
+            data: {
+                id: "jqfwg345gi25n5ju2yz5iz6m",
+                fqn: "fqn",
+                provider: "aws",
+                manifest: { key: "value" },
+                integrations: [
+                    {
+                        id: "jqfwg345gi25n5ju2yz5iz6m",
+                        name: "name",
+                        fqn: "fqn",
+                        type: "blob-storage",
+                        providerAccountFqn: "providerAccountFqn",
+                        createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    },
+                ],
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
+                accountId: "accountId",
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
+                createdBy: "createdBy",
+            },
         };
 
         server
@@ -68,7 +96,38 @@ describe("TrueFoundryClient", () => {
             },
             action: "CREATE",
             data: {
-                key: "value",
+                id: "jqfwg345gi25n5ju2yz5iz6m",
+                fqn: "fqn",
+                provider: "aws",
+                manifest: {
+                    key: "value",
+                },
+                integrations: [
+                    {
+                        id: "jqfwg345gi25n5ju2yz5iz6m",
+                        name: "name",
+                        fqn: "fqn",
+                        type: "blob-storage",
+                        providerAccountFqn: "providerAccountFqn",
+                        createdBySubject: {
+                            subjectId: "subjectId",
+                            subjectType: "user",
+                        },
+                    },
+                ],
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
+                accountId: "accountId",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdBy: "createdBy",
             },
         });
     });

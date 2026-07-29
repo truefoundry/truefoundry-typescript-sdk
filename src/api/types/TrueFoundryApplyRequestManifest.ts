@@ -39,4 +39,5 @@ export type TrueFoundryApplyRequestManifest =
     | TrueFoundry.TracingProjectManifest
     | TrueFoundry.McpServerManifest
     | TrueFoundry.RoleBindingManifest
-    | TrueFoundry.AgentIdentityManifest;
+    | TrueFoundry.AgentIdentityManifest
+    | TrueFoundry.AgentChannelManifest;

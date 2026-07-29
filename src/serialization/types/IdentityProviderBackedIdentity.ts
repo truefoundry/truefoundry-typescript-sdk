@@ -9,7 +9,7 @@ export const IdentityProviderBackedIdentity: core.serialization.ObjectSchema<
     serializers.IdentityProviderBackedIdentity.Raw,
     TrueFoundry.IdentityProviderBackedIdentity
 > = core.serialization.object({
-    type: core.serialization.stringLiteral("idp-backed"),
+    type: core.serialization.stringLiteral("identity-provider-backed"),
     identityProviderMapping: core.serialization.property(
         "identity_provider_mapping",
         core.serialization.list(AgentIdentityProviderMapping),
@@ -18,7 +18,7 @@ export const IdentityProviderBackedIdentity: core.serialization.ObjectSchema<
 
 export declare namespace IdentityProviderBackedIdentity {
     export interface Raw {
-        type: "idp-backed";
+        type: "identity-provider-backed";
         identity_provider_mapping: AgentIdentityProviderMapping.Raw[];
     }
 }

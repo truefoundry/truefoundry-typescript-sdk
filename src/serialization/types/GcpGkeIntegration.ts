@@ -3,8 +3,8 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { GcpGkeIntegrationLocation } from "./GcpGkeIntegrationLocation.js";
 import { GcpKeyFileAuth } from "./GcpKeyFileAuth.js";
-import { GcpRegion } from "./GcpRegion.js";
 
 export const GcpGkeIntegration: core.serialization.ObjectSchema<
     serializers.GcpGkeIntegration.Raw,
@@ -12,7 +12,7 @@ export const GcpGkeIntegration: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("integration/cluster/gcp/gke-standard"),
     name: core.serialization.string(),
-    location: GcpRegion,
+    location: GcpGkeIntegrationLocation,
     clusterName: core.serialization.property("cluster_name", core.serialization.string()),
     authData: core.serialization.property("auth_data", GcpKeyFileAuth.optional()),
     authorizedSubjects: core.serialization.property(
@@ -25,7 +25,7 @@ export declare namespace GcpGkeIntegration {
     export interface Raw {
         type: "integration/cluster/gcp/gke-standard";
         name: string;
-        location: GcpRegion.Raw;
+        location: GcpGkeIntegrationLocation.Raw;
         cluster_name: string;
         auth_data?: GcpKeyFileAuth.Raw | null;
         authorized_subjects?: string[] | null;

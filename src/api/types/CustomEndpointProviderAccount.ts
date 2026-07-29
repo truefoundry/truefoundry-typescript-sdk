@@ -8,7 +8,7 @@ import type * as TrueFoundry from "../index.js";
 export interface CustomEndpointProviderAccount {
     /** +value=provider-account/custom-endpoint */
     type: "provider-account/custom-endpoint";
-    /** The name of the custom endpoint provider account. */
+    /** The name of the custom endpoint model account. */
     name: string;
     /** The type of service behind this endpoint (used for tracking purposes) */
     endpointType?: TrueFoundry.CustomEndpointProviderAccountEndpointType;
@@ -17,7 +17,7 @@ export interface CustomEndpointProviderAccount {
     /** A unique identifier used to address the load-balanced endpoints of this account. When routing_type is "weight" or "priority", the load balancer is reachable at /proxy-api/<account-name>/<slug>/<upstream-path>, alongside the per-endpoint URLs. */
     slug?: string;
     authData?: TrueFoundry.CustomHeaderAuth;
-    /** List of endpoint integrations associated with this provider account. */
+    /** List of endpoint integrations associated with this model account. */
     integrations: TrueFoundry.CustomEndpointIntegrations[];
     /** Collaborators */
     collaborators?: TrueFoundry.Collaborator[];

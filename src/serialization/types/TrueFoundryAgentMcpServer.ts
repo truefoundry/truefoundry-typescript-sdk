@@ -3,38 +3,14 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { TrueFoundryAgentMcpServerInline } from "./TrueFoundryAgentMcpServerInline.js";
+import { TrueFoundryAgentMcpServerRegistry } from "./TrueFoundryAgentMcpServerRegistry.js";
 
-export const TrueFoundryAgentMcpServer: core.serialization.ObjectSchema<
+export const TrueFoundryAgentMcpServer: core.serialization.Schema<
     serializers.TrueFoundryAgentMcpServer.Raw,
     TrueFoundry.TrueFoundryAgentMcpServer
-> = core.serialization.object({
-    name: core.serialization.string(),
-    preload: core.serialization.boolean().optional(),
-    enableTools: core.serialization.property(
-        "enable_tools",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    disableTools: core.serialization.property(
-        "disable_tools",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    preloadTools: core.serialization.property(
-        "preload_tools",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-    requireApprovalForTools: core.serialization.property(
-        "require_approval_for_tools",
-        core.serialization.list(core.serialization.string()).optional(),
-    ),
-});
+> = core.serialization.undiscriminatedUnion([TrueFoundryAgentMcpServerRegistry, TrueFoundryAgentMcpServerInline]);
 
 export declare namespace TrueFoundryAgentMcpServer {
-    export interface Raw {
-        name: string;
-        preload?: boolean | null;
-        enable_tools?: string[] | null;
-        disable_tools?: string[] | null;
-        preload_tools?: string[] | null;
-        require_approval_for_tools?: string[] | null;
-    }
+    export type Raw = TrueFoundryAgentMcpServerRegistry.Raw | TrueFoundryAgentMcpServerInline.Raw;
 }

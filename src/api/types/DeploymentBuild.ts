@@ -10,7 +10,7 @@ export interface DeploymentBuild {
     buildId?: string | null;
     imageUri?: string | null;
     name?: string | null;
-    status?: TrueFoundry.BuildStatus | null;
+    status?: TrueFoundry.DeploymentBuildStatus | null;
     getLogsUrl?: string | null;
     tailLogsUrl?: string | null;
     logsStartTs?: string | null;

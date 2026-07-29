@@ -10,5 +10,5 @@ export interface AgentIdentityManifest {
     identity: TrueFoundry.AgentIdentityConfig;
     /** Key-value pairs to categorize this Agent Identity (e.g., by owner or environment). */
     tags?: Record<string, unknown>;
-    ownedBy: TrueFoundry.AgentIdentityOwnedBy;
+    ownedBy?: TrueFoundry.AgentIdentityOwnedBy;
 }

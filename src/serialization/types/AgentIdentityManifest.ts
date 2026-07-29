@@ -14,7 +14,7 @@ export const AgentIdentityManifest: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("agent-identity"),
     identity: AgentIdentityConfig,
     tags: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    ownedBy: AgentIdentityOwnedBy,
+    ownedBy: AgentIdentityOwnedBy.optional(),
 });
 
 export declare namespace AgentIdentityManifest {
@@ -23,6 +23,6 @@ export declare namespace AgentIdentityManifest {
         type: "agent-identity";
         identity: AgentIdentityConfig.Raw;
         tags?: Record<string, unknown> | null;
-        ownedBy: AgentIdentityOwnedBy.Raw;
+        ownedBy?: AgentIdentityOwnedBy.Raw | null;
     }
 }

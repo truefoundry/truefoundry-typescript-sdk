@@ -3,20 +3,20 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Cloudera Provider Account
+ * Cloudera Model Account
  */
 export interface ClouderaProviderAccount {
     /** +value=provider-account/cloudera */
     type: "provider-account/cloudera";
-    /** The name of the Cloudera provider account */
+    /** The name of the Cloudera model account */
     name: string;
     /** Cloudera authentication credentials */
     authData: TrueFoundry.ClouderaProviderAccountAuthData;
-    /** List of integrations that are associated with the Cloudera provider account */
+    /** List of integrations that are associated with the Cloudera model account */
     integrations: TrueFoundry.ClouderaIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

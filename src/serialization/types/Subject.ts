@@ -3,12 +3,12 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
-import { SubjectType } from "./SubjectType.js";
+import { SubjectSubjectType } from "./SubjectSubjectType.js";
 
 export const Subject: core.serialization.ObjectSchema<serializers.Subject.Raw, TrueFoundry.Subject> =
     core.serialization.object({
         subjectId: core.serialization.string(),
-        subjectType: SubjectType,
+        subjectType: SubjectSubjectType,
         subjectSlug: core.serialization.string().optionalNullable(),
         subjectDisplayName: core.serialization.string().optionalNullable(),
         subjectPatName: core.serialization.string().optionalNullable(),
@@ -19,7 +19,7 @@ export const Subject: core.serialization.ObjectSchema<serializers.Subject.Raw, T
 export declare namespace Subject {
     export interface Raw {
         subjectId: string;
-        subjectType: SubjectType.Raw;
+        subjectType: SubjectSubjectType.Raw;
         subjectSlug?: (string | null | undefined) | null;
         subjectDisplayName?: (string | null | undefined) | null;
         subjectPatName?: (string | null | undefined) | null;

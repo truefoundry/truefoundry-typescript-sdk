@@ -13,10 +13,10 @@ export interface TenantBudgetConfig {
     type: "tenant-budget-config";
     /** Unique name for this budget */
     name: string;
-    when: TrueFoundry.BudgetV2WhenTenantScoped;
+    when?: TrueFoundry.BudgetV2WhenTenantScoped;
     limits: TrueFoundry.BudgetV2Limits;
     appliesTo: TrueFoundry.BudgetV2AppliesTo;
-    /** `enforce` blocks breaching requests, `audit` only tracks them. */
+    /** `enforce` blocks breaching requests, `audit` only tracks them, `enforce_with_low_priority` blocks only when no other matching budget allows the request. */
     mode: TrueFoundry.TenantBudgetConfigMode;
     alerts?: TrueFoundry.BudgetV2Alert;
 }

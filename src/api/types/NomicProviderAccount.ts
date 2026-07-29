@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Nomic Provider Account
+ * Nomic Model Account
  */
 export interface NomicProviderAccount {
     /** +value=provider-account/nomic */
     type: "provider-account/nomic";
-    /** The name of the Nomic provider account */
+    /** The name of the Nomic model account */
     name: string;
     authData: TrueFoundry.NomicKeyAuth;
-    /** List of integrations that are associated with the Nomic provider account */
+    /** List of integrations that are associated with the Nomic model account */
     integrations: TrueFoundry.NomicIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

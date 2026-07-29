@@ -33,6 +33,8 @@ describe("AgentsClient", () => {
                         version: 1.1,
                     },
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    manifest: { key: "value" },
+                    agentIdentityId: "agentIdentityId",
                     createdBy: "createdBy",
                 },
             ],
@@ -81,6 +83,10 @@ describe("AgentsClient", () => {
                         subjectId: "subjectId",
                         subjectType: "user",
                     },
+                    manifest: {
+                        key: "value",
+                    },
+                    agentIdentityId: "agentIdentityId",
                     createdBy: "createdBy",
                 },
             ],
@@ -143,10 +149,10 @@ describe("AgentsClient", () => {
                     description: "description",
                     tags: { key: "value" },
                     model: { name: "name" },
-                    skills: [{ fqn: "fqn", preload: true }],
-                    mcp_servers: [{ name: "name" }],
+                    skills: [{ type: "truefoundry-skills-registry", fqn: "fqn", preload: true }],
+                    mcp_servers: [{ type: "truefoundry-mcp-registry", name: "name" }],
                     instructions: "instructions",
-                    messages: [{ role: "user", content: "content" }],
+                    messages: [{ type: "user.message", content: "content" }],
                     variables: { key: {} },
                     sample_inputs: [{}],
                     response_format: { type: "text" },
@@ -208,19 +214,21 @@ describe("AgentsClient", () => {
                     },
                     skills: [
                         {
+                            type: "truefoundry-skills-registry",
                             fqn: "fqn",
                             preload: true,
                         },
                     ],
                     mcpServers: [
                         {
+                            type: "truefoundry-mcp-registry",
                             name: "name",
                         },
                     ],
                     instructions: "instructions",
                     messages: [
                         {
-                            role: "user",
+                            type: "user.message",
                             content: "content",
                         },
                     ],
@@ -541,6 +549,8 @@ describe("AgentsClient", () => {
                     subjectControllerName: "subjectControllerName",
                     subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
+                manifest: { key: "value" },
+                agentIdentityId: "agentIdentityId",
                 createdBy: "createdBy",
             },
         };
@@ -596,6 +606,10 @@ describe("AgentsClient", () => {
                     subjectControllerName: "subjectControllerName",
                     subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
+                manifest: {
+                    key: "value",
+                },
+                agentIdentityId: "agentIdentityId",
                 createdBy: "createdBy",
             },
         });
@@ -728,5 +742,82 @@ describe("AgentsClient", () => {
         await expect(async () => {
             return await client.agents.delete("id");
         }).rejects.toThrow(TrueFoundry.InternalServerError);
+    });
+
+    test("getToken (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { token: "token" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m/token")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.agents.getToken("jqfwg345gi25n5ju2yz5iz6m");
+        expect(response).toEqual({
+            token: "token",
+        });
+    });
+
+    test("getToken (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/agents/id/token")
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.getToken("id");
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("getToken (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/agents/id/token")
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.getToken("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("getToken (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/agents/id/token")
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.getToken("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

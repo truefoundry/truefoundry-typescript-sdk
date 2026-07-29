@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { BuildInfo } from "./BuildInfo.js";
-import { BuildStatus } from "./BuildStatus.js";
+import { DeploymentBuildStatus } from "./DeploymentBuildStatus.js";
 
 export const DeploymentBuild: core.serialization.ObjectSchema<
     serializers.DeploymentBuild.Raw,
@@ -17,7 +17,7 @@ export const DeploymentBuild: core.serialization.ObjectSchema<
     buildId: core.serialization.string().optionalNullable(),
     imageUri: core.serialization.string().optionalNullable(),
     name: core.serialization.string().optionalNullable(),
-    status: BuildStatus.optionalNullable(),
+    status: DeploymentBuildStatus.optionalNullable(),
     getLogsUrl: core.serialization.string().optionalNullable(),
     tailLogsUrl: core.serialization.string().optionalNullable(),
     logsStartTs: core.serialization.string().optionalNullable(),
@@ -35,7 +35,7 @@ export declare namespace DeploymentBuild {
         buildId?: (string | null | undefined) | null;
         imageUri?: (string | null | undefined) | null;
         name?: (string | null | undefined) | null;
-        status?: (BuildStatus.Raw | null | undefined) | null;
+        status?: (DeploymentBuildStatus.Raw | null | undefined) | null;
         getLogsUrl?: (string | null | undefined) | null;
         tailLogsUrl?: (string | null | undefined) | null;
         logsStartTs?: (string | null | undefined) | null;

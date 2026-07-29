@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * SambaNova Provider Account
+ * SambaNova Model Account
  */
 export interface SambaNovaProviderAccount {
     /** +value=provider-account/sambanova */
     type: "provider-account/sambanova";
-    /** The name of the SambaNova provider account */
+    /** The name of the SambaNova model account */
     name: string;
     authData: TrueFoundry.SambaNovaKeyAuth;
-    /** List of integrations that are associated with the SambaNova provider account */
+    /** List of integrations that are associated with the SambaNova model account */
     integrations: TrueFoundry.SambaNovaIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * OpenRouter Provider Account
+ * OpenRouter Model Account
  */
 export interface OpenRouterProviderAccount {
     /** +value=provider-account/openrouter */
     type: "provider-account/openrouter";
-    /** The name of the OpenRouter provider account */
+    /** The name of the OpenRouter model account */
     name: string;
     authData: TrueFoundry.OpenRouterApiKeyAuth;
-    /** List of integrations that are associated with the OpenRouter provider account */
+    /** List of integrations that are associated with the OpenRouter model account */
     integrations: TrueFoundry.OpenRouterIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

@@ -8,16 +8,18 @@ import type * as TrueFoundry from "../index.js";
 export interface AwsBedrockMantleProviderAccount {
     /** +value=provider-account/aws-bedrock-mantle */
     type: "provider-account/aws-bedrock-mantle";
-    /** The name of the AWS Bedrock Mantle provider account */
+    /** The name of the AWS Bedrock Mantle model account */
     name: string;
     region: TrueFoundry.AwsRegion;
+    /** Optional custom base URL (e.g. a VPC/PrivateLink endpoint) for AWS Bedrock Mantle. When set, requests are sent here instead of the default bedrock-mantle.{region}.api.aws host. */
+    baseUrl?: string;
     /** Authentication data for the AWS account */
     authData?: TrueFoundry.AwsBedrockMantleProviderAccountAuthData;
-    /** List of integrations that are associated with the AWS Bedrock Mantle provider account */
+    /** List of integrations that are associated with the AWS Bedrock Mantle model account */
     integrations: TrueFoundry.AwsBedrockMantleIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

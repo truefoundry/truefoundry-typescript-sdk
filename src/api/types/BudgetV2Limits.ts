@@ -12,4 +12,6 @@ export interface BudgetV2Limits {
     costPerMonth?: number;
     /** Maximum quarterly cost in USD */
     costPerQuarter?: number;
+    /** Maximum lifetime cost in USD. Mutually exclusive with the day/week/month/quarter limits. */
+    costPerLifetime?: number;
 }

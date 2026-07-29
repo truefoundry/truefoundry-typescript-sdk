@@ -15,7 +15,7 @@ export const TenantBudgetConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("tenant-budget-config"),
     name: core.serialization.string(),
-    when: BudgetV2WhenTenantScoped,
+    when: BudgetV2WhenTenantScoped.optional(),
     limits: BudgetV2Limits,
     appliesTo: core.serialization.property("applies_to", BudgetV2AppliesTo),
     mode: TenantBudgetConfigMode,
@@ -26,7 +26,7 @@ export declare namespace TenantBudgetConfig {
     export interface Raw {
         type: "tenant-budget-config";
         name: string;
-        when: BudgetV2WhenTenantScoped.Raw;
+        when?: BudgetV2WhenTenantScoped.Raw | null;
         limits: BudgetV2Limits.Raw;
         applies_to: BudgetV2AppliesTo.Raw;
         mode: TenantBudgetConfigMode.Raw;

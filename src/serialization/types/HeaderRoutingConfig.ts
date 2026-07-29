@@ -3,6 +3,7 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { ComplexityBasedLoadBalancing } from "./ComplexityBasedLoadBalancing.js";
 import { LatencyBasedLoadBalancing } from "./LatencyBasedLoadBalancing.js";
 import { PriorityBasedLoadBalancing } from "./PriorityBasedLoadBalancing.js";
 import { WeightBasedLoadBalancing } from "./WeightBasedLoadBalancing.js";
@@ -14,8 +15,13 @@ export const HeaderRoutingConfig: core.serialization.Schema<
     WeightBasedLoadBalancing,
     LatencyBasedLoadBalancing,
     PriorityBasedLoadBalancing,
+    ComplexityBasedLoadBalancing,
 ]);
 
 export declare namespace HeaderRoutingConfig {
-    export type Raw = WeightBasedLoadBalancing.Raw | LatencyBasedLoadBalancing.Raw | PriorityBasedLoadBalancing.Raw;
+    export type Raw =
+        | WeightBasedLoadBalancing.Raw
+        | LatencyBasedLoadBalancing.Raw
+        | PriorityBasedLoadBalancing.Raw
+        | ComplexityBasedLoadBalancing.Raw;
 }

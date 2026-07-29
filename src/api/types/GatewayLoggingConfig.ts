@@ -6,13 +6,15 @@ import type * as TrueFoundry from "../index.js";
  * Logging Configuration
  */
 export interface GatewayLoggingConfig {
-    /** Name of the logging configuration */
-    name: string;
     /**
      * +value=gateway-logging-config
-     * +sort=2
+     * +sort=1
      */
     type: "gateway-logging-config";
-    /** List of logging rules */
-    rules: TrueFoundry.GatewayLoggingRule[];
+    /** Unique name for this logging configuration */
+    name: string;
+    when?: TrueFoundry.LoggingWhen;
+    /** Whether requests matched by this config should be logged. */
+    log: boolean;
+    redactWith?: TrueFoundry.Redaction;
 }

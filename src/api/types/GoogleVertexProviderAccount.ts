@@ -3,23 +3,23 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Google Vertex Provider Account
+ * Google Vertex Model Account
  */
 export interface GoogleVertexProviderAccount {
     /** +value=provider-account/google-vertex */
     type: "provider-account/google-vertex";
-    /** The name of the Google Vertex provider account */
+    /** The name of the Google Vertex model account */
     name: string;
     /** The Google Cloud project ID where Vertex AI is enabled */
     projectId: string;
     region: TrueFoundry.VertexRegion;
     /** Service account key JSON, or Workload Identity Federation file (workload-identity-federation-file) with external_account JSON (e.g. create-cred-config). https://docs.truefoundry.com/gateway/google-vertex */
     authData?: TrueFoundry.GoogleVertexProviderAccountAuthData;
-    /** List of integrations that are associated with the Google Vertex provider account */
+    /** List of integrations that are associated with the Google Vertex model account */
     integrations: TrueFoundry.VertexModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

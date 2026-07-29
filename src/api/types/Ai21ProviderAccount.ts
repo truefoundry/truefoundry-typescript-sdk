@@ -8,14 +8,14 @@ import type * as TrueFoundry from "../index.js";
 export interface Ai21ProviderAccount {
     /** +value=provider-account/ai21 */
     type: "provider-account/ai21";
-    /** The name of the AI21 provider account */
+    /** The name of the AI21 model account */
     name: string;
     authData: TrueFoundry.Ai21KeyAuth;
-    /** List of integrations that are associated with the AI21 provider account */
+    /** List of integrations that are associated with the AI21 model account */
     integrations?: TrueFoundry.Ai21Integrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

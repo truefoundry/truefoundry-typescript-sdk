@@ -3,21 +3,21 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Deepgram Provider Account
+ * Deepgram Model Account
  */
 export interface DeepgramProviderAccount {
     /** +value=provider-account/deepgram */
     type: "provider-account/deepgram";
-    /** The name of the Deepgram provider account */
+    /** The name of the Deepgram model account */
     name: string;
     authData: TrueFoundry.DeepgramApiKeyAuth;
     /** Optional custom base URL for Deepgram API */
     baseUrl?: string;
-    /** List of integrations that are associated with the Deepgram provider account */
+    /** List of integrations that are associated with the Deepgram model account */
     integrations: TrueFoundry.DeepgramModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

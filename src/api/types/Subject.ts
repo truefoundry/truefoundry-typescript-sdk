@@ -6,7 +6,7 @@ export interface Subject {
     /** Subject ID */
     subjectId: string;
     /** Subject type */
-    subjectType: TrueFoundry.SubjectType;
+    subjectType: TrueFoundry.SubjectSubjectType;
     /** Subject slug */
     subjectSlug?: string | null;
     /** Subject display name */

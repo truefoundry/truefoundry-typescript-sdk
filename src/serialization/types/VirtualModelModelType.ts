@@ -17,6 +17,7 @@ export const VirtualModelModelType: core.serialization.Schema<
     "audio_translation",
     "text_to_speech",
     "image",
+    "responses",
 ]);
 
 export declare namespace VirtualModelModelType {
@@ -29,5 +30,6 @@ export declare namespace VirtualModelModelType {
         | "audio_transcription"
         | "audio_translation"
         | "text_to_speech"
-        | "image";
+        | "image"
+        | "responses";
 }

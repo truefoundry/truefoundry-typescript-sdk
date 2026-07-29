@@ -4,6 +4,7 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { TrueFoundryApplyResponseAction } from "./TrueFoundryApplyResponseAction.js";
+import { TrueFoundryApplyResponseData } from "./TrueFoundryApplyResponseData.js";
 import { TrueFoundryApplyResponseExistingManifest } from "./TrueFoundryApplyResponseExistingManifest.js";
 
 export const TrueFoundryApplyResponse: core.serialization.ObjectSchema<
@@ -12,13 +13,13 @@ export const TrueFoundryApplyResponse: core.serialization.ObjectSchema<
 > = core.serialization.object({
     existingManifest: TrueFoundryApplyResponseExistingManifest.optionalNullable(),
     action: TrueFoundryApplyResponseAction.optionalNullable(),
-    data: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
+    data: TrueFoundryApplyResponseData.optionalNullable(),
 });
 
 export declare namespace TrueFoundryApplyResponse {
     export interface Raw {
         existingManifest?: (TrueFoundryApplyResponseExistingManifest.Raw | null | undefined) | null;
         action?: (TrueFoundryApplyResponseAction.Raw | null | undefined) | null;
-        data?: (Record<string, unknown> | null | undefined) | null;
+        data?: (TrueFoundryApplyResponseData.Raw | null | undefined) | null;
     }
 }

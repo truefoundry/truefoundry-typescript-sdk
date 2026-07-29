@@ -15,6 +15,7 @@ export const AnthropicProviderAccount: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("provider-account/anthropic"),
     name: core.serialization.string(),
     authData: core.serialization.property("auth_data", AnthropicKeyAuth.optional()),
+    baseUrl: core.serialization.property("base_url", core.serialization.string().optional()),
     integrations: core.serialization.list(AnthropicIntegrations).optional(),
     collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
@@ -26,6 +27,7 @@ export declare namespace AnthropicProviderAccount {
         type: "provider-account/anthropic";
         name: string;
         auth_data?: AnthropicKeyAuth.Raw | null;
+        base_url?: string | null;
         integrations?: AnthropicIntegrations.Raw[] | null;
         collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;

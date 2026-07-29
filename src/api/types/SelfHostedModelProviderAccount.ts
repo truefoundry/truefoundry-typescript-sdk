@@ -8,13 +8,13 @@ import type * as TrueFoundry from "../index.js";
 export interface SelfHostedModelProviderAccount {
     /** +value=provider-account/self-hosted-model */
     type: "provider-account/self-hosted-model";
-    /** The name of the provider account. */
+    /** The name of the model account. */
     name: string;
-    /** List of integrations that are associated with the provider account. */
+    /** List of integrations that are associated with the model account. */
     integrations: TrueFoundry.SelfHostedModelIntegrations[];
     /** Collaborators */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

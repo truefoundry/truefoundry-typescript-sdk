@@ -8,16 +8,16 @@ import type * as TrueFoundry from "../index.js";
 export interface AwsSagemakerProviderAccount {
     /** +value=provider-account/aws-sagemaker */
     type: "provider-account/aws-sagemaker";
-    /** The name of the Sagemaker provider account */
+    /** The name of the Sagemaker model account */
     name: string;
     region: TrueFoundry.AwsRegion;
     /** Authentication data for the AWS account */
     authData?: TrueFoundry.AwsSagemakerProviderAccountAuthData;
-    /** List of integrations that are associated with the Sagemaker provider account */
+    /** List of integrations that are associated with the Sagemaker model account */
     integrations: TrueFoundry.SagemakerModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

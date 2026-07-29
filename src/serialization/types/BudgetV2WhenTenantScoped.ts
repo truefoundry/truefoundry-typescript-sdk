@@ -12,6 +12,7 @@ export const BudgetV2WhenTenantScoped: core.serialization.ObjectSchema<
 > = core.serialization.object({
     subjects: BudgetV2SubjectsTenantScoped.optional(),
     models: BudgetV2InNotInFilter.optional(),
+    providerAccounts: core.serialization.property("provider_accounts", BudgetV2InNotInFilter.optional()),
     metadata: core.serialization.record(core.serialization.string(), BudgetV2InNotInFilter).optional(),
 });
 
@@ -19,6 +20,7 @@ export declare namespace BudgetV2WhenTenantScoped {
     export interface Raw {
         subjects?: BudgetV2SubjectsTenantScoped.Raw | null;
         models?: BudgetV2InNotInFilter.Raw | null;
+        provider_accounts?: BudgetV2InNotInFilter.Raw | null;
         metadata?: Record<string, BudgetV2InNotInFilter.Raw> | null;
     }
 }

@@ -66,6 +66,17 @@
             },
             "default": "./dist/cjs/api/resources/teams/exports.js"
         },
+        "./gatewayBudgets": {
+            "import": {
+                "types": "./dist/esm/api/resources/gatewayBudgets/exports.d.mts",
+                "default": "./dist/esm/api/resources/gatewayBudgets/exports.mjs"
+            },
+            "require": {
+                "types": "./dist/cjs/api/resources/gatewayBudgets/exports.d.ts",
+                "default": "./dist/cjs/api/resources/gatewayBudgets/exports.js"
+            },
+            "default": "./dist/cjs/api/resources/gatewayBudgets/exports.js"
+        },
         "./personalAccessTokens": {
             "import": {
                 "types": "./dist/esm/api/resources/personalAccessTokens/exports.d.mts",

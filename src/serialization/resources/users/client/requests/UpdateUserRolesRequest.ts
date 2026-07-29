@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../../../../../api/index.js";
 import * as core from "../../../../../core/index.js";
 import type * as serializers from "../../../../index.js";
-import { ResourceType } from "../../../../types/ResourceType.js";
+import { UpdateUserRolesRequestResourceType } from "../../types/UpdateUserRolesRequestResourceType.js";
 
 export const UpdateUserRolesRequest: core.serialization.Schema<
     serializers.UpdateUserRolesRequest.Raw,
@@ -11,13 +11,13 @@ export const UpdateUserRolesRequest: core.serialization.Schema<
 > = core.serialization.object({
     email: core.serialization.string(),
     roles: core.serialization.list(core.serialization.string()),
-    resourceType: ResourceType.optionalNullable(),
+    resourceType: UpdateUserRolesRequestResourceType.optionalNullable(),
 });
 
 export declare namespace UpdateUserRolesRequest {
     export interface Raw {
         email: string;
         roles: string[];
-        resourceType?: (ResourceType.Raw | null | undefined) | null;
+        resourceType?: (UpdateUserRolesRequestResourceType.Raw | null | undefined) | null;
     }
 }

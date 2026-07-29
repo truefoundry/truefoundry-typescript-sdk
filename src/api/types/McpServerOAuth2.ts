@@ -5,7 +5,10 @@ import type * as TrueFoundry from "../index.js";
 /**
  * OAuth2
  */
-export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth0Settings {
+export interface McpServerOAuth2
+    extends TrueFoundry.McpServerOAuth2ProviderAuth0Settings,
+        TrueFoundry.McpServerOAuth2ProviderOktaSettings,
+        TrueFoundry.McpServerOAuth2ProviderOktaIdJagSettings {
     /** OAuth2 authentication */
     type: "oauth2";
     /** The OAuth2 grant type to use for authentication. */
@@ -13,7 +16,7 @@ export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth
     /** URL for the authorization request */
     authorizationUrl?: string;
     /** The endpoint to exchange auth code for tokens. */
-    tokenUrl: string;
+    tokenUrl?: string;
     /** client ID for OAuth2 or the TrueFoundry secret FQN containing the client ID. */
     clientId?: string;
     /** Client secret or the TrueFoundry secret FQN containing the client secret for OAuth2. */
@@ -22,14 +25,16 @@ export interface McpServerOAuth2 extends TrueFoundry.McpServerOAuth2ProviderAuth
     registrationUrl?: string;
     /** URL to fetch token expiry (RFC 7662) when the provider does not return expires_in (e.g. Salesforce). Requires client_id and client_secret. */
     introspectionUrl?: string;
+    /** When enabled, the MCP server URL is sent as the resource parameter (RFC 8707) on both authorization and token endpoint requests. */
+    includeResource?: boolean;
     /** Select the OAuth provider. Provider-specific configuration (e.g. Auth0 organization) is unlocked based on this value. */
     provider: TrueFoundry.McpServerOAuth2Provider;
     /** List of supported PKCE code challenge methods (S256 only) */
     codeChallengeMethodsSupported?: "S256"[];
     /** Source of the JWT token to be used for verification. */
-    jwtSource: TrueFoundry.McpServerOAuth2JwtSource;
+    jwtSource?: TrueFoundry.McpServerOAuth2JwtSource;
     /** List of scopes to request from the OAuth2 provider. */
     scopes?: string[];
-    /** Extra key/value pairs sent on every token endpoint request (e.g. Auth0 'audience'). */
+    /** Extra key/value pairs sent on every token endpoint request (e.g. Auth0 'organization'). */
     additionalTokenParams?: Record<string, string>;
 }

@@ -26,10 +26,10 @@ export const GatewayConfig: core.serialization.Schema<serializers.GatewayConfig.
         TeamBudgetConfig,
         GatewayOtelConfig,
         GatewayMetadataConfig,
-        GatewayLoggingConfig,
         GlobalSettings,
         GatewayDataAccessConfig,
         GatewayDataRoutingConfig,
+        GatewayLoggingConfig,
     ]);
 
 export declare namespace GatewayConfig {
@@ -42,8 +42,8 @@ export declare namespace GatewayConfig {
         | TeamBudgetConfig.Raw
         | GatewayOtelConfig.Raw
         | GatewayMetadataConfig.Raw
-        | GatewayLoggingConfig.Raw
         | GlobalSettings.Raw
         | GatewayDataAccessConfig.Raw
-        | GatewayDataRoutingConfig.Raw;
+        | GatewayDataRoutingConfig.Raw
+        | GatewayLoggingConfig.Raw;
 }

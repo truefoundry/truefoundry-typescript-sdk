@@ -8,14 +8,14 @@ import type * as TrueFoundry from "../index.js";
 export interface XaiProviderAccount {
     /** +value=provider-account/xai */
     type: "provider-account/xai";
-    /** The name of the xAI provider account */
+    /** The name of the xAI model account */
     name: string;
     authData: TrueFoundry.XaiKeyAuth;
-    /** List of integrations that are associated with the xAI provider account */
+    /** List of integrations that are associated with the xAI model account */
     integrations?: TrueFoundry.XaiIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

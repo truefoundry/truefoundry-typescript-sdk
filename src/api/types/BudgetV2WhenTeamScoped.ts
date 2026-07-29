@@ -8,6 +8,7 @@ import type * as TrueFoundry from "../index.js";
 export interface BudgetV2WhenTeamScoped {
     subjects?: TrueFoundry.BudgetV2SubjectsTeamScoped;
     models?: TrueFoundry.BudgetV2InNotInFilter;
+    providerAccounts?: TrueFoundry.BudgetV2InNotInFilter;
     /** Filter by metadata key-value pairs this budget applies to */
     metadata?: Record<string, TrueFoundry.BudgetV2InNotInFilter>;
 }

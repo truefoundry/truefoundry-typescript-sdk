@@ -7,4 +7,6 @@
 export interface DeleteUsersRequest {
     /** Tenant name override. Defaults to the caller's tenant when omitted. */
     tenantName?: string | null;
+    /** When true, force-deletes the user by automatically removing all resource collaborations and team memberships. */
+    forceDelete?: boolean | null;
 }

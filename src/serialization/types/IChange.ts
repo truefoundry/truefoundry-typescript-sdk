@@ -3,11 +3,11 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import * as serializers from "../index.js";
-import { IChangeOperation } from "./IChangeOperation.js";
+import { IChangeType } from "./IChangeType.js";
 
 export const IChange: core.serialization.ObjectSchema<serializers.IChange.Raw, TrueFoundry.IChange> =
     core.serialization.object({
-        type: IChangeOperation,
+        type: IChangeType,
         key: core.serialization.string(),
         value: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
         oldValue: core.serialization
@@ -18,7 +18,7 @@ export const IChange: core.serialization.ObjectSchema<serializers.IChange.Raw, T
 
 export declare namespace IChange {
     export interface Raw {
-        type: IChangeOperation.Raw;
+        type: IChangeType.Raw;
         key: string;
         value?: (Record<string, unknown> | null | undefined) | null;
         oldValue?: (Record<string, unknown> | null | undefined) | null;

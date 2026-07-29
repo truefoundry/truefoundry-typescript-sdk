@@ -8,5 +8,5 @@ export interface TrueFoundryApplyResponse {
     /** The action performed: CREATE or UPDATE */
     action?: TrueFoundry.TrueFoundryApplyResponseAction | null;
     /** The created or updated resource */
-    data?: Record<string, unknown> | null;
+    data?: TrueFoundry.TrueFoundryApplyResponseData | null;
 }

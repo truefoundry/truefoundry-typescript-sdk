@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Groq Provider Account
+ * Groq Model Account
  */
 export interface GroqProviderAccount {
     /** +value=provider-account/groq */
     type: "provider-account/groq";
-    /** The name of the Groq provider account */
+    /** The name of the Groq model account */
     name: string;
     authData: TrueFoundry.GroqKeyAuth;
-    /** List of integrations that are associated with the Groq provider account */
+    /** List of integrations that are associated with the Groq model account */
     integrations: TrueFoundry.GroqIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

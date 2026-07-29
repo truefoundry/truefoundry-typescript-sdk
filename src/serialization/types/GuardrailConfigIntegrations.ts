@@ -16,6 +16,7 @@ import { EnkryptAiGuardrailConfig } from "./EnkryptAiGuardrailConfig.js";
 import { FiddlerGuardrailConfig } from "./FiddlerGuardrailConfig.js";
 import { GoogleModelArmorGuardrailConfig } from "./GoogleModelArmorGuardrailConfig.js";
 import { GraySwanCygnalGuardrailConfig } from "./GraySwanCygnalGuardrailConfig.js";
+import { NomaSecurityGuardrailConfig } from "./NomaSecurityGuardrailConfig.js";
 import { OpaGuardrailConfig } from "./OpaGuardrailConfig.js";
 import { OpenAiModerationsGuardrailConfig } from "./OpenAiModerationsGuardrailConfig.js";
 import { PaloAltoPrismaAirsGuardrailConfig } from "./PaloAltoPrismaAirsGuardrailConfig.js";
@@ -56,6 +57,7 @@ export const GuardrailConfigIntegrations: core.serialization.Schema<
     OpaGuardrailConfig,
     GoogleModelArmorGuardrailConfig,
     GraySwanCygnalGuardrailConfig,
+    NomaSecurityGuardrailConfig,
     AktoGuardrailConfig,
     TrojAiGuardrailConfig,
 ]);
@@ -85,6 +87,7 @@ export declare namespace GuardrailConfigIntegrations {
         | OpaGuardrailConfig.Raw
         | GoogleModelArmorGuardrailConfig.Raw
         | GraySwanCygnalGuardrailConfig.Raw
+        | NomaSecurityGuardrailConfig.Raw
         | AktoGuardrailConfig.Raw
         | TrojAiGuardrailConfig.Raw;
 }

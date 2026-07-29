@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * PaLM Provider Account
+ * PaLM Model Account
  */
 export interface PalmProviderAccount {
     /** +value=provider-account/palm */
     type: "provider-account/palm";
-    /** The name of the PaLM provider account */
+    /** The name of the PaLM model account */
     name: string;
     authData: TrueFoundry.PalmKeyAuth;
-    /** List of integrations that are associated with the PaLM provider account */
+    /** List of integrations that are associated with the PaLM model account */
     integrations: TrueFoundry.PalmIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

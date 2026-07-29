@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Mistral AI Provider Account
+ * Mistral AI Model Account
  */
 export interface MistralAiProviderAccount {
     /** +value=provider-account/mistral-ai */
     type: "provider-account/mistral-ai";
-    /** The name of the Mistral AI provider account */
+    /** The name of the Mistral AI model account */
     name: string;
     authData: TrueFoundry.MistralAiKeyAuth;
-    /** List of integrations that are associated with the Mistral AI provider account */
+    /** List of integrations that are associated with the Mistral AI model account */
     integrations: TrueFoundry.MistralAiIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

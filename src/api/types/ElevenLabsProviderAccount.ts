@@ -3,21 +3,21 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * ElevenLabs Provider Account
+ * ElevenLabs Model Account
  */
 export interface ElevenLabsProviderAccount {
     /** +value=provider-account/elevenlabs */
     type: "provider-account/elevenlabs";
-    /** The name of the ElevenLabs provider account */
+    /** The name of the ElevenLabs model account */
     name: string;
     authData: TrueFoundry.ElevenLabsApiKeyAuth;
     /** Optional custom base URL for ElevenLabs API */
     baseUrl?: string;
-    /** List of integrations that are associated with the ElevenLabs provider account */
+    /** List of integrations that are associated with the ElevenLabs model account */
     integrations: TrueFoundry.ElevenLabsModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

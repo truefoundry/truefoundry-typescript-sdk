@@ -3,22 +3,22 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Azure OpenAI Provider Account
+ * Azure OpenAI Model Account
  */
 export interface AzureOpenAiProviderAccount {
     /** +value=provider-account/azure-openai */
     type: "provider-account/azure-openai";
-    /** The name of the Azure OpenAI provider account */
+    /** The name of the Azure OpenAI model account */
     name: string;
     /** The Azure OpenAI Service endpoint URL. Should look like https://{resource-name}.openai.azure.com */
     azureEndpoint: string;
     /** Azure OpenAI authentication credentials */
     authData: TrueFoundry.AzureOpenAiProviderAccountAuthData;
-    /** List of integrations that are associated with the Azure OpenAI provider account */
+    /** List of integrations that are associated with the Azure OpenAI model account */
     integrations: TrueFoundry.AzureOpenAiModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

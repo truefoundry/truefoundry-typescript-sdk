@@ -5,23 +5,8 @@ import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 
 export const SubjectType: core.serialization.Schema<serializers.SubjectType.Raw, TrueFoundry.SubjectType> =
-    core.serialization.enum_([
-        "user",
-        "team",
-        "serviceaccount",
-        "virtualaccount",
-        "external-identity",
-        "agent-identity",
-        "role",
-    ]);
+    core.serialization.enum_(["user", "team", "serviceaccount", "virtualaccount", "agent-identity", "role"]);
 
 export declare namespace SubjectType {
-    export type Raw =
-        | "user"
-        | "team"
-        | "serviceaccount"
-        | "virtualaccount"
-        | "external-identity"
-        | "agent-identity"
-        | "role";
+    export type Raw = "user" | "team" | "serviceaccount" | "virtualaccount" | "agent-identity" | "role";
 }

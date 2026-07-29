@@ -14,5 +14,9 @@ export interface Agent {
     type: string;
     latestVersionDetails?: TrueFoundry.AgentVersion | null;
     createdBySubject: TrueFoundry.Subject;
+    /** Copy of the agent manifest (v2). */
+    manifest?: Record<string, unknown> | null;
+    /** ID of the agent identity created for this agent. */
+    agentIdentityId?: string | null;
     createdBy?: string | null;
 }

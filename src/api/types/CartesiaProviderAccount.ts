@@ -3,23 +3,23 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Cartesia Provider Account
+ * Cartesia Model Account
  */
 export interface CartesiaProviderAccount {
     /** +value=provider-account/cartesia */
     type: "provider-account/cartesia";
-    /** The name of the Cartesia provider account */
+    /** The name of the Cartesia model account */
     name: string;
     /** Optional custom base URL for Cartesia API */
     baseUrl?: string;
     /** The Cartesia API version header. Must be set to a supported API version. */
     cartesiaVersion: TrueFoundry.CartesiaProviderAccountCartesiaVersion;
     authData: TrueFoundry.CartesiaApiKeyAuth;
-    /** List of integrations that are associated with the Cartesia provider account */
+    /** List of integrations that are associated with the Cartesia model account */
     integrations: TrueFoundry.CartesiaModel[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

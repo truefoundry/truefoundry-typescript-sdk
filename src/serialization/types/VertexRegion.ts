@@ -7,18 +7,7 @@ import type * as serializers from "../index.js";
 export const VertexRegion: core.serialization.Schema<serializers.VertexRegion.Raw, TrueFoundry.VertexRegion> =
     core.serialization.enum_([
         "global",
-        "northamerica-northeast1",
-        "northamerica-northeast2",
-        "southamerica-east1",
-        "us-central1",
-        "us-east1",
-        "us-east4",
-        "us-east5",
-        "us-south1",
-        "us-west1",
-        "us-west2",
-        "us-west3",
-        "us-west4",
+        "africa-south1",
         "asia-east1",
         "asia-east2",
         "asia-northeast1",
@@ -28,10 +17,12 @@ export const VertexRegion: core.serialization.Schema<serializers.VertexRegion.Ra
         "asia-south2",
         "asia-southeast1",
         "asia-southeast2",
+        "asia-southeast3",
         "australia-southeast1",
         "australia-southeast2",
         "europe-central2",
         "europe-north1",
+        "europe-north2",
         "europe-southwest1",
         "europe-west1",
         "europe-west2",
@@ -40,9 +31,25 @@ export const VertexRegion: core.serialization.Schema<serializers.VertexRegion.Ra
         "europe-west6",
         "europe-west8",
         "europe-west9",
+        "europe-west10",
+        "europe-west12",
         "me-central1",
         "me-central2",
         "me-west1",
+        "northamerica-northeast1",
+        "northamerica-northeast2",
+        "northamerica-south1",
+        "southamerica-east1",
+        "southamerica-west1",
+        "us-central1",
+        "us-east1",
+        "us-east4",
+        "us-east5",
+        "us-south1",
+        "us-west1",
+        "us-west2",
+        "us-west3",
+        "us-west4",
         "eu",
         "us",
     ]);
@@ -50,18 +57,7 @@ export const VertexRegion: core.serialization.Schema<serializers.VertexRegion.Ra
 export declare namespace VertexRegion {
     export type Raw =
         | "global"
-        | "northamerica-northeast1"
-        | "northamerica-northeast2"
-        | "southamerica-east1"
-        | "us-central1"
-        | "us-east1"
-        | "us-east4"
-        | "us-east5"
-        | "us-south1"
-        | "us-west1"
-        | "us-west2"
-        | "us-west3"
-        | "us-west4"
+        | "africa-south1"
         | "asia-east1"
         | "asia-east2"
         | "asia-northeast1"
@@ -71,10 +67,12 @@ export declare namespace VertexRegion {
         | "asia-south2"
         | "asia-southeast1"
         | "asia-southeast2"
+        | "asia-southeast3"
         | "australia-southeast1"
         | "australia-southeast2"
         | "europe-central2"
         | "europe-north1"
+        | "europe-north2"
         | "europe-southwest1"
         | "europe-west1"
         | "europe-west2"
@@ -83,9 +81,25 @@ export declare namespace VertexRegion {
         | "europe-west6"
         | "europe-west8"
         | "europe-west9"
+        | "europe-west10"
+        | "europe-west12"
         | "me-central1"
         | "me-central2"
         | "me-west1"
+        | "northamerica-northeast1"
+        | "northamerica-northeast2"
+        | "northamerica-south1"
+        | "southamerica-east1"
+        | "southamerica-west1"
+        | "us-central1"
+        | "us-east1"
+        | "us-east4"
+        | "us-east5"
+        | "us-south1"
+        | "us-west1"
+        | "us-west2"
+        | "us-west3"
+        | "us-west4"
         | "eu"
         | "us";
 }

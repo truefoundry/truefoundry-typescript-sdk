@@ -10,7 +10,8 @@ export interface GcpGkeIntegration {
     type: "integration/cluster/gcp/gke-standard";
     /** The name of the integration that will be displayed in the TrueFoundry UI. */
     name: string;
-    location: TrueFoundry.GcpRegion;
+    /** The location of the cluster. */
+    location: TrueFoundry.GcpGkeIntegrationLocation;
     /** Name of the cluster given in the cloud account. */
     clusterName: string;
     authData?: TrueFoundry.GcpKeyFileAuth;

@@ -452,9 +452,10 @@ export class UsersClient {
         request: TrueFoundry.DeleteUsersRequest = {},
         requestOptions?: UsersClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.DeleteUserResponse>> {
-        const { tenantName } = request;
+        const { tenantName, forceDelete } = request;
         const _queryParams: Record<string, unknown> = {
             tenantName,
+            forceDelete,
         };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(

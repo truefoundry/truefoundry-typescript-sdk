@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Ollama Provider Account
+ * Ollama Model Account
  */
 export interface OllamaProviderAccount {
     /** +value=provider-account/ollama */
     type: "provider-account/ollama";
-    /** The name of the Ollama provider account */
+    /** The name of the Ollama model account */
     name: string;
     authData: TrueFoundry.OllamaKeyAuth;
-    /** List of integrations that are associated with the Ollama provider account */
+    /** List of integrations that are associated with the Ollama model account */
     integrations: TrueFoundry.OllamaIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

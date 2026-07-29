@@ -3,22 +3,22 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Databricks Provider Account
+ * Databricks Model Account
  */
 export interface DatabricksProviderAccount {
     /** +value=provider-account/databricks */
     type: "provider-account/databricks";
-    /** The name of the Databricks provider account */
+    /** The name of the Databricks model account */
     name: string;
     /** Databricks authentication credentials */
     authData: TrueFoundry.DatabricksProviderAccountAuthData;
     /** The base URL of your Databricks workspace */
     baseUrl: string;
-    /** List of integrations that are associated with the Databricks provider account */
+    /** List of integrations that are associated with the Databricks model account */
     integrations: TrueFoundry.DatabricksIntegrations[];
-    /** List of users who have access to this provider account */
+    /** List of users who have access to this model account */
     collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
-    /** Discount % applied to upstream list price for this provider account. */
+    /** Discount % applied to upstream list price for this model account. */
     discountPercent?: number;
 }

@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const McpServerOAuth2GrantType: core.serialization.Schema<
     serializers.McpServerOAuth2GrantType.Raw,
     TrueFoundry.McpServerOAuth2GrantType
-> = core.serialization.enum_(["authorization_code", "client_credentials"]);
+> = core.serialization.enum_(["authorization_code", "client_credentials", "token_exchange", "id_jag"]);
 
 export declare namespace McpServerOAuth2GrantType {
-    export type Raw = "authorization_code" | "client_credentials";
+    export type Raw = "authorization_code" | "client_credentials" | "token_exchange" | "id_jag";
 }

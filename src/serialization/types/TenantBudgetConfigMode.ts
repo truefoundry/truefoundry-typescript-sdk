@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const TenantBudgetConfigMode: core.serialization.Schema<
     serializers.TenantBudgetConfigMode.Raw,
     TrueFoundry.TenantBudgetConfigMode
-> = core.serialization.enum_(["enforce", "audit"]);
+> = core.serialization.enum_(["enforce", "audit", "enforce_with_low_priority"]);
 
 export declare namespace TenantBudgetConfigMode {
-    export type Raw = "enforce" | "audit";
+    export type Raw = "enforce" | "audit" | "enforce_with_low_priority";
 }

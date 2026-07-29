@@ -3,18 +3,14 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { TrueFoundryAgentGitSourceSkill } from "./TrueFoundryAgentGitSourceSkill.js";
+import { TrueFoundryAgentTrueFoundrySkill } from "./TrueFoundryAgentTrueFoundrySkill.js";
 
-export const TrueFoundryAgentSkill: core.serialization.ObjectSchema<
+export const TrueFoundryAgentSkill: core.serialization.Schema<
     serializers.TrueFoundryAgentSkill.Raw,
     TrueFoundry.TrueFoundryAgentSkill
-> = core.serialization.object({
-    fqn: core.serialization.string(),
-    preload: core.serialization.boolean(),
-});
+> = core.serialization.undiscriminatedUnion([TrueFoundryAgentTrueFoundrySkill, TrueFoundryAgentGitSourceSkill]);
 
 export declare namespace TrueFoundryAgentSkill {
-    export interface Raw {
-        fqn: string;
-        preload: boolean;
-    }
+    export type Raw = TrueFoundryAgentTrueFoundrySkill.Raw | TrueFoundryAgentGitSourceSkill.Raw;
 }
