@@ -16,9 +16,9 @@ import type * as TrueFoundry from "../../../../index.js";
  *         }
  *     }
  */
-export interface CreateOrUpdateBudgetDto {
+export interface CreateOrUpdateBudgetRequest {
     /** The budget manifest. Must match either the TenantBudgetConfig or TeamBudgetConfig schema. */
-    manifest: TrueFoundry.CreateOrUpdateBudgetDtoManifest;
+    manifest: TrueFoundry.CreateOrUpdateBudgetRequestManifest;
     /** When `true`, validates the manifest without persisting changes. */
     dryRun?: boolean | null;
 }

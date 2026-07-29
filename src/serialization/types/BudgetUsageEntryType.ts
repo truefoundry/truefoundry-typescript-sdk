@@ -4,11 +4,11 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 
-export const BudgetUsageEntryDtoType: core.serialization.Schema<
-    serializers.BudgetUsageEntryDtoType.Raw,
-    TrueFoundry.BudgetUsageEntryDtoType
+export const BudgetUsageEntryType: core.serialization.Schema<
+    serializers.BudgetUsageEntryType.Raw,
+    TrueFoundry.BudgetUsageEntryType
 > = core.serialization.enum_(["tenant-budget-config", "team-budget-config"]);
 
-export declare namespace BudgetUsageEntryDtoType {
+export declare namespace BudgetUsageEntryType {
     export type Raw = "tenant-budget-config" | "team-budget-config";
 }

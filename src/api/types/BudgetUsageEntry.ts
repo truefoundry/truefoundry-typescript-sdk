@@ -2,17 +2,17 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export interface BudgetUsageEntryDto {
+export interface BudgetUsageEntry {
     /** Human-readable name of the budget. */
     name: string;
     /** Budget type. */
-    type: TrueFoundry.BudgetUsageEntryDtoType;
+    type: TrueFoundry.BudgetUsageEntryType;
     /** Team that owns the budget; null for tenant-budget-config. */
     teamName?: string | null;
     /** How counters are partitioned (per-user, per-model, per-virtual-account, aggregate, or metadata:<key>). */
     appliesTo: string;
     /** Budget mode. */
-    mode: TrueFoundry.BudgetUsageEntryDtoMode;
+    mode: TrueFoundry.BudgetUsageEntryMode;
     /** Per-entity usage for this budget. For my-usage and simulate this contains a single entity; leaderboard-style endpoints may return many. */
-    entities: TrueFoundry.BudgetEntityUsageDto[];
+    entities: TrueFoundry.BudgetEntityUsage[];
 }

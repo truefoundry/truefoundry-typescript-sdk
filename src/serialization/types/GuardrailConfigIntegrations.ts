@@ -9,6 +9,7 @@ import { AzureContentSafetyGuardrailConfig } from "./AzureContentSafetyGuardrail
 import { AzurePiiGuardrailConfig } from "./AzurePiiGuardrailConfig.js";
 import { AzurePromptShieldGuardrailConfig } from "./AzurePromptShieldGuardrailConfig.js";
 import { CedarGuardrailConfig } from "./CedarGuardrailConfig.js";
+import { CiscoAiDefenseGuardrailConfig } from "./CiscoAiDefenseGuardrailConfig.js";
 import { CodeSafetyLinterGuardrailConfig } from "./CodeSafetyLinterGuardrailConfig.js";
 import { CrowdStrikeAidrGuardrailConfig } from "./CrowdStrikeAidrGuardrailConfig.js";
 import { CustomGuardrailConfig } from "./CustomGuardrailConfig.js";
@@ -43,6 +44,7 @@ export const GuardrailConfigIntegrations: core.serialization.Schema<
     EnkryptAiGuardrailConfig,
     PaloAltoPrismaAirsGuardrailConfig,
     FiddlerGuardrailConfig,
+    CiscoAiDefenseGuardrailConfig,
     CrowdStrikeAidrGuardrailConfig,
     PatronusGuardrailConfig,
     SecretDetectionGuardrailConfig,
@@ -73,6 +75,7 @@ export declare namespace GuardrailConfigIntegrations {
         | EnkryptAiGuardrailConfig.Raw
         | PaloAltoPrismaAirsGuardrailConfig.Raw
         | FiddlerGuardrailConfig.Raw
+        | CiscoAiDefenseGuardrailConfig.Raw
         | CrowdStrikeAidrGuardrailConfig.Raw
         | PatronusGuardrailConfig.Raw
         | SecretDetectionGuardrailConfig.Raw

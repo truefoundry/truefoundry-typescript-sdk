@@ -4,7 +4,7 @@
  * @example
  *     {}
  */
-export interface SimulateBudgetRequestDto {
+export interface SimulateBudgetRequest {
     /** User email to simulate as. */
     user?: string;
     /** Virtual account slug to simulate as. Use this instead of `user` for virtual-account budgets. */

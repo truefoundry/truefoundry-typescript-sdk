@@ -3,19 +3,19 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
-import { PeriodUsageDto } from "./PeriodUsageDto.js";
+import { PeriodUsage } from "./PeriodUsage.js";
 
-export const BudgetEntityUsageDto: core.serialization.ObjectSchema<
-    serializers.BudgetEntityUsageDto.Raw,
-    TrueFoundry.BudgetEntityUsageDto
+export const BudgetEntityUsage: core.serialization.ObjectSchema<
+    serializers.BudgetEntityUsage.Raw,
+    TrueFoundry.BudgetEntityUsage
 > = core.serialization.object({
     entity: core.serialization.string().optionalNullable(),
-    periods: core.serialization.record(core.serialization.string(), PeriodUsageDto),
+    periods: core.serialization.record(core.serialization.string(), PeriodUsage),
 });
 
-export declare namespace BudgetEntityUsageDto {
+export declare namespace BudgetEntityUsage {
     export interface Raw {
         entity?: (string | null | undefined) | null;
-        periods: Record<string, PeriodUsageDto.Raw>;
+        periods: Record<string, PeriodUsage.Raw>;
     }
 }

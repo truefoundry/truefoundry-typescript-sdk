@@ -116,7 +116,7 @@ export class GatewayBudgetsClient {
     /**
      * Creates or updates a budget manifest for the tenant. Budgets are upserted by `manifest.name` (unique per tenant).
      *
-     * @param {TrueFoundry.CreateOrUpdateBudgetDto} request
+     * @param {TrueFoundry.CreateOrUpdateBudgetRequest} request
      * @param {GatewayBudgetsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -137,14 +137,14 @@ export class GatewayBudgetsClient {
      *     })
      */
     public createOrUpdate(
-        request: TrueFoundry.CreateOrUpdateBudgetDto,
+        request: TrueFoundry.CreateOrUpdateBudgetRequest,
         requestOptions?: GatewayBudgetsClient.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.GatewayBudget> {
         return core.HttpResponsePromise.fromPromise(this.__createOrUpdate(request, requestOptions));
     }
 
     private async __createOrUpdate(
-        request: TrueFoundry.CreateOrUpdateBudgetDto,
+        request: TrueFoundry.CreateOrUpdateBudgetRequest,
         requestOptions?: GatewayBudgetsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.GatewayBudget>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -165,7 +165,7 @@ export class GatewayBudgetsClient {
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: mergeAdditionalBodyParameters(
-                serializers.CreateOrUpdateBudgetDto.jsonOrThrow(request, {
+                serializers.CreateOrUpdateBudgetRequest.jsonOrThrow(request, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -226,13 +226,13 @@ export class GatewayBudgetsClient {
      */
     public getMyUsage(
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.BudgetUsageResponseDto> {
+    ): core.HttpResponsePromise<TrueFoundry.BudgetUsageResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getMyUsage(requestOptions));
     }
 
     private async __getMyUsage(
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.BudgetUsageResponseDto>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.BudgetUsageResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -256,7 +256,7 @@ export class GatewayBudgetsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.BudgetUsageResponseDto.parseOrThrow(_response.body, {
+                data: serializers.BudgetUsageResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -286,7 +286,7 @@ export class GatewayBudgetsClient {
     /**
      * Returns the budgets that would apply to a hypothetical user/team/model/metadata selection, with current usage.
      *
-     * @param {TrueFoundry.SimulateBudgetRequestDto} request
+     * @param {TrueFoundry.SimulateBudgetRequest} request
      * @param {GatewayBudgetsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link errors.TrueFoundryError}
@@ -296,16 +296,16 @@ export class GatewayBudgetsClient {
      *     await client.gatewayBudgets.simulate()
      */
     public simulate(
-        request: TrueFoundry.SimulateBudgetRequestDto = {},
+        request: TrueFoundry.SimulateBudgetRequest = {},
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.BudgetUsageResponseDto> {
+    ): core.HttpResponsePromise<TrueFoundry.BudgetUsageResponse> {
         return core.HttpResponsePromise.fromPromise(this.__simulate(request, requestOptions));
     }
 
     private async __simulate(
-        request: TrueFoundry.SimulateBudgetRequestDto = {},
+        request: TrueFoundry.SimulateBudgetRequest = {},
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.BudgetUsageResponseDto>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.BudgetUsageResponse>> {
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -324,7 +324,7 @@ export class GatewayBudgetsClient {
             queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
             requestType: "json",
             body: mergeAdditionalBodyParameters(
-                serializers.SimulateBudgetRequestDto.jsonOrThrow(request, {
+                serializers.SimulateBudgetRequest.jsonOrThrow(request, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -340,7 +340,7 @@ export class GatewayBudgetsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.BudgetUsageResponseDto.parseOrThrow(_response.body, {
+                data: serializers.BudgetUsageResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,
@@ -533,7 +533,7 @@ export class GatewayBudgetsClient {
         id: string,
         request: TrueFoundry.GetLeaderboardGatewayBudgetsRequest = {},
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.BudgetUsageResponseDto> {
+    ): core.HttpResponsePromise<TrueFoundry.BudgetUsageResponse> {
         return core.HttpResponsePromise.fromPromise(this.__getLeaderboard(id, request, requestOptions));
     }
 
@@ -541,7 +541,7 @@ export class GatewayBudgetsClient {
         id: string,
         request: TrueFoundry.GetLeaderboardGatewayBudgetsRequest = {},
         requestOptions?: GatewayBudgetsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.BudgetUsageResponseDto>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.BudgetUsageResponse>> {
         const { limit } = request;
         const _queryParams: Record<string, unknown> = {
             limit,
@@ -573,7 +573,7 @@ export class GatewayBudgetsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.BudgetUsageResponseDto.parseOrThrow(_response.body, {
+                data: serializers.BudgetUsageResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,

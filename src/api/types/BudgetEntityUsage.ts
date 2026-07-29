@@ -2,9 +2,9 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export interface BudgetEntityUsageDto {
+export interface BudgetEntityUsage {
     /** Entity counter this usage maps to; null for aggregate budgets. */
     entity?: string | null;
     /** Per-period usage keyed by period (cost_per_day, cost_per_month, ...). */
-    periods: Record<string, TrueFoundry.PeriodUsageDto>;
+    periods: Record<string, TrueFoundry.PeriodUsage>;
 }

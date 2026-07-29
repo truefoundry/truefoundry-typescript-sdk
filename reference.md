@@ -1659,7 +1659,7 @@ await client.gatewayBudgets.createOrUpdate({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CreateOrUpdateBudgetDto` 
+**request:** `TrueFoundry.CreateOrUpdateBudgetRequest` 
     
 </dd>
 </dl>
@@ -1679,7 +1679,7 @@ await client.gatewayBudgets.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">getMyUsage</a>() -> TrueFoundry.BudgetUsageResponseDto</code></summary>
+<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">getMyUsage</a>() -> TrueFoundry.BudgetUsageResponse</code></summary>
 <dl>
 <dd>
 
@@ -1734,7 +1734,7 @@ await client.gatewayBudgets.getMyUsage();
 </dl>
 </details>
 
-<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">simulate</a>({ ...params }) -> TrueFoundry.BudgetUsageResponseDto</code></summary>
+<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">simulate</a>({ ...params }) -> TrueFoundry.BudgetUsageResponse</code></summary>
 <dl>
 <dd>
 
@@ -1777,7 +1777,7 @@ await client.gatewayBudgets.simulate();
 <dl>
 <dd>
 
-**request:** `TrueFoundry.SimulateBudgetRequestDto` 
+**request:** `TrueFoundry.SimulateBudgetRequest` 
     
 </dd>
 </dl>
@@ -1923,7 +1923,7 @@ await client.gatewayBudgets.delete("id");
 </dl>
 </details>
 
-<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">getLeaderboard</a>(id, { ...params }) -> TrueFoundry.BudgetUsageResponseDto</code></summary>
+<details><summary><code>client.gatewayBudgets.<a href="/src/api/resources/gatewayBudgets/client/Client.ts">getLeaderboard</a>(id, { ...params }) -> TrueFoundry.BudgetUsageResponse</code></summary>
 <dl>
 <dd>
 

@@ -15,6 +15,7 @@ export type GuardrailConfigIntegrations =
     | TrueFoundry.EnkryptAiGuardrailConfig
     | TrueFoundry.PaloAltoPrismaAirsGuardrailConfig
     | TrueFoundry.FiddlerGuardrailConfig
+    | TrueFoundry.CiscoAiDefenseGuardrailConfig
     | TrueFoundry.CrowdStrikeAidrGuardrailConfig
     | TrueFoundry.PatronusGuardrailConfig
     | TrueFoundry.SecretDetectionGuardrailConfig

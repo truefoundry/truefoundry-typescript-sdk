@@ -5,7 +5,11 @@ import type * as TrueFoundry from "../index.js";
 export interface PySparkTaskConfig {
     /** +value=pyspark-task-config */
     type: "pyspark-task-config";
-    image: TrueFoundry.TaskPySparkBuild;
+    /**
+     * Specification for the image to be used for the task. Use TaskPySparkBuild to build an image,
+     * or TaskSparkImage to use a pre-built image that already contains all code and dependencies.
+     */
+    image: TrueFoundry.PySparkTaskConfigImage;
     driverConfig: TrueFoundry.SparkDriverConfig;
     executorConfig: TrueFoundry.SparkExecutorConfig;
     /** Extra configuration properties to be passed to the spark job. [Docs](https://spark.apache.org/docs/latest/configuration.html) */

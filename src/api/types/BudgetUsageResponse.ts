@@ -2,7 +2,7 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export interface BudgetUsageResponseDto {
+export interface BudgetUsageResponse {
     /** Budgets that apply, with current usage. */
-    matched: TrueFoundry.BudgetUsageEntryDto[];
+    matched: TrueFoundry.BudgetUsageEntry[];
 }

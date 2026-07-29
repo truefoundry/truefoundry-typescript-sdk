@@ -4,11 +4,11 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 
-export const BudgetUsageEntryDtoMode: core.serialization.Schema<
-    serializers.BudgetUsageEntryDtoMode.Raw,
-    TrueFoundry.BudgetUsageEntryDtoMode
+export const BudgetUsageEntryMode: core.serialization.Schema<
+    serializers.BudgetUsageEntryMode.Raw,
+    TrueFoundry.BudgetUsageEntryMode
 > = core.serialization.enum_(["enforce", "audit", "enforce_with_low_priority"]);
 
-export declare namespace BudgetUsageEntryDtoMode {
+export declare namespace BudgetUsageEntryMode {
     export type Raw = "enforce" | "audit" | "enforce_with_low_priority";
 }

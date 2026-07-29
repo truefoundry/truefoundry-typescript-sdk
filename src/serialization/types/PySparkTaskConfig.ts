@@ -3,9 +3,9 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { PySparkTaskConfigImage } from "./PySparkTaskConfigImage.js";
 import { SparkDriverConfig } from "./SparkDriverConfig.js";
 import { SparkExecutorConfig } from "./SparkExecutorConfig.js";
-import { TaskPySparkBuild } from "./TaskPySparkBuild.js";
 import { VolumeMount } from "./VolumeMount.js";
 
 export const PySparkTaskConfig: core.serialization.ObjectSchema<
@@ -13,7 +13,7 @@ export const PySparkTaskConfig: core.serialization.ObjectSchema<
     TrueFoundry.PySparkTaskConfig
 > = core.serialization.object({
     type: core.serialization.stringLiteral("pyspark-task-config"),
-    image: TaskPySparkBuild,
+    image: PySparkTaskConfigImage,
     driverConfig: core.serialization.property("driver_config", SparkDriverConfig),
     executorConfig: core.serialization.property("executor_config", SparkExecutorConfig),
     sparkConf: core.serialization.property(
@@ -32,7 +32,7 @@ export const PySparkTaskConfig: core.serialization.ObjectSchema<
 export declare namespace PySparkTaskConfig {
     export interface Raw {
         type: "pyspark-task-config";
-        image: TaskPySparkBuild.Raw;
+        image: PySparkTaskConfigImage.Raw;
         driver_config: SparkDriverConfig.Raw;
         executor_config: SparkExecutorConfig.Raw;
         spark_conf?: (Record<string, string | null | undefined> | null | undefined) | null;

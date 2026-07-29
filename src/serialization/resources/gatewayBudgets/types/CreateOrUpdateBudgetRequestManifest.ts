@@ -6,11 +6,11 @@ import type * as serializers from "../../../index.js";
 import { TeamBudgetConfig } from "../../../types/TeamBudgetConfig.js";
 import { TenantBudgetConfig } from "../../../types/TenantBudgetConfig.js";
 
-export const CreateOrUpdateBudgetDtoManifest: core.serialization.Schema<
-    serializers.CreateOrUpdateBudgetDtoManifest.Raw,
-    TrueFoundry.CreateOrUpdateBudgetDtoManifest
+export const CreateOrUpdateBudgetRequestManifest: core.serialization.Schema<
+    serializers.CreateOrUpdateBudgetRequestManifest.Raw,
+    TrueFoundry.CreateOrUpdateBudgetRequestManifest
 > = core.serialization.undiscriminatedUnion([TenantBudgetConfig, TeamBudgetConfig]);
 
-export declare namespace CreateOrUpdateBudgetDtoManifest {
+export declare namespace CreateOrUpdateBudgetRequestManifest {
     export type Raw = TenantBudgetConfig.Raw | TeamBudgetConfig.Raw;
 }

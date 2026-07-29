@@ -1,2 +1,2 @@
-export { CreateOrUpdateBudgetDto } from "./CreateOrUpdateBudgetDto.js";
-export { SimulateBudgetRequestDto } from "./SimulateBudgetRequestDto.js";
+export { CreateOrUpdateBudgetRequest } from "./CreateOrUpdateBudgetRequest.js";
+export { SimulateBudgetRequest } from "./SimulateBudgetRequest.js";

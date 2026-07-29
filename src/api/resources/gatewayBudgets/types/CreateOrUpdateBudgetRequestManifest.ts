@@ -5,4 +5,4 @@ import type * as TrueFoundry from "../../../index.js";
 /**
  * The budget manifest. Must match either the TenantBudgetConfig or TeamBudgetConfig schema.
  */
-export type CreateOrUpdateBudgetDtoManifest = TrueFoundry.TenantBudgetConfig | TrueFoundry.TeamBudgetConfig;
+export type CreateOrUpdateBudgetRequestManifest = TrueFoundry.TenantBudgetConfig | TrueFoundry.TeamBudgetConfig;

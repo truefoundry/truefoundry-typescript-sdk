@@ -4,9 +4,9 @@ import type * as TrueFoundry from "../../../../../api/index.js";
 import * as core from "../../../../../core/index.js";
 import type * as serializers from "../../../../index.js";
 
-export const SimulateBudgetRequestDto: core.serialization.Schema<
-    serializers.SimulateBudgetRequestDto.Raw,
-    TrueFoundry.SimulateBudgetRequestDto
+export const SimulateBudgetRequest: core.serialization.Schema<
+    serializers.SimulateBudgetRequest.Raw,
+    TrueFoundry.SimulateBudgetRequest
 > = core.serialization.object({
     user: core.serialization.string().optional(),
     virtualAccount: core.serialization.property("virtual_account", core.serialization.string().optional()),
@@ -16,7 +16,7 @@ export const SimulateBudgetRequestDto: core.serialization.Schema<
     metadata: core.serialization.record(core.serialization.string(), core.serialization.string()).optional(),
 });
 
-export declare namespace SimulateBudgetRequestDto {
+export declare namespace SimulateBudgetRequest {
     export interface Raw {
         user?: string | null;
         virtual_account?: string | null;
