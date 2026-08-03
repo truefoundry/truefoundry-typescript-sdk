@@ -10,6 +10,8 @@ export interface OpenApimcpServerManifest {
     type: "mcp-server/openapi";
     /** The name of the OpenAPI MCP Server. */
     name: string;
+    /** A human-readable label for the OpenAPI MCP Server in the UI. If omitted, the server name is shown. */
+    displayName?: string;
     /** Provide a brief description of the purpose of this OpenAPI MCP Server. */
     description: string;
     /** The base URL where API requests will be sent. This should be the root endpoint of your API server, without any path suffix. */

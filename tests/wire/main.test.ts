@@ -37,6 +37,7 @@ describe("TrueFoundryClient", () => {
                         fqn: "fqn",
                         type: "blob-storage",
                         providerAccountFqn: "providerAccountFqn",
+                        tenantName: "tenantName",
                         createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     },
                 ],
@@ -109,6 +110,7 @@ describe("TrueFoundryClient", () => {
                         fqn: "fqn",
                         type: "blob-storage",
                         providerAccountFqn: "providerAccountFqn",
+                        tenantName: "tenantName",
                         createdBySubject: {
                             subjectId: "subjectId",
                             subjectType: "user",

@@ -13,6 +13,7 @@ export const VirtualMcpServerManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("mcp-server/virtual"),
     name: core.serialization.string(),
+    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     description: core.serialization.string(),
     servers: core.serialization.list(McpServerSource),
     collaborators: core.serialization.list(Collaborator),
@@ -24,6 +25,7 @@ export declare namespace VirtualMcpServerManifest {
     export interface Raw {
         type: "mcp-server/virtual";
         name: string;
+        display_name?: string | null;
         description: string;
         servers: McpServerSource.Raw[];
         collaborators: Collaborator.Raw[];

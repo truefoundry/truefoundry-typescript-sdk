@@ -3,16 +3,16 @@
 /**
  * @example
  *     {
- *         limit: 10,
  *         offset: 0,
+ *         limit: 10,
  *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
  *     }
  */
 export interface ListMembersTeamsRequest {
-    /** Number of items per page */
-    limit?: number | null;
     /** Number of items to skip */
     offset?: number | null;
+    /** Number of items per page */
+    limit?: number | null;
     /** JSON string: structured filter tree (AND/OR groups, column leaves on `email` and `userId`). */
     filter?: string;
 }

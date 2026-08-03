@@ -8,6 +8,8 @@ import type * as TrueFoundry from "../index.js";
 export interface StdioMcpServerManifest {
     /** The name of the MCP Server. */
     name: string;
+    /** A human-readable label for the MCP Server in the UI. If omitted, the server name is shown. */
+    displayName?: string;
     /** Provide a brief description of the purpose of this MCP Server. */
     description: string;
     /** Users and Teams that have access to this MCP Server */

@@ -1033,7 +1033,7 @@ await client.users.getTeams("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-List teams accessible to the current user.
+List teams accessible to the current user. Set includeMembership=false to omit full member and manager lists and return cached membership summaries instead.
 </dd>
 </dl>
 </dd>
@@ -1199,8 +1199,8 @@ List users who are members of a team.
 
 ```typescript
 const pageableResponse = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
-    limit: 10,
     offset: 0,
+    limit: 10,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
 });
 for await (const item of pageableResponse) {
@@ -1209,8 +1209,8 @@ for await (const item of pageableResponse) {
 
 // Or you can manually iterate page-by-page
 let page = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
-    limit: 10,
     offset: 0,
+    limit: 10,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
 });
 while (page.hasNextPage()) {
@@ -1290,8 +1290,8 @@ List users who hold the team-manager role on a team.
 
 ```typescript
 const pageableResponse = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
-    limit: 10,
     offset: 0,
+    limit: 10,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
 });
 for await (const item of pageableResponse) {
@@ -1300,8 +1300,8 @@ for await (const item of pageableResponse) {
 
 // Or you can manually iterate page-by-page
 let page = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
-    limit: 10,
     offset: 0,
+    limit: 10,
     filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
 });
 while (page.hasNextPage()) {
@@ -6096,7 +6096,7 @@ await client.agents.delete("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-Returns the TrueFoundry-backed token for the agent's linked identity, generating one on demand if none exists yet (or the stored one has expired). Only valid for agents whose identity is TrueFoundry-backed. 404s if the agent has no linked identity.
+Returns the TrueFoundry-backed token for the agent's linked identity, generating one on demand if none exists yet (or the stored one has expired). Only valid for agents whose identity is TrueFoundry-backed. Requires manage access on the agent since the token authenticates as it. 404s if the agent has no linked identity.
 </dd>
 </dl>
 </dd>

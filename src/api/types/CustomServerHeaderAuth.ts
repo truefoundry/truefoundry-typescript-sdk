@@ -6,5 +6,6 @@
 export interface CustomServerHeaderAuth {
     /** +value=header */
     type: "header";
+    /** Map each header name to its value. */
     headers: Record<string, string>;
 }

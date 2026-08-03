@@ -4,6 +4,6 @@
 export const BudgetUsageEntryMode = {
     Enforce: "enforce",
     Audit: "audit",
-    EnforceWithLowPriority: "enforce_with_low_priority",
+    SoftEnforce: "soft_enforce",
 } as const;
 export type BudgetUsageEntryMode = (typeof BudgetUsageEntryMode)[keyof typeof BudgetUsageEntryMode];

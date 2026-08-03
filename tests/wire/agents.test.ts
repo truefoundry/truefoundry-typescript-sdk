@@ -772,6 +772,25 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .get("/api/svc/v1/agents/id/token")
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.getToken("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("getToken (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+
         const rawResponseBody = { key: "value" };
 
         server
@@ -787,7 +806,7 @@ describe("AgentsClient", () => {
         }).rejects.toThrow(TrueFoundry.NotFoundError);
     });
 
-    test("getToken (4)", async () => {
+    test("getToken (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
 

@@ -5,10 +5,10 @@
  * +uiProps={"forwardJsonKey": true}
  */
 export interface NomaSecurityGuardrailConfigConfig {
-    /** Optional override for the Noma AI-DR base URL. Defaults to https://api.noma.security if not provided. Use https://app.sandbox.noma.security for sandbox testing. */
+    /** Optional override for the Noma API base URL. Defaults to https://api.noma.security if not provided. */
     baseUrl?: string;
-    /** Value sent in x-noma-context.applicationId for traceability. Defaults to truefoundry if not provided. */
+    /** Literal applicationId sent as config.config.applicationId and used to select the Noma Runtime Protection profile. Defaults to truefoundry. */
     applicationId?: string;
-    /** Optional request metadata key used to populate x-noma-context.userId. Defaults to gateway when not set. */
+    /** Fallback subjectId sent in context.user when no authenticated runtime subject is available. Defaults to gateway. */
     userIdMetadataKey?: string;
 }

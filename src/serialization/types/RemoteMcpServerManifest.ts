@@ -15,6 +15,7 @@ export const RemoteMcpServerManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("mcp-server/remote"),
     name: core.serialization.string(),
+    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     description: core.serialization.string(),
     url: core.serialization.string(),
     tlsSettings: core.serialization.property("tls_settings", CustomTlsSettings.optional()),
@@ -33,6 +34,7 @@ export declare namespace RemoteMcpServerManifest {
     export interface Raw {
         type: "mcp-server/remote";
         name: string;
+        display_name?: string | null;
         description: string;
         url: string;
         tls_settings?: CustomTlsSettings.Raw | null;

@@ -18,6 +18,7 @@ export const GoogleVertexProviderAccount: core.serialization.ObjectSchema<
     projectId: core.serialization.property("project_id", core.serialization.string()),
     region: VertexRegion,
     authData: core.serialization.property("auth_data", GoogleVertexProviderAccountAuthData.optional()),
+    baseUrl: core.serialization.property("base_url", core.serialization.string().optional()),
     integrations: core.serialization.list(VertexModel),
     collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
@@ -31,6 +32,7 @@ export declare namespace GoogleVertexProviderAccount {
         project_id: string;
         region: VertexRegion.Raw;
         auth_data?: GoogleVertexProviderAccountAuthData.Raw | null;
+        base_url?: string | null;
         integrations: VertexModel.Raw[];
         collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;

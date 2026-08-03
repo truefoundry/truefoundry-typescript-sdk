@@ -10,6 +10,8 @@ export interface RemoteMcpServerManifest {
     type: "mcp-server/remote";
     /** The name of the MCP Server. */
     name: string;
+    /** A human-readable label for the MCP Server in the UI. If omitted, the server name is shown. */
+    displayName?: string;
     /** Provide a brief description of the purpose of this MCP Server. */
     description: string;
     /** The endpoint URL for the MCP Server. */

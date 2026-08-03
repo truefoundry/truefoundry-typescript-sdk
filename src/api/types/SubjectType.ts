@@ -7,6 +7,8 @@ export const SubjectType = {
     Serviceaccount: "serviceaccount",
     Virtualaccount: "virtualaccount",
     AgentIdentity: "agent-identity",
+    Agent: "agent",
+    AgentChannelIdentity: "agent-channel-identity",
     Role: "role",
 } as const;
 export type SubjectType = (typeof SubjectType)[keyof typeof SubjectType];

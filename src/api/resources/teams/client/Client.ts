@@ -25,7 +25,7 @@ export class TeamsClient {
     }
 
     /**
-     * List teams accessible to the current user.
+     * List teams accessible to the current user. Set includeMembership=false to omit full member and manager lists and return cached membership summaries instead.
      *
      * @param {TrueFoundry.ListTeamsRequest} request
      * @param {TeamsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -47,12 +47,13 @@ export class TeamsClient {
             async (
                 request: TrueFoundry.ListTeamsRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamsResponse>> => {
-                const { limit = 100, offset = 0, role, attributes } = request;
+                const { limit = 100, offset = 0, role, attributes, includeMembership = true } = request;
                 const _queryParams: Record<string, unknown> = {
                     limit,
                     offset,
                     role: role !== undefined ? role : undefined,
                     attributes: attributes !== undefined ? toJson(attributes) : undefined,
+                    includeMembership,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
@@ -248,8 +249,8 @@ export class TeamsClient {
      *
      * @example
      *     await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
-     *         limit: 10,
      *         offset: 0,
+     *         limit: 10,
      *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
      *     })
      */
@@ -262,10 +263,10 @@ export class TeamsClient {
             async (
                 request: TrueFoundry.ListMembersTeamsRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamMembersResponse>> => {
-                const { limit = 100, offset = 0, filter } = request;
+                const { offset = 0, limit, filter } = request;
                 const _queryParams: Record<string, unknown> = {
-                    limit,
                     offset,
+                    limit,
                     filter,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
@@ -366,8 +367,8 @@ export class TeamsClient {
      *
      * @example
      *     await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
-     *         limit: 10,
      *         offset: 0,
+     *         limit: 10,
      *         filter: "{\"type\":\"AND\",\"children\":[{\"column\":\"email\",\"op\":\"STRING_CONTAINS\",\"value\":\"@example.com\"}]}"
      *     })
      */
@@ -380,10 +381,10 @@ export class TeamsClient {
             async (
                 request: TrueFoundry.ListManagersTeamsRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.ListTeamManagersResponse>> => {
-                const { limit = 100, offset = 0, filter } = request;
+                const { offset = 0, limit, filter } = request;
                 const _queryParams: Record<string, unknown> = {
-                    limit,
                     offset,
+                    limit,
                     filter,
                 };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();

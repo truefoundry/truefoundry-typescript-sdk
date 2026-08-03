@@ -464,12 +464,13 @@ export class AgentsClient {
     }
 
     /**
-     * Returns the TrueFoundry-backed token for the agent's linked identity, generating one on demand if none exists yet (or the stored one has expired). Only valid for agents whose identity is TrueFoundry-backed. 404s if the agent has no linked identity.
+     * Returns the TrueFoundry-backed token for the agent's linked identity, generating one on demand if none exists yet (or the stored one has expired). Only valid for agents whose identity is TrueFoundry-backed. Requires manage access on the agent since the token authenticates as it. 404s if the agent has no linked identity.
      *
      * @param {string} id - System-generated agent ID.
      * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.ForbiddenError}
      * @throws {@link TrueFoundry.NotFoundError}
      * @throws {@link TrueFoundry.UnprocessableEntityError}
      * @throws {@link errors.TrueFoundryError}
@@ -527,6 +528,17 @@ export class AgentsClient {
             switch (_response.error.statusCode) {
                 case 401:
                     throw new TrueFoundry.UnauthorizedError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
                         serializers.HttpError.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,

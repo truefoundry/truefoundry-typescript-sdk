@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const TeamBudgetConfigMode: core.serialization.Schema<
     serializers.TeamBudgetConfigMode.Raw,
     TrueFoundry.TeamBudgetConfigMode
-> = core.serialization.enum_(["enforce", "audit", "enforce_with_low_priority"]);
+> = core.serialization.enum_(["enforce", "audit", "soft_enforce"]);
 
 export declare namespace TeamBudgetConfigMode {
-    export type Raw = "enforce" | "audit" | "enforce_with_low_priority";
+    export type Raw = "enforce" | "audit" | "soft_enforce";
 }

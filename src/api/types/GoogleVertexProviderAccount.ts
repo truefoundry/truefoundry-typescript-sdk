@@ -15,6 +15,8 @@ export interface GoogleVertexProviderAccount {
     region: TrueFoundry.VertexRegion;
     /** Service account key JSON, or Workload Identity Federation file (workload-identity-federation-file) with external_account JSON (e.g. create-cred-config). https://docs.truefoundry.com/gateway/google-vertex */
     authData?: TrueFoundry.GoogleVertexProviderAccountAuthData;
+    /** Optional custom base URL for the Vertex AI inference endpoint (e.g. a Private Service Connect / PSC endpoint for private connectivity). When set, chat/generate requests are routed here instead of the region-derived public host (<region>-aiplatform.googleapis.com). Leave empty to use the public Vertex AI API. */
+    baseUrl?: string;
     /** List of integrations that are associated with the Google Vertex model account */
     integrations: TrueFoundry.VertexModel[];
     /** List of users who have access to this model account */

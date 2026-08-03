@@ -8,6 +8,7 @@ import { AwsBedrockGuardrailConfig } from "./AwsBedrockGuardrailConfig.js";
 import { AzureContentSafetyGuardrailConfig } from "./AzureContentSafetyGuardrailConfig.js";
 import { AzurePiiGuardrailConfig } from "./AzurePiiGuardrailConfig.js";
 import { AzurePromptShieldGuardrailConfig } from "./AzurePromptShieldGuardrailConfig.js";
+import { CalypsoAiGuardrailConfig } from "./CalypsoAiGuardrailConfig.js";
 import { CedarGuardrailConfig } from "./CedarGuardrailConfig.js";
 import { CiscoAiDefenseGuardrailConfig } from "./CiscoAiDefenseGuardrailConfig.js";
 import { CodeSafetyLinterGuardrailConfig } from "./CodeSafetyLinterGuardrailConfig.js";
@@ -60,6 +61,7 @@ export const GuardrailConfigIntegrations: core.serialization.Schema<
     GoogleModelArmorGuardrailConfig,
     GraySwanCygnalGuardrailConfig,
     NomaSecurityGuardrailConfig,
+    CalypsoAiGuardrailConfig,
     AktoGuardrailConfig,
     TrojAiGuardrailConfig,
 ]);
@@ -91,6 +93,7 @@ export declare namespace GuardrailConfigIntegrations {
         | GoogleModelArmorGuardrailConfig.Raw
         | GraySwanCygnalGuardrailConfig.Raw
         | NomaSecurityGuardrailConfig.Raw
+        | CalypsoAiGuardrailConfig.Raw
         | AktoGuardrailConfig.Raw
         | TrojAiGuardrailConfig.Raw;
 }

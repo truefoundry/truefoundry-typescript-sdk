@@ -6,6 +6,6 @@
 export interface NomaSecurityApiKeyAuth {
     /** +value=api-key */
     type: "api-key";
-    /** Noma API key for AI-DR scan access */
+    /** Noma scoped access token with truefoundry_guardrail scope (sent as Bearer) */
     apiKey: string;
 }

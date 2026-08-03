@@ -13,6 +13,7 @@ export const StdioMcpServerManifest: core.serialization.ObjectSchema<
     TrueFoundry.StdioMcpServerManifest
 > = core.serialization.object({
     name: core.serialization.string(),
+    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     description: core.serialization.string(),
     collaborators: core.serialization.list(Collaborator),
     type: core.serialization.stringLiteral("mcp-server/stdio"),
@@ -27,6 +28,7 @@ export const StdioMcpServerManifest: core.serialization.ObjectSchema<
 export declare namespace StdioMcpServerManifest {
     export interface Raw {
         name: string;
+        display_name?: string | null;
         description: string;
         collaborators: Collaborator.Raw[];
         type: "mcp-server/stdio";

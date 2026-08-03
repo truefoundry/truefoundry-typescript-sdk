@@ -3,24 +3,24 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Noma Security
+ * CalypsoAI (F5 AI Security)
  */
-export interface NomaSecurityGuardrailConfig {
+export interface CalypsoAiGuardrailConfig {
     /** The name of the Guardrail Config. */
     name: string;
     /** Optional description for this Guardrail Config. */
     description?: string;
     /**
      * +uiType=Hidden
-     * +value=integration/guardrail-config/noma-security
+     * +value=integration/guardrail-config/calypsoai
      */
-    type: "integration/guardrail-config/noma-security";
-    authData: TrueFoundry.NomaSecurityApiKeyAuth;
+    type: "integration/guardrail-config/calypsoai";
+    authData: TrueFoundry.CalypsoAiApiKeyAuth;
     /**
-     * Validate blocks policy denials. Mutate also applies complete masked request or response payloads returned by Noma.
+     * The operation type to use for the Guardrail. Validate guardrails are used to validate requests and mutate can validate as well as mutate requests (forward redactedInput).
      * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
      */
-    operation: TrueFoundry.NomaSecurityGuardrailConfigOperation;
+    operation: TrueFoundry.CalypsoAiGuardrailConfigOperation;
     /** Execution order for mutate guardrails. Lower values run first. Only applicable when operation is mutate. */
     priority?: number;
     enforcingStrategy: TrueFoundry.EnforcingStrategy;
@@ -28,5 +28,5 @@ export interface NomaSecurityGuardrailConfig {
      * +uiType=Ignore
      * +uiProps={"forwardJsonKey": true}
      */
-    config: TrueFoundry.NomaSecurityGuardrailConfigConfig;
+    config: TrueFoundry.CalypsoAiGuardrailConfigConfig;
 }

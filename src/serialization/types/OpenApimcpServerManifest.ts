@@ -16,6 +16,7 @@ export const OpenApimcpServerManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("mcp-server/openapi"),
     name: core.serialization.string(),
+    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     description: core.serialization.string(),
     url: core.serialization.string(),
     openapiSpecSource: core.serialization.property("openapi_spec_source", OpenApiSpecSource),
@@ -39,6 +40,7 @@ export declare namespace OpenApimcpServerManifest {
     export interface Raw {
         type: "mcp-server/openapi";
         name: string;
+        display_name?: string | null;
         description: string;
         url: string;
         openapi_spec_source: OpenApiSpecSource.Raw;

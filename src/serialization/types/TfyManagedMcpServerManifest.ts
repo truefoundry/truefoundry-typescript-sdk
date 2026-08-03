@@ -14,6 +14,7 @@ export const TfyManagedMcpServerManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("mcp-server/tfy-managed"),
     name: core.serialization.string(),
+    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     description: core.serialization.string(),
     serverIdentifier: core.serialization.property("server_identifier", core.serialization.string()),
     toolSettings: core.serialization.property("tool_settings", core.serialization.list(McpToolSetting).optional()),
@@ -27,6 +28,7 @@ export declare namespace TfyManagedMcpServerManifest {
     export interface Raw {
         type: "mcp-server/tfy-managed";
         name: string;
+        display_name?: string | null;
         description: string;
         server_identifier: string;
         tool_settings?: McpToolSetting.Raw[] | null;

@@ -10,6 +10,8 @@ export interface VirtualMcpServerManifest {
     type: "mcp-server/virtual";
     /** The name of the Virtual MCP Server. */
     name: string;
+    /** A human-readable label for the Virtual MCP Server in the UI. If omitted, the server name is shown. */
+    displayName?: string;
     /** Provide a brief description of the purpose of this Virtual MCP Server. */
     description: string;
     /** List of source MCP servers to include in this virtual server. */

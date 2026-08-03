@@ -12,6 +12,7 @@ export interface ProviderIntegration {
     manifest?: Record<string, unknown> | null;
     metadata?: Record<string, unknown> | null;
     providerAccountFqn: string;
+    tenantName: string;
     providerAccount?: TrueFoundry.ProviderAccount | null;
     createdBySubject: TrueFoundry.Subject;
     createdAt?: Date | null;

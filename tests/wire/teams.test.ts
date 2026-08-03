@@ -276,8 +276,8 @@ describe("TeamsClient", () => {
             },
         };
         const page = await client.teams.listMembers("jqfwg345gi25n5ju2yz5iz6m", {
-            limit: 10,
             offset: 0,
+            limit: 10,
             filter: '{"type":"AND","children":[{"column":"email","op":"STRING_CONTAINS","value":"@example.com"}]}',
         });
 
@@ -354,8 +354,8 @@ describe("TeamsClient", () => {
             },
         };
         const page = await client.teams.listManagers("jqfwg345gi25n5ju2yz5iz6m", {
-            limit: 10,
             offset: 0,
+            limit: 10,
             filter: '{"type":"AND","children":[{"column":"email","op":"STRING_CONTAINS","value":"@example.com"}]}',
         });
 

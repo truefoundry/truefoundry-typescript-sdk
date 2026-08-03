@@ -6,6 +6,7 @@ import type * as serializers from "../index.js";
 import { EnforcingStrategy } from "./EnforcingStrategy.js";
 import { NomaSecurityApiKeyAuth } from "./NomaSecurityApiKeyAuth.js";
 import { NomaSecurityGuardrailConfigConfig } from "./NomaSecurityGuardrailConfigConfig.js";
+import { NomaSecurityGuardrailConfigOperation } from "./NomaSecurityGuardrailConfigOperation.js";
 
 export const NomaSecurityGuardrailConfig: core.serialization.ObjectSchema<
     serializers.NomaSecurityGuardrailConfig.Raw,
@@ -15,7 +16,8 @@ export const NomaSecurityGuardrailConfig: core.serialization.ObjectSchema<
     description: core.serialization.string().optional(),
     type: core.serialization.stringLiteral("integration/guardrail-config/noma-security"),
     authData: core.serialization.property("auth_data", NomaSecurityApiKeyAuth),
-    operation: core.serialization.stringLiteral("validate"),
+    operation: NomaSecurityGuardrailConfigOperation,
+    priority: core.serialization.number().optional(),
     enforcingStrategy: core.serialization.property("enforcing_strategy", EnforcingStrategy),
     config: NomaSecurityGuardrailConfigConfig,
 });
@@ -26,7 +28,8 @@ export declare namespace NomaSecurityGuardrailConfig {
         description?: string | null;
         type: "integration/guardrail-config/noma-security";
         auth_data: NomaSecurityApiKeyAuth.Raw;
-        operation: "validate";
+        operation: NomaSecurityGuardrailConfigOperation.Raw;
+        priority?: number | null;
         enforcing_strategy: EnforcingStrategy.Raw;
         config: NomaSecurityGuardrailConfigConfig.Raw;
     }

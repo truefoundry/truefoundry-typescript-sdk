@@ -16,7 +16,7 @@ export interface TenantBudgetConfig {
     when?: TrueFoundry.BudgetV2WhenTenantScoped;
     limits: TrueFoundry.BudgetV2Limits;
     appliesTo: TrueFoundry.BudgetV2AppliesTo;
-    /** `enforce` blocks breaching requests, `audit` only tracks them, `enforce_with_low_priority` blocks only when no other matching budget allows the request. */
+    /** `enforce` blocks breaching requests, `audit` only tracks them, `soft_enforce` blocks only when no other matching budget allows the request. */
     mode: TrueFoundry.TenantBudgetConfigMode;
     alerts?: TrueFoundry.BudgetV2Alert;
 }

@@ -10,6 +10,8 @@ export interface TfyManagedMcpServerManifest {
     type: "mcp-server/tfy-managed";
     /** The name of the MCP Server. */
     name: string;
+    /** A human-readable label for the MCP Server in the UI. If omitted, the server name is shown. */
+    displayName?: string;
     /** Provide a brief description of the purpose of this MCP Server. */
     description: string;
     /** Catalog slug of the TrueFoundry-managed MCP server to connect to. Used to resolve the hosted endpoint and available tools. */

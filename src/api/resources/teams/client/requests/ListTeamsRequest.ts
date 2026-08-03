@@ -16,4 +16,6 @@ export interface ListTeamsRequest {
     role?: "manager" | null;
     /** Comma-separated list of attributes to return (e.g. `id,teamName`). When provided, only the specified fields are fetched. `id` is always included. */
     attributes?: string[] | null;
+    /** Whether to include full member and manager lists. Set to false for a metadata-only response with cached membership summaries. */
+    includeMembership?: boolean | null;
 }

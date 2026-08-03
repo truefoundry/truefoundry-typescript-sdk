@@ -17,6 +17,7 @@ export const ProviderIntegration: core.serialization.ObjectSchema<
     manifest: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
     metadata: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optionalNullable(),
     providerAccountFqn: core.serialization.string(),
+    tenantName: core.serialization.string(),
     providerAccount: core.serialization.lazyObject(() => serializers.ProviderAccount).optionalNullable(),
     createdBySubject: Subject,
     createdAt: core.serialization.date().optionalNullable(),
@@ -33,6 +34,7 @@ export declare namespace ProviderIntegration {
         manifest?: (Record<string, unknown> | null | undefined) | null;
         metadata?: (Record<string, unknown> | null | undefined) | null;
         providerAccountFqn: string;
+        tenantName: string;
         providerAccount?: (serializers.ProviderAccount.Raw | null | undefined) | null;
         createdBySubject: Subject.Raw;
         createdAt?: (string | null | undefined) | null;
