@@ -6,7 +6,7 @@ import { mockServerPool } from "../mock-server/MockServerPool";
 describe("TrueFoundryClient", () => {
     test("apply", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = {
             manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
@@ -125,7 +125,7 @@ describe("TrueFoundryClient", () => {
 
     test("delete", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = {
             manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };

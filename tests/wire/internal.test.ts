@@ -7,7 +7,7 @@ import { mockServerPool } from "../mock-server/MockServerPool";
 describe("InternalClient", () => {
     test("get_id_from_fqn (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -29,7 +29,7 @@ describe("InternalClient", () => {
 
     test("get_id_from_fqn (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -50,7 +50,7 @@ describe("InternalClient", () => {
 
     test("get_id_from_fqn (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 

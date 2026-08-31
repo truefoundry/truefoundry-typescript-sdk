@@ -7,7 +7,7 @@ import { mockServerPool } from "../mock-server/MockServerPool";
 describe("ArtifactsClient", () => {
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {
             data: {
@@ -106,7 +106,7 @@ describe("ArtifactsClient", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -125,7 +125,7 @@ describe("ArtifactsClient", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {};
 
@@ -143,7 +143,7 @@ describe("ArtifactsClient", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -162,7 +162,7 @@ describe("ArtifactsClient", () => {
 
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {
             data: [
@@ -255,7 +255,7 @@ describe("ArtifactsClient", () => {
 
     test("create_or_update", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = {
             manifest: {
                 metadata: { key: "value" },

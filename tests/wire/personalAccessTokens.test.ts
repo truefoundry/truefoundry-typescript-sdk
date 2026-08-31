@@ -7,7 +7,7 @@ import { mockServerPool } from "../mock-server/MockServerPool";
 describe("PersonalAccessTokensClient", () => {
     test("list", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {
             data: [
@@ -118,7 +118,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("create (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "my-ci-token" };
         const rawResponseBody = { token: "token" };
 
@@ -141,7 +141,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("create (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "name" };
         const rawResponseBody = { key: "value" };
 
@@ -163,7 +163,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("create (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "name" };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -185,7 +185,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("createForUser (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "my-ci-token", userEmail: "alice@example.com" };
         const rawResponseBody = { token: "token" };
 
@@ -209,7 +209,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("createForUser (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "name", userEmail: "userEmail" };
         const rawResponseBody = { key: "value" };
 
@@ -232,7 +232,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("createForUser (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "name", userEmail: "userEmail" };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -255,7 +255,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("createForUser (4)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "name", userEmail: "userEmail" };
         const rawResponseBody = { key: "value" };
 
@@ -278,7 +278,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("createForUser (5)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { name: "name", userEmail: "userEmail" };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -301,7 +301,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("revokeAll (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { email: "alice@example.com" };
         const rawResponseBody = {};
 
@@ -322,7 +322,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("revokeAll (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { email: "email" };
         const rawResponseBody = { key: "value" };
 
@@ -344,7 +344,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("delete (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {};
 
@@ -362,7 +362,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("delete (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -381,7 +381,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("get (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {
             data: {
@@ -548,7 +548,7 @@ describe("PersonalAccessTokensClient", () => {
 
     test("get (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 

@@ -7,7 +7,7 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("DockerRegistriesClient", () => {
     test("create_repository (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
         const rawResponseBody = { repoName: "repoName" };
 
@@ -32,7 +32,7 @@ describe("DockerRegistriesClient", () => {
 
     test("create_repository (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { fqn: "fqn", applicationName: "applicationName", workspaceFqn: "workspaceFqn" };
         const rawResponseBody = { key: "value" };
 
@@ -56,7 +56,7 @@ describe("DockerRegistriesClient", () => {
 
     test("get_credentials", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { fqn: "fqn", registryUrl: "registryUrl", username: "username", password: "password" };
 

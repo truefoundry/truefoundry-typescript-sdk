@@ -7,7 +7,7 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("DeploymentsClient", () => {
     test("get_deployment_statuses (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = [
             {
@@ -51,7 +51,7 @@ describe("DeploymentsClient", () => {
 
     test("get_deployment_statuses (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -70,7 +70,7 @@ describe("DeploymentsClient", () => {
 
     test("get_builds (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = [
             {
@@ -127,7 +127,7 @@ describe("DeploymentsClient", () => {
 
     test("get_builds (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -146,7 +146,7 @@ describe("DeploymentsClient", () => {
 
     test("get_code_upload_url", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { serviceName: "serviceName", workspaceFqn: "workspaceFqn" };
         const rawResponseBody = { uri: "uri", url: "url", headers: { key: "value" } };
 
@@ -174,7 +174,7 @@ describe("DeploymentsClient", () => {
 
     test("get_suggested_endpoint (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {
             host: "host",
@@ -212,7 +212,7 @@ describe("DeploymentsClient", () => {
 
     test("get_suggested_endpoint (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 

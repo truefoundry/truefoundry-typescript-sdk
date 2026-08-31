@@ -7,7 +7,7 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("ApplicationsClient", () => {
     test("promote_rollout (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         server.mockEndpoint().post("/api/svc/v1/x/apps/id/rollout/promote").respondWith().statusCode(200).build();
 
@@ -17,7 +17,7 @@ describe("ApplicationsClient", () => {
 
     test("promote_rollout (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -36,7 +36,7 @@ describe("ApplicationsClient", () => {
 
     test("promote_rollout (3)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 
@@ -55,7 +55,7 @@ describe("ApplicationsClient", () => {
 
     test("get_pod_template_hash_to_deployment_version (1)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: 1.1 };
 
@@ -75,7 +75,7 @@ describe("ApplicationsClient", () => {
 
     test("get_pod_template_hash_to_deployment_version (2)", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = { key: "value" };
 

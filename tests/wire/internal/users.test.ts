@@ -6,7 +6,7 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("UsersClient", () => {
     test("get_info", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
         const rawResponseBody = {
             id: "jqfwg345gi25n5ju2yz5iz6m",

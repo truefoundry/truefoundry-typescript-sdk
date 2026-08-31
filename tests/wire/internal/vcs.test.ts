@@ -6,7 +6,7 @@ import { mockServerPool } from "../../mock-server/MockServerPool";
 describe("VcsClient", () => {
     test("get_repository_details", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { repoURL: "repoURL" };
         const rawResponseBody = { exists: true, id: "id" };
 
@@ -30,7 +30,7 @@ describe("VcsClient", () => {
 
     test("get_authenticated_url", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
         const rawRequestBody = { repoURL: "repoURL" };
         const rawResponseBody = { authenticatedURL: "authenticatedURL" };
 
