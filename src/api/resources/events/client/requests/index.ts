@@ -1,1 +1,1 @@
-export type { EventsGetRequest } from "./EventsGetRequest.js";
+export type { GetEventsRequest } from "./GetEventsRequest.js";

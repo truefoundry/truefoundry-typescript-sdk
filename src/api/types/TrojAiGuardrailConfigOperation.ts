@@ -5,7 +5,8 @@
  * Validate guardrails are run in parallel while mutate guardrails are run sequentially.
  */
 export const TrojAiGuardrailConfigOperation = {
-        Validate: "validate",
-        Mutate: "mutate"
-    } as const;
-export type TrojAiGuardrailConfigOperation = typeof TrojAiGuardrailConfigOperation[keyof typeof TrojAiGuardrailConfigOperation];
+    Validate: "validate",
+    Mutate: "mutate",
+} as const;
+export type TrojAiGuardrailConfigOperation =
+    (typeof TrojAiGuardrailConfigOperation)[keyof typeof TrojAiGuardrailConfigOperation];

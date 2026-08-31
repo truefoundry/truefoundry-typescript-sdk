@@ -6,9 +6,9 @@ export interface SubjectPermission {
     /** Resource ID */
     resourceId: string;
     /** Resource Name (if available) */
-    resourceName?: string;
+    resourceName?: string | null;
     /** Resource FQN (if available) */
-    resourceFqn?: string;
+    resourceFqn?: string | null;
     /** Role ID */
     roleId: string;
     /** Role Name */

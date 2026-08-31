@@ -4,7 +4,7 @@ export interface Pagination {
     /** Total number of items */
     total: number;
     /** Number of items skipped */
-    offset?: number;
+    offset?: number | null;
     /** Number of items per page */
-    limit?: number;
+    limit?: number | null;
 }

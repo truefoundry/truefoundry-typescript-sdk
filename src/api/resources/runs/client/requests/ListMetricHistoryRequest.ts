@@ -8,5 +8,5 @@ export interface ListMetricHistoryRequest {
     /** Metric keys to filter by. When omitted, returns all metric keys for the run. */
     metricKeys?: string[];
     /** Training step to filter metric history by. */
-    step?: number;
+    step?: number | null;
 }

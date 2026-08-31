@@ -2,7 +2,8 @@
 
 /** The type of service behind this endpoint (used for tracking purposes) */
 export const CustomEndpointProviderAccountEndpointType = {
-        AzureSpeechService: "azure-speech-service",
-        Other: "other"
-    } as const;
-export type CustomEndpointProviderAccountEndpointType = typeof CustomEndpointProviderAccountEndpointType[keyof typeof CustomEndpointProviderAccountEndpointType];
+    AzureSpeechService: "azure-speech-service",
+    Other: "other",
+} as const;
+export type CustomEndpointProviderAccountEndpointType =
+    (typeof CustomEndpointProviderAccountEndpointType)[keyof typeof CustomEndpointProviderAccountEndpointType];

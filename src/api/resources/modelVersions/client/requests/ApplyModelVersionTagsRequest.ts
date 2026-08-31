@@ -13,5 +13,5 @@ export interface ApplyModelVersionTagsRequest {
     /** Tags to apply to the model version. */
     tags: string[];
     /** Whether to overwrite existing tags that are already in use. */
-    force?: boolean;
+    force?: boolean | null;
 }

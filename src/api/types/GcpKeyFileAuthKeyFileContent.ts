@@ -3,6 +3,4 @@
 /**
  * Key File Content - Key file content must be valid JSON
  */
-export type GcpKeyFileAuthKeyFileContent = 
-    | string
-    | Record<string, unknown>;
+export type GcpKeyFileAuthKeyFileContent = string | Record<string, unknown>;

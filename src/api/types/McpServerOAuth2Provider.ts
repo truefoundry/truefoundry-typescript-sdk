@@ -2,8 +2,9 @@
 
 /** Select the OAuth provider. Provider-specific configuration (e.g. Auth0 organization) is unlocked based on this value. */
 export const McpServerOAuth2Provider = {
-        Custom: "custom",
-        Auth0: "auth0",
-        Okta: "okta"
-    } as const;
-export type McpServerOAuth2Provider = typeof McpServerOAuth2Provider[keyof typeof McpServerOAuth2Provider];
+    Custom: "custom",
+    Auth0: "auth0",
+    Okta: "okta",
+    MicrosoftEntra: "microsoft-entra",
+} as const;
+export type McpServerOAuth2Provider = (typeof McpServerOAuth2Provider)[keyof typeof McpServerOAuth2Provider];

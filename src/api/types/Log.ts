@@ -2,7 +2,7 @@
 
 export interface Log {
     /** Name of the job. */
-    jobName?: string;
+    jobName?: string | null;
     /** Log line content. */
     log: string;
     /** Log stream name. */
@@ -10,5 +10,5 @@ export interface Log {
     /** Log timestamp in nanoseconds from the Unix epoch. */
     time: string;
     /** Name of the container that emitted the log. */
-    containerName?: string;
+    containerName?: string | null;
 }

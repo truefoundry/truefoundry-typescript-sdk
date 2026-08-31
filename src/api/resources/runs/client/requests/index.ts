@@ -1,10 +1,10 @@
 export type { CreateRunRequest } from "./CreateRunRequest.js";
 export type { DeleteTagRequest } from "./DeleteTagRequest.js";
+export type { GetMetricHistoryRunsRequest } from "./GetMetricHistoryRunsRequest.js";
 export type { ListMetricHistoryRequest } from "./ListMetricHistoryRequest.js";
 export type { LogBatchRequest } from "./LogBatchRequest.js";
 export type { LogMetricRequest } from "./LogMetricRequest.js";
 export type { LogParamRequest } from "./LogParamRequest.js";
-export type { RunsGetMetricHistoryRequest } from "./RunsGetMetricHistoryRequest.js";
 export type { SearchRunsRequest } from "./SearchRunsRequest.js";
 export type { SetTagRequest } from "./SetTagRequest.js";
 export type { UpdateRunRequest } from "./UpdateRunRequest.js";

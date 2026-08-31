@@ -6,9 +6,9 @@ export interface UsageCodeSnippet {
     /** Programming language of the usage code snippet. */
     language: string;
     /** Libraries required to run the usage code snippet. */
-    libraries?: string[];
+    libraries?: string[] | null;
     /** Source code of the usage code snippet. */
     code: string;
     /** Icon representing the usage code snippet. */
-    icon?: string;
+    icon?: string | null;
 }

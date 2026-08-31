@@ -13,5 +13,5 @@ export interface ApplyPromptVersionTagsRequest {
     /** Tags to apply to the prompt version. */
     tags: string[];
     /** Whether to forcibly reassign tags already in use by other prompt versions. */
-    force?: boolean;
+    force?: boolean | null;
 }

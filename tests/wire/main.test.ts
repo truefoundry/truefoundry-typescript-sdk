@@ -4,85 +4,149 @@ import { TrueFoundryClient } from "../../src/Client";
 import { mockServerPool } from "../mock-server/MockServerPool";
 
 describe("TrueFoundryClient", () => {
-    
     test("apply", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
-        const rawRequestBody = { "manifest" : { "type" : "ml-repo" , "name" : "name" , "storage_integration_fqn" : "storage_integration_fqn" , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
-        const rawResponseBody = { "existingManifest" : { "type" : "ml-repo" , "name" : "name" , "description" : "description" , "storage_integration_fqn" : "storage_integration_fqn" , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] , "ownedBy" : { "account" : "account" } } , "action" : "CREATE" , "data" : { "key" : "value" } };
-        
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
+        const rawRequestBody = {
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
+        };
+        const rawResponseBody = {
+            existingManifest: {
+                type: "ml-repo",
+                name: "name",
+                description: "description",
+                storage_integration_fqn: "storage_integration_fqn",
+                collaborators: [{ subject: "subject", role_id: "role_id" }],
+                ownedBy: { account: "account" },
+            },
+            action: "CREATE",
+            data: {
+                id: "jqfwg345gi25n5ju2yz5iz6m",
+                fqn: "fqn",
+                provider: "aws",
+                manifest: { key: "value" },
+                integrations: [
+                    {
+                        id: "jqfwg345gi25n5ju2yz5iz6m",
+                        name: "name",
+                        fqn: "fqn",
+                        type: "blob-storage",
+                        providerAccountFqn: "providerAccountFqn",
+                        tenantName: "tenantName",
+                        createdBySubject: { subjectId: "subjectId", subjectType: "user" },
+                    },
+                ],
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
+                accountId: "accountId",
+                createdAt: "2024-01-15T09:30:00Z",
+                updatedAt: "2024-01-15T09:30:00Z",
+                createdBy: "createdBy",
+            },
+        };
+
         server
             .mockEndpoint()
-            .put("/api/svc/v1/apply").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .put("/api/svc/v1/apply")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.apply({
-    manifest: {
-        type: "ml-repo",
-        name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
-    }
-});
-                                expect(response).toEqual({
-    existingManifest: {
-        type: "ml-repo",
-        name: "name",
-        description: "description",
-        storageIntegrationFqn: "storage_integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }],
-        ownedBy: {
-            account: "account"
-        }
-    },
-    action: "CREATE",
-    data: {
-        "key": "value"
-    }
-});
-                              
-                    
+        const response = await client.apply({
+            manifest: {
+                type: "ml-repo",
+                name: "name",
+                storageIntegrationFqn: "storage_integration_fqn",
+            },
+        });
+        expect(response).toEqual({
+            existingManifest: {
+                type: "ml-repo",
+                name: "name",
+                description: "description",
+                storageIntegrationFqn: "storage_integration_fqn",
+                collaborators: [
+                    {
+                        subject: "subject",
+                        roleId: "role_id",
+                    },
+                ],
+                ownedBy: {
+                    account: "account",
+                },
+            },
+            action: "CREATE",
+            data: {
+                id: "jqfwg345gi25n5ju2yz5iz6m",
+                fqn: "fqn",
+                provider: "aws",
+                manifest: {
+                    key: "value",
+                },
+                integrations: [
+                    {
+                        id: "jqfwg345gi25n5ju2yz5iz6m",
+                        name: "name",
+                        fqn: "fqn",
+                        type: "blob-storage",
+                        providerAccountFqn: "providerAccountFqn",
+                        tenantName: "tenantName",
+                        createdBySubject: {
+                            subjectId: "subjectId",
+                            subjectType: "user",
+                        },
+                    },
+                ],
+                createdBySubject: {
+                    subjectId: "subjectId",
+                    subjectType: "user",
+                    subjectSlug: "subjectSlug",
+                    subjectDisplayName: "subjectDisplayName",
+                    subjectPatName: "subjectPatName",
+                    subjectControllerName: "subjectControllerName",
+                    subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
+                },
+                accountId: "accountId",
+                createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                updatedAt: new Date("2024-01-15T09:30:00.000Z"),
+                createdBy: "createdBy",
+            },
+        });
     });
-          
+
     test("delete", async () => {
         const server = mockServerPool.createServer();
-        const client = new TrueFoundryClient({ "maxRetries" : 0 , "apiKey" : "test" , "environment" : server.baseUrl });
-        const rawRequestBody = { "manifest" : { "type" : "ml-repo" , "name" : "name" , "storage_integration_fqn" : "storage_integration_fqn" , "collaborators" : [ { "subject" : "subject" , "role_id" : "role_id" } ] } };
-        const rawResponseBody = { };
-        
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
+        const rawRequestBody = {
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
+        };
+        const rawResponseBody = {};
+
         server
             .mockEndpoint()
-            .post("/api/svc/v1/delete").jsonBody(rawRequestBody)
-                .respondWith()
-            .statusCode(200).jsonBody(rawResponseBody)
-                .build();
+            .post("/api/svc/v1/delete")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
 
-        
-                        
-                                const response = await client.delete({
-    manifest: {
-        type: "ml-repo",
-        name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
-    }
-});
-                                expect(response).toEqual({});
-                              
-                    
+        const response = await client.delete({
+            manifest: {
+                type: "ml-repo",
+                name: "name",
+                storageIntegrationFqn: "storage_integration_fqn",
+            },
+        });
+        expect(response).toEqual({});
     });
-          
 });

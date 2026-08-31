@@ -6,13 +6,13 @@
  */
 export interface ListSecretsRequest {
     /** Number of items per page */
-    limit?: number;
+    limit?: number | null;
     /** Number of items to skip */
-    offset?: number;
+    offset?: number | null;
     /** Filter by secret FQNs. */
-    secretFqns?: string[];
+    secretFqns?: string[] | null;
     /** Filter by secret group ID. */
-    secretGroupId?: string;
+    secretGroupId?: string | null;
     /** Whether to include the secret values in the response. Defaults to false. */
-    withValue?: boolean;
+    withValue?: boolean | null;
 }

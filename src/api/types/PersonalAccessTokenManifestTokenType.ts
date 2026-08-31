@@ -2,7 +2,8 @@
 
 /** Format of the issued token. Leave empty to use the platform default. */
 export const PersonalAccessTokenManifestTokenType = {
-        Jwt: "jwt",
-        Opaque: "opaque"
-    } as const;
-export type PersonalAccessTokenManifestTokenType = typeof PersonalAccessTokenManifestTokenType[keyof typeof PersonalAccessTokenManifestTokenType];
+    Jwt: "jwt",
+    Opaque: "opaque",
+} as const;
+export type PersonalAccessTokenManifestTokenType =
+    (typeof PersonalAccessTokenManifestTokenType)[keyof typeof PersonalAccessTokenManifestTokenType];

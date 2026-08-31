@@ -1,3 +1,3 @@
 export type { CreateOrUpdateWorkspaceRequest } from "./CreateOrUpdateWorkspaceRequest.js";
-export type { WorkspacesListRequest } from "./WorkspacesListRequest.js";
-export type { WorkspacesSearchRequest } from "./WorkspacesSearchRequest.js";
+export type { ListWorkspacesRequest } from "./ListWorkspacesRequest.js";
+export type { SearchWorkspacesRequest } from "./SearchWorkspacesRequest.js";

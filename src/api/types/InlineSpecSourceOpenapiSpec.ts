@@ -3,6 +3,4 @@
 /**
  * The OpenAPI specification as a JSON object or a JSON/YAML string.
  */
-export type InlineSpecSourceOpenapiSpec = 
-    | Record<string, unknown>
-    | string;
+export type InlineSpecSourceOpenapiSpec = Record<string, unknown> | string;

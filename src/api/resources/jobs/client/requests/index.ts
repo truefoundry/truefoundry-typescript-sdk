@@ -1,3 +1,3 @@
-export type { JobsListRunsRequest } from "./JobsListRunsRequest.js";
-export type { JobsTerminateRequest } from "./JobsTerminateRequest.js";
+export type { ListRunsJobsRequest } from "./ListRunsJobsRequest.js";
+export type { TerminateJobsRequest } from "./TerminateJobsRequest.js";
 export type { TriggerJobRequest } from "./TriggerJobRequest.js";

@@ -3,6 +3,4 @@
 /**
  * Command
  */
-export type JobTriggerInputCommand = 
-    | string
-    | string[];
+export type JobTriggerInputCommand = string | string[];

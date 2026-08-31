@@ -8,4 +8,6 @@ export interface AwsAssumedRoleBasedAuth {
     type: "assumed-role-based";
     /** ARN of the role you want to assume. */
     assumedRoleArn: string;
+    /** Optional external ID to use when assuming the role. This provides an added layer of security by ensuring only parties with the correct external ID can assume the role. */
+    externalId?: string;
 }

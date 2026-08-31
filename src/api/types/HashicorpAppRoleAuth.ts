@@ -10,4 +10,6 @@ export interface HashicorpAppRoleAuth {
     roleId: string;
     /** AppRole secret ID for Vault authentication. */
     secretId: string;
+    /** Optional app role path which is used to authenticate the app role. */
+    rolePath?: string;
 }

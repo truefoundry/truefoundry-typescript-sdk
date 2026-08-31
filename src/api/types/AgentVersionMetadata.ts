@@ -2,5 +2,5 @@
 
 export interface AgentVersionMetadata {
     /** Prompt template variables (variable name to default value) saved from the linked prompt version. Only set for agents with an instruction. */
-    promptVariables?: Record<string, string>;
+    promptVariables?: Record<string, string | null> | null;
 }

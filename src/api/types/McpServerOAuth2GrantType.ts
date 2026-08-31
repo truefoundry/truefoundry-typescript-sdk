@@ -2,7 +2,10 @@
 
 /** The OAuth2 grant type to use for authentication. */
 export const McpServerOAuth2GrantType = {
-        AuthorizationCode: "authorization_code",
-        ClientCredentials: "client_credentials"
-    } as const;
-export type McpServerOAuth2GrantType = typeof McpServerOAuth2GrantType[keyof typeof McpServerOAuth2GrantType];
+    AuthorizationCode: "authorization_code",
+    ClientCredentials: "client_credentials",
+    TokenExchange: "token_exchange",
+    IdJag: "id_jag",
+    JwtBearer: "jwt_bearer",
+} as const;
+export type McpServerOAuth2GrantType = (typeof McpServerOAuth2GrantType)[keyof typeof McpServerOAuth2GrantType];

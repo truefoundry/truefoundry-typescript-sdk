@@ -6,7 +6,7 @@
  */
 export interface ExecuteWorkflowRequest {
     /** Workflow inputs */
-    inputs?: Record<string, unknown>;
+    inputs?: Record<string, unknown> | null;
     /** Workflow inputs literal map */
-    inputsLiteralMap?: Record<string, unknown>;
+    inputsLiteralMap?: Record<string, unknown> | null;
 }
