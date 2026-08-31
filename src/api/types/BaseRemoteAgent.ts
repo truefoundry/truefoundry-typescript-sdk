@@ -10,6 +10,6 @@ export interface BaseRemoteAgent {
     /** Tags for the Agent */
     tags?: Record<string, unknown>;
     /** List of users who have access to this Agent */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
 }

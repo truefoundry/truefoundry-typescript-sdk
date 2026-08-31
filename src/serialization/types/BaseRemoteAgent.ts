@@ -13,7 +13,7 @@ export const BaseRemoteAgent: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     description: core.serialization.string(),
     tags: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
 });
 
@@ -22,7 +22,7 @@ export declare namespace BaseRemoteAgent {
         name: string;
         description: string;
         tags?: Record<string, unknown> | null;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
     }
 }

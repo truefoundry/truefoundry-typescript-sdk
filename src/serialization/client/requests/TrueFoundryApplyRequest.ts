@@ -11,11 +11,13 @@ export const TrueFoundryApplyRequest: core.serialization.Schema<
 > = core.serialization.object({
     manifest: TrueFoundryApplyRequestManifest,
     dryRun: core.serialization.boolean().optionalNullable(),
+    force: core.serialization.boolean().optionalNullable(),
 });
 
 export declare namespace TrueFoundryApplyRequest {
     export interface Raw {
         manifest: TrueFoundryApplyRequestManifest.Raw;
         dryRun?: (boolean | null | undefined) | null;
+        force?: (boolean | null | undefined) | null;
     }
 }

@@ -14,6 +14,8 @@ export const AgentIdentity: core.serialization.ObjectSchema<serializers.AgentIde
         accountId: core.serialization.string(),
         createdAt: core.serialization.date(),
         updatedAt: core.serialization.date(),
+        tokenId: core.serialization.string().optionalNullable(),
+        tokenExpiry: core.serialization.date().optionalNullable(),
     });
 
 export declare namespace AgentIdentity {
@@ -25,5 +27,7 @@ export declare namespace AgentIdentity {
         accountId: string;
         createdAt: string;
         updatedAt: string;
+        tokenId?: (string | null | undefined) | null;
+        tokenExpiry?: (string | null | undefined) | null;
     }
 }

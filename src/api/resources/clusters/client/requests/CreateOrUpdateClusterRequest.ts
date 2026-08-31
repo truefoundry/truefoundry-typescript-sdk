@@ -9,11 +9,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *             type: "cluster",
  *             name: "name",
  *             clusterType: "aws-eks",
- *             environmentNames: ["environment_names"],
- *             collaborators: [{
- *                     subject: "subject",
- *                     roleId: "role_id"
- *                 }]
+ *             environmentNames: ["environment_names"]
  *         }
  *     }
  */

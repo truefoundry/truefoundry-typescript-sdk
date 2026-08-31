@@ -19,8 +19,14 @@ export interface McpServerOAuth2
     tokenUrl?: string;
     /** client ID for OAuth2 or the TrueFoundry secret FQN containing the client ID. */
     clientId?: string;
+    /** How the OAuth client authenticates to the token endpoint. Certificate auth is available for Microsoft Entra client_credentials and jwt_bearer (on-behalf-of). */
+    clientAuthentication?: TrueFoundry.McpServerOAuth2ClientAuthentication;
     /** Client secret or the TrueFoundry secret FQN containing the client secret for OAuth2. */
     clientSecret?: string;
+    /** Hex SHA-1 thumbprint from the Azure portal, or the TrueFoundry secret FQN containing it. */
+    certificateThumbprint?: string;
+    /** PEM private key for Microsoft Entra certificate-based client authentication, or the TrueFoundry secret FQN containing it. */
+    privateKey?: string;
     /** URL for dynamic client registration (RFC 7591). If provided, client credentials will be obtained automatically using the Dynamic Client Registration (DCR) process. */
     registrationUrl?: string;
     /** URL to fetch token expiry (RFC 7662) when the provider does not return expires_in (e.g. Salesforce). Requires client_id and client_secret. */

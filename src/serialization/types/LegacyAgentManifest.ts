@@ -16,7 +16,7 @@ export const LegacyAgentManifest: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     description: core.serialization.string(),
     source: AgentSource,
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     sampleInputs: core.serialization.property("sample_inputs", core.serialization.list(SampleAgentInput).optional()),
     ownedBy: OwnedBy.optional(),
 });
@@ -27,7 +27,7 @@ export declare namespace LegacyAgentManifest {
         name: string;
         description: string;
         source: AgentSource.Raw;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         sample_inputs?: SampleAgentInput.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
     }

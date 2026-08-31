@@ -4,6 +4,7 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { OtelExporterHttpConfigBase } from "./OtelExporterHttpConfigBase.js";
+import { OtelMetricsExporterCommonConfig } from "./OtelMetricsExporterCommonConfig.js";
 
 export const OtelMetricsExporterHttpConfig: core.serialization.ObjectSchema<
     serializers.OtelMetricsExporterHttpConfig.Raw,
@@ -12,10 +13,11 @@ export const OtelMetricsExporterHttpConfig: core.serialization.ObjectSchema<
     .object({
         type: core.serialization.stringLiteral("http"),
     })
-    .extend(OtelExporterHttpConfigBase);
+    .extend(OtelExporterHttpConfigBase)
+    .extend(OtelMetricsExporterCommonConfig);
 
 export declare namespace OtelMetricsExporterHttpConfig {
-    export interface Raw extends OtelExporterHttpConfigBase.Raw {
+    export interface Raw extends OtelExporterHttpConfigBase.Raw, OtelMetricsExporterCommonConfig.Raw {
         type: "http";
     }
 }

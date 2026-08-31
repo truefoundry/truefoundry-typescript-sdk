@@ -34,6 +34,7 @@ export const ProviderAccountProvider = {
     GoogleGemini: "google-gemini",
     AzureOpenai: "azure-openai",
     AzureFoundry: "azure-foundry",
+    MicrosoftFoundry: "microsoft-foundry",
     SelfHostedModel: "self-hosted-model",
     McpServerGroup: "mcp-server-group",
     Pagerduty: "pagerduty",

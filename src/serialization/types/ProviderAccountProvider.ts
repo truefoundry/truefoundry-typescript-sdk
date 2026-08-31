@@ -41,6 +41,7 @@ export const ProviderAccountProvider: core.serialization.Schema<
     "google-gemini",
     "azure-openai",
     "azure-foundry",
+    "microsoft-foundry",
     "self-hosted-model",
     "mcp-server-group",
     "pagerduty",
@@ -102,6 +103,7 @@ export declare namespace ProviderAccountProvider {
         | "google-gemini"
         | "azure-openai"
         | "azure-foundry"
+        | "microsoft-foundry"
         | "self-hosted-model"
         | "mcp-server-group"
         | "pagerduty"

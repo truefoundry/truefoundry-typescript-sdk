@@ -8,11 +8,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *         manifest: {
  *             type: "ml-repo",
  *             name: "name",
- *             storageIntegrationFqn: "storage_integration_fqn",
- *             collaborators: [{
- *                     subject: "subject",
- *                     roleId: "role_id"
- *                 }]
+ *             storageIntegrationFqn: "storage_integration_fqn"
  *         }
  *     }
  */

@@ -17,7 +17,7 @@ export const VirtualAccountManifest: core.serialization.ObjectSchema<
 > = core.serialization.object({
     name: core.serialization.string(),
     type: core.serialization.stringLiteral("virtual-account"),
-    permissions: core.serialization.list(Permissions),
+    permissions: core.serialization.list(Permissions).optional(),
     expirationDate: core.serialization.property("expiration_date", core.serialization.string().optional()),
     autoRotate: core.serialization.property("auto_rotate", AutoRotate.optional()),
     notificationTarget: core.serialization.property("notification_target", NotificationTarget.optional()),
@@ -35,7 +35,7 @@ export declare namespace VirtualAccountManifest {
     export interface Raw {
         name: string;
         type: "virtual-account";
-        permissions: Permissions.Raw[];
+        permissions?: Permissions.Raw[] | null;
         expiration_date?: string | null;
         auto_rotate?: AutoRotate.Raw | null;
         notification_target?: NotificationTarget.Raw | null;

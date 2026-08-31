@@ -5,6 +5,8 @@ export const PresetRegexPatternEnum = {
     UsSsnNoDash: "us_ssn_no_dash",
     Email: "email",
     UsPhone: "us_phone",
+    IndiaAadhaar: "india_aadhaar",
+    IndiaPan: "india_pan",
     Visa: "visa",
     Mastercard: "mastercard",
     Amex: "amex",

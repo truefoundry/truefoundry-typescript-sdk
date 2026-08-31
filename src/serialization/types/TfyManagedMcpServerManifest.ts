@@ -4,6 +4,8 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { Collaborator } from "./Collaborator.js";
+import { McpToolMetadata } from "./McpToolMetadata.js";
+import { McpToolPolicy } from "./McpToolPolicy.js";
 import { McpToolSetting } from "./McpToolSetting.js";
 import { OwnedBy } from "./OwnedBy.js";
 import { TfyManagedMcpServerOAuth } from "./TfyManagedMcpServerOAuth.js";
@@ -18,7 +20,12 @@ export const TfyManagedMcpServerManifest: core.serialization.ObjectSchema<
     description: core.serialization.string(),
     serverIdentifier: core.serialization.property("server_identifier", core.serialization.string()),
     toolSettings: core.serialization.property("tool_settings", core.serialization.list(McpToolSetting).optional()),
-    collaborators: core.serialization.list(Collaborator),
+    toolPolicy: core.serialization.property("tool_policy", McpToolPolicy.optional()),
+    toolMetadata: core.serialization.property(
+        "tool_metadata",
+        core.serialization.record(core.serialization.string(), McpToolMetadata).optional(),
+    ),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
     authData: core.serialization.property("auth_data", TfyManagedMcpServerOAuth.optional()),
     tags: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
@@ -32,7 +39,9 @@ export declare namespace TfyManagedMcpServerManifest {
         description: string;
         server_identifier: string;
         tool_settings?: McpToolSetting.Raw[] | null;
-        collaborators: Collaborator.Raw[];
+        tool_policy?: McpToolPolicy.Raw | null;
+        tool_metadata?: Record<string, McpToolMetadata.Raw> | null;
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
         auth_data?: TfyManagedMcpServerOAuth.Raw | null;
         tags?: Record<string, unknown> | null;

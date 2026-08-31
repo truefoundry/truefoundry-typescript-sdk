@@ -9,5 +9,6 @@ export const PolicyEntityTypes = {
     Workflow: "workflow",
     Helm: "helm",
     Volume: "volume",
+    SparkJob: "spark-job",
 } as const;
 export type PolicyEntityTypes = (typeof PolicyEntityTypes)[keyof typeof PolicyEntityTypes];

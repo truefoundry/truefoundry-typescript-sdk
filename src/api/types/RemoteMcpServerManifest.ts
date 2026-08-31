@@ -19,9 +19,12 @@ export interface RemoteMcpServerManifest {
     tlsSettings?: TrueFoundry.CustomTlsSettings;
     /** Customize tool descriptions or enable/disable specific tools from the MCP Server. */
     toolSettings?: TrueFoundry.McpToolSetting[];
+    toolPolicy?: TrueFoundry.McpToolPolicy;
+    /** Per-tool description and annotation overrides keyed by tool name. */
+    toolMetadata?: Record<string, TrueFoundry.McpToolMetadata>;
     authData?: TrueFoundry.McpServerAuth;
     /** Users and Teams that have access to this MCP Server */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
     /** Additional HTTP headers sent on each request to the MCP server. If the same header is set in both `additional_headers` and `auth_data`, the `auth_data` value wins. */
     additionalHeaders?: Record<string, unknown>;

@@ -3,19 +3,20 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
-import { AwsAssumedRoleBasedAuth } from "./AwsAssumedRoleBasedAuth.js";
 
 export const AwsBedrockAssumedRoleBasedAuth: core.serialization.ObjectSchema<
     serializers.AwsBedrockAssumedRoleBasedAuth.Raw,
     TrueFoundry.AwsBedrockAssumedRoleBasedAuth
-> = core.serialization
-    .object({
-        externalId: core.serialization.property("external_id", core.serialization.string().optional()),
-    })
-    .extend(AwsAssumedRoleBasedAuth);
+> = core.serialization.object({
+    externalId: core.serialization.property("external_id", core.serialization.string().optional()),
+    type: core.serialization.stringLiteral("assumed-role-based"),
+    assumedRoleArn: core.serialization.property("assumed_role_arn", core.serialization.string()),
+});
 
 export declare namespace AwsBedrockAssumedRoleBasedAuth {
-    export interface Raw extends AwsAssumedRoleBasedAuth.Raw {
+    export interface Raw {
         external_id?: string | null;
+        type: "assumed-role-based";
+        assumed_role_arn: string;
     }
 }

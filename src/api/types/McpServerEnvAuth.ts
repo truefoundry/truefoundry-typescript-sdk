@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Environment variable authentication for stdio MCP. For individual credentials, use a single {{placeholder}} name in values (same rules as header auth).
+ * Environment variable authentication for stdio MCP. For individual credentials, use one or more {{placeholder}} names in values (same rules as header auth).
  */
 export interface McpServerEnvAuth {
     /** +value=env */

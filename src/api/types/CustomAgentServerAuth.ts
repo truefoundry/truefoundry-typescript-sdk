@@ -2,4 +2,8 @@
 
 import type * as TrueFoundry from "../index.js";
 
-export type CustomAgentServerAuth = TrueFoundry.CustomServerHeaderAuth | TrueFoundry.CustomServerPassthrough;
+export type CustomAgentServerAuth =
+    | TrueFoundry.CustomServerHeaderAuth
+    | TrueFoundry.CustomServerPassthrough
+    | TrueFoundry.CustomServerOAuth2Marker
+    | TrueFoundry.CustomServerAwsSigV4;

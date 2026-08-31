@@ -35,7 +35,7 @@ describe("ApplicationVersionsClient", () => {
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    deploymentBuilds: [{ name: "name", status: 20 }],
+                    deploymentBuilds: [{ build: { name: "name", status: 20 } }],
                     deploymentStatuses: [{}],
                     currentStatusId: "currentStatusId",
                     appliedRecommendations: [
@@ -101,8 +101,10 @@ describe("ApplicationVersionsClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     deploymentBuilds: [
                         {
-                            name: "name",
-                            status: 20,
+                            build: {
+                                name: "name",
+                                status: 20,
+                            },
                         },
                     ],
                     deploymentStatuses: [{}],
@@ -250,7 +252,7 @@ describe("ApplicationVersionsClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                deploymentBuilds: [{ name: "name", status: 20 }],
+                deploymentBuilds: [{ build: { name: "name", status: 20 } }],
                 deploymentStatuses: [{}],
                 currentStatusId: "currentStatusId",
                 currentStatus: {
@@ -396,8 +398,10 @@ describe("ApplicationVersionsClient", () => {
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 deploymentBuilds: [
                     {
-                        name: "name",
-                        status: 20,
+                        build: {
+                            name: "name",
+                            status: 20,
+                        },
                     },
                 ],
                 deploymentStatuses: [{}],

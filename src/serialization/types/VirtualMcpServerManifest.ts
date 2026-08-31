@@ -15,8 +15,9 @@ export const VirtualMcpServerManifest: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     description: core.serialization.string(),
+    bestEffortMode: core.serialization.property("best_effort_mode", core.serialization.boolean().optional()),
     servers: core.serialization.list(McpServerSource),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
     tags: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
@@ -27,8 +28,9 @@ export declare namespace VirtualMcpServerManifest {
         name: string;
         display_name?: string | null;
         description: string;
+        best_effort_mode?: boolean | null;
         servers: McpServerSource.Raw[];
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
         tags?: Record<string, unknown> | null;
     }

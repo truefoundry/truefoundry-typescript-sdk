@@ -19,6 +19,7 @@ export const AwsSecretsManager: core.serialization.ObjectSchema<
         core.serialization.list(core.serialization.string()).optional(),
     ),
     kmsArn: core.serialization.property("kms_arn", core.serialization.string().optional()),
+    tags: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace AwsSecretsManager {
@@ -29,5 +30,6 @@ export declare namespace AwsSecretsManager {
         auth_data?: AwsSecretsManagerAuthData.Raw | null;
         authorized_subjects?: string[] | null;
         kms_arn?: string | null;
+        tags?: Record<string, unknown> | null;
     }
 }

@@ -3,14 +3,25 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { CustomServerAwsSigV4 } from "./CustomServerAwsSigV4.js";
 import { CustomServerHeaderAuth } from "./CustomServerHeaderAuth.js";
+import { CustomServerOAuth2Marker } from "./CustomServerOAuth2Marker.js";
 import { CustomServerPassthrough } from "./CustomServerPassthrough.js";
 
 export const CustomAgentServerAuth: core.serialization.Schema<
     serializers.CustomAgentServerAuth.Raw,
     TrueFoundry.CustomAgentServerAuth
-> = core.serialization.undiscriminatedUnion([CustomServerHeaderAuth, CustomServerPassthrough]);
+> = core.serialization.undiscriminatedUnion([
+    CustomServerHeaderAuth,
+    CustomServerPassthrough,
+    CustomServerOAuth2Marker,
+    CustomServerAwsSigV4,
+]);
 
 export declare namespace CustomAgentServerAuth {
-    export type Raw = CustomServerHeaderAuth.Raw | CustomServerPassthrough.Raw;
+    export type Raw =
+        | CustomServerHeaderAuth.Raw
+        | CustomServerPassthrough.Raw
+        | CustomServerOAuth2Marker.Raw
+        | CustomServerAwsSigV4.Raw;
 }

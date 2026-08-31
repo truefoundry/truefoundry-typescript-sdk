@@ -64,7 +64,7 @@ describe("ApplicationsClient", () => {
                             replicas: 1.1,
                         },
                         createdBySubject: { subjectId: "subjectId", subjectType: "user" },
-                        deploymentBuilds: [{ name: "name", status: 20 }],
+                        deploymentBuilds: [{ build: { name: "name", status: 20 } }],
                     },
                     activeDeploymentId: "activeDeploymentId",
                     lastDeploymentId: "lastDeploymentId",
@@ -165,8 +165,10 @@ describe("ApplicationsClient", () => {
                         },
                         deploymentBuilds: [
                             {
-                                name: "name",
-                                status: 20,
+                                build: {
+                                    name: "name",
+                                    status: 20,
+                                },
                             },
                         ],
                     },
@@ -278,7 +280,7 @@ describe("ApplicationsClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                deploymentBuilds: [{ name: "name", status: 20 }],
+                deploymentBuilds: [{ build: { name: "name", status: 20 } }],
                 deploymentStatuses: [{}],
                 currentStatusId: "currentStatusId",
                 currentStatus: {
@@ -429,8 +431,10 @@ describe("ApplicationsClient", () => {
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 deploymentBuilds: [
                     {
-                        name: "name",
-                        status: 20,
+                        build: {
+                            name: "name",
+                            status: 20,
+                        },
                     },
                 ],
                 deploymentStatuses: [{}],
@@ -640,7 +644,7 @@ describe("ApplicationsClient", () => {
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
                     updatedAt: "2024-01-15T09:30:00Z",
-                    deploymentBuilds: [{ name: "name", status: 20 }],
+                    deploymentBuilds: [{ build: { name: "name", status: 20 } }],
                     deploymentStatuses: [{}],
                     currentStatusId: "currentStatusId",
                     appliedRecommendations: [
@@ -772,8 +776,10 @@ describe("ApplicationsClient", () => {
                     updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                     deploymentBuilds: [
                         {
-                            name: "name",
-                            status: 20,
+                            build: {
+                                name: "name",
+                                status: 20,
+                            },
                         },
                     ],
                     deploymentStatuses: [{}],
@@ -968,7 +974,7 @@ describe("ApplicationsClient", () => {
                 },
                 createdAt: "2024-01-15T09:30:00Z",
                 updatedAt: "2024-01-15T09:30:00Z",
-                deploymentBuilds: [{ name: "name", status: 20 }],
+                deploymentBuilds: [{ build: { name: "name", status: 20 } }],
                 deploymentStatuses: [{}],
                 currentStatusId: "currentStatusId",
                 currentStatus: {
@@ -1114,8 +1120,10 @@ describe("ApplicationsClient", () => {
                 updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 deploymentBuilds: [
                     {
-                        name: "name",
-                        status: 20,
+                        build: {
+                            name: "name",
+                            status: 20,
+                        },
                     },
                 ],
                 deploymentStatuses: [{}],
@@ -1372,7 +1380,24 @@ describe("ApplicationsClient", () => {
             },
             createdAt: "2024-01-15T09:30:00Z",
             updatedAt: "2024-01-15T09:30:00Z",
-            deploymentBuilds: [{ name: "name", status: 20 }],
+            deploymentBuilds: [
+                {
+                    id: "id",
+                    deploymentId: "deploymentId",
+                    componentName: "componentName",
+                    build: { name: "name", status: 20 },
+                    buildId: "buildId",
+                    imageUri: "imageUri",
+                    name: "name",
+                    status: "STARTED",
+                    getLogsUrl: "getLogsUrl",
+                    tailLogsUrl: "tailLogsUrl",
+                    logsStartTs: "logsStartTs",
+                    metadata: { key: "value" },
+                    createdAt: "2024-01-15T09:30:00Z",
+                    updatedAt: "2024-01-15T09:30:00Z",
+                },
+            ],
             deploymentStatuses: [
                 {
                     id: "id",
@@ -1582,8 +1607,25 @@ describe("ApplicationsClient", () => {
             updatedAt: new Date("2024-01-15T09:30:00.000Z"),
             deploymentBuilds: [
                 {
+                    id: "id",
+                    deploymentId: "deploymentId",
+                    componentName: "componentName",
+                    build: {
+                        name: "name",
+                        status: 20,
+                    },
+                    buildId: "buildId",
+                    imageUri: "imageUri",
                     name: "name",
-                    status: 20,
+                    status: "STARTED",
+                    getLogsUrl: "getLogsUrl",
+                    tailLogsUrl: "tailLogsUrl",
+                    logsStartTs: "logsStartTs",
+                    metadata: {
+                        key: "value",
+                    },
+                    createdAt: new Date("2024-01-15T09:30:00.000Z"),
+                    updatedAt: new Date("2024-01-15T09:30:00.000Z"),
                 },
             ],
             deploymentStatuses: [

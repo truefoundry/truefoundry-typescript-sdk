@@ -8,12 +8,7 @@ describe("TrueFoundryClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = {
             existingManifest: {
@@ -71,12 +66,6 @@ describe("TrueFoundryClient", () => {
                 type: "ml-repo",
                 name: "name",
                 storageIntegrationFqn: "storage_integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        roleId: "role_id",
-                    },
-                ],
             },
         });
         expect(response).toEqual({
@@ -138,12 +127,7 @@ describe("TrueFoundryClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = {};
 
@@ -161,12 +145,6 @@ describe("TrueFoundryClient", () => {
                 type: "ml-repo",
                 name: "name",
                 storageIntegrationFqn: "storage_integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        roleId: "role_id",
-                    },
-                ],
             },
         });
         expect(response).toEqual({});

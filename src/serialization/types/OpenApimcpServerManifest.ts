@@ -27,7 +27,7 @@ export const OpenApimcpServerManifest: core.serialization.ObjectSchema<
         core.serialization.list(OpenApimcpToolSetting).optional(),
     ),
     authData: core.serialization.property("auth_data", McpServerAuth.optional()),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
     additionalHeaders: core.serialization.property(
         "additional_headers",
@@ -48,7 +48,7 @@ export declare namespace OpenApimcpServerManifest {
         enable_all_tools?: boolean | null;
         tool_settings?: OpenApimcpToolSetting.Raw[] | null;
         auth_data?: McpServerAuth.Raw | null;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
         additional_headers?: Record<string, unknown> | null;
         tags?: Record<string, unknown> | null;

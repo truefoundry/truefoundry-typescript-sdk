@@ -284,7 +284,7 @@ export class GatewayBudgetsClient {
     }
 
     /**
-     * Returns the budgets that would apply to a hypothetical user/team/model/metadata selection, with current usage.
+     * Returns the budgets that would apply to a hypothetical user/team/model/metadata selection, with current usage. Pass a virtual model id in `model` to preview virtual-model traffic.
      *
      * @param {TrueFoundry.SimulateBudgetRequest} request
      * @param {GatewayBudgetsClient.RequestOptions} requestOptions - Request-specific configuration.

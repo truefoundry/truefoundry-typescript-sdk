@@ -10,13 +10,13 @@ export const NomaSecurityGuardrailConfigConfig: core.serialization.ObjectSchema<
 > = core.serialization.object({
     baseUrl: core.serialization.property("base_url", core.serialization.string().optional()),
     applicationId: core.serialization.property("application_id", core.serialization.string().optional()),
-    userIdMetadataKey: core.serialization.property("user_id_metadata_key", core.serialization.string().optional()),
+    sessionId: core.serialization.property("session_id", core.serialization.string().optional()),
 });
 
 export declare namespace NomaSecurityGuardrailConfigConfig {
     export interface Raw {
         base_url?: string | null;
         application_id?: string | null;
-        user_id_metadata_key?: string | null;
+        session_id?: string | null;
     }
 }

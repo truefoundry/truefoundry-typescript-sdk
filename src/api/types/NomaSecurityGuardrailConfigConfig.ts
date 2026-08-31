@@ -7,8 +7,8 @@
 export interface NomaSecurityGuardrailConfigConfig {
     /** Optional override for the Noma API base URL. Defaults to https://api.noma.security if not provided. */
     baseUrl?: string;
-    /** Literal applicationId sent as config.config.applicationId and used to select the Noma Runtime Protection profile. Defaults to truefoundry. */
+    /** Literal applicationId sent in the x-noma-context header and used to select the Noma Runtime Protection profile. Defaults to truefoundry. */
     applicationId?: string;
-    /** Fallback subjectId sent in context.user when no authenticated runtime subject is available. Defaults to gateway. */
-    userIdMetadataKey?: string;
+    /** Literal sessionId sent in the x-noma-context header for session attribution in Noma. Optional. */
+    sessionId?: string;
 }

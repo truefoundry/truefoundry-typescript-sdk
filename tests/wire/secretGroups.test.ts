@@ -246,14 +246,7 @@ describe("SecretGroupsClient", () => {
     test("create_or_update (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "secret-group",
-                name: "name",
-                integration_fqn: "integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
-        };
+        const rawRequestBody = { manifest: { type: "secret-group", name: "name", integration_fqn: "integration_fqn" } };
         const rawResponseBody = {
             data: {
                 id: "id",
@@ -292,12 +285,6 @@ describe("SecretGroupsClient", () => {
                 type: "secret-group",
                 name: "name",
                 integrationFqn: "integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        roleId: "role_id",
-                    },
-                ],
             },
         });
         expect(response).toEqual({
@@ -337,17 +324,7 @@ describe("SecretGroupsClient", () => {
     test("create_or_update (2)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "secret-group",
-                name: "name",
-                integration_fqn: "integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
+        const rawRequestBody = { manifest: { type: "secret-group", name: "name", integration_fqn: "integration_fqn" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -365,16 +342,6 @@ describe("SecretGroupsClient", () => {
                     type: "secret-group",
                     name: "name",
                     integrationFqn: "integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.BadRequestError);
@@ -383,17 +350,7 @@ describe("SecretGroupsClient", () => {
     test("create_or_update (3)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "secret-group",
-                name: "name",
-                integration_fqn: "integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
+        const rawRequestBody = { manifest: { type: "secret-group", name: "name", integration_fqn: "integration_fqn" } };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -411,16 +368,6 @@ describe("SecretGroupsClient", () => {
                     type: "secret-group",
                     name: "name",
                     integrationFqn: "integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.ForbiddenError);
@@ -429,17 +376,7 @@ describe("SecretGroupsClient", () => {
     test("create_or_update (4)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "secret-group",
-                name: "name",
-                integration_fqn: "integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
+        const rawRequestBody = { manifest: { type: "secret-group", name: "name", integration_fqn: "integration_fqn" } };
         const rawResponseBody = { key: "value" };
 
         server
@@ -457,16 +394,6 @@ describe("SecretGroupsClient", () => {
                     type: "secret-group",
                     name: "name",
                     integrationFqn: "integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.NotFoundError);
@@ -475,17 +402,7 @@ describe("SecretGroupsClient", () => {
     test("create_or_update (5)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "secret-group",
-                name: "name",
-                integration_fqn: "integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
+        const rawRequestBody = { manifest: { type: "secret-group", name: "name", integration_fqn: "integration_fqn" } };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -503,16 +420,6 @@ describe("SecretGroupsClient", () => {
                     type: "secret-group",
                     name: "name",
                     integrationFqn: "integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
@@ -521,17 +428,7 @@ describe("SecretGroupsClient", () => {
     test("create_or_update (6)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
-        const rawRequestBody = {
-            manifest: {
-                type: "secret-group",
-                name: "name",
-                integration_fqn: "integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
-        };
+        const rawRequestBody = { manifest: { type: "secret-group", name: "name", integration_fqn: "integration_fqn" } };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
         server
@@ -549,16 +446,6 @@ describe("SecretGroupsClient", () => {
                     type: "secret-group",
                     name: "name",
                     integrationFqn: "integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);

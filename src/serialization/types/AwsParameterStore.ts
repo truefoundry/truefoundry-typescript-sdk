@@ -19,6 +19,7 @@ export const AwsParameterStore: core.serialization.ObjectSchema<
         core.serialization.list(core.serialization.string()).optional(),
     ),
     kmsArn: core.serialization.property("kms_arn", core.serialization.string().optional()),
+    tags: core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional(),
 });
 
 export declare namespace AwsParameterStore {
@@ -29,5 +30,6 @@ export declare namespace AwsParameterStore {
         auth_data?: AwsParameterStoreAuthData.Raw | null;
         authorized_subjects?: string[] | null;
         kms_arn?: string | null;
+        tags?: Record<string, unknown> | null;
     }
 }

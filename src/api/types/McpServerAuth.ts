@@ -5,4 +5,5 @@ import type * as TrueFoundry from "../index.js";
 export type McpServerAuth =
     | TrueFoundry.McpServerHeaderAuth
     | TrueFoundry.McpServerOAuth2
-    | TrueFoundry.McpServerPassthrough;
+    | TrueFoundry.McpServerPassthrough
+    | TrueFoundry.McpServerAwsSigV4Auth;

@@ -13,7 +13,7 @@ export const McpServerProviderAccount: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("provider-account/mcp-server-group"),
     name: core.serialization.string(),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     integrations: core.serialization.list(McpServerIntegrations),
     ownedBy: OwnedBy.optional(),
 });
@@ -22,7 +22,7 @@ export declare namespace McpServerProviderAccount {
     export interface Raw {
         type: "provider-account/mcp-server-group";
         name: string;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         integrations: McpServerIntegrations.Raw[];
         ownedBy?: OwnedBy.Raw | null;
     }

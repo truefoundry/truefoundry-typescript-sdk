@@ -5,5 +5,6 @@ export const McpServerOAuth2Provider = {
     Custom: "custom",
     Auth0: "auth0",
     Okta: "okta",
+    MicrosoftEntra: "microsoft-entra",
 } as const;
 export type McpServerOAuth2Provider = (typeof McpServerOAuth2Provider)[keyof typeof McpServerOAuth2Provider];

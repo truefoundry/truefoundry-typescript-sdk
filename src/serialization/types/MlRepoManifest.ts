@@ -14,7 +14,7 @@ export const MlRepoManifest: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     description: core.serialization.string().optional(),
     storageIntegrationFqn: core.serialization.property("storage_integration_fqn", core.serialization.string()),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
 });
 
@@ -24,7 +24,7 @@ export declare namespace MlRepoManifest {
         name: string;
         description?: string | null;
         storage_integration_fqn: string;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
     }
 }

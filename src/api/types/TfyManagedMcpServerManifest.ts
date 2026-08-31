@@ -18,8 +18,11 @@ export interface TfyManagedMcpServerManifest {
     serverIdentifier: string;
     /** Customize tool descriptions or enable/disable specific tools from the MCP Server. */
     toolSettings?: TrueFoundry.McpToolSetting[];
+    toolPolicy?: TrueFoundry.McpToolPolicy;
+    /** Per-tool description and annotation overrides keyed by tool name. */
+    toolMetadata?: Record<string, TrueFoundry.McpToolMetadata>;
     /** Users and Teams that have access to this MCP Server */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
     authData?: TrueFoundry.TfyManagedMcpServerOAuth;
     /** Key-value pairs to categorize this MCP Server (e.g., by owner or environment). */

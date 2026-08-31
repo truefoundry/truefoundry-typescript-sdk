@@ -7,8 +7,8 @@ import type * as TrueFoundry from "../index.js";
  * Field names mirror the manifest root (type + name) for consistency in the UI and YAML.
  */
 export interface RoleBindingSubject {
-    /** Whether this row identifies a user (email), a team (name), or a virtual account (name). */
+    /** Whether this row identifies a user (email), a team (name), a virtual account (name), or an agent (name). */
     type: TrueFoundry.RoleBindingSubjectType;
-    /** User email when type is user; team or virtual account name when type is team or virtualaccount. */
+    /** User email when type is user; team, virtual account, or agent name otherwise. */
     name: string;
 }

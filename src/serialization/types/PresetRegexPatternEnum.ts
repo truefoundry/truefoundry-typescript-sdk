@@ -12,6 +12,8 @@ export const PresetRegexPatternEnum: core.serialization.Schema<
     "us_ssn_no_dash",
     "email",
     "us_phone",
+    "india_aadhaar",
+    "india_pan",
     "visa",
     "mastercard",
     "amex",
@@ -59,6 +61,8 @@ export declare namespace PresetRegexPatternEnum {
         | "us_ssn_no_dash"
         | "email"
         | "us_phone"
+        | "india_aadhaar"
+        | "india_pan"
         | "visa"
         | "mastercard"
         | "amex"

@@ -152,12 +152,7 @@ describe("MlReposClient", () => {
             data: [
                 {
                     tenant_name: "truefoundry",
-                    manifest: {
-                        type: "ml-repo",
-                        name: "name",
-                        storage_integration_fqn: "storage_integration_fqn",
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
-                    },
+                    manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
                     created_by_subject: { subjectId: "subjectId", subjectType: "user" },
                     created_at: "2024-01-15T09:30:00Z",
                     account_id: "account_id",
@@ -186,12 +181,6 @@ describe("MlReposClient", () => {
                         type: "ml-repo",
                         name: "name",
                         storageIntegrationFqn: "storage_integration_fqn",
-                        collaborators: [
-                            {
-                                subject: "subject",
-                                roleId: "role_id",
-                            },
-                        ],
                     },
                     createdBySubject: {
                         subjectId: "subjectId",
@@ -223,12 +212,7 @@ describe("MlReposClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = {
             data: {
@@ -274,12 +258,6 @@ describe("MlReposClient", () => {
                 type: "ml-repo",
                 name: "name",
                 storageIntegrationFqn: "storage_integration_fqn",
-                collaborators: [
-                    {
-                        subject: "subject",
-                        roleId: "role_id",
-                    },
-                ],
             },
         });
         expect(response).toEqual({
@@ -326,15 +304,7 @@ describe("MlReposClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = { key: "value" };
 
@@ -353,16 +323,6 @@ describe("MlReposClient", () => {
                     type: "ml-repo",
                     name: "name",
                     storageIntegrationFqn: "storage_integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.BadRequestError);
@@ -372,15 +332,7 @@ describe("MlReposClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = { key: "value" };
 
@@ -399,16 +351,6 @@ describe("MlReposClient", () => {
                     type: "ml-repo",
                     name: "name",
                     storageIntegrationFqn: "storage_integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.NotFoundError);
@@ -418,15 +360,7 @@ describe("MlReposClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -445,16 +379,6 @@ describe("MlReposClient", () => {
                     type: "ml-repo",
                     name: "name",
                     storageIntegrationFqn: "storage_integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
@@ -464,15 +388,7 @@ describe("MlReposClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "ml-repo",
-                name: "name",
-                storage_integration_fqn: "storage_integration_fqn",
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "ml-repo", name: "name", storage_integration_fqn: "storage_integration_fqn" },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -491,16 +407,6 @@ describe("MlReposClient", () => {
                     type: "ml-repo",
                     name: "name",
                     storageIntegrationFqn: "storage_integration_fqn",
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);

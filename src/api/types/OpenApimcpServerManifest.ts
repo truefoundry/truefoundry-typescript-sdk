@@ -24,7 +24,7 @@ export interface OpenApimcpServerManifest {
     toolSettings?: TrueFoundry.OpenApimcpToolSetting[];
     authData?: TrueFoundry.McpServerAuth;
     /** Users and Teams that have access to this OpenAPI Server */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
     /** Additional HTTP headers sent on each request to the upstream OpenAPI server. If the same header is set in both `additional_headers` and `auth_data`, the `auth_data` value wins. */
     additionalHeaders?: Record<string, unknown>;

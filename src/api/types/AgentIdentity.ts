@@ -11,4 +11,8 @@ export interface AgentIdentity {
     accountId: string;
     createdAt: Date;
     updatedAt: Date;
+    /** Id of the active TrueFoundry-backed token. Absent when the identity has no token. */
+    tokenId?: string | null;
+    /** Expiry of the active TrueFoundry-backed token. Absent when the identity has no token. */
+    tokenExpiry?: Date | null;
 }

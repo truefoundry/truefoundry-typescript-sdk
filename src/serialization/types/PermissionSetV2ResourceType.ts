@@ -45,8 +45,6 @@ export const PermissionSetV2ResourceType: core.serialization.Schema<
     "agent-channel",
     "gateway-installation",
     "virtual-account",
-    "sso-based-identity",
-    "external-identity",
     "mcp-server",
     "external-identity-provider",
     "agent-identity",
@@ -91,8 +89,6 @@ export declare namespace PermissionSetV2ResourceType {
         | "agent-channel"
         | "gateway-installation"
         | "virtual-account"
-        | "sso-based-identity"
-        | "external-identity"
         | "mcp-server"
         | "external-identity-provider"
         | "agent-identity";

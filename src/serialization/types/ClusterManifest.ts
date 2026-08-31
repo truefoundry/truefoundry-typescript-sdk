@@ -49,7 +49,7 @@ export const ClusterManifest: core.serialization.ObjectSchema<
         core.serialization.list(Nodepool).optional(),
     ),
     nodeLabelKeys: core.serialization.property("node_label_keys", ClusterManifestNodeLabelKeys.optional()),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
 });
 
@@ -69,7 +69,7 @@ export declare namespace ClusterManifest {
         workflow_storage_integration_fqn?: string | null;
         supported_nodepools?: Nodepool.Raw[] | null;
         node_label_keys?: ClusterManifestNodeLabelKeys.Raw | null;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
     }
 }

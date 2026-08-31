@@ -8,11 +8,7 @@ import type * as TrueFoundry from "../../index.js";
  *         manifest: {
  *             type: "ml-repo",
  *             name: "name",
- *             storageIntegrationFqn: "storage_integration_fqn",
- *             collaborators: [{
- *                     subject: "subject",
- *                     roleId: "role_id"
- *                 }]
+ *             storageIntegrationFqn: "storage_integration_fqn"
  *         }
  *     }
  */
@@ -21,4 +17,6 @@ export interface TrueFoundryApplyRequest {
     manifest: TrueFoundry.TrueFoundryApplyRequestManifest;
     /** Dry run the apply operation without actually applying */
     dryRun?: boolean | null;
+    /** When `true`, acknowledges that updating this manifest may delete existing per-subject auth records. Currently used for MCP server apply. */
+    force?: boolean | null;
 }

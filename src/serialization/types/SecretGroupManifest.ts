@@ -13,7 +13,7 @@ export const SecretGroupManifest: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("secret-group"),
     name: core.serialization.string(),
     integrationFqn: core.serialization.property("integration_fqn", core.serialization.string()),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
 });
 
@@ -22,7 +22,7 @@ export declare namespace SecretGroupManifest {
         type: "secret-group";
         name: string;
         integration_fqn: string;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
     }
 }

@@ -1,3 +1,4 @@
+export type { CreatePersonalAccessTokenForUserRequest } from "./CreatePersonalAccessTokenForUserRequest.js";
 export type { CreatePersonalAccessTokenRequest } from "./CreatePersonalAccessTokenRequest.js";
 export type { GetPersonalAccessTokensRequest } from "./GetPersonalAccessTokensRequest.js";
 export type { ListPersonalAccessTokensRequest } from "./ListPersonalAccessTokensRequest.js";

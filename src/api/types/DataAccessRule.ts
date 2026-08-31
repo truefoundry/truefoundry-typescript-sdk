@@ -8,4 +8,5 @@ import type * as TrueFoundry from "../index.js";
 export type DataAccessRule =
     | TrueFoundry.OwnDataAccessRule
     | TrueFoundry.TeamDataAccessRule
+    | TrueFoundry.TeamVirtualAccountDataAccessRule
     | TrueFoundry.AllDataAccessRule;

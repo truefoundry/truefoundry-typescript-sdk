@@ -53,12 +53,20 @@ export class BuildLogsClient {
         request: TrueFoundry.internal.GetBuildLogsRequest = {},
         requestOptions?: BuildLogsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.LogsResponse>> {
-        const { startTs, endTs, limit, direction, filterQuery, numLogsToIgnore } = request;
+        const { startTs, endTs, limit = "10000", direction, filterQuery, numLogsToIgnore } = request;
         const _queryParams: Record<string, unknown> = {
             startTs,
             endTs,
             limit,
-            direction,
+            direction:
+                direction != null
+                    ? serializers.LogsSortingDirection.jsonOrThrow(direction, {
+                          unrecognizedObjectKeys: "passthrough",
+                          allowUnrecognizedUnionMembers: true,
+                          allowUnrecognizedEnumValues: true,
+                          omitUndefined: true,
+                      })
+                    : undefined,
             filterQuery,
             numLogsToIgnore,
         };

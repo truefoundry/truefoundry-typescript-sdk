@@ -30,11 +30,7 @@ await client.apply({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
+        storageIntegrationFqn: "storage_integration_fqn"
     }
 });
 
@@ -103,11 +99,7 @@ await client.delete({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
+        storageIntegrationFqn: "storage_integration_fqn"
     }
 });
 
@@ -1746,7 +1738,7 @@ await client.gatewayBudgets.getMyUsage();
 <dl>
 <dd>
 
-Returns the budgets that would apply to a hypothetical user/team/model/metadata selection, with current usage.
+Returns the budgets that would apply to a hypothetical user/team/model/metadata selection, with current usage. Pass a virtual model id in `model` to preview virtual-model traffic.
 </dd>
 </dl>
 </dd>
@@ -2092,7 +2084,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create a new personal access token for the current user.
+Create a new personal access token for the current user. Cannot be called while authenticated with a personal access token.
 </dd>
 </dl>
 </dd>
@@ -2126,6 +2118,72 @@ await client.personalAccessTokens.create({
 <dd>
 
 **request:** `TrueFoundry.CreatePersonalAccessTokenRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PersonalAccessTokensClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.personalAccessTokens.<a href="/src/api/resources/personalAccessTokens/client/Client.ts">createForUser</a>({ ...params }) -> TrueFoundry.CreatePersonalAccessTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a personal access token owned by another user in the current tenant. Requires tenant admin. Cannot be called while authenticated with a personal access token.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.personalAccessTokens.createForUser({
+    name: "my-ci-token",
+    userEmail: "alice@example.com"
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.CreatePersonalAccessTokenForUserRequest` 
     
 </dd>
 </dl>
@@ -2285,7 +2343,7 @@ await client.personalAccessTokens.delete("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token.
+Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token. Creating a new token cannot be done while authenticated with a personal access token.
 </dd>
 </dl>
 </dd>
@@ -2442,7 +2500,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Create a new virtual account or update an existing one using the provided VirtualAccountManifest. Matching is by name — if the name matches an existing virtual account it is updated, otherwise a new one is created.
+Create a new virtual account or update an existing one using the provided VirtualAccountManifest. Matching is by name — if the name matches an existing virtual account it is updated, otherwise a new one is created. Omitting `permissions` leaves the existing access untouched; an empty list is rejected.
 </dd>
 </dl>
 </dd>
@@ -2460,12 +2518,7 @@ Create a new virtual account or update an existing one using the provided Virtua
 await client.virtualAccounts.createOrUpdate({
     manifest: {
         name: "name",
-        type: "virtual-account",
-        permissions: [{
-                resourceFqn: "resource_fqn",
-                resourceType: "resource_type",
-                roleId: "role_id"
-            }]
+        type: "virtual-account"
     }
 });
 
@@ -2692,7 +2745,7 @@ await client.virtualAccounts.getToken("jqfwg345gi25n5ju2yz5iz6m");
 </dl>
 </details>
 
-<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">syncToSecretStore</a>(id) -> TrueFoundry.SyncVirtualAccountTokenResponse</code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">syncToSecretStore</a>(id, { ...params }) -> TrueFoundry.SyncVirtualAccountTokenResponse</code></summary>
 <dl>
 <dd>
 
@@ -2704,7 +2757,7 @@ await client.virtualAccounts.getToken("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-Sync the virtual account token to the configured secret store. Returns the sync metadata including timestamp and error (if any).
+Sync the virtual account token to the configured secret store. By default the write is skipped when the active jwt already matches the last successful sync (used by the rotation cron). Pass force=true to rewrite unconditionally. Returns the sync metadata including timestamp and error (if any).
 </dd>
 </dl>
 </dd>
@@ -2743,6 +2796,14 @@ await client.virtualAccounts.syncToSecretStore("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
+**request:** `TrueFoundry.SyncToSecretStoreVirtualAccountsRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **requestOptions:** `VirtualAccountsClient.RequestOptions` 
     
 </dd>
@@ -2767,7 +2828,7 @@ await client.virtualAccounts.syncToSecretStore("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-Regenerate the authentication token for a virtual account. The old token remains valid for the specified grace period.
+Regenerate the authentication token for a virtual account. The old token remains valid for the specified grace period. Not allowed when the virtual account has identity provider mapping configured.
 </dd>
 </dl>
 </dd>
@@ -2783,7 +2844,7 @@ Regenerate the authentication token for a virtual account. The old token remains
 
 ```typescript
 await client.virtualAccounts.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
-    gracePeriodInDays: 30
+    gracePeriodInMinutes: 30
 });
 
 ```
@@ -3013,11 +3074,7 @@ await client.clusters.createOrUpdate({
         type: "cluster",
         name: "name",
         clusterType: "aws-eks",
-        environmentNames: ["environment_names"],
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
+        environmentNames: ["environment_names"]
     }
 });
 
@@ -3967,7 +4024,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Get a single deployment by application ID and deployment ID.
+Get a single deployment by application ID and deployment ID, with its status history and builds. A status of DEPLOY_SUCCESS means the rollout was accepted, not that the workload is healthy: a pod that is crashlooping, out of memory or unable to pull its image still reports DEPLOY_SUCCESS. Confirm health with list_k8s_pods or get_application_state before reporting success. Read currentStatus.state.isTerminalState first — currentStatus.state.type says `success` while a deployment is still in progress, so it is only meaningful once the state is terminal.
 </dd>
 </dl>
 </dd>
@@ -5421,11 +5478,7 @@ await client.secretGroups.createOrUpdate({
     manifest: {
         type: "secret-group",
         name: "name",
-        integrationFqn: "integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
+        integrationFqn: "integration_fqn"
     }
 });
 
@@ -5916,11 +5969,7 @@ await client.agents.createOrUpdate({
         description: "description",
         model: {
             name: "name"
-        },
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
+        }
     }
 });
 
@@ -6096,7 +6145,7 @@ await client.agents.delete("jqfwg345gi25n5ju2yz5iz6m");
 <dl>
 <dd>
 
-Returns the TrueFoundry-backed token for the agent's linked identity, generating one on demand if none exists yet (or the stored one has expired). Only valid for agents whose identity is TrueFoundry-backed. Requires manage access on the agent since the token authenticates as it. 404s if the agent has no linked identity.
+Returns the stored TrueFoundry-backed token for the agent's linked identity. Only valid for agents whose identity is TrueFoundry-backed. Requires manage access on the agent since the token authenticates as it. Use the create-token endpoint to issue one.
 </dd>
 </dl>
 </dd>
@@ -6128,6 +6177,150 @@ await client.agents.getToken("jqfwg345gi25n5ju2yz5iz6m");
 <dd>
 
 **id:** `string` — System-generated agent ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">createToken</a>(id, { ...params }) -> TrueFoundry.GetAgentIdentityTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Issues a new TrueFoundry-backed token for the agent's linked identity. Fails with 409 when a valid token already exists — use the get-token endpoint to retrieve it. An expired token is replaced by a new one. An optional expirationDate (yyyy-mm-dd) sets the token's expiry; the identity manifest is not modified. Requires manage access on the agent since the token authenticates as it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agents.createToken("jqfwg345gi25n5ju2yz5iz6m");
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated agent ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.CreateAgentIdentityTokenRequest` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AgentsClient.RequestOptions` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.agents.<a href="/src/api/resources/agents/client/Client.ts">regenerateToken</a>(id, { ...params }) -> TrueFoundry.GetAgentIdentityTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Regenerates the TrueFoundry-backed token for the agent's linked identity. The old token remains valid for the specified grace period. Fails when a previous token is still in its grace window. An optional expirationDate (yyyy-mm-dd) sets the new token's expiry; the identity manifest is not modified. Requires manage access on the agent since the token authenticates as it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.agents.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
+    gracePeriodInMinutes: 60
+});
+
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — System-generated agent ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TrueFoundry.RegenerateAgentIdentityTokenRequest` 
     
 </dd>
 </dl>
@@ -7932,11 +8125,7 @@ await client.mlRepos.createOrUpdate({
     manifest: {
         type: "ml-repo",
         name: "name",
-        storageIntegrationFqn: "storage_integration_fqn",
-        collaborators: [{
-                subject: "subject",
-                roleId: "role_id"
-            }]
+        storageIntegrationFqn: "storage_integration_fqn"
     }
 });
 

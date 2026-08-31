@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const RoleBindingSubjectType: core.serialization.Schema<
     serializers.RoleBindingSubjectType.Raw,
     TrueFoundry.RoleBindingSubjectType
-> = core.serialization.enum_(["user", "team", "virtualaccount"]);
+> = core.serialization.enum_(["user", "team", "virtualaccount", "agent"]);
 
 export declare namespace RoleBindingSubjectType {
-    export type Raw = "user" | "team" | "virtualaccount";
+    export type Raw = "user" | "team" | "virtualaccount" | "agent";
 }

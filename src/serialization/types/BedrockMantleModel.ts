@@ -16,6 +16,7 @@ export const BedrockMantleModel: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("integration/model/bedrock-mantle"),
     modelTypes: core.serialization.property("model_types", core.serialization.list(ModelType)),
     region: AwsRegion.optional(),
+    project: core.serialization.string().optional(),
     cost: ModelCostMetric.optional(),
     authorizedSubjects: core.serialization.property(
         "authorized_subjects",
@@ -30,6 +31,7 @@ export declare namespace BedrockMantleModel {
         type: "integration/model/bedrock-mantle";
         model_types: ModelType.Raw[];
         region?: AwsRegion.Raw | null;
+        project?: string | null;
         cost?: ModelCostMetric.Raw | null;
         authorized_subjects?: string[] | null;
     }

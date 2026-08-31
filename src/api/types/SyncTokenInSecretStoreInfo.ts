@@ -3,6 +3,8 @@
 export interface SyncTokenInSecretStoreInfo {
     /** ISO timestamp of when the token was synced */
     updatedAt: string;
+    /** JWT id of the token that was last successfully written to the secret store */
+    jwtId: string;
     /** Error message if sync failed */
     error?: string | null;
 }

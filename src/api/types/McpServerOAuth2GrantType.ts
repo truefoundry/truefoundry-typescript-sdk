@@ -6,5 +6,6 @@ export const McpServerOAuth2GrantType = {
     ClientCredentials: "client_credentials",
     TokenExchange: "token_exchange",
     IdJag: "id_jag",
+    JwtBearer: "jwt_bearer",
 } as const;
 export type McpServerOAuth2GrantType = (typeof McpServerOAuth2GrantType)[keyof typeof McpServerOAuth2GrantType];

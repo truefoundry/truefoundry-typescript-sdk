@@ -10,12 +10,14 @@ export const FiddlerGuardrailConfigConfig: core.serialization.ObjectSchema<
     TrueFoundry.FiddlerGuardrailConfigConfig
 > = core.serialization.object({
     guardType: core.serialization.property("guard_type", FiddlerGuardType),
+    baseUrl: core.serialization.property("base_url", core.serialization.string().optional()),
     threshold: core.serialization.number().optional(),
 });
 
 export declare namespace FiddlerGuardrailConfigConfig {
     export interface Raw {
         guard_type: FiddlerGuardType.Raw;
+        base_url?: string | null;
         threshold?: number | null;
     }
 }

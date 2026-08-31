@@ -8,7 +8,7 @@ export interface VirtualAccountManifest {
     /** +value=virtual-account */
     type: "virtual-account";
     /** Permissions */
-    permissions: TrueFoundry.Permissions[];
+    permissions?: TrueFoundry.Permissions[];
     /** Expiration Date of the Virtual Account (should be in the format yyyy-mm-dd) */
     expirationDate?: string;
     autoRotate?: TrueFoundry.AutoRotate;

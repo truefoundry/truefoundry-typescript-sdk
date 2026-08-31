@@ -164,11 +164,7 @@ export class AgentsClient {
      *             description: "description",
      *             model: {
      *                 name: "name"
-     *             },
-     *             collaborators: [{
-     *                     subject: "subject",
-     *                     roleId: "role_id"
-     *                 }]
+     *             }
      *         }
      *     })
      */
@@ -464,7 +460,7 @@ export class AgentsClient {
     }
 
     /**
-     * Returns the TrueFoundry-backed token for the agent's linked identity, generating one on demand if none exists yet (or the stored one has expired). Only valid for agents whose identity is TrueFoundry-backed. Requires manage access on the agent since the token authenticates as it. 404s if the agent has no linked identity.
+     * Returns the stored TrueFoundry-backed token for the agent's linked identity. Only valid for agents whose identity is TrueFoundry-backed. Requires manage access on the agent since the token authenticates as it. Use the create-token endpoint to issue one.
      *
      * @param {string} id - System-generated agent ID.
      * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -571,5 +567,280 @@ export class AgentsClient {
         }
 
         return handleNonStatusCodeError(_response.error, _response.rawResponse, "GET", "/api/svc/v1/agents/{id}/token");
+    }
+
+    /**
+     * Issues a new TrueFoundry-backed token for the agent's linked identity. Fails with 409 when a valid token already exists — use the get-token endpoint to retrieve it. An expired token is replaced by a new one. An optional expirationDate (yyyy-mm-dd) sets the token's expiry; the identity manifest is not modified. Requires manage access on the agent since the token authenticates as it.
+     *
+     * @param {string} id - System-generated agent ID.
+     * @param {TrueFoundry.CreateAgentIdentityTokenRequest} request
+     * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.ConflictError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link errors.TrueFoundryError}
+     * @throws {@link errors.TrueFoundryTimeoutError}
+     *
+     * @example
+     *     await client.agents.createToken("jqfwg345gi25n5ju2yz5iz6m")
+     */
+    public createToken(
+        id: string,
+        request: TrueFoundry.CreateAgentIdentityTokenRequest = {},
+        requestOptions?: AgentsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetAgentIdentityTokenResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createToken(id, request, requestOptions));
+    }
+
+    private async __createToken(
+        id: string,
+        request: TrueFoundry.CreateAgentIdentityTokenRequest = {},
+        requestOptions?: AgentsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAgentIdentityTokenResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/agents/${core.url.encodePathParam(id)}/token`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(
+                serializers.CreateAgentIdentityTokenRequest.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    omitUndefined: true,
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetAgentIdentityTokenResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                case 409:
+                    throw new TrueFoundry.ConflictError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/agents/{id}/token",
+        );
+    }
+
+    /**
+     * Regenerates the TrueFoundry-backed token for the agent's linked identity. The old token remains valid for the specified grace period. Fails when a previous token is still in its grace window. An optional expirationDate (yyyy-mm-dd) sets the new token's expiry; the identity manifest is not modified. Requires manage access on the agent since the token authenticates as it.
+     *
+     * @param {string} id - System-generated agent ID.
+     * @param {TrueFoundry.RegenerateAgentIdentityTokenRequest} request
+     * @param {AgentsClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.UnauthorizedError}
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
+     * @throws {@link errors.TrueFoundryError}
+     * @throws {@link errors.TrueFoundryTimeoutError}
+     *
+     * @example
+     *     await client.agents.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
+     *         gracePeriodInMinutes: 60
+     *     })
+     */
+    public regenerateToken(
+        id: string,
+        request: TrueFoundry.RegenerateAgentIdentityTokenRequest,
+        requestOptions?: AgentsClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.GetAgentIdentityTokenResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__regenerateToken(id, request, requestOptions));
+    }
+
+    private async __regenerateToken(
+        id: string,
+        request: TrueFoundry.RegenerateAgentIdentityTokenRequest,
+        requestOptions?: AgentsClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.GetAgentIdentityTokenResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                `api/svc/v1/agents/${core.url.encodePathParam(id)}/regenerate-token`,
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(
+                serializers.RegenerateAgentIdentityTokenRequest.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    omitUndefined: true,
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.GetAgentIdentityTokenResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                case 401:
+                    throw new TrueFoundry.UnauthorizedError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/agents/{id}/regenerate-token",
+        );
     }
 }

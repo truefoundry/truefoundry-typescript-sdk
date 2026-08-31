@@ -27,6 +27,6 @@ export interface TrueFoundryAgentManifest {
     responseFormat?: TrueFoundry.TrueFoundryAgentResponseFormat;
     config?: TrueFoundry.TrueFoundryAgentConfig;
     /** List of users who have access to this Agent */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
 }

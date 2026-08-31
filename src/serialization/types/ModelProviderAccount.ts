@@ -24,6 +24,7 @@ import { ElevenLabsProviderAccount } from "./ElevenLabsProviderAccount.js";
 import { GoogleGeminiProviderAccount } from "./GoogleGeminiProviderAccount.js";
 import { GoogleVertexProviderAccount } from "./GoogleVertexProviderAccount.js";
 import { GroqProviderAccount } from "./GroqProviderAccount.js";
+import { MicrosoftFoundryProviderAccount } from "./MicrosoftFoundryProviderAccount.js";
 import { MistralAiProviderAccount } from "./MistralAiProviderAccount.js";
 import { NomicProviderAccount } from "./NomicProviderAccount.js";
 import { OllamaProviderAccount } from "./OllamaProviderAccount.js";
@@ -49,6 +50,7 @@ export const ModelProviderAccount: core.serialization.Schema<
     GoogleGeminiProviderAccount,
     AzureOpenAiProviderAccount,
     AzureFoundryProviderAccount,
+    MicrosoftFoundryProviderAccount,
     CohereProviderAccount,
     Ai21ProviderAccount,
     AnthropicProviderAccount,
@@ -89,6 +91,7 @@ export declare namespace ModelProviderAccount {
         | GoogleGeminiProviderAccount.Raw
         | AzureOpenAiProviderAccount.Raw
         | AzureFoundryProviderAccount.Raw
+        | MicrosoftFoundryProviderAccount.Raw
         | CohereProviderAccount.Raw
         | Ai21ProviderAccount.Raw
         | AnthropicProviderAccount.Raw

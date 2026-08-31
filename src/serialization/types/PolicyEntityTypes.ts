@@ -16,8 +16,18 @@ export const PolicyEntityTypes: core.serialization.Schema<
     "workflow",
     "helm",
     "volume",
+    "spark-job",
 ]);
 
 export declare namespace PolicyEntityTypes {
-    export type Raw = "service" | "async-service" | "job" | "notebook" | "ssh-server" | "workflow" | "helm" | "volume";
+    export type Raw =
+        | "service"
+        | "async-service"
+        | "job"
+        | "notebook"
+        | "ssh-server"
+        | "workflow"
+        | "helm"
+        | "volume"
+        | "spark-job";
 }

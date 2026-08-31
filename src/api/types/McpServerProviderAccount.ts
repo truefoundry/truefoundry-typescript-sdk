@@ -11,7 +11,7 @@ export interface McpServerProviderAccount {
     /** The name of the MCP Server Group. */
     name: string;
     /** List of teams/users who can manage this MCP Server Group. These subjects can add new MCP server integrations, can edit existing ones and can also use the MCP server. */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     /** List of MCP Servers, which are part of this MCP Server Group. */
     integrations: TrueFoundry.McpServerIntegrations[];
     ownedBy?: TrueFoundry.OwnedBy;

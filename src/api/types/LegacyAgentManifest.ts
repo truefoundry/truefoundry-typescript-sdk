@@ -11,7 +11,7 @@ export interface LegacyAgentManifest {
     description: string;
     source: TrueFoundry.AgentSource;
     /** List of users who have access to this Agent */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     /** Sample inputs for your agent. These inputs are shown as an example in the "Agent Chat" page. (Click on Try Now in the agent listing page) */
     sampleInputs?: TrueFoundry.SampleAgentInput[];
     ownedBy?: TrueFoundry.OwnedBy;

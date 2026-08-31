@@ -5,7 +5,6 @@ import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { ComplexityBasedLoadBalanceTarget } from "./ComplexityBasedLoadBalanceTarget.js";
 import { ComplexityBasedLoadBalancingClassificationStrategy } from "./ComplexityBasedLoadBalancingClassificationStrategy.js";
-import { ComplexityStickyRouting } from "./ComplexityStickyRouting.js";
 
 export const ComplexityBasedLoadBalancing: core.serialization.ObjectSchema<
     serializers.ComplexityBasedLoadBalancing.Raw,
@@ -20,7 +19,6 @@ export const ComplexityBasedLoadBalancing: core.serialization.ObjectSchema<
         "load_balance_targets",
         core.serialization.list(ComplexityBasedLoadBalanceTarget),
     ),
-    stickyRouting: core.serialization.property("sticky_routing", ComplexityStickyRouting.optional()),
 });
 
 export declare namespace ComplexityBasedLoadBalancing {
@@ -28,6 +26,5 @@ export declare namespace ComplexityBasedLoadBalancing {
         type: "complexity-based-routing";
         classification_strategy?: ComplexityBasedLoadBalancingClassificationStrategy.Raw | null;
         load_balance_targets: ComplexityBasedLoadBalanceTarget.Raw[];
-        sticky_routing?: ComplexityStickyRouting.Raw | null;
     }
 }

@@ -223,11 +223,7 @@ export class TrueFoundryClient {
      *         manifest: {
      *             type: "ml-repo",
      *             name: "name",
-     *             storageIntegrationFqn: "storage_integration_fqn",
-     *             collaborators: [{
-     *                     subject: "subject",
-     *                     roleId: "role_id"
-     *                 }]
+     *             storageIntegrationFqn: "storage_integration_fqn"
      *         }
      *     })
      */
@@ -312,11 +308,7 @@ export class TrueFoundryClient {
      *         manifest: {
      *             type: "ml-repo",
      *             name: "name",
-     *             storageIntegrationFqn: "storage_integration_fqn",
-     *             collaborators: [{
-     *                     subject: "subject",
-     *                     roleId: "role_id"
-     *                 }]
+     *             storageIntegrationFqn: "storage_integration_fqn"
      *         }
      *     })
      */

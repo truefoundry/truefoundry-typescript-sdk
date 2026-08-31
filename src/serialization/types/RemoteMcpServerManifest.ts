@@ -6,6 +6,8 @@ import type * as serializers from "../index.js";
 import { Collaborator } from "./Collaborator.js";
 import { CustomTlsSettings } from "./CustomTlsSettings.js";
 import { McpServerAuth } from "./McpServerAuth.js";
+import { McpToolMetadata } from "./McpToolMetadata.js";
+import { McpToolPolicy } from "./McpToolPolicy.js";
 import { McpToolSetting } from "./McpToolSetting.js";
 import { OwnedBy } from "./OwnedBy.js";
 
@@ -20,8 +22,13 @@ export const RemoteMcpServerManifest: core.serialization.ObjectSchema<
     url: core.serialization.string(),
     tlsSettings: core.serialization.property("tls_settings", CustomTlsSettings.optional()),
     toolSettings: core.serialization.property("tool_settings", core.serialization.list(McpToolSetting).optional()),
+    toolPolicy: core.serialization.property("tool_policy", McpToolPolicy.optional()),
+    toolMetadata: core.serialization.property(
+        "tool_metadata",
+        core.serialization.record(core.serialization.string(), McpToolMetadata).optional(),
+    ),
     authData: core.serialization.property("auth_data", McpServerAuth.optional()),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
     additionalHeaders: core.serialization.property(
         "additional_headers",
@@ -39,8 +46,10 @@ export declare namespace RemoteMcpServerManifest {
         url: string;
         tls_settings?: CustomTlsSettings.Raw | null;
         tool_settings?: McpToolSetting.Raw[] | null;
+        tool_policy?: McpToolPolicy.Raw | null;
+        tool_metadata?: Record<string, McpToolMetadata.Raw> | null;
         auth_data?: McpServerAuth.Raw | null;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
         additional_headers?: Record<string, unknown> | null;
         tags?: Record<string, unknown> | null;

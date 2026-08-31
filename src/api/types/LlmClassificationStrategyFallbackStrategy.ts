@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Fallback strategy applied when the classifier fails. Defaults to the heuristic classifier.
+ * Fallback strategy applied when the classifier fails.
  */
 export type LlmClassificationStrategyFallbackStrategy =
     | TrueFoundry.HeuristicFallbackStrategy

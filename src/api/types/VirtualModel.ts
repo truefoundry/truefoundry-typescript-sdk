@@ -14,5 +14,7 @@ export interface VirtualModel {
     modelTypes: TrueFoundry.VirtualModelModelType[];
     /** It should be a unique identifier for the virtual model. It is used to uniquely identify the virtual model. It can be used in place of virtualGroupName/virtualModelName. */
     slug?: string;
+    /** Alternate identifiers for the virtual model. Can be used in place of virtualGroupName/virtualModelName (same as slug). Slug takes priority if both match. */
+    alias?: string[];
     routingConfig: TrueFoundry.HeaderRoutingConfig;
 }

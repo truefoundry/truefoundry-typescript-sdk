@@ -8,6 +8,8 @@ import type * as TrueFoundry from "../index.js";
  */
 export interface FiddlerGuardrailConfigConfig {
     guardType: TrueFoundry.FiddlerGuardType;
+    /** Optional override for the Fiddler guardrails base URL. Defaults to https://guardrails.cloud.fiddler.ai if not provided. Set this if your tenant is provisioned on a different host (e.g. https://creditone-pov.cloud.fiddler.ai). */
+    baseUrl?: string;
     /** Confidence threshold (0.0-1.0) for flagging content. Content scoring above the threshold will be flagged */
     threshold?: number;
 }

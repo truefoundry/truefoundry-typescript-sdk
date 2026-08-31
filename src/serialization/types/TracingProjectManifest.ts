@@ -15,7 +15,7 @@ export const TracingProjectManifest: core.serialization.ObjectSchema<
     name: core.serialization.string(),
     storage: TracingProjectStorageConfig,
     description: core.serialization.string().optional(),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     tracesRetentionDurationDays: core.serialization.property(
         "traces_retention_duration_days",
         core.serialization.number().optional(),
@@ -29,7 +29,7 @@ export declare namespace TracingProjectManifest {
         name: string;
         storage: TracingProjectStorageConfig.Raw;
         description?: string | null;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         traces_retention_duration_days?: number | null;
         ownedBy?: OwnedBy.Raw | null;
     }

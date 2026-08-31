@@ -10,6 +10,6 @@ export interface SecretGroupManifest {
     /** Secret Store to be associated with the secret group */
     integrationFqn: string;
     /** Users and Teams that have access to Secret Group */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     ownedBy?: TrueFoundry.OwnedBy;
 }

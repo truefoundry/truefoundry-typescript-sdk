@@ -3,10 +3,10 @@
 /**
  * @example
  *     {
- *         gracePeriodInDays: 30
+ *         gracePeriodInMinutes: 30
  *     }
  */
 export interface RegenerateVirtualAccountTokenRequest {
-    /** Grace period in days for which the old token will remain valid after regeneration */
-    gracePeriodInDays: number;
+    /** Grace period in minutes for which the old token will remain valid after regeneration */
+    gracePeriodInMinutes: number;
 }

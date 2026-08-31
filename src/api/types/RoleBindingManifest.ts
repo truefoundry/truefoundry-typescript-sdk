@@ -7,7 +7,7 @@ export interface RoleBindingManifest {
     type: "role-binding";
     /** Unique name for this role binding. */
     name: string;
-    /** One row per principal; set type and name (email, team name, virtual account name, or external identity name). */
+    /** One row per principal; set type and name (email, team name, virtual account name, agent name, or external identity name). */
     subjects: TrueFoundry.RoleBindingSubject[];
     /** Resource-scoped role grants (resource type, FQN, and role name). */
     permissions: TrueFoundry.RoleBindingPermission[];

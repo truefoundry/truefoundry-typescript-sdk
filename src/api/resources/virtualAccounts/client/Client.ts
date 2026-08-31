@@ -127,7 +127,7 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Create a new virtual account or update an existing one using the provided VirtualAccountManifest. Matching is by name — if the name matches an existing virtual account it is updated, otherwise a new one is created.
+     * Create a new virtual account or update an existing one using the provided VirtualAccountManifest. Matching is by name — if the name matches an existing virtual account it is updated, otherwise a new one is created. Omitting `permissions` leaves the existing access untouched; an empty list is rejected.
      *
      * @param {TrueFoundry.ApplyVirtualAccountRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -141,12 +141,7 @@ export class VirtualAccountsClient {
      *     await client.virtualAccounts.createOrUpdate({
      *         manifest: {
      *             name: "name",
-     *             type: "virtual-account",
-     *             permissions: [{
-     *                     resourceFqn: "resource_fqn",
-     *                     resourceType: "resource_type",
-     *                     roleId: "role_id"
-     *                 }]
+     *             type: "virtual-account"
      *         }
      *     })
      */
@@ -471,9 +466,10 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Sync the virtual account token to the configured secret store. Returns the sync metadata including timestamp and error (if any).
+     * Sync the virtual account token to the configured secret store. By default the write is skipped when the active jwt already matches the last successful sync (used by the rotation cron). Pass force=true to rewrite unconditionally. Returns the sync metadata including timestamp and error (if any).
      *
      * @param {string} id - System-generated service account ID.
+     * @param {TrueFoundry.SyncToSecretStoreVirtualAccountsRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.BadRequestError}
@@ -486,15 +482,21 @@ export class VirtualAccountsClient {
      */
     public syncToSecretStore(
         id: string,
+        request: TrueFoundry.SyncToSecretStoreVirtualAccountsRequest = {},
         requestOptions?: VirtualAccountsClient.RequestOptions,
     ): core.HttpResponsePromise<TrueFoundry.SyncVirtualAccountTokenResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__syncToSecretStore(id, requestOptions));
+        return core.HttpResponsePromise.fromPromise(this.__syncToSecretStore(id, request, requestOptions));
     }
 
     private async __syncToSecretStore(
         id: string,
+        request: TrueFoundry.SyncToSecretStoreVirtualAccountsRequest = {},
         requestOptions?: VirtualAccountsClient.RequestOptions,
     ): Promise<core.WithRawResponse<TrueFoundry.SyncVirtualAccountTokenResponse>> {
+        const { force = false } = request;
+        const _queryParams: Record<string, unknown> = {
+            force,
+        };
         const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
         const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
             _authRequest.headers,
@@ -509,7 +511,11 @@ export class VirtualAccountsClient {
             ),
             method: "POST",
             headers: _headers,
-            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            queryString: core.url
+                .queryBuilder()
+                .addMany(_queryParams)
+                .mergeAdditional(requestOptions?.queryParams)
+                .build(),
             timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
             maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
             abortSignal: requestOptions?.abortSignal,
@@ -553,19 +559,20 @@ export class VirtualAccountsClient {
     }
 
     /**
-     * Regenerate the authentication token for a virtual account. The old token remains valid for the specified grace period.
+     * Regenerate the authentication token for a virtual account. The old token remains valid for the specified grace period. Not allowed when the virtual account has identity provider mapping configured.
      *
      * @param {string} id - System-generated service account ID.
      * @param {TrueFoundry.RegenerateVirtualAccountTokenRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.UnprocessableEntityError}
      * @throws {@link errors.TrueFoundryError}
      * @throws {@link errors.TrueFoundryTimeoutError}
      *
      * @example
      *     await client.virtualAccounts.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
-     *         gracePeriodInDays: 30
+     *         gracePeriodInMinutes: 30
      *     })
      */
     public regenerateToken(
@@ -630,6 +637,17 @@ export class VirtualAccountsClient {
             switch (_response.error.statusCode) {
                 case 404:
                     throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                case 422:
+                    throw new TrueFoundry.UnprocessableEntityError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
                 default:
                     throw new errors.TrueFoundryError({
                         statusCode: _response.error.statusCode,

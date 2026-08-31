@@ -21,8 +21,8 @@ export interface Deployment {
     createdAt?: Date | null;
     /** Timestamp when the deployment was last updated */
     updatedAt?: Date | null;
-    /** Build steps associated with this deployment */
-    deploymentBuilds?: TrueFoundry.BuildInfo[] | null;
+    /** Builds associated with this deployment, one per component built from source */
+    deploymentBuilds?: TrueFoundry.DeploymentBuild[] | null;
     /** Full history of deployment status transitions */
     deploymentStatuses?: TrueFoundry.DeploymentStatus[] | null;
     /** Unique identifier of the current deployment status record */

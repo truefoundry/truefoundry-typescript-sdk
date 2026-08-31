@@ -10,11 +10,13 @@ export const AwsAssumedRoleBasedAuth: core.serialization.ObjectSchema<
 > = core.serialization.object({
     type: core.serialization.stringLiteral("assumed-role-based"),
     assumedRoleArn: core.serialization.property("assumed_role_arn", core.serialization.string()),
+    externalId: core.serialization.property("external_id", core.serialization.string().optional()),
 });
 
 export declare namespace AwsAssumedRoleBasedAuth {
     export interface Raw {
         type: "assumed-role-based";
         assumed_role_arn: string;
+        external_id?: string | null;
     }
 }

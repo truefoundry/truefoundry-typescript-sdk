@@ -255,11 +255,7 @@ export class SecretGroupsClient {
      *         manifest: {
      *             type: "secret-group",
      *             name: "name",
-     *             integrationFqn: "integration_fqn",
-     *             collaborators: [{
-     *                     subject: "subject",
-     *                     roleId: "role_id"
-     *                 }]
+     *             integrationFqn: "integration_fqn"
      *         }
      *     })
      */

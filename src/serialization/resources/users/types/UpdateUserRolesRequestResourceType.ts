@@ -45,8 +45,6 @@ export const UpdateUserRolesRequestResourceType: core.serialization.Schema<
     "agent-channel",
     "gateway-installation",
     "virtual-account",
-    "sso-based-identity",
-    "external-identity",
     "mcp-server",
     "external-identity-provider",
     "agent-identity",
@@ -91,8 +89,6 @@ export declare namespace UpdateUserRolesRequestResourceType {
         | "agent-channel"
         | "gateway-installation"
         | "virtual-account"
-        | "sso-based-identity"
-        | "external-identity"
         | "mcp-server"
         | "external-identity-provider"
         | "agent-identity";

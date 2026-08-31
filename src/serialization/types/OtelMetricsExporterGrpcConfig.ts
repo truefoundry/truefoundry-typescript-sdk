@@ -4,6 +4,7 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { OtelExporterGrpcConfigBase } from "./OtelExporterGrpcConfigBase.js";
+import { OtelMetricsExporterCommonConfig } from "./OtelMetricsExporterCommonConfig.js";
 
 export const OtelMetricsExporterGrpcConfig: core.serialization.ObjectSchema<
     serializers.OtelMetricsExporterGrpcConfig.Raw,
@@ -12,10 +13,11 @@ export const OtelMetricsExporterGrpcConfig: core.serialization.ObjectSchema<
     .object({
         type: core.serialization.stringLiteral("grpc"),
     })
-    .extend(OtelExporterGrpcConfigBase);
+    .extend(OtelExporterGrpcConfigBase)
+    .extend(OtelMetricsExporterCommonConfig);
 
 export declare namespace OtelMetricsExporterGrpcConfig {
-    export interface Raw extends OtelExporterGrpcConfigBase.Raw {
+    export interface Raw extends OtelExporterGrpcConfigBase.Raw, OtelMetricsExporterCommonConfig.Raw {
         type: "grpc";
     }
 }

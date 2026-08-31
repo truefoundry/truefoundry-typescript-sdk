@@ -19,7 +19,6 @@ describe("ClustersClient", () => {
                         name: "name",
                         cluster_type: "aws-eks",
                         environment_names: ["environment_names"],
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
                     },
                     tenantName: "tenantName",
                     accountId: "accountId",
@@ -50,12 +49,6 @@ describe("ClustersClient", () => {
                         name: "name",
                         clusterType: "aws-eks",
                         environmentNames: ["environment_names"],
-                        collaborators: [
-                            {
-                                subject: "subject",
-                                roleId: "role_id",
-                            },
-                        ],
                     },
                     tenantName: "tenantName",
                     accountId: "accountId",
@@ -110,7 +103,6 @@ describe("ClustersClient", () => {
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names"],
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
             },
         };
         const rawResponseBody = {
@@ -165,12 +157,6 @@ describe("ClustersClient", () => {
                 name: "name",
                 clusterType: "aws-eks",
                 environmentNames: ["environment_names"],
-                collaborators: [
-                    {
-                        subject: "subject",
-                        roleId: "role_id",
-                    },
-                ],
             },
         });
         expect(response).toEqual({
@@ -237,10 +223,6 @@ describe("ClustersClient", () => {
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names", "environment_names"],
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
@@ -261,16 +243,6 @@ describe("ClustersClient", () => {
                     name: "name",
                     clusterType: "aws-eks",
                     environmentNames: ["environment_names", "environment_names"],
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.UnauthorizedError);
@@ -285,10 +257,6 @@ describe("ClustersClient", () => {
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names", "environment_names"],
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
@@ -309,16 +277,6 @@ describe("ClustersClient", () => {
                     name: "name",
                     clusterType: "aws-eks",
                     environmentNames: ["environment_names", "environment_names"],
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.ConflictError);
@@ -333,10 +291,6 @@ describe("ClustersClient", () => {
                 name: "name",
                 cluster_type: "aws-eks",
                 environment_names: ["environment_names", "environment_names"],
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
             },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
@@ -357,16 +311,6 @@ describe("ClustersClient", () => {
                     name: "name",
                     clusterType: "aws-eks",
                     environmentNames: ["environment_names", "environment_names"],
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);

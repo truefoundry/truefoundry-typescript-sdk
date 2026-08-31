@@ -11,11 +11,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *             description: "description",
  *             model: {
  *                 name: "name"
- *             },
- *             collaborators: [{
- *                     subject: "subject",
- *                     roleId: "role_id"
- *                 }]
+ *             }
  *         }
  *     }
  */

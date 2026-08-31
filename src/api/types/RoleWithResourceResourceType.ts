@@ -38,8 +38,6 @@ export const RoleWithResourceResourceType = {
     AgentChannel: "agent-channel",
     GatewayInstallation: "gateway-installation",
     VirtualAccount: "virtual-account",
-    SsoBasedIdentity: "sso-based-identity",
-    ExternalIdentity: "external-identity",
     McpServer: "mcp-server",
     ExternalIdentityProvider: "external-identity-provider",
     AgentIdentity: "agent-identity",

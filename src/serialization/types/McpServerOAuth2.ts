@@ -3,6 +3,7 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { McpServerOAuth2ClientAuthentication } from "./McpServerOAuth2ClientAuthentication.js";
 import { McpServerOAuth2GrantType } from "./McpServerOAuth2GrantType.js";
 import { McpServerOAuth2JwtSource } from "./McpServerOAuth2JwtSource.js";
 import { McpServerOAuth2Provider } from "./McpServerOAuth2Provider.js";
@@ -20,7 +21,16 @@ export const McpServerOAuth2: core.serialization.ObjectSchema<
         authorizationUrl: core.serialization.property("authorization_url", core.serialization.string().optional()),
         tokenUrl: core.serialization.property("token_url", core.serialization.string().optional()),
         clientId: core.serialization.property("client_id", core.serialization.string().optional()),
+        clientAuthentication: core.serialization.property(
+            "client_authentication",
+            McpServerOAuth2ClientAuthentication.optional(),
+        ),
         clientSecret: core.serialization.property("client_secret", core.serialization.string().optional()),
+        certificateThumbprint: core.serialization.property(
+            "certificate_thumbprint",
+            core.serialization.string().optional(),
+        ),
+        privateKey: core.serialization.property("private_key", core.serialization.string().optional()),
         registrationUrl: core.serialization.property("registration_url", core.serialization.string().optional()),
         introspectionUrl: core.serialization.property("introspection_url", core.serialization.string().optional()),
         includeResource: core.serialization.property("include_resource", core.serialization.boolean().optional()),
@@ -50,7 +60,10 @@ export declare namespace McpServerOAuth2 {
         authorization_url?: string | null;
         token_url?: string | null;
         client_id?: string | null;
+        client_authentication?: McpServerOAuth2ClientAuthentication.Raw | null;
         client_secret?: string | null;
+        certificate_thumbprint?: string | null;
+        private_key?: string | null;
         registration_url?: string | null;
         introspection_url?: string | null;
         include_resource?: boolean | null;

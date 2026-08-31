@@ -122,7 +122,7 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * Create a new personal access token for the current user.
+     * Create a new personal access token for the current user. Cannot be called while authenticated with a personal access token.
      *
      * @param {TrueFoundry.CreatePersonalAccessTokenRequest} request
      * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
@@ -222,6 +222,126 @@ export class PersonalAccessTokensClient {
             _response.rawResponse,
             "POST",
             "/api/svc/v1/personal-access-tokens",
+        );
+    }
+
+    /**
+     * Create a personal access token owned by another user in the current tenant. Requires tenant admin. Cannot be called while authenticated with a personal access token.
+     *
+     * @param {TrueFoundry.CreatePersonalAccessTokenForUserRequest} request
+     * @param {PersonalAccessTokensClient.RequestOptions} requestOptions - Request-specific configuration.
+     *
+     * @throws {@link TrueFoundry.BadRequestError}
+     * @throws {@link TrueFoundry.ForbiddenError}
+     * @throws {@link TrueFoundry.NotFoundError}
+     * @throws {@link TrueFoundry.ConflictError}
+     * @throws {@link errors.TrueFoundryError}
+     * @throws {@link errors.TrueFoundryTimeoutError}
+     *
+     * @example
+     *     await client.personalAccessTokens.createForUser({
+     *         name: "my-ci-token",
+     *         userEmail: "alice@example.com"
+     *     })
+     */
+    public createForUser(
+        request: TrueFoundry.CreatePersonalAccessTokenForUserRequest,
+        requestOptions?: PersonalAccessTokensClient.RequestOptions,
+    ): core.HttpResponsePromise<TrueFoundry.CreatePersonalAccessTokenResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__createForUser(request, requestOptions));
+    }
+
+    private async __createForUser(
+        request: TrueFoundry.CreatePersonalAccessTokenForUserRequest,
+        requestOptions?: PersonalAccessTokensClient.RequestOptions,
+    ): Promise<core.WithRawResponse<TrueFoundry.CreatePersonalAccessTokenResponse>> {
+        const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
+        const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            _authRequest.headers,
+            this._options?.headers,
+            requestOptions?.headers,
+        );
+        const _response = await (this._options.fetcher ?? core.fetcher)({
+            url: core.url.join(
+                (await core.Supplier.get(this._options.baseUrl)) ??
+                    (await core.Supplier.get(this._options.environment)),
+                "api/svc/v1/personal-access-tokens/for-user",
+            ),
+            method: "POST",
+            headers: _headers,
+            contentType: "application/json",
+            queryString: core.url.queryBuilder().mergeAdditional(requestOptions?.queryParams).build(),
+            requestType: "json",
+            body: mergeAdditionalBodyParameters(
+                serializers.CreatePersonalAccessTokenForUserRequest.jsonOrThrow(request, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    omitUndefined: true,
+                }),
+                requestOptions?.additionalBodyParameters,
+            ),
+            timeoutMs: (requestOptions?.timeoutInSeconds ?? this._options?.timeoutInSeconds ?? 60) * 1000,
+            maxRetries: requestOptions?.maxRetries ?? this._options?.maxRetries,
+            abortSignal: requestOptions?.abortSignal,
+            fetchFn: this._options?.fetch,
+            logging: this._options.logging,
+        });
+        if (_response.ok) {
+            return {
+                data: serializers.CreatePersonalAccessTokenResponse.parseOrThrow(_response.body, {
+                    unrecognizedObjectKeys: "passthrough",
+                    allowUnrecognizedUnionMembers: true,
+                    allowUnrecognizedEnumValues: true,
+                    skipValidation: true,
+                    breadcrumbsPrefix: ["response"],
+                }),
+                rawResponse: _response.rawResponse,
+            };
+        }
+
+        if (_response.error.reason === "status-code") {
+            switch (_response.error.statusCode) {
+                case 400:
+                    throw new TrueFoundry.BadRequestError(_response.error.body, _response.rawResponse);
+                case 403:
+                    throw new TrueFoundry.ForbiddenError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                case 404:
+                    throw new TrueFoundry.NotFoundError(_response.error.body, _response.rawResponse);
+                case 409:
+                    throw new TrueFoundry.ConflictError(
+                        serializers.HttpError.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        }),
+                        _response.rawResponse,
+                    );
+                default:
+                    throw new errors.TrueFoundryError({
+                        statusCode: _response.error.statusCode,
+                        body: _response.error.body,
+                        rawResponse: _response.rawResponse,
+                    });
+            }
+        }
+
+        return handleNonStatusCodeError(
+            _response.error,
+            _response.rawResponse,
+            "POST",
+            "/api/svc/v1/personal-access-tokens/for-user",
         );
     }
 
@@ -397,7 +517,7 @@ export class PersonalAccessTokensClient {
     }
 
     /**
-     * Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token.
+     * Get an existing personal access token by name. If none exists, a new one is created and returned with a fresh token. Creating a new token cannot be done while authenticated with a personal access token.
      *
      * @param {string} name
      * @param {TrueFoundry.GetPersonalAccessTokensRequest} request

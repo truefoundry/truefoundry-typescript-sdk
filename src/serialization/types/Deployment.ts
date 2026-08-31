@@ -4,7 +4,7 @@ import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
 import { ApplicationSummary } from "./ApplicationSummary.js";
-import { BuildInfo } from "./BuildInfo.js";
+import { DeploymentBuild } from "./DeploymentBuild.js";
 import { DeploymentManifest } from "./DeploymentManifest.js";
 import { DeploymentStatus } from "./DeploymentStatus.js";
 import { Recommendation } from "./Recommendation.js";
@@ -21,7 +21,7 @@ export const Deployment: core.serialization.ObjectSchema<serializers.Deployment.
         createdBySubject: Subject,
         createdAt: core.serialization.date().optionalNullable(),
         updatedAt: core.serialization.date().optionalNullable(),
-        deploymentBuilds: core.serialization.list(BuildInfo).optionalNullable(),
+        deploymentBuilds: core.serialization.list(DeploymentBuild).optionalNullable(),
         deploymentStatuses: core.serialization.list(DeploymentStatus).optionalNullable(),
         currentStatusId: core.serialization.string().optionalNullable(),
         currentStatus: DeploymentStatus.optionalNullable(),
@@ -40,7 +40,7 @@ export declare namespace Deployment {
         createdBySubject: Subject.Raw;
         createdAt?: (string | null | undefined) | null;
         updatedAt?: (string | null | undefined) | null;
-        deploymentBuilds?: (BuildInfo.Raw[] | null | undefined) | null;
+        deploymentBuilds?: (DeploymentBuild.Raw[] | null | undefined) | null;
         deploymentStatuses?: (DeploymentStatus.Raw[] | null | undefined) | null;
         currentStatusId?: (string | null | undefined) | null;
         currentStatus?: (DeploymentStatus.Raw | null | undefined) | null;

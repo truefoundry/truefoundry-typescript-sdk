@@ -34,7 +34,7 @@ export const TrueFoundryAgentManifest: core.serialization.ObjectSchema<
     sampleInputs: core.serialization.property("sample_inputs", core.serialization.list(SampleAgentInput).optional()),
     responseFormat: core.serialization.property("response_format", TrueFoundryAgentResponseFormat.optional()),
     config: TrueFoundryAgentConfig.optional(),
-    collaborators: core.serialization.list(Collaborator),
+    collaborators: core.serialization.list(Collaborator).optional(),
     ownedBy: OwnedBy.optional(),
 });
 
@@ -53,7 +53,7 @@ export declare namespace TrueFoundryAgentManifest {
         sample_inputs?: SampleAgentInput.Raw[] | null;
         response_format?: TrueFoundryAgentResponseFormat.Raw | null;
         config?: TrueFoundryAgentConfig.Raw | null;
-        collaborators: Collaborator.Raw[];
+        collaborators?: Collaborator.Raw[] | null;
         ownedBy?: OwnedBy.Raw | null;
     }
 }

@@ -19,7 +19,6 @@ describe("AgentVersionsClient", () => {
                         name: "name",
                         description: "description",
                         model: { name: "name" },
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
                     },
                     version: 1.1,
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
@@ -49,12 +48,6 @@ describe("AgentVersionsClient", () => {
                         model: {
                             name: "name",
                         },
-                        collaborators: [
-                            {
-                                subject: "subject",
-                                roleId: "role_id",
-                            },
-                        ],
                     },
                     version: 1.1,
                     createdBySubject: {

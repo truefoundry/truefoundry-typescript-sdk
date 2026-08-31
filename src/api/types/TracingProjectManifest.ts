@@ -14,7 +14,7 @@ export interface TracingProjectManifest {
     /** Description for the Tracing Project. */
     description?: string;
     /** Users and Teams that have access to Tracing Project */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     /**
      * Number of days to retain traces for (minimum 7 days).
      * Traces older than these number of days will be deleted automatically.

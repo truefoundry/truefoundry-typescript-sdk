@@ -11,6 +11,8 @@ export interface AwsBedrockMantleProviderAccount {
     /** The name of the AWS Bedrock Mantle model account */
     name: string;
     region: TrueFoundry.AwsRegion;
+    /** The default AWS Bedrock project that inference requests will be attributed to (e.g., proj_5d5ykleja6cwpirysbb7). Used for all models unless overridden at the model level. If not specified, the AWS account's default project is used. */
+    project?: string;
     /** Optional custom base URL (e.g. a VPC/PrivateLink endpoint) for AWS Bedrock Mantle. When set, requests are sent here instead of the default bedrock-mantle.{region}.api.aws host. */
     baseUrl?: string;
     /** Authentication data for the AWS account */

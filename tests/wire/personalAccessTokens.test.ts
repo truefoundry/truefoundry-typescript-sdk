@@ -15,13 +15,7 @@ describe("PersonalAccessTokensClient", () => {
                     id: "jqfwg345gi25n5ju2yz5iz6m",
                     type: "type",
                     tenantName: "tenantName",
-                    manifest: {
-                        name: "name",
-                        type: "virtual-account",
-                        permissions: [
-                            { resource_fqn: "resource_fqn", resource_type: "resource_type", role_id: "role_id" },
-                        ],
-                    },
+                    manifest: { name: "name", type: "virtual-account" },
                     jwtId: "jwtId",
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     createdAt: "2024-01-15T09:30:00Z",
@@ -69,13 +63,6 @@ describe("PersonalAccessTokensClient", () => {
                     manifest: {
                         name: "name",
                         type: "virtual-account",
-                        permissions: [
-                            {
-                                resourceFqn: "resource_fqn",
-                                resourceType: "resource_type",
-                                roleId: "role_id",
-                            },
-                        ],
                     },
                     jwtId: "jwtId",
                     createdBySubject: {
@@ -196,6 +183,122 @@ describe("PersonalAccessTokensClient", () => {
         }).rejects.toThrow(TrueFoundry.ConflictError);
     });
 
+    test("createForUser (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "my-ci-token", userEmail: "alice@example.com" };
+        const rawResponseBody = { token: "token" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens/for-user")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.personalAccessTokens.createForUser({
+            name: "my-ci-token",
+            userEmail: "alice@example.com",
+        });
+        expect(response).toEqual({
+            token: "token",
+        });
+    });
+
+    test("createForUser (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "name", userEmail: "userEmail" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens/for-user")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.createForUser({
+                name: "name",
+                userEmail: "userEmail",
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("createForUser (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "name", userEmail: "userEmail" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens/for-user")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.createForUser({
+                name: "name",
+                userEmail: "userEmail",
+            });
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("createForUser (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "name", userEmail: "userEmail" };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens/for-user")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.createForUser({
+                name: "name",
+                userEmail: "userEmail",
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("createForUser (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { name: "name", userEmail: "userEmail" };
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/personal-access-tokens/for-user")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.personalAccessTokens.createForUser({
+                name: "name",
+                userEmail: "userEmail",
+            });
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
     test("revokeAll (1)", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
@@ -296,7 +399,11 @@ describe("PersonalAccessTokensClient", () => {
                         notification_channel: "notification_channel",
                         to_emails: ["to_emails"],
                     },
-                    secret_store_config: { integration_fqn: "integration_fqn", secret_path: "secret_path" },
+                    secret_store_config: {
+                        type: "secret-store",
+                        integration_fqn: "integration_fqn",
+                        secret_path: "secret_path",
+                    },
                     ownedBy: { team: "team" },
                     tags: { key: "value" },
                     identity_provider_mapping: [{ identity_provider: "identity_provider", value: "value" }],
@@ -375,6 +482,7 @@ describe("PersonalAccessTokensClient", () => {
                         toEmails: ["to_emails"],
                     },
                     secretStoreConfig: {
+                        type: "secret-store",
                         integrationFqn: "integration_fqn",
                         secretPath: "secret_path",
                     },

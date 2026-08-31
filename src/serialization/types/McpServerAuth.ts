@@ -3,13 +3,23 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { McpServerAwsSigV4Auth } from "./McpServerAwsSigV4Auth.js";
 import { McpServerHeaderAuth } from "./McpServerHeaderAuth.js";
 import { McpServerOAuth2 } from "./McpServerOAuth2.js";
 import { McpServerPassthrough } from "./McpServerPassthrough.js";
 
 export const McpServerAuth: core.serialization.Schema<serializers.McpServerAuth.Raw, TrueFoundry.McpServerAuth> =
-    core.serialization.undiscriminatedUnion([McpServerHeaderAuth, McpServerOAuth2, McpServerPassthrough]);
+    core.serialization.undiscriminatedUnion([
+        McpServerHeaderAuth,
+        McpServerOAuth2,
+        McpServerPassthrough,
+        McpServerAwsSigV4Auth,
+    ]);
 
 export declare namespace McpServerAuth {
-    export type Raw = McpServerHeaderAuth.Raw | McpServerOAuth2.Raw | McpServerPassthrough.Raw;
+    export type Raw =
+        | McpServerHeaderAuth.Raw
+        | McpServerOAuth2.Raw
+        | McpServerPassthrough.Raw
+        | McpServerAwsSigV4Auth.Raw;
 }

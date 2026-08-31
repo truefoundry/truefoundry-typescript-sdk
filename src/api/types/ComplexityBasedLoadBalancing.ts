@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Complexity-based Load Balancing
+ * Auto Routing
  */
 export interface ComplexityBasedLoadBalancing {
     /** Routing Type */
@@ -12,5 +12,4 @@ export interface ComplexityBasedLoadBalancing {
     classificationStrategy?: TrueFoundry.ComplexityBasedLoadBalancingClassificationStrategy;
     /** List of targets for complexity-based load balancing. Each target serves a single tier; a model must not appear under more than one tier. */
     loadBalanceTargets: TrueFoundry.ComplexityBasedLoadBalanceTarget[];
-    stickyRouting?: TrueFoundry.ComplexityStickyRouting;
 }

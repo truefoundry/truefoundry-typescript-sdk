@@ -28,12 +28,12 @@ describe("AgentsClient", () => {
                             name: "name",
                             description: "description",
                             model: { name: "name" },
-                            collaborators: [{ subject: "subject", role_id: "role_id" }],
                         },
                         version: 1.1,
                     },
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
                     manifest: { key: "value" },
+                    metadata: { key: "value" },
                     agentIdentityId: "agentIdentityId",
                     createdBy: "createdBy",
                 },
@@ -64,12 +64,6 @@ describe("AgentsClient", () => {
                             model: {
                                 name: "name",
                             },
-                            collaborators: [
-                                {
-                                    subject: "subject",
-                                    roleId: "role_id",
-                                },
-                            ],
                         },
                         version: 1.1,
                     },
@@ -78,6 +72,9 @@ describe("AgentsClient", () => {
                         subjectType: "user",
                     },
                     manifest: {
+                        key: "value",
+                    },
+                    metadata: {
                         key: "value",
                     },
                     agentIdentityId: "agentIdentityId",
@@ -115,13 +112,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "name" },
-                collaborators: [{ subject: "subject", role_id: "role_id" }],
-            },
+            manifest: { type: "truefoundry-agent", name: "name", description: "description", model: { name: "name" } },
         };
         const rawResponseBody = {
             data: {
@@ -174,12 +165,6 @@ describe("AgentsClient", () => {
                 model: {
                     name: "name",
                 },
-                collaborators: [
-                    {
-                        subject: "subject",
-                        roleId: "role_id",
-                    },
-                ],
             },
         });
         expect(response).toEqual({
@@ -252,16 +237,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "truefoundry-agent", name: "name", description: "description", model: { name: "x" } },
         };
         const rawResponseBody = { key: "value" };
 
@@ -283,16 +259,6 @@ describe("AgentsClient", () => {
                     model: {
                         name: "x",
                     },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.BadRequestError);
@@ -302,16 +268,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "truefoundry-agent", name: "name", description: "description", model: { name: "x" } },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -333,16 +290,6 @@ describe("AgentsClient", () => {
                     model: {
                         name: "x",
                     },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.UnauthorizedError);
@@ -352,16 +299,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "truefoundry-agent", name: "name", description: "description", model: { name: "x" } },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -383,16 +321,6 @@ describe("AgentsClient", () => {
                     model: {
                         name: "x",
                     },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.ForbiddenError);
@@ -402,16 +330,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "truefoundry-agent", name: "name", description: "description", model: { name: "x" } },
         };
         const rawResponseBody = { key: "value" };
 
@@ -433,16 +352,6 @@ describe("AgentsClient", () => {
                     model: {
                         name: "x",
                     },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.NotFoundError);
@@ -452,16 +361,7 @@ describe("AgentsClient", () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
         const rawRequestBody = {
-            manifest: {
-                type: "truefoundry-agent",
-                name: "name",
-                description: "description",
-                model: { name: "x" },
-                collaborators: [
-                    { subject: "subject", role_id: "role_id" },
-                    { subject: "subject", role_id: "role_id" },
-                ],
-            },
+            manifest: { type: "truefoundry-agent", name: "name", description: "description", model: { name: "x" } },
         };
         const rawResponseBody = { statusCode: 1, message: "message" };
 
@@ -483,16 +383,6 @@ describe("AgentsClient", () => {
                     model: {
                         name: "x",
                     },
-                    collaborators: [
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                        {
-                            subject: "subject",
-                            roleId: "role_id",
-                        },
-                    ],
                 },
             });
         }).rejects.toThrow(TrueFoundry.InternalServerError);
@@ -520,7 +410,6 @@ describe("AgentsClient", () => {
                         name: "name",
                         description: "description",
                         model: { name: "name" },
-                        collaborators: [{ subject: "subject", role_id: "role_id" }],
                     },
                     version: 1.1,
                     createdBySubject: { subjectId: "subjectId", subjectType: "user" },
@@ -535,6 +424,7 @@ describe("AgentsClient", () => {
                     subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 manifest: { key: "value" },
+                metadata: { key: "value" },
                 agentIdentityId: "agentIdentityId",
                 createdBy: "createdBy",
             },
@@ -569,12 +459,6 @@ describe("AgentsClient", () => {
                         model: {
                             name: "name",
                         },
-                        collaborators: [
-                            {
-                                subject: "subject",
-                                roleId: "role_id",
-                            },
-                        ],
                     },
                     version: 1.1,
                     createdBySubject: {
@@ -592,6 +476,9 @@ describe("AgentsClient", () => {
                     subjectExternalIdentitySlug: "subjectExternalIdentitySlug",
                 },
                 manifest: {
+                    key: "value",
+                },
+                metadata: {
                     key: "value",
                 },
                 agentIdentityId: "agentIdentityId",
@@ -822,6 +709,260 @@ describe("AgentsClient", () => {
 
         await expect(async () => {
             return await client.agents.getToken("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("createToken (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { token: "token" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m/token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.agents.createToken("jqfwg345gi25n5ju2yz5iz6m");
+        expect(response).toEqual({
+            token: "token",
+        });
+    });
+
+    test("createToken (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.createToken("id");
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("createToken (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.createToken("id");
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("createToken (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.createToken("id");
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("createToken (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(409)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.createToken("id");
+        }).rejects.toThrow(TrueFoundry.ConflictError);
+    });
+
+    test("createToken (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = {};
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.createToken("id");
+        }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
+    });
+
+    test("regenerateToken (1)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInMinutes: 60 };
+        const rawResponseBody = { token: "token" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/jqfwg345gi25n5ju2yz5iz6m/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const response = await client.agents.regenerateToken("jqfwg345gi25n5ju2yz5iz6m", {
+            gracePeriodInMinutes: 60,
+        });
+        expect(response).toEqual({
+            token: "token",
+        });
+    });
+
+    test("regenerateToken (2)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInMinutes: 525600 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(400)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.regenerateToken("id", {
+                gracePeriodInMinutes: 525600,
+            });
+        }).rejects.toThrow(TrueFoundry.BadRequestError);
+    });
+
+    test("regenerateToken (3)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInMinutes: 525600 };
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(401)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.regenerateToken("id", {
+                gracePeriodInMinutes: 525600,
+            });
+        }).rejects.toThrow(TrueFoundry.UnauthorizedError);
+    });
+
+    test("regenerateToken (4)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInMinutes: 525600 };
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(403)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.regenerateToken("id", {
+                gracePeriodInMinutes: 525600,
+            });
+        }).rejects.toThrow(TrueFoundry.ForbiddenError);
+    });
+
+    test("regenerateToken (5)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInMinutes: 525600 };
+        const rawResponseBody = { key: "value" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(404)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.regenerateToken("id", {
+                gracePeriodInMinutes: 525600,
+            });
+        }).rejects.toThrow(TrueFoundry.NotFoundError);
+    });
+
+    test("regenerateToken (6)", async () => {
+        const server = mockServerPool.createServer();
+        const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", environment: server.baseUrl });
+        const rawRequestBody = { gracePeriodInMinutes: 525600 };
+        const rawResponseBody = { statusCode: 1, message: "message" };
+
+        server
+            .mockEndpoint()
+            .post("/api/svc/v1/agents/id/regenerate-token")
+            .jsonBody(rawRequestBody)
+            .respondWith()
+            .statusCode(422)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        await expect(async () => {
+            return await client.agents.regenerateToken("id", {
+                gracePeriodInMinutes: 525600,
+            });
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 });

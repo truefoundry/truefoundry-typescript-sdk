@@ -16,8 +16,8 @@ export interface SparkJob {
     entrypoint: TrueFoundry.SparkJobEntrypoint;
     /** Specify the trigger */
     trigger?: TrueFoundry.SparkJobTrigger;
-    driverConfig: TrueFoundry.SparkDriverConfig;
-    executorConfig: TrueFoundry.SparkExecutorConfig;
+    driverConfig: TrueFoundry.SparkJobDriverConfig;
+    executorConfig: TrueFoundry.SparkJobExecutorConfig;
     /** Configure environment variables to be injected in the service either as plain text. [Docs](https://docs.truefoundry.com/docs/env-variables) */
     env?: Record<string, unknown> | null;
     /** Extra configuration properties to be passed to the spark job. [Docs](https://spark.apache.org/docs/latest/configuration.html) */

@@ -3,18 +3,14 @@
 import type * as TrueFoundry from "../../api/index.js";
 import * as core from "../../core/index.js";
 import type * as serializers from "../index.js";
+import { SecretStoreIntegrationConfig } from "./SecretStoreIntegrationConfig.js";
+import { TfySecretsConfig } from "./TfySecretsConfig.js";
 
-export const SecretStoreConfig: core.serialization.ObjectSchema<
+export const SecretStoreConfig: core.serialization.Schema<
     serializers.SecretStoreConfig.Raw,
     TrueFoundry.SecretStoreConfig
-> = core.serialization.object({
-    integrationFqn: core.serialization.property("integration_fqn", core.serialization.string()),
-    secretPath: core.serialization.property("secret_path", core.serialization.string()),
-});
+> = core.serialization.undiscriminatedUnion([SecretStoreIntegrationConfig, TfySecretsConfig]);
 
 export declare namespace SecretStoreConfig {
-    export interface Raw {
-        integration_fqn: string;
-        secret_path: string;
-    }
+    export type Raw = SecretStoreIntegrationConfig.Raw | TfySecretsConfig.Raw;
 }

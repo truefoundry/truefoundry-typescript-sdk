@@ -6,10 +6,20 @@ import type * as serializers from "../index.js";
 import { AllDataAccessRule } from "./AllDataAccessRule.js";
 import { OwnDataAccessRule } from "./OwnDataAccessRule.js";
 import { TeamDataAccessRule } from "./TeamDataAccessRule.js";
+import { TeamVirtualAccountDataAccessRule } from "./TeamVirtualAccountDataAccessRule.js";
 
 export const DataAccessRule: core.serialization.Schema<serializers.DataAccessRule.Raw, TrueFoundry.DataAccessRule> =
-    core.serialization.undiscriminatedUnion([OwnDataAccessRule, TeamDataAccessRule, AllDataAccessRule]);
+    core.serialization.undiscriminatedUnion([
+        OwnDataAccessRule,
+        TeamDataAccessRule,
+        TeamVirtualAccountDataAccessRule,
+        AllDataAccessRule,
+    ]);
 
 export declare namespace DataAccessRule {
-    export type Raw = OwnDataAccessRule.Raw | TeamDataAccessRule.Raw | AllDataAccessRule.Raw;
+    export type Raw =
+        | OwnDataAccessRule.Raw
+        | TeamDataAccessRule.Raw
+        | TeamVirtualAccountDataAccessRule.Raw
+        | AllDataAccessRule.Raw;
 }

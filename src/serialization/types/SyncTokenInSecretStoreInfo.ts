@@ -9,12 +9,14 @@ export const SyncTokenInSecretStoreInfo: core.serialization.ObjectSchema<
     TrueFoundry.SyncTokenInSecretStoreInfo
 > = core.serialization.object({
     updatedAt: core.serialization.string(),
+    jwtId: core.serialization.string(),
     error: core.serialization.string().optionalNullable(),
 });
 
 export declare namespace SyncTokenInSecretStoreInfo {
     export interface Raw {
         updatedAt: string;
+        jwtId: string;
         error?: (string | null | undefined) | null;
     }
 }

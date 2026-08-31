@@ -12,6 +12,7 @@ export const VirtualModel: core.serialization.ObjectSchema<serializers.VirtualMo
         type: core.serialization.stringLiteral("integration/model/virtual"),
         modelTypes: core.serialization.property("model_types", core.serialization.list(VirtualModelModelType)),
         slug: core.serialization.string().optional(),
+        alias: core.serialization.list(core.serialization.string()).optional(),
         routingConfig: core.serialization.property("routing_config", HeaderRoutingConfig),
     });
 
@@ -21,6 +22,7 @@ export declare namespace VirtualModel {
         type: "integration/model/virtual";
         model_types: VirtualModelModelType.Raw[];
         slug?: string | null;
+        alias?: string[] | null;
         routing_config: HeaderRoutingConfig.Raw;
     }
 }

@@ -10,7 +10,7 @@ export interface AzureOpenAiProviderAccount {
     type: "provider-account/azure-openai";
     /** The name of the Azure OpenAI model account */
     name: string;
-    /** The Azure OpenAI Service endpoint URL. Should look like https://{resource-name}.openai.azure.com */
+    /** The Azure OpenAI Service endpoint URL. Should look like https://{resource-name}.openai.azure.com (a trailing /openai suffix is optional and stripped automatically) */
     azureEndpoint: string;
     /** Azure OpenAI authentication credentials */
     authData: TrueFoundry.AzureOpenAiProviderAccountAuthData;

@@ -8,11 +8,11 @@ export const RegenerateVirtualAccountTokenRequest: core.serialization.Schema<
     serializers.RegenerateVirtualAccountTokenRequest.Raw,
     TrueFoundry.RegenerateVirtualAccountTokenRequest
 > = core.serialization.object({
-    gracePeriodInDays: core.serialization.number(),
+    gracePeriodInMinutes: core.serialization.number(),
 });
 
 export declare namespace RegenerateVirtualAccountTokenRequest {
     export interface Raw {
-        gracePeriodInDays: number;
+        gracePeriodInMinutes: number;
     }
 }

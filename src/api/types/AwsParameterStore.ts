@@ -17,4 +17,6 @@ export interface AwsParameterStore {
     authorizedSubjects?: string[];
     /** The ARN of the KMS key to use for encryption. */
     kmsArn?: string;
+    /** Key-value pairs attached as metadata to secrets created in this store */
+    tags?: Record<string, unknown>;
 }

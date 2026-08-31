@@ -15,6 +15,8 @@ export interface BedrockMantleModel {
     /** Specify the type of the Bedrock Mantle model */
     modelTypes: TrueFoundry.ModelType[];
     region?: TrueFoundry.AwsRegion;
+    /** The AWS Bedrock project that inference requests for this model will be attributed to (e.g., proj_5d5ykleja6cwpirysbb7). If not specified, the project from the model account will be used, and if that is also unset the AWS account's default project is used. */
+    project?: string;
     cost?: TrueFoundry.ModelCostMetric;
     /** List of subjects that are authorized to access this integration. List of user fqn in format <user_type>:<username>. */
     authorizedSubjects?: string[];

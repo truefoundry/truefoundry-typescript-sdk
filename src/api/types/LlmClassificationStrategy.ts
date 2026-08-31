@@ -3,7 +3,7 @@
 import type * as TrueFoundry from "../index.js";
 
 /**
- * Classify each request by calling a fast chat model. On timeout or error the gateway applies the configured fallback strategy.
+ * Classify request using chat model
  */
 export interface LlmClassificationStrategy {
     /** Strategy */
@@ -12,6 +12,6 @@ export interface LlmClassificationStrategy {
     model: string;
     /** Maximum time to wait for the classifier response in milliseconds before applying the fallback strategy. */
     timeoutMs?: number;
-    /** Fallback strategy applied when the classifier fails. Defaults to the heuristic classifier. */
-    fallbackStrategy?: TrueFoundry.LlmClassificationStrategyFallbackStrategy;
+    /** Fallback strategy applied when the classifier fails. */
+    fallbackStrategy: TrueFoundry.LlmClassificationStrategyFallbackStrategy;
 }

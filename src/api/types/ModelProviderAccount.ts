@@ -8,6 +8,7 @@ export type ModelProviderAccount =
     | TrueFoundry.GoogleGeminiProviderAccount
     | TrueFoundry.AzureOpenAiProviderAccount
     | TrueFoundry.AzureFoundryProviderAccount
+    | TrueFoundry.MicrosoftFoundryProviderAccount
     | TrueFoundry.CohereProviderAccount
     | TrueFoundry.Ai21ProviderAccount
     | TrueFoundry.AnthropicProviderAccount

@@ -7,8 +7,8 @@ import type * as serializers from "../index.js";
 export const McpServerOAuth2Provider: core.serialization.Schema<
     serializers.McpServerOAuth2Provider.Raw,
     TrueFoundry.McpServerOAuth2Provider
-> = core.serialization.enum_(["custom", "auth0", "okta"]);
+> = core.serialization.enum_(["custom", "auth0", "okta", "microsoft-entra"]);
 
 export declare namespace McpServerOAuth2Provider {
-    export type Raw = "custom" | "auth0" | "okta";
+    export type Raw = "custom" | "auth0" | "okta" | "microsoft-entra";
 }

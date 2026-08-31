@@ -3,18 +3,32 @@
 import type * as TrueFoundry from "../index.js";
 
 export interface DeploymentBuild {
+    /** System-generated unique identifier for the deployment build. */
     id?: string | null;
+    /** System-generated unique identifier for the deployment this build belongs to. */
     deploymentId?: string | null;
+    /** Human-readable name of the application component this build produces an image for. */
     componentName?: string | null;
+    /** Underlying build record. */
     build?: TrueFoundry.BuildInfo | null;
+    /** System-generated unique identifier for the build. */
     buildId?: string | null;
+    /** Fully-qualified URI of the image produced by this build. */
     imageUri?: string | null;
+    /** Human-readable name of the build, accepted as the `pipelineRunName` by the build logs API. */
     name?: string | null;
+    /** Current status of the build. */
     status?: TrueFoundry.DeploymentBuildStatus | null;
+    /** URL for fetching this build’s logs. */
     getLogsUrl?: string | null;
+    /** JSON-encoded connection details for streaming this build’s logs. */
     tailLogsUrl?: string | null;
+    /** Timestamp the build started, in nanoseconds. Pass as `startTs` when fetching build logs. */
     logsStartTs?: string | null;
+    /** Additional metadata recorded against the build. */
     metadata?: Record<string, unknown> | null;
+    /** Timestamp when the build was created. */
     createdAt?: Date | null;
+    /** Timestamp when the build was last updated. */
     updatedAt?: Date | null;
 }

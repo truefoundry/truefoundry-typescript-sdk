@@ -13,7 +13,7 @@ export interface SimulateBudgetRequest {
     team?: string;
     /** All teams the simulated user belongs to. Merged with `team` when both are provided. */
     teams?: string[];
-    /** Model to simulate. */
+    /** Model id to simulate (`account/model`). Use the virtual model id when previewing virtual-model traffic. */
     model?: string;
     /** Request metadata key/value pairs to simulate. */
     metadata?: Record<string, string>;

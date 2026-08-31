@@ -7,12 +7,7 @@ import type * as TrueFoundry from "../../../../index.js";
  *     {
  *         manifest: {
  *             name: "name",
- *             type: "virtual-account",
- *             permissions: [{
- *                     resourceFqn: "resource_fqn",
- *                     resourceType: "resource_type",
- *                     roleId: "role_id"
- *                 }]
+ *             type: "virtual-account"
  *         }
  *     }
  */

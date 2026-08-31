@@ -12,10 +12,7 @@ export const LlmClassificationStrategy: core.serialization.ObjectSchema<
     type: core.serialization.stringLiteral("llm-classifier"),
     model: core.serialization.string(),
     timeoutMs: core.serialization.property("timeout_ms", core.serialization.number().optional()),
-    fallbackStrategy: core.serialization.property(
-        "fallback_strategy",
-        LlmClassificationStrategyFallbackStrategy.optional(),
-    ),
+    fallbackStrategy: core.serialization.property("fallback_strategy", LlmClassificationStrategyFallbackStrategy),
 });
 
 export declare namespace LlmClassificationStrategy {
@@ -23,6 +20,6 @@ export declare namespace LlmClassificationStrategy {
         type: "llm-classifier";
         model: string;
         timeout_ms?: number | null;
-        fallback_strategy?: LlmClassificationStrategyFallbackStrategy.Raw | null;
+        fallback_strategy: LlmClassificationStrategyFallbackStrategy.Raw;
     }
 }

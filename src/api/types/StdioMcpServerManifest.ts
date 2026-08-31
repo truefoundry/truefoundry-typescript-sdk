@@ -13,7 +13,7 @@ export interface StdioMcpServerManifest {
     /** Provide a brief description of the purpose of this MCP Server. */
     description: string;
     /** Users and Teams that have access to this MCP Server */
-    collaborators: TrueFoundry.Collaborator[];
+    collaborators?: TrueFoundry.Collaborator[];
     /**
      * +value=mcp-server/stdio
      * +sort=400
@@ -25,6 +25,9 @@ export interface StdioMcpServerManifest {
     args?: string[];
     /** Customize tool descriptions or enable/disable specific tools from the MCP Server. */
     toolSettings?: TrueFoundry.McpToolSetting[];
+    toolPolicy?: TrueFoundry.McpToolPolicy;
+    /** Per-tool description and annotation overrides keyed by tool name. */
+    toolMetadata?: Record<string, TrueFoundry.McpToolMetadata>;
     authData?: TrueFoundry.McpServerEnvAuth;
     ownedBy?: TrueFoundry.OwnedBy;
     /** Key-value pairs to categorize this MCP Server (e.g., by owner or environment). */
