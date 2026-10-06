@@ -53,5 +53,6 @@ export * as users from "./users/index.js";
 export * from "./users/types/index.js";
 export * from "./virtualAccounts/client/requests/index.js";
 export * as virtualAccounts from "./virtualAccounts/index.js";
+export * from "./virtualAccounts/types/index.js";
 export * from "./workspaces/client/requests/index.js";
 export * as workspaces from "./workspaces/index.js";
