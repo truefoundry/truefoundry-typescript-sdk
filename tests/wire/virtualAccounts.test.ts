@@ -338,7 +338,7 @@ describe("VirtualAccountsClient", () => {
         }).rejects.toThrow(TrueFoundry.UnprocessableEntityError);
     });
 
-    test("check_exists", async () => {
+    test("exists", async () => {
         const server = mockServerPool.createServer();
         const client = new TrueFoundryClient({ maxRetries: 0, apiKey: "test", baseUrl: server.baseUrl });
 
@@ -352,7 +352,7 @@ describe("VirtualAccountsClient", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.virtualAccounts.checkExists({
+        const response = await client.virtualAccounts.exists({
             name: "name",
         });
         expect(response).toEqual({

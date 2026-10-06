@@ -1,1 +1,1 @@
-export * from "./CheckExistsVirtualAccountsResponse.js";
+export * from "./ExistsVirtualAccountsResponse.js";

@@ -2556,7 +2556,7 @@ await client.virtualAccounts.createOrUpdate({
 </dl>
 </details>
 
-<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">checkExists</a>({ ...params }) -> TrueFoundry.CheckExistsVirtualAccountsResponse</code></summary>
+<details><summary><code>client.virtualAccounts.<a href="/src/api/resources/virtualAccounts/client/Client.ts">exists</a>({ ...params }) -> TrueFoundry.ExistsVirtualAccountsResponse</code></summary>
 <dl>
 <dd>
 
@@ -2583,7 +2583,7 @@ Check whether a virtual account with the given name exists in the current tenant
 <dd>
 
 ```typescript
-await client.virtualAccounts.checkExists({
+await client.virtualAccounts.exists({
     name: "name"
 });
 
@@ -2601,7 +2601,7 @@ await client.virtualAccounts.checkExists({
 <dl>
 <dd>
 
-**request:** `TrueFoundry.CheckExistsVirtualAccountsRequest` 
+**request:** `TrueFoundry.ExistsVirtualAccountsRequest` 
     
 </dd>
 </dl>

@@ -4,14 +4,14 @@ import type * as TrueFoundry from "../../../../api/index.js";
 import * as core from "../../../../core/index.js";
 import type * as serializers from "../../../index.js";
 
-export const CheckExistsVirtualAccountsResponse: core.serialization.ObjectSchema<
-    serializers.CheckExistsVirtualAccountsResponse.Raw,
-    TrueFoundry.CheckExistsVirtualAccountsResponse
+export const ExistsVirtualAccountsResponse: core.serialization.ObjectSchema<
+    serializers.ExistsVirtualAccountsResponse.Raw,
+    TrueFoundry.ExistsVirtualAccountsResponse
 > = core.serialization.object({
     exists: core.serialization.boolean(),
 });
 
-export declare namespace CheckExistsVirtualAccountsResponse {
+export declare namespace ExistsVirtualAccountsResponse {
     export interface Raw {
         exists: boolean;
     }

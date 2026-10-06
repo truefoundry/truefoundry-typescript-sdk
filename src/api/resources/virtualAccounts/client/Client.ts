@@ -231,28 +231,28 @@ export class VirtualAccountsClient {
     /**
      * Check whether a virtual account with the given name exists in the current tenant.
      *
-     * @param {TrueFoundry.CheckExistsVirtualAccountsRequest} request
+     * @param {TrueFoundry.ExistsVirtualAccountsRequest} request
      * @param {VirtualAccountsClient.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link errors.TrueFoundryError}
      * @throws {@link errors.TrueFoundryTimeoutError}
      *
      * @example
-     *     await client.virtualAccounts.checkExists({
+     *     await client.virtualAccounts.exists({
      *         name: "name"
      *     })
      */
-    public checkExists(
-        request: TrueFoundry.CheckExistsVirtualAccountsRequest,
+    public exists(
+        request: TrueFoundry.ExistsVirtualAccountsRequest,
         requestOptions?: VirtualAccountsClient.RequestOptions,
-    ): core.HttpResponsePromise<TrueFoundry.CheckExistsVirtualAccountsResponse> {
-        return core.HttpResponsePromise.fromPromise(this.__checkExists(request, requestOptions));
+    ): core.HttpResponsePromise<TrueFoundry.ExistsVirtualAccountsResponse> {
+        return core.HttpResponsePromise.fromPromise(this.__exists(request, requestOptions));
     }
 
-    private async __checkExists(
-        request: TrueFoundry.CheckExistsVirtualAccountsRequest,
+    private async __exists(
+        request: TrueFoundry.ExistsVirtualAccountsRequest,
         requestOptions?: VirtualAccountsClient.RequestOptions,
-    ): Promise<core.WithRawResponse<TrueFoundry.CheckExistsVirtualAccountsResponse>> {
+    ): Promise<core.WithRawResponse<TrueFoundry.ExistsVirtualAccountsResponse>> {
         const { name } = request;
         const _queryParams: Record<string, unknown> = {
             name,
@@ -284,7 +284,7 @@ export class VirtualAccountsClient {
         });
         if (_response.ok) {
             return {
-                data: serializers.CheckExistsVirtualAccountsResponse.parseOrThrow(_response.body, {
+                data: serializers.ExistsVirtualAccountsResponse.parseOrThrow(_response.body, {
                     unrecognizedObjectKeys: "passthrough",
                     allowUnrecognizedUnionMembers: true,
                     allowUnrecognizedEnumValues: true,

@@ -6,6 +6,6 @@
  *         name: "name"
  *     }
  */
-export interface CheckExistsVirtualAccountsRequest {
+export interface ExistsVirtualAccountsRequest {
     name: string;
 }
