@@ -476,7 +476,6 @@ export * from "./GetMetricHistoryResponse.js";
 export * from "./GetMlRepoResponse.js";
 export * from "./GetModelResponse.js";
 export * from "./GetModelVersionResponse.js";
-export * from "./GetOrCreatePersonalAccessTokenResponse.js";
 export * from "./GetPromptResponse.js";
 export * from "./GetPromptVersionResponse.js";
 export * from "./GetRunResponse.js";
