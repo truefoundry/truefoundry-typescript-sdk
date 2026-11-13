@@ -9,7 +9,7 @@ import { QuerySpansRequestFiltersItem } from "../../types/QuerySpansRequestFilte
 
 export const QuerySpansRequest: core.serialization.Schema<
     serializers.QuerySpansRequest.Raw,
-    TrueFoundry.QuerySpansRequest
+    Omit<TrueFoundry.QuerySpansRequest, "includeInputAndOutput">
 > = core.serialization.object({
     startTime: core.serialization.string(),
     endTime: core.serialization.string().optionalNullable(),

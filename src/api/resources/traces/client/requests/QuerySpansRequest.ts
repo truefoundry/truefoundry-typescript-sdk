@@ -9,6 +9,8 @@ import type * as TrueFoundry from "../../../../index.js";
  *     }
  */
 export interface QuerySpansRequest {
+    /** When false, gateway input and output are omitted from the response so those columns are not read. Defaults to true. */
+    includeInputAndOutput?: boolean;
     /** Start time in ISO 8601 format (e.g., 2025-03-12T00:00:09.872Z) */
     startTime: string;
     /** End time in ISO 8601 format (e.g., 2025-03-12T00:10:00.000Z). Defaults to current time if not provided. */
@@ -39,8 +41,4 @@ export interface QuerySpansRequest {
     filters?: TrueFoundry.QuerySpansRequestFiltersItem[] | null;
     /** When true, feedback data is included in the response. When false, feedback data is excluded (returns empty array). */
     includeFeedbacks?: boolean | null;
-    /**
-     * Query parameter. When true, gateway input and output are included in the response. When false, those columns are not read. Defaults to false.
-     */
-    includeInputAndOutput?: boolean;
 }

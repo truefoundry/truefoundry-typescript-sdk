@@ -43,7 +43,10 @@ export class TracesClient {
             async (
                 request: TrueFoundry.QuerySpansRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.QuerySpansResponse>> => {
-                const { includeInputAndOutput = false, ...bodyRequest } = request;
+                const { includeInputAndOutput, ..._body } = request;
+                const _queryParams: Record<string, unknown> = {
+                    include_input_and_output: includeInputAndOutput,
+                };
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,
@@ -61,12 +64,12 @@ export class TracesClient {
                     contentType: "application/json",
                     queryString: core.url
                         .queryBuilder()
-                        .add("include_input_and_output", includeInputAndOutput)
+                        .addMany(_queryParams)
                         .mergeAdditional(requestOptions?.queryParams)
                         .build(),
                     requestType: "json",
                     body: mergeAdditionalBodyParameters(
-                        serializers.QuerySpansRequest.jsonOrThrow(bodyRequest, {
+                        serializers.QuerySpansRequest.jsonOrThrow(_body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
