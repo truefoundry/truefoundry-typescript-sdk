@@ -40,7 +40,7 @@ export interface QuerySpansRequest {
     /** When true, feedback data is included in the response. When false, feedback data is excluded (returns empty array). */
     includeFeedbacks?: boolean | null;
     /**
-     * Query parameter. When false, gateway input and output are omitted from the response so those columns are not read. Defaults to true.
+     * Query parameter. When true, gateway input and output are included in the response. When false, those columns are not read. Defaults to false.
      */
     includeInputAndOutput?: boolean;
 }

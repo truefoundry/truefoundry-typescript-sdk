@@ -43,7 +43,7 @@ export class TracesClient {
             async (
                 request: TrueFoundry.QuerySpansRequest,
             ): Promise<core.WithRawResponse<TrueFoundry.QuerySpansResponse>> => {
-                const { includeInputAndOutput, ...bodyRequest } = request;
+                const { includeInputAndOutput = false, ...bodyRequest } = request;
                 const _authRequest: core.AuthRequest = await this._options.authProvider.getAuthRequest();
                 const _headers: core.Fetcher.Args["headers"] = mergeHeaders(
                     _authRequest.headers,
