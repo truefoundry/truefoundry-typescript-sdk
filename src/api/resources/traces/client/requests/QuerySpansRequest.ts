@@ -39,4 +39,8 @@ export interface QuerySpansRequest {
     filters?: TrueFoundry.QuerySpansRequestFiltersItem[] | null;
     /** When true, feedback data is included in the response. When false, feedback data is excluded (returns empty array). */
     includeFeedbacks?: boolean | null;
+    /**
+     * Query parameter. When false, gateway input and output are omitted from the response so those columns are not read. Defaults to true.
+     */
+    includeInputAndOutput?: boolean;
 }
